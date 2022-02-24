@@ -1,0 +1,267 @@
+<!--<app-db-header></app-db-header>-->
+<app-seller-header></app-seller-header>
+<div class="dashboard-wrapper">
+	<div class="custom-container d-flex">
+		<app-sidebar></app-sidebar>
+		<div class="main-wrap">
+			<div class="card">
+				<div class="card-body">
+					<mat-tab-group>
+						
+						<mat-tab label="Pending"> 
+							<div class="col-md-12 mt-3">
+								<div class="db-header--wraap">
+								<div class="dashboard-table-heading">
+									<h1>All Pending Request</h1>
+								</div>
+								<div class="user-search-input">
+									<div class="form-group mb-0">
+										<input type="text" name="search-user" placeholder="Search" (keyup)="filterByServiceName($event)" class="form-control">
+									</div>
+								</div>
+								</div>
+								<div class="dashboard-table margn-top">
+									<div class="form-info-quotation">
+										<div class="row">	
+											<div class="col-md-12" *ngFor="let list of pendingQuotations;let i=index">
+												<div class="form-field-data  card-shdow" >
+													
+													
+													
+													
+														<div class="quotation-detail">
+															<div class="d-flex justify-content-between">
+																<p>
+																	<span class="form-label-data">Service Name:</span> <span class="form-value-data">{{list?.quotation_id?.service_name}}</span>
+																</p>
+																<p>
+																	<span class="badge badge-warning status-badge">{{list?.status}}</span>
+																</p>
+															</div>
+															<p>
+																<span class="form-label-data">MileStone:</span> <span class="form-value-data">1</span>
+															</p>
+															<p *ngFor="let value of list.issue_quotation;let j= index">
+																<span class="form-label-data">Start Date:</span> <span class="form-value-data">{{value.payment_terms[j].start_date | date}}</span>
+															</p>
+															<p  *ngFor="let value of list.issue_quotation;let j= index">
+																<span class="form-label-data">End Date:</span> <span class="form-value-data">{{value.payment_terms[j].end_date | date}}</span>
+															</p>
+															<p class="text-right mb-0 vw-more">
+																<a [routerLink]="['/customer-create-order']" [queryParams]="{id:list._id,quote_id: list?.quotation_id?._id, quote_ref:list?.quotation_id?.quotation_ref, status:list?.status}" class=""> 
+																	<!-- <i class="fa fa-eye"></i> -->View more
+																   </a>
+															</p>
+														</div>
+												</div>
+											</div>
+											
+										</div>
+									</div>
+								</div>
+							</div>
+						</mat-tab>
+						<mat-tab label="In Progress">
+							<div class="col-md-12 mt-3">
+								<div class="db-header--wraap">
+								<div class="dashboard-table-heading">
+									<h1>All In Progress Request</h1>
+								</div>
+								<div class="user-search-input">
+									<div class="form-group mb-0">
+										<input type="text" name="search-user" placeholder="Search"  (keyup)="filterByName($event)" class="form-control">
+									</div>
+								</div>
+								</div>
+								<div class="dashboard-table margn-top">
+									<div class="form-info-quotation">
+										<div class="row">	
+											<div class="col-md-12" *ngFor="let list of InProgressQuotation;let i=index">
+												<div class="form-field-data  card-shdow" >
+													
+													
+													
+													
+													<div class="quotation-detail">
+														<div class="d-flex justify-content-between">
+															<p>
+																<span class="form-label-data">Service Name:</span> <span class="form-value-data">{{list?.quotation_id?.service_name}}</span>
+															</p>
+															<p>
+																<span class="badge badge-success status-badge">{{list?.status}}</span>
+															</p>
+														</div>
+														<p>
+															<span class="form-label-data">MileStone:</span> <span class="form-value-data">1</span>
+														</p>
+														<p *ngFor="let value of list.issue_quotation;let j= index">
+															<span class="form-label-data">Start Date:</span> <span class="form-value-data">{{value.payment_terms[j].start_date | date}}</span>
+														</p>
+														<p  *ngFor="let value of list.issue_quotation;let j= index">
+															<span class="form-label-data">End Date:</span> <span class="form-value-data">{{value.payment_terms[j].end_date | date}}</span>
+														</p>
+														<p class="text-right mb-0 vw-more">
+															<a [routerLink]="['/customer-create-order']" [queryParams]="{id:list._id,quote_id: list?.quotation_id?._id, quote_ref:list?.quotation_id?.quotation_ref, status:list?.status}" class=""> 
+																<!-- <i class="fa fa-eye"></i> -->View more
+															   </a>
+														</p>
+													</div>
+											</div>
+											</div>
+											
+										</div>
+									</div>
+								</div>
+							</div>
+						</mat-tab>
+						<mat-tab label="Cancelled">
+							<div class="col-md-12 mt-3">
+								<div class="db-header--wraap">
+								<div class="dashboard-table-heading">
+									<h1>All Cancelled Request</h1>
+								</div>
+								<div class="user-search-input">
+									<div class="form-group mb-0">
+										<input type="text" name="search-user" placeholder="Search" (keyup)="filter($event)"class="form-control">
+									</div>
+								</div>
+								</div>
+								<div class="dashboard-table margn-top">
+									<div class="form-info-quotation">
+										<div class="row">	
+											<div class="col-md-12" *ngFor="let list of CancelQuotations;let i=index">
+												<div class="form-field-data  card-shdow" >
+													
+													
+													
+													
+													<div class="quotation-detail">
+														<div class="d-flex justify-content-between">
+															<p>
+																<span class="form-label-data">Service Name:</span> <span class="form-value-data">{{list?.quotation_id?.service_name}}</span>
+															</p>
+															<p>
+																<span class="badge badge-danger status-badge">{{list?.status}}</span>
+															</p>
+														</div>
+														<p>
+															<span class="form-label-data">MileStone:</span> <span class="form-value-data">1</span>
+														</p>
+														<p *ngFor="let value of list.issue_quotation;let j= index">
+															<span class="form-label-data">Start Date:</span> <span class="form-value-data">{{value.payment_terms[j].start_date | date}}</span>
+														</p>
+														<p  *ngFor="let value of list.issue_quotation;let j= index">
+															<span class="form-label-data">End Date:</span> <span class="form-value-data">{{value.payment_terms[j].end_date | date}}</span>
+														</p>
+														<p class="text-right mb-0 vw-more">
+															<a [routerLink]="['/customer-create-order']" [queryParams]="{id:list._id,quote_id: list?.quotation_id?._id, quote_ref:list?.quotation_id?.quotation_ref, status:list?.status}" class=""> 
+																<!-- <i class="fa fa-eye"></i> -->View more
+															   </a>
+														</p>
+													</div>
+											</div>
+											</div>
+											
+										</div>
+									</div>
+								</div>
+							</div>
+						 </mat-tab>
+						
+						<mat-tab label="Closed">
+							<div class="col-md-12 mt-3">
+								<div class="db-header--wraap">
+								<div class="dashboard-table-heading">
+									<h1>All Closed Request</h1>
+								</div>
+								<div class="user-search-input">
+									<div class="form-group mb-0">
+										<input type="text" name="search-user" placeholder="Search" (keyup)="fil($event)" class="form-control">
+									</div>
+								</div>
+								</div>
+								<div class="dashboard-table margn-top">
+									<div class="form-info-quotation">
+										<div class="row">	
+											<div class="col-md-12" *ngFor="let list of ClosedQuotations;let i=index">
+												<div class="form-field-data  card-shdow" >
+													
+													
+													
+													
+													<div class="quotation-detail">
+														<div class="d-flex justify-content-between">
+															<p>
+																<span class="form-label-data">Service Name:</span> <span class="form-value-data">{{list?.quotation_id?.service_name}}</span>
+															</p>
+															<p>
+																<span class="badge badge-success status-badge">{{list?.status}}</span>
+															</p>
+														</div>
+														<p>
+															<span class="form-label-data">MileStone:</span> <span class="form-value-data">1</span>
+														</p>
+														<p *ngFor="let value of list.issue_quotation;let j= index">
+															<span class="form-label-data">Start Date:</span> <span class="form-value-data">{{value.payment_terms[j].start_date | date}}</span>
+														</p>
+														<p  *ngFor="let value of list.issue_quotation;let j= index">
+															<span class="form-label-data">End Date:</span> <span class="form-value-data">{{value.payment_terms[j].end_date | date}}</span>
+														</p>
+														<p class="text-right mb-0 vw-more">
+															<a [routerLink]="['/customer-create-order']" [queryParams]="{id:list._id,quote_id: list?.quotation_id?._id, quote_ref:list?.quotation_id?.quotation_ref, status:list?.status}" class=""> 
+																<!-- <i class="fa fa-eye"></i> -->View more
+															   </a>
+														</p>
+													</div>
+											</div>
+											</div>
+											
+										</div>
+									</div>
+								</div>
+							</div>
+						</mat-tab>
+					</mat-tab-group>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<app-footer></app-footer>
+<div class="quotation-form-modal">
+    <div class="modal" id="instructionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title" id="exampleModalLabel">Modify Order</h2>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <mat-form-field appearance="">
+                                    <mat-label>Instructions</mat-label>
+                                    <input matInput placeholder="Instructions" required>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <mat-form-field appearance="">
+                                    <mat-label>Description</mat-label>
+                                    <textarea matInput placeholder="Description"></textarea>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-12 mt-3" align="center">
+                            <button type="submit" class="btn btn-change-fill" data-dismiss="modal" >Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

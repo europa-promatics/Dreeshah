@@ -1,0 +1,49 @@
+img.profileImg {
+    width: 44px;
+    height: 44px;
+}
+.addmargin{
+   
+    margin-top: 8px;
+}
+
+
+.imgWidth{
+    max-width: 17% !important;
+}
+.leftMargin{
+    margin-left: 75% !important;
+}
+
+.loadingPercent{
+    display: inline;
+    float: right;
+    margin-right: -23px;
+    margin-top: 10px;
+    font-size: 10px;
+    color: #000;
+    font-weight: 600;
+}
+label.send-attachment {
+    cursor: pointer;
+}
+.imageBox{
+    width :200px;
+    height: 300px;
+}
+.messageAttachment{
+    width: 90%;
+    position: relative;
+    color: white;
+    line-height: 26px;
+    border-radius: 7px;
+    margin-bottom: 4px;
+}
+.timeBox{
+    width: 60%;
+    text-align: right;
+}
+.timeBox-left{
+    width: 60%;
+    text-align: left;
+}

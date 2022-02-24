@@ -1,0 +1,277 @@
+<app-seller-header></app-seller-header>
+<div class="seller-prod-list-wrapper">
+    <div class="custom-container d-flex">
+        <app-seller-sidebar></app-seller-sidebar>
+        <div class="main-wrap">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="wishlist-wrapper">
+                                <div class="wishlist-wrapper">
+                                    <div
+                                        class="wishlist-heading mb-2 d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h1>Service List</h1>
+                                        </div>
+                                        <div class="">
+                                            <a routerLink="/addService" class="btn btn-round-blue"><i
+                                                    class="fa fa-plus"></i></a>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="wishlist-heading mb-2 d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <button class="btn btn-change-fill" id="filterBtn"><i
+                                                    class="fa fa-filter mr-2"></i>Filter <i
+                                                    class="fa fa-caret-down ml-2"></i></button>
+                                        </div>
+                                        <div class="search-bar-product-list">
+                                            <div class="serch_ehdr mr-auto ml-auto">
+                                                <input type="text" class="srch_inpt form-control" name=""
+                                                    (keyup)="searchServices($event.target.value)" placeholder="Search">
+                                                <span class="abs_icons"><i class="fa fa-search"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="filterContent" class="mt-3">
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <mat-form-field>
+                                                    <mat-label>Filter By</mat-label>
+                                                    <mat-select [(ngModel)]="filter_by"
+                                                        (selectionChange)="filterBy($event.value)">
+                                                        <mat-option value="category">Category</mat-option>
+                                                        <mat-option value="type">Type</mat-option>
+                                                        <mat-option value="status">Status</mat-option>
+                                                    </mat-select>
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <mat-form-field>
+                                                    <mat-label>Select filter value</mat-label>
+                                                    <mat-select [(ngModel)]="filter_value">
+                                                        <mat-option [value]="value._id" *ngFor="let value of filerList">
+                                                            {{value.name}}</mat-option>
+                                                    </mat-select>
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <mat-form-field>
+                                                    <mat-label>Sort by Price</mat-label>
+                                                    <mat-select [(ngModel)]="sort_by_price">
+                                                        <mat-option value="1">Ascending Order (Low to High)</mat-option>
+                                                        <mat-option value="-1">Descending Order (High to Low)
+                                                        </mat-option>
+                                                    </mat-select>
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <mat-form-field>
+                                                    <mat-label>Sort by Duration</mat-label>
+                                                    <mat-select [(ngModel)]="sort_by_duration">
+                                                        <mat-option value="1">Ascending Order (Short to Long)
+                                                        </mat-option>
+                                                        <mat-option value="-1">Descending Order (Long to Short)
+                                                        </mat-option>
+                                                    </mat-select>
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <button class="btn btn-change-fill" (click)="filterSubmit()">Submit</button>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <button class="btn btn-change-fill" (click)="filterReset()">Reset</button>
+                                            </div>
+                                            <!-- <div class="col-md-2">
+                                                <button class="btn btn-change-fill">Export <i
+                                                        class="fa fa-arrow-up"></i></button>
+                                            </div> -->
+                                        </div>
+                                    </div>
+                                    <div class="wishlist-table">
+                                        <div id="cart-view">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="cart-view-area">
+                                                        <div class="cart-view-table aa-wishlist-table">
+                                                            <!--  <form action="#" method="post"> -->
+                                                            <div class="">
+                                                                <table mat-table [dataSource]="dataSource"
+                                                                    class="mat-elevation-z8">
+
+                                                                    <!-- Checkbox Column -->
+                                                                    <ng-container matColumnDef="select">
+                                                                        <th mat-header-cell *matHeaderCellDef>
+                                                                            <!-- <mat-checkbox
+                                                                                (change)="$event ? masterToggle() : null"
+                                                                                [checked]="selection.hasValue() && isAllSelected()"
+                                                                                [indeterminate]="selection.hasValue() && !isAllSelected()">
+                                                                            </mat-checkbox> -->
+                                                                        </th>
+                                                                        <td mat-cell *matCellDef="let row">
+                                                                            <!-- <mat-checkbox
+                                                                                (click)="$event.stopPropagation()"
+                                                                                (change)="$event ? selection.toggle(row) : null"
+                                                                                [checked]="selection.isSelected(row)">
+                                                                            </mat-checkbox> -->
+                                                                        </td>
+                                                                    </ng-container>
+
+                                                                    <!-- Position Column -->
+                                                                    <ng-container matColumnDef="sno" class="mat-row">
+                                                                        <th mat-header-cell *matHeaderCellDef> No. </th>
+                                                                        <td mat-cell
+                                                                            *matCellDef="let element; let i = index">
+                                                                            {{i+1}} </td>
+                                                                    </ng-container>
+
+                                                                    <!-- Name Column -->
+                                                                    <ng-container matColumnDef="image">
+                                                                        <th mat-header-cell *matHeaderCellDef> Image
+                                                                        </th>
+                                                                        <td mat-cell *matCellDef="let element">
+                                                                            <img src="{{image_path}}{{element.service_image}}"
+                                                                                alt="image" class="serv-tabl-img">
+                                                                        </td>
+                                                                    </ng-container>
+
+                                                                    <!-- Weight Column -->
+                                                                    <ng-container matColumnDef="service_name">
+                                                                        <th mat-header-cell *matHeaderCellDef> Service
+                                                                            Name </th>
+                                                                        <td mat-cell *matCellDef="let element">
+                                                                            {{element.service_name}} </td>
+                                                                    </ng-container>
+
+                                                                    <!-- Symbol Column -->
+                                                                    <!-- <ng-container matColumnDef="service_category">
+                                                                        <th mat-header-cell *matHeaderCellDef> Service
+                                                                            Category </th>
+                                                                        <td mat-cell *matCellDef="let element">
+                                                                            {{element.service_category.name}} </td>
+                                                                    </ng-container> -->
+
+                                                                    <!-- Symbol Column -->
+                                                                    <ng-container matColumnDef="type">
+                                                                        <th mat-header-cell *matHeaderCellDef> Type
+                                                                        </th>
+                                                                        <td mat-cell *matCellDef="let element">
+                                                                            <div
+                                                                                *ngIf="element.service_visible_professional">
+                                                                                Professional
+                                                                            </div>
+                                                                            <div
+                                                                                *ngIf="element.service_visible_customer">
+                                                                                Customer
+                                                                            </div>
+                                                                        </td>
+                                                                    </ng-container>
+
+                                                                    <!-- Symbol Column -->
+                                                                    <ng-container matColumnDef="price">
+                                                                        <th mat-header-cell *matHeaderCellDef> Price
+                                                                        </th>
+                                                                        <td mat-cell *matCellDef="let element">
+                                                                           AED {{element.price}} </td>
+                                                                    </ng-container>
+
+                                                                    <!-- Symbol Column -->
+                                                                    <ng-container matColumnDef="duration">
+                                                                        <th mat-header-cell *matHeaderCellDef> Duration
+                                                                        </th>
+                                                                        <td mat-cell *matCellDef="let element">
+                                                                            {{element.duration}} </td>
+                                                                    </ng-container>
+
+                                                                    <!-- Symbol Column -->
+                                                                    <ng-container matColumnDef="status">
+                                                                        <th mat-header-cell *matHeaderCellDef> Status
+                                                                        </th>
+                                                                        <td mat-cell *matCellDef="let element">
+                                                                            <i *ngIf="element.status == 'active'"
+                                                                                class="fa fa-check-circle"
+                                                                                aria-hidden="true"></i>
+                                                                            <i *ngIf="element.status == 'inactive'"
+                                                                                class="fa fa-times-circle"
+                                                                                aria-hidden="true"
+                                                                                style="color: red; font-size: 23px;"></i>
+                                                                        </td>
+                                                                    </ng-container>
+
+                                                                    <!-- Symbol Column -->
+                                                                    <ng-container matColumnDef="action">
+                                                                        <th mat-header-cell *matHeaderCellDef> Action
+                                                                        </th>
+                                                                        <td mat-cell *matCellDef="let element">
+                                                                            <button class="fdsafas" mat-icon-button
+                                                                                [matMenuTriggerFor]="menu"
+                                                                                (click)="$event.stopPropagation()">
+                                                                                <mat-icon>settings</mat-icon>
+                                                                            </button>
+                                                                            <mat-menu #menu="matMenu">
+                                                                                <button mat-menu-item
+                                                                                    [routerLink]="['/editService', element._id]">
+                                                                                    <mat-icon>create</mat-icon>
+                                                                                    <a>Edit</a>
+                                                                                </button>
+                                                                                <button mat-menu-item
+                                                                                    *ngIf="element.status == 'inactive'"
+                                                                                    (click)="changeStatus(element,'active')">
+                                                                                    <mat-icon>check_circle
+                                                                                    </mat-icon>
+                                                                                    <span>Make Active</span>
+                                                                                </button>
+                                                                                <!-- <button mat-menu-item
+                                                                                    *ngIf="element.status == 'active'"
+                                                                                    (click)="changeStatus(element,'inactive')">
+                                                                                    <mat-icon>check_circle_outline
+                                                                                    </mat-icon>
+                                                                                    <span>Make Inactive</span>
+                                                                                </button> -->
+                                                                                <button mat-menu-item
+                                                                                    routerLink="/seller-service-detail/{{element._id}}"
+                                                                                    >
+                                                                                    <mat-icon>list
+                                                                                    </mat-icon>
+                                                                                    <span>View Details</span>
+                                                                                </button>
+                                                                                <button mat-menu-item
+                                                                                    (click)="deleteService(element._id)">
+                                                                                    <mat-icon>delete</mat-icon>
+                                                                                    <span>Delete</span>
+                                                                                </button>
+                                                                            </mat-menu>
+                                                                        </td>
+                                                                    </ng-container>
+
+                                                                    <tr mat-header-row
+                                                                        *matHeaderRowDef="displayedColumns"></tr>
+                                                                    <tr mat-row
+                                                                        *matRowDef="let row; columns: displayedColumns;"
+                                                                        (click)="selection.toggle(row)">
+                                                                    </tr>
+                                                                </table>
+                                                                <div>
+                                                                    <mat-paginator [length]="length" [pageSize]="10"
+                                                                        [pageSizeOptions]="getPageSizeOptions()"
+                                                                        (page)="paginationOptionChange($event)">
+                                                                    </mat-paginator>
+                                                                    
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <app-footer></app-footer>

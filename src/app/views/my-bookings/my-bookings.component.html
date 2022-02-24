@@ -1,0 +1,590 @@
+<!-- <app-db-header></app-db-header> -->
+<app-seller-header></app-seller-header> 
+<section class="my-bookings-wrapper">
+	<div class="custom-container d-flex">
+		<app-sidebar></app-sidebar>
+		<div class="main-wrap">
+			<div class="card">
+				<div class="card-body">
+					<div class="row">
+						<div class="col-md-12">
+						<div id="tabs" class="project-tab">
+							 <nav>
+                            <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                               <!--  <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Bookings Placed</a> -->
+                                <a class="nav-item nav-link active" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Bookings Delivered</a>
+                                <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Bookings In Progress</a>
+                                <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-orders-cancelled" role="tab" aria-controls="nav-contact" aria-selected="false">Bookings Cancelled</a>
+                            </div>
+                        </nav>
+                                                <div class="tab-content" id="nav-tabContent">
+                           <!--  <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                            			<div class="col-md-12 mt-4">
+										<h1>My Bookings</h1>
+									</div>
+									<div class="col-md-12">
+										<div class="wrap cf">
+											<div class="cart">
+												<ul class="cartWrap">
+													<li class="items odd items-bordered">
+														<div class="infoWrap"> 
+															<div class="cartSection">
+																<img src="http://www.pngall.com/wp-content/uploads/5/Home-Interior-Design-Transparent.png" alt="" class="itemImg" />
+																<p class="itemNumber">OrderID: 897566565</p>
+																<h3>Italian Sofa</h3>
+																<h4 class="item-price">$15.00</h4>
+																<p> <input type="text"  class="qty" placeholder="3"/> x $5.00</p><br/>
+															</div> 
+															<div class="date-time">
+																<p>Date: 10/4/2020</p>
+																<p>Time: 10:23</p>
+															</div>
+															<div class="prodTotal cartSection">
+																
+																<div class="sav-later-btn">
+																	<button class="btn btn-change-fill">Track Order</button>
+																</div>
+																<div class="sav-later-btn mt-3">
+																	<a routerLink="/my-bookings-details" class="btn btn-change-fill">View Details</a>
+																</div>
+															</div>
+															<div class="cartSection removeWrap">
+																<a href="#" class="remove">x</a>
+															</div>
+														</div>
+													</li>
+													<li class="items even items-bordered">
+														<div class="infoWrap"> 
+															<div class="cartSection">
+																<img src="http://www.pngall.com/wp-content/uploads/5/Home-Interior-Design-Transparent.png" alt="" class="itemImg" />
+																<p class="itemNumber">OrderID: 897566565</p>
+																<h3>Italian Sofa</h3>
+																<h4 class="item-price">$15.00</h4>
+																<p> <input type="text"  class="qty" placeholder="3"/> x $5.00</p>
+															</div> 
+															<div class="date-time">
+																<p>Date: 10/4/2020</p>
+																<p>Time: 10:23</p>
+															</div> 
+															<div class="prodTotal cartSection">
+																<p>$15.00</p> 
+																<div class="sav-later-btn">
+																	<button class="btn btn-change-fill">Track Order</button>
+																</div>
+																<div class="sav-later-btn mt-3">
+																	<a routerLink="/my-bookings-details" class="btn btn-change-fill">View Details</a>
+																</div>
+															</div>
+															<div class="cartSection removeWrap">
+																<a href="#" class="remove">x</a>
+															</div>
+														</div>
+													</li>
+													<li class="items odd items-bordered">
+														<div class="infoWrap"> 
+															<div class="cartSection">
+																<img src="http://www.pngall.com/wp-content/uploads/5/Home-Interior-Design-Transparent.png" alt="" class="itemImg" />
+																<p class="itemNumber">OrderID: 897566565</p>
+																<h3>Italian Sofa</h3>
+																<h4 class="item-price">$15.00</h4>
+																<p> <input type="text"  class="qty" placeholder="3"/> x $5.00</p>
+															</div>  
+															<div class="date-time">
+																<p>Date: 10/4/2020</p>
+																<p>Time: 10:23</p>
+															</div>
+															<div class="prodTotal cartSection">
+																<p>$15.00</p> 
+																<div class="sav-later-btn">
+																	<button class="btn btn-change-fill">Track Order</button>
+																</div>
+																<div class="sav-later-btn mt-3">
+																	<a routerLink="/my-bookings-details" class="btn btn-change-fill">View Details</a>
+																</div>
+															</div>
+															<div class="cartSection removeWrap">
+																<a href="#" class="remove">x</a>
+															</div>
+														</div>
+													</li>
+													<li class="items even items-bordered">
+														<div class="infoWrap"> 
+															<div class="cartSection info">
+
+																<img src="http://www.pngall.com/wp-content/uploads/5/Home-Interior-Design-Transparent.png" alt="" class="itemImg" />
+																<p class="itemNumber">OrderID: 897566565</p>
+																<h3>Italian Sofa</h3>
+																<h4 class="item-price">$15.00</h4>
+																<p> <input type="text"  class="qty" placeholder="3"/> x $5.00</p>
+													
+															</div>  
+															<div class="date-time">
+																<p>Date: 10/4/2020</p>
+																<p>Time: 10:23</p>
+															</div>
+
+															<div class="prodTotal cartSection">
+																<p>$15.00</p> 
+																<div class="sav-later-btn">
+																	<button class="btn btn-change-fill">Track Order</button>
+																</div>
+																<div class="sav-later-btn mt-3">
+																	<a routerLink="/my-bookings-details" class="btn btn-change-fill">View Details</a>
+																</div>
+															</div>
+															<div class="cartSection removeWrap">
+																<a href="#" class="remove">x</a>
+															</div>
+														</div>
+													</li>
+												</ul>
+											</div>
+										</div>
+									</div>
+								</div> -->
+									<!-- orders delivered -->
+                            <div class="tab-pane fade show active" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                              		<div class="col-md-12 mt-4">
+										<h1>Bookings Delivered</h1>
+									</div>
+									<div class="col-md-12">
+										<div class="wrap cf">
+											<div class="cart">
+												<ul class="cartWrap">
+													<li class="items odd items-bordered">
+														<div class="infoWrap"> 
+															<div class="cartSection">
+																<img src="http://www.pngall.com/wp-content/uploads/5/Home-Interior-Design-Transparent.png" alt="" class="itemImg" />
+																<p class="itemNumber">OrderID: 897566565</p>
+																<div class="date-time">
+																		<p> 10/4/2020 10:23</p>
+																	</div>
+																<h3>Italian Sofa</h3>
+																<h4 class="item-price">$15.00 <span class=" refund-link ml-2"><a href="#">Refund</a></span></h4>
+															</div> 
+															<div class="date-time">
+																	<p class="badge badge-success status-badge">Delivered</p>
+																	<p>You can exchange or return the product within 14 days</p>
+																</div>
+														<div class="prodTotal cartSection">
+																<!-- <p>$15.00</p> -->
+																<div class="sav-later-btn">
+																	<button class="btn btn-change-fill">Exchange</button>
+																</div>
+																<div class="sav-later-btn mt-3">
+																	<a routerLink="/my-bookings-details" class="btn btn-change-fill">View Details</a>
+																</div>
+															</div>
+															<div class="cartSection removeWrap">
+																<a href="#" class="remove">x</a>
+															</div>
+														</div>
+													</li>
+													<li class="items even items-bordered">
+														<div class="infoWrap"> 
+															<div class="cartSection">
+																<img src="http://www.pngall.com/wp-content/uploads/5/Home-Interior-Design-Transparent.png" alt="" class="itemImg" />
+																<p class="itemNumber">OrderID: 897566565</p>
+																<div class="date-time">
+																		<p> 10/4/2020 10:23</p>
+																	</div>
+																<h3>Italian Sofa</h3>
+																<h4 class="item-price">$15.00 <span class=" refund-link ml-2"><a href="#">Refund</a></span></h4>
+															</div> 
+															<div class="date-time">
+																	<p class="badge badge-success status-badge">Delivered</p>
+																	<p>You can exchange or return the product within 14 days</p>
+																</div>
+															<div class="prodTotal cartSection">
+																<!-- <p>$15.00</p> -->
+																<div class="sav-later-btn">
+																	<button class="btn btn-change-fill">Exchange</button>
+																</div>
+																<div class="sav-later-btn mt-3">
+																	<a routerLink="/my-bookings-details" class="btn btn-change-fill">View Details</a>
+																</div>
+															</div>
+															<div class="cartSection removeWrap">
+																<a href="#" class="remove">x</a>
+															</div>
+														</div>
+													</li>
+													<li class="items odd items-bordered">
+														<div class="infoWrap"> 
+															<div class="cartSection">
+																<img src="http://www.pngall.com/wp-content/uploads/5/Home-Interior-Design-Transparent.png" alt="" class="itemImg" />
+																<p class="itemNumber">OrderID: 897566565</p>
+																<div class="date-time">
+																		<p> 10/4/2020 10:23</p>
+																	</div>
+																<h3>Italian Sofa</h3>
+																<h4 class="item-price">$15.00 <span class=" refund-link ml-2"><a href="#">Refund</a></span></h4>
+															</div>  
+															<div class="date-time">
+																	<p class="badge badge-success status-badge">Delivered</p>
+																	<p>You can exchange or return the product within 14 days</p>
+																</div>
+														<div class="prodTotal cartSection">
+																<!-- <p>$15.00</p> -->
+																<div class="sav-later-btn">
+																	<button class="btn btn-change-fill">Exchange</button>
+																</div>
+																<div class="sav-later-btn mt-3">
+																	<a routerLink="/my-bookings-details" class="btn btn-change-fill">View Details</a>
+																</div>
+															</div>
+															<div class="cartSection removeWrap">
+																<a href="#" class="remove">x</a>
+															</div>
+														</div>
+													</li>
+													<li class="items even items-bordered">
+														<div class="infoWrap"> 
+															<div class="cartSection info">
+																<img src="http://www.pngall.com/wp-content/uploads/5/Home-Interior-Design-Transparent.png" alt="" class="itemImg" />
+																<p class="itemNumber">OrderID: 897566565</p>
+																<div class="date-time">
+																		<p> 10/4/2020 10:23</p>
+																	</div>
+																<h3>Italian Sofa</h3>
+																<h4 class="item-price">$15.00 <span class=" refund-link ml-2"><a href="#">Refund</a></span></h4>
+															</div>  
+															<div class="date-time">
+																	<p class="badge badge-success status-badge">Delivered</p>
+																	<p>You can exchange or return the product within 14 days</p>
+																</div>
+															<div class="prodTotal cartSection">
+																<!-- <p>$15.00</p> -->
+																<div class="sav-later-btn">
+																	<button class="btn btn-change-fill">Exchange</button>
+																</div>
+																<div class="sav-later-btn mt-3">
+																	<a routerLink="/my-bookings-details" class="btn btn-change-fill">View Details</a>
+																</div>
+															</div>
+
+															<div class="cartSection removeWrap">
+																<a href="#" class="remove">x</a>
+															</div>
+														</div>
+														<!-- <div class="special"><div class="specialContent">Free gift with purchase!, gift wrap, etc!!</div></div> -->
+													</li>
+												</ul>
+											</div>
+										</div>
+									</div>
+                            </div>
+                            <!-- orders in progress -->
+
+                            <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                               		<div class="col-md-12 mt-4">
+										<h1>Bookings In Progress</h1>
+									</div>
+									<div class="col-md-12">
+										<div class="wrap cf">
+											<div class="cart">
+												<ul class="cartWrap">
+													<li class="items odd items-bordered">
+														<div class="infoWrap"> 
+															<div class="cartSection">
+																<img src="http://www.pngall.com/wp-content/uploads/5/Home-Interior-Design-Transparent.png" alt="" class="itemImg" />
+																<p class="itemNumber">OrderID: 897566565</p>
+																<h3>Italian Sofa</h3>
+																<h4 class="item-price">$15.00</h4>
+															</div> 
+															<div class="date-time">
+																<p> Date &amp; Time: 10/4/2020 10:23</p>
+																<p class="badge badge-secondary status-badge">Reached Warehouse</p>
+																<p>Order will be Delivered in 2 days</p>
+															</div>
+															<div class="prodTotal cartSection">
+																<!-- <p>$15.00</p> -->
+																<div class="sav-later-btn">
+																	<button class="btn btn-change-fill" data-toggle="modal" data-target="#exampleModal">Cancel Order</button>
+																</div>
+																<div class="sav-later-btn mt-3">
+																	<a routerLink="/my-bookings-details" class="btn btn-change-fill">View Details</a>
+																</div>
+															</div>
+															<div class="cartSection removeWrap">
+																<a href="#" class="remove">x</a>
+															</div>
+														</div>
+													</li>
+													<li class="items even items-bordered">
+														<div class="infoWrap"> 
+															<div class="cartSection">
+																<img src="http://www.pngall.com/wp-content/uploads/5/Home-Interior-Design-Transparent.png" alt="" class="itemImg" />
+																<p class="itemNumber">OrderID: 897566565</p>
+																<h3>Italian Sofa</h3>
+																<h4 class="item-price">$15.00</h4>
+													
+															</div> 
+															<div class="date-time">
+																<p> Date &amp; Time: 10/4/2020 10:23</p>
+																<p class="badge badge-success status-badge">Out for Delivery</p>
+																<p>Order will be Delivered Soon.</p>
+															</div>
+															<div class="prodTotal cartSection">
+																<!-- <p>$15.00</p> -->
+																<div class="sav-later-btn">
+																	<button class="btn btn-change-fill" data-toggle="modal" data-target="#exampleModal">Cancel Order</button>
+																</div>
+																<div class="sav-later-btn mt-3">
+																	<a routerLink="/my-bookings-details" class="btn btn-change-fill">View Details</a>
+																</div>
+															</div>
+															<div class="cartSection removeWrap">
+																<a href="#" class="remove">x</a>
+															</div>
+														</div>
+													</li>
+													<li class="items odd items-bordered">
+														<div class="infoWrap"> 
+															<div class="cartSection">
+																<img src="http://www.pngall.com/wp-content/uploads/5/Home-Interior-Design-Transparent.png" alt="" class="itemImg" />
+																<p class="itemNumber">OrderID: 897566565</p>
+																<h3>Italian Sofa</h3>
+																<h4 class="item-price">$15.00</h4>
+															</div>  
+															<div class="date-time">
+																<p> Date &amp; Time: 10/4/2020 10:23</p>
+																<p class="badge badge-info status-badge">Order Shipped</p>
+																<p>Order will be Delivered in 2 days</p>
+															</div>
+															<div class="prodTotal cartSection">
+																<!-- <p>$15.00</p> -->
+																<div class="sav-later-btn">
+																	<button class="btn btn-change-fill" data-toggle="modal" data-target="#exampleModal">Cancel Order</button>
+																</div>
+																<div class="sav-later-btn mt-3">
+																	<a routerLink="/my-bookings-details" class="btn btn-change-fill">View Details</a>
+																</div>
+															</div>
+															<div class="cartSection removeWrap">
+																<a href="#" class="remove">x</a>
+															</div>
+														</div>
+													</li>
+													<li class="items even items-bordered">
+														<div class="infoWrap"> 
+															<div class="cartSection info">
+
+																<img src="http://www.pngall.com/wp-content/uploads/5/Home-Interior-Design-Transparent.png" alt="" class="itemImg" />
+																<p class="itemNumber">OrderID: 897566565</p>
+																<h3>Italian Sofa</h3>
+																<h4 class="item-price">$15.00</h4>
+															</div>  
+															<div class="date-time">
+																<p> Date &amp; Time: 10/4/2020 10:23</p>
+																<p class="badge badge-success status-badge">Out for Delivery</p>
+																<p>Order will be Delivered Soon</p>
+															</div>
+
+															<div class="prodTotal cartSection">
+																<!-- <p>$15.00</p> -->
+																<div class="sav-later-btn">
+																	<button class="btn btn-change-fill" data-toggle="modal" data-target="#exampleModal">Cancel Order</button>
+																</div>
+																<div class="sav-later-btn mt-3">
+																	<a routerLink="/my-bookings-details" class="btn btn-change-fill">View Details</a>
+																</div>
+															</div>
+
+															<div class="cartSection removeWrap">
+																<a href="#" class="remove">x</a>
+															</div>
+														</div>
+														<!-- <div class="special"><div class="specialContent">Free gift with purchase!, gift wrap, etc!!</div></div> -->
+													</li>
+													<li class="items odd items-bordered">
+														<div class="infoWrap"> 
+															<div class="cartSection info">
+
+																<img src="http://www.pngall.com/wp-content/uploads/5/Home-Interior-Design-Transparent.png" alt="" class="itemImg" />
+																<p class="itemNumber">OrderID: 897566565</p>
+																<h3>Italian Sofa</h3>
+																<h4 class="item-price">$15.00</h4>
+															</div>  
+															<div class="date-time">
+																<p> Date &amp; Time: 10/4/2020 10:23</p>
+																<p class="badge badge-success status-badge">Out for Delivery</p>
+																<p>Deliver Successfully</p>
+															</div>
+
+															<div class="prodTotal cartSection">
+																<!-- <p>$15.00</p> -->
+																<div class="sav-later-btn">
+																	<button class="btn btn-change-fill">Cancel Order</button>
+																</div>
+																<div class="sav-later-btn mt-3">
+																	<a routerLink="/my-bookings-details" class="btn btn-change-fill">View Details</a>
+																</div>
+															</div>
+
+															<div class="cartSection removeWrap">
+																<a href="#" class="remove">x</a>
+															</div>
+														</div>
+														<!-- <div class="special"><div class="specialContent">Free gift with purchase!, gift wrap, etc!!</div></div> -->
+													</li>
+												</ul>
+											</div>
+										</div>
+									</div>
+										<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+										  <div class="modal-dialog" role="document">
+										    <div class="modal-content">
+										      <div class="modal-header">
+										        <h5 class="modal-title" id="exampleModalLabel">Reason For Cancellation</h5>
+										        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										          <span aria-hidden="true">&times;</span>
+										        </button>
+										      </div>
+										      <div class="modal-body">
+										        <form>
+										        	<div class="form-group">
+										    <label for="exampleFormControlTextarea1">Why Do You Want to Cancel Your Booking?</label>
+										    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+										  </div>
+										        </form>
+										      </div>
+										    </div>
+										  </div>
+										</div>
+                            </div>
+                            <!-- orders cancelled -->
+                                    <div class="tab-pane fade" id="nav-orders-cancelled" role="tabpanel" aria-labelledby="nav-contact-tab">
+                               		<div class="col-md-12 mt-4">
+										<h1>Orders in Progress</h1>
+									</div>
+									<div class="col-md-12">
+										<div class="wrap cf">
+											<div class="cart">
+												<ul class="cartWrap">
+													<li class="items odd items-bordered">
+														<div class="infoWrap"> 
+															<div class="cartSection">
+																<img src="http://www.pngall.com/wp-content/uploads/5/Home-Interior-Design-Transparent.png" alt="" class="itemImg" />
+																<p class="itemNumber">OrderID: 897566565</p>
+																<h3>Italian Sofa</h3>
+																<h4 class="item-price">$15.00</h4>
+															</div> 
+															<div class="date-time">
+																<p> Date &amp; Time: 10/4/2020 10:23</p>
+																<p class="badge badge-danger status-badge">Order Cancelled</p>
+																<!-- <p>Order will be Delivered in 2 days</p> -->
+															</div>
+															<div class="prodTotal cartSection">
+																<!-- <p>$15.00</p> -->
+																<div class="sav-later-btn">
+																	<button class="btn btn-change-fill">Order Again</button>
+																</div>
+																<div class="sav-later-btn mt-3">
+																	<a routerLink="/my-bookings-details" class="btn btn-change-fill">View Details</a>
+																</div>
+															</div>
+															<div class="cartSection removeWrap">
+																<a href="#" class="remove">x</a>
+															</div>
+														</div>
+													</li>
+													<li class="items even items-bordered">
+														<div class="infoWrap"> 
+															<div class="cartSection">
+																<img src="http://www.pngall.com/wp-content/uploads/5/Home-Interior-Design-Transparent.png" alt="" class="itemImg" />
+																<p class="itemNumber">OrderID: 897566565</p>
+																<h3>Italian Sofa</h3>
+																<h4 class="item-price">$15.00</h4>
+															</div> 
+															<div class="date-time">
+																<p> Date &amp; Time: 10/4/2020 10:23</p>
+																<p class="badge badge-danger status-badge">Order Cancelled</p>
+															</div>
+															<div class="prodTotal cartSection">
+																<!--  <p>$15.00</p> -->
+																<div class="sav-later-btn">
+																	<button class="btn btn-change-fill">Order Again</button>
+																</div>
+																<div class="sav-later-btn mt-3">
+																	<a routerLink="/my-bookings-details" class="btn btn-change-fill">View Details</a>
+																</div>
+															</div>
+															<div class="cartSection removeWrap">
+																<a href="#" class="remove">x</a>
+															</div>
+														</div>
+													</li>
+													<li class="items odd items-bordered">
+														<div class="infoWrap"> 
+															<div class="cartSection">
+																<img src="http://www.pngall.com/wp-content/uploads/5/Home-Interior-Design-Transparent.png" alt="" class="itemImg" />
+																<p class="itemNumber">OrderID: 897566565</p>
+																<h3>Italian Sofa</h3>
+																<h4 class="item-price">$15.00</h4>
+															</div>  
+															<div class="date-time">
+																<p> Date &amp; Time: 10/4/2020 10:23</p>
+																<p class="badge badge-danger status-badge">Order Cancelled</p>
+															</div>
+															<div class="prodTotal cartSection">
+																<!-- <p>$15.00</p> -->
+																<div class="sav-later-btn">
+																	<button class="btn btn-change-fill">Order Again</button>
+																</div>
+																<div class="sav-later-btn mt-3">
+																	<a routerLink="/my-bookings-details" class="btn btn-change-fill">View Details</a>
+																</div>
+															</div>
+															<div class="cartSection removeWrap">
+																<a href="#" class="remove">x</a>
+															</div>
+														</div>
+													</li>
+													<li class="items even items-bordered">
+														<div class="infoWrap"> 
+															<div class="cartSection info">
+
+																<img src="http://www.pngall.com/wp-content/uploads/5/Home-Interior-Design-Transparent.png" alt="" class="itemImg" />
+																<p class="itemNumber">OrderID: 897566565</p>
+																<h3>Italian Sofa</h3>	
+																<h4 class="item-price">$15.00</h4>			
+															</div>  
+															<div class="date-time">
+																<p> Date &amp; Time: 10/4/2020 10:23</p>
+																<p class="badge badge-danger status-badge">Order Cancelled</p>
+															</div>
+
+															<div class="prodTotal cartSection">
+																<!-- <p>$15.00</p> -->
+																<div class="sav-later-btn">
+																	<button class="btn btn-change-fill">Order Again</button>
+																</div>
+																<div class="sav-later-btn mt-3">
+																	<a routerLink="/my-bookings-details" class="btn btn-change-fill">View Details</a>
+																</div>
+															</div>
+
+															<div class="cartSection removeWrap">
+																<a href="#" class="remove">x</a>
+															</div>
+														</div>
+														<!-- <div class="special"><div class="specialContent">Free gift with purchase!, gift wrap, etc!!</div></div> -->
+													</li>
+												</ul>
+											</div>
+										</div>
+									</div>
+                            </div>
+                        </div>
+						</div>
+                       
+
+                    </div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<app-footer></app-footer>

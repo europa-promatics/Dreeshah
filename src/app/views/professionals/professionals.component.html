@@ -1,0 +1,477 @@
+<app-header></app-header>
+<section class="common_image_section page_headrer_wrkshop">
+    <div class="container">
+        <div class="page_head_wrap">
+            <h2 class="aboutus_head">Profeesionals</h2>
+            <p class="page_head">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor inc                                                                                                                                 idunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            </p>
+        </div>
+    </div>
+</section>
+<nav aria-label="breadcrumb">
+	<ol class="breadcrumb mb-0">
+		<li class="breadcrumb-item active"><a routerLink="/">Home</a></li>
+		<li class="breadcrumb-item"><a routerLink="/professionals">Professionals</a></li>
+	</ol>
+</nav>
+
+<div class="custom_container">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="card professionals-card mt-5">
+				<div class="card-body professionals-card-body">
+					<nav aria-label="breadcrumb">
+						<ol class="breadcrumb professionals-breadcrumb">
+							<li class="breadcrumb-item"><a routerLink="">All Professionals</a></li>
+							<li class="breadcrumb-item active" aria-current="page">Architects &amp; Building Designers</li>
+						</ol>
+					</nav>
+					<div class="professionals-heading ml-3">
+						<h1>30,120 Architects and Building Designers</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-12">
+			<div class="card professionals-details-card mt-5 mb-5">
+				<div class="card-body p-0">
+					<div class="professionals-detail-card-wrapper">
+						<div class="row professionals-row">
+							<div class="col-md-3">
+								<div class="form-group col-xs">
+									<select name="login" class="custom-select">
+										<option selected>Select Location</option>
+										<option value="Customer">Thane</option>
+										<option value="Professionals">Ahemedabad</option>
+									</select>
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group col-xs">
+									<select name="login" class="custom-select">
+										<option selected>Professional Category</option>
+										<option value="Customer">Architects & Building Design</option>
+										<option value="Professionals">Interior Designers & Decorators</option>
+									</select>
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group col-xs">
+									<input type="text" name="find-prof" placeholder="Find professionals" class="form-control">
+								</div>
+							</div>
+							<div class="col-md-3">
+
+							</div>
+							<div class="col-md-4">
+								<div class="professionals_ideas_wrap">
+									<owl-carousel-o [options]="style_slider">
+										<ng-template carouselSlide>
+											<figure class="wrap_idea_singl">
+												<img src="https://i2.wp.com/homedecordesigns.com/wp-content/uploads/2014/10/IndianHome8.jpg?fit=900%2C624" class="img-fluid" alt="room1" />
+
+											</figure>
+										</ng-template>
+										<ng-template carouselSlide>
+											<figure class="wrap_idea_singl">
+												<img src="https://cdn.boydforcongress.com/wp-content/uploads/modern-luxury-homes-las-vegas-henderson-escala_403170-840x450.jpg" class="img-fluid" alt="room1" />
+
+											</figure>
+										</ng-template>
+										<ng-template carouselSlide>
+											<figure class="wrap_idea_singl">
+												<img src="https://i2.wp.com/homedecordesigns.com/wp-content/uploads/2014/10/IndianHome8.jpg?fit=900%2C624" class="img-fluid" alt="room1" />
+
+											</figure>
+										</ng-template>
+										<ng-template carouselSlide>
+											<figure class="wrap_idea_singl">
+												<img src="https://cdn.boydforcongress.com/wp-content/uploads/modern-luxury-homes-las-vegas-henderson-escala_403170-840x450.jpg" class="img-fluid" alt="room1" />
+
+											</figure>
+										</ng-template>
+									</owl-carousel-o>
+								</div>
+							</div>
+
+							<div class="col-md-3">
+								<div class="professionals-details-wrapper">
+									<img src="https://www.efilecabinet.com/wp-content/uploads/2019/05/g2-testimonial-male.jpg" class="img-fluid" >		
+
+									<div class="ratings-review-wrapper">
+										<a routerLink="/professionals-details"><h3 class="ml-2">Sam Architects &amp; Builders</h3></a>
+										<div class="ratings-review">
+											<span>4.3</span>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<p>36 reviews</p>
+										</div>
+									</div>
+
+								</div>
+								<div class="custom-comment">	
+									<p class="mt-3"><i class="fa fa-quote-left"></i>
+									Mind-blowing extraordinary extravagant.The ambiance what is created is classic...</p>
+									<div class="read-more">
+										<span>-HU-7364766866</span>
+										<a routerLink="/professionals-details" class="read-more-link">Read More  <i class="fa fa-angle-right"></i></a>
+									</div>
+									<div class="professionals-btn-box d-flex justify-content-between">
+										<div class="send-req-btn">
+											<button class="btn btn-outline-btn"><i class="fa fa-user-plus mr-2"></i>	Send Request
+											</button>
+									</div>
+									<div class="favorite--btn">
+										<button class="btn btn-favorite"><i class="fa fa-heart"></i></button>
+									</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="professsional-contact-details">
+									<a  class="btn btn-outline-btn"><i class="fa fa-envelope"></i> Send Message</a><br/>
+									<p class="mt-3"><i class="fa fa-mobile mr-2" aria-hidden="true"></i>1234567890</p>
+									<p class="mt-3"><i class="fa fa-map-marker-alt mr-2" aria-hidden="true"></i>120, Downtown, james complex,Los Angeles,5498986</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="professionals-detail-card-wrapper">
+						<div class="row">
+							<div class="col-md-4">
+								<div class="professionals_ideas_wrap">
+									<owl-carousel-o [options]="style_slider">
+										<ng-template carouselSlide>
+											<figure class="wrap_idea_singl">
+												<img src="https://i2.wp.com/homedecordesigns.com/wp-content/uploads/2014/10/IndianHome8.jpg?fit=900%2C624" class="img-fluid" alt="room1" />
+
+											</figure>
+										</ng-template>
+										<ng-template carouselSlide>
+											<figure class="wrap_idea_singl">
+												<img src="https://cdn.boydforcongress.com/wp-content/uploads/modern-luxury-homes-las-vegas-henderson-escala_403170-840x450.jpg" class="img-fluid" alt="room1" />
+
+											</figure>
+										</ng-template>
+										<ng-template carouselSlide>
+											<figure class="wrap_idea_singl">
+												<img src="https://i2.wp.com/homedecordesigns.com/wp-content/uploads/2014/10/IndianHome8.jpg?fit=900%2C624" class="img-fluid" alt="room1" />
+
+											</figure>
+										</ng-template>
+										<ng-template carouselSlide>
+											<figure class="wrap_idea_singl">
+												<img src="https://cdn.boydforcongress.com/wp-content/uploads/modern-luxury-homes-las-vegas-henderson-escala_403170-840x450.jpg" class="img-fluid" alt="room1" />
+
+											</figure>
+										</ng-template>
+									</owl-carousel-o>
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="professionals-details-wrapper">
+									<img src="https://www.efilecabinet.com/wp-content/uploads/2019/05/g2-testimonial-male.jpg" class="img-fluid" >		
+
+									<div class="ratings-review-wrapper">
+										<a routerLink="/professionals-details"><h3 class="ml-2">Sam Architects &amp; Builders</h3></a>
+										<div class="ratings-review">
+											<span>4.3</span>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<p>36 reviews</p>
+										</div>
+									</div>
+
+								</div>
+								<div class="custom-comment">	
+									<p class="mt-3"><i class="fa fa-quote-left"></i>
+									Mind-blowing extraordinary extravagant.The ambiance what is created is classic...</p>
+									<div class="read-more">
+										<span>-HU-7364766866</span>
+										<a routerLink="/professionals-details" class="read-more-link">Read More  <i class="fa fa-angle-right"></i></a>
+									</div>
+									<div class="professionals-btn-box d-flex justify-content-between">
+										<div class="send-req-btn">
+											<button class="btn btn-outline-btn"><i class="fa fa-user-plus mr-2"></i>	Send Request
+											</button>
+									</div>
+									<div class="favorite--btn">
+										<button class="btn btn-favorite"><i class="fa fa-heart"></i></button>
+									</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="professsional-contact-details">
+									<a class="btn btn-outline-btn"><i class="fa fa-envelope"></i> Send Message</a><br/>
+									<p class="mt-3"><i class="fa fa-mobile mr-2" aria-hidden="true"></i>1234567890</p>
+									<p class="mt-3"><i class="fa fa-map-marker-alt mr-2" aria-hidden="true"></i>120, Downtown, james complex,Los Angeles,5498986</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-12 mb-3">
+						<div class="catalogue-banner">
+							<img src="assets/imgs/ad21.png" class="img-fluid">
+						</div>
+					</div>
+					<div class="professionals-detail-card-wrapper">
+						<div class="row">
+							<div class="col-md-4">
+								<div class="professionals_ideas_wrap">
+									<owl-carousel-o [options]="style_slider">
+										<ng-template carouselSlide>
+											<figure class="wrap_idea_singl">
+												<img src="https://i2.wp.com/homedecordesigns.com/wp-content/uploads/2014/10/IndianHome8.jpg?fit=900%2C624" class="img-fluid" alt="room1" />
+
+											</figure>
+										</ng-template>
+										<ng-template carouselSlide>
+											<figure class="wrap_idea_singl">
+												<img src="https://cdn.boydforcongress.com/wp-content/uploads/modern-luxury-homes-las-vegas-henderson-escala_403170-840x450.jpg" class="img-fluid" alt="room1" />
+
+											</figure>
+										</ng-template>
+										<ng-template carouselSlide>
+											<figure class="wrap_idea_singl">
+												<img src="https://i2.wp.com/homedecordesigns.com/wp-content/uploads/2014/10/IndianHome8.jpg?fit=900%2C624" class="img-fluid" alt="room1" />
+
+											</figure>
+										</ng-template>
+										<ng-template carouselSlide>
+											<figure class="wrap_idea_singl">
+												<img src="https://cdn.boydforcongress.com/wp-content/uploads/modern-luxury-homes-las-vegas-henderson-escala_403170-840x450.jpg" class="img-fluid" alt="room1" />
+
+											</figure>
+										</ng-template>
+									</owl-carousel-o>
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="professionals-details-wrapper">
+									<img src="https://www.efilecabinet.com/wp-content/uploads/2019/05/g2-testimonial-male.jpg" class="img-fluid" >		
+
+									<div class="ratings-review-wrapper">
+										<a routerLink="/professionals-details"><h3 class="ml-2">Sam Architects &amp; Builders</h3></a>
+										<div class="ratings-review">
+											<span>4.3</span>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<p>36 reviews</p>
+										</div>
+									</div>
+
+								</div>
+								<div class="custom-comment">	
+									<p class="mt-3"><i class="fa fa-quote-left"></i>
+									Mind-blowing extraordinary extravagant.The ambiance what is created is classic...</p>
+									<div class="read-more">
+										<span>-HU-7364766866</span>
+										<a routerLink="/professionals-details" class="read-more-link">Read More  <i class="fa fa-angle-right"></i></a>
+									</div>
+									<div class="professionals-btn-box d-flex justify-content-between">
+										<div class="send-req-btn">
+											<button class="btn btn-outline-btn"><i class="fa fa-user-plus mr-2"></i>	Send Request
+											</button>
+									</div>
+									<div class="favorite--btn">
+										<button class="btn btn-favorite"><i class="fa fa-heart"></i></button>
+									</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="professsional-contact-details">
+									<a class="btn btn-outline-btn"><i class="fa fa-envelope"></i> Send Message</a><br/>
+									<p class="mt-3"><i class="fa fa-mobile mr-2" aria-hidden="true"></i>1234567890</p>
+									<p class="mt-3"><i class="fa fa-map-marker-alt mr-2" aria-hidden="true"></i>120, Downtown, james complex,Los Angeles,5498986</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="professionals-detail-card-wrapper">
+						<div class="row">
+							<div class="col-md-4">
+								<div class="professionals_ideas_wrap">
+									<owl-carousel-o [options]="style_slider">
+										<ng-template carouselSlide>
+											<figure class="wrap_idea_singl">
+												<img src="https://i2.wp.com/homedecordesigns.com/wp-content/uploads/2014/10/IndianHome8.jpg?fit=900%2C624" class="img-fluid" alt="room1" />
+
+											</figure>
+										</ng-template>
+										<ng-template carouselSlide>
+											<figure class="wrap_idea_singl">
+												<img src="https://cdn.boydforcongress.com/wp-content/uploads/modern-luxury-homes-las-vegas-henderson-escala_403170-840x450.jpg" class="img-fluid" alt="room1" />
+
+											</figure>
+										</ng-template>
+										<ng-template carouselSlide>
+											<figure class="wrap_idea_singl">
+												<img src="https://i2.wp.com/homedecordesigns.com/wp-content/uploads/2014/10/IndianHome8.jpg?fit=900%2C624" class="img-fluid" alt="room1" />
+
+											</figure>
+										</ng-template>
+										<ng-template carouselSlide>
+											<figure class="wrap_idea_singl">
+												<img src="https://cdn.boydforcongress.com/wp-content/uploads/modern-luxury-homes-las-vegas-henderson-escala_403170-840x450.jpg" class="img-fluid" alt="room1" />
+
+											</figure>
+										</ng-template>
+									</owl-carousel-o>
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="professionals-details-wrapper">
+									<img src="https://www.efilecabinet.com/wp-content/uploads/2019/05/g2-testimonial-male.jpg" class="img-fluid" >		
+
+									<div class="ratings-review-wrapper">
+										<a routerLink="/professionals-details"><h3 class="ml-2">Sam Architects &amp; Builders</h3></a>
+										<div class="ratings-review">
+											<span>4.3</span>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<p>36 reviews</p>
+										</div>
+									</div>
+
+								</div>
+								<div class="custom-comment">	
+									<p class="mt-3"><i class="fa fa-quote-left"></i>
+									Mind-blowing extraordinary extravagant.The ambiance what is created is classic...</p>
+									<div class="read-more">
+										<span>-HU-7364766866</span>
+										<a routerLink="/professionals-details" class="read-more-link">Read More  <i class="fa fa-angle-right"></i></a>
+									</div>
+									<div class="professionals-btn-box d-flex justify-content-between">
+										<div class="send-req-btn">
+											<button class="btn btn-outline-btn"><i class="fa fa-user-plus mr-2"></i>	Send Request
+											</button>
+									</div>
+									<div class="favorite--btn">
+										<button class="btn btn-favorite"><i class="fa fa-heart"></i></button>
+									</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="professsional-contact-details">
+									<a  class="btn btn-outline-btn"><i class="fa fa-envelope"></i> Send Message</a><br/>
+									<p class="mt-3"><i class="fa fa-mobile mr-2" aria-hidden="true"></i>1234567890</p>
+									<p class="mt-3"><i class="fa fa-map-marker-alt mr-2" aria-hidden="true"></i>120, Downtown, james complex,Los Angeles,5498986</p>
+								</div>
+							</div>
+						</div>
+
+
+
+					</div>
+					<div class="professionals-detail-card-wrapper">
+						<div class="row">
+							<div class="col-md-4">
+								<div class="professionals_ideas_wrap">
+									<owl-carousel-o [options]="style_slider">
+										<ng-template carouselSlide>
+											<figure class="wrap_idea_singl">
+												<img src="https://i2.wp.com/homedecordesigns.com/wp-content/uploads/2014/10/IndianHome8.jpg?fit=900%2C624" class="img-fluid" alt="room1" />
+
+											</figure>
+										</ng-template>
+										<ng-template carouselSlide>
+											<figure class="wrap_idea_singl">
+												<img src="https://cdn.boydforcongress.com/wp-content/uploads/modern-luxury-homes-las-vegas-henderson-escala_403170-840x450.jpg" class="img-fluid" alt="room1" />
+
+											</figure>
+										</ng-template>
+										<ng-template carouselSlide>
+											<figure class="wrap_idea_singl">
+												<img src="https://i2.wp.com/homedecordesigns.com/wp-content/uploads/2014/10/IndianHome8.jpg?fit=900%2C624" class="img-fluid" alt="room1" />
+
+											</figure>
+										</ng-template>
+										<ng-template carouselSlide>
+											<figure class="wrap_idea_singl">
+												<img src="https://cdn.boydforcongress.com/wp-content/uploads/modern-luxury-homes-las-vegas-henderson-escala_403170-840x450.jpg" class="img-fluid" alt="room1" />
+
+											</figure>
+										</ng-template>
+									</owl-carousel-o>
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="professionals-details-wrapper">
+									<img src="https://www.efilecabinet.com/wp-content/uploads/2019/05/g2-testimonial-male.jpg" class="img-fluid" >		
+
+									<div class="ratings-review-wrapper">
+										<a routerLink="/professionals-details"><h3 class="ml-2">Sam Architects &amp; Builders</h3></a>
+										<div class="ratings-review">
+											<span>4.3</span>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<p>36 reviews</p>
+										</div>
+									</div>
+
+								</div>
+								<div class="custom-comment">	
+									<p class="mt-3"><i class="fa fa-quote-left"></i>
+									Mind-blowing extraordinary extravagant.The ambiance what is created is classic...</p>
+									<div class="read-more">
+										<span>-HU-7364766866</span>
+										<a routerLink="/professionals-details" class="read-more-link">Read More  <i class="fa fa-angle-right"></i></a>
+									</div>
+									<div class="professionals-btn-box d-flex justify-content-between">
+										<div class="send-req-btn">
+											<button class="btn btn-outline-btn"><i class="fa fa-user-plus mr-2"></i>	Send Request
+											</button>
+									</div>
+									<div class="favorite--btn">
+										<button class="btn btn-favorite"><i class="fa fa-heart"></i></button>
+									</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="professsional-contact-details">
+									<a class="btn btn-outline-btn"><i class="fa fa-envelope"></i> Send Message</a><br/>
+									<p class="mt-3"><i class="fa fa-mobile mr-2" aria-hidden="true"></i>1234567890</p>
+									<p class="mt-3"><i class="fa fa-map-marker-alt mr-2" aria-hidden="true"></i>120, Downtown, james complex,Los Angeles,5498986</p>
+								</div>
+							</div>
+						</div>
+
+
+
+					</div>
+					<!-- <ngx-select-dropdown (change)="selectionChanged($event)" [multiple]="true" [config]="config" [options]="">
+						
+					</ngx-select-dropdown> -->
+				</div>
+			</div>
+		</div>
+		<!-- <div class="col-md-2 mt-">
+			<img src="/assets/imgs/ad31.png" class="img-fluid">
+		</div> -->
+	</div>
+
+	<div>
+		<!-- <mat-paginator [length]="length" [pageSize]="10" [pageSizeOptions]="getPageSizeOptions()"
+		(page)="paginationOptionChange($event)"> -->
+		<mat-paginator [length]="length" [pageSize]="10" [pageSizeOptions]="getPageSizeOptions()"
+		(page)="paginationOptionChange($event)">
+	</mat-paginator>
+	</div>
+</div>
+
+<app-footer></app-footer>

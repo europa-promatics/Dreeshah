@@ -1,0 +1,185 @@
+<app-consultant-header></app-consultant-header>
+<div class="photographer-dashboard-wrapper">
+    <div class="custom-container d-flex">
+        <app-ph-sidebar></app-ph-sidebar>
+        <div class="main-wrap">
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="card">
+                        <div class="card-body">
+                            <mat-tab-group>
+                            
+                                <mat-tab label="Address">
+                                    <div class="photographer-address-wrapper">
+                                        <div class="d-flex justify-content-between">
+                                            <div class="photographer-headr">
+                                                <h2 class="custom-head">View Saved Address</h2>
+                                            </div>
+                                            <div class="edit--btn">
+                                                <button class="btn btn-round-blue" id="addressBtn" (click)="ClicKFunction()"><i
+                                                        class="fa fa-plus"></i></button>
+                                                <a routerLink="/photographerEditProfile" class="btn btn-round-blue"><i
+                                                        class="fa fa-pencil"></i></a>
+                                            </div>
+                                        </div>
+                                        <div class="photographer-address-section"></div>
+                                        <div class="row">
+                                            <div class="col-md-6" *ngFor="let data of details">
+                                                <div class="offset-ph-addres-card">
+                                                    <div class="card address-card">
+                                                        <div class="card-body">
+                                                            <div class="address-header">
+                                                                <div class="default-address">
+                                                                    <p></p>
+                                                                </div>
+                                                                <div class="edit-delete-icon float-right">
+                                                                    <a routerLink="/photographerEditProfile"
+                                                                        class="theme-link"><i
+                                                                            class="fa fa-pencil mr-3"></i></a>
+                                                                    <!-- <i class="fa fa-trash"></i> -->
+                                                                    <a routerLink="" class="theme-link"  (click)="deleteService(data._id)"><i
+                                                                            class="fa fa-trash mr-3"></i></a>
+                                                                </div>
+                                                            </div>
+                                                            <div >
+                                                         <div class="main-address-content"  >
+                                                                <p class="badge badge-primary address-title">{{data.address_type}}</p>
+                                                                <p>{{data.first_name}} {{data.last_name}}</p>
+                                                                <p>{{data.address_line1}} {{data.address_line2}}  {{data.landmark}}</p>
+                                                                <p>{{data.city}} {{data.state}}</p>
+                                                                <p>{{data.zip_code}}</p>
+                                                            </div>
+                                                        </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                           
+                                       
+                                         <!--  <div class="col-md-12">
+                                                <p class="text-center mt-2"><a routerLink="#" class="theme-link">Load
+                                                        More</a></p>
+                                            </div>--> 
+                                            <div class="col-md-12">
+                                                <div class="add-address-form">
+                                                    <div class="form-box mt-3">
+                                                        <form class="form-horizontal" method="post" action="" [formGroup]=addressForm
+                                                            enctype="multipart/form-data">
+                                                       
+                                                            <div class="form-group">
+                                                                <mat-form-field appearance="">
+                                                                    <mat-label>Address Line 1</mat-label>
+                                                                    <input matInput placeholder="Address Line 1" [formControl]="addressForm.controls['addline1']" [(ngModel)]="addline1"> 
+                                                                </mat-form-field>
+                                                                <p style="color: red; margin-top: -1.25em;"
+                                                                        *ngIf="addressForm.controls['addline1'].errors?.required && ( addressForm.controls['addline1'].touched || submit_button)">
+                                                                        Address is Required
+                                                                    </p>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <div class="form-group">
+                                                                        <mat-form-field appearance="">
+                                                                            <mat-label>Address Line 2</mat-label>
+                                                                            <input matInput placeholder="Address Line 2" [formControl]="addressForm.controls['addline2']" [(ngModel)]="addline2"> 
+                                                                        </mat-form-field>
+                                                                        <p style="color: red; margin-top: -1.25em;"
+                                                                                *ngIf="addressForm.controls['addline2'].errors?.required && ( addressForm.controls['addline2'].touched || submit_button)">
+                                                                                Address is Required
+                                                                            </p>
+                                                                    </div>
+                                                                </div>
+                                                           
+                                                            </div>
+                                                      
+                                                                <div class="col-md-12">
+                                                                    <div class="form-group">
+                                                                        <mat-form-field appearance="">
+                                                                            <mat-label>Landmark</mat-label>
+                                                                            <input matInput placeholder="Area" [formControl]="addressForm.controls['area']" [(ngModel)]="area"> 
+                                                                        </mat-form-field>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <mat-form-field >
+                                                                        <mat-label>Pin Code</mat-label>
+                                                                        <input matInput placeholder="Pincode" [formControl]="addressForm.controls['pincode']" 
+                                                                        (keypress)="numberOnly($event)" [(ngModel)]="pincode">
+                                                                        
+                                                                    </mat-form-field>
+                                                                </div>
+                                                           
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        <mat-form-field>
+                                                                            <mat-label>Country</mat-label>
+                                                                            <mat-select [(ngModel)]="selectedCountry"
+                                                                                (selectionChange)="selectCountry($event)" name="country"
+                                                                                [formControl]="addressForm.controls['country']"
+                                                                                required>
+                                                                                <mat-option disabled>Select Country</mat-option>
+                                                                                <mat-option *ngFor="let country of countries"
+                                                                                    [value]="country">{{country.name}}</mat-option>
+                                                                            </mat-select>
+                                                                     </mat-form-field>
+                                                                            <p style="color: red; margin-top: -1.25em;"
+                                                                                *ngIf="addressForm.controls['country'].errors?.required && ( addressForm.controls['country'].touched || submit_button)">
+                                                                                Please Select Country 
+                                                                            </p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                              <div class="row">
+                                                                <div class="col-md-6">
+                                                                <div class="form-group">
+                                                              
+                                                                    <mat-label>Address Type*</mat-label>
+                                                                                    <!-- <label id="example-radio-group-label">Address Type : </label> -->
+                                                         <mat-radio-group class="example-radio-group-new" [formControl]="addressForm.controls['addType']" [(ngModel)]="addType">
+                                                            <mat-radio-button  value="home">Home (7am-9pm, all days)</mat-radio-button>
+                                                            <mat-radio-button  value="office">Office (9am-6pm, Weekdays)</mat-radio-button>
+                                                            <mat-radio-button  value="other">Other</mat-radio-button>
+                                                          </mat-radio-group>
+                                                  
+                                                        <p style="color: red; margin-top: -1.25em;"
+                                                                    *ngIf="addressForm.controls['addType'].errors?.required && ( addressForm.controls['addType'].touched || submit_button)">
+                                                                        Address Type is Required
+                                                        </p>
+                                                            </div>
+                                                        </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <mat-label>City*</mat-label>
+                                                                    <input matInput placeholder="City" [formControl]="addressForm.controls['city']" [(ngModel)]="city" required>
+                                                                 
+                                                          
+                                                                <p style="color: red; margin-top: -1.25em;"
+                                                                    *ngIf="addressForm.controls['city'].errors?.required && ( addressForm.controls['city'].touched || submit_button)">
+                                                                    City is Required
+                                                                </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                           
+                                                            <div class="submit-btn mt-3" align="center">
+                                                                <button type="submit"
+                                                                    class="btn btn-change-fill" (click)="saveAddress()">Save</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </mat-tab>
+                            </mat-tab-group>
+                        </div>
+                    </div>
+                </div>
+             
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

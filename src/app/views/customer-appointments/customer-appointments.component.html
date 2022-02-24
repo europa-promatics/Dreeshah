@@ -1,0 +1,1347 @@
+<app-seller-header></app-seller-header>
+<div class="seller-appointments-wrapper">
+	<div class="custom-container d-flex">
+		<app-sidebar></app-sidebar>
+		<div class="main-wrap">
+			<div class="card">
+				<div class="card-body">
+					<div class="row">
+						<div class="col-md-12">
+							<mat-tab-group>
+								<mat-tab label="All Appointments">
+									<div class="col-md-12 mt-3">
+										<div class="db-header--wraap">
+											<div class="dashboard-table-heading">
+												<h1>All Appointments</h1>
+											</div>
+											<div class="user-search-input d-flex">
+												<div class="form-group mb-0">
+													<input type="text" name="search-user" placeholder="Search" (keyup)="filterByServiceName($event.target.value,'all')" class="form-control">
+												</div>
+												<!-- <div class="add-schedule-btn">
+													<a routerLink="/addSchedule" class="btn btn-round-blue ml-2"><i class="fa fa-plus"></i></a>
+												</div> -->
+											</div>
+										</div>
+										<div class="appointment-table margn-top">
+											<table class="table table-bordered table-responsive table-striped" *ngIf="detailsLen != 0">
+												<thead class="thead-light">
+													<tr>
+														<th scope="col">Sr no.</th>
+														<th scope="col">Photo</th>
+														<th scope="col">Name</th>
+														<th scope="col">Date & Time</th>
+														<!-- <th scope="col">Professional</th> -->
+														<th scope="col">Location</th>
+														<th scope="col">Service Detail</th>
+														<th scope="col">Subject</th>
+														<th scope="col">Purpose</th>
+														<th scope="col">Status</th>
+														<!-- <th scope="col">Action</th> -->
+													</tr>
+												</thead>
+												<tbody>
+													<tr *ngFor="let detail of details; let i = index">
+														<th scope="row">{{i+1}}</th>
+														<td class="prof-img--avatar">
+															<img src="{{profile_image_path}}{{detail?.service_id?.professional_id?.profile_image}}">
+															<!-- <img src="http://medic-app-react.next-item.com//content/user-40-1.jpg"> -->
+														</td>
+														<td class="date-time-appointment"><p>{{detail?.service_id?.professional_id?.first_name}}</p>
+															<p>{{detail?.service_id?.professional_id?.last_name}}</p>
+														</td>
+														<td class="date-time-appointment"><p>{{detail?.date}}</p>
+															<p>{{detail?.time}}</p>
+														</td>
+														<td>{{detail?.location}}</td>
+														<td><span class="purpose">{{detail?.service_id?.service_description}}</span></td>
+														
+														<td>{{detail.subject}}</td>
+														<td><span class="purpose">{{detail?.request_details}}</span></td>
+														
+														<td>
+															<span class="badge badge-success status-badge">{{detail?.status}}</span>
+														</td>
+														<!-- <td>
+															<button data-target="#editBookAptmnt"  data-toggle="modal" class="btn btn-round-blue"><i class="fa fa-pencil"></i></button>
+															<button class="btn btn-round-blue"><i class="fa fa-check"></i></button>
+														</td> -->
+													</tr>
+													<!-- <tr>
+														<th scope="row">1</th>
+														<td class="prof-img--avatar">
+															<img src="http://medic-app-react.next-item.com//content/user-40-1.jpg">
+														</td>
+														<td>Liam</td>
+														<td class="date-time-appointment"><p>18 Dec 2018</p>
+															<p>10:15 - 10:30</p>
+														</td>
+														<td>Mumbai</td>
+														<td>
+															<span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat.</span>
+														</td>
+														
+														<td>{{Quotaion}}</td>
+														<td><span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+														tempor incididunt</span></td>
+														
+														<td>
+															<span class="badge badge-success status-badge">Approved</span>
+														</td>
+														
+													</tr> -->
+													<!-- <tr>
+														<th scope="row">2</th>
+														<td class="prof-img--avatar">
+															<img src="http://medic-app-react.next-item.com//content/user-40-1.jpg">
+														</td>
+														<td>Liam</td>
+														<td class="date-time-appointment"><p>18 Dec 2018</p>
+															<p>10:15 - 10:30</p>
+														</td>
+														<td>Mumbai</td>
+														<td>
+															<span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat.</span>
+														</td>
+														
+														<td>Quotaion</td>
+														<td><span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+														tempor incididunt</span></td>
+														
+														<td>
+															<span class="badge badge-success status-badge">Approved</span>
+														</td>
+														<td>
+															
+															<button class="btn btn-round-blue"><i class="fa fa-check"></i></button>
+														</td>
+														</tr> -->
+													<!-- <tr>
+														<th scope="row">11</th>
+														<td class="prof-img--avatar">
+															<img src="http://medic-app-react.next-item.com//content/user-40-1.jpg">
+														</td>
+														<td>Liam</td>
+														<td class="date-time-appointment"><p>18 Dec 2018</p>
+															<p>10:15 - 10:30</p>
+														</td>
+														<td>Mumbai</td>
+														<td>
+															<span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat.</span>
+														</td>
+														
+														<td>Quotaion</td>
+														<td><span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+														tempor incididunt</span></td>
+														
+														<td>
+															<span class="badge badge-primary status-badge">Completed</span>
+														</td>
+														<td>
+															
+															<button class="btn btn-round-blue"><i class="fa fa-check"></i></button>
+														</td>
+													</tr>
+													<tr>
+														<th scope="row">12</th>
+														<td class="prof-img--avatar">
+															<img src="http://medic-app-react.next-item.com//content/user-40-1.jpg">
+														</td>
+														<td>Liam</td>
+														<td class="date-time-appointment"><p>18 Dec 2018</p>
+															<p>10:15 - 10:30</p>
+														</td>
+														<td>Mumbai</td>
+														<td>
+															<span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat.</span>
+														</td>
+														
+														<td>Quotaion</td>
+														<td><span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+														tempor incididunt</span></td>
+														
+														<td>
+															<span class="badge badge-primary status-badge">Completed</span>
+														</td>
+														<td>
+															
+															<button class="btn btn-round-blue"><i class="fa fa-check"></i></button>
+														</td>
+													</tr>
+													<tr>
+														<th scope="row">13</th>
+														<td class="prof-img--avatar">
+															<img src="http://medic-app-react.next-item.com//content/user-40-1.jpg">
+														</td>
+														<td>Liam</td>
+														<td class="date-time-appointment"><p>18 Dec 2018</p>
+															<p>10:15 - 10:30</p>
+														</td>
+														<td>Mumbai</td>
+														<td>
+															<span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat.</span>
+														</td>
+														
+														<td>Quotaion</td>
+														<td><span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+														tempor incididunt</span></td>
+														
+														<td>
+															<span class="badge badge-primary status-badge">Completed</span>
+														</td>
+														<td>
+															
+															<button class="btn btn-round-blue"><i class="fa fa-check"></i></button>
+														</td>
+													</tr>
+													<tr>
+														<th scope="row">14</th>
+														<td class="prof-img--avatar">
+															<img src="http://medic-app-react.next-item.com//content/user-40-1.jpg">
+														</td>
+														<td>Liam</td>
+														<td class="date-time-appointment"><p>18 Dec 2018</p>
+															<p>10:15 - 10:30</p>
+														</td>
+														<td>Mumbai</td>
+														<td>
+															<span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat.</span>
+														</td>
+														
+														<td>Quotaion</td>
+														<td><span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+														tempor incididunt</span></td>
+														
+														<td>
+															<span class="badge badge-primary status-badge">Completed</span>
+														</td>
+														<td>
+															
+															<button class="btn btn-round-blue"><i class="fa fa-check"></i></button>
+														</td>
+													</tr>
+													<tr>
+														<th scope="row">15</th>
+														<td class="prof-img--avatar">
+															<img src="http://medic-app-react.next-item.com//content/user-40-1.jpg">
+														</td>
+														<td>Liam</td>
+														<td class="date-time-appointment"><p>18 Dec 2018</p>
+															<p>10:15 - 10:30</p>
+														</td>
+														<td>Mumbai</td>
+														<td>
+															<span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat.</span>
+														</td>
+														
+														<td>Quotaion</td>
+														<td><span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+														tempor incididunt</span></td>
+														
+														<td>
+															<span class="badge badge-danger status-badge">Pending</span>
+														</td>
+														<td>
+															
+															<button class="btn btn-round-blue"><i class="fa fa-check"></i></button>
+														</td>
+													</tr>
+													<tr>
+														<th scope="row">16</th>
+														<td class="prof-img--avatar">
+															<img src="http://medic-app-react.next-item.com//content/user-40-1.jpg">
+														</td>
+														<td>Liam</td>
+														<td class="date-time-appointment"><p>18 Dec 2018</p>
+															<p>10:15 - 10:30</p>
+														</td>
+														<td>Mumbai</td>
+														<td>
+															<span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat.</span>
+														</td>
+														
+														<td>Quotaion</td>
+														<td><span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+														tempor incididunt</span></td>
+														
+														<td>
+															<span class="badge badge-danger status-badge">Pending</span>
+														</td>
+														<td>
+															
+															<button class="btn btn-round-blue"><i class="fa fa-check"></i></button>
+														</td>
+													</tr>
+													<tr>
+														<th scope="row">17</th>
+														<td class="prof-img--avatar">
+															<img src="http://medic-app-react.next-item.com//content/user-40-1.jpg">
+														</td>
+														<td>Liam</td>
+														<td class="date-time-appointment"><p>18 Dec 2018</p>
+															<p>10:15 - 10:30</p>
+														</td>
+														<td>Mumbai</td>
+														<td>
+															<span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat.</span>
+														</td>
+														
+														<td>Quotaion</td>
+														<td><span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+														tempor incididunt</span></td>
+														
+														<td>
+															<span class="badge badge-danger status-badge">Pending</span>
+														</td>
+														<td>
+															
+															<button class="btn btn-round-blue"><i class="fa fa-check"></i></button>
+														</td>
+													</tr>
+													<tr>
+														<th scope="row">18</th>
+														<td class="prof-img--avatar">
+															<img src="http://medic-app-react.next-item.com//content/user-40-1.jpg">
+														</td>
+														<td>Liam</td>
+														<td class="date-time-appointment"><p>18 Dec 2018</p>
+															<p>10:15 - 10:30</p>
+														</td>
+														<td>Mumbai</td>
+														<td>
+															<span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat.</span>
+														</td>
+														
+														<td>Quotaion</td>
+														<td><span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+														tempor incididunt</span></td>
+														
+														<td>
+															<span class="badge badge-danger status-badge">Pending</span>
+														</td>
+														<td>
+															
+															<button class="btn btn-round-blue"><i class="fa fa-check"></i></button>
+														</td>
+													</tr>
+													<tr>
+														<th scope="row">19</th>
+														<td class="prof-img--avatar">
+															<img src="http://medic-app-react.next-item.com//content/user-40-1.jpg">
+														</td>
+														<td>Liam</td>
+														<td class="date-time-appointment"><p>18 Dec 2018</p>
+															<p>10:15 - 10:30</p>
+														</td>
+														<td>Mumbai</td>
+														<td>
+															<span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat.</span>
+														</td>
+														
+														<td>Quotaion</td>
+														<td><span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+														tempor incididunt</span></td>
+														
+														<td>
+															<span class="badge badge-danger status-badge">Pending</span>
+														</td>
+														<td>
+															
+															<button class="btn btn-round-blue"><i class="fa fa-check"></i></button>
+														</td>
+													</tr>
+													<tr>
+														<th scope="row">20</th>
+														<td class="prof-img--avatar">
+															<img src="http://medic-app-react.next-item.com//content/user-40-1.jpg">
+														</td>
+														<td>Liam</td>
+														<td class="date-time-appointment"><p>18 Dec 2018</p>
+															<p>10:15 - 10:30</p>
+														</td>
+														<td>Mumbai</td>
+														<td>
+															<span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat.</span>
+														</td>
+														
+														<td>Quotaion</td>
+														<td><span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+														tempor incididunt</span></td>
+														
+														<td>
+															<span class="badge badge-danger status-badge">Pending</span>
+														</td>
+														<td>
+															
+															<button class="btn btn-round-blue"><i class="fa fa-check"></i></button>
+														</td>
+													</tr>
+													<tr>
+														<th scope="row">21</th>
+														<td class="prof-img--avatar">
+															<img src="http://medic-app-react.next-item.com//content/user-40-1.jpg">
+														</td>
+														<td>Liam</td>
+														<td class="date-time-appointment"><p>18 Dec 2018</p>
+															<p>10:15 - 10:30</p>
+														</td>
+														<td>Mumbai</td>
+														<td>
+															<span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat.</span>
+														</td>
+														
+														<td>Quotaion</td>
+														<td><span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+														tempor incididunt</span></td>
+														
+														<td>
+															<span class="badge badge-danger status-badge">Pending</span>
+														</td>
+														<td>
+															
+															<button class="btn btn-round-blue"><i class="fa fa-check"></i></button>
+														</td>
+													</tr> -->
+												</tbody>
+											</table>
+											<div *ngIf="detailsLen == 0">
+												<h2>No Record</h2>
+											</div>
+										</div>
+									</div>
+								</mat-tab>
+								<mat-tab label="Pending">
+									<div class="col-md-12 mt-3">
+										<div class="db-header--wraap">
+											<div class="dashboard-table-heading">
+												<h1>Pending Appointments</h1>
+											</div>
+											<div class="user-search-input">
+												<div class="form-group mb-0">
+													<input type="text" name="search-user" placeholder="Search" (keyup)="filterByServiceName($event.target.value,'pending')" class="form-control">
+												</div>
+											</div>
+										</div>
+										<div class="appointment-table margn-top">
+											<table class="table table-bordered table-responsive table-striped" *ngIf="pendingLen != 0">
+												<thead class="thead-light">
+													<tr>
+														<th scope="col">Sr no.</th>
+														<th scope="col">Photo</th>
+														<th scope="col">Name</th>
+														<th scope="col">Date & Time</th>
+														<!-- <th scope="col">Professional</th> -->
+														<th scope="col">Location</th>
+														<th scope="col">Service Detail</th>
+														<th scope="col">Subject</th>
+														<th scope="col">Purpose</th>
+														<th scope="col">Status</th>
+														<!-- <th scope="col">Action</th> -->
+													</tr>
+												</thead>
+												<tbody>
+													<tr *ngFor="let detail of pendingDetails; let i = index">
+														<th scope="row">{{i+1}}</th>
+														<td class="prof-img--avatar">
+															<img src="{{profile_image_path}}{{detail?.service_id?.professional_id?.profile_image}}">
+															<!-- <img src="http://medic-app-react.next-item.com//content/user-40-1.jpg"> -->
+														</td>
+														<td class="date-time-appointment"><p>{{detail?.service_id?.professional_id?.first_name}}</p>
+															<p>{{detail?.service_id?.professional_id?.last_name}}</p>
+														</td>
+														<td class="date-time-appointment"><p>{{detail?.date}}</p>
+															<p>{{detail?.time}}</p>
+														</td>
+														<td>{{detail?.location}}</td>
+														<td><span class="purpose">{{detail?.service_id?.service_description}}</span></td>
+														
+														<td>{{detail.subject}}</td>
+														<td><span class="purpose">{{detail?.request_details}}</span></td>
+														
+														<td>
+															<span class="badge badge-success status-badge">{{detail?.status}}</span>
+														</td>
+														<!-- <td>
+															<button data-target="#editBookAptmnt"  data-toggle="modal" class="btn btn-round-blue"><i class="fa fa-pencil"></i></button>
+															<button class="btn btn-round-blue"><i class="fa fa-check"></i></button>
+														</td> -->
+													</tr>
+													
+													
+												</tbody>
+											</table>
+											<div *ngIf="pendingLen == 0">
+													<h2>No Record</h2>
+											</div>
+										</div>
+									</div>
+								</mat-tab>
+								<mat-tab label="Approved">
+									<div class="col-md-12 mt-3">
+										<div class="db-header--wraap">
+											<div class="dashboard-table-heading">
+												<h1>Approved Appointments</h1>
+											</div>
+											<div class="user-search-input">
+												<div class="form-group mb-0">
+													<input type="text" name="search-user" placeholder="Search" (keyup)="filterByServiceName($event.target.value,'approved')" class="form-control">
+												</div>
+											</div>
+										</div>
+										<div class="appointment-table margn-top">
+											<table class="table table-bordered table-responsive table-striped" *ngIf="approvedLen != 0">
+												<thead class="thead-light">
+													<tr>
+														<th scope="col">Sr no.</th>
+														<th scope="col">Photo</th>
+														<th scope="col">Name</th>
+														<th scope="col">Date & Time</th>
+														<!-- <th scope="col">Professional</th> -->
+														<th scope="col">Location</th>
+														<th scope="col">Service Detail</th>
+														<th scope="col">Subject</th>
+														<th scope="col">Purpose</th>
+														<th scope="col">Status</th>
+														<th scope="col">Action</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr *ngFor="let detail of approvedDetails; let i = index">
+														<th scope="row">{{i+1}}</th>
+														<td class="prof-img--avatar">
+															<img src="{{profile_image_path}}{{detail?.service_id?.professional_id?.profile_image}}">
+															<!-- <img src="http://medic-app-react.next-item.com//content/user-40-1.jpg"> -->
+														</td>
+														<td class="date-time-appointment"><p>{{detail?.service_id?.professional_id?.first_name}}</p>
+															<p>{{detail?.service_id?.professional_id?.last_name}}</p>
+														</td>
+														<td class="date-time-appointment"><p>{{detail?.date}}</p>
+															<p>{{detail?.time}}</p>
+														</td>
+														<td>{{detail?.location}}</td>
+														<td><span class="purpose">{{detail?.service_id?.service_description}}</span></td>
+														
+														<td>{{detail.subject}}</td>
+														<td><span class="purpose">{{detail?.request_details}}</span></td>
+														
+														<td>
+															<span class="badge badge-success status-badge">{{detail?.status}}</span>
+														</td>
+														<!-- <td>
+															<button data-target="#editBookAptmnt"  data-toggle="modal" class="btn btn-round-blue"><i class="fa fa-pencil"></i></button>
+															<button class="btn btn-round-blue"><i class="fa fa-check"></i></button>
+														</td> -->
+													</tr>
+													
+													
+													
+												</tbody>
+											</table>
+											<div *ngIf="approvedLen == 0">
+												<h2>No Record</h2>
+											</div>
+										</div>
+									</div>
+								</mat-tab>
+								<mat-tab label="Completed">
+									<div class="col-md-12 mt-3">
+										<div class="db-header--wraap">
+											<div class="dashboard-table-heading">
+												<h1>Completed Appointments</h1>
+											</div>
+											<div class="user-search-input">
+												<div class="form-group mb-0">
+													<input type="text" name="search-user" placeholder="Search" (keyup)="filterByServiceName($event.target.value,'completed')" class="form-control">
+												</div>
+											</div>
+										</div>
+										<div class="appointment-table margn-top">
+											<table class="table table-bordered table-responsive table-striped" *ngIf="completedLen !=0">
+												<thead class="thead-light">
+													<tr>
+														<th scope="col">Sr no.</th>
+														<th scope="col">Photo</th>
+														<th scope="col">Name</th>
+														<th scope="col">Date & Time</th>
+														<!-- <th scope="col">Professional</th> -->
+														<th scope="col">Location</th>
+														<th scope="col">Service Detail</th>
+														<th scope="col">Subject</th>
+														<th scope="col">Purpose</th>
+														<th scope="col">Status</th>
+														<!-- <th scope="col">Action</th> -->
+													</tr>
+												</thead>
+												<tbody>
+													<tr *ngFor="let detail of completedDetails; let i = index">
+														<th scope="row">{{i+1}}</th>
+														<td class="prof-img--avatar">
+															<img src="{{profile_image_path}}{{detail?.service_id?.professional_id?.profile_image}}">
+															<!-- <img src="http://medic-app-react.next-item.com//content/user-40-1.jpg"> -->
+														</td>
+														<td class="date-time-appointment"><p>{{detail?.service_id?.professional_id?.first_name}}</p>
+															<p>{{detail?.service_id?.professional_id?.last_name}}</p>
+														</td>
+														<td class="date-time-appointment"><p>{{detail?.date}}</p>
+															<p>{{detail?.time}}</p>
+														</td>
+														<td>{{detail?.location}}</td>
+														<td><span class="purpose">{{detail?.service_id?.service_description}}</span></td>
+														
+														<td>{{detail.subject}}</td>
+														<td><span class="purpose">{{detail?.request_details}}</span></td>
+														
+														<td>
+															<span class="badge badge-success status-badge">{{detail?.status}}</span>
+														</td>
+														<!-- <td>
+															<button data-target="#editBookAptmnt"  data-toggle="modal" class="btn btn-round-blue"><i class="fa fa-pencil"></i></button>
+															<button class="btn btn-round-blue"><i class="fa fa-check"></i></button>
+														</td> -->
+													</tr>
+													<!-- <tr>
+														<th scope="row">1</th>
+														<td class="prof-img--avatar">
+															<img src="http://medic-app-react.next-item.com//content/user-40-1.jpg">
+														</td>
+														<td>Liam</td>
+														<td class="date-time-appointment"><p>18 Dec 2018</p>
+															<p>10:15 - 10:30</p>
+														</td>
+														<td>Mumbai</td>
+														<td>
+															<span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat.</span>
+														</td>
+														
+														<td>Quotaion</td>
+														<td><span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+														tempor incididunt</span></td>
+														
+														<td>
+															<span class="badge badge-primary status-badge">Completed</span>
+														</td>
+														<td>
+															
+															<button class="btn btn-round-blue"><i class="fa fa-check"></i></button>
+														</td>
+													</tr> -->
+													
+													
+													
+												</tbody>
+											</table>
+											<div *ngIf="completedLen == 0">
+												<h2>No Record</h2>
+											</div>
+										</div>
+									</div>
+								</mat-tab>
+
+								<mat-tab label="Rejected">
+									<div class="col-md-12 mt-3">
+										<div class="db-header--wraap">
+											<div class="dashboard-table-heading">
+												<h1>Rejected Appointments</h1>
+											</div>
+											<div class="user-search-input">
+												<div class="form-group mb-0">
+													<input type="text" name="search-user" placeholder="Search" (keyup)="filterByServiceName($event.target.value,'rejected')" class="form-control">
+												</div>
+											</div>
+										</div>
+										<div class="appointment-table margn-top">
+											<table class="table table-bordered table-responsive table-striped" *ngIf="rejectedLen !=0">
+												<thead class="thead-light">
+													<tr>
+														<th scope="col">Sr no.</th>
+														<th scope="col">Photo</th>
+														<th scope="col">Name</th>
+														<th scope="col">Date & Time</th>
+														<!-- <th scope="col">Professional</th> -->
+														<th scope="col">Location</th>
+														<th scope="col">Service Detail</th>
+														<th scope="col">Subject</th>
+														<th scope="col">Purpose</th>
+														<th scope="col">Status</th>
+														<!-- <th scope="col">Action</th> -->
+													</tr>
+												</thead>
+												<tbody>
+													<tr *ngFor="let detail of rejectedDetails; let i = index">
+														<th scope="row">{{i+1}}</th>
+														<td class="prof-img--avatar">
+															<img src="{{profile_image_path}}{{detail?.service_id?.professional_id?.profile_image}}">
+															<!-- <img src="http://medic-app-react.next-item.com//content/user-40-1.jpg"> -->
+														</td>
+														<td class="date-time-appointment"><p>{{detail?.service_id?.professional_id?.first_name}}</p>
+															<p>{{detail?.service_id?.professional_id?.last_name}}</p>
+														</td>
+														<td class="date-time-appointment"><p>{{detail?.date}}</p>
+															<p>{{detail?.time}}</p>
+														</td>
+														<td>{{detail?.location}}</td>
+														<td><span class="purpose">{{detail?.service_id?.service_description}}</span></td>
+														
+														<td>{{detail.subject}}</td>
+														<td><span class="purpose">{{detail?.request_details}}</span></td>
+														
+														<td>
+															<span class="badge badge-success status-badge">{{detail?.status}}</span>
+														</td>
+														<!-- <td>
+															<button data-target="#editBookAptmnt"  data-toggle="modal" class="btn btn-round-blue"><i class="fa fa-pencil"></i></button>
+															<button class="btn btn-round-blue"><i class="fa fa-check"></i></button>
+														</td> -->
+													</tr>
+												
+													
+													
+													
+												</tbody>
+											</table>
+											<div *ngIf="rejectedLen == 0">
+												<h2>No Record</h2>
+											</div>
+										</div>
+									</div>
+								</mat-tab>
+							</mat-tab-group>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<app-footer></app-footer>
+
+
+
+
+
+
+
+<!-- <app-db-header></app-db-header>
+<div class="dashboard-wrapper">
+	<div class="custom-container d-flex">
+		<app-sidebar></app-sidebar>
+		<div class="main-wrap">
+			<div class="card">
+				<div class="card-body">		
+					<div class="row">
+						<div class="col-md-12 mt-3">
+							<div class="dashboard-table-heading">
+								<h1>My Appointments</h1>
+							</div>
+							<div class="appointment-table margn-top">
+								<table class="table table-bordered table-responsive table-striped">
+									<thead class="thead-light">
+										<tr>
+											<th scope="col">Sr no.</th>
+											<th scope="col">Photo</th>
+											<th scope="col">Name</th>
+											<th scope="col">Date & Time</th>
+											
+											<th scope="col">Location</th>
+											<th scope="col">Service Detail</th>
+											<th scope="col">Subject</th>
+											<th scope="col">Purpose</th>
+											<th scope="col">Status</th>
+											<th scope="col">Action</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr *ngFor="let detail of details; let i = index">
+											<th scope="row">{{i+1}}</th>
+											<td class="prof-img--avatar">
+												<img src="http://medic-app-react.next-item.com//content/user-40-1.jpg">
+											</td>
+											<td class="date-time-appointment"><p>{{detail?.service_id?.professional_id?.first_name}}</p>
+												<p>{{detail?.service_id?.professional_id?.last_name}}</p>
+											</td>
+											<td class="date-time-appointment"><p>{{detail?.date}}</p>
+												<p>{{detail?.time}}</p>
+											</td>
+											<td>{{detail?.location}}</td>
+											<td><span class="purpose">{{detail?.service_id?.service_description}}</span></td>
+											
+											<td>Quotaion</td>
+											<td><span class="purpose">{{detail?.request_details}}</span></td>
+											
+											<td>
+												<span class="badge badge-success status-badge">{{detail?.status}}</span>
+											</td>
+											<td>
+												<button data-target="#editBookAptmnt"  data-toggle="modal" class="btn btn-round-blue"><i class="fa fa-pencil"></i></button>
+												<button class="btn btn-round-blue"><i class="fa fa-check"></i></button>
+											</td>
+										</tr>
+										<tr>
+											<th scope="row">2</th>
+											<td class="prof-img--avatar">
+												<img src="http://medic-app-react.next-item.com//content/user-40-1.jpg">
+											</td>
+											<td>Liam</td>
+											<td class="date-time-appointment"><p>18 Dec 2018</p>
+												<p>10:15 - 10:30</p>
+											</td>
+											<td>Mumbai</td>
+											<td><span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</span></td>
+											
+											<td>Quotaion</td>
+											<td><span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+											tempor incididunt</span></td>
+											
+											<td>
+												<span class="badge badge-success status-badge">Approved</span>
+											</td>
+											<td>
+												<button data-target="#editBookAptmnt"  data-toggle="modal" class="btn btn-round-blue"><i class="fa fa-pencil"></i></button>
+												<button class="btn btn-round-blue"><i class="fa fa-check"></i></button>
+											</td>
+										</tr> -->
+										<!-- <tr>
+											<th scope="row">3</th>
+											<td class="prof-img--avatar">
+												<img src="http://medic-app-react.next-item.com//content/user-40-1.jpg">
+											</td>
+											<td>Liam</td>
+											<td class="date-time-appointment"><p>18 Dec 2018</p>
+												<p>10:15 - 10:30</p>
+											</td>
+											<td>Mumbai</td>
+											<td><span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</span></td>
+											
+											<td>Quotaion</td>
+											<td><span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+											tempor incididunt</span></td>
+											
+											<td>
+												<span class="badge badge-success status-badge">Approved</span>
+											</td>
+											<td>
+												<button data-target="#editBookAptmnt"  data-toggle="modal" class="btn btn-round-blue"><i class="fa fa-pencil"></i></button>
+												<button class="btn btn-round-blue"><i class="fa fa-check"></i></button>
+											</td>
+										</tr>
+										<tr>
+											<th scope="row">4</th>
+											<td class="prof-img--avatar">
+												<img src="http://medic-app-react.next-item.com//content/user-40-1.jpg">
+											</td>
+											<td>Liam</td>
+											<td class="date-time-appointment"><p>18 Dec 2018</p>
+												<p>10:15 - 10:30</p>
+											</td>
+											<td>Mumbai</td>
+											<td><span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</span></td>
+											
+											<td>Quotaion</td>
+											<td><span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+											tempor incididunt</span></td>
+											
+											<td>
+												<span class="badge badge-success status-badge">Approved</span>
+											</td>
+											<td>
+												<button data-target="#editBookAptmnt"  data-toggle="modal" class="btn btn-round-blue"><i class="fa fa-pencil"></i></button>
+												<button class="btn btn-round-blue"><i class="fa fa-check"></i></button>
+											</td>
+										</tr>
+										<tr>
+											<th scope="row">5</th>
+											<td class="prof-img--avatar">
+												<img src="http://medic-app-react.next-item.com//content/user-40-1.jpg">
+											</td>
+											<td>Liam</td>
+											<td class="date-time-appointment"><p>18 Dec 2018</p>
+												<p>10:15 - 10:30</p>
+											</td>
+											<td>Mumbai</td>
+											<td><span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</span></td>
+											
+											<td>Quotaion</td>
+											<td><span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+											tempor incididunt</span></td>
+											
+											<td>
+												<span class="badge badge-success status-badge">Approved</span>
+											</td>
+											<td>
+												<button data-target="#editBookAptmnt"  data-toggle="modal" class="btn btn-round-blue"><i class="fa fa-pencil"></i></button>
+												<button class="btn btn-round-blue"><i class="fa fa-check"></i></button>
+											</td>
+										</tr>
+										<tr>
+											<th scope="row">6</th>
+											<td class="prof-img--avatar">
+												<img src="http://medic-app-react.next-item.com//content/user-40-1.jpg">
+											</td>
+											<td>Liam</td>
+											<td class="date-time-appointment"><p>18 Dec 2018</p>
+												<p>10:15 - 10:30</p>
+											</td>
+											<td>Mumbai</td>
+											<td><span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</span></td>
+											
+											<td>Quotaion</td>
+											<td><span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+											tempor incididunt</span></td>
+											
+											<td>
+												<span class="badge badge-success status-badge">Approved</span>
+											</td>
+											<td>
+												<button data-target="#editBookAptmnt"  data-toggle="modal" class="btn btn-round-blue"><i class="fa fa-pencil"></i></button>
+												<button class="btn btn-round-blue"><i class="fa fa-check"></i></button>
+											</td>
+										</tr>
+										<tr>
+											<th scope="row">7</th>
+											<td class="prof-img--avatar">
+												<img src="http://medic-app-react.next-item.com//content/user-40-1.jpg">
+											</td>
+											<td>Liam</td>
+											<td class="date-time-appointment"><p>18 Dec 2018</p>
+												<p>10:15 - 10:30</p>
+											</td>
+											<td>Mumbai</td>
+											<td><span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</span></td>
+											
+											<td>Quotaion</td>
+											<td><span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+											tempor incididunt</span></td>
+											
+											<td>
+												<span class="badge badge-success status-badge">Approved</span>
+											</td>
+											<td>
+												<button data-target="#editBookAptmnt"  data-toggle="modal" class="btn btn-round-blue"><i class="fa fa-pencil"></i></button>
+												<button class="btn btn-round-blue"><i class="fa fa-check"></i></button>
+											</td>
+										</tr>
+										<tr>
+											<th scope="row">8</th>
+											<td class="prof-img--avatar">
+												<img src="http://medic-app-react.next-item.com//content/user-40-1.jpg">
+											</td>
+											<td>Liam</td>
+											<td class="date-time-appointment"><p>18 Dec 2018</p>
+												<p>10:15 - 10:30</p>
+											</td>
+											<td>Mumbai</td>
+											<td><span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</span></td>
+											
+											<td>Quotaion</td>
+											<td><span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+											tempor incididunt</span></td>
+											
+											<td>
+												<span class="badge badge-primary status-badge">Completed</span>
+											</td>
+											<td>
+												<button data-target="#editBookAptmnt"  data-toggle="modal" class="btn btn-round-blue"><i class="fa fa-pencil"></i></button>
+												<button class="btn btn-round-blue"><i class="fa fa-check"></i></button>
+											</td>
+										</tr>
+										<tr>
+											<th scope="row">9</th>
+											<td class="prof-img--avatar">
+												<img src="http://medic-app-react.next-item.com//content/user-40-1.jpg">
+											</td>
+											<td>Liam</td>
+											<td class="date-time-appointment"><p>18 Dec 2018</p>
+												<p>10:15 - 10:30</p>
+											</td>
+											<td>Mumbai</td>
+											<td><span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</span></td>
+											
+											<td>Quotaion</td>
+											<td><span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+											tempor incididunt</span></td>
+											
+											<td>
+												<span class="badge badge-primary status-badge">Completed</span>
+											</td>
+											<td>
+												<button data-target="#editBookAptmnt"  data-toggle="modal" class="btn btn-round-blue"><i class="fa fa-pencil"></i></button>
+												<button class="btn btn-round-blue"><i class="fa fa-check"></i></button>
+											</td>
+										</tr>
+										<tr>
+											<th scope="row">10</th>
+											<td class="prof-img--avatar">
+												<img src="http://medic-app-react.next-item.com//content/user-40-1.jpg">
+											</td>
+											<td>Liam</td>
+											<td class="date-time-appointment"><p>18 Dec 2018</p>
+												<p>10:15 - 10:30</p>
+											</td>
+											<td>Mumbai</td>
+											<td><span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</span></td>
+											
+											<td>Quotaion</td>
+											<td><span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+											tempor incididunt</span></td>
+											
+											<td>
+												<span class="badge badge-primary status-badge">Completed</span>
+											</td>
+											<td>
+												<button data-target="#editBookAptmnt"  data-toggle="modal" class="btn btn-round-blue"><i class="fa fa-pencil"></i></button>
+												<button class="btn btn-round-blue"><i class="fa fa-check"></i></button>
+											</td>
+										</tr>
+										<tr>
+											<th scope="row">11</th>
+											<td class="prof-img--avatar">
+												<img src="http://medic-app-react.next-item.com//content/user-40-1.jpg">
+											</td>
+											<td>Liam</td>
+											<td class="date-time-appointment"><p>18 Dec 2018</p>
+												<p>10:15 - 10:30</p>
+											</td>
+											<td>Mumbai</td>
+											<td><span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</span></td>
+											
+											<td>Quotaion</td>
+											<td><span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+											tempor incididunt</span></td>
+											
+											<td>
+												<span class="badge badge-primary status-badge">Completed</span>
+											</td>
+											<td>
+												<button data-target="#editBookAptmnt"  data-toggle="modal" class="btn btn-round-blue"><i class="fa fa-pencil"></i></button>
+												<button class="btn btn-round-blue"><i class="fa fa-check"></i></button>
+											</td>
+										</tr>
+										<tr>
+											<th scope="row">12</th>
+											<td class="prof-img--avatar">
+												<img src="http://medic-app-react.next-item.com//content/user-40-1.jpg">
+											</td>
+											<td>Liam</td>
+											<td class="date-time-appointment"><p>18 Dec 2018</p>
+												<p>10:15 - 10:30</p>
+											</td>
+											<td>Mumbai</td>
+											<td><span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</span></td>
+											
+											<td>Quotaion</td>
+											<td><span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+											tempor incididunt</span></td>
+											
+											<td>
+												<span class="badge badge-primary status-badge">Completed</span>
+											</td>
+											<td>
+												<button data-target="#editBookAptmnt"  data-toggle="modal" class="btn btn-round-blue"><i class="fa fa-pencil"></i></button>
+												<button class="btn btn-round-blue"><i class="fa fa-check"></i></button>
+											</td>
+										</tr>
+										<tr>
+											<th scope="row">13</th>
+											<td class="prof-img--avatar">
+												<img src="http://medic-app-react.next-item.com//content/user-40-1.jpg">
+											</td>
+											<td>Liam</td>
+											<td class="date-time-appointment"><p>18 Dec 2018</p>
+												<p>10:15 - 10:30</p>
+											</td>
+											<td>Mumbai</td>
+											<td><span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</span></td>
+											
+											<td>Quotaion</td>
+											<td><span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+											tempor incididunt</span></td>
+											
+											<td>
+												<span class="badge badge-primary status-badge">Completed</span>
+											</td>
+											<td>
+												<button data-target="#editBookAptmnt"  data-toggle="modal" class="btn btn-round-blue"><i class="fa fa-pencil"></i></button>
+												<button class="btn btn-round-blue"><i class="fa fa-check"></i></button>
+											</td>
+										</tr>
+										<tr>
+											<th scope="row">14</th>
+											<td class="prof-img--avatar">
+												<img src="http://medic-app-react.next-item.com//content/user-40-1.jpg">
+											</td>
+											<td>Liam</td>
+											<td class="date-time-appointment"><p>18 Dec 2018</p>
+												<p>10:15 - 10:30</p>
+											</td>
+											<td>Mumbai</td>
+											<td><span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</span></td>
+											
+											<td>Quotaion</td>
+											<td><span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+											tempor incididunt</span></td>
+											
+											<td>
+												<span class="badge badge-primary status-badge">Completed</span>
+											</td>
+											<td>
+												<button data-target="#editBookAptmnt"  data-toggle="modal" class="btn btn-round-blue"><i class="fa fa-pencil"></i></button>
+												<button class="btn btn-round-blue"><i class="fa fa-check"></i></button>
+											</td>
+										</tr>
+										<tr>
+											<th scope="row">15</th>
+											<td class="prof-img--avatar">
+												<img src="http://medic-app-react.next-item.com//content/user-40-1.jpg">
+											</td>
+											<td>Liam</td>
+											<td class="date-time-appointment"><p>18 Dec 2018</p>
+												<p>10:15 - 10:30</p>
+											</td>
+											<td>Mumbai</td>
+											<td><span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</span></td>
+											
+											<td>Quotaion</td>
+											<td><span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+											tempor incididunt</span></td>
+											
+											<td>
+												<span class="badge badge-danger status-badge">Pending</span>
+											</td>
+											<td>
+												<button data-target="#editBookAptmnt"  data-toggle="modal" class="btn btn-round-blue"><i class="fa fa-pencil"></i></button>
+												<button class="btn btn-round-blue"><i class="fa fa-check"></i></button>
+											</td>
+										</tr>
+										<tr>
+											<th scope="row">16</th>
+											<td class="prof-img--avatar">
+												<img src="http://medic-app-react.next-item.com//content/user-40-1.jpg">
+											</td>
+											<td>Liam</td>
+											<td class="date-time-appointment"><p>18 Dec 2018</p>
+												<p>10:15 - 10:30</p>
+											</td>
+											<td>Mumbai</td>
+											<td><span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</span></td>
+											
+											<td>Quotaion</td>
+											<td><span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+											tempor incididunt</span></td>
+											
+											<td>
+												<span class="badge badge-danger status-badge">Pending</span>
+											</td>
+											<td>
+												<button data-target="#editBookAptmnt"  data-toggle="modal" class="btn btn-round-blue"><i class="fa fa-pencil"></i></button>
+												<button class="btn btn-round-blue"><i class="fa fa-check"></i></button>
+											</td>
+										</tr>
+										<tr>
+											<th scope="row">17</th>
+											<td class="prof-img--avatar">
+												<img src="http://medic-app-react.next-item.com//content/user-40-1.jpg">
+											</td>
+											<td>Liam</td>
+											<td class="date-time-appointment"><p>18 Dec 2018</p>
+												<p>10:15 - 10:30</p>
+											</td>
+											<td>Mumbai</td>
+											<td><span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</span></td>
+											
+											<td>Quotaion</td>
+											<td><span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+											tempor incididunt</span></td>
+											
+											<td>
+												<span class="badge badge-danger status-badge">Pending</span>
+											</td>
+											<td>
+												<button data-target="#editBookAptmnt"  data-toggle="modal" class="btn btn-round-blue"><i class="fa fa-pencil"></i></button>
+												<button class="btn btn-round-blue"><i class="fa fa-check"></i></button>
+											</td>
+										</tr>
+										<tr>
+											<th scope="row">18</th>
+											<td class="prof-img--avatar">
+												<img src="http://medic-app-react.next-item.com//content/user-40-1.jpg">
+											</td>
+											<td>Liam</td>
+											<td class="date-time-appointment"><p>18 Dec 2018</p>
+												<p>10:15 - 10:30</p>
+											</td>
+											<td>Mumbai</td>
+											<td><span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</span></td>
+											
+											<td>Quotaion</td>
+											<td><span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+											tempor incididunt</span></td>
+											
+											<td>
+												<span class="badge badge-danger status-badge">Pending</span>
+											</td>
+											<td>
+												<button data-target="#editBookAptmnt"  data-toggle="modal" class="btn btn-round-blue"><i class="fa fa-pencil"></i></button>
+												<button class="btn btn-round-blue"><i class="fa fa-check"></i></button>
+											</td>
+										</tr>
+										<tr>
+											<th scope="row">19</th>
+											<td class="prof-img--avatar">
+												<img src="http://medic-app-react.next-item.com//content/user-40-1.jpg">
+											</td>
+											<td>Liam</td>
+											<td class="date-time-appointment"><p>18 Dec 2018</p>
+												<p>10:15 - 10:30</p>
+											</td>
+											<td>Mumbai</td>
+											<td><span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</span></td>
+											
+											<td>Quotaion</td>
+											<td><span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+											tempor incididunt</span></td>
+											
+											<td>
+												<span class="badge badge-danger status-badge">Pending</span>
+											</td>
+											<td>
+												<button data-target="#editBookAptmnt"  data-toggle="modal" class="btn btn-round-blue"><i class="fa fa-pencil"></i></button>
+												<button class="btn btn-round-blue"><i class="fa fa-check"></i></button>
+											</td>
+										</tr>
+										<tr>
+											<th scope="row">20</th>
+											<td class="prof-img--avatar">
+												<img src="http://medic-app-react.next-item.com//content/user-40-1.jpg">
+											</td>
+											<td>Liam</td>
+											<td class="date-time-appointment"><p>18 Dec 2018</p>
+												<p>10:15 - 10:30</p>
+											</td>
+											<td>Mumbai</td>
+											<td><span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</span></td>
+											
+											<td>Quotaion</td>
+											<td><span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+											tempor incididunt</span></td>
+											
+											<td>
+												<span class="badge badge-danger status-badge">Pending</span>
+											</td>
+											<td>
+												<button data-target="#editBookAptmnt" data-toggle="modal" class="btn btn-round-blue"><i class="fa fa-pencil"></i></button>
+												<button class="btn btn-round-blue"><i class="fa fa-check"></i></button>
+											</td>
+										</tr>
+										<tr>
+											<th scope="row">21</th>
+											<td class="prof-img--avatar">
+												<img src="http://medic-app-react.next-item.com//content/user-40-1.jpg">
+											</td>
+											<td>Liam</td>
+											<td class="date-time-appointment"><p>18 Dec 2018</p>
+												<p>10:15 - 10:30</p>
+											</td>
+											<td>Mumbai</td>
+											<td><span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</span></td>
+											
+											<td>Quotaion</td>
+											<td><span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+											tempor incididunt</span></td>
+											
+											<td>
+												<span class="badge badge-danger status-badge">Pending</span>
+											</td>
+											<td>
+												<button data-target="#editBookAptmnt"  data-toggle="modal" class="btn btn-round-blue"><i class="fa fa-pencil"></i></button>
+												<button class="btn btn-round-blue"><i class="fa fa-check"></i></button>
+											</td>
+										</tr> -->
+									<!-- </tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<app-footer></app-footer>
+<div class="quotation-form-modal">
+    <div class="modal" id="editBookAptmnt" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title" id="exampleModalLabel">Reschdeule Appointment</h2>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <mat-form-field>
+                                    <mat-label>Choose Date of Appointment</mat-label>
+                                    <input matInput [matDatepicker] = "picker1" placeholder = "">
+                                    <mat-datepicker-toggle matSuffix [for] = "picker1"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker1></mat-datepicker>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <mat-form-field>
+                                    <mat-label>Choose Time</mat-label>
+                                    <mat-select>
+                                        <mat-option value="5">10:00am</mat-option>
+                                        <mat-option value="6">10.30am</mat-option>
+                                        <mat-option value="6">11.00am</mat-option>
+                                        <mat-option value="6">11.30am</mat-option>
+                                        <mat-option value="6">12.00pm</mat-option>
+                                        <mat-option value="6">12.30pm</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <mat-form-field appearance="">
+                                    <mat-label>Subject</mat-label>
+                                    <input matInput placeholder="Subject" required>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <mat-form-field appearance="">
+                                    <mat-label>Purpose</mat-label>
+                                    <input matInput placeholder="Purpose" required>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                       <div class="col-md-6">
+                            <div class="form-group">
+                                <mat-form-field appearance="">
+                                    <mat-label>Service Detail</mat-label>
+                                    <input matInput placeholder="Service Detail" required> 
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <mat-form-field appearance="">
+                                    <mat-label>Location</mat-label>
+                                    <input matInput placeholder="Location" required> 
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-12 mt-3" align="center">
+                            <button type="submit" class="btn btn-change-fill" data-dismiss="modal" >Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->

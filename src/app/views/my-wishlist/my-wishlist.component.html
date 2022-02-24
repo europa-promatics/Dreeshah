@@ -1,0 +1,167 @@
+<app-header *ngIf = "!isLogin"></app-header>
+<!-- <app-db-header *ngIf = "isLogin"></app-db-header> -->
+<app-seller-header *ngIf = "isLogin"></app-seller-header>
+<section class="common_image_section page_headrer_wrkshop" *ngIf = "!isLogin">
+    <div class="container">
+        <div class="page_head_wrap">
+            <h2 class="aboutus_head">My Wishlist</h2>
+            <p class="page_head">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            </p>
+        </div>
+    </div>
+</section>
+<section class="my-wishlist-wrapper">
+	<div class="custom-container d-flex">
+		<app-sidebar *ngIf = "isLogin"></app-sidebar>
+		<div class="main-wrap mb-5">
+            <div class="card">
+               <div class="card-body">
+                <div class="row">
+                    <div class="myprofile-container">
+                        <div class="col-md-12 ">
+                            <div class="wishlist-wrapper">
+                                <div class="wishlist-heading mt-2 mb-2">
+                                    <h1>My Wishlist</h1>
+                                </div>
+                                <div class="user-search-input d-flex"  >
+                                    <div class="form-group mb-0">
+                                        <input type="text" name="search-user" placeholder="Search" class="form-control">
+                                    </div>
+                                    <!-- <div class="add-schedule-btn">
+                                        <a routerLink="/addSchedule" class="btn btn-round-blue ml-2"><i class="fa fa-plus"></i></a>
+                                    </div> -->
+                                </div>
+                                <div class="wishlist-table"  >
+                                    <section id="cart-view">  
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="cart-view-area">
+                                                    <div class="cart-view-table aa-wishlist-table">
+                                                        <form action="#" method="post">
+                                                            <div class="table-responsive ">
+                                                                <table class="table table-bordered">
+                                                                    <thead class="thead-gray">
+                                                                        <tr>
+                                                                            <th>Remove</th>
+                                                                            <th>Product Image</th>
+                                                                            <th>Product Title</th>
+                                                                            <th>Price</th>
+                                                                            <th>Stock Status</th>
+                                                                            <th>Rating</th>
+                                                                            <th>Move to Cart</th>
+                                                                            
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        
+                                                                        <tr *ngFor="let detail of wishlistDetail">
+                                                                            <td><a class="remove" (click)="removeWishListItem(detail)">
+                                                                                <i class="fas fa-times"></i>
+                                                                            </a></td>
+                                                                            <td><img src="{{imgpath}}{{detail?.product_id?.product_media[0]?.name}}" alt="website template image"></td>
+                                                                            <td><a class="aa-cart-title" href="">{{detail?.product_id?.product_title}}</a></td>
+                                                                            <td>${{detail?.product_id?.pricing?.price}}</td>
+                                                                            <td><span class="badge badge-success status-badge">In Stock</span></td>
+                                                                            <td> <star-rating value="3" [totalstars]="5" checkedcolor="orange" uncheckedcolor="black" size="24px" readonly="true" ></star-rating></td>
+                                                                            <td><a  class="btn btn-change-fill" (click)="addToCart(detail)">Add To Cart</a>
+                                                                                <!--    <div class="input-group quantity-btn-grp">
+                                    <span class="input-group-btn">
+                                        <button type="button" class="quantity-left-minus btn btn-danger btn-number"  data-type="minus" data-field="">
+                                          <span class="fa fa-minus"></span>
+                                        </button>
+                                    </span>
+                                    <input type="text" id="    quantity" name="quantity" class="form-control" value="10" min="1" max="100">
+                                    <span class="input-group-btn">
+                                        <button type="button" class="quantity-right-plus btn btn-success btn-number" data-type="plus" data-field="">
+                                            <span class="fa fa-plus"></span>
+                                        </button>
+                                    </span>
+                                </div> -->
+                                                                            </td>
+                                                                        </tr>
+                        <!-- <tr>
+                            <td><a class="remove" href="">
+                                <i class="fas fa-times"></i>
+                            </a></td>
+                            <td><img src="http://www.pngall.com/wp-content/uploads/5/Interior-Design-PNG-File-Download-Free.png" alt="website template image"></td>
+                            <td><a class="aa-cart-title" href="">Lamp </a></td>
+                            <td>$150</td>
+                            <td><span class="badge badge-success status-badge">In Stock</span></td>
+                            <td><a href="" class="btn btn-change-fill">Add To Cart</a></td>
+                        </tr>
+                        <tr>
+                            <td><a class="remove" href="">
+                                <i class="fas fa-times"></i>
+                            </a></td>
+                            <td><img src="http://www.pngall.com/wp-content/uploads/5/Interior-Design-PNG-File-Download-Free.png" alt="website template image"></td>
+                            <td><a class="aa-cart-title" href=""> Lamp</a></td>
+                            <td>$150</td>
+                            <td><span class="badge badge-danger status-badge">Out of Stock</span></td>
+                            <td><a href="" class="btn btn-change-fill">Add To Cart</a></td>
+                        </tr>
+                        <tr>
+                            <td><a class="remove" href="">
+                                <i class="fas fa-times"></i>
+                            </a></td>
+                            <td><img src="http://www.pngall.com/wp-content/uploads/5/Interior-Design-PNG-File-Download-Free.png" alt="website template image"></td>
+                            <td><a class="aa-cart-title" href=""> Lamp</a></td>
+                            <td>$150</td>
+                            <td><span class="badge badge-success status-badge">In Stock</span></td>
+                            <td><a href="" class="btn btn-change-fill">Add To Cart</a></td>
+                        </tr>
+                        <tr>
+                            <td><a class="remove" href="">
+                                <i class="fas fa-times"></i>
+                            </a></td>
+                            <td><img src="http://www.pngall.com/wp-content/uploads/5/Interior-Design-PNG-File-Download-Free.png" alt="website template image"></td>
+                            <td><a class="aa-cart-title" href=""> Lamp</a></td>
+                            <td>$150</td>
+                            <td><span class="badge badge-info status-badge">Coming Soon</span></td>
+                            <td><a href="" class="btn btn-change-fill">Add To Cart</a></td>
+                        </tr>
+                        <tr>
+                            <td><a class="remove" href="">
+                                <i class="fas fa-times"></i>
+                            </a></td>
+                            <td><img src="http://www.pngall.com/wp-content/uploads/5/Interior-Design-PNG-File-Download-Free.png" alt="website template image"></td>
+                            <td><a class="aa-cart-title" href=""> Lamp</a></td>
+                            <td>$150</td>
+                            <td><span class="badge badge-success status-badge">In Stock</span></td>
+                            <td><a href="" class="btn btn-change-fill">Add To Cart</a></td>
+                        </tr>
+                        <tr>
+                            <td><a class="remove" href="">
+                                <i class="fas fa-times"></i>
+                            </a></td>
+                            <td><img src="http://www.pngall.com/wp-content/uploads/5/Interior-Design-PNG-File-Download-Free.png" alt="website template image"></td>
+                            <td><a class="aa-cart-title" href="">Lamp</a></td>
+                            <td>$50</td>
+                            <td><span class="badge badge-danger status-badge">Out of Stock</span></td>
+                            <td><a href="" class="btn btn-change-fill">Add To Cart</a></td>
+                        </tr> -->
+                        <!-- <h2 *ngIf="wishListLength == 0">Wishlist Empty</h2> -->
+                    </tbody>
+                    
+                </table>
+                <h2 *ngIf="wishListLength == 0" style="text-align:center">WishList Empty</h2>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</div>
+</div>
+</div>
+</div> 
+</div>
+</div>
+</div>
+</div>
+</section>
+
+
+<app-footer></app-footer>

@@ -1,0 +1,180 @@
+<app-seller-header  *ngIf="user?.user_type=='professional'"></app-seller-header>
+<app-consultant-header  *ngIf="user?.user_type=='photographer'"></app-consultant-header>
+<div class="seller-quotation-mgmt-wrapper">
+	<div class="custom-container d-flex">
+		<app-seller-sidebar *ngIf="user?.user_type=='professional'"></app-seller-sidebar>
+		<app-ph-sidebar *ngIf="user?.user_type=='photographer'"></app-ph-sidebar>
+		<div class="main-wrap">
+			<div class="card">
+				<div class="card-body">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="wishlist-wrapper">
+								<div class="wishlist-heading mb-2 d-flex justify-content-between align-items-center">
+									<div>
+										<h1>Add Staff Details</h1>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-8 offset-md-2">
+						<div class="cr-ordr-frm">
+							<div class="card">
+								<div class="card-body">
+									<form [formGroup]="addStaffForm">
+										<div class="form-group">
+											<mat-form-field appearance="">
+												<mat-label>Name</mat-label>
+												<input formControlName="name" matInput placeholder="Grace Lawerence">
+											</mat-form-field>
+											<div *ngIf="addStaffForm.controls.name.invalid && (addStaffForm.controls.name.dirty || addStaffForm.controls.name.touched || submit)"
+												class="">
+												<mat-error
+													*ngIf="addStaffForm.controls.name.errors.required">
+													Please Enter Name
+												</mat-error>
+											</div>
+										</div>
+										<div class="form-group">
+											<mat-form-field appearance="">
+												<mat-label>Designation</mat-label>
+												<mat-select [(ngModel)]="desigId" formControlName="designation">
+													<mat-option *ngFor="let a of desigArr" [value]="a._id">
+														{{a.name}}
+													</mat-option>
+													
+												</mat-select>
+											</mat-form-field>
+											<div *ngIf="addStaffForm.controls.designation.invalid && (addStaffForm.controls.designation.dirty || addStaffForm.controls.designation.touched || submit )"
+												class="">
+												<mat-error
+													*ngIf="addStaffForm.controls.designation.errors.required">
+													Please Select Designation
+												</mat-error>
+											</div>
+										</div>
+										<div class="form-group">
+											<mat-form-field appearance="">
+												<mat-label>Email</mat-label>
+												<input formControlName="email" matInput
+													placeholder="Gracelawerence@gmail.com">
+											</mat-form-field>
+											<div *ngIf="addStaffForm.controls.email.invalid && (addStaffForm.controls.email.dirty || addStaffForm.controls.email.touched || submit)"
+                                            class="">
+                                            <mat-error *ngIf="addStaffForm.controls.email.errors.required">
+                                                Please Enter  email
+                                            </mat-error>
+                                            <mat-error *ngIf="addStaffForm.controls.email?.errors?.pattern">
+                                                Please Enter valid  email
+                                            </mat-error>
+                                        </div>
+										</div>
+								
+										<div class="form-group">
+												<mat-form-field appearance="">
+													<mat-label>Phone Number</mat-label>
+												
+												
+													<ngx-mat-intl-tel-input
+																[preferredCountries]="['us', 'gb']"
+																[enablePlaceholder]="true"
+																[enableSearch]="true"
+																name="phone"
+																(countryChanged)="countryCode($event)"
+																[formControl]="addStaffForm.controls['phone']"
+																[(ngModel)]="phone">
+													</ngx-mat-intl-tel-input>
+													
+												</mat-form-field>
+												<div class="">
+														<p style="color: red;"
+															*ngIf="addStaffForm.controls['phone'].hasError('required')  && ( addStaffForm.controls['phone'].touched)">
+															This field is required </p>
+														<!-- <p style="color: red;"
+															*ngIf="!addStaffForm.controls['phone'].hasError('required') && addStaffForm.controls['phone'].hasError('pattern')">
+															Please enter a valid phone number
+														</p> -->
+														<p style="color: red;"
+															*ngIf="!addStaffForm.controls['phone'].hasError('required') && addStaffForm.controls['phone'].hasError('minlength')">
+															Phone number should consists of minimum 7
+															digits.
+														</p>
+														<p style="color: red;"
+															*ngIf="!addStaffForm.controls['phone'].hasError('required') && addStaffForm.controls['phone'].hasError('maxlength')">
+															Phone number be maximum 20 digits long.
+														</p>
+												</div>
+										</div>
+										
+										<!-- <div class="form-group">
+											<mat-form-field appearance="">
+												<mat-label>Phone Number</mat-label>
+												<input formControlName="phone" accept="number" maxlength="10" matInput placeholder="8525155">
+											</mat-form-field>
+											<div *ngIf="addStaffForm.controls.phone.invalid && (addStaffForm.controls.phone.dirty || addStaffForm.controls.phone.touched || submit)"
+                                            class="">
+                                            <mat-error *ngIf="addStaffForm.controls.phone.errors.required">
+                                                Please Enter mobile number
+                                            </mat-error>
+                                            <mat-error *ngIf="addStaffForm.controls.phone?.errors?.pattern">
+                                                Please Enter valid mobile number
+                                            </mat-error>
+                                        </div> 
+										</div>-->
+										<div class="form-group">
+											<mat-form-field appearance="">
+												<mat-label>Branch</mat-label>
+												<mat-select [(ngModel)]="brId" formControlName="branch">
+													<mat-option *ngFor="let a of listingArr" [value]="a._id">
+														{{a.branch_name_en}}
+													</mat-option>
+													<!-- <mat-option  [value]="2">
+														Branch 2
+													</mat-option><mat-option  [value]="3">
+														Branch 3
+													</mat-option><mat-option  [value]="4">
+														Branch 4
+													</mat-option> -->
+												</mat-select>
+											</mat-form-field>
+											<div *ngIf="addStaffForm.controls.branch.invalid && (addStaffForm.controls.branch.dirty || addStaffForm.controls.branch.touched || submit )"
+												class="">
+												<mat-error
+													*ngIf="addStaffForm.controls.branch.errors.required">
+													Please Enter Branch Name
+												</mat-error>
+											</div>
+										</div>
+										<!-- <div class="form-group">
+											<mat-form-field appearance="">
+												<mat-label>Privilege</mat-label>
+												<mat-select formControlName="privilage">
+													<mat-option value='waiter'>
+														Waiter
+													</mat-option>
+												
+												</mat-select>
+											</mat-form-field>
+											<div *ngIf="addStaffForm.controls.privilage.invalid && (addStaffForm.controls.privilage.dirty || addStaffForm.controls.privilage.touched || submit )"
+												class="">
+												<mat-error
+													*ngIf="addStaffForm.controls.privilage.errors.required">
+													Please Enter Privilage
+												</mat-error>
+											</div>
+										</div> -->
+									</form>
+									<div class="submt--btn" align="center">
+										<button class="btn btn-change-fill" (click)="add()">Submit</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<app-footer></app-footer>

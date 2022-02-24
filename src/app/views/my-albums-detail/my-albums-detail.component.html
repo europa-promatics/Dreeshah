@@ -1,0 +1,228 @@
+<!-- <app-db-header></app-db-header> -->
+<app-seller-header></app-seller-header>
+
+<div class="my-albums-de-wraper">
+	<div class="custom-container d-flex">
+		<app-sidebar></app-sidebar>
+		
+		<div class="main-wrap">
+			<div class="my-albums">
+				<div class="view-details-header">
+				<!--	<div class="view-details-order-link">
+						<p><a routerLink="/my-albums"><i class="fa fa-angle-left mr-2"></i></a></p>
+					</div>-->
+					<div class="view-details-product-name" style="text-align: center;">
+						<h1 class="">Album Detail <span class="badge badge-info ml-3"></span></h1>
+					</div>
+				</div>
+				<div class="card">
+					<div class="card-body">
+						<div class="row">
+							<div class="col-md-6">
+								<h1>{{detail?.album_name}}</h1>
+							</div>
+							<div class="col-md-6">
+							<button  aria-label="Example icon-button with a menu" data-toggle="modal" data-target="#exampleModal1" class="btn btn-change-fill addwidth">
+                                <i class="fa fa-plus mr-2"></i>
+                                Add New Image
+                            </button> 
+							
+								<h1></h1>
+							</div>
+							<div class="col-md-12">
+							</div>
+							<div class="col-md-12">
+								<div id="gallery">
+									<div class="container">
+										<div id="image-gallery">
+											<div class="row">
+												<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 image" *ngIf="detail?.album_images?.length==0">
+													<div class="img-wrapper">
+													<p style="text-align: center;margin-top: 40%;">
+														Click on add button to add images and videos</p>
+													</div>
+												</div>
+
+												<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 image" *ngFor="let img of detail?.album_images">
+													<div class="img-wrapper">
+														<div *ngIf="(img.image)"  >
+															<img *ngIf="isImage(img.image)" (click)="openImage(img.image)" src="{{imgpath}}{{img.image}}" class="img-responsive" alt="image"> 
+															<video *ngIf="!isImage(img.image)" width="320" height="240" controls class="img-responsive">
+																<source src="{{imgpath}}{{img.image}}" >
+															  Your browser does not support the video.
+															  </video>
+														</div>
+														<img *ngIf="!(img.image)" src="../../../assets/imgs/noImage.jpg" class="img-fluid" alt="image" width="500" height="600"> 
+													</div>
+													<div>
+														<div class="image-upload">
+															<!--<p >{{img?.description}}</p>-->
+															<label for="file-input">
+																<!-- <img src="https://goo.gl/pB9rpQ"/> -->
+																<i class="fa fa-edit mr-3" (click) ="getMediaid(img._id)" aria-hidden="true"></i>
+															</label>
+															
+															<input id="file-input" type="file"   (change)="selectImg($event.target.files[0],img._id)" accept="image/*"/>
+															<i class="fa fa-trash"  (click)="delete(img._id)" aria-hidden="true"></i>
+
+															
+														</div>
+														<!-- <i class="fa fa-edit mr-3" aria-hidden="true"></i> -->
+														<!-- <i class="fa fa-trash"  (click)="delete(img._id)" aria-hidden="true"></i> -->
+													</div>
+												</div>
+												<!-- <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 image">
+													<div class="img-wrapper">
+														<a href="https://cdn.pixabay.com/photo/2017/07/30/23/59/garlic-2556022_960_720.jpg"><img src="https://cdn.pixabay.com/photo/2017/07/30/23/59/garlic-2556022_960_720.jpg" class="img-responsive"></a>
+														<div class="img-overlay">
+															<i class="fa fa-edit" aria-hidden="true"></i>
+															<i class="fas fa-expand"></i>
+															<i class="fa fa-trash" aria-hidden="true"></i>
+														</div>
+													</div>
+												</div>
+												<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 image">
+													<div class="img-wrapper">
+														<a href="https://cdn.pixabay.com/photo/2017/07/30/23/59/garlic-2556022_960_720.jpg"><img src="https://cdn.pixabay.com/photo/2017/07/30/23/59/garlic-2556022_960_720.jpg" class="img-responsive"></a>
+														<div class="img-overlay">
+															<i class="fa fa-edit" aria-hidden="true"></i>
+															<i class="fas fa-expand"></i>
+															<i class="fa fa-trash" aria-hidden="true"></i>
+														</div>
+													</div>
+												</div>
+												<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 image">
+													<div class="img-wrapper">
+														<a href="https://cdn.pixabay.com/photo/2017/07/30/23/59/garlic-2556022_960_720.jpg"><img src="https://cdn.pixabay.com/photo/2017/07/30/23/59/garlic-2556022_960_720.jpg" class="img-responsive"></a>
+														<div class="img-overlay">
+															<i class="fa fa-edit" aria-hidden="true"></i>
+															<i class="fas fa-expand"></i>
+															<i class="fa fa-trash" aria-hidden="true"></i>
+														</div>
+													</div>
+												</div>
+												<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 image">
+													<div class="img-wrapper">
+														<a href="https://cdn.pixabay.com/photo/2017/07/30/23/59/garlic-2556022_960_720.jpg"><img src="https://cdn.pixabay.com/photo/2017/07/30/23/59/garlic-2556022_960_720.jpg" class="img-responsive"></a>
+														<div class="img-overlay">
+															<i class="fa fa-edit" aria-hidden="true"></i>
+															<i class="fas fa-expand"></i>
+															<i class="fa fa-trash" aria-hidden="true"></i>
+														</div>
+													</div>
+												</div>
+												<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 image">
+													<div class="img-wrapper">
+														<a href="https://cdn.pixabay.com/photo/2017/07/30/23/59/garlic-2556022_960_720.jpg"><img src="https://cdn.pixabay.com/photo/2017/07/30/23/59/garlic-2556022_960_720.jpg" class="img-responsive"></a>
+														<div class="img-overlay">
+															<i class="fa fa-edit" aria-hidden="true"></i>
+															<i class="fas fa-expand"></i>
+															<i class="fa fa-trash" aria-hidden="true"></i>
+														</div>
+													</div>
+												</div>
+												<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 image">
+													<div class="img-wrapper">
+														<a href="https://cdn.pixabay.com/photo/2017/07/30/23/59/garlic-2556022_960_720.jpg"><img src="https://cdn.pixabay.com/photo/2017/07/30/23/59/garlic-2556022_960_720.jpg" class="img-responsive"></a>
+														<div class="img-overlay">
+															<i class="fa fa-edit" aria-hidden="true"></i>
+															<i class="fas fa-expand" ></i>
+															<i class="fa fa-trash" aria-hidden="true"></i>
+														</div>
+													</div>
+												</div>
+												<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 image">
+													<div class="img-wrapper">
+														<a href="https://cdn.pixabay.com/photo/2017/07/30/23/59/garlic-2556022_960_720.jpg"><img src="https://cdn.pixabay.com/photo/2017/07/30/23/59/garlic-2556022_960_720.jpg" class="img-responsive"></a>
+														<div class="img-overlay">
+															<i class="fa fa-edit" aria-hidden="true"></i>
+															<i class="fas fa-expand"></i>
+															<i class="fa fa-trash" aria-hidden="true"></i>
+														</div>
+													</div>
+												</div> -->
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- <div id="StudentModal">     -->
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                   <div class="">
+                    <h2 class="modal-form-title">Add New Photos/Videos</h2>
+                </div>
+                <button type="button" id="modelClose" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="add-album-form">
+                    <div class="modal-body">
+                        <form role="form" [formGroup]="ImageForm" method="POST" action="">
+                            <input type="hidden" name="_token" value="" accept="image/*">
+                            <div class="drp-zone">
+                                <label>Add Photos/Videos</label>
+                                <ngx-dropzone (change)="onSelect($event)" accept="image/png, image/gif, image/jpeg ,video/mp4" [multiple]="false">
+                                    <ngx-dropzone-label [(ngModel)]="media" required
+                                    [formControl]="ImageForm.controls['media']">Add Files</ngx-dropzone-label>
+                                    <ngx-dropzone-preview *ngFor="let f of files"   [removable]="true" (removed)="onRemove(f)" >
+                                        <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                                    </ngx-dropzone-preview>
+                                </ngx-dropzone>
+                            </div>
+                            <p style="color: red;"
+                                *ngIf="ImageForm.controls['media'].errors?.required && ( ImageForm.controls['media'].touched || submit_button)">
+                                Select the file
+                            </p>
+                            <!--<div class="form-group">
+                                <label class="control-label"></label>
+                                <div>
+                                    <input type="text" class="form-control input-lg" name="description"  [formControl]="ImageForm.controls['description']" [(ngModel)]="name" value="" placeholder="description">
+                                </div>
+                               
+                            </div>
+                            <p style="color: red; margin-top: -1.25em;"
+                                *ngIf="ImageForm.controls['description'].errors?.required && ( ImageForm.controls['description'].touched || submit_button)">
+                                description is Required
+                            </p>-->
+
+                         
+                            <div class="mdl-frm-btn mt-3" align="center" >
+                                <button class="btn btn-change-fill" (click)="submitImages()" >Submit</button>
+                            </div>
+                            
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<button id="openModalButton" [hidden]="true" data-toggle="modal" data-target="#loginnew">
+	Open Modal
+  </button>
+  <div class="title" id="loginnew" class="modal fade">
+	<div class="modal-dialog modal-sign">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+			&times;
+		  </button>
+		</div>
+		<a *ngIf="imageFull">
+		  <img style="width: 100%" src="{{ imageFull }}" alt="Already Optimized" />
+		</a>
+	  </div>
+	</div>
+  </div>
+<app-footer></app-footer>

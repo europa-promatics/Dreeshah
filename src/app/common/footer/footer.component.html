@@ -1,0 +1,273 @@
+<footer id="footer" class="wrap-bg-secondary">
+    <div class="footer-top home-page-section">
+        <div class="container">
+            <div class="row">
+                <div class="footer_mnu">
+                    <ul class="footer_ul d-flex">
+                        <li class="footer_li">
+                             <a class="footer_a" routerLink="/about-us">About Us</a>
+                        </li>
+                        <li class="footer_li">
+                            <a class="footer_a" routerLink="/advertisement-form">Advertisements</a>
+                       </li>
+                        <li class="footer_li">
+                             <a class="footer_a" routerLink="/services">Services</a>
+                        </li>
+                        <li class="footer_li">
+                             <a class="footer_a" routerLink="/terms-condition">Terms & Conditions</a>
+                        </li>
+                        <li class="footer_li">
+                             <a class="footer_a" routerLink="/contactUs">Contact Us</a>
+                        </li>
+                        <li class="footer_li">
+                             <a class="footer_a" routerLink="/blogListing">Recent News</a>
+                        </li>
+                        <li class="footer_li">
+                            <a class="footer_a" routerLink="/privacy-policy">Privacy Policy</a>
+                       </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="social_links text-center">
+                <a href="{{footerData?.facebook_url}}" target="_blank"><i class="fab fa-facebook" aria-hidden="true"></i></a>
+                <!-- <a href="{{dataHomeSectionApp?.play_store_url}}" target="_blank"><img src="assets/imgs/1.png" class="img-fluid" alt="store images"></a> -->
+                <a href="{{footerData?.twiter_url}}" target="_blank"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+                <a href="{{footerData?.instagram_url}}" target="_blank"><i class="fab fa-instagram" aria-hidden="true"></i></a>                    
+                <a href="{{footerData?.youtube_url}}" target="_blank"><i class="fab fa-youtube" aria-hidden="true"></i></a>
+            </div>
+            <div class="footer_description">
+                <p>{{footerData?.description}}</p>
+                <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p> -->
+            </div>
+            <p class="back_to_top">Back to top <i class="fa fa-long-arrow-right"></i></p>
+        </div>
+    </div>
+    <div class="footer_copyy">
+        <div class="container">
+            <div class="footer-bottom">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="copyright text-center mt-3">
+                            <p>Copyright © {{year}}. All Rights Reserved</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="cd-top"></div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <footer id="footer" class="wrap-bg-secondary">
+    <div class="footer-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="footer-logo">
+                        <img src="assets/imgs/logo.png" alt="Logo" class="img-fluid">
+                    </div>
+                    <div class="f-widget-title">
+                    </div>
+                    <div class="footer-text">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                        tempor incididunt ut labore et dolore magna aliqua.</p>
+                    </div>
+                    <div class="icon-round-white footer-social mt-25">
+                        <a href="#"><i class="fab fa-facebook" aria-hidden="true"></i></a>
+                        <a href="#"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+                        <a href="#"><i class="fab fa-instagram" aria-hidden="true"></i></a>                    
+                        <a href="#"><i class="fab fa-youtube" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="f-widget-link">
+                        <div id="nav_menu-2" class="widget widget_nav_menu">
+                            <div class="f-widget-title">
+                                <h4>Explore More</h4>
+                            </div>
+                            <div class="ul_futr">
+                                <ul type="none" class="menu">
+                                    <li class="ftr_li"><a class="" routerLink="/Faqs">Faq</a></li>
+                                    <li class="ftr_li"><a class="" routerLink="/services">Services</a></li>
+                                    <li class="ftr_li"><a class="" href="javascript:;">Locations</a></li>
+                                    <li class="ftr_li"><a class="" routerLink="/blogListing">Recent News</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="f-widget-link">
+                        <div id="nav_menu-3" class="widget widget_nav_menu">
+                            <div class="f-widget-title">
+                                <h4>Company Links</h4>
+                            </div>
+                            <div class="ul_futr">
+                                <ul type="none" class="menu">
+                                    <li class="ftr_li"><a class="" routerLink="/aboutUs">About Us</a></li>
+                                    <li class="ftr_li"><a class="" routerLink="/contactUs">Contact us</a></li>
+                                    <li class="ftr_li"><a class="" routerLink="/TermsAndConditions">Terms & Conditions</a></li>
+                                    <li class="ftr_li"><a class="" routerLink="/PrivacyPolicy">Privacy Policy</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="f-widget-title">
+                        <h4>Contact us</h4>
+                    </div>
+                    <div class="sigle-address">
+                        <div class="address-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <p>36 Park Avenue, New York <br> USA - 645752</p>
+                    </div>
+                    <div class="sigle-address">
+                        <div class="address-icon"><i class="fa fa-envelope-open"></i></div>
+                        <p>support@dreeshah.com</p>
+                    </div>
+                    <div class="sigle-address">
+                        <div class="address-icon"><i class="fa fa-phone"></i></div>
+                        <p>+123456789</p>
+                    </div>
+                    <div class="sigle-address">
+                        <div class="address-icon"><i class="fa fa-envelope"></i></div>
+                        <p>Message Us</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer_copyy">
+        <div class="container">
+            <div class="footer-bottom">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="copyright text-center mt-3">
+                            <p>Copyright © 2020. All Rights Reserved</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="cd-top"></div>
+        </div>
+    </div>
+</footer> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <footer id="footer" class="wrap-bg-secondary">
+    <div class="footer-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="footer-logo">
+                        <img src="assets/imgs/logo.png" alt="Logo" class="img-fluid">
+                    </div>
+                    <div class="f-widget-title">
+                    </div>
+                    <div class="footer-text">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                        tempor incididunt ut labore et dolore magna aliqua.</p>
+                    </div>
+                    <div class="icon-round-white footer-social mt-25">
+                        <a href="#"><i class="fab fa-facebook" aria-hidden="true"></i></a>
+                        <a href="#"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+                        <a href="#"><i class="fab fa-instagram" aria-hidden="true"></i></a>                    
+                        <a href="#"><i class="fab fa-youtube" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="f-widget-link">
+                        <div id="nav_menu-2" class="widget widget_nav_menu">
+                            <div class="f-widget-title">
+                                <h4>Explore More</h4>
+                            </div>
+                            <div class="ul_futr">
+                                <ul type="none" class="menu">
+                                    <li class="ftr_li"><a class="" routerLink="/Faqs">Faq</a></li>
+                                    <li class="ftr_li"><a class="" routerLink="/services">Services</a></li>
+                                    <li class="ftr_li"><a class="" href="javascript:;">Locations</a></li>
+                                    <li class="ftr_li"><a class="" routerLink="/blogListing">Recent News</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="f-widget-link">
+                        <div id="nav_menu-3" class="widget widget_nav_menu">
+                            <div class="f-widget-title">
+                                <h4>Company Links</h4>
+                            </div>
+                            <div class="ul_futr">
+                                <ul type="none" class="menu">
+                                    <li class="ftr_li"><a class="" routerLink="/aboutUs">About Us</a></li>
+                                    <li class="ftr_li"><a class="" routerLink="/contactUs">Contact us</a></li>
+                                    <li class="ftr_li"><a class="" routerLink="/TermsAndConditions">Terms & Conditions</a></li>
+                                    <li class="ftr_li"><a class="" routerLink="/PrivacyPolicy">Privacy Policy</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="f-widget-title">
+                        <h4>Contact us</h4>
+                    </div>
+                    <div class="sigle-address">
+                        <div class="address-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <p>36 Park Avenue, New York <br> USA - 645752</p>
+                    </div>
+                    <div class="sigle-address">
+                        <div class="address-icon"><i class="fa fa-envelope-open"></i></div>
+                        <p>support@dreeshah.com</p>
+                    </div>
+                    <div class="sigle-address">
+                        <div class="address-icon"><i class="fa fa-phone"></i></div>
+                        <p>+123456789</p>
+                    </div>
+                    <div class="sigle-address">
+                        <div class="address-icon"><i class="fa fa-envelope"></i></div>
+                        <p>Message Us</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer_copyy">
+        <div class="container">
+            <div class="footer-bottom">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="copyright text-center mt-3">
+                            <p>Copyright © 2020. All Rights Reserved</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="cd-top"></div>
+        </div>
+    </div>
+</footer> -->

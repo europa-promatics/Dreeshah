@@ -1,0 +1,324 @@
+<!--<app-db-header></app-db-header>-->
+<app-seller-header></app-seller-header>
+<div class="seller-disounts-wrapper">
+	<div class="custom-container d-flex">
+		<app-sidebar></app-sidebar>
+		<div class="main-wrap">
+            <div class="dscnts_hngs">
+                <h1>Create Discount Code</h1>
+            </div>
+            <div class="created_dscnts">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="media-link d-flex justify-content-between">
+                            <div class="seller-quantity">
+                                <h4>Discount Code</h4>
+                            </div>
+                            <div class="seller-quantity">
+                                <div><a (click)="fun()"> Generate Code </a></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <mat-form-field appearance="">
+                                <input matInput placeholder="e.g. SPRINGSALE" [(ngModel)]="code" >
+                            </mat-form-field>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="card mt-3">
+                    <div class="card-body">
+                        <form [formGroup]="TypesForm">
+                        <label id="example-radio-group-label">Types</label>
+                        <mat-radio-group
+                        aria-labelledby="example-radio-group-label"
+                        class="example-radio-group"  formControlName="types">
+                            <mat-radio-button value="percentage" class="example-radio-button">
+                            Percentage
+                            </mat-radio-button> 
+                            <mat-radio-button value="amount" class="">
+                                Fixed Amount
+                            </mat-radio-button>
+                            <mat-radio-button value="shipping" class="">
+                                Free Shipping
+                            </mat-radio-button>
+                            <mat-radio-button value="buy_x_get_y" class="">
+                                Buy X Get Y
+                            </mat-radio-button>
+                        </mat-radio-group> 
+                        
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="form-group input1" *ngIf="this.TypesForm.value.types=='percentage'">
+                                    <mat-form-field appearance="">
+                                        <input matInput placeholder="Enter percentage" formControlName="percent">
+                                    </mat-form-field>
+                                    <div class="" >
+                                        <p style="color: red;"
+                                        *ngIf="TypesForm.controls['percent'].hasError('required')  && ( TypesForm.controls['percent'].touched)">
+                                        This field is required </p>
+                                    <p style="color: red;"
+                                        *ngIf="!TypesForm.controls['percent'].hasError('required') && TypesForm.controls['percent'].hasError('pattern')">
+                                        Please Enter Digits Only
+                                    </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group input1" *ngIf="this.TypesForm.value.types=='amount'">
+                                    <mat-form-field appearance="">
+                                        <input matInput placeholder="Enter Fixed Amount" formControlName="percent">
+                                    </mat-form-field>
+                                    <div class="" >
+                                        <p style="color: red;"
+                                        *ngIf="TypesForm.controls['percent'].hasError('required')  && ( TypesForm.controls['percent'].touched)">
+                                        This field is required </p>
+                                    <p style="color: red;"
+                                        *ngIf="!TypesForm.controls['percent'].hasError('required') && TypesForm.controls['percent'].hasError('pattern')">
+                                        Please Enter Digits Only
+                                    </p>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                            
+                            <div class="col-md-8">
+                                <div class="form-group input3" *ngIf="this.TypesForm.value.types=='buy_x_get_y' ">
+                                    <ng-select placeholder="Select X" formControlName="productX">
+                                            <ng-option *ngFor="let i of this.data">{{i.product_title}}</ng-option>
+                                    </ng-select>
+                                </div>
+                            </div>	
+                            <div class="col-md-8">
+                                <div class="form-group input3"  *ngIf="this.TypesForm.value.types=='buy_x_get_y' ">
+                                    <ng-select placeholder="Select Y" formControlName="productY">
+                                            <ng-option *ngFor="let i of this.data">{{i.product_title}}</ng-option>
+                                    </ng-select>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                      <!-- <div class="">
+                        <p style="color: red;"
+                        *ngIf="TypesForm.controls['types'].hasError('required')  && ( TypesForm.controls['types'].touched)">
+                        This field is required </p>
+                      </div>   -->
+                    </div>
+                </div>
+                <div class="card mt-3">
+                    <div class="card-body">
+                        <!-- <div class="seller-quantity">
+                            <div>Value</div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <mat-form-field appearance="">
+                                        <input matInput placeholder="e.g. SPRINGSALE" [(ngModel)]="any">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div> -->
+                        <form [formGroup]="ApplyTo">
+                        <label id="example-radio-group-label">Applies to
+                        </label>
+                        <mat-radio-group
+                        aria-labelledby="example-radio-group-label"
+                        class="example-radio-group" formControlName="applyto">
+                            <mat-radio-button value="all" class="example-radio-button">
+                            All Products
+                            </mat-radio-button> <mat-radio-button value="collection" class="example-radio-button">
+                                Specific Collection
+                            </mat-radio-button>
+                            <mat-radio-button value="product" class="example-radio-button">
+                                Specific Products
+                            </mat-radio-button>
+                        </mat-radio-group>
+
+                        <div class="row">
+                            
+                            <div class="col-md-8">
+                                <div class="form-group input4" *ngIf="this.ApplyTo.value.applyto=='collection'">
+                                    <ng-select placeholder="Select Collection" formControlName="collection">
+                                        <ng-option *ngFor="let i of this.data">{{i.product_title}}</ng-option>
+                                    </ng-select>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-8">
+                                <div class="form-group input5"*ngIf="this.ApplyTo.value.applyto=='product'">
+                                    <ng-select placeholder="Select Products" formControlName="product">
+                                        <ng-option *ngFor="let i of this.data">{{i.product_title}}</ng-option>
+                                    </ng-select>
+                                </div>
+                            </div>	
+                        </div>
+                    </form>
+                    </div>
+                </div>
+                <div class="card mt-3">
+                    <div class="card-body">
+                        <form [formGroup]="MinReq">
+                        <label id="example-radio-group-label">Minimum Requirements</label>
+                        <mat-radio-group
+                        aria-labelledby="example-radio-group-label"
+                        class="example-radio-group" formControlName="minreq">
+                            <mat-radio-button value="none" class="example-radio-button">
+                            None
+                            </mat-radio-button> <mat-radio-button value="amount" class="example-radio-button">
+                                Minimum Purchase Amount(AED)
+                            </mat-radio-button>    
+                            <mat-radio-button value="item" class="example-radio-button">
+                                Minimum Quantity Of Items
+                            </mat-radio-button>
+                        </mat-radio-group>
+
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="form-group input1" *ngIf="this.MinReq.value.minreq=='amount'">
+                                    <mat-form-field appearance="">
+                                        <input matInput placeholder="Minimum Amount" formControlName="cost">
+                                    </mat-form-field>
+                                </div>
+                                <div class="" *ngIf="this.MinReq.value.minreq=='amount'">
+                                    <p style="color: red;"
+                                    *ngIf="MinReq.controls['cost'].hasError('required')  && ( MinReq.controls['cost'].touched)">
+                                    This field is required </p>
+                                <p style="color: red;"
+                                    *ngIf="!MinReq.controls['cost'].hasError('required') && MinReq.controls['cost'].hasError('pattern')">
+                                    Please Enter Digits Only
+                                </p>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group input2" *ngIf="this.MinReq.value.minreq=='item'">
+                                    <mat-form-field appearance="">
+                                        <input matInput placeholder="Minimum Quantity" formControlName="cost">
+                                    </mat-form-field>
+                                </div>
+                                <div class="" *ngIf="this.MinReq.value.minreq=='item'">
+                                    <p style="color: red;"
+                                    *ngIf="MinReq.controls['cost'].hasError('required')  && ( MinReq.controls['cost'].touched)">
+                                    This field is required </p>
+                                <p style="color: red;"
+                                    *ngIf="!MinReq.controls['cost'].hasError('required') && MinReq.controls['cost'].hasError('pattern')">
+                                    Please Enter Digits Only
+                                </p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
+                    </div>
+                </div>
+                <div class="card mt-3">
+                    <div class="card-body">
+                        <form [formGroup]="CustEligible">
+                        <label id="example-radio-group-label">Customer Eligibility</label>
+                        <mat-radio-group
+                        aria-labelledby="example-radio-group-label"
+                        class="example-radio-group" formControlName="custeleg">
+                            <mat-radio-button value="all" class="example-radio-button">
+                            Everyone
+                            </mat-radio-button> <mat-radio-button value="specific" class="example-radio-button">
+                                Specific Groups Of Customers
+                            </mat-radio-button>
+                            <mat-radio-button value="specific" class="example-radio-button">
+                                Specific Customers
+                            </mat-radio-button>
+                        </mat-radio-group>
+                        <div class="row">
+                        <div class="col-md-8">
+                            <div class="form-group input1" *ngIf="this.CustEligible.value.custeleg=='all'">
+                                <mat-form-field appearance="">
+                                    <input matInput placeholder="No. of Usage" formControlName="eligibility">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        </div>
+                    </form>
+                    </div>
+                </div>
+                <div class="card mt-3">
+                    <div class="card-body">
+                        <form [formGroup]="Usage">
+                        <!-- <h4>Usage Limits</h4> -->
+                        <label id="example-radio-group-label">Usage Limits</label>
+                        <mat-radio-group
+                        aria-labelledby="example-radio-group-label"
+                        class="example-radio-group" formControlName="usage">
+                            <mat-radio-button value="usage_limit" class="example-radio-button" >
+                                Limit Number of Times This Discount Can be Used
+                            </mat-radio-button>
+                             <mat-radio-button value="per_customer" class="example-radio-button">
+                                Limit to One Use Per Customer
+                            </mat-radio-button>
+                            </mat-radio-group>
+                        <!-- <p><mat-checkbox >Mushroom</mat-checkbox></p> -->
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="form-group input1" *ngIf="this.Usage.value.usage=='usage_limit'">
+                                    <mat-form-field appearance="">
+                                        <input matInput placeholder="No. of times" formControlName="limit">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="card mt-3">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <h4>Active Dates</h4>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <mat-form-field appearance="">
+                                        <mat-label>Start  Date</mat-label>
+                                        <input matInput [matDatepicker]="picker"[(ngModel)]="start_date">
+                                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker></mat-datepicker>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-6">
+                                    <mat-form-field appearance="">
+                                        <mat-label>End Date</mat-label>
+                                        <input matInput [matDatepicker]="picker1" [(ngModel)]="end_date">
+                                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker1></mat-datepicker>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <mat-form-field appearance="">
+                                        <mat-label>Start Time (+04)</mat-label>
+                                        <input matTimepicker [(ngModel)]="start_time">
+                                        <mat-icon matSuffix >access_time</mat-icon>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-6">
+                                    <mat-form-field appearance="">
+                                        <mat-label>End Time (+04)</mat-label>
+                                        <input matTimepicker [(ngModel)]="end_time">
+                                        <mat-icon matSuffix >access_time</mat-icon>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="disc-buttons mt-3">
+                    <div class="row">
+                       <div class="col-md-12">
+                          <div class="d-flex justify-content-between"><button _ngcontent-chm-c248="" [disabled]="" (click)="submit()"class="btn btn-change-fill">Submit</button></div>
+                       </div>
+                    </div>
+                 </div>
+            </div>
+				
+		</div>
+	</div>
+</div>
+<app-footer></app-footer>

@@ -1,0 +1,124 @@
+<!-- <app-db-header></app-db-header> -->
+<app-seller-header></app-seller-header>
+<div class="my-albums-wrapper">
+    <div class="custom-container d-flex">
+        <app-sidebar></app-sidebar>
+        <div class="main-wrap">
+            <div class="my-albums">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12 mt-5 mb-5" align="center">
+                                <h1 class="text-center">My Albums</h1>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group has-search input-group">
+                                 <!--  <span class="fa fa-search form-control-feedback"></span> -->
+                                 <input type=search name=s results=5 [(ngModel)]="searchValue"  class="form-control" placeholder="Search">
+                                 <button class="btn btn-change-fill" (click)="search(searchValue)">Search</button>
+                             </div>
+                         </div>
+                         <div class="col-md-6">
+                          <div class="my-album-options float-right">
+                            <button  aria-label="Example icon-button with a menu" data-toggle="modal" data-target="#exampleModal" class="btn btn-change-fill">
+                                <i class="fa fa-plus mr-2"></i>
+                                Add New Album
+                            </button> 
+                            <!-- <button  aria-label="Example icon-button with a menu" id="btnSave" class="btn btn-change-fill">
+                                <i class="fa fa-plus mr-2"></i>
+                                Add New Album
+                            </button>  -->
+                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <!-- <div id="StudentModal">     -->
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                           <div class="">
+                                            <h2 class="modal-form-title"></h2>
+                                        </div>
+                                        <button type="button" id="modelClose" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="add-album-form">
+                                            <div class="modal-body">
+                                                <form role="form" [formGroup]="albumForm" method="POST" action="">
+                                                    <input type="hidden" name="_token" value="">
+                                                    <div class="form-group">
+                                                        <label class="control-label">Album Name</label>
+                                                        <div>
+                                                            <input type="text" class="form-control input-lg" name="email"  [formControl]="albumForm.controls['name']" [(ngModel)]="name" value="" placeholder="Enter Album Name">
+                                                        </div>
+                                                       
+                                                    </div>
+                                                    <p style="color: red; margin-top: -1.25em;"
+                                                        *ngIf="albumForm.controls['name'].errors?.required && ( albumForm.controls['name'].touched || submit_button)">
+                                                       Album Name is Required
+                                                    </p>
+
+                                                 
+                                                    <div class="mdl-frm-btn mt-3" align="center" >
+                                                        <button class="btn btn-change-fill" (click)="submit()">Create</button>
+                                                    </div>
+                                                    
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="album-listing-wrapper">
+                <div class="imageGrid">
+                    <div class="row">
+                        <div class="col-md-12 mt-5 mb-5" align="center" *ngIf="length ==0">
+                            <h1 class="text-center">No Album Added Yet</h1>
+                        </div>
+                        
+                     <div class="col-sm-3" *ngFor="let datas of data">
+                        <div class="" >
+                            <div class="tile" style="width: 100%;" routerLink="/album-detail/{{datas._id}}" >
+                                
+                                <a *ngIf="(datas?.album_images[0]?.image)"  >
+                                    <img *ngIf="isImage(datas?.album_images[0]?.image)" src="{{imgpath}}{{datas?.album_images[0]?.image}}" class="img-fluid" alt="image"> 
+                                    <video *ngIf="!isImage(datas?.album_images[0]?.image)" width="320" height="240" controls>
+                                        <source src="{{imgpath}}{{datas?.album_images[0]?.image}}" >
+                                      Your browser does not support the video.
+                                      </video>
+                                </a>
+                                <a *ngIf="!(datas?.album_images[0]?.image)"  >
+                                    <img  src="../../../assets/imgs/noImage.jpg" class="img-fluid" alt="image"> 
+                                </a>
+                                
+                            </div>
+                           
+                            <div class="text-box">
+                              
+                                <p><a >{{datas.album_name}}</a></p>
+                            </div>
+                        </div>
+                    </div>
+                 
+                </div>
+                
+            </div>
+            <div>
+                <!-- <mat-paginator [length]="length" [pageSize]="10" [pageSizeOptions]="getPageSizeOptions()"
+                (page)="paginationOptionChange($event)"> -->
+                <mat-paginator [length]="length" [pageSize]="10" 
+                (page)="paginationOptionChange($event)">
+            </mat-paginator>
+            </div>
+        </div> 
+    </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
+
+<app-footer></app-footer>

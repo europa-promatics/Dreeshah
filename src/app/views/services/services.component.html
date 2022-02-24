@@ -1,0 +1,1531 @@
+<app-header></app-header>
+<section class="common_image_section page_headrer_wrkshop">
+    <div class="container">
+        <div class="page_head_wrap">
+            <h2 class="aboutus_head">Our Services</h2>
+            <p class="page_head">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                ex ea commodo consequat.
+            </p>
+        </div>
+    </div>
+</section>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Services</li>
+    </ol>
+</nav>
+<section class="catalogue-new-wrpr">
+    <div class="container-fluid">
+        <div class="row mt-3">
+            <div class="col-md-12">
+                <div class="catalogue-count-head" *ngIf="sub_category_name">
+                    <p class="catalogue-new-name">{{sub_category_name}}</p>
+                    <h1 class="catalogue-new-count">{{service_count}} {{category_name}}</h1>
+                    <hr />
+                </div>
+                <div class="catalogue-count-head" *ngIf="!sub_category_name">
+                    <!-- <p class="catalogue-new-name">{{sub_category_name}}</p> -->
+                    <h1 class="catalogue-new-count">{{service_count}} Services</h1>
+                    <hr />
+                </div>
+            </div>
+        </div>
+        <div class="row my-3">
+            <!-- <div class="col-md-3">
+                <div class="form-group col-xs">
+                    <select name="login" class="custom-select" [(ngModel)]="selected_city"
+                        (change)="onSelectCity($event.target.value)">
+                        <option disabled="true" selected value="">Select Location</option>
+                        <option *ngFor="let city of cities" [value]="city">{{city}}</option>
+                        
+                    </select>
+                </div>
+            </div> -->
+            <!-- <div class="col-md-2">
+                <div class="customize_wrapper">
+                    <div class="dropdown_filled">
+                        <div class="menu_choose">
+                            <p>Design and Remodelling</p>
+                            <span class="caret_sign">
+                                <i class="fas fa-caret-down"></i>
+                            </span>
+                        </div>
+                        <div class="dropdown_menus">
+                            <ul>
+                                <li>
+                                    <h3>Design and Remodelling</h3>
+                                    <div class="menu_options pl-2">
+                                        <div class="custom-control custom-radio">
+                                            <input type="radio" class="custom-control-input" id="customRadio"
+                                                name="example1" value="customEx">
+                                            <label class="custom-control-label" for="customRadio">Building
+                                                Contracts</label>
+                                        </div>
+                                        <div class="custom-control custom-radio">
+                                            <input type="radio" class="custom-control-input" id="customRadio1"
+                                                name="example1" value="customEx">
+                                            <label class="custom-control-label" for="customRadio1">Building
+                                                Consultants</label>
+                                        </div>
+                                        <div class="custom-control custom-radio">
+                                            <input type="radio" class="custom-control-input" id="customRadio2"
+                                                name="example1" value="customEx">
+                                            <label class="custom-control-label" for="customRadio2">Building
+                                                Contract</label>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <h3>Home and Corporate Services</h3>
+                                    <div class="menu_options pl-2">
+                                        <div class="custom-control custom-radio">
+                                            <input type="radio" class="custom-control-input" id="customRadio"
+                                                name="example1" value="customEx">
+                                            <label class="custom-control-label" for="customRadio">Building
+                                                Contracts</label>
+                                        </div>
+                                        <div class="custom-control custom-radio">
+                                            <input type="radio" class="custom-control-input" id="customRadio1"
+                                                name="example1" value="customEx">
+                                            <label class="custom-control-label" for="customRadio1">Building
+                                                Consultants</label>
+                                        </div>
+                                        <div class="custom-control custom-radio">
+                                            <input type="radio" class="custom-control-input" id="customRadio2"
+                                                name="example1" value="customEx">
+                                            <label class="custom-control-label" for="customRadio2">Building
+                                                Contract</label>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <h3>Outdoor and Garden</h3>
+                                    <div class="menu_options pl-2">
+                                        <div class="custom-control custom-radio">
+                                            <input type="radio" class="custom-control-input" id="customRadio"
+                                                name="example1" value="customEx">
+                                            <label class="custom-control-label" for="customRadio">Building
+                                                Contracts</label>
+                                        </div>
+                                        <div class="custom-control custom-radio">
+                                            <input type="radio" class="custom-control-input" id="customRadio1"
+                                                name="example1" value="customEx">
+                                            <label class="custom-control-label" for="customRadio1">Building
+                                                Consultants</label>
+                                        </div>
+                                        <div class="custom-control custom-radio">
+                                            <input type="radio" class="custom-control-input" id="customRadio2"
+                                                name="example1" value="customEx">
+                                            <label class="custom-control-label" for="customRadio2">Building
+                                                Contract</label>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div> -->
+
+
+            <!-- <div class="col-md-3">
+                <div class="form-group col-xs search_field">
+                    <h4> Search Service</h4> 
+                    <input type="text" class="form-control" name="search" [(ngModel)]="searchText" autocomplete="off"
+                        placeholder="Search Services">
+                </div>
+            </div> -->
+            <!-- <hr /> -->
+        </div>
+        <!--  -->
+        <div class="filter_tab_wrapper">
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="filter_sort">
+                        <div class="filter-list-wrapper">
+                            <div class="search_location">
+                                <h3 class="search_ttl">Search</h3>
+                                <div class="search_field">
+                                    <input type="text" class="form-control" name="search" [(ngModel)]="searchText"
+                                        autocomplete="off" placeholder="Search by Location & Tags...">
+                                    <span class="search_icon"><i class="fas fa-search"></i></span>
+
+                                </div>
+                            </div>
+                            <div class="search_location">
+                                <div class="search_ttl">
+                                    <div class="search_field">
+                                        <h3 class="top_head">Sort</h3>
+                                        <select id="sort-by" (change)="sort($event)" class="form-control">
+                                            <option value="" selected disabled hidden>Sort By</option>
+                                            
+                                            <option value="Low">Show Low to High Price</option>
+                                            <option value="High">Show High to Low Price</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="filter-head d-flex justify-content-between">
+                                        <div>
+                                            <h3 class="top_head">Filters</h3>
+                                        </div>
+                                        <div>
+                                            <a>
+                                                <h3 class="top_head theme-link">Reset All</h3>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                                        <div class="panel panel-default mt-3">
+                                            <div class="panel-heading" role="tab" id="headingOne">
+                                                <h4 class="panel-title">
+                                                    <a role="button" data-toggle="collapse" data-parent="#accordion"
+                                                        href="#collapseOne" aria-expanded="true"
+                                                        aria-controls="collapseOne">
+                                                        Category <i class="fa fa-chevron-down float-right"></i>
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseOne" class="panel-collapse show collapse in"
+                                                role="tabpanel" aria-labelledby="headingOne">
+                                                <div class="panel-body">
+                                                    <div class="form-group col-sm"  *ngFor="let service of category">
+                                                        <label class="checkbox-inline">{{service.name}}
+                                                            <input type="checkbox"  
+                                                            name="category{{service._id}}"
+                                                            value="service._id"
+                                                            [(ngModel)]="service.checked"
+                                                            [checked]="service.checked"
+                                                            (change)="selectedServiceCategory($event,service._id)">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- <div id="collapseOne" class="panel-collapse show collapse in"
+                                                role="tabpanel" aria-labelledby="headingOne">
+                                                <div class="panel-body">
+                                                    <div class="form-group col-sm">
+                                                        <label class="checkbox-inline">DESIGN AND REMODELLING
+                                                            <input type="checkbox" checked="checked">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-group col-sm">
+                                                        <label class="checkbox-inline">OUTDOOR AND GARDEN
+                                                            <input type="checkbox">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-group col-sm">
+                                                        <label class="checkbox-inline">HOME AND CORPORATE SERVICES
+                                                            <input type="checkbox">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div> -->
+                                            <!-- <div class="form-group col-sm">
+                                                        <label class="checkbox-inline">Mechanical Design
+                                                            <input type="checkbox">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-group col-sm">
+                                                        <label class="checkbox-inline">Interior Design
+                                                            <input type="checkbox">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div> -->
+                                            <!-- </div>
+                                            </div> -->
+                                        </div>
+                                        <!--  -->
+                                        <div class="panel panel-default mt-3">
+                                            <div class="panel-heading" role="tab" id="headingOne">
+                                                <h4 class="panel-title">
+                                                    <a role="button" data-toggle="collapse" data-parent="#accordion"
+                                                        href="#collapseOne" aria-expanded="true"
+                                                        aria-controls="collapseOne">
+                                                        Sub-category <i class="fa fa-chevron-down float-right"></i>
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseOne" class="panel-collapse show collapse in"
+                                                role="tabpanel" aria-labelledby="headingOne">
+                                                <div class="panel-body">
+                                                    <div class="form-group col-sm"  *ngFor="let service of sub_category">
+                                                        <label class="checkbox-inline">{{service.name}}
+                                                            <input type="checkbox"  
+                                                            name="sub_category{{service._id}}"
+                                                            value="service._id"
+                                                            [(ngModel)]="service.checked"
+                                                            [checked]="service.checked"
+                                                            (change)="selectedServiceSubCategory($event,service._id)">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel"
+                                                aria-labelledby="headingOne">
+                                                <div class="panel-body">
+                                                    <div class="form-group col-sm">
+                                                        <label class="checkbox-inline">Building Contractors
+                                                            <input type="checkbox" checked="checked">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-group col-sm">
+                                                        <label class="checkbox-inline">Building Consultants
+                                                            <input type="checkbox">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-group col-sm">
+                                                        <label class="checkbox-inline">Interior Designers & Suppliers
+                                                            <input type="checkbox">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-group col-sm">
+                                                        <label class="checkbox-inline">Wardrobe Designers & Suppliers
+                                                            <input type="checkbox">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-group col-sm">
+                                                        <label class="checkbox-inline">Bathroom Designers & Suppliers
+                                                            <input type="checkbox">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-group col-sm">
+                                                        <label class="checkbox-inline">Windows Designers & Suppliers
+                                                            <input type="checkbox">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-group col-sm">
+                                                        <label class="checkbox-inline">Doors Designers & Suppliers
+                                                            <input type="checkbox">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-group col-sm">
+                                                        <label class="checkbox-inline">Furniture Designers & Suppliers
+                                                            <input type="checkbox">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-group col-sm">
+                                                        <label class="checkbox-inline">Rugs Designers & Suppliers
+                                                            <input type="checkbox">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-group col-sm">
+                                                        <label class="checkbox-inline">Wallpapers Designer & Suppliers
+                                                            <input type="checkbox">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-group col-sm">
+                                                        <label class="checkbox-inline">Gypsum Designers & Suppliers
+                                                            <input type="checkbox">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-group col-sm">
+                                                        <label class="checkbox-inline">Floor Tiles Designers & Suppliers
+                                                            <input type="checkbox">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-group col-sm">
+                                                        <label class="checkbox-inline">Building
+                                                            <input type="checkbox">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-group col-sm">
+                                                        <label class="checkbox-inline">Air Conditioning Suppliers
+                                                            <input type="checkbox">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-group col-sm">
+                                                        <label class="checkbox-inline">Internal Lighiting Suppliers
+                                                            <input type="checkbox">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-group col-sm">
+                                                        <label class="checkbox-inline">Landscape Architects
+                                                            <input type="checkbox">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-group col-sm">
+                                                        <label class="checkbox-inline">Landcape Contractors
+                                                            <input type="checkbox">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-group col-sm">
+                                                        <label class="checkbox-inline">Gardening Suppliers
+                                                            <input type="checkbox">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-group col-sm">
+                                                        <label class="checkbox-inline">Stone Suppliers
+                                                            <input type="checkbox">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-group col-sm">
+                                                        <label class="checkbox-inline">Interlock Suppliers
+                                                            <input type="checkbox">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-group col-sm">
+                                                        <label class="checkbox-inline">External Lighting Suppliers
+                                                            <input type="checkbox">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-group col-sm">
+                                                        <label class="checkbox-inline">Landscape Architects
+                                                            <input type="checkbox">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-group col-sm">
+                                                        <label class="checkbox-inline">Landscape Contractors
+                                                            <input type="checkbox">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-group col-sm">
+                                                        <label class="checkbox-inline">Painting Contractor
+                                                            <input type="checkbox">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-group col-sm">
+                                                        <label class="checkbox-inline">Electricity Contractor
+                                                            <input type="checkbox">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-group col-sm">
+                                                        <label class="checkbox-inline">Pest Control Specialist
+                                                            <input type="checkbox">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-group col-sm">
+                                                        <label class="checkbox-inline">Moving Specialist
+                                                            <input type="checkbox">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-group col-sm">
+                                                        <label class="checkbox-inline">Carpenting Specialist
+                                                            <input type="checkbox">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div>
+                                                  
+                                                    <div class="form-group col-sm">
+                                                        <label class="checkbox-inline">Test Sub Category
+                                                            <input type="checkbox">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div> <div class="form-group col-sm">
+                                                        <label class="checkbox-inline">AddServiceCategoriesAgain
+                                                            <input type="checkbox">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div> 
+
+                                                </div>
+                                            </div> -->
+                                        </div>
+
+                                        <div class="panel panel-default mt-3">
+                                            <div class="panel-heading" role="tab" id="headingOne">
+                                                <h4 class="panel-title">
+                                                    <a role="button" data-toggle="collapse" data-parent="#accordion"
+                                                        href="#collapseFour" aria-expanded="true"
+                                                        aria-controls="collapseOne">
+                                                        Rating <i class="fa fa-chevron-down float-right"></i>
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseFour" class="panel-collapse collapse" role="tabpanel"
+                                                aria-labelledby="headingOne">
+                                                <div class="panel-body">
+                                                    <div class="form-group col-sm">
+                                                        <label class="checkbox-inline">1 Star
+                                                            <input type="checkbox" checked="checked">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-group col-sm">
+                                                        <label class="checkbox-inline">2 Star
+                                                            <input type="checkbox">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-group col-sm">
+                                                        <label class="checkbox-inline">3 Star
+                                                            <input type="checkbox">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-group col-sm">
+                                                        <label class="checkbox-inline">4 Star
+                                                            <input type="checkbox">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-group col-sm">
+                                                        <label class="checkbox-inline">5 Star
+                                                            <input type="checkbox">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="panel panel-default mt-3">
+                                            <div class="panel-heading" role="tab" id="headingOne">
+                                                <h4 class="panel-title">
+                                                    <a role="button" data-toggle="collapse" data-parent="#accordion"
+                                                        href="#collapseFive" aria-expanded="true"
+                                                        aria-controls="collapseOne">
+                                                        Duration <i class="fa fa-chevron-down float-right"></i>
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseFive" class="panel-collapse collapse" role="tabpanel"
+                                                aria-labelledby="headingOne">
+                                                <div class="panel-body">
+                                                    <div class="form-group">
+                                                        <select class="form-control">
+                                                            <option *ngFor="let dura of duration" [value]=dura._id>{{dura.duration}}</option>
+                                                                                                                    </select> 
+                                                        <!-- <select class="form-control">
+                                                            <option value="">Select Duration</option>
+                                                            <option value="">1 hr</option>
+                                                            <option value="">2 hr</option>
+                                                            <option value="">3 hr</option>
+                                                        </select> -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="panel panel-default mt-3">
+                                            <div class="panel-heading" role="tab" id="headingOne">
+                                                <h4 class="panel-title">
+                                                    <a role="button" data-toggle="collapse" data-parent="#accordion"
+                                                        href="#collapseSix" aria-expanded="true"
+                                                        aria-controls="collapseOne">
+                                                        Styles <i class="fa fa-chevron-down float-right"></i>
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseSix" class="panel-collapse collapse" role="tabpanel"
+                                                aria-labelledby="headingOne">
+                                                <div class="panel-body">
+                                                    <div class="form-group">
+                                                         <select class="form-control">
+                                                            <option *ngFor="let style of styles" [value]=style._id>{{style.name}}</option>
+                                                        </select> 
+                                                         <!-- <select class="form-control">
+                                                            <option value="">Style of this photo</option>
+                                                            <option value="">American Traditional</option>
+                                                            <option value="" >Asian</option>
+                                                            <option value="" >Coastal</option>
+                                                            <option value="" >Contemporary</option>
+                                                            <option value="" >Ecletic</option>
+                                                            <option value="" >Indian</option>
+                                                            <option value="" >Industrial</option>
+                                                            <option value="" >Mediterranean</option>
+                                                            <option value="" >Modern</option>
+                                                            <option value="" >Rustic</option>
+                                                            <option value="" >Scandinavian</option>
+                                                            <option value="" >Shabby-Chic Style</option>
+                                                            <option value="" >Transitional</option>
+                                                            <option value="" >Tropical</option>
+                                                            <option value="" >British Colonial</option>
+                                                            <option value="" >Italics</option>
+                                                            <option value="" >Italic</option>
+                                                            <option value="" >Steel Wire</option>
+                                                            <option value="" >Chair</option>
+                                                            
+                                                        </select>   -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading" role="tab" id="headingThree">
+                                                <h4 class="panel-title">
+                                                    <a class="collapsed" role="button" data-toggle="collapse"
+                                                        data-parent="#accordion" href="#collapseThree"
+                                                        aria-expanded="false" aria-controls="collapseThree">
+                                                        Services Cost Range <i
+                                                            class="fa fa-chevron-down float-right"></i>
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseThree" class="panel-collapse collapse" role="tabpanel"
+                                                aria-labelledby="headingThree">
+                                                <div class="panel-body">
+                                                    <div class="custom-slider">
+                                                        <div id="price">
+                                                             <ngx-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options"  [(ngModel)]="sliderValue"  (mouseup)="sliderEvent()"></ngx-slider> 
+                                                            
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-9">
+                    <div class="custom_tabs">
+                        <!-- <ul class="nav nav-pills tabs_links">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="pill" href="#design">Design and Remodeling</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="pill" href="#services">Home and Corporate Services</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="pill" href="#outdoor">Outdoor and Garden</a>
+                            </li>
+                        </ul> -->
+
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="design">
+                                <div class="tab_container">
+                                    <div *ngIf="services_list.length > 0">
+                                        <div class="services--wrpp border-bottom"
+                                            *ngFor="let service of services_list_all | filter:searchText">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="catalogue-new-img-thumb-service">
+                                                        <div class="wcontainer">
+                                                            <p><strong>AED{{service.price}}</strong></p>
+                                                            <img src="{{image_path}}{{service.service_image}}"
+                                                                alt="service" class="thimg" />
+                                                            <div class="thumb-overlay"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-5 mt-3">
+                                                    <div class="web-serv-name">
+                                                        <h1><a
+                                                                routerLink="/ServicesDetails/{{service._id}}">{{service.service_name}}</a>
+                                                        </h1>
+                                                    </div>
+                                                    <div class="web-serv-name">
+                                                        <h4>{{service.service_categoy_data[0].name}}</h4>
+                                                    </div>
+
+                                                    <h4>{{service.service_sub_category_data[0].name}}</h4>
+
+                                                    <div class="professionals-details-wrapper">
+                                                        <div>
+                                                            <!-- <img *ngIf="!service.professional_id.profile_image"
+                                                                src="assets/imgs/no-profile.webp" class="img-fluid">
+                                                            <img *ngIf="service.professional_id.profile_image"
+                                                                src="{{profile_image_path}}{{service.professional_id.profile_image}}"
+                                                                class="img-fluid"> --><img
+                                                                src="https://developers.promaticstechnologies.com/dreeshah_apis/public/userProfile/{{service.professionalData[0]?.profile_image}}" *ngIf="service.professionalData[0]?.profile_image">
+                                                        </div>
+                                                            <span></span>
+                                                        <div class="custm_address text-left mt-3">
+                                                            <i class="fas fa-map-marker-alt"></i>
+                                                            <address>
+                                                                {{service.country[0]}}
+                                                            </address>
+                                                        </div>
+                                                        <!-- <div class="ratings-review-wrapper mrgn-top-2">
+                                                            <h3 class="ml-2">{{service.professional_id.first_name | titlecase}}
+                                                                {{service.professional_id.last_name | titlecase}}</h3>
+                                                            <p>{{service.service_category.name}}</p>
+                                                            <div class="ratings-review">
+                                                                <div class="strs">
+                                                                    <span>4.3</span>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                </div>
+                                                                <p>36 reviews</p>
+                                                            </div>
+                                                        </div> -->
+                                                    </div>
+                                                    <div class="custom-comment">
+                                                        <p class="mt-3"><i class="fa fa-quote-left"></i>
+                                                            {{(service.service_description.length > 70) ? (service.service_description | slice:0:70)
+                                                            +
+                                                            '...' : service.service_description}}
+                                                        </p>
+                                                        <div class="read-more"
+                                                            *ngIf="service.service_description.service_count > 70">
+
+                                                            <a routerLink="/ServicesDetails/{{service._id}}"
+                                                                class="read-more-link">Read More <i
+                                                                    class="fa fa-angle-right"></i></a>
+                                                        </div>
+                                                        <div class="send-req-btn mt-2">
+                                                            <button (click)="quotation(service)"
+                                                                class="btn btn-change-fill">Get
+                                                                Instant Quotation
+                                                            </button>
+                                                            <a data-target="#bookAptmnt" (click)="idOfService(service)"
+                                                                data-toggle="modal"
+                                                                class="btn btn btn-change-fill ml-2">
+                                                                Book Appointment
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 mt-3">
+                                                    <div class="professsional-contact-details text-right">
+                                                        <a  class="btn btn-change-fill min-width-0" (click)="CalledChatRoom(service)"
+                                                            ><i
+                                                                class="fas fa-comments" ></i></a><br />
+                                                        <p class="mt-3"><i class="fa fa-mobile-alt mr-2"
+                                                                aria-hidden="true"></i>{{service.professionalData[0]?.contact_details.mobile_number}}
+                                                        </p>
+                                                        <div class="custm_address text-right mt-3">
+                                                            <i class="fas fa-map-marker-alt"></i>
+                                                            <address>
+                                                                View on Map
+                                                            </address>
+                                                        </div>
+                                                        <div class="ratings-review-wrapper mrgn-top-2">
+                                                            <h3 class="ml-2">
+                                                                {{service.professional_id.first_name | titlecase}}
+                                                                {{service.professional_id.last_name | titlecase}}</h3>
+                                                            <p>{{service.service_category.name}}</p>
+                                                            <!-- <div class="ratings-review"> -->
+                                                            <div class="strs">
+                                                                <span>4.3</span>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                            </div>
+                                                            <p>36 reviews</p>
+                                                            <!-- </div> -->
+                                                        </div>
+
+                                                        <!-- <p class="mt-3"><i class="fa fa-map-marker-alt mr-2"
+                                                                aria-hidden="true"></i>{{service.professional_id.address_details[0].house_no}},
+                                                            {{service.professional_id.address_details[0].area}},
+                                                            {{service.professional_id.address_details[0].landmark}},
+                                                            {{service.professional_id.address_details[0].city}},
+                                                            {{service.professional_id.address_details[0].pincode}}</p> -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="services_list.length == 0">
+                                        <h1>No Data Found</h1>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="tab-pane fade" id="services">
+                                <div class="tab_container">
+                                    <div *ngIf="services_list.length > 0">
+                                        <div class="services--wrpp border-bottom"
+                                            *ngFor="let service of services_list; let i = index;">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="catalogue-new-img-thumb-service">
+                                                        <div class="wcontainer">
+                                                            <img src="{{image_path}}{{service.service_image}}"
+                                                                alt="service" class="thimg" />
+                                                            <div class="thumb-overlay"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-5 mt-3">
+                                                    <div class="web-serv-name">
+                                                        <h1><a
+                                                                routerLink="/ServicesDetails/{{service._id}}">{{service.service_name}}</a>
+                                                        </h1>
+                                                    </div>
+                                                    <div class="professionals-details-wrapper">
+                                                        <div>
+                                                            <img *ngIf="!service.professional_id.profile_image"
+                                                                src="assets/imgs/no-profile.webp" class="img-fluid">
+                                                            <img *ngIf="service.professional_id.profile_image"
+                                                                src="{{profile_image_path}}{{service.professional_id.profile_image}}"
+                                                                class="img-fluid">
+                                                        </div>
+                                                        <div class="ratings-review-wrapper mrgn-top-2">
+                                                            <h3 class="ml-2">
+                                                                {{service.professional_id.first_name | titlecase}}
+                                                                {{service.professional_id.last_name | titlecase}}</h3>
+                                                            <p>{{service.service_category.name}}</p>
+                                                            <div class="ratings-review">
+                                                                <div class="strs">
+                                                                    <span>4.3</span>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                </div>
+                                                                <p>36 reviews</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="custom-comment">
+                                                        <p class="mt-3"><i class="fa fa-quote-left"></i>
+                                                            {{(service.service_description.length > 70) ? (service.service_description | slice:0:70)
+                                                            +
+                                                            '...' : service.service_description}}
+                                                        </p>
+                                                        <div class="read-more"
+                                                            *ngIf="service.service_description.length > 70">
+
+                                                            <a routerLink="/ServicesDetails/{{service._id}}"
+                                                                class="read-more-link">Read More <i
+                                                                    class="fa fa-angle-right"></i></a>
+                                                        </div>
+                                                        <div class="send-req-btn mt-2">
+                                                            <button (click)="quotation(service)"
+                                                                class="btn btn-change-fill">Get
+                                                                Instant Quotation
+                                                            </button>
+                                                            <a data-target="#bookAptmnt" (click)="idOfService(service)"
+                                                                data-toggle="modal"
+                                                                class="btn btn btn-change-fill ml-2">
+                                                                Book Appointmen
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 mt-3">
+                                                    <div class="professsional-contact-details text-left">
+                                                        <a routerLink="/mychat"
+                                                            class="btn btn-change-fill min-width-0"><i
+                                                                class="fas fa-comments"></i> Send Message</a><br />
+                                                         <p class="mt-3"><i class="fa fa-phone-alt mr-2"
+                                                                aria-hidden="true"></i>{{service.professionalData[0].contact_details.mobile_number}}mm
+                                                        </p> -->
+                                                        <!-- <div class="custm_address text-left mt-3">
+                                                            <i class="fas fa-map-marker-alt"></i>
+                                                            <address>
+                                                                #289/4, Chamundeshwari Temple Street, Bangalore, 560068
+                                                            </address>
+                                                        </div> -->
+
+                                                        <!-- <p class="mt-3"><i class="fa fa-map-marker-alt mr-2"
+                                                                aria-hidden="true"></i>{{service.professional_id.address_details[0].house_no}},
+                                                            {{service.professional_id.address_details[0].area}},
+                                                            {{service.professional_id.address_details[0].landmark}},
+                                                            {{service.professional_id.address_details[0].city}},
+                                                            {{service.professional_id.address_details[0].pincode}}</p> -->
+                                                    <!-- </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="outdoor">
+                                <div class="tab_container">
+                                    <div *ngIf="services_list.length > 0">
+                                        <div class="services--wrpp border-bottom"
+                                            *ngFor="let service of services_list; let i = index;">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="catalogue-new-img-thumb-service">
+                                                        <div class="wcontainer">
+                                                            <img src="{{image_path}}{{service.service_image}}"
+                                                                alt="service" class="thimg" />
+                                                            <div class="thumb-overlay"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-5 mt-3">
+                                                    <div class="web-serv-name">
+                                                        <h1><a
+                                                                routerLink="/ServicesDetails/{{service._id}}">{{service.service_name}}</a>
+                                                        </h1>
+                                                    </div>
+                                                    <div class="professionals-details-wrapper">
+                                                        <div>
+                                                            <img *ngIf="!service.professional_id.profile_image"
+                                                                src="assets/imgs/no-profile.webp" class="img-fluid">
+                                                            <img *ngIf="service.professional_id.profile_image"
+                                                                src="{{profile_image_path}}{{service.professional_id.profile_image}}"
+                                                                class="img-fluid">
+                                                        </div>
+                                                        <div class="ratings-review-wrapper mrgn-top-2">
+                                                            <h3 class="ml-2">
+                                                                {{service.professional_id.first_name | titlecase}}
+                                                                {{service.professional_id.last_name | titlecase}}</h3>
+                                                            <p>{{service.service_category.name}}</p>
+                                                            <div class="ratings-review">
+                                                                <div class="strs">
+                                                                    <span>4.3</span>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                </div>
+                                                                <p>36 reviews</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="custom-comment">
+                                                        <p class="mt-3"><i class="fa fa-quote-left"></i>
+                                                            {{(service.service_description.length > 70) ? (service.service_description | slice:0:70)
+                                                            +
+                                                            '...' : service.service_description}}
+                                                        </p>
+                                                        <div class="read-more"
+                                                            *ngIf="service.service_description.length > 70">
+
+                                                            <a routerLink="/ServicesDetails/{{service._id}}"
+                                                                class="read-more-link">Read More <i
+                                                                    class="fa fa-angle-right"></i></a>
+                                                        </div>
+                                                        <div class="send-req-btn mt-2">
+                                                            <button (click)="quotation(service)"
+                                                                class="btn btn-change-fill">Get
+                                                                Instant Quotation
+                                                            </button>
+                                                            <a data-target="#bookAptmnt" (click)="idOfService(service)"
+                                                                data-toggle="modal"
+                                                                class="btn btn btn-change-fill ml-2">
+                                                                Book Appointmen
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 mt-3">
+                                                    <div class="professsional-contact-details text-left">
+                                                        <a routerLink="/mychat"
+                                                            class="btn btn-change-fill min-width-0"><i
+                                                                class="fas fa-comments"></i> Send Message</a><br /> -->
+                                                        <!-- <p class="mt-3"><i class="fa fa-phone-alt mr-2"
+                                                                aria-hidden="true"></i>{{service.professionalData[0].contact_details.mobile_number}}nnnn
+                                                        </p> -->
+                                                        <!-- <div class="custm_address text-left mt-3">
+                                                            <i class="fas fa-map-marker-alt"></i>
+                                                            <address>
+                                                                #289/4, Chamundeshwari Temple Street, Bangalore, 560068
+                                                            </address>
+                                                        </div> -->
+
+                                                        <!-- <p class="mt-3"><i class="fa fa-map-marker-alt mr-2"
+                                                                aria-hidden="true"></i>{{service.professional_id.address_details[0].house_no}},
+                                                            {{service.professional_id.address_details[0].area}},
+                                                            {{service.professional_id.address_details[0].landmark}},
+                                                            {{service.professional_id.address_details[0].city}},
+                                                            {{service.professional_id.address_details[0].pincode}}</p> -->
+                                                    <!-- </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <!-- <mat-paginator [length]="length" [pageSize]="10" [pageSizeOptions]="getPageSizeOptions()"
+            (page)="paginationOptionChange($event)"> -->
+            <mat-paginator [length]="length" [pageIndex]="topPage" [pageSize]="pageSize" [pageSizeOptions]="getPageSizeOptions()"
+            (page)="paginationOptionChange($event)" showFirstLastButtons>
+            </mat-paginator>
+        </div>
+
+        <div *ngIf="services_list_all?.length == 0">
+            NO RESULT FOUND
+        </div>
+
+    </div>
+</section>
+<!-- Advertise Banner -->
+<!-- <section class="advertise_banner">
+    <div class="">
+        <div class="advertisee_image">
+            <img src="assets/imgs/advertise-banner.jpeg" class="img-fluid">
+        </div>
+    </div>
+</section> -->
+
+<app-footer></app-footer>
+<div class="modal fade" id="filterModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="styles-filter">
+                            <h2>Styles <i class="fa fa-angle-right"></i></h2>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <h3>Filter by style</h3>
+                        <div class="filter-style-types">
+                            <mat-radio-group aria-labelledby="example-radio-group-label"
+                                class="example-radio-group radio-list">
+                                <div class="form-group col-sm">
+                                    <mat-radio-button checked value="1">Indian </mat-radio-button>
+                                </div>
+                                <div class="form-group col-sm">
+                                    <mat-radio-button class="example-radio-button" value="1">Modern </mat-radio-button>
+                                </div>
+                                <div class="form-group col-sm">
+                                    <mat-radio-button class="example-radio-button" value="2">American
+                                    </mat-radio-button>
+                                </div>
+                                <div class="form-group col-sm">
+                                    <mat-radio-button class="example-radio-button" value="3">Coastal </mat-radio-button>
+                                </div>
+                                <div class="form-group col-sm">
+                                    <mat-radio-button class="example-radio-button" value="4">Mediterranean
+                                    </mat-radio-button>
+                                </div>
+                                <div class="form-group col-sm">
+                                    <mat-radio-button class="example-radio-button" value="5">Shabby-Chic Style
+                                    </mat-radio-button>
+                                </div>
+                                <div class="form-group col-sm">
+                                    <mat-radio-button class="example-radio-button" value="6">Tropical</mat-radio-button>
+                                </div>
+                            </mat-radio-group>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="filter-style-types mt-5">
+                            <mat-radio-group aria-labelledby="example-radio-group-label"
+                                class="example-radio-group radio-list">
+                                <div class="form-group col-sm">
+                                    <mat-radio-button class="example-radio-button" value="81">Contemporary
+                                    </mat-radio-button>
+                                </div>
+                                <div class="form-group col-sm">
+                                    <mat-radio-button class="example-radio-button" value="82">Eclectic
+                                    </mat-radio-button>
+                                </div>
+                                <div class="form-group col-sm">
+                                    <mat-radio-button class="example-radio-button" value="91">Asian</mat-radio-button>
+                                </div>
+                                <div class="form-group col-sm">
+                                    <mat-radio-button class="example-radio-button" value="57">Industrial
+                                    </mat-radio-button>
+                                </div>
+                                <div class="form-group col-sm">
+                                    <mat-radio-button class="example-radio-button" value="56">Transitional
+                                    </mat-radio-button>
+                                </div>
+                                <div class="form-group col-sm">
+                                    <mat-radio-button class="example-radio-button" value="59">British Colonial
+                                    </mat-radio-button>
+                                </div>
+                            </mat-radio-group>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="" class="link-clear-all">Clear All</a>
+                <button type="button" class="btn btn-outline-blue">Done</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="quotation-form-modal">
+    <div class="modal" id="QuotationForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title" id="exampleModalLabel">Get Quotation</h2>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="request_summary">
+                        <h3>Request Summary</h3>
+                        <p>Quotation Ref: {{quotationNum}}</p>
+                        <p>Date: {{this.todayDate}}</p>
+                        <h4>Subject: {{this.serviceNameQuo}}</h4>
+                    </div>
+                    <form [formGroup]="quotationForm">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <mat-form-field appearance="">
+                                        <mat-label>Name</mat-label>
+                                        <input matInput placeholder="John doe" required formControlName="name">
+                                    </mat-form-field>
+                                    <div *ngIf="quotationForm.controls.name.invalid && (quotationForm.controls.name.dirty || quotationForm.controls.name.touched || submit_quotation)"
+                                        class="">
+                                        <p style="color: red;" *ngIf="quotationForm.controls.name.errors.required">
+                                            Please enter name
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <mat-form-field appearance="">
+                                        <mat-label>Email</mat-label>
+                                        <input matInput placeholder="Johndoe@gmail.com" formControlName="email"
+                                            required>
+                                    </mat-form-field>
+                                    <div *ngIf="quotationForm.controls.email.invalid && (quotationForm.controls.email.dirty || quotationForm.controls.email.touched || submit_quotation)"
+                                        class="">
+                                        <p style="color: red;" *ngIf="quotationForm.controls.email.errors.required">
+                                            Please enter email address
+                                        </p>
+                                        <p style="color: red;" *ngIf="quotationForm.controls.email.errors.pattern">
+                                            Please enter valid email address
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <mat-form-field appearance="">
+                                        <mat-label>Phone Number</mat-label>
+                                        <form #f="ngForm" [formGroup]="phoneForm">
+                                            <ngx-mat-intl-tel-input [preferredCountries]="['us', 'gb']"
+                                                [enablePlaceholder]="true" [enableSearch]="false" name="phone"
+                                                (countryChanged)="countryCode($event)" formControlName="phone"
+                                                [(ngModel)]="phone">
+                                            </ngx-mat-intl-tel-input>
+
+                                        </form>
+                                        <!-- <input matInput placeholder="9876520510" formControlName="phone_number"
+                                            [formControl]="quotationForm.controls['phone_number']"
+                                            required> -->
+                                    </mat-form-field>
+                                    <div>
+                                        <mat-error *ngIf="f.form.controls['phone']?.errors?.validatePhoneNumber">Invalid
+                                            Number</mat-error>
+                                    </div>
+                                    <div *ngIf="phoneForm.controls.phone.invalid && (phoneForm.controls.phone.dirty || phoneForm.controls.phone.touched || submit_quotation)"
+                                        class="">
+                                        <p style="color: red;" *ngIf="phoneForm.controls.phone.errors.required">
+                                            Please enter phone number
+                                        </p>
+                                        <!-- <p style="color: red;"
+                                            *ngIf="quotationForm.controls.phone_number?.errors?.pattern">
+                                            Please enter valid phone number
+                                        </p> -->
+                                        <!-- <p style="color: red;"
+                                            *ngIf="quotationForm.controls.phone_number?.errors?.minlength">
+                                            Phone number should be greater than 8 digits
+                                        </p> -->
+                                        <!-- <p style="color: red;"
+                                            *ngIf="quotationForm.controls.phone_number?.errors?.maxlength">
+                                            Phone number should be maximum 16 digits
+                                        </p> -->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <mat-form-field appearance="">
+                                        <mat-label>Quotation Ref</mat-label>
+                                        <input matInput placeholder="Quotation Ref" formControlName="quotation_ref"
+                                            required>
+                                    </mat-form-field>
+                                    <div *ngIf="quotationForm.controls.quotation_ref.invalid && (quotationForm.controls.quotation_ref.dirty || quotationForm.controls.quotation_ref.touched || submit_quotation)"
+                                        class="">
+                                        <p style="color: red;"
+                                            *ngIf="quotationForm.controls.quotation_ref.errors.required">
+                                            Please enter quotation ref
+                                        </p>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <mat-form-field>
+                                        <mat-label>Choose Start Date</mat-label>
+                                        <input matInput [matDatepicker]="picker" placeholder="" [min]="minDate"
+                                            formControlName="date">
+                                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker></mat-datepicker>
+                                    </mat-form-field>
+                                    <div *ngIf="quotationForm.controls.date.invalid && (quotationForm.controls.date.dirty || quotationForm.controls.date.touched || submit_quotation)"
+                                        class="">
+                                        <p style="color: red;" *ngIf="quotationForm.controls.date.errors.required">
+                                            Please select date
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <!-- <mat-form-field appearance="">
+                                        <mat-label>Expected Date of Service</mat-label>
+                                        <input matInput [matDatepicker]="picker" formControlName="expected_date">
+                                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker></mat-datepicker>
+                                    </mat-form-field> -->
+                                    <mat-form-field>
+                                        <mat-label>Choose End Date</mat-label>
+                                        <input matInput [matDatepicker]="picker1" placeholder="" [min]="minDate"
+                                            formControlName="expected_date">
+                                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker1></mat-datepicker>
+                                    </mat-form-field>
+                                    <div *ngIf="quotationForm.controls.expected_date.invalid && (quotationForm.controls.expected_date.dirty || quotationForm.controls.expected_date.touched || submit_quotation)"
+                                        class="">
+                                        <p style="color: red;"
+                                            *ngIf="quotationForm.controls.expected_date.errors.required">
+                                            Please enter expected end date
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="col-md-6">
+                                <mat-form-field appearance="">
+                                    <mat-label>Start Time(+04)</mat-label>
+                                    <input matTimepicker placeholder=""  formControlName="time">
+                                    <mat-icon matSuffix>access_time</mat-icon>
+                                </mat-form-field>
+                                <div *ngIf="quotationForm.controls.time.invalid && (quotationForm.controls.time.dirty || quotationForm.controls.time.touched || submit_quotation)"
+                                    class="">
+                                    <p style="color: red;" *ngIf="quotationForm.controls.time.errors.required">
+                                        Please select time
+                                    </p>
+                                </div>
+                            </div> -->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <mat-form-field appearance="">
+                                        <mat-label>Branch for Service</mat-label>
+                                        <input matInput placeholder="Sales Representative" required
+                                            formControlName="sales_representative">
+                                    </mat-form-field>
+                                    <div *ngIf="quotationForm.controls.sales_representative.invalid && (quotationForm.controls.sales_representative.dirty || quotationForm.controls.sales_representative.touched || submit_quotation)"
+                                        class="">
+                                        <p style="color: red;"
+                                            *ngIf="quotationForm.controls.sales_representative.errors.required">
+                                            Please enter sales representative
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <mat-form-field appearance="">
+                                        <mat-label>Service Name</mat-label>
+                                        <input matInput placeholder="Service Name" readonly="true"
+                                            formControlName="service_name" required>
+                                    </mat-form-field>
+                                    <div *ngIf="quotationForm.controls.service_name.invalid && (quotationForm.controls.service_name.dirty || quotationForm.controls.service_name.touched || submit_quotation)"
+                                        class="">
+                                        <p style="color: red;"
+                                            *ngIf="quotationForm.controls.service_name.errors.required">
+                                            Please enter service name
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <mat-form-field appearance="">
+                                        <mat-label>Location</mat-label>
+                                        <input matInput placeholder="Location" formControlName="location" required>
+                                    </mat-form-field>
+                                    <div *ngIf="quotationForm.controls.location.invalid && (quotationForm.controls.location.dirty || quotationForm.controls.location.touched || submit_quotation)"
+                                        class="">
+                                        <p style="color: red;" *ngIf="quotationForm.controls.location.errors.required">
+                                            Please enter location
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="col-md-6">
+                                <div class="form-group">
+                                    <mat-form-field appearance="">
+                                        <mat-label>Service Number</mat-label>
+                                        <input matInput placeholder="Service Number" formControlName="service_name"
+                                            required>
+                                    </mat-form-field>
+                                    
+                                </div>
+                            </div> -->
+                            <!-- <div class="col-md-6">
+                                <div class="form-group">
+                                    <mat-form-field appearance="">
+                                        <mat-label>Quantity</mat-label>
+                                        <input matInput placeholder="Quantity" required formControlName="quantity">
+                                    </mat-form-field>
+                                    <div *ngIf="quotationForm.controls.quantity.invalid && (quotationForm.controls.quantity.dirty || quotationForm.controls.quantity.touched || submit_quotation)"
+                                        class="">
+                                        <p style="color: red;" *ngIf="quotationForm.controls.quantity.errors.required">
+                                            Please enter quantity
+                                        </p>
+
+                                        <p style="color: red;"*ngIf="quotationForm.controls.quantity?.errors?.pattern">
+                                         Enter numbers only</p>
+                                    </div>
+                                </div>
+                            </div> -->
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <mat-form-field appearance="">
+                                        <mat-label>Estimated Budget</mat-label>
+                                        <input matInput placeholder="SAR500" required
+                                            formControlName="estimated_budget">
+                                    </mat-form-field>
+                                    <div *ngIf="quotationForm.controls.estimated_budget.invalid && (quotationForm.controls.estimated_budget.dirty || quotationForm.controls.estimated_budget.touched || submit_quotation)"
+                                        class="">
+                                        <p style="color: red;"
+                                            *ngIf="quotationForm.controls.estimated_budget.errors.required">
+                                            Please enter estimated budget
+                                        </p>
+
+                                        <p style="color: red;"
+                                            *ngIf="quotationForm.controls.estimated_budget?.errors?.pattern">
+                                            enter numbers only</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <mat-form-field appearance="">
+                                        <mat-label>Description</mat-label>
+                                        <textarea matInput placeholder="Description"
+                                            formControlName="description"></textarea>
+                                    </mat-form-field>
+                                    <div *ngIf="quotationForm.controls.description.invalid && (quotationForm.controls.description.dirty || quotationForm.controls.description.touched || submit_quotation)"
+                                        class="">
+                                        <p style="color: red;"
+                                            *ngIf="quotationForm.controls.description.errors.required">
+                                            Please enter description
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 mt-3" align="center">
+                                <button type="submit" class="btn btn-change-fill" (click)="submitQutation()"
+                                    [disabled]="!quotationForm.valid || !phoneForm.valid">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="quotation-form-modal">
+    <div class="modal" id="bookAptmnt" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title" id="exampleModalLabel">Book Appointment</h2>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="request_summary mb-3">
+                        <h3>Request Summary</h3>
+                        <p>Request ID: {{requestID}}</p>
+                        <!-- <p>Date: 24/05/2021</p> -->
+                        <h4>Subject: {{this.serviceName}}</h4>
+                    </div>
+                    <form [formGroup]="bookForm">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <mat-form-field appearance="">
+                                        <mat-label>Name</mat-label>
+                                        <input matInput placeholder="John doe" formControlName="appName"
+                                            [(ngModel)]="appName" required>
+                                    </mat-form-field>
+                                    <div *ngIf="bookForm.controls.appName.invalid && (bookForm.controls.appName.dirty || bookForm.controls.appName.touched || submit_book)"
+                                        class="">
+                                        <p style="color: red;" *ngIf="bookForm.controls.appName.errors.required">
+                                            Please enter Name
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="col-md-6">
+                            <div class="form-group">
+                                <mat-form-field appearance="">
+                                    <mat-label>Sales Representative</mat-label>
+                                    <input matInput placeholder="Sales Representative" required>
+                                </mat-form-field>
+                            </div>
+                        </div> -->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <mat-form-field>
+                                        <mat-label>Choose Date of Appointment</mat-label>
+                                        <input matInput [matDatepicker]="picker3" [min]="minDate"
+                                            (dateInput)="first($event.value)" formControlName="appDate" placeholder="">
+                                        <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker3></mat-datepicker>
+                                    </mat-form-field>
+
+                                    <div *ngIf="bookForm.controls.appDate.invalid && (bookForm.controls.appDate.dirty || bookForm.controls.appDate.touched || submit_book)"
+                                        class="">
+                                        <p style="color: red;" *ngIf="bookForm.controls.appDate.errors.required">
+                                            Select Date
+                                        </p>
+                                    </div>
+                                    <!-- <mat-form-field>
+                                    <mat-label>Choose End Date</mat-label>
+                                    <input matInput [matDatepicker]="picker1" placeholder=""  formControlName="expected_date">
+                                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker1></mat-datepicker>
+                                </mat-form-field> -->
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <!-- <mat-form-field appearance="">
+                                    <mat-label>Choose Time of Appointment</mat-label>
+                                    <input matTimepicker placeholder="">
+                                    <mat-icon matSuffix>access_time</mat-icon>
+                                </mat-form-field> -->
+                                    <!-- <mat-form-field>
+                                    <mat-label>Choose Time</mat-label>
+                                    <mat-select>
+                                        <mat-option value="5">10:00am</mat-option>
+                                        <mat-option value="6">10.30am</mat-option>
+                                        <mat-option value="6">11.00am</mat-option>
+                                        <mat-option value="6">11.30am</mat-option>
+                                        <mat-option value="6">12.00pm</mat-option>
+                                        <mat-option value="6">12.30pm</mat-option>
+                                    </mat-select>
+                                </mat-form-field> -->
+
+                                    <mat-form-field appearance="">
+                                        <mat-label>Choose Time</mat-label>
+                                        <input matTimepicker placeholder="" (timeInput)="second($event.value)"
+                                            formControlName="appTime">
+                                        <mat-icon matSuffix>access_time</mat-icon>
+                                    </mat-form-field>
+                                    <div *ngIf="bookForm.controls.appTime.invalid && (bookForm.controls.appTime.dirty || bookForm.controls.appTime.touched || submit_book)"
+                                        class="">
+                                        <p style="color: red;" *ngIf="bookForm.controls.appTime.errors.required">
+                                            Please Select Time
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="col-md-6">
+                            <div class="form-group">
+                                <mat-form-field appearance="">
+                                    <mat-label>Subject</mat-label>
+                                    <input matInput placeholder="Subject" formControlName="appSubject" required>
+                                </mat-form-field>
+                                <div *ngIf="bookForm.controls.appSubject.invalid && (bookForm.controls.appSubject.dirty || bookForm.controls.appSubject.touched || submit_book)"
+                                class="">
+                                <p style="color: red;"
+                                    *ngIf="bookForm.controls.appSubject.errors.required">
+                                    Please Enter Subject
+                                </p>
+                                </div>
+                            </div>
+                        </div> -->
+                            <!-- <div class="col-md-6">
+                            <div class="form-group">
+                                <mat-form-field appearance="">
+                                    <mat-label>Purpose</mat-label>
+                                    <input matInput placeholder="Purpose" required>
+                                </mat-form-field>
+                            </div>
+                        </div> -->
+                            <!-- <div class="col-md-6">
+                            <div class="form-group">
+                                <mat-form-field appearance="">
+                                    <mat-label>Service Detail</mat-label>
+                                    <input matInput placeholder="Service Detail" required>
+                                </mat-form-field>
+                            </div>
+                        </div> -->
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <mat-form-field appearance="">
+                                        <mat-label>Location</mat-label>
+                                        <input matInput placeholder="Location" formControlName="appLocation" required>
+                                    </mat-form-field>
+                                    <div *ngIf="bookForm.controls.appLocation.invalid && (bookForm.controls.appLocation.dirty || bookForm.controls.appLocation.touched || submit_book)"
+                                        class="">
+                                        <p style="color: red;" *ngIf="bookForm.controls.appLocation.errors.required">
+                                            Please Enter Location
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <mat-form-field appearance="">
+                                        <mat-label>Request Detail</mat-label>
+                                        <textarea matInput placeholder="Service Detail" formControlName="appDetail"
+                                            required></textarea>
+                                        <!-- <input matInput placeholder="Service Detail" formControlName="appDetail" required> -->
+                                    </mat-form-field>
+                                    <div *ngIf="bookForm.controls.appDetail.invalid && (bookForm.controls.appDetail.dirty || bookForm.controls.appDetail.touched || submit_book)"
+                                        class="">
+                                        <p style="color: red;" *ngIf="bookForm.controls.appDetail.errors.required">
+                                            Please Enter Detail
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 mt-3" align="center">
+                                <button type="submit" (click)="bookAppointment()" class="btn btn-change-fill"
+                                    [disabled]="!bookForm.valid" data-dismiss="modal">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

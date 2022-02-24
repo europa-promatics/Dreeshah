@@ -1,0 +1,286 @@
+<app-header></app-header>
+<section class="common_image_section page_headrer_wrkshop">
+    <div class="container">
+        <div class="page_head_wrap">
+            <h2 class="aboutus_head">Service Detail</h2>
+            <p class="page_head">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            </p>
+        </div>
+    </div>
+</section>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb mb-0">
+        <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page"><a routerLink="/services">Services</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Service Detail</li>
+    </ol>
+</nav>
+
+    <div class="service-details-n-wrp">
+        <div class="container-fluid pl-0">
+            <div class="row">
+                <div class="col-md-9">
+                    <section class="her_sldr_don">
+                        <div class="hero_carosel">
+                            <owl-carousel-o [options]="heroOpt" *ngIf="service_data">
+                                <ng-template carouselSlide>
+                                    <div class="hero-img">
+                                        <img src="{{image_path}}{{service_data.service_image}}" alt="">
+                                    </div>
+                                </ng-template>
+                                <!-- <ng-template carouselSlide *ngFor="let img of service_data.related_images">
+									<div class="hero-img">
+										<img src="{{image_path}}{{img.name}}" alt="">  
+									</div>
+								</ng-template> -->
+                                <!-- <ng-template carouselSlide>
+									<div class="hero-img">
+										<img src="assets/imgs/bnr2.jpg" alt="">  
+									</div>
+								</ng-template>
+								<ng-template carouselSlide>
+									<div class="hero-img">
+										<img src="assets/imgs/bnr1.jpg" alt="">  
+									</div>
+								</ng-template> -->
+                            </owl-carousel-o>
+                        </div>
+                    </section>
+                </div>
+                <div class="col-md-3">
+                    <div class="lightbox-prof-info service-meta-data">
+                        <div class="card border-none">
+                            <div class="card-header">
+                                <div class="lightbox-prof-infor-flex">
+                                    <div class="lightbox-avatar-img">
+                                         <img *ngIf="!service_data.professional_id.profile_image"
+                                            src="assets/imgs/no-profile.webp" class="img-fluid">
+                                        <img *ngIf="service_data.professional_id.profile_image"
+                                            src="{{profile_image_path}}{{service_data.professional_id.profile_image}}"
+                                            class="img-fluid"> 
+                                        <!-- <img src="https://www.efilecabinet.com/wp-content/uploads/2019/05/g2-testimonial-male.jpg"
+                                            class="img-fluid" alt="img"> -->
+                                    </div>
+                                    <div class="lightbox-prof-info-content">
+                                        <p>{{service_data?.professional_id.first_name | titlecase}}
+                                            {{service_data?.professional_id.first_name | titlecase}}</p>
+                                        <p>{{service_data?.city}}, {{country_name ? country_name : ''}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body p-0 services-details-card">
+                                <div class="services--info">
+                                    <!-- 	<p>Asian Kitchen</p> -->
+                                    <div class="web-serv-d-name">
+                                        <h1>{{service_data?.service_name | titlecase}}</h1>
+                                    </div>
+                                    <p>{{service_data?.service_sub_category.name}}</p>
+                                </div>
+                                <div class="article">
+                                    <p>{{service_data?.service_description}} </p>
+
+                                </div>
+                                <div class="services--other-info">
+                                    <div>
+                                        <h3>Areas Covered</h3>
+                                        <p>
+                                            <span class="city-pill"><i
+                                                    class="fa fa-map-marker-alt mr-1"></i>{{service_data?.area_covered[0]}} ,
+                                                    {{service_data?.country[0]}}</span>
+                                            <!-- <span class="city-pill"><i class="fa fa-map-marker-alt mr-1"></i>Bengaluru</span>, 
+                                            <span class="city-pill"><i class="fa fa-map-marker-alt mr-1"></i>Maharashtra</span>, 
+                                            <span class="city-pill"><i class="fa fa-map-marker-alt mr-1"></i>Gujarat</span>, 
+                                            <span class="city-pill"><i class="fa fa-map-marker-alt mr-1"></i>Pune</span> -->
+                                        </p>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center width-50">
+                                        <div class="lightbox-prof-info-content">
+                                            <h3>Price</h3>
+                                            <p><span>${{service_data.price}}</span><span></span></p>
+                                        </div>
+                                        <div class="lightbox-prof-info-content">
+                                            <h3>Duration</h3>
+                                            <p>{{service_data.duration}} Days</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="lightbox-prof-info">
+                                    <div class="other-photos-wrapper">
+                                        <div class="services--other-info">
+                                            <h3>Related Photos</h3>
+                                        </div>
+                                        <div class="lightbox-other-photos d-flex">
+                                            <!-- {{items1 | json}} -->
+                                            <!-- <div *ngFor="let item of items1; index as i">
+                                                <div class="servc_dtl img-wrapper">
+                                                    <img [lightbox]="i" [src]="item.data.thumb" class="img-fluid"
+                                                        [gallery]="'anotherLightbox'">
+                                                </div>
+                                            </div> -->
+                                            <img src="https://developers.promaticstechnologies.com/dreeshah_apis/public/ProfessionalServices/{{service_data.related_images[0].image_name}}">
+                                        </div>
+                                    </div>
+                                    <div class="other-photos-wrapper" *ngIf="service_data?.other_images.length > 0">
+                                        <div class="services--other-info">
+                                            <h3>Other Photos</h3>
+                                        </div>
+                                        <div class="lightbox-other-photos d-flex">
+                                            <!-- <div *ngFor="let item of items2; index as i"> -->
+                                                <!-- <div class="servc_dtl img-wrapper">
+                                                    <img [lightbox]="i" [src]="item.data.thumb" class="img-fluid"
+                                                        [gallery]="'anotherLightbox1'">
+                                                </div> -->
+                                                
+                                                <img src="https://developers.promaticstechnologies.com/dreeshah_apis/public/ProfessionalServices/{{service_data.other_images[0].image_name}}">
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="other-photoss-wrapper">
+                                        <!-- <div class="photo-ques">
+											<h3 class="header-6">This photo has no questions</h3>
+										</div> -->
+                                        <div class="quest-btn text-center mt-2">
+                                            <button class="btn btn-change-fill" data-target="#QuotationForm"
+                                                data-toggle="modal">Get Instant Quotation</button>
+                                            <!-- <p class="text-center mt-2">Have a question about this photo? Ask our community.</p> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<app-footer></app-footer>
+<div class="quotation-form-modal">
+    <div class="modal" id="QuotationForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title" id="exampleModalLabel">Get Quotation</h2>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <mat-form-field appearance="">
+                                    <mat-label>Name</mat-label>
+                                    <input matInput placeholder="John doe" required>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <mat-form-field appearance="">
+                                    <mat-label>Email</mat-label>
+                                    <input matInput placeholder="Johndoe@gmail.com" required>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <mat-form-field appearance="">
+                                    <mat-label>Phone Number</mat-label>
+                                    <input matInput placeholder="9876520510" required>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <mat-form-field appearance="">
+                                    <mat-label>Quotation Ref</mat-label>
+                                    <input matInput placeholder="Quotation Ref" required>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <mat-form-field appearance="">
+                                    <mat-label>Date and time</mat-label>
+                                    <input matInput value="21-Dec-2020 11:53pm">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <mat-form-field appearance="">
+                                    <mat-label>Sales Representative</mat-label>
+                                    <input matInput placeholder="Sales Representative" required>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <mat-form-field appearance="">
+                                    <mat-label>Service Name</mat-label>
+                                    <input matInput placeholder="Service Name" required>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <mat-form-field appearance="">
+                                    <mat-label>Location</mat-label>
+                                    <input matInput placeholder="Location" required>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <mat-form-field appearance="">
+                                    <mat-label>Service Number</mat-label>
+                                    <input matInput placeholder="Service Number" required>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <mat-form-field appearance="">
+                                    <mat-label>Quantity</mat-label>
+                                    <input matInput placeholder="Quantity" required>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <mat-form-field appearance="">
+                                    <mat-label>Expected Date of Service</mat-label>
+                                    <input matInput [matDatepicker]="picker">
+                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker></mat-datepicker>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <mat-form-field appearance="">
+                                    <mat-label>Estimated Budget</mat-label>
+                                    <input matInput placeholder="$500" required>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <mat-form-field appearance="">
+                                    <mat-label>Description</mat-label>
+                                    <textarea matInput placeholder="Description"></textarea>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-12 mt-3" align="center">
+                            <button type="submit" class="btn btn-change-fill" data-dismiss="modal">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

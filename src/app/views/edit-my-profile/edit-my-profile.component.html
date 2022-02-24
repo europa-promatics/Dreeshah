@@ -1,0 +1,156 @@
+<!--<app-db-header></app-db-header>-->
+<app-seller-header></app-seller-header>
+<section class="usre-edit-profile-wrapper">
+	<div class="custom-container d-flex">
+		<app-sidebar></app-sidebar>
+		<div class="main-wrap">
+			<div class="card">
+				<div class="card-body">
+					<div class="row">
+						<div class="myprofile-container">
+							<div class="col-md-8 offset-md-2">
+								<div class="personal-info-header  toggle-flex profile-section-heading mt-3 d-flex">
+									<div>
+										<h1>Edit Information</h1>
+									</div>
+									<!-- <mat-slide-toggle>Slide me!</mat-slide-toggle> -->
+								</div>
+								<div class="profile-info-section">
+									<div class="profile-picture">
+										<img *ngIf="!user_image && !profile_img" src="assets/imgs/no-profile.webp" alt="image" class="img-fluid">
+										<img *ngIf="user_image && !profile_img" src="{{image_path}}{{user_image}}" alt="image" class="img-fluid">
+										<img *ngIf="profile_img" [src]="profile_img" alt="image" class="img-fluid">
+	
+										<div class="change-prof-image">
+											<label>
+												<span class="btn btn-change-fill mt-2">
+													<i class="fa fa-image"></i> Change Picture<input type="file"
+														style="display: none;" name="prof-image" (change)="onFileChange($event)" accept="image/jpeg,image/jpg,image/png,image/gif"></span>
+											</label>
+										</div>
+										<!-- <label>
+											<span class="btn btn-change-fill">
+												<i class="fa fa-image"></i>
+												<input type="file" style="display: none;" name="prof-image" (change)="onFileChange($event)">
+											</span>
+										</label> -->
+									</div>
+									<div class="personal-info-section">
+										<div class="personal-info-header">
+											<h1>Personal Information</h1>
+										</div>
+										<div class="personal-info-form">
+											<div class="form-box" *ngIf="userDetails">
+												<form class="form-horizontal" method="post" action=""
+													[formGroup]="ProfileFormGroup" id="companydetails"
+													enctype="multipart/form-data">
+													<div class="form-group">
+														<div class="onOffswitch-flex">
+														</div>
+														<mat-form-field appearance="">
+															<mat-label>First Name</mat-label>
+															<input matInput placeholder="Grace" required
+																formControlName="first_name">
+														</mat-form-field>
+														<div *ngIf="ProfileFormGroup.controls.first_name.invalid && (ProfileFormGroup.controls.first_name.dirty || ProfileFormGroup.controls.first_name.touched || save)"
+															class="">
+															<mat-error
+																*ngIf="ProfileFormGroup.controls.first_name.errors.required">
+																First Name is required
+															</mat-error>
+															<mat-error
+																*ngIf="ProfileFormGroup.controls.first_name.errors.pattern">
+																Please enter alphabets only
+															</mat-error>
+														</div>
+													</div>
+													<div class="form-group">
+														<div class="onOffswitch-flex">
+														</div>
+														<mat-form-field appearance="">
+															<mat-label>Last Name</mat-label>
+															<input matInput placeholder="Lawerence" required
+																formControlName="last_name">
+														</mat-form-field>
+														<div *ngIf="ProfileFormGroup.controls.last_name.invalid && (ProfileFormGroup.controls.last_name.dirty || ProfileFormGroup.controls.last_name.touched || save)"
+															class="">
+															<mat-error
+																*ngIf="ProfileFormGroup.controls.last_name.errors.required">
+																Last Name is required
+															</mat-error>
+															<mat-error
+																*ngIf="ProfileFormGroup.controls.last_name.errors.pattern">
+																Please enter alphabets only
+															</mat-error>
+														</div>
+													</div>
+													<div class="row">
+														<div class="col-md-6">
+															<div class="form-group">
+																<div class="onOffswitch-flex">
+
+																</div>
+																<mat-form-field appearance="" >
+																	<mat-label>Email</mat-label>
+																	<input matInput readonly="true"
+																		placeholder="Gracelawerence@gmail.com" required
+																		formControlName="email">
+																</mat-form-field>
+																<div *ngIf="ProfileFormGroup.controls.email.invalid && (ProfileFormGroup.controls.email.dirty || ProfileFormGroup.controls.email.touched || save)"
+																	class="">
+																	<mat-error
+																		*ngIf="ProfileFormGroup.controls.email.errors.required">
+																		Email is required
+																	</mat-error>
+																	<mat-error
+																		*ngIf="ProfileFormGroup.controls.email.errors.pattern">
+																		Please enter valid email
+																	</mat-error>
+																</div>
+															</div>
+														</div>
+														<div class="col-md-6"  *ngIf="userDetails?.user_type != 'professional'">
+															<div class="form-group">
+																<div class="onOffswitch-flex">
+																</div>
+																<mat-form-field appearance="">
+																	<mat-label>Phone Number</mat-label>
+																	<input matInput  type="text"
+																		
+																		formControlName="phone_number" (keypress)="isNumberKey($event)">
+																</mat-form-field>
+																<div *ngIf="ProfileFormGroup.controls.phone_number.invalid && (ProfileFormGroup.controls.phone_number.dirty || ProfileFormGroup.controls.phone_number.touched || save)"
+																	class="">
+																	<mat-error
+																		*ngIf="ProfileFormGroup.controls.phone_number.errors.required">
+																		Please enter phone number
+																	</mat-error>
+																	<mat-error
+																		*ngIf="ProfileFormGroup.controls.phone_number?.errors?.pattern || ProfileFormGroup.controls.phone_number?.errors?.minlength || ProfileFormGroup.controls.phone_number?.errors?.maxlength">
+																		Please enter valid phone
+																		number  
+																	</mat-error>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="submit-btn" align="center">
+														<button type="submit"
+															class="btn btn-change-fill" (click)="uploadProfile()">Submit</button>
+													</div>
+												</form>
+											</div>
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</section>
+<app-footer></app-footer>

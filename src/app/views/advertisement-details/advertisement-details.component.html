@@ -1,0 +1,289 @@
+<app-seller-header></app-seller-header>
+<div class="seller-cr-ordr-mgmt-wrpr">
+    <div class="custom-container d-flex">
+        <app-seller-sidebar></app-seller-sidebar>
+        <div class="main-wrap">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1>Client Details</h1>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="cr-ordr-frm">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <form [formGroup]="adForm">
+                                            <div class="form-group">
+                                                <mat-form-field appearance="">
+                                                    <mat-label>Client Name</mat-label>
+                                                    <input matInput placeholder="Client Name" 
+                                                     formControlName="sname">
+                                                </mat-form-field>
+                                                <p style="color: red;" *ngIf="adForm.get('sname').touched && adForm.get('sname').errors?.required ">Please provide client's name </p>
+                                                <p style="color: red;" *ngIf="adForm.get('sname').touched && adForm.get('sname').errors?.pattern">Please Enter Alphabets Only </p>
+                                               
+                                            </div>
+                                            <div class="form-group">
+                                                <mat-form-field appearance="">
+                                                    <mat-label>Email</mat-label>
+                                                    <input matInput placeholder="Email Address" 
+                                                    formControlName="email">
+                                                </mat-form-field>
+                                                <p style="color: red;" *ngIf="adForm.get('email').touched && adForm.get('email').errors?.required">Please provide client's email </p>
+                                                <p style="color: red;" *ngIf="adForm.get('email').touched && adForm.get('email').errors?.pattern">Please provide a valid client's email </p>
+                                               
+                                            </div>
+                                            <div class="form-group">
+                                                <mat-form-field appearance="">
+                                                    <mat-label>Phone Number</mat-label>
+                                                    <input matInput placeholder="Enter Phone number" 
+                                                    (keypress)="numberOnly($event)" formControlName="phone">
+                                                </mat-form-field>
+                                                <p style="color: red;" *ngIf="adForm.get('phone').touched && adForm.get('phone').errors?.required">Please provide client's phone Number</p>
+                                                <p style="color: red;" *ngIf="adForm.get('phone').touched && adForm.get('phone').errors?.pattern">Please provide a valid phone Number </p>
+
+                                                <p style="color: red"
+                                                *ngIf="!adForm.controls['phone'].hasError('required') && adForm.controls['phone'].hasError('minlength')">
+                                                Phone number should consists of minimum 7 digits.
+                                                </p>
+                                              <p style="color: red" 
+                                              *ngIf=" !adForm.controls['phone' ].hasError('required') &&  adForm.controls['phone'].hasError('maxlength')">
+                                                Phone number be maximum 20 digits long.
+                                              </p>
+                                               
+                                            </div>
+                                            <div class="form-group">
+                                                <mat-form-field appearance="">
+                                                    <mat-label>Domain Name</mat-label>
+                                                    <input matInput placeholder="Enter Domain Name" 
+                                                    formControlName="dname">
+                                                </mat-form-field>
+                                                <p style="color: red;" *ngIf="adForm.get('dname').touched && adForm.get('dname').errors?.required">Please provide client's Domain name</p>
+                                                <p style="color: red;" *ngIf="adForm.get('dname').touched && adForm.get('dname').errors?.pattern">Please provide a valid client's Domain name<br>For eg:placeholder="https://example.com"</p>
+                                            </div>
+                                            <div class="form-group">
+                                                <mat-form-field appearance="">
+                                                    <mat-label>Address</mat-label>
+                                                    <textarea matInput placeholder="Enter Address" 
+                                                    formControlName="address"></textarea>
+                                                </mat-form-field>
+                                                <p style="color: red;" *ngIf="adForm.get('address').touched && adForm.get('address').errors?.required">Please provide client's Address</p>
+                                            </div>
+            
+                                            
+                                            <!-- <div class="service--submt-btn">
+                                                <button class="btn btn-change-fill mr-2" data-toggle="modal" data-target="#exampleModalCenter">Preview</button> 
+                                                <button class="btn btn-change-fill" >Submit</button>
+                                            </div> -->
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <!-- <div class="card"> -->
+                <div class="price-div mb-4">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1>Packages</h1>
+                        </div>
+                        <div class="col-md-4" *ngFor="let plan of plans;let i = index">
+                            <div class="card">
+                                <div class="card-body p-0">
+                                    <div class="pricing-section seller-subscription-plans mt-5">
+                                        <h2 class="text-center">{{plan.title}}</h2>
+                                        <div class="main_div">
+                                            <div class="row justify-content-center membrshp_row text-center">
+                                                <div class="col-md-12">
+                                                    <div class="membrshp_icn">
+                                                    <i class="fas fa-gem"></i>
+                                                    </div>
+                                                    <!-- <p class="amt">item name </p> -->
+                                                    <p class="amt pt-0 pb-4">Duration : {{plan.duration}} monthes</p>
+                                                    
+
+                                                    <div class="product-list__column-category">
+                                                        <ul class="features text-left">
+                                                            <!-- <li><i class="fa fa-check mr-3"></i>ehththy</li> -->
+                                                            <li class="pl-0" *ngFor="let ben of plan.benefits"><i class="fa fa-check mr-3" ></i>{{ben}}</li>
+                                                            <!-- <li class="pl-0"><i class="fa fa-check mr-3"></i>Feature3</li>
+                                                            <li class="pl-0"><i class="fa fa-check mr-3"></i>Feature4</li>
+                                                            <li class="pl-0"><i class="fa fa-check mr-3"></i>Feature5</li> -->
+                                                        </ul>
+                                                    </div>
+
+                                                    <div class="d-flex justify-content-center my-5">
+                                                        <div class="btn-box">
+                                                            <a class="btn btn-change-fill" (click)="selectPackage(plan,i)">Select this Package</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+                                    
+                                            
+                                    </div>
+                                </div>
+                            </div>
+						</div>
+                       
+                        <!-- <div class="col-md-4">
+                            <div class="card">
+                                <div class="card-body p-0">
+                                    <div class="pricing-section seller-subscription-plans mt-5">
+                                        <h2 class="text-center">Package Name</h2>
+                                        <div class="main_div">
+                                            <div class="row justify-content-center membrshp_row text-center">
+                                                <div class="col-md-12">
+                                                    <div class="membrshp_icn">
+                                                    <i class="fas fa-gem"></i>
+                                                    </div>
+                                                    <p class="amt">item name </p>
+                                                    <p class="amt pt-0 pb-4">Duration : 6 Months</p>
+                                                    
+
+                                                    <div class="product-list__column-category">
+                                                        <ul class="features text-left">
+                                                             <li><i class="fa fa-check mr-3"></i>ehththy</li> 
+                                                            <li class="pl-0"><i class="fa fa-check mr-3"></i>Feature2</li>
+                                                            <li class="pl-0"><i class="fa fa-check mr-3"></i>Feature3</li>
+                                                            <li class="pl-0"><i class="fa fa-check mr-3"></i>Feature4</li>
+                                                            <li class="pl-0"><i class="fa fa-check mr-3"></i>Feature5</li>
+                                                        </ul>
+                                                    </div>
+
+                                                    <div class="d-flex justify-content-center my-5">
+                                                        <div class="btn-box">
+                                                            <a class="btn btn-change-fill" >Select this Package</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+                                    
+                                            
+                                    </div>
+                                </div>
+                            </div>
+						</div>
+                        <div class="col-md-4">
+                            <div class="card">
+                                <div class="card-body p-0">
+                                    <div class="pricing-section seller-subscription-plans mt-5">
+                                        <h2 class="text-center">Package Name</h2>
+                                        <div class="main_div">
+                                            <div class="row justify-content-center membrshp_row text-center">
+                                                <div class="col-md-12">
+                                                    <div class="membrshp_icn">
+                                                    <i class="fas fa-gem"></i>
+                                                    </div>
+                                                    <p class="amt">item name </p>
+                                                    <p class="amt pt-0 pb-4">Duration : 6 Months</p>
+                                                    
+
+                                                    <div class="product-list__column-category">
+                                                        <ul class="features text-left">
+                                                             <li><i class="fa fa-check mr-3"></i>ehththy</li>
+                                                            <li class="pl-0"><i class="fa fa-check mr-3"></i>Feature2</li>
+                                                            <li class="pl-0"><i class="fa fa-check mr-3"></i>Feature3</li>
+                                                            <li class="pl-0"><i class="fa fa-check mr-3"></i>Feature4</li>
+                                                            <li class="pl-0"><i class="fa fa-check mr-3"></i>Feature5</li>
+                                                        </ul>
+                                                    </div>
+
+                                                    <div class="d-flex justify-content-center my-5">
+                                                        <div class="btn-box">
+                                                            <a class="btn btn-change-fill" >Select this Package</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+                                    
+                                            
+                                    </div>
+                                </div>
+                            </div>
+						</div> -->
+                    </div>
+                </div>
+                <p *ngIf="this.packageSelected==false" style="color: red;">Please Select a package</p>
+            <!-- </div> -->
+
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Advertisement Details</h1>
+                </div>
+                <div class="col-md-12">
+                    <div class="cr-ordr-frm">
+                        <div class="card">
+                            <div class="card-body">
+                                <form [formGroup]="adForm2">
+                                    <div class="form-group">
+                                        <mat-form-field appearance="">
+                                            <mat-label>Title</mat-label>
+                                            <input matInput placeholder="Enter Title" 
+                                            formControlName="title">
+                                        </mat-form-field>
+                                        <p style="color: red;" *ngIf="adForm2.get('title').touched && adForm2.get('title').errors?.required">Please provide Title</p>
+                                       
+                                    </div>
+                                    <div class="form-group">
+                                        <mat-form-field appearance="">
+                                            <mat-label>Description</mat-label>
+                                            <textarea matInput placeholder="Description"  formControlName="description"></textarea>
+                                        </mat-form-field>
+                                        <p style="color: red;" *ngIf="adForm2.get('description').touched && adForm2.get('description').errors?.required">Please provide Description</p>
+                                    </div>
+                                    <div class="form-group">
+                                        <mat-label>Add Related Photos or Videos</mat-label>
+                                        <ngx-dropzone [accept]="'image/*'"  (change)="onSelect($event)"
+                                            class="margn-top">
+                                            <ngx-dropzone-label>                                                      
+                                                <div class="drp-upld-icn">
+                                                    <i class="fa fa-upload" aria-hidden="true"></i>                                           
+                                                </div>
+                                                <p class="drp-img-lbl">Add Files</p>                                               
+                                                <span style="position: absolute; right: 30px; font-size: 13px; margin-top: 19px;">Max file size: 2MB</span>
+                                                <span style="position: absolute; left: 30px; font-size: 13px;margin-top: 19px;">Resolution:800*600</span>                                                                                                                                                                                                                           
+                                            </ngx-dropzone-label>
+                                            <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview"
+                                                *ngFor="let f of files" [file]="f" [removable]="true"
+                                                (removed)="onRemove(f)">
+                                                <!-- <ngx-dropzone-label><span class="drop-img-lbl">{{ f.name }} ({{ f.type }})</span></ngx-dropzone-label> -->
+                                            </ngx-dropzone-image-preview>
+                                            <!-- <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+                                            <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                                        </ngx-dropzone-preview> -->
+                                        </ngx-dropzone>
+                                        <p style="color: red;" *ngIf="files.length==0 && fileSelected==false">Please add media files</p>
+                                    </div>
+    
+                                    
+                                    <div class="service--submt-btn">
+                                        <!-- <button class="btn btn-change-fill mr-2" data-toggle="modal" data-target="#exampleModalCenter">Preview</button> -->
+                                        <button class="btn btn-change-fill" (click)="submit()">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

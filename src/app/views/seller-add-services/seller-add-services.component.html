@@ -1,0 +1,538 @@
+<app-seller-header></app-seller-header>
+<div class="seller-cr-ordr-mgmt-wrpr">
+    <div class="custom-container d-flex">
+        <app-seller-sidebar></app-seller-sidebar>
+        <div class="main-wrap">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1>Add Service</h1>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="cr-ordr-frm">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <form [formGroup]="formGroup">
+                                            <div class="form-group">
+                                                <mat-form-field appearance="">
+                                                    <mat-label>Service Name</mat-label>
+                                                    <input matInput placeholder="Service Name" 
+                                                        formControlName="service_name">
+                                                </mat-form-field>
+                                                <div *ngIf="formGroup.controls.service_name.invalid && (formGroup.controls.service_name.dirty || formGroup.controls.service_name.touched || submit_button)"
+                                                    class="">
+                                                    <p style="color: red;"
+                                                        *ngIf="formGroup.controls.service_name.errors.required">
+                                                        Service name is required
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                            <div class="ck-editor">
+                                                <label>Description</label>
+                                                <ckeditor [(ngModel)]="service_description" [formControl]="formGroup.controls['service_description']" data="<p>Hello, world!</p>"></ckeditor>
+                                                <p style="color: red;"
+                                                    *ngIf="formGroup.controls['service_description'].errors?.required && ( formGroup.controls['service_description'].touched || submit_button)">
+                                                    Description is Required</p>
+                                            </div>
+                                            </div>
+            
+                                            <!-- <div class="form-group">
+                                                <mat-form-field appearance="">
+                                                    <mat-label>Description</mat-label>
+                                                    <textarea matInput placeholder="Description"
+                                                        formControlName="service_description"></textarea>
+                                                </mat-form-field>
+                                                <div *ngIf="formGroup.controls.service_description.invalid && (formGroup.controls.service_description.dirty || formGroup.controls.service_description.touched || submit_button)"
+                                                    class="">
+                                                    <p style="color: red;"
+                                                        *ngIf="formGroup.controls.service_description.errors.required">
+                                                        Service description is required
+                                                    </p>
+                                                </div>
+                                            </div> -->
+                                            <!-- <div class="form-group">
+                                                <mat-form-field class="example-chip-list">
+                                                    <mat-label>Areas Covered</mat-label>
+                                                    <mat-chip-list #chipList aria-label="Fruit selection">
+                                                        <mat-chip *ngFor="let fruit of fruits" [selectable]="selectable"
+                                                            [removable]="removable" (removed)="remove(fruit)">
+                                                            {{fruit}}
+                                                            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                                                        </mat-chip>
+                                                        <input placeholder="Add More..." #fruitInput
+                                                            [formControl]="fruitCtrl" [matAutocomplete]="auto"
+                                                            [matChipInputFor]="chipList"
+                                                            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                                            (matChipInputTokenEnd)="add($event)">
+                                                    </mat-chip-list>
+                                                    <mat-autocomplete #auto="matAutocomplete"
+                                                        (optionSelected)="selected($event)">
+                                                        <mat-option *ngFor="let fruit of filteredFruits | async"
+                                                            [value]="fruit">
+                                                            {{fruit}}
+                                                        </mat-option>
+                                                    </mat-autocomplete>
+                                                </mat-form-field>
+                                            </div> -->
+                                            <!-- <div class="form-group">
+                                                <mat-form-field>
+                                                    <mat-label>Select Country</mat-label>
+                                                    <mat-select formControlName="country" name="service_country"
+                                                        (selectionChange)="getCities($event.value)">
+                                                        <mat-option *ngFor="let country of countries"
+                                                            [value]="country.isoCode">
+                                                            {{country.name}}
+                                                        </mat-option>
+                                                    </mat-select>
+                                                </mat-form-field>
+                                                <div *ngIf="formGroup.controls.country.invalid && (formGroup.controls.country.dirty || formGroup.controls.country.touched || submit_button)"
+                                                    class="">
+                                                    <p style="color: red;"
+                                                        *ngIf="formGroup.controls.country.errors.required">
+                                                        Country is required
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                
+                                                <ng-select [multiple]="true" formControlName="city"
+                                                (change)="areaCovered($event)" placeholder="Area Covered">
+                                                    <ng-option *ngFor="let city of cities"
+                                                        [value]="city.name">
+                                                        {{city.name}}</ng-option>
+                                                </ng-select>
+                                               
+                                                <div *ngIf="formGroup.controls.city.invalid && (formGroup.controls.city.dirty || formGroup.controls.city.touched || submit_button)"
+                                                    class="">
+                                                    <p style="color: red;"
+                                                        *ngIf="formGroup.controls.city.errors.required">
+                                                        Area Covered is Required
+                                                    </p>
+                                                </div> 
+                                            </div> -->
+
+                                            <div class="form-group">
+                                                <ng-select [multiple]="true" formControlName="issuedInCountry"
+                                                    (change)="getCities($event)" placeholder="Select Country" >
+                                                    <ng-option *ngFor="let country of countries" [value]="country.isoCode">
+                                                        {{country.name}}
+                                                    </ng-option>
+                                                </ng-select>
+                                                <div *ngIf="formGroup.controls.issuedInCountry.invalid && (formGroup.controls.issuedInCountry.dirty || formGroup.controls.issuedInCountry.touched || submit_button)"
+                                                    class="">
+                                                    <p style="color: red;"
+                                                        *ngIf="formGroup.controls.issuedInCountry.errors.required">
+                                                        Country is required
+                                                    </p>
+                                                </div>
+            
+                                                <ng-select [multiple]="true" formControlName="issuedIncities" 
+                                                    
+                                                    placeholder="Area Covered">
+                                                    <ng-option *ngFor="let city of cities" [value]="city.name">
+                                                        {{city.name}}
+                                                    </ng-option>
+                                                </ng-select>
+                                                <div *ngIf="formGroup.controls.issuedIncities.invalid && (formGroup.controls.issuedIncities.dirty || formGroup.controls.issuedIncities.touched || submit_button)"
+                                                    class="">
+                                                    <p style="color: red;"
+                                                        *ngIf="formGroup.controls.issuedIncities.errors.required">
+                                                        Area Covered is required
+                                                    </p>
+                                                </div>
+
+                                               
+                                               
+                                            </div>
+
+                                            <mat-form-field appearance="">
+                                                <mat-label>Project Cost in AED</mat-label>
+                                                <mat-select formControlName="projectCost" >
+                                                    <mat-option value="Up to 10,000 AED">Up to 10,000 AED</mat-option>
+                                                    <mat-option value="Up to 50,000 AED">Up to 50,000 AED</mat-option>
+                                                    <mat-option value="Up to 100,000 AED">Up to 100,000 AED</mat-option>
+                                                    <mat-option value="Up to 500,000 AED">Up to 500,000 AED</mat-option>
+                                                    <mat-option value="Above 500,000 AED">Above 500,000 AED</mat-option>
+                                                    
+                                                  </mat-select>
+                                                <!-- <input (keypress)="numberOnly($event)" maxlength="7"
+                                                    formControlName="projectCost" matInput placeholder=""
+                                                    value="1000"> -->
+                                            </mat-form-field>
+                                            <!-- <div *ngIf="formGroup.controls.projectCost.invalid && (formGroup.controls.projectCost.dirty || formGroup.controls.projectCost.touched || submit)"
+                                                class="">
+                                                <mat-error
+                                                    *ngIf="formGroup.controls.projectCost.errors.required">
+                                                    Please Enter Project Cost 
+                                                </mat-error>
+                                            </div> -->
+                                            <!-- <div class="form-group signup-form">
+
+                                               
+                                                <tag-input formControlName="keyWords" [(ngModel)]='areaCoveredArr'
+                                                    maxItems="10" class="keywords--chips form-control height-unset">
+                                                </tag-input>
+                                            </div> -->
+
+                                            <div class="form-group">
+                                                <ng-select [multiple]="true" formControlName="service_category"
+                                                    (change)="getSubCat($event)" placeholder="Select Service Category">
+                                                    <ng-option *ngFor="let category of catArr"
+                                                    [value]="category._id">
+                                                    {{category.name}}
+                                                    </ng-option>
+                                                </ng-select>
+                                                <div *ngIf="formGroup.controls.service_category.invalid && (formGroup.controls.service_category.dirty || formGroup.controls.service_category.touched || submit_button)"
+                                                    class="">
+                                                    <p style="color: red;"
+                                                        *ngIf="formGroup.controls.service_category.errors.required">
+                                                        Service Category is required
+                                                    </p>
+                                                </div>
+
+                                                <ng-select [multiple]="true" formControlName="service_sub_category"
+                                                    (change)="getProject($event)" placeholder="Select Service Sub Category">
+                                                    <ng-option *ngFor="let SubCat of subCateArr"
+                                                    [value]="SubCat._id">
+                                                    {{SubCat.name}}
+                                                    </ng-option>
+                                            </ng-select>
+                                                <!-- <mat-form-field>
+                                                    <mat-label>Select Service Category</mat-label>
+                                                    <mat-select (selectionChange)="getSubCat($event.value)"
+                                                        formControlName="service_category"
+                                                        placeholder="Select Service Category" name="service_category">
+                                                        <mat-option *ngFor="let category of categiryArr"
+                                                            [value]="category._id">
+                                                            {{category.name}}
+                                                        </mat-option>
+                                                    </mat-select>
+                                                </mat-form-field> -->
+                                                <div *ngIf="formGroup.controls.service_sub_category.invalid && (formGroup.controls.service_sub_category.dirty || formGroup.controls.service_sub_category.touched || submit_button)"
+                                                    class="">
+                                                    <p style="color: red;"
+                                                        *ngIf="formGroup.controls.service_sub_category.errors.required">
+                                                        Service Category is required
+                                                    </p>
+                                                </div>
+                                            </div>
+                                           
+                                            <!-- <div class="form-group">
+                                                
+                                                <mat-form-field>
+                                                    <mat-label>Select Service Sub Category</mat-label>
+                                                    <mat-select (selectionChange)="getProject($event)"
+                                                        placeholder="Select Service Sub-category"
+                                                        formControlName="service_sub_category" name="service_category">
+                                                        <mat-option *ngFor="let SubCat of subCatArr"
+                                                            [value]="SubCat._id">
+                                                            {{SubCat.name}}
+                                                        </mat-option>
+                                                    </mat-select>
+                                                </mat-form-field>
+                                                <div *ngIf="formGroup.controls.service_sub_category.invalid && (formGroup.controls.service_sub_category.dirty || formGroup.controls.service_sub_category.touched || submit_button)"
+                                                    class="">
+                                                    <p style="color: red;"
+                                                        *ngIf="formGroup.controls.service_sub_category.errors.required">
+                                                        Service sub category is required
+                                                    </p>
+                                                </div>
+                                            </div> -->
+
+                                            <div class="form-group signup-form">
+                                                <label for="exampleFormControlFile1">Add Service Image</label>
+                                                <input type="file" class="form-control-file" accept=".png, .jpg, .jpeg"
+                                                    formControlName="service_img" id="exampleFormControlFile1"
+                                                    (change)="onFileChange($event)">
+                                            </div>
+                                            <div *ngIf="formGroup.controls.service_img.invalid && (formGroup.controls.service_img.dirty || formGroup.controls.service_img.touched || submit_button)"
+                                                class="">
+                                                <p style="color: red;"
+                                                    *ngIf="formGroup.controls.service_img.errors.required">
+                                                    Please upload Service image
+                                                </p>
+                                            </div>
+                                            <div class="form-group">
+                                                <mat-label>Add Related Photos</mat-label>
+                                                <ngx-dropzone [accept]="'image/*'"  (change)="onSelect($event)"
+                                                    class="margn-top">
+                                                    <ngx-dropzone-label>                                                      
+                                                        <div class="drp-upld-icn">
+                                                            <i class="fa fa-upload" aria-hidden="true"></i>                                           
+                                                        </div>
+                                                        <p class="drp-img-lbl">Add Files</p>                                               
+                                                        <span style="position: absolute; right: 30px; font-size: 13px; margin-top: 19px;">Max file size: 2MB</span>
+                                                        <span style="position: absolute; left: 30px; font-size: 13px;margin-top: 19px;">Resolution:800*600</span>                                                                                                                                                                                                                           
+                                                    </ngx-dropzone-label>
+                                                    <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview"
+                                                        *ngFor="let f of files" [file]="f" [removable]="true"
+                                                        (removed)="onRemove(f)">
+                                                        <!-- <ngx-dropzone-label><span class="drop-img-lbl">{{ f.name }} ({{ f.type }})</span></ngx-dropzone-label> -->
+                                                    </ngx-dropzone-image-preview>
+                                                    <!-- <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+                                        			<ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                                        		</ngx-dropzone-preview> -->
+                                                </ngx-dropzone>
+                                            </div>
+                                            <div class="form-group">
+                                                <mat-label>Add Other Photos</mat-label>
+                                                <ngx-dropzone [accept]="'image/*'" (change)="onSelect1($event)"
+                                                    class="margn-top">
+                                                    <ngx-dropzone-label>
+                                                        <div class="drp-upld-icn">
+                                                            <i class="fa fa-upload" aria-hidden="true"></i>
+                                                        </div>
+                                                        <p class="drp-img-lbl">Add Files</p>
+                                                        <span style="position: absolute; right: 30px; font-size: 13px;margin-top: 19px;">Max file size: 2MB</span>
+                                                        <span style="position: absolute; left: 30px; font-size: 13px;margin-top: 19px;">Resolution:800*600</span>
+                                                    </ngx-dropzone-label>
+                                                    <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview"
+                                                        *ngFor="let f of files1" [file]="f" [removable]="true"
+                                                        (removed)="onRemove1(f)">
+                                                        <!-- <ngx-dropzone-label><span class="drop-img-lbl">{{ f.name }} ({{ f.type }})</span></ngx-dropzone-label> -->
+                                                    </ngx-dropzone-image-preview> 
+
+                                                </ngx-dropzone>
+                                            </div>
+                                            <div class="form-group">
+                                                <mat-form-field appearance="">
+                                                    <mat-label>Price </mat-label>
+                                                    <input matInput placeholder="Price in AED" formControlName="service_price" (keypress)="numberOnly($event)">
+                                                </mat-form-field>
+                                                <div *ngIf="formGroup.controls.service_price.invalid && (formGroup.controls.service_price.dirty || formGroup.controls.service_price.touched || submit_button)"
+                                                    class="">
+                                                    <p style="color: red;"
+                                                        *ngIf="formGroup.controls.service_price.errors.required">
+                                                        Please add service price
+                                                    </p>
+                                                    <!-- <p style="color: red;"
+                                                        *ngIf="formGroup.controls.service_price.errors.pattern">
+                                                        Please add digit only
+                                                    </p> -->
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <mat-form-field appearance="">
+                                                    <mat-label>Duration </mat-label>
+                                                    <input matInput placeholder="Duration"
+                                                        formControlName="service_duration" >
+                                                </mat-form-field>
+                                                <div *ngIf="formGroup.controls.service_duration.invalid && (formGroup.controls.service_duration.dirty || formGroup.controls.service_duration.touched || submit_button)"
+                                                    class="">
+                                                    <p style="color: red;"
+                                                        *ngIf="formGroup.controls.service_duration.errors.required">
+                                                        Please add service duration
+                                                    </p>
+                                                    <p style="color: red;"
+                                                        *ngIf="formGroup.controls.service_duration.errors.pattern">
+                                                        Please add digit only
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <mat-form-field>
+                                                    <mat-label>Choose an option</mat-label>
+                                                    <mat-select>
+                                                      <mat-option value="option1">Days</mat-option>
+                                                      <mat-option value="option2">Weeks</mat-option>
+                                                      <mat-option value="option3">Months</mat-option>
+                                                      <mat-option value="option3">Years</mat-option>
+                                                    </mat-select>
+                                                  </mat-form-field>
+                                            </div>
+                                            <!-- <div class="form-group signup-form">
+                                                <label>Add Tags (Separated by comma. Eg-Demo1,Demo2)</label>
+                                                <tag-input formControlName="keyWords" [(ngModel)]='items'
+                                                    maxItems="10" class="keywords--chips form-control height-unset"
+                                                    [placeholder]="">
+                                                </tag-input>
+                                            </div> -->
+                                            <div class="form-group">
+                                                <label>Add Projects</label>
+                                                <div class="row">
+                                                    <div id="page-content-wrapper">
+                                                        <div class="row">
+                                                            <div class="col-md-4">
+                                                                <div class="added-proje-wrp mb-3">
+                                                                    <div class="added-proj-img text-center">
+                                                                        <a [routerLink]="['/sellerProjects']" >
+                                                                            <div class="sign_txt_wrp">
+                                                                                <i class="fa fa-plus"></i>
+                                                                                <h3 class="text-center">New Project</h3>
+                                                                            </div>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                             <div class="col-md-4" *ngFor="let project of projects;">
+                                                                <div class="added-proj-wrp">
+                                                                    <div class="added-proj-img">
+                                                                        <img src="{{image_path}}{{project.project_images[0].name}}"
+                                                                            alt="img" class="img-fluid">
+                                                                        <div class="select-proj">
+                                                                            <mat-checkbox #checkBox [value]="project"
+                                                                                (change)="getCheckbox(checkBox)">
+                                                                            </mat-checkbox>
+                                                                        </div>
+
+                                                                        <div class="edit-picture">
+                                                                            <i class="fa fa-pencil"></i>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="project-caption">
+                                                                        <p>{{project.project_name}}</p>
+                                                                        <p>{{project.project_images.length}} photos</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group signup-form">
+                                                <mat-form-field appearence="">
+                                                <mat-label>Add Tags (Separated by comma. Eg-Demo1,Demo2)</mat-label>
+                                                <input matInput placeholder="Separated by comma. Eg-Demo1,Demo2" 
+                                                [(ngModel)]="items">
+                                                <!-- <tag-input formControlName="keyWords" [(ngModel)]='items'
+                                                    maxItems="10" class="keywords--chips form-control height-unset"
+                                                    [placeholder]="">
+                                                </tag-input> -->
+                                            </mat-form-field>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="seller-prod-list-heading signup-form">
+                                                    <label>This Service Will be Visible to</label><br />
+                                                    <mat-checkbox class="example-margin"
+                                                        formControlName="service_visible_professional">
+                                                        Professional
+                                                    </mat-checkbox>
+                                                    <br />
+                                                    <mat-checkbox class="example-margin"
+                                                        formControlName="service_visible_customer">
+                                                        Customer
+                                                    </mat-checkbox>
+                                                    <br />
+                                                </div>
+                                                <!-- <div *ngIf="visible_pro">
+                                                    <p style="color:red ">
+                                                        Please select atleast one option where you want to publish
+                                                    </p>
+                                                </div> -->
+                                            </div>
+
+                                            <div class="form-group">
+                                                <mat-checkbox formControlName="service_checkbox">
+                                                    Accept Terms And Conditions
+                                                </mat-checkbox>
+                                                <div *ngIf="formGroup.controls.service_checkbox.invalid && (formGroup.controls.service_checkbox.dirty || formGroup.controls.service_checkbox.touched || submit_button)"
+                                                class="">
+                                                <p style="color: red;"
+                                                    *ngIf="formGroup.controls.service_checkbox.errors.required">
+                                                    Please Accept Terms and Condition
+                                                </p>
+                                                <!-- <p style="color: red;"
+                                                    *ngIf="formGroup.controls.service_price.errors.pattern">
+                                                    Please add digit only
+                                                </p> -->
+                                            </div>
+                                                <!-- <div *ngIf="visible_pro">
+                                                    <p style="color:red ">
+                                                        Please Accept Terms and Condition
+                                                    </p>
+                                                </div> -->
+
+                                            </div>
+                                            <div class="service--submt-btn" align="center">
+                                                <button class="btn btn-change-fill mr-2" data-toggle="modal" (click)="fun()" data-target="#exampleModalCenter">Preview</button>
+                                                <button class="btn btn-change-fill" (click)="submit()">Submit</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h3 class="modal-title text-center" id="exampleModalLongTitle">Service Preview</h3>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-8 offset-md-2">
+                                    <div class="clearfix">
+                                        <h3 class="float-left"> Service Name</h3>
+                                        <span class="float-right">{{formGroup.value.service_name}}</span>
+                                    </div>
+                                    <div class="clearfix">
+                                        <h3 class="float-left"> Service Description</h3>
+                                        <span class="float-right" [innerHtml]='service_description'></span>
+                                    </div>
+                                    <div class="clearfix">
+                                        <h3 class="float-left">Country</h3>
+                                        <span class="float-right">{{formGroup.value.issuedInCountry}}</span>
+                                    </div>
+                                    <div class="clearfix">
+                                        <h3 class="float-left">Area Covered</h3>
+                                        <span class="float-right">{{formGroup.value.issuedIncities}}</span>
+                                    </div>
+                                    <div class="clearfix">
+                                        <h3 class="float-left">price </h3>
+                                        <span class="float-right">{{formGroup.value.service_price}}</span>
+                                    </div>
+                                
+                                    <div class="clearfix">
+                                        <h3 class="float-left"> Tags</h3>
+                                        <span class="float-right">{{items}}</span>
+                                    </div>
+                                    <div class="clearfix">
+                                        <h3 class="float-left">Service Category</h3>
+                                        <span class="float-right">{{formGroup.value.service_category}}</span>
+                                    </div>
+                                    <div class="clearfix">
+                                        <h3 class="float-left">Service Sub Category</h3>
+                                        <span class="float-right">{{formGroup.value.service_sub_category}}</span>
+                                    </div>
+                                   
+                                    <div class="clearfix">
+                                        <h3 class="float-left">Duration</h3>
+                                        <span class="float-right">{{formGroup.value.service_duration}}</span>
+                                    </div>
+                                    <div class="clearfix">
+                                        <h3 class="float-left">Project Cost</h3>
+                                        <span class="float-right">{{formGroup.value.projectCost}}</span>
+                                    </div>                          
+                                    <div class="clearfix">
+                                        <h3 class="float-left">This Service Will be Visible to</h3>
+                                        <span class="float-right" *ngIf="this.formGroup.value.service_visible_professional === true">{{'Professional'}}</span>
+                                        <span class="float-right" *ngIf="this.formGroup.value.service_visible_customer === true">{{'Customer'}}</span>
+                                    </div>
+                                    <!-- <div class="clearfix">
+                                        <h3 class="float-left">Service Image</h3>
+                                        <img src=" alt="img" class="img-fluid">
+                                    </div> -->
+                                </div>
+                            </div>
+                            
+                          
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

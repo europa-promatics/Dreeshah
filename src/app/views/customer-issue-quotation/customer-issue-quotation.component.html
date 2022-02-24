@@ -1,0 +1,403 @@
+<!--<app-db-header></app-db-header>-->
+<app-seller-header></app-seller-header>
+<div class="dashboard-wrapper">
+	<div class="custom-container d-flex">
+		<app-sidebar></app-sidebar>
+		<div class="main-wrap">
+			<div class="card">
+				<div class="card-body">
+					<div class="row">
+						<div class="col-md-12">	
+							<div class="dashboard-table-heading border-bottom">
+								<h1>Issue Quotation</h1>
+							</div>
+							<div class="quotation-data">
+								<div class="issue-quotation-head">
+									<p class="quotation--text">
+										Service name
+									</p>
+									<div class="quotation-structure" >
+										<ul>
+											<li class="quotation-structure-list">
+												<span class="structure-title">Warrenty</span>:
+												<span class="structure-text">{{detail?.warrenty}}</span>
+											</li>
+											<li class="quotation-structure-list">
+												<span class="structure-title">Offer Validity</span>:
+												<span class="structure-text">{{detail?.offer_validity}}</span>
+											</li>
+											<li class="quotation-structure-list">
+												<span class="structure-title">Price</span>:
+												<span class="structure-text">{{detail?.price}}</span>
+											</li>
+											<li class="quotation-structure-list">
+												<span class="structure-title">Quantity</span>:
+												<span class="structure-text">{{detail?.quantity}}</span>
+											</li>
+											<li class="quotation-structure-list">
+												<span class="structure-title">Vat</span>:
+												<span class="structure-text">{{detail?.vat}}</span>
+											</li>
+										<!-- 	<li class="quotation-structure-list">
+												<span class="structure-title">Payment</span>:
+												<span class="structure-text">lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut</span>
+											</li> -->
+										</ul>
+									</div>										
+								</div>
+							</div>
+							<!-- <div class="row">
+								<div class="col-md-8 offset-md-2">	
+									<div class="quotation-table">
+										<table class="table table-bordered">
+											<tbody  >
+												<tr>
+													<th scope="row">Price </th>
+													<td>{{detail?.price}}</td>
+												</tr>
+												<tr>
+													<th scope="row"> Quantity</th>
+													<td>{{detail?.quantity}}</td>
+												</tr>
+												<tr>
+													<th scope="row">Vat</th>
+													<td>{{detail?.vat}}</td>
+												</tr>
+												
+												
+
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div> -->
+							<div class="quotation--note">
+							<!--	<p class=""><span>Note:</span><span> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+								tempor incididunt </span></p>-->
+							</div>
+							<div class="structure-process">
+								<div class="structure-process-head">
+									<h2>Scope of work</h2>
+								</div>
+								<p class="quotation--text">
+								
+								</p>
+								<div class="process-list">
+									<ul class="quotation-structure-list">
+										<li>
+											<span class="structure-text">{{detail?.scope_of_work}}</span>
+										</li>
+									
+									</ul>
+								</div>
+							</div>
+							<div class="structure-process">
+								<div class="structure-process-head">
+									<h2>Exclusions</h2>
+								</div>
+								<div class="process-list">
+									<ul class="quotation-structure-list">
+										<li>
+											<span class="structure-text">{{detail?.exclusion}}</span>
+										</li>
+									
+									</ul>
+								</div>
+							</div>
+								<div class="structure-process">
+								<div class="structure-process-head">
+									<h2>Dreeshah Terms and Conditions</h2>
+								</div>
+								<div class="process-list">
+									<ul class="quotation-structure-list">
+										<li>
+											<span class="structure-text">{{detail?.dreeshah_terms}}</span>
+										</li>
+										
+									</ul>
+								</div>
+							</div>
+							<div class="structure-process">
+								<div class="structure-process-head">
+									<h2>Terms and Conditions of Professional</h2>
+								</div>
+								<div class="process-list">
+									<ul class="quotation-structure-list">
+										<li>
+											<span class="structure-text">{{detail?.seller_terms}}</span>
+										</li>
+									
+									</ul>
+								</div>
+							</div>
+							<div class="structure-process">
+								<div class="structure-process-head">
+									<h2>Payment Terms</h2>
+								</div>
+								<div class="process-list"  *ngFor="let item of detail.payment_terms;let i=index">
+									<table class="table table-bordered">
+										<tbody  >
+											<tr>
+												<th scope="row">Payment Percentage: </th>
+												<td><span class="structure-text">{{detail?.payment_terms[i].payment_percent}}</span>
+												</td>
+											</tr>
+											<tr>
+												<th scope="row">Start Date:</th>
+												<td><span class="structure-text">{{detail?.payment_terms[i].start_date | date:'mediumDate'}}</span></td>
+											</tr>
+											<tr>
+												<th scope="row">End Date:</th>
+												<td><span class="structure-text">{{detail?.payment_terms[i].end_date | date:'mediumDate'}}</span></td>
+											</tr>
+											
+											
+
+										</tbody>
+									</table>
+			
+								</div>
+							</div>
+							<div class="structure-process">
+								<div class="structure-process-head">
+									<h2>Work Schedule</h2>
+								</div>
+								<div class="process-list" *ngFor="let item of detail.work_schedule;let i=index" >
+									<table class="table table-bordered">
+										<tbody  >
+											<tr>
+												<th scope="row">Module: </th>
+												<td><span class="structure-text">{{detail?.work_schedule[i]?.module}}</span>
+												</td>
+											</tr>
+											<tr>
+												<th scope="row">Description:</th>
+												<td><span class="structure-text">{{detail?.work_schedule[i]?.description}}</span></td>
+											</tr>
+											<tr>
+												<th scope="row">Start Date-End Date:</th>
+												<td><span class="structure-text">{{ detail?.work_schedule[i]?.start_date | date:'mediumDate'}} - {{ detail?.work_schedule[i]?.end_date  | date:'mediumDate'}}</span></td>
+											</tr>
+											
+											
+
+										</tbody>
+									</table>
+
+									
+								</div>
+							</div>
+							<div class="structure-process">
+								<div class="structure-process-head">
+									<h2>No. of Section</h2>
+								</div>
+								<div class="process-list"  *ngFor="let item of detail.workflow;let i=index">
+									<table class="table table-bordered">
+										<tbody>
+											<tr>
+												<th scope="row" colspan="2">Title: {{detail?.workflow[i].title}}</th>
+												<!-- <td><span class="structure-text"></span></td> -->
+											</tr>
+											<!-- <div class=""  >  -->
+												<tr>
+													<th scope="row">Item Name:</th>
+													<th scope="row">Price:</th>
+											    </tr>
+												<tr *ngFor="let value of item.data;let j=index">
+													<td><span class="structure-text">{{detail?.workflow[i].data[j].itemName}}</span></td>
+													
+													<td><span class="structure-text">{{detail?.workflow[i].data[j].price}}</span></td>
+												</tr>
+											 <!-- </div>  -->
+										</tbody>
+									</table>
+								</div>
+							</div>
+
+							<div class="quotation-client-details float-right">
+							<!--	<div class="quotation-detail">
+									<p><span class="structure-title">Name:</span> Sam Architects</p>
+									<p><span class="structure-title">Date:</span> 21-dec-2020</p>
+								</div>-->
+							</div>
+							<div class="btn--box mt-5" align="center" *ngIf="status[0]?.status=='inprogress'" >
+								<a routerLink="/customer-modify-quote/{{quote_id}}" class="btn btn-change-fill">Modify</a>
+								<button class="btn btn-change-fill" (click)="quotationAction()" >Accept</button>
+								<button class="btn btn-change-fill" data-target="#rejectQuotation" data-toggle="modal">Reject</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<app-footer></app-footer>
+
+<!-- <div class="modify-quotation-modal">	
+	<div class="modal fade" id="modifyQuotation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h2 class="modal-title" id="exampleModalLabel">Modify Quotation</h2>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<mat-form-field appearance="">
+									<mat-label>Service Name</mat-label>
+									<input matInput placeholder="Service Name" required value="Outdoor & Garden">
+								</mat-form-field>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<mat-form-field appearance="">
+									<mat-label>Price</mat-label>
+									<input matInput placeholder="Price" required value="$30"> 
+								</mat-form-field>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-group">
+								<mat-form-field appearance="">
+									<mat-label>Quantity</mat-label> 
+									<input matInput placeholder="Quantity" required value="10"> 
+								</mat-form-field>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-12" align="center">
+						<button class="btn btn-change-fill" data-dismiss="modal" data-target="#SuccessModal" data-toggle="modal">Submit</button>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+</div> -->
+
+<div class="modify-quotation-modal">	
+	<div class="modal fade" id="rejectQuotation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h2 class="modal-title" id="exampleModalLabel">Reject Quotation</h2>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="modal-body">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="form-group">
+									<mat-form-field appearance="">
+										<mat-label>Reason to Reject</mat-label>
+										<textarea matInput placeholder= " Type Reason to Reject" name="reject_reason" [formControl]="rejectReasonForm.controls['reject_reason']"></textarea> 
+									</mat-form-field>
+								</div>
+							</div>
+							<div class="col-md-12" align="center">
+								<button class="btn btn-change-fill" data-dismiss="modal" data-target="#SuccessRejectModal" data-toggle="modal" (click)="quotationActionReject()">Submit</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+	<!-- <div class="modify-quotation-modal">	
+		<div class="modal fade" id="SuccessModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<div class="modal-body">
+							<div class="row">
+								<div class="col-md-12">
+									<div class="sign--successful">
+										<i class="fa fa-check-circle"></i>
+									</div>
+									<div class="success-text">
+										<p>
+											Quotation Modified Successfully!
+										</p>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-12" align="center">
+								<div class="btnn--wrapp">
+									<button class="btn btn-change-fill" data-dismiss="modal">Ok</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div> -->
+	<div class="modify-quotation-modal">	
+		<div class="modal fade" id="SuccessRejectModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<div class="modal-body">
+							<div class="row">
+								<div class="col-md-12">
+									<div class="sign--successful">
+										<i class="fa fa-check-circle"></i>
+									</div>
+									<div class="success-text">
+										<p>
+											Quotation Rejected Successfully!
+										</p>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-12" align="center">
+								<div class="btnn--wrapp">
+									<button class="btn btn-change-fill" data-dismiss="modal" (click)="fun()">Ok</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+		<!-- <div class="modify-quotation-modal">	
+		<div class="modal fade" id="SuccessAcceptModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<div class="modal-body">
+							<div class="row">
+								<div class="col-md-12">
+									<div class="sign--successful">
+										<i class="fa fa-check-circle"></i>
+									</div>
+									<div class="success-text">
+										<p>
+											Quotation Accepted Successfully!
+										</p>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-12" align="center">
+								<div class="btnn--wrapp">
+									<button class="btn btn-change-fill" data-dismiss="modal">Ok</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div> -->

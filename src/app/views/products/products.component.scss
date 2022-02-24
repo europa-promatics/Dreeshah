@@ -1,0 +1,35 @@
+::ng-deep {
+         padding:10px;
+  .custom-slider {
+  padding: 0px 29px 0px 10px;
+}
+  .custom-slider .ng5-slider {
+    .ng5-slider-bar {
+      height: 2px;
+
+    }
+
+    .ng5-slider-left-out-selection .ng5-slider-bar {
+      background: #2ecb6f !important;
+      
+    }
+
+    .ng5-slider-right-out-selection .ng5-slider-bar {
+      background: #e74c3c !important;
+    }
+
+    .ng5-slider-selection {
+        background: rgb(255, 230, 0);
+    }
+    .ng5-slider-bar{
+     
+    }
+    .ng5-slider-pointer{
+      background-color: #6a9792;
+         .ng5-slider-active {
+              &::after{
+              background-color: #fff;
+}      }
+    }
+  }
+}  

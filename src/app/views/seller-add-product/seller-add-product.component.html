@@ -1,0 +1,806 @@
+<app-seller-header></app-seller-header>
+<div class="seller-prod-list-wrapper">
+    <div class="custom-container d-flex">
+        <app-seller-sidebar></app-seller-sidebar>
+        <div class="main-wrap">
+            <form [formGroup]="productForm">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1>Add Product</h1>
+                    </div>
+
+                    <div class="col-md-8">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <mat-form-field appearance="">
+                                        <mat-label>Title</mat-label>
+                                        <input matInput placeholder="Title" required
+                                            [formControl]="productForm.controls['title']" [(ngModel)]="title">
+                                    </mat-form-field>
+                                    <p style="color: red; margin-top: -1.25em;"
+                                        *ngIf="productForm.controls['title'].errors?.required && ( productForm.controls['title'].touched || submit_button)">
+                                        Title is Required</p>
+                                </div>
+
+                                <div class="form-group">
+                                    <mat-form-field>
+                                        <mat-label>Select Category</mat-label>
+                                        <mat-select (selectionChange)="getSubCat($event.value)"
+                                            [formControl]="productForm.controls['category']"
+                                            placeholder="Select Category" [(ngModel)]="category" name="category">
+                                            <mat-option *ngFor="let category of categoryData" [value]="category._id">
+                                                {{category.name}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+
+                                    <p style="color: red; margin-top: -1.25em;"
+                                        *ngIf="productForm.controls['category'].errors?.required && ( productForm.controls['category'].touched || submit_button)">
+                                        Category is Required</p>
+                                </div>
+
+                                <div class="form-group">
+
+                                    <mat-form-field>
+                                        <mat-label>Select Sub Category</mat-label>
+                                        <mat-select placeholder="Select  Sub-category"
+                                            [formControl]="productForm.controls['sub_category']"
+                                            [(ngModel)]="sub_category" name="service_category">
+                                            <mat-option *ngFor="let SubCat of ServiceSubCat" [value]="SubCat._id">
+                                                {{SubCat.name}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                    <p style="color: red; margin-top: -1.25em;"
+                                        *ngIf="productForm.controls['sub_category'].errors?.required && ( productForm.controls['sub_category'].touched || submit_button)">
+                                        Sub Category is Required</p>
+                                </div>
+
+
+
+                                <div class="ck-editor">
+                                    <label>Description</label>
+
+                                    <!-- <ckeditor [(ngModel)]="ckedit" required
+                                        [formControl]="productForm.controls['ckedit']" [config]="{ toolbar: [ [ 'Bold', 'Italic','Underline' ] ] ,removePlugins: 'elementspath'}">
+                                           
+                                           
+                                        
+
+                                    </ckeditor> -->
+                                    <ckeditor [(ngModel)]="ckedit" [formControl]="productForm.controls['ckedit']"
+                                        data="<p>Hello, world!</p>"></ckeditor>
+                                    <p style="color: red;"
+                                        *ngIf="productForm.controls['ckedit'].errors?.required && ( productForm.controls['ckedit'].touched || submit_button)">
+                                        Description is Required</p>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="card mt-3">
+                            <div class="card-body">
+                                <div class="dropzone mt-3">
+                                    <div class="media-link d-flex justify-content-between">
+                                        <div>
+                                            <h2>Media</h2>
+                                        </div>
+                                        <a class="theme-link" href="#" data-toggle="modal" data-target="#urlModal"
+                                            aria-haspopup="true" aria-expanded="false" >
+                                            Add Media from URL
+
+                                        </a>
+                                    </div>
+                                    <div class="img-uploader-wrp">
+                                        <div class="img-prnt">
+
+                                            <ngx-dropzone-preview class="drpzne-related" *ngFor="let f of files2">
+                                                <ngx-dropzone-label>
+                                                    <div class="drp-prnt">
+                                                        <img src={{f}} class="img-fluid drp-thumb">
+                                                        <div class="btn btn-round-close"
+                                                            (click)="removeRelatedImage(f)">
+                                                            <div class="remove-badge-box">
+                                                                <ngx-dropzone-remove-badge _ngcontent-prs-c99=""
+                                                                    _nghost-prs-c100="" class="ng-star-inserted">
+                                                                    <svg _ngcontent-prs-c100="">
+                                                                        <line _ngcontent-prs-c100="" x1="0" y1="0"
+                                                                            x2="10" y2="10"></line>
+                                                                        <line _ngcontent-prs-c100="" x1="0" y1="10"
+                                                                            x2="10" y2="0"></line>
+                                                                    </svg>
+                                                                </ngx-dropzone-remove-badge>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </ngx-dropzone-label>
+                                            </ngx-dropzone-preview>
+
+                                        </div>
+                                    </div>
+                                    <ngx-dropzone (change)="onSelect($event)" accept="image/jpeg,image/jpg,image/png,image/gif">
+                                        <ngx-dropzone-label [(ngModel)]="media" required
+                                            [formControl]="productForm.controls['media']">Add Files
+                                        </ngx-dropzone-label>
+                                        <ngx-dropzone-preview *ngFor="let f of files" [removable]="true"
+                                            (removed)="onRemove(f)">
+
+                                            <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                                        </ngx-dropzone-preview>
+
+                                    </ngx-dropzone>
+                                    <div>
+                                        <p style="color: red; "
+                                            *ngIf="productForm.controls['media'].errors?.required && ( productForm.controls['media'].touched || submit_button)">
+                                            Select the file</p>
+                                        <p style="color: red;" *ngIf="files.length ==0 && (isTouch )">Select the File
+                                        </p>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card mt-3">
+                            <div class="card-body">
+                                <div class="seller-prod-list-heading">
+                                    <h2>Pricing</h2>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <mat-form-field appearance="">
+                                                <mat-label>Price</mat-label>
+                                                <input (keypress)="keyPressNumbersDecimal($event)" matInput
+                                                    placeholder="AED 0.00" required
+                                                    [formControl]="productForm.controls['price']" [(ngModel)]="price">
+
+                                            </mat-form-field>
+                                            <p style="color: red; margin-top: -1.25em;"
+                                                *ngIf="!productForm.controls['price'].valid  && ( productForm.controls['price'].touched || submit_button)">
+                                                Price is Required
+                                            </p>
+                                            <!-- <p style="color: red; margin-top: -1.25em;"
+                                                        *ngIf="!numbutton">
+                                                        Enter Number Only
+                                                    </p>  -->
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <mat-form-field appearance="">
+                                                <mat-label>Compare at Price</mat-label>
+                                                <input (keypress)="keyPressNumbersDecimal($event)" matInput
+                                                    placeholder="AED 0.00" required
+                                                    [formControl]="productForm.controls['comprice']"
+                                                    [(ngModel)]="comprice">
+                                            </mat-form-field>
+                                            <p style="color: red; margin-top: -1.25em;"
+                                                *ngIf="!productForm.controls['comprice'].valid  && ( productForm.controls['comprice'].touched || submit_button)">
+                                                Compare Price is Required</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <mat-form-field appearance="">
+                                                <mat-label>Cost Per Item</mat-label>
+                                                <input (keypress)="keyPressNumbersDecimal($event)" matInput
+                                                    placeholder="AED 0.00" required
+                                                    [formControl]="productForm.controls['costitem']"
+                                                    [(ngModel)]="costitem">
+                                            </mat-form-field>
+                                            <p style="color: red; margin-top: -1.25em;"
+                                                *ngIf="!productForm.controls['costitem'].valid  && ( productForm.controls['costitem'].touched || submit_button)">
+                                                Cost Per Item is Required</p>
+                                            <small>Customers Won't see this</small>
+                                            <mat-form-field appearance="">
+                                                <mat-label>Margin</mat-label>
+                                                <input (keypress)="keyPressNumbersDecimal($event)" matInput
+                                                    placeholder="-" required
+                                                    [formControl]="productForm.controls['margin']" [(ngModel)]="margin">
+                                            </mat-form-field>
+                                            <p style="color: red; margin-top: -1.25em;"
+                                                *ngIf="!productForm.controls['margin'].valid  && ( productForm.controls['margin'].touched || submit_button)">
+                                                Margin is Required</p>
+                                        </div>
+                                      
+                                                <mat-form-field appearance="">
+                                                    <mat-label>Profit</mat-label>
+                                                    <input (keyup)="compval()" (keypress)="keyPressNumbersDecimal($event)"
+                                                        matInput placeholder="-" required
+                                                        [formControl]="productForm.controls['profit']" [(ngModel)]="profit">
+                                                </mat-form-field>
+                                                <p style="color: red; margin-top: -1.25em;"
+                                                    *ngIf="!productForm.controls['profit'].valid  && ( productForm.controls['profit'].touched || submit_button)">
+                                                    Profit is Required</p>
+                                                <p style="color: red; margin-top: -1.25em;" *ngIf="numbutton">
+                                                    Profit Should be less than Price
+                                                </p>
+                                           
+                                    </div>
+                                   
+                                       
+                                 
+                                    
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <mat-checkbox class="" (change)="onChange5($event)"> Charge tax on this
+                                                Product</mat-checkbox>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card mt-3">
+                            <div class="card-body">
+                                <div class="seller-prod-list-heading">
+                                    <h2>Inventrory</h2>
+                                </div>
+                                <div class="form-group">
+                                    <mat-form-field>
+                                        <mat-label>Inventory Type</mat-label>
+                                        <mat-select [formControl]="productForm.controls['inventory']"
+                                            [(ngModel)]="inventory">
+
+                                            <mat-option *ngFor="let option of inventoryData" [value]="option._id">
+                                                {{option.inventory_name}}</mat-option>
+
+                                        </mat-select>
+                                        <!-- <mat-select [formControl]="productForm.controls['inventory']"
+                                                    [(ngModel)]="inventory">
+                                                    <mat-label>Inventory Type</mat-label>
+                                                    <mat-option value="31">Shopify</mat-option>
+                                                    <mat-option value="11">Option2</mat-option>
+                                                    <mat-option value="21">Option3</mat-option>
+                                                </mat-select> -->
+                                        <!-- <select class="custom-select" [formControl]="albumForm.controls['selectValue']" [(ngModel)]="selectValue" id="inputGroupSelect01">
+                                                                
+                                                    <option *ngFor="let option of catdata" [value]="option._id">
+                                                        {{option.name}}
+                                                      </option>
+                                                  </select> -->
+                                    </mat-form-field>
+                                    <p style="color: red; margin-top: -1.25em;"
+                                        *ngIf="!productForm.controls['inventory'].valid  && ( productForm.controls['inventory'].touched || submit_button)">
+                                        Select the Inventory</p>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <mat-form-field appearance="">
+                                                <mat-label>SKU (Stock Keeping Unit)</mat-label>
+                                                <input matInput placeholder="-" required
+                                                    [formControl]="productForm.controls['sku']" [(ngModel)]="sku">
+                                            </mat-form-field>
+                                            <p style="color: red; margin-top: -1.25em;"
+                                                *ngIf="!productForm.controls['sku'].valid  && ( productForm.controls['sku'].touched || submit_button)">
+                                                SKU is required</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <mat-form-field appearance="">
+                                                <mat-label>Barcode (ISBN, UPC, GTIN etc.)</mat-label>
+                                                <input matInput placeholder="" required
+                                                    [formControl]="productForm.controls['barcode']"
+                                                    [(ngModel)]="barcode">
+                                            </mat-form-field>
+                                            <p style="color: red; margin-top: -1.25em;"
+                                                *ngIf="!productForm.controls['barcode'].valid  && ( productForm.controls['barcode'].touched || submit_button)">
+                                                Barcode is required</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <mat-checkbox class="">Track Quantity</mat-checkbox>
+                                        </div>
+                                    </div>
+                                    <!--    <div class="col-md-12">
+                                    <div class="form-group form-check mb-0">
+                                        <input type="checkbox" class="form-check-input check-input" id="t-and-c">
+                                        Continue Selling When out of Stock
+                                    </div>
+                                    </div> -->
+                                    <hr>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card mt-3">
+                            <div class="card-body">
+                                <div class="media-link d-flex justify-content-between">
+                                    <div>
+                                        <h4>Quantity</h4>
+                                        <!-- <label class="text-bold"></label> -->
+                                    </div>
+                                    <!-- <div class="seller-quantity">
+                                                <div>
+                                                    <a  role="button">
+                                                        Edit Locations
+                                                    </a>
+                                                </div>
+                                            </div> -->
+                                </div>
+                                <div class="media-link d-flex justify-content-between">
+                                    <div>
+                                        <h4>Location Name</h4>
+                                    </div>
+                                    <div class="dropdown show">
+                                        <a role="button">
+                                            <h4>Available</h4>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="border-top row "
+                                    *ngFor="let branchDetail of branchListData; let i = index;">
+                                    <div class="col-md-9 mt-3">
+                                        <!-- <h4 class="seller-location">AI Falaj</h4> -->
+                                        <h4 class="seller-location">{{branchDetail.branch_name_en}}</h4>
+                                    </div>
+                                    <div class="col-md-3 mt-3">
+                                        <div class="form-group">
+                                            <mat-form-field appearance="">
+                                                <!-- <mat-label>Barcode (ISBN, UPC, GTIN etc.)</mat-label> -->
+                                                <input matInput placeholder="Qty" type="number" min="0"
+                                                    (keyup)="addQuantity(i,$event.target.value)"
+                                                    (keypress)="numberOnly($event)">
+
+                                            </mat-form-field>
+                                            <!-- <p style="color: red; margin-top: -1.25em;"
+                                                        *ngIf="!productForm.controls['field1'].valid  && ( productForm.controls['field1'].touched || submit_button)">
+                                                        Field is required</p> -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div class="border-top row ">
+                                            <div class="col-md-9 mt-3">
+                                                <h4 class="seller-location">AI Muroor</h4>
+                                            </div>
+                                            <div class="col-md-3 mt-3">
+                                                <div class="form-group">
+                                                    <mat-form-field appearance="">
+                                                        
+                                                        <input matInput placeholder="12" type="number"  min="0" (keypress)="numberOnly($event)"
+                                                            [formControl]="productForm.controls['field2']"
+                                                            [(ngModel)]="field2">
+                                                    </mat-form-field>
+                                                    <p style="color: red; margin-top: -1.25em;"
+                                                        *ngIf="!productForm.controls['field2'].valid  && ( productForm.controls['field2'].touched || submit_button)">
+                                                        Field is required</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="border-top row ">
+                                            <div class="col-md-9 mt-3">
+                                                <h4 class="seller-location">Meredif</h4>
+                                            </div>
+                                            <div class="col-md-3 mt-3">
+                                                <div class="form-group">
+                                                    <mat-form-field appearance="">
+                                                        
+                                                        <input matInput placeholder="12" type="number"  min="0" (keypress)="numberOnly($event)"
+                                                            [formControl]="productForm.controls['field3']"
+                                                            [(ngModel)]="field3">
+                                                    </mat-form-field>
+                                                    <p style="color: red; margin-top: -1.25em;"
+                                                        *ngIf="!productForm.controls['field3'].valid  && ( productForm.controls['field3'].touched || submit_button)">
+                                                        Field is required</p>
+                                                </div>
+                                            </div>
+                                        </div> -->
+                            </div>
+                        </div>
+                        <div class="card mt-3">
+                            <div class="card-body">
+                                <div class="seller-prod-list-heading">
+                                    <h2>Shipping</h2>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <mat-checkbox class="" [formControl]="productForm.controls['checked']"
+                                                [(ngModel)]="checked" (change)="onChange1($event)">This is a Physical
+                                                Product</mat-checkbox>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-12 border-top mt-3">
+                                        <div class="seller-prod-list-heading">
+                                            <h2>Weight</h2>
+                                        </div>
+                                        <label>Used to calculate shipping rates at checkout and label prices
+                                            during Fulfilment</label>
+                                        <div class="input-group col-md-6 p-0">
+                                            <input (keypress)="keyPressNumbersDecimal($event)" type="number"
+                                                class="form-control" aria-label="Text input with dropdown button"
+                                                [formControl]="productForm.controls['weight']" [(ngModel)]="weight">
+
+                                            <div class="input-group-append">
+                                                <div class="form-group mb-0">
+                                                    <select name="signup"
+                                                        [formControl]="productForm.controls['weightUnit']"
+                                                        [(ngModel)]="weightUnit" class="custom-select">
+                                                        <option selected value="seller">Unit</option>
+                                                        <option value="Kg">Kg</option>
+                                                        <option value="gm">gm</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <p style="color: red; " *ngIf="!productForm.controls['weight'].valid">
+                                                Field is required</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 border-top mt-3">
+                                        <div class="custom-info">
+                                            <h3 class="text-uppercase">Custom Information</h3>
+                                            <p>Used Bt Border Officers to Calculate duties when shipping
+                                                internationally. Shown on custom forms you might print during
+                                                fullfilment.</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <mat-form-field>
+                                                <mat-label>Country Region of Origin</mat-label>
+                                                <mat-select [formControl]="productForm.controls['region']"
+                                                    [(ngModel)]="region">
+                                                    <mat-option value="31">Seller</mat-option>
+                                                    <mat-option value="11">Service Provider</mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                            <p style="color: red; "
+                                                *ngIf="!productForm.controls['region'].valid  && ( productForm.controls['region'].touched || submit_button)">
+                                                Select the Region</p>
+                                            <small>In most cases, Where the product is manufactured.</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <mat-form-field appearance="">
+                                                <mat-label>HS (Harmonized System) Code</mat-label>
+                                                <input matInput placeholder="Search by product keyword or HS code"
+                                                    required [formControl]="productForm.controls['code']"
+                                                    [(ngModel)]="code">
+                                            </mat-form-field>
+                                            <p style="color: red; "
+                                                *ngIf="!productForm.controls['code'].valid  && ( productForm.controls['code'].touched || submit_button)">
+                                                This Field is Required</p>
+                                            <small>Used by border officersto classify this product.</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card mt-3">
+                            <div class="card-body">
+                                <div class="seller-prod-list-heading">
+                                    <h2>Variant</h2>
+                                    <div class="form-group form-check">
+                                        <input type="checkbox" data-toggle="modal" data-target="#variantModal"
+                                            class="form-check-input check-input" id="t-and-c"
+                                            (change)="onChange2($event)">
+                                        <!-- <input type="checkbox" id="add-address-btn" class="form-check-input check-input"
+                                                    id="t-and-c" (change)="onChange2($event)"> -->
+                                        This product has multile options, like different sizes or colors
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card mt-3">
+                            <div class="card-body">
+                                <div class="seller-prod-list-heading">
+                                    <h2>This Product Will be Visible to</h2>
+                                    <!-- <div class="form-group form-check">
+                                    <input type="checkbox" class="form-check-input check-input" id="t-and-c">
+                                    This product has multile options, like different sizes or colors
+                                </div> -->
+                                    <mat-checkbox class="example-margin" (change)="onChange3($event)">
+
+                                        Professional
+                                    </mat-checkbox>
+                                    <!-- <p style="color: red; "
+                                                *ngIf="!productForm.controls['cbox1'].valid  && ( productForm.controls['cbox1'].touched || submit_button)">
+                                                This Field is Required</p> -->
+                                    <br />
+                                    <mat-checkbox class="example-margin" (change)="onChange4($event)">
+                                        Customer
+                                    </mat-checkbox>
+                                    <br />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card mt-3">
+                            <div class="card-body">
+                                <div class="seller-prod-list-heading">
+
+                                    <h2>Organization</h2>
+
+                                    <div class="form-group">
+                                        <mat-form-field>
+                                            <mat-label>Product Type</mat-label>
+                                            <mat-select (selectionChange)="getVendorList($event.value)"
+                                                [formControl]="productForm.controls['productType']"
+                                                [(ngModel)]="productType">
+
+                                                <mat-option *ngFor="let option2 of productTypeData"
+                                                    [value]="option2._id">{{option2.product_type}}</mat-option>
+
+                                            </mat-select>
+                                            <!-- <mat-select required>
+                                                                
+                                                                <mat-option value="31">Shirts</mat-option>
+                                                                <mat-option value="11">op1</mat-option>
+                                                                <mat-option value="21">op2</mat-option>
+                                                            </mat-select> -->
+                                        </mat-form-field>
+                                        <p style="color: red; "
+                                            *ngIf="!productForm.controls['productType'].valid  && ( productForm.controls['productType'].touched || submit_button)">
+                                            Select the Product Type</p>
+                                        <!-- <p style="color: red; margin-top: -1.25em;"
+                                                        *ngIf="productForm.controls['type'].errors?.required && ( productForm.controls['type'].touched || submit_button)">
+                                                        Select this Field</p>
+                                                    [formControl]="productForm.controls['type']" [(ngModel)]="type"> -->
+                                    </div>
+                                    <div class="form-group">
+                                        <mat-form-field>
+                                            <mat-label>Vendor</mat-label>
+                                            <!-- <mat-select  (selectionChange)="getVendorList($event.value)" [formControl]="productForm.controls['productType']"
+                                                                [(ngModel)]="productType"> -->
+                                            <mat-select [formControl]="productForm.controls['vendor']"
+                                                [(ngModel)]="vendor">
+                                                <mat-option *ngFor="let option3 of vendorTypeData"
+                                                    [value]="option3._id">{{option3.vendor_name}}</mat-option>
+
+                                            </mat-select>
+                                            <!-- <mat-select required>
+                                                           
+                                                                <mat-option value="31">Nike</mat-option>
+                                                                <mat-option value="11">op1</mat-option>
+                                                                <mat-option value="21">op2</mat-option>
+                                                            </mat-select> -->
+                                        </mat-form-field>
+                                        <p style="color: red; margin-top: -1.25em;"
+                                            *ngIf="productForm.controls['vendor'].errors?.required && ( productForm.controls['vendor'].touched || submit_button)">
+                                            Select this Field</p>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <mat-form-field appearance="">
+                                            <mat-label>Collection</mat-label>
+                                            <input matInput placeholder="Search for collection" required
+                                                [formControl]="productForm.controls['collection']"
+                                                [(ngModel)]="collection">
+                                        </mat-form-field>
+                                        <p style="color: red; margin-top: -1.25em;"
+                                            *ngIf="productForm.controls['collection'].errors?.required && ( productForm.controls['collection'].touched || submit_button)">
+                                            Select this Field
+                                        </p>
+                                        <!-- [formControl]="productForm.controls['collection']" [(ngModel)]="collec" -->
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="media-link d-flex justify-content-between">
+                                            <div>
+                                                <h4>Tags</h4>
+                                            </div>
+                                            <div class="seller-quantity">
+                                                <div>
+                                                    <a role="button">
+                                                        <!-- View All Tags -->
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <mat-form-field appearance="">
+
+                                            <input matInput placeholder="Vintage, Cotton, Summer" required
+                                                [formControl]="productForm.controls['tags']" [(ngModel)]="tags">
+
+                                        </mat-form-field>
+                                        <p style="color: red; margin-top: -1.25em;"
+                                            *ngIf="productForm.controls['tags'].errors?.required && ( productForm.controls['tags'].touched || submit_button)">
+                                            Select this Field</p>
+                                        <!-- [formControl]="productForm.controls['vintage']" [(ngModel)]="vintage" -->
+                                    </div>
+                                </div>
+
+                                </div>
+                            </div> 
+                        </div> 
+                    <div class="col-md-4">
+                                    <!-- <div class="card">
+                                    <div class="card-body"> -->
+                                    <!-- <div class="col-md-12">
+                                            
+                                        </div> -->
+
+                                    <!-- <div class="panel-group" id="accordion" role="tablist"
+                                            aria-multiselectable="true">
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading" role="tab" id="headingOne">
+                                                    <h4 class="panel-title">
+                                                        <a role="button" data-toggle="collapse" data-parent="#accordion"
+                                                            href="#collapseOne" aria-expanded="true"
+                                                            aria-controls="collapseOne">
+                                                            Online Store <i class="fa fa-store float-right"></i>
+                                                        </a>
+                                                    </h4>
+                                                </div>
+                                                <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel"
+                                                    aria-labelledby="headingOne">
+                                                    <div class="panel-body">
+                                                        <h2>Messenger</h2>
+                                                        <p class="ml-3">Messenger is Disconnected. Reconnect to continue
+                                                            this sales channel.</p>
+                                                        <a href="#" class="ml-3">Learn More</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading" role="tab" id="headingFour">
+                                                    <h4 class="panel-title">
+                                                        <a role="button" data-toggle="collapse" data-parent="#accordion"
+                                                            href="#collapseFour" aria-expanded="true"
+                                                            aria-controls="collapseOne">
+                                                            Point of Sale
+                                                        </a>
+                                                    </h4>
+                                                </div>
+                                                <div id="collapseFour" class="panel-collapse collapse in"
+                                                    role="tabpanel" aria-labelledby="headingFour">
+                                                    <div class="panel-body">
+                                                        .....
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading" role="tab" id="headingTwo">
+                                                    <h4 class="panel-title">
+                                                        <a class="collapsed" role="button" data-toggle="collapse"
+                                                            data-parent="#accordion" href="#collapseTwo"
+                                                            aria-expanded="false" aria-controls="collapseTwo">
+                                                            Mobile App
+                                                        </a>
+                                                    </h4>
+                                                </div>
+                                                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel"
+                                                    aria-labelledby="headingTwo">
+                                                    <div class="panel-body">
+                                                        <h2>Google</h2>
+                                                        <p class="ml-3">Google has noticed your merchent center account
+                                                            has been suspended.</p>
+                                                        <a href="#" class="ml-3">Learn More</a>
+                                                    </div>
+                                                    <div class="panel-body border-top mt-3">
+                                                        <h2 class="mt-2">Facebook</h2>
+                                                        <p class="ml-3">Facebook shop is not connected. Connect your
+                                                            account use this sales channel.</p>
+                                                        <a href="#" class="ml-3">Learn More</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading" role="tab" id="headingThree">
+                                                    <h4 class="panel-title">
+                                                        <a class="collapsed" role="button" data-toggle="collapse"
+                                                            data-parent="#accordion" href="#collapseThree"
+                                                            aria-expanded="false" aria-controls="collapseThree">
+                                                            Exchange Marketplace
+                                                        </a>
+                                                    </h4>
+                                                </div>
+                                                <div id="collapseThree" class="panel-collapse collapse" role="tabpanel"
+                                                    aria-labelledby="headingThree">
+                                                    <div class="panel-body">
+                                                        ......
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> -->
+                                    <!-- </div>
+                                </div> -->
+
+                            </div>
+                            <div class="col-md-8 seller-prod-submit mt-3" align="center">
+                                <div class="upload-btn mt-2">
+                                    <button type="submit" class="btn btn-change-fill min-width-0"
+                                        (click)="publish()">Publish</button>
+                                    <button  class="btn btn-change-fill min-width-0" routerLink="/preview">Preview</button>
+                                   <!-- <button class="btn btn-change-fill min-width-0">Save</button> -->
+                                    <!-- <button class="btn btn-change-fill min-width-0">Cancel</button>
+                                    <button class="btn btn-change-fill min-width-0">Save Later</button> -->
+                                </div>
+                                <!-- <button class="btn btn-change-fill mr-3">
+                    Save
+                    </button>
+                    <button class="btn btn-change-fill mr-3">
+                    Publish
+                    </button>
+                    <button class="btn btn-change-fill">
+                    Discard
+                    </button> -->
+                            </div>
+                        </div>
+
+
+
+            </form>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>
+<div class="url-modal">
+    <div class="modal fade url-modal-box" id="urlModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title" id="exampleModalLabel">Add Media from URL</h2>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <mat-form-field appearance="">
+                            <mat-label>Add Media URL</mat-label>
+                            <input [(ngModel)]="url" matInput placeholder="Add Media URL">
+                        </mat-form-field>
+                        <p style="color: red; margin-top: -1.25em;" *ngIf="subvar">
+                            Add Valid Url</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="text-center">
+                        <button class="btn btn-change-fill" (click)="Submit()">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="url-modal">
+    <!-- <div class="add-address-form"> -->
+    <div class="modal fade url-modal-box" id="variantModal" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title" id="exampleModalLabel">Add Variant</h2>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <mat-form-field appearance="">
+                            <mat-label>Add Size</mat-label>
+                            <input [(ngModel)]="size" matInput placeholder="Size">
+                        </mat-form-field>
+
+                        <mat-form-field appearance="">
+                            <mat-label>Add Color</mat-label>
+                            <input [(ngModel)]="color" matInput placeholder="Color">
+                        </mat-form-field>
+
+                        <mat-form-field appearance="">
+                            <mat-label>Add Color code</mat-label>
+                            <input [(ngModel)]="colorCode" matInput placeholder="ColorCode">
+                        </mat-form-field>
+                        <!-- <p style="color: red; margin-top: -1.25em;"
+                        *ngIf="subvar">
+                        Add Valid Url</p> -->
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="text-center">
+                        <button class="btn btn-change-fill" (click)="variantSubmit()">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

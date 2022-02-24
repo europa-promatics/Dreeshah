@@ -1,0 +1,157 @@
+<app-seller-header></app-seller-header>
+<div class="seller-quotation-d-wrapper">
+    <div class="custom-container d-flex">
+        <app-seller-sidebar></app-seller-sidebar>
+        <div class="main-wrap">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="dashboard-table-heading border-bottom">
+                                <h1>Modify Quotation</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modify-quote-sec">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <mat-form-field appearance="">
+                                        <mat-label>Title</mat-label>
+                                        <input matInput placeholder="Title" required>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <mat-form-field appearance="">
+                                        <mat-label>Warrenty</mat-label>
+                                        <input matInput placeholder="Warrenty" required> 
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <mat-form-field appearance="">
+                                        <mat-label>Offer Validity</mat-label>
+                                        <input matInput placeholder="Quantity" required> 
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <mat-form-field appearance="">
+                                        <mat-label>Price</mat-label>
+                                        <input matInput placeholder="Price" required> 
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <mat-form-field appearance="">
+                                        <mat-label>Quantity</mat-label>
+                                        <input matInput placeholder="Quantity" required> 
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <mat-form-field appearance="">
+                                        <mat-label>Vat</mat-label>
+                                        <input matInput placeholder="Vat" required> 
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="col-md-12 signup-form">
+                                <div class="ck-editor">
+                                    <label>Scope of Work</label>
+                                    
+                                </div>
+                            </div>
+                            <div class="col-md-12 signup-form mt-3">
+                                <div class="ck-editor">
+                                    <label>Exclusions</label>
+                                    
+                                </div>
+                            </div>
+                            <div class="col-md-6 mt-3">
+                                <div class="installments">
+                                    <div class="form-group">
+                                        <label id="example-radio-group-label">Payment Terms</label>
+                                        <mat-radio-group
+                                        aria-labelledby="example-radio-group-label"
+                                        class="example-radio-group"
+                                        [(ngModel)]="favoriteSeason">
+                                        <mat-radio-button class="example-radio-button" *ngFor="let season of seasons" [value]="season">
+                                        {{season}}
+                                        </mat-radio-button>
+                                        </mat-radio-group>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="col-md-12 mt-3">
+                            	<h2>Work Schedule</h2>
+                                <mat-form-field>
+                                    <mat-label>Start Date</mat-label>
+                                    <input matInput [matDatepicker]="picker">
+                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker></mat-datepicker>
+                                </mat-form-field>
+                                <div class="form-group">
+                                    <div class="module-1">
+                                        <h3>Module1</h3>
+                                        <p>Lorem Ipsum </p>
+                                    </div>
+                                    <mat-form-field class="example-form-field" >
+                                       
+                                        <mat-date-range-input
+                                        [formGroup]="campaignOne"
+                                        [rangePicker]="campaignOnePicker"
+                                        [comparisonStart]=""
+                                        [comparisonEnd]="">
+                                        <input matStartDate placeholder="Start date" formControlName="start">
+                                        <input matEndDate placeholder="End date" formControlName="end">
+                                        </mat-date-range-input>
+                                        <mat-datepicker-toggle matSuffix [for]="campaignOnePicker"></mat-datepicker-toggle>
+                                        <mat-date-range-picker #campaignOnePicker></mat-date-range-picker>
+                                    </mat-form-field>
+                                </div>
+                                <div class="form-group">
+                                        <div class="module-1">
+                                            <h3>Module2</h3>
+                                            <p>Lorem Ipsum </p>
+                                        </div>
+                                    <mat-form-field class="example-form-field">
+                                       
+                                        <mat-date-range-input
+                                        [formGroup]="campaignTwo"
+                                        [rangePicker]="campaignTwoPicker"
+                                        [comparisonStart]=""
+                                        [comparisonEnd]="">
+                                        <input matStartDate placeholder="Start date" formControlName="start">
+                                        <input matEndDate placeholder="End date" formControlName="end">
+                                        </mat-date-range-input>
+                                        <mat-datepicker-toggle matSuffix [for]="campaignTwoPicker"></mat-datepicker-toggle>
+                                        <mat-date-range-picker #campaignTwoPicker></mat-date-range-picker>
+                                    </mat-form-field>
+                                </div>
+                                <div class="form-group">
+                                    <mat-form-field >
+                                        <mat-label>End Date</mat-label>
+                                        <input matInput [matDatepicker]="picker1">
+                                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker1></mat-datepicker>
+                                    </mat-form-field>
+                                </div>
+                            </div> -->
+                        </div>
+                        <div class="col-md-12 mt-3" align="center">
+                            <button class="btn btn-change-fill" data-dismiss="modal" data-target="#SuccessModal" data-toggle="modal">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

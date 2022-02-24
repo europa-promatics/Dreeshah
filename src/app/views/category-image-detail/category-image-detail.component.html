@@ -1,0 +1,126 @@
+<app-header></app-header>
+<section class="common_image_section page_headrer_wrkshop">
+    <div class="container">
+        <div class="page_head_wrap">
+            <h2 class="aboutus_head">Catalogue Detail</h2>
+            <p class="page_head">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                ex ea commodo consequat.
+            </p>
+        </div>
+    </div>
+</section>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb mb-0">
+        <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Image Detail</li>
+    </ol>
+</nav>
+<section class="p-0">
+    <div class="service-details-n-wrp">
+        <div class="container-fluid">
+
+
+            <section class="her_sldr_don">
+                <div class="hero_carosel">
+                    <owl-carousel-o [options]="heroOpt">
+
+                        <ng-template carouselSlide *ngFor="let val of albumImg['album']">
+                            <div class="hero-img">
+
+                                <img *ngIf="isImage(val.image)" src="{{imgpath}}{{val.image}}" alt="">
+                                <video *ngIf="!isImage(val.image)" style="    width: 100%;
+                                        height: 100%;" controls>
+                                    <source src="{{imgpath}}{{val.image}}">
+                                    Your browser does not support the video.
+                                </video>
+
+                            </div>
+                        </ng-template>
+
+                    </owl-carousel-o>
+                </div>
+            </section>
+
+
+            <div class="row">
+                <div class="col-md-12 thumbs">
+
+                    <span *ngIf="albumImg['album']">
+                        <span *ngFor="let val of albumImg['album']">
+
+                                <img *ngIf="val.media_type=='image/jpeg'" src="{{imgpath}}{{val.image}}">
+
+                            <video *ngIf="val.media_type=='video/mp4'" width="250" height="250" controls>
+                                <source
+                                    src="https://developers.promaticstechnologies.com/dreeshah_apis/public/AllImages/{{val.image}}"
+                                    type="video/mp4">
+                            </video>
+                        </span>
+
+                    </span>
+                </div>
+                <div class="col-sm-12 text-right">
+                    <button type="button" class="btn-theme" data-toggle="modal" data-target="#ask-qstn">
+                        More Details
+                    </button>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+</section>
+<app-footer></app-footer>
+
+
+<div class="modal fade" id="ask-qstn" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLabel">Ask a question about this photo.</h3>
+                <button type="button" class="close" id="closeModal" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="cr-ordr-frm">
+                            <form [formGroup]="QuestionAnsForm">
+
+
+                                <div class="form-group">
+                                    <textarea class="form-control" rows="5" placeholder="Tell us the details here."
+                                        formControlName="question"></textarea>
+                                </div>
+                                <div class="askqstn_txt">
+                                    <!-- <span>Pros on Houzz are encouraged but not obligated to answer questions.</span>
+                                    <p>Polite questions are more likely to receive responses.
+
+
+                                    </p> -->
+                                    <h3>Asked Questions</h3>
+                                    <span *ngFor="let a of questionList">
+                                        <ul>
+                                            <li style="list-style-type: none;">{{a.question}}</li>
+                                        </ul>
+                                    </span>
+                                </div>
+                                <div class="frm-sbmt-btn" align="center">
+                                    <button class="btn btn-change-fill" [disabled]="QuestionAnsForm.invalid"
+                                        (click)="submit()">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

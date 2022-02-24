@@ -1,0 +1,629 @@
+<!-- <app-db-header></app-db-header> -->
+<app-seller-header></app-seller-header> 
+<section class="checkout-wrapper">
+	<div class="custom-container d-flex">
+		<app-sidebar></app-sidebar>
+		<div class="main-wrap">
+			<div class="card">
+				<div class="card-body">
+					<div class="row">
+						<div class="col-md-6 mt-4">
+							<h1>Total Amount To Pay</h1>
+							<p>${{price}}</p>
+						</div>
+					</div>
+					<div class="row">	
+					<div class="col-md-6 mt-4">
+							<h1>Address Details</h1>
+							<!-- <h4>{{price}}</h4> -->
+							<div class="address-details-wrapper" >
+								<div class="saved-address" *ngFor="let detail of addressdetails">
+									<div class="saved-address"  >
+									<p>{{detail?.address_line1}}</p>
+									<p>{{detail?.address_line2}}</p>
+									<p>{{detail?.first_name}} {{detail?.last_name}}</p> 
+									<p>{{detail?.street_number}} {{detail?.street_name}}</p> 
+									<p>{{detail?.building_number}} {{detail?.building_name}}</p> 
+									<p>{{detail?.area}}</p> 
+									<p>{{detail?.city}} {{detail?.state}}</p> 
+									<p>{{detail?.country}}</p>
+									<p>{{detail?.zip_code}}</p>
+									<p>{{detail?.phone_number}}</p>
+									<hr>
+
+
+
+									<!-- <p>{{addressdetails[len]?.address_line1}}</p>
+									<p>{{addressdetails[len]?.address_line2}}</p>
+									<p>{{addressdetails[len]?.first_name}} {{addressdetails[len]?.last_name}} </p>
+									<p>{{addressdetails[len]?.street_number}} {{addressdetails[len]?.street_name}}</p>
+									<p>{{addressdetails[len]?.building_number}} {{addressdetails[len]?.building_name}}</p>									
+									<p>{{addressdetails[len]?.area}} </p>									
+									<p>{{addressdetails[len]?.city}} {{addressdetails[len]?.state}} </p>
+									<p>{{addressdetails[len]?.country}}</p>
+									<p>{{addressdetails[len]?.zip_code}}</p>
+									<p>{{addressdetails[len]?.phone_number}}</p> -->
+									 <!-- <p>Westcoast Mountains Co.</p>
+                                     <p>98888,Manufacturer Street</p>
+                                     <p>Toronto,Canada</p>
+                                     <p>988964</p> -->
+									</div>
+								</div>
+								<div>
+									<!-- <label>Select Nearby Location</label> -->
+                                    <ng-select placeholder="Select Nearby Location"
+                                        [(ngModel)]="LogCity">
+                                        <ng-option *ngFor="let loc of locations" [value]="loc._id">
+                                            {{loc.city_name}}
+                                        </ng-option>
+                                    </ng-select>
+								</div>
+								<div class="add-new-address">
+									<button class="btn btn-change-fill" id="address-btn" (click)="ClicKFunction1()">Add New Address</button>
+								</div>
+								<div class="order-address-details-form mt-4" *ngIf="divHide1">
+									<form [formGroup]=form1>
+										
+										<!-- <div class="form-check mb-4">
+											<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+											<label class="form-check-label" for="flexCheckDefault">
+												Use as my Default Address
+											</label>
+										  </div> -->
+										  <div class="form-group">
+												<mat-form-field>
+														<mat-label>Country</mat-label>
+														<mat-select [(ngModel)]="selectedCountry"
+															(selectionChange)="selectCountry($event)" name="country"
+															[formControl]="form1.controls['country']"
+															required>
+															<mat-option disabled>Select Country</mat-option>
+															<mat-option *ngFor="let country of countries"
+																[value]="country">{{country.name}}</mat-option>
+														</mat-select>
+												</mat-form-field>
+														<p style="color: red; margin-top: -1.25em;"
+															*ngIf="form1.controls['country'].errors?.required && ( form1.controls['country'].touched || submit_button)">
+															Please Select Country 
+														</p>
+											</div>
+
+										<div class="form-group">
+											<mat-form-field>
+												<mat-label>State</mat-label>
+												<mat-select  [(ngModel)]="selectedState" name="state"
+												
+													[formControl]="form1.controls['state']"
+													required>
+													<mat-option disabled>Select State</mat-option>
+													<mat-option *ngFor="let state of states"
+														[value]="state">{{state.name}}</mat-option>
+												</mat-select>
+											</mat-form-field>
+													<p style="color: red; margin-top: -1.25em;"
+														*ngIf="form1.controls['state'].errors?.required && ( form1.controls['state'].touched || submit_button)">
+														Please Select State
+													</p>
+										</div>  
+
+										<div class="form-group">
+											<mat-form-field appearance="">
+												<mat-label>Phone Number</mat-label>
+												<form #f="ngForm" [formGroup]="phoneForm">
+												 <ngx-mat-intl-tel-input
+													[preferredCountries]="['us', 'gb']"
+													[enablePlaceholder]="true"
+													[enableSearch]="true"
+													name="phone"
+													(countryChanged)="countryCode($event)"
+													
+													formControlName="phone"
+													[(ngModel)]="phone">
+													</ngx-mat-intl-tel-input>
+												   
+												</form>
+												<!-- <input matInput placeholder="9876520510" formControlName="phone_number"
+													[formControl]="quotationForm.controls['phone_number']"
+													required> -->
+											</mat-form-field>
+											<div>
+												<mat-error *ngIf="f.form.controls['phone']?.errors?.validatePhoneNumber">Invalid Number</mat-error>
+											</div>
+											<div *ngIf="phoneForm.controls.phone.invalid && (phoneForm.controls.phone.dirty || phoneForm.controls.phone.touched || submit_button)"
+												class="">
+												<p style="color: red;"
+													*ngIf="phoneForm.controls.phone.errors.required">
+													Please Enter Phone Number
+												</p>
+											  
+											</div>
+									</div>
+
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">
+												<mat-form-field appearance="">
+													<mat-label>First Name</mat-label>
+													<input matInput placeholder="First Name" [formControl]="form1.controls['fname']" [(ngModel)]="fname" > 
+												</mat-form-field>
+												<p style="color: red; margin-top: -1.25em;"
+												*ngIf="form1.controls['fname'].errors?.required && ( form1.controls['fname'].touched || submit_button)">
+													First Name is Required
+											</p>
+												</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<mat-form-field appearance="">
+													<mat-label>Last Name</mat-label>
+													<input matInput placeholder="Last Name" [formControl]="form1.controls['lname']" [(ngModel)]="lname" required> 
+												</mat-form-field>
+												<p style="color: red; margin-top: -1.25em;"
+												*ngIf="form1.controls['lname'].errors?.required && ( form1.controls['lname'].touched || submit_button)">
+													Last Name is Required
+											</p>
+											</div>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<mat-form-field appearance="">
+											<mat-label>Address Line 1</mat-label>
+											<input matInput placeholder="Address Line 1" [formControl]="form1.controls['addline1']" [(ngModel)]="addline1"> 
+										</mat-form-field>
+										<p style="color: red; margin-top: -1.25em;"
+												*ngIf="form1.controls['addline1'].errors?.required && ( form1.controls['addline1'].touched || submit_button)">
+												Address is Required
+											</p>
+									</div>
+
+									<div class="form-group">
+										<mat-form-field appearance="">
+											<mat-label>Address Line 2</mat-label>
+											<input matInput placeholder="Address Line 2" [formControl]="form1.controls['addline2']" [(ngModel)]="addline2"> 
+										</mat-form-field>
+										<p style="color: red; margin-top: -1.25em;"
+												*ngIf="form1.controls['addline2'].errors?.required && ( form1.controls['addline2'].touched || submit_button)">
+												Address is Required
+											</p>
+									</div>
+
+									<div class="row">
+
+										<div class="col-md-6">
+											<div class="form-group">
+												<mat-form-field required>
+													<mat-label>City</mat-label>
+													<input matInput placeholder="City" [formControl]="form1.controls['city']" [(ngModel)]="city" required>
+													<!-- <mat-select>
+														<mat-option value="1">City1</mat-option>
+														<mat-option value="2">City2</mat-option>
+														<mat-option value="3">City3</mat-option>
+													</mat-select> -->
+												</mat-form-field>
+												<p style="color: red; margin-top: -1.25em;"
+													*ngIf="form1.controls['city'].errors?.required && ( form1.controls['city'].touched || submit_button)">
+													City is Required
+												</p>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+											<mat-form-field appearance="">
+												<mat-label>Landmark</mat-label>
+												<input matInput placeholder="Area" [formControl]="form1.controls['area']" [(ngModel)]="area"> 
+											</mat-form-field>
+											<p style="color: red; margin-top: -1.25em;"
+													*ngIf="form1.controls['area'].errors?.required && ( form1.controls['area'].touched || submit_button)">
+													Landmark is Required
+												</p> 
+											</div>
+										</div>
+										<!-- <div class="col-md-6"> -->
+											<!-- <div class="form-group">
+												<mat-form-field appearance="">
+													<mat-label>Building Name</mat-label>
+													<input matInput placeholder="Building Name" [formControl]="addressForm.controls['buildingName']" [(ngModel)]="buildingName" required> 
+												</mat-form-field>
+												<p style="color: red; margin-top: -1.25em;"
+													*ngIf="addressForm.controls['buildingName'].errors?.required && ( addressForm.controls['buildingName'].touched || submit_button)">
+													Field is Required
+												</p>
+												</div>
+											</div> -->
+											<!-- <div class="col-md-6">
+												<mat-form-field appearance="">
+													<mat-label>Building Number</mat-label>
+													<input matInput placeholder="Building Name" [formControl]="addressForm.controls['buildingNum']" 
+													(keypress)="numberOnly($event)" [(ngModel)]="buildingNum"  required> 
+												</mat-form-field>
+												<p style="color: red; margin-top: -1.25em;"
+														*ngIf="addressForm.controls['buildingNum'].errors?.required && ( addressForm.controls['buildingNum'].touched || submit_button)">
+														Field is Required
+												</p>
+													
+											</div> -->
+										   
+										<!-- <div class="col-md-6">
+											<div class="form-group">
+												<mat-form-field>
+													<mat-label>State</mat-label>
+													<input matInput placeholder="State" [formControl]="addressForm.controls['state']" [(ngModel)]="state"  required>
+												   
+												</mat-form-field>
+												<p style="color: red; margin-top: -1.25em;"
+													*ngIf="addressForm.controls['state'].errors?.required && ( addressForm.controls['state'].touched || submit_button)">
+													Field is Required
+												</p>
+											</div>
+										</div> -->
+										
+										<div class="col-md-6">
+											<div class="form-group">
+												<mat-form-field >
+													<mat-label>Pin Code</mat-label>
+													<input matInput placeholder="Pincode" [formControl]="form1.controls['pincode']" 
+													(keypress)="numberOnly($event)" [(ngModel)]="pincode">
+													
+												</mat-form-field>
+												 <p style="color: red; margin-top: -1.25em;"
+													*ngIf="form1.controls['pincode'].errors?.required && ( form1.controls['pincode'].touched || submit_button)">
+													Pin Code is Required
+												</p> 
+											</div>
+										</div>
+										<!-- <div class="col-md-6">
+											<div class="form-group">
+												<mat-form-field required>
+													<mat-label>Phone Number</mat-label>
+													<input matInput placeholder="Phone Number" [formControl]="addressForm.controls['phoneNo']" 
+													(keypress)="numberOnly($event)" [(ngModel)]="phoneNo" required>
+													
+												</mat-form-field>
+												<p style="color: red; margin-top: -1.25em;"
+													*ngIf="addressForm.controls['phoneNo'].errors?.required && ( addressForm.controls['phoneNo'].touched || submit_button)">
+													Field is Required
+												</p>
+											</div>
+										</div> -->
+										<!-- <div class="col-md-12">
+											<div class="form-group">
+											  <mat-form-field appearance="">
+												<mat-label>Search Places</mat-label>
+												<input matInput placeholder="Search"> </mat-form-field>
+											</div>
+										</div> -->
+									</div>
+
+										<!-- <div class="form-group">
+											<label for="fname">First Name</label>
+											<input type="text" name="fname" class="form-control" 
+											[formControl]="form1.controls['fname']" [(ngModel)]="fname">
+											
+										</div>
+										<p style="color: red; margin-top: -1.25em;"
+                                        	*ngIf="form1.controls['fname'].errors?.required && ( form1.controls['fname'].touched || submit_button)">
+                                        	First Name is Required
+										</p>
+										<div class="form-group">
+											<label for="lname">Last Name</label>
+											<input type="text" name="lname" class="form-control"
+											[formControl]="form1.controls['lname']" [(ngModel)]="lname">
+										</div>
+										<p style="color: red; margin-top: -1.25em;"
+                                        	*ngIf="form1.controls['lname'].errors?.required && ( form1.controls['lname'].touched || submit_button)">
+                                        	Last Name is Required
+										</p> -->
+										
+										
+										<!-- <div class="form-group">
+											<label for="aline2">Address Title</label>
+											<input type="text" name="aline2" class="form-control"
+											[formControl]="form1.controls['aline2']" [(ngModel)]="aline2">
+										</div>
+										<p style="color: red; margin-top: -1.25em;"
+											*ngIf="form1.controls['aline2'].errors?.required && ( form1.controls['aline2'].touched || submit_button)">
+											Address Title is Required
+										</p> -->
+										<!-- <div class="row">
+											<div class="col-md-6">
+												<div class="form-group">
+													<label for="aline3">Street Number</label>
+													<input type="text" name="aline3" class="form-control"
+													[formControl]="form1.controls['streetNumber']" [(ngModel)]="streetNumber" (keypress)="numberOnly($event)">
+												</div>
+												<p style="color: red; margin-top: -1.25em;"
+                                        		*ngIf="form1.controls['streetNumber'].errors?.required && ( form1.controls['streetNumber'].touched || submit_button)">
+                                        		Field is Required
+											</p>
+											</div>
+											
+											<div class="col-md-6">
+												<div class="form-group">
+													<label for="aline4">Street Name*</label>
+													<input type="text" name="aline4" class="form-control"
+													[formControl]="form1.controls['streetName']" [(ngModel)]="streetName">
+												</div>
+												<p style="color: red; margin-top: -1.25em;"
+                                        		*ngIf="form1.controls['streetName'].errors?.required && ( form1.controls['streetName'].touched || submit_button)">
+                                        		Field is Required
+											</p>
+											</div>
+											
+										</div> -->
+										<!-- <div class="row">
+											<div class="col-md-6">
+												<div class="form-group">
+													<label for="aline3">Area</label>
+													<input type="text" name="aline3" class="form-control"
+													[formControl]="form1.controls['area']" [(ngModel)]="area">
+												</div>
+												<p style="color: red; margin-top: -1.25em;"
+                                        			*ngIf="form1.controls['area'].errors?.required && ( form1.controls['area'].touched || submit_button)">
+                                        			Field is Required
+												</p>
+												
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label for="aline4">Building Name</label>
+													<input type="text" name="aline4" class="form-control"
+													[formControl]="form1.controls['buildingName']" [(ngModel)]="buildingName">
+												</div>
+												<p style="color: red; margin-top: -1.25em;"
+                                        			*ngIf="form1.controls['buildingName'].errors?.required && ( form1.controls['buildingName'].touched || submit_button)">
+                                        			Field is Required
+												</p>
+											</div>
+										</div> -->
+										<!-- <div class="row">
+											<div class="col-md-6">
+												<div class="form-group">
+													<label for="aline3">Building Number</label>
+													<input type="text" name="aline3" class="form-control"
+													[formControl]="form1.controls['buildingNumber']" [(ngModel)]="buildingNumber" (keypress)="numberOnly($event)">
+												</div>
+												<p style="color: red; margin-top: -1.25em;"
+                                        			*ngIf="form1.controls['buildingNumber'].errors?.required && ( form1.controls['buildingNumber'].touched || submit_button)">
+                                        			Field is Required
+												</p>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label for="aline4">Country*</label>
+													<input type="text" name="aline4" class="form-control"
+													[formControl]="form1.controls['country']" [(ngModel)]="country">
+												</div>
+												<p style="color: red; margin-top: -1.25em;"
+                                        			*ngIf="form1.controls['country'].errors?.required && ( form1.controls['country'].touched || submit_button)">
+                                        			Country is Required
+												</p>
+											</div>
+										</div> -->
+										<!-- <div class="row">
+											<div class="col-md-4">
+												<div class="form-group">
+													<label for="city">City</label>
+													<input type="text" name="city" class="form-control"
+													[formControl]="form1.controls['city']" [(ngModel)]="city">
+												</div>
+												<p style="color: red; margin-top: -1.25em;"
+                                        			*ngIf="form1.controls['city'].errors?.required && ( form1.controls['city'].touched || submit_button)">
+                                        			City is Required
+												</p>
+											</div>
+											<div class="col-md-4">
+												<div class="form-group">
+													<label for="state">State</label>
+													<input type="text" name="state" class="form-control"
+													[formControl]="form1.controls['state']" [(ngModel)]="state">
+												</div>
+												<p style="color: red; margin-top: -1.25em;"
+                                        			*ngIf="form1.controls['state'].errors?.required && ( form1.controls['state'].touched || submit_button)">
+                                        			State is Required
+												</p>
+											</div>
+											<div class="col-md-4">
+												<div class="form-group">
+													<label for="zipcode">Zip Code</label>
+													<input type="text" name="zipcode" class="form-control" (keypress)="numberOnly($event)"
+													[formControl]="form1.controls['zcode']" [(ngModel)]="zcode">
+												</div>
+												<p style="color: red; margin-top: -1.25em;"
+                                        			*ngIf="form1.controls['zcode'].errors?.required && ( form1.controls['zcode'].touched || submit_button)">
+                                        			Zipcode is Required
+												</p>
+											</div>
+										</div> -->
+
+										<!-- <div class="form-group">
+											<label for="phone">Phone Number</label>
+											<input type="text" name="phone" class="form-control" (keypress)="numberOnly($event)"
+											[formControl]="form1.controls['phone']" [(ngModel)]="phone">
+										</div>
+										<p style="color: red; margin-top: -1.25em;"
+                                        			*ngIf="form1.controls['phone'].errors?.required && ( form1.controls['phone'].touched || submit_button)">
+                                        			Phone No. is Required
+										</p> -->
+
+										<div class="form-group"  >
+											<label for="aline1">Address Type :</label>
+											<div class="form-check">
+												<input class="form-check-input" type="radio" value="Home" [formControl]="form1.controls['addType']" [(ngModel)]="addType" name="flexRadioDefault" id="flexRadioDefault1">
+												<label class="form-check-label" for="flexRadioDefault1"> Home (7am-9pm, all days) </label>
+												
+												
+											  </div>
+											  <div class="form-check">
+												<input class="form-check-input" type="radio" value="Office" [formControl]="form1.controls['addType']" [(ngModel)]="addType" name="flexRadioDefault" id="flexRadioDefault2">
+												<label class="form-check-label" for="flexRadioDefault1"> Office (9am-6pm, Weekdays) </label>
+												
+												
+											  </div>
+											  <div class="form-check">
+												<input class="form-check-input" type="radio" value="Other" name="flexRadioDefault" [formControl]="form1.controls['addType']" [(ngModel)]="addType" id="flexRadioDefault3">
+												<label class="form-check-label" for="flexRadioDefault1"> Other</label>
+												
+												
+											  </div>
+											<!-- <select class="form-control" [formControl]="form1.controls['aline1']" [(ngModel)]="aline1" >
+												<option value="Home">Home</option>
+												<option value="Office">Office</option>
+												<option value="Other">Other</option>
+												
+											  </select> -->
+											<!-- <input type="text" name="aline1" class="form-control"
+											[formControl]="form1.controls['aline1']" [(ngModel)]="aline1"> -->
+										</div>
+										<p style="color: red; margin-top: -1.25em;"
+											*ngIf="form1.controls['addType'].errors?.required && ( form1.controls['addType'].touched || submit_button)">
+											Address Type is Required
+										</p>
+
+										<div class="btn-submit-details" align="center">
+											<button type="Submit" class="btn btn-change-fill" (click)="submitAddress()">Submit</button>
+										</div>
+										<!-- 	<div class="form-group">
+											<label class="mr-2">Use this address as my billing address</label>
+											<label class="radio-inline mr-2">Yes
+												<input type="radio" checked="checked" name="is_company">
+												<span class="checkround"></span>
+											</label>
+											<label class="radio-inline mr-2">No
+												<input type="radio" name="is_company">
+												<span class="checkround"></span>
+											</label>
+										</div> -->
+								
+									</form>
+									
+								</div>
+								
+							</div>
+						</div>
+						<div class="col-md-6 mt-4">
+							<!-- <div class="mb-4">
+								<h1>Gift Card (if any)</h1>
+								<div class="form-group">
+									<input type="text"  name="namecard" placeholder="Enter Code" class="form-control">
+								</div>
+								<div class="text-right">
+									<button class="btn btn-change-fill">Validate</button>
+								</div>
+							</div> -->
+							<h1>Payment Method</h1>
+							<div class="form-group">
+								<label class="radio-inline">Debit Card
+									<input type="radio" checked="checked" name="is_company">
+									<span class="checkround"></span>
+								</label>
+							</div>
+							<div class="form-group">
+								<label class="radio-inline">Credit Card
+									<input type="radio" name="is_company">
+									<span class="checkround"></span>
+								</label>
+							</div>
+							<div class="view-added-cards">
+								<h1>View Added Cards</h1>
+							</div>
+							<div class="cards mt-3" *ngFor="let card of cardsdetails">
+								<div class="card-info ">
+									<p>Card Number</p>
+									<p>{{cardHide(card.card_number)}}</p>
+									<p>Exp date: {{card.expiry_date}}</p>
+								</div>
+								<div class="form-group form-check ml-3 marginAdd">
+									<input type="checkbox" name="isCard" (change)="checkCardDetail($event,card._id)" [checked] value="true" class="form-check-input check-input" >
+								</div>
+							</div>
+							<!-- <div class="cards mt-3">
+								<div class="card-info">
+									<p>2. Card Number</p>
+									<p>XXXXX-XXXX-XXXX-XX96 </p>
+									<p>Exp date: 11/25</p>
+								</div>
+								<div class="form-group form-check ml-3">
+									<input type="checkbox" class="form-check-input check-input" id="t-and-c">
+								</div>
+							</div> -->
+							<div class="add-new-card ">
+								<button class="btn btn-change-fill" id="card-btn" (click)="ClicKFunction2()">Add New Card</button>
+							</div>
+							<div class="add-new-card">
+								<button class="btn btn-change-fill mt-4" id="card-btn" [disabled]="this.checked==false && this.LogCity==undefined" (click)="prodCheckOut()">Proceed To Checkout</button>
+							</div>	
+								<form [formGroup]=form2>
+									<div class="card-form mt-3" *ngIf="divHide2">
+										<div class="row">
+											<div class="col-md-6">
+												<div class="form-group">
+													<input type="text"  name="namecard" placeholder="Enter Name on Card" class="form-control"
+													[formControl]="form2.controls['namecard']" [(ngModel)]="namecard">
+												</div>
+												<p style="color: red; margin-top: -1.25em;"
+                                        			*ngIf="form2.controls['namecard'].errors?.required && ( form2.controls['namecard'].touched || submit_button2)">
+                                        			Name is Required
+												</p>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-6">
+												<div class="form-group">
+													<input type="text" name="numbercard" placeholder="Card Number" class="form-control" 
+													maxlength="16" (keypress)="numberOnly($event)"
+													[formControl]="form2.controls['numbercard']" [(ngModel)]="numbercard">
+												</div>
+												<p style="color: red; margin-top: -1.25em;"
+                                        			*ngIf="form2.controls['numbercard'].errors?.required && ( form2.controls['numbercard'].touched || submit_button2)">
+                                        			Card Number is Required
+												</p>
+												<p style="color: red; margin-top: -1.25em;"
+													*ngIf="form2.controls['numbercard'].errors?.pattern"> 
+													It should be max 16 characters long.
+												</p> 
+											</div>	
+										</div>
+										<div class="row">
+											<div class="col-md-3">
+												<div class="form-group">
+													<input type="date" name="datecard" placeholder="DD/YY" class="form-control dataWidth"  [min]="today"
+													[formControl]="form2.controls['datecard']" [(ngModel)]="datecard" >
+												</div>	
+												<p style="color: red; margin-top: -1.25em;"
+                                        			*ngIf="form2.controls['datecard'].errors?.required && ( form2.controls['datecard'].touched || submit_button2)">
+                                        			Date is Required
+												</p>
+											</div>
+											<div class="col-md-3">
+												<div class="form-group">
+													<input type="text" name="datecard" placeholder="CVV" class="form-control" maxlength="3" (keypress)="numberOnly($event)"
+													[formControl]="form2.controls['cvv']" [(ngModel)]="cvv">
+												</div>	
+												<p style="color: red; margin-top: -1.25em;"
+                                        			*ngIf="form2.controls['cvv'].errors?.required && ( form2.controls['cvv'].touched || submit_button2)">
+                                        			CVV is Required
+												</p>
+												<p style="color: red; margin-top: -1.25em;"
+													*ngIf="form2.controls.cvv.errors?.maxlength "> 
+													It should max 3 characters long.
+												</p> 
+												
+											</div>
+											<div class="col-md-12">
+												<div class="new-card-submit-btn mt-3" align="left">
+														<button type="submit" class="btn btn-change-fill" (click)=submitCard()>Submit</button>
+												</div>
+											</div>	
+											
+										</div>
+									</div>
+								</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<app-footer></app-footer>

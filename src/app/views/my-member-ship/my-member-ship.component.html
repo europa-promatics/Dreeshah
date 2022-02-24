@@ -1,0 +1,117 @@
+
+<app-seller-header  *ngIf="user?.user_type=='professional'"></app-seller-header>
+<app-consultant-header  *ngIf="user?.user_type=='photographer'"></app-consultant-header>
+<div class="seller-membership-wrapper">
+	<div class="custom-container d-flex">
+		<app-seller-sidebar  *ngIf="user?.user_type=='professional'"></app-seller-sidebar>
+    <app-ph-sidebar *ngIf="user?.user_type=='photographer'"></app-ph-sidebar>
+		<div class="main-wrap">
+			<div class="card" *ngIf="this.details!=null">
+				<div class="card-body" >
+					<div class="row">
+						<div class="col-md-12">
+							<div class="pricing-section seller-subscription-plans mt-5">
+								<h2 class="text-center">{{membershipDetails?.title}}</h2>
+                                <div class="main_div">
+                                    <div class="row justify-content-center membrshp_row text-center">
+                                        <div class="col-md-8">
+                                            <div class="membrshp_icn">
+                                               <i class="fas fa-gem"></i>
+                                            </div>
+                                            <p class="amt">{{membershipDetails?.currency | titlecase}} {{membershipDetails?.price}} <span class="amt1">/ month</span></p>
+                                            <div class="d-flex justify-content-between">
+                                                <div class="date_div">
+                                                    <label>Start Date</label>
+                                                    <p>{{details?.start_date | date}}</p>
+                                                </div>
+                                                <div class="date_div">
+                                                    <label> End Date</label>
+                                                    <p>{{details?.end_date | date}}</p>
+                                                </div>
+                                            </div>
+                                            <hr/>
+
+                                            <div class="product-list__column-category">
+                                                <ul class="features">
+                                                    <li *ngFor="let i of membershipDetails?.benefits"><i class="fa fa-check mr-3"></i>{{i}}</li>
+                                                    <!-- <li><i class="fa fa-check mr-3"></i>Feature2</li>
+                                                    <li><i class="fa fa-check mr-3"></i>Feature3</li>
+                                                    <li><i class="fa fa-check mr-3"></i>Feature4</li>
+                                                    <li><i class="fa fa-check mr-3"></i>Feature5</li> -->
+                                                </ul>
+                                            </div>
+
+                                            <div class="d-flex justify-content-between my-5">
+												<div class="btn-box">
+													<a class="btn btn-change-fill" (click)="buyNow()">Upgrade Plan</a>
+												</div>
+												<div class="btn-box">
+													<a class="btn btn-change-fill" data-toggle="modal" data-target="#canclmdl">Cancel plan</a>
+												</div>
+												<div class="btn-box">
+													<a  class="btn btn-change-fill" data-toggle="modal" data-target="#updgrademdl" >Make Plan {{status}}</a>
+												</div>
+											</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                              
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card my-2" *ngIf="this.details==null">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <p class="mbershp_pln">You don't have any membership </p>
+                        </div>
+                        <div>
+                            <div class="btn-box">
+                                <a class="btn btn-change-fill" routerLink="/my-membership-list">Buy Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>
+
+<div class="modal fade" id="canclmdl" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title" id="exampleModalLabel">Are you sure you want to cancel membership?</h1>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+       
+        <div class="modal-footer">
+          <button type="button" class="btn btn-change-fill" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-change-fill"  data-dismiss="modal"(click)="cancelPlan()">Yes</button>
+        </div>
+      </div>
+    </div>
+  </div>             
+  <div class="modal fade" id="updgrademdl" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title" id="exampleModalLabel">Are you sure you want to make the plan {{status}}?</h1>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+       
+        <div class="modal-footer">
+          <button type="button" class="btn btn-change-fill" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-change-fill"  data-dismiss="modal"(click)="changePlanStatus()">Yes</button>
+        </div>
+      </div>
+    </div>
+  </div>                           

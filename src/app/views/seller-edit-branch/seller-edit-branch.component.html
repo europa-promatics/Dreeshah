@@ -1,0 +1,1248 @@
+<app-seller-header></app-seller-header>
+<div class="edit-seller-address-wrapper">
+    <div class="custom-container d-flex">
+        <app-seller-sidebar></app-seller-sidebar>
+        <div class="main-wrap">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="edit-seller-address-container">
+                            <div class="col-md-12">
+                                <div class="edit-seller-address-section">
+                                    <div class="personal-info-header">
+                                        <h1>Add Branch</h1>
+                                    </div>
+                                    <div class="edit-seller-address-form">
+                                        <div class="form-box mt-3">
+                                            <form [formGroup]="addBranchForm" class="form-horizontal" method="post"
+                                                action="" enctype="multipart/form-data">
+                                                <div class="signup-col mt-5">
+                                                    <div class="general-details-wrpr">
+                                                        <label> </label>
+                                                        <div class="profile-picture">
+                                                            <img *ngIf="!image"
+                                                                src="assets/imgs/professional.png"
+                                                                alt="image" class="img-fluid">
+                                                                
+                                                            <img *ngIf="image" [src]="image" alt="image" class="img-fluid">
+                                                            <!-- <img *ngIf="!image && imgProfile" src="{{profileUrl}}{{imgProfile}}" alt="image"
+                                                                class="img-fluid"> -->
+                                                            <div class="change-prof-image">
+                                                                <label class="btn btn-change-fill mt-2">
+                                                                    <!-- <input type="file"
+                                                                            style="display: none;"
+                                                                            class="form-control custom-file-upload"
+                                                                            (change)="profilePicChange($event)"> -->
+                                                                    <i class="fa fa-image"></i> Change Picture<input type="file"
+                                                                        style="display: none;" name="prof-image"
+                                                                        (change)="profilePicChange($event)" accept="image/jpeg,image/jpg,image/png,image/gif">
+                                                                    <!-- <button type="button" class="btn btn-change-fill mt-2"><i
+                                                                            class="fa fa-image"></i> Change Picture<input type="file"
+                                                                            style="display: none;" name="prof-image" (change)="profilePicChange($event)"></button> -->
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <h3 class="custom-heading"><span>General Details</span>
+                                                                </h3>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <mat-form-field appearance="">
+                                                                    <mat-label>First Name</mat-label>
+                                                                    <input matInput placeholder="john"
+                                                                        formControlName="first_name" >
+                                                                </mat-form-field>
+                                                                <div class="">
+                                                                    <p style="color: #f44336;  margin-top: -1.25em;"
+                                                                        *ngIf="addBranchForm.controls['first_name'].hasError('required')  && ( addBranchForm.controls['first_name'].touched)">
+                                                                        Please Enter First Name </p>
+                                                                    <p style="color: #f44336;"
+                                                                        *ngIf="!addBranchForm.controls['first_name'].hasError('required') && addBranchForm.controls['first_name'].hasError('pattern')">
+                                                                        Please enter Alphabets Only
+                                                                    </p>
+                                                                    
+                                                                    
+                                                            </div>
+                                                                <mat-form-field appearance="">
+                                                                    <mat-label>Email</mat-label>
+                                                                    <input matInput formControlName="email"
+                                                                        placeholder="johndoe@gmai.com">
+                                                                </mat-form-field>
+                                                                <div *ngIf="addBranchForm.controls.email.invalid && (addBranchForm.controls.email.dirty || addBranchForm.controls.email.touched || submitted )"
+                                                                    class="">
+                                                                    <mat-error
+                                                                        *ngIf="addBranchForm.controls.email.errors.required">
+                                                                        Please enter email address
+                                                                    </mat-error>
+                                                                    <mat-error
+                                                                        *ngIf="addBranchForm.controls.email.errors.pattern">
+                                                                        Please enter valid email address
+                                                                    </mat-error>
+                                                                </div>
+                                                                <mat-form-field>
+                                                                    <mat-label>Password</mat-label>
+                                                                    <input matInput
+                                                                        [type]="hideD ? 'password' : 'text'"
+                                                                        formControlName="password">
+                                                                    <button mat-icon-button matSuffix
+                                                                        (click)="hideD = !hideD"
+                                                                        [attr.aria-label]="'Hide password'"
+                                                                        [attr.aria-pressed]="hideD">
+                                                                        <mat-icon>{{hideD ? 'visibility_off'
+                                                                            : 'visibility'}}</mat-icon>
+                                                                    </button>
+                                                                </mat-form-field>
+                                                                <div *ngIf="addBranchForm.controls.password.invalid && (addBranchForm.controls.password.dirty || addBranchForm.controls.password.touched || submitted)"
+                                                                    class="">
+
+                                                                    <mat-error
+                                                                        *ngIf="addBranchForm.controls.password.errors.required">
+                                                                        Password is required
+                                                                    </mat-error>
+                                                                    <mat-error
+                                                                        *ngIf="addBranchForm.controls.password.errors.pattern">
+                                                                        Password must contain At least 8 characters in length consists of At least 1 Lowercase letters, 1 Uppercase letters, 1 Numbers and 1 Special characters. 
+                                                                    </mat-error>
+
+                                                                </div>
+
+                                                                <mat-form-field>
+                                                                    <mat-label>Confirm Password</mat-label>
+                                                                    <input matInput
+                                                                        [type]="hideE ? 'password' : 'text'"
+                                                                        (keyup)="onKey($event)"
+                                                                        formControlName="confirm_password">
+                                                                    <button mat-icon-button matSuffix
+                                                                        (click)="hideE = !hideE"
+                                                                        [attr.aria-label]="'Hide password'"
+                                                                        [attr.aria-pressed]="hideE">
+                                                                        <mat-icon>{{hideE ? 'visibility_off'
+                                                                            : 'visibility'}}</mat-icon>
+                                                                    </button>
+                                                                </mat-form-field>
+                                                                <div *ngIf="addBranchForm.controls.confirm_password.invalid && (addBranchForm.controls.confirm_password.dirty || addBranchForm.controls.confirm_password.touched || submitted)"
+                                                                    class="">
+
+                                                                    <mat-error
+                                                                        *ngIf="addBranchForm.controls.confirm_password.errors.required">
+                                                                        Confirm password is required
+                                                                    </mat-error>
+
+                                                                </div>
+                                                                <p style="color:  #f64336"
+                                                                    *ngIf="!addBranchForm.controls.confirm_password.invalid && p_false">
+                                                                    Password and confirm password is not
+                                                                    matched
+                                                                </p>
+                                                                <!-- <mat-form-field>
+                                                                                <mat-label>Password</mat-label>
+                                                                                <input matInput [type]="hideD ? 'password' : 'text'">
+                                                                                <button mat-icon-button matSuffix (click)="hideD = !hideD" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideD">
+                                                                                    <mat-icon>{{hideC ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                                                                </button>
+                                                                            </mat-form-field> -->
+                                                                <mat-form-field appearance="">
+                                                                    <mat-label>Branch Name in Arabic</mat-label>
+                                                                    <input matInput placeholder="Branch Name"
+                                                                        formControlName="branch_name_arabic">
+                                                                </mat-form-field>
+                                                                <div
+                                                                *ngIf="
+                                                                addBranchForm.controls
+                                                                    .branch_name_arabic.invalid &&
+                                                                  (addBranchForm.controls
+                                                                    .branch_name_arabic.dirty ||
+                                                                    addBranchForm.controls
+                                                                      .branch_name_arabic.touched )
+                                                                "
+                                                                class=""
+                                                              >
+                                                                <mat-error
+                                                                  *ngIf="
+                                                                  addBranchForm.controls
+                                                                      .branch_name_arabic.errors
+                                                                      .required
+                                                                  "
+                                                                >
+                                                                  Please Enter Company Name in Arabic
+                                                                </mat-error>
+                        
+                                                                <mat-error
+                                                                  *ngIf="
+                                                                  addBranchForm.controls
+                                                                      .branch_name_arabic?.errors
+                                                                      ?.pattern
+                                                                  "
+                                                                >
+                                                                  Please enter Name Arabic only
+                                                                </mat-error>
+                                                              </div>
+                                                                <mat-form-field class="example-full-width">
+                                                                    <mat-label>A Brief About the Branch</mat-label>
+                                                                    <textarea matInput
+                                                                        formControlName="brief_about_branch"
+                                                                        placeholder="A Brief About the Branch">
+                                                                    </textarea>
+                                                                </mat-form-field>
+                                                                <div *ngIf="addBranchForm.controls.brief_about_branch.invalid && (addBranchForm.controls.brief_about_branch.dirty || addBranchForm.controls.brief_about_branch.touched || submitted )"
+                                                                    class="">
+                                                                    <mat-error
+                                                                        *ngIf="addBranchForm.controls.brief_about_branch.errors.required">
+                                                                        Please enter brief about branch
+                                                                    </mat-error>
+                                                                </div>
+                                                                <!-- <mat-form-field appearance="">
+                                                                    <mat-label>Certifications &amp; Awards</mat-label>
+                                                                    <input matInput
+                                                                        placeholder="Certifications & Awards">
+                                                                </mat-form-field> -->
+                                                            </div>
+                                                            <!-- <div class="col-md-4">
+                                                               
+                                                                    <div class="change-prof-image">
+                                                                        <div class="signup-form mb-2">
+                                                                            <label>Please upload your
+                                                                                Certifications &amp;
+                                                                                Awards here</label>
+                                                                        </div>
+                                                                    </div>
+                                                               
+                                                                <div class="row"
+                                                                    *ngFor="let ele of certificates_arr; let i = index;">
+                                                                    <div class="col-md-6">
+                                                                        <label class="certificate_uplodr">
+                                                                            <span class="btn btn-change-fill">
+                                                                                <i class="fas fa-upload"></i>
+                                                                                Upload
+                                                                                File
+                                                                                <input type="file" name="prof-image"
+                                                                                    style="display: none;" accept=".png, .jpg, .jpeg"
+                                                                                    (change)="uploadCertificate($event, i)" formControlName="certificate_awards">
+                                                                            </span>
+                                                                            <span class="cert_name">{{ele.image}}</span>
+                                                                        </label>
+                                                                       
+                                                                    </div>
+                                                                    <div class="col-md-4">
+                                                                        <mat-form-field>
+                                                                            <input matInput [matDatepicker]="picker1"
+                                                                                placeholder="Choose a date"
+                                                                                [(ngModel)]="ele.date"
+                                                                                [ngModelOptions]="{standalone: true}">
+                                                                            <mat-datepicker-toggle matSuffix
+                                                                                [for]="picker1">
+                                                                            </mat-datepicker-toggle>
+                                                                            <mat-datepicker #picker1>
+                                                                            </mat-datepicker>
+                                                                        </mat-form-field>
+                                                                    </div>
+                                                                   
+                                                                    <div class="col-md-2"
+                                                                        *ngIf="certificates_arr.length - 1 == i">
+                                                                        <div class="btn--plus-btn float-right">
+                                                                            <button (click)="addCertificate()"
+                                                                                class="btn btn-round-blue margn-top">
+                                                                                <i class="fa fa-plus"></i>
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-2"
+                                                                        *ngIf="certificates_arr.length - 1 != i">
+                                                                        <div class="btn--plus-btn float-right">
+                                                                            <button (click)="removeCertificate(i)"
+                                                                                class="btn btn-round-blue rem_cer_mrgn">
+                                                                                <i class="fa fa-minus"></i>
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                    <div *ngIf="addBranchForm.controls.certificate_awards.invalid && (addBranchForm.controls.certificate_awards.dirty || addBranchForm.controls.certificate_awards.touched || submitted )"
+                                                                        class="">
+                                                                        <p style="color: #f64336;"
+                                                                            *ngIf="addBranchForm.controls.certificate_awards.errors.required">
+                                                                            Please upload Certificates
+                                                                        </p>
+                                                                    </div>
+                                                            </div> -->
+                                                            <div class="col-md-6">
+                                                                <mat-form-field appearance="">
+                                                                    <mat-label>Last Name</mat-label>
+                                                                    <input matInput formControlName="last_name"
+                                                                        placeholder="john doe">
+                                                                </mat-form-field>
+                                                                <div class="">
+                                                                    <p style="color: #f44336;  margin-top: -1.25em;"
+                                                                        *ngIf="addBranchForm.controls['last_name'].hasError('required')  && ( addBranchForm.controls['last_name'].touched)">
+                                                                        Please Enter Last Name </p>
+                                                                    <p style="color: #f44336;"
+                                                                        *ngIf="!addBranchForm.controls['last_name'].hasError('required') && addBranchForm.controls['last_name'].hasError('pattern')">
+                                                                        Please enter Alphabets Only
+                                                                    </p>
+                                                                    
+                                                                    
+                                                            </div>
+                                                                <!-- <mat-form-field>
+                                                                                <mat-label>Confirm Password</mat-label>
+                                                                                <input matInput [type]="hideE ? 'password' : 'text'">
+                                                                                <button mat-icon-button matSuffix (click)="hideE = !hideE" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideE">
+                                                                                    <mat-icon>{{hideE ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                                                                </button>
+                                                                            </mat-form-field> -->
+                                                                <mat-form-field appearance="">
+                                                                    <mat-label>Branch Name in English</mat-label>
+                                                                    <input matInput formControlName="branch_name_eng"
+                                                                        placeholder="Branch Name in English" required>
+                                                                </mat-form-field>
+                                                                <div *ngIf="addBranchForm.controls.branch_name_eng.invalid && (addBranchForm.controls.branch_name_eng.dirty || addBranchForm.controls.branch_name_eng.touched || submitted )"
+                                                                    class="">
+                                                                    <mat-error
+                                                                        *ngIf="addBranchForm.controls.branch_name_eng.errors.required">
+                                                                        Please enter Branch Name in
+                                                                        English
+                                                                    </mat-error>
+                                                                </div>
+                                                                <mat-form-field>
+                                                                    <mat-label>Branch Type</mat-label>
+                                                                    <mat-select
+                                                                        (selectionChange)="branchCatListing($event.value)"
+                                                                        formControlName="branch_type">
+
+                                                                        <mat-option *ngFor="let branch of branch_type"
+                                                                            [value]="branch.id">
+                                                                            {{branch.name}}
+                                                                        </mat-option>
+
+                                                                    </mat-select>
+                                                                </mat-form-field>
+                                                                <div *ngIf="addBranchForm.controls.branch_type.invalid && (addBranchForm.controls.branch_type.dirty || addBranchForm.controls.branch_type.touched || submitted )"
+                                                                    class="">
+                                                                    <mat-error
+                                                                        *ngIf="addBranchForm.controls.branch_type.errors.required">
+                                                                        Please select Branch Type
+                                                                    </mat-error>
+                                                                </div>
+                                                                <mat-form-field>
+                                                                    <mat-label>Branch Category</mat-label>
+                                                                    <mat-select formControlName="branch_cat">
+                                                                        <mat-option *ngFor="let cat of branch_cat"
+                                                                            [value]="cat.id">
+                                                                            {{cat.name}}
+                                                                        </mat-option>
+
+                                                                    </mat-select>
+                                                                </mat-form-field>
+                                                                <div *ngIf="addBranchForm.controls.branch_cat.invalid && (addBranchForm.controls.branch_cat.dirty || addBranchForm.controls.branch_cat.touched || submitted )"
+                                                                    class="">
+                                                                    <mat-error
+                                                                        *ngIf="addBranchForm.controls.branch_cat.errors.required">
+                                                                        Please select Branch Category
+                                                                    </mat-error>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <div class="change-prof-image">
+                                                                        <div class="signup-form mb-2">
+                                                                            <label>Please upload your
+                                                                                Certifications &amp;
+                                                                                Awards here</label>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-12 mt-2">
+                                                                    <div class="col-md-12 mt-2">
+                                                                        <div
+                                                                          class="row"
+                                                                          *ngFor="
+                                                                            let ele of certificates_arr;
+                                                                            let i = index
+                                                                          "
+                                                                        >
+                                                                          <div class="col-md-6">
+                                                                            <label class="certificate_uplodr">
+                                                                              <span class="btn btn-change-fill">
+                                                                                <i class="fas fa-upload"></i>
+                                                                                Upload File
+                                                                                <input
+                                                                                  type="file"
+                                                                                  
+                                                                                  name="prof-image"
+                                                                                  style="display: none"
+                                                                                  (change)="
+                                                                                    uploadCertificate($event, i)
+                                                                                  "
+                                                                                />
+                                                                              </span>
+                                  
+                                                                              <span class="cert_name">{{
+                                                                                ele.image
+                                                                              }}</span>
+                                                                            </label>
+                                                                          </div>
+                                                                       
+                                                                          <div class="col-md-4">
+                                                                              <mat-form-field>
+                                                                                  <input matInput
+                                                                                      [matDatepicker]="picker1"
+                                                                                      placeholder="Choose a date"
+                                                                                      [(ngModel)]="this.certificates_arr[i].date"
+                                                                                      (dateInput)="firstDate($event.value,i)"
+                                                                                      [ngModelOptions]="{standalone: true}">
+                                                                                  <mat-datepicker-toggle matSuffix
+                                                                                      [for]="picker1">
+                                                                                  </mat-datepicker-toggle>
+                                                                                  <mat-datepicker #picker1>
+                                                                                  </mat-datepicker>
+                                                                              </mat-form-field>
+                                                                          </div>
+                                                                          <div
+                                                                            class="col-md-2"
+                                                                            *ngIf="
+                                                                              certificates_arr.length - 1 == i
+                                                                            "
+                                                                          >
+                                                                            <div
+                                                                              class="btn--plus-btn float-right"
+                                                                            >
+                                                                              <button
+                                                                                (click)="addCertificate()"
+                                                                                class="
+                                                                                  btn btn-round-blue
+                                                                                  margn-top
+                                                                                "
+                                                                              >
+                                                                                <i class="fa fa-plus"></i>
+                                                                              </button>
+                                                                            </div>
+                                                                          </div>
+                                                                          <div
+                                                                            class="col-md-2"
+                                                                            *ngIf="
+                                                                              certificates_arr.length - 1 != i
+                                                                            "
+                                                                          >
+                                                                            <div
+                                                                              class="btn--plus-btn float-right"
+                                                                            >
+                                                                              <button
+                                                                                (click)="removeCertificate(i)"
+                                                                                class="
+                                                                                  btn btn-round-blue
+                                                                                  rem_cer_mrgn
+                                                                                "
+                                                                              >
+                                                                                <i class="fa fa-minus"></i>
+                                                                              </button>
+                                                                            </div>
+                                                                          </div>
+                                                                        </div>
+                                                                        <!-- <mat-error
+                                                                                                                  *ngIf="firstFormGroup.controls.branch_cat.errors.required">
+                                                                                                                  Please Upload File
+                                                                                                              </mat-error> -->
+                                                                      </div>
+                                                                    <!-- <mat-error
+                                                                    *ngIf="firstFormGroup.controls.branch_cat.errors.required">
+                                                                    Please Upload File
+                                                                </mat-error> -->
+                                                                </div>
+                                                            </div>
+                                                            </div>
+                                                    </div>
+                                                    <div class="address-details-wrpr">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <h3 class="custom-heading"><span>Address Details</span>
+                                                                </h3>
+                                                            </div>
+                                                            <div class="col-md-6">
+
+
+                                                                <mat-form-field>
+                                                                    <mat-label>Country</mat-label>
+                                                                    <mat-select [(ngModel)]="selectedCountryProf"
+                                                                        (selectionChange)="selectCountry($event)" name="country"
+                                                                        [formControl]="addBranchForm.controls['country']"
+                                                                        required>
+                                                                        <mat-option disabled>Select Country</mat-option>
+                                                                        <mat-option *ngFor="let country of countries"
+                                                                            [value]="country">{{country.name}}</mat-option>
+                                                                    </mat-select>
+                                                             </mat-form-field>
+                                                                    <p style="color: red; margin-top: -1.25em;"
+                                                                        *ngIf="addBranchForm.controls['country'].errors?.required && ( addBranchForm.controls['country'].touched)">
+                                                                        Please Select Country 
+                                                                    </p>
+
+
+                                                                    <mat-form-field>
+                                                                        <mat-label>State</mat-label>
+                                                                        <mat-select  [(ngModel)]="selectedStateProf" name="state"
+                                                                        
+                                                                            [formControl]="addBranchForm.controls['state']"
+                                                                            required>
+                                                                            <mat-option disabled>Select State</mat-option>
+                                                                            <mat-option *ngFor="let state of states"
+                                                                                [value]="state">{{state.name}}</mat-option>
+                                                                        </mat-select>
+                                                                    </mat-form-field>
+                                                                            <p style="color: red; margin-top: -1.25em;"
+                                                                                *ngIf="addBranchForm.controls['state'].errors?.required && ( addBranchForm.controls['state'].touched)">
+                                                                                Please Select State
+                                                                            </p>
+
+                                                               
+                                                                <!-- <mat-form-field appearance="">
+                                                                    <mat-label>Area, Colony, Street, Sector</mat-label>
+                                                                    <input matInput formControlName="area"
+                                                                        placeholder="Area, Colony, Street, Sector"
+                                                                        required>
+                                                                </mat-form-field>
+                                                                <div *ngIf="addBranchForm.controls.area.invalid && (addBranchForm.controls.area.dirty || addBranchForm.controls.area.touched || submitted )"
+                                                                    class="">
+                                                                    <mat-error
+                                                                        *ngIf="addBranchForm.controls.area.errors.required">
+                                                                        Please enter area
+                                                                    </mat-error>
+                                                                </div> -->
+                                                                <mat-form-field appearance="">
+                                                                    <mat-label>City</mat-label>
+                                                                    <input matInput placeholder="Chennai" [(ngModel)]="selectedCityProf"
+                                                                        formControlName="city" required>
+                                                                </mat-form-field>
+                                                                <div *ngIf="addBranchForm.controls.city.invalid && (addBranchForm.controls.city.dirty || addBranchForm.controls.city.touched || submitted )"
+                                                                    class="">
+                                                                    <mat-error
+                                                                        *ngIf="addBranchForm.controls.city.errors.required">
+                                                                        Please enter city
+                                                                    </mat-error>
+                                                                </div>
+                                                                <mat-form-field appearance="">
+                                                                    <mat-label>Phone Number</mat-label>
+                                                                
+                                                                
+                                                                    <ngx-mat-intl-tel-input
+                                                                                [preferredCountries]="['us', 'gb']"
+                                                                                [enablePlaceholder]="true"
+                                                                                [enableSearch]="true"
+                                                                                name="phone"
+                                                                                (countryChanged)="countryCodeAddress($event)"
+                                                                                [formControl]="addBranchForm.controls['phone_number']"
+                                                                                [(ngModel)]="phone_number">
+                                                                    </ngx-mat-intl-tel-input>
+                                                                    <!-- <input matInput placeholder="" required (keypress)="numberOnly($event)"
+                                                                        [formControl]="customerForm.controls['phone_number']"
+                                                                        [(ngModel)]="phone_number"> -->
+                                                                </mat-form-field>
+                                                                <div>
+                                                                    <mat-error *ngIf="addBranchForm.controls['phone_number']?.errors?.validatePhoneNumber">Invalid Number</mat-error>
+                                                                </div>
+                                                                <div class="">
+                                                                        <p style="color: #f44336;  margin-top: -1.25em;"
+                                                                            *ngIf="addBranchForm.controls['phone_number'].hasError('required')  && ( addBranchForm.controls['phone_number'].touched)">
+                                                                            Please Enter Number </p>
+                                                                        <p style="color: #f44336;"
+                                                                            *ngIf="!addBranchForm.controls['phone_number'].hasError('required') && addBranchForm.controls['phone_number'].hasError('pattern')">
+                                                                            Please enter a valid phone number
+                                                                        </p>
+                                                                        
+                                                                        
+                                                                </div>
+
+                                                                <mat-form-field appearance="">
+                                                                    <mat-label>PIN Code</mat-label>
+                                                                    <input matInput placeholder="646131"
+                                                                        formControlName="pincode">
+                                                                </mat-form-field>
+                                                                <div *ngIf="addBranchForm.controls.pincode.invalid && (addBranchForm.controls.pincode.dirty || addBranchForm.controls.pincode.touched || submitted )"
+                                                                    class="">
+                                                                    <mat-error
+                                                                        *ngIf="addBranchForm.controls.pincode.errors.required">
+                                                                        Please enter pincode
+                                                                    </mat-error>
+                                                                    <mat-error
+                                                                        *ngIf="addBranchForm.controls.pincode.errors.pattern || addBranchForm.controls.pincode.errors.maxlength || addBranchForm.controls.pincode.errors.minlength">
+                                                                        Please enter valid pincode
+                                                                    </mat-error>
+                                                                </div>
+                                                   
+                                                                <!-- <mat-checkbox formControlName="defaultaddress"
+                                                                    class="example-margin"> Use as my default
+                                                                    Address. </mat-checkbox> -->
+                                                            </div>
+                                                            <div class="col-md-6">
+
+
+                                                                <mat-form-field appearance="">
+                                                                    <mat-label>First Name</mat-label>
+                                                                    <input matInput
+                                                                        placeholder="First Name"
+                                                                        required formControlName="fName">
+                                                                </mat-form-field>
+                                                                <div class="">
+                                                                    <p style="color: #f44336;  margin-top: -1.25em;"
+                                                                        *ngIf="addBranchForm.controls['fName'].hasError('required')  && ( addBranchForm.controls['fName'].touched)">
+                                                                        Please Enter Last Name </p>
+                                                                    <p style="color: #f44336;"
+                                                                        *ngIf="!addBranchForm.controls['fName'].hasError('required') && addBranchForm.controls['fName'].hasError('pattern')">
+                                                                        Please enter Alphabets Only
+                                                                    </p>
+                                                                    
+                                                                    
+                                                            </div>
+                                                                
+
+                                                                <mat-form-field appearance="">
+                                                                    <mat-label>Last Name</mat-label>
+                                                                    <input matInput
+                                                                        placeholder="Last Name"
+                                                                        required formControlName="lName">
+                                                                </mat-form-field>
+                                                                <div class="">
+                                                                    <p style="color: #f44336;  margin-top: -1.25em;"
+                                                                        *ngIf="addBranchForm.controls['lName'].hasError('required')  && ( addBranchForm.controls['lName'].touched)">
+                                                                        Please Enter Last Name </p>
+                                                                    <p style="color: #f44336;"
+                                                                        *ngIf="!addBranchForm.controls['lName'].hasError('required') && addBranchForm.controls['lName'].hasError('pattern')">
+                                                                        Please enter Alphabets Only
+                                                                    </p>
+                                                                    
+                                                                    
+                                                            </div>
+
+                                                                <mat-form-field appearance="">
+                                                                    <mat-label>Address Line 1</mat-label>
+                                                                    <input matInput ngx-google-places-autocomplete  #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" formControlName="aLine1"/>
+                                                                    <!-- <input matInput
+                                                                        placeholder="Address Line 1"
+                                                                        required formControlName="aLine1"> -->
+                                                                </mat-form-field>
+                                                                <div *ngIf="addBranchForm.controls.aLine1.invalid && (addBranchForm.controls.aLine1.dirty || addBranchForm.controls.aLine1.touched)"
+                                                                    class="">
+                                                                    <mat-error
+                                                                        *ngIf="addBranchForm.controls.aLine1.errors.required">
+                                                                        Please Enter Address
+                                                                    </mat-error>
+                                                                </div>
+
+                                                                <mat-form-field appearance="">
+                                                                    <mat-label>Address Line 2</mat-label>
+                                                                    <input matInput
+                                                                        placeholder="Address Line 2"
+                                                                        required formControlName="aLine2">
+                                                                </mat-form-field>
+                                                                <div *ngIf="addBranchForm.controls.aLine2.invalid && (addBranchForm.controls.aLine2.dirty || addBranchForm.controls.aLine2.touched)"
+                                                                    class="">
+                                                                    <mat-error
+                                                                        *ngIf="addBranchForm.controls.aLine2.errors.required">
+                                                                        Please Enter Address
+                                                                    </mat-error>
+                                                                </div>
+
+                                                                <!-- <mat-form-field appearance="">
+                                                                    <mat-label>Flat, House no, Building, Company
+                                                                    </mat-label>
+                                                                    <input matInput formControlName="house_no"
+                                                                        placeholder="Flat, Housae no, Building, Company"
+                                                                        required>
+                                                                </mat-form-field>
+                                                                <div *ngIf="addBranchForm.controls.house_no.invalid && (addBranchForm.controls.house_no.dirty || addBranchForm.controls.house_no.touched || submitted )"
+                                                                    class="">
+                                                                    <mat-error
+                                                                        *ngIf="addBranchForm.controls.house_no.errors.required">
+                                                                        Please enter house no
+                                                                    </mat-error>
+                                                                </div> -->
+                                                                <mat-form-field appearance="">
+                                                                    <mat-label>Landmark</mat-label>
+                                                                    <input matInput placeholder="Near City Hospital"
+                                                                        formControlName="landmark" required>
+                                                                </mat-form-field>
+                                                                <div *ngIf="addBranchForm.controls.landmark.invalid && (addBranchForm.controls.landmark.dirty || addBranchForm.controls.landmark.touched || submitted )"
+                                                                    class="">
+                                                                    <mat-error
+                                                                        *ngIf="addBranchForm.controls.landmark.errors.required">
+                                                                        Please enter Landmark
+                                                                    </mat-error>
+                                                                </div>
+                                                                <!-- <mat-form-field>
+                                                                    <mat-label>State</mat-label>
+                                                                    <input matInput placeholder="State" required
+                                                                        formControlName="state">
+                                                                    
+                                                                </mat-form-field>
+                                                                <div *ngIf="addBranchForm.controls.state.invalid && (addBranchForm.controls.state.dirty || addBranchForm.controls.state.touched || submitted )"
+                                                                    class="">
+                                                                    <mat-error
+                                                                        *ngIf="addBranchForm.controls.state.errors.required">
+                                                                        Please enter state
+                                                                    </mat-error>
+                                                                </div> -->
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="contact-details-wrpr">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <h3 class="custom-heading"><span>Contact Details</span>
+                                                                </h3>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <mat-form-field appearance="">
+                                                                    <mat-label>Co-ordinator Name in English</mat-label>
+                                                                    <input matInput formControlName="co_ordinator_eng"
+                                                                        placeholder="Co-ordinator Name in English"
+                                                                        required>
+                                                                </mat-form-field>
+                                                                <div *ngIf="addBranchForm.controls.co_ordinator_eng.invalid && (addBranchForm.controls.co_ordinator_eng.dirty || addBranchForm.controls.co_ordinator_eng.touched || submitted )"
+                                                                    class="">
+                                                                    <mat-error
+                                                                        *ngIf="addBranchForm.controls.co_ordinator_eng.errors.required">
+                                                                        Please enter Co-ordinator Name in
+                                                                        English
+                                                                    </mat-error>
+                                                                </div>
+                                                                <mat-form-field appearance="">
+                                                                    <mat-label>Branch Email</mat-label>
+                                                                    <input formControlName="branch_email" matInput
+                                                                        placeholder="Branch Email" required>
+                                                                </mat-form-field>
+                                                                <div *ngIf="addBranchForm.controls.branch_email.invalid && (addBranchForm.controls.branch_email.dirty || addBranchForm.controls.branch_email.touched || submitted )"
+                                                                    class="">
+                                                                    <mat-error
+                                                                        *ngIf="addBranchForm.controls.branch_email.errors.required">
+                                                                        Please enter branch email
+                                                                    </mat-error>
+                                                                    <mat-error
+                                                                        *ngIf="addBranchForm.controls.branch_email?.errors?.pattern">
+                                                                        Please enter valid branch email
+                                                                    </mat-error>
+                                                                </div>
+
+                                                                <mat-form-field appearance="">
+                                                                    <mat-label>Business Mobile Number</mat-label>
+                                                                    <ngx-mat-intl-tel-input
+                                                                        [preferredCountries]="['us', 'gb']"
+                                                                        [enablePlaceholder]="true"
+                                                                        [enableSearch]="true"
+                                                                        name="phone"
+                                                                        (countryChanged)="businessMobileNum($event)"
+                                                                        [formControl]="addBranchForm.controls['mobile_number']"
+                                                                        >
+                                                                    </ngx-mat-intl-tel-input>
+                                                                    <!-- <input matInput
+                                                                        placeholder="Business Mobile Number" required
+                                                                        formControlName="mobile_number"> -->
+                                                                </mat-form-field>
+                                                                <div *ngIf="addBranchForm.controls.mobile_number.invalid && (addBranchForm.controls.mobile_number.dirty || addBranchForm.controls.mobile_number.touched)"
+                                                                    class="">
+                                                                    <mat-error
+                                                                        *ngIf="addBranchForm.controls.mobile_number.errors.required">
+                                                                        Please Enter Business Mobile number
+                                                                    </mat-error>
+                                                                    <mat-error
+                                                                        *ngIf="addBranchForm.controls.mobile_number?.errors?.pattern">
+                                                                        Please Enter valid Business Mobile number
+                                                                    </mat-error>
+                                                                    <div>
+                                                                        <mat-error *ngIf="addBranchForm.controls['mobile_number']?.errors?.validatePhoneNumber">Invalid Number</mat-error>
+                                                                    </div>
+                                                                </div>
+
+                                                               
+                                                                <!-- <mat-form-field appearance="">
+                                                                    <mat-label>Mobile Number</mat-label>
+                                                                    <input formControlName="mobile_number" matInput
+                                                                        placeholder="Mobile Number">
+                                                                </mat-form-field>
+                                                                <div *ngIf="addBranchForm.controls.mobile_number.invalid && (addBranchForm.controls.mobile_number.dirty || addBranchForm.controls.mobile_number.touched || submitted )"
+                                                                    class="">
+                                                                    <mat-error
+                                                                        *ngIf="addBranchForm.controls.mobile_number.errors.required">
+                                                                        Please enter mobile number
+                                                                    </mat-error>
+                                                                    <mat-error
+                                                                        *ngIf="addBranchForm.controls.mobile_number?.errors?.pattern">
+                                                                        Please enter valid mobile number
+                                                                    </mat-error>
+                                                                </div> -->
+                                                                <mat-form-field appearance="">
+                                                                    <mat-label>Instagram Account</mat-label>
+                                                                    <input  matInput formControlName="insta_acc"
+                                                                        placeholder="Instagram Account">
+                                                                </mat-form-field>
+                                                                <!-- formControlName="insta_acc" -->
+                                                                <!-- <div *ngIf="addBranchForm.controls.insta_acc.invalid && (addBranchForm.controls.insta_acc.dirty || addBranchForm.controls.insta_acc.touched || submitted )"
+                                                                    class="">
+                                                                    <mat-error
+                                                                        *ngIf="addBranchForm.controls.insta_acc.errors.required">
+                                                                        Please enter Instagram Account
+                                                                    </mat-error>
+                                                                </div> -->
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <mat-form-field appearance="">
+                                                                    <mat-label>Co-ordinator Name in Arabic</mat-label>
+                                                                    <input matInput
+                                                                        placeholder="Co-ordinator Name in Arabic"
+                                                                        formControlName="co_ordinator_arabic">
+                                                                </mat-form-field>
+                                                                <div
+                                        *ngIf="
+                                        addBranchForm.controls
+                                            .co_ordinator_arabic.invalid &&
+                                          (addBranchForm.controls
+                                            .co_ordinator_arabic.dirty ||
+                                            addBranchForm.controls
+                                              .co_ordinator_arabic.touched   )
+                                        "
+                                        class=""
+                                      >
+                                        <mat-error
+                                          *ngIf="
+                                          addBranchForm.controls
+                                              .co_ordinator_arabic.errors
+                                              .required
+                                          "
+                                        >
+                                          Please enter Co-ordinator Name
+                                        </mat-error>
+                                        <mat-error
+                                          *ngIf="
+                                          addBranchForm.controls
+                                              .co_ordinator_arabic?.errors
+                                              ?.pattern
+                                          "
+                                        >
+                                          Please enter Arabic only
+                                        </mat-error>
+                                      </div>
+
+                                                                <mat-form-field appearance="">
+                                                                    <mat-label>Branch Website</mat-label>
+                                                                    <input formControlName="branch_website" matInput
+                                                                        placeholder="Branch Website">
+                                                                </mat-form-field>
+                                                                <div *ngIf="addBranchForm.controls.branch_website.invalid && (addBranchForm.controls.branch_website.dirty || addBranchForm.controls.branch_website.touched || submitted )"
+                                                                    class="">
+                                                                    <mat-error
+                                                                        *ngIf="addBranchForm.controls.branch_website.errors.required">
+                                                                        Please enter branch website
+                                                                    </mat-error>
+                                                                    <mat-error
+                                                                        *ngIf="addBranchForm.controls.branch_website?.errors?.pattern">
+                                                                        Please enter valid branch website
+                                                                    </mat-error>
+                                                                </div>
+                                                                <!-- <mat-form-field appearance="">
+                                                                    <mat-label>Business Mobile Number</mat-label>
+                                                                    <input formControlName="business_mobile_number"
+                                                                        matInput placeholder="Business Mobile Number">
+                                                                </mat-form-field>
+                                                                <div *ngIf="addBranchForm.controls.business_mobile_number.invalid && (addBranchForm.controls.business_mobile_number.dirty || addBranchForm.controls.business_mobile_number.touched || submitted )"
+                                                                    class="">
+                                                                    <mat-error
+                                                                        *ngIf="addBranchForm.controls.business_mobile_number.errors.required">
+                                                                        Please enter business mobile number
+                                                                    </mat-error>
+                                                                    <mat-error
+                                                                        *ngIf="addBranchForm.controls.business_mobile_number?.errors?.pattern">
+                                                                        Please enter valid business mobile
+                                                                        number
+                                                                    </mat-error>
+                                                                    <mat-error
+                                                                        *ngIf="addBranchForm.controls.business_mobile_number?.errors?.minlength">
+                                                                        Please enter valid business mobile
+                                                                        number
+                                                                    </mat-error>
+                                                                    <mat-error
+                                                                        *ngIf="addBranchForm.controls.business_mobile_number?.errors?.maxlength">
+                                                                        Please enter valid business mobile
+                                                                        number
+                                                                    </mat-error>
+                                                                </div> -->
+                                                                <mat-form-field appearance="">
+                                                                    <mat-label>Business Landline Number
+                                                                    </mat-label>
+                                                                    <ngx-mat-intl-tel-input
+                                                                        [preferredCountries]="['us', 'gb']"
+                                                                        [enablePlaceholder]="true"
+                                                                        [enableSearch]="true"
+                                                                        name="branch_phone"
+                                                                        [formControl]="addBranchForm.controls['business_mobile_number']"
+                                                                        [(ngModel)]="business_mobile_number"
+                                                                        (countryChanged)="businessLandline($event)"
+                                                                        >
+                                                                    </ngx-mat-intl-tel-input>
+                                                                    <!-- <input matInput
+                                                                        placeholder="Business Mobile Number"
+                                                                        required
+                                                                        formControlName="business_mobile_number"> -->
+                                                                </mat-form-field>
+                                                                <div *ngIf="addBranchForm.controls.business_mobile_number.invalid && (addBranchForm.controls.business_mobile_number.dirty || addBranchForm.controls.business_mobile_number.touched)"
+                                                                    class="">
+                                                                    <mat-error
+                                                                        *ngIf="addBranchForm.controls.business_mobile_number.errors.required">
+                                                                        Please Enter Business Landline number
+                                                                    </mat-error>
+                                                               
+                                                                    <div>
+                                                                        <mat-error *ngIf="addBranchForm.controls['business_mobile_number']?.errors?.validatePhoneNumber">Invalid Number</mat-error>
+                                                                    </div>
+                                                                </div>
+                                                                <mat-form-field appearance="">
+                                                                    <mat-label>Youtube Channel</mat-label>
+                                                                    <input matInput placeholder="Youtube Channel"
+                                                                    formControlName="youtube_channel" >
+                                                                       <!-- formControlName="youtube_channel" required -->
+                                                                </mat-form-field>
+                                                                <!-- <div *ngIf="addBranchForm.controls.youtube_channel.invalid && (addBranchForm.controls.youtube_channel.dirty || addBranchForm.controls.youtube_channel.touched || submitted )"
+                                                                    class="">
+                                                                    <mat-error
+                                                                        *ngIf="addBranchForm.controls.youtube_channel.errors.required">
+                                                                        Please enter youtube channel
+                                                                    </mat-error>
+                                                                </div> -->
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="business-details-wrpr">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <h3 class="custom-heading"><span>Business Details</span>
+                                                                </h3>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <mat-form-field appearance="">
+                                                                    <mat-label>Branch Establishment Year
+                                                                    </mat-label>
+                                                                   
+                                                                        <mat-select formControlName="branch_year" (selectionChange)="getBranchYear($event)" required>
+                                                                            <mat-option>--</mat-option>
+                                                                            <mat-option *ngFor="let year of years" [value]="year">
+                                                                              {{year}}
+                                                                            </mat-option>
+                                                                          </mat-select>
+                                                                   
+                                                                </mat-form-field>
+                                                                <div *ngIf="addBranchForm.controls.branch_year.invalid && (addBranchForm.controls.branch_year.dirty || addBranchForm.controls.branch_year.touched)"
+                                                                class="">
+                                                                    <p style="color: red;"
+                                                                        *ngIf="addBranchForm.controls.branch_year.errors.required">
+                                                                        Please Select branch year
+                                                                    </p>
+                                                                </div>
+                                                                <!-- <mat-form-field appearance="">
+                                                                    <mat-label>Branch Establishment Year</mat-label>
+                                                                    <input matInput formControlName="branch_year"
+                                                                        placeholder="Branch Establishment Year"
+                                                                        required>
+                                                                </mat-form-field> -->
+                                                                <!-- <div *ngIf="addBranchForm.controls.branch_year.invalid && (addBranchForm.controls.branch_year.dirty || addBranchForm.controls.branch_year.touched || submitted )"
+                                                                    class="">
+                                                                    <mat-error
+                                                                        *ngIf="addBranchForm.controls.branch_year.errors.required">
+                                                                        Please enter branch year
+                                                                    </mat-error>
+                                                                    <mat-error
+                                                                        *ngIf="addBranchForm.controls.branch_year.errors.pattern">
+                                                                        Please enter valid branch year
+                                                                    </mat-error>
+                                                                    <mat-error
+                                                                        *ngIf="addBranchForm.controls.branch_year.errors.minlength">
+                                                                        Please enter min 4 letter
+                                                                    </mat-error>
+                                                                    <mat-error
+                                                                        *ngIf="addBranchForm.controls.branch_year.errors.maxlength">
+                                                                        Please enter max 4 letter
+                                                                    </mat-error>
+                                                                </div> -->
+                                                                <div class="form-group">
+                                                                    <label class="custom-label" for="companyName">Please
+                                                                        Upload Your Branch Licence*</label>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <img *ngIf="temp" [src]="licence_img"
+                                                                                height="50" class="lic-img-thumb">
+                                                                            <label>
+                                                                                <span class="btn btn-change-fill"><i
+                                                                                        class="fas fa-upload mr-2"></i>
+                                                                                    <input type="file"
+                                                                                        style="display: none;"
+                                                                                        class="form-control custom-file-upload" accept=".png, .jpg, .jpeg"
+                                                                                        (change)="onFileChange($event)"  accept="image/jpeg,image/jpg,image/png,image/gif" formControlName="branch_licence">Upload</span>
+                                                                            </label>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div *ngIf="addBranchForm.controls.branch_licence.invalid && (addBranchForm.controls.branch_licence.dirty || addBranchForm.controls.branch_licence.touched || submitted )"
+                                                                        class="">
+                                                                        <p style="color: #f64336;"
+                                                                            *ngIf="addBranchForm.controls.branch_licence.errors.required">
+                                                                            Please upload branch licence
+                                                                        </p>
+                                                                    </div>
+                                                                    <!-- <input type="file" name="companyName"
+                                                                        id="companyName" placeholder="City and Coutry"
+                                                                        class="form-control custom-file-upload"> -->
+                                                                </div>
+                                                                <div class="signup-form">
+                                                                    <label id="example-radio-group-label">No of
+                                                                        Employees</label>
+                                                                    <mat-radio-group
+                                                                        aria-labelledby="example-radio-group-label"
+                                                                        class="example-radio-group radio-list"
+                                                                        formControlName="no_of_emp">
+                                                                        <mat-radio-button class="example-radio-button"
+                                                                             value="1 to 10"> 1 to 10
+                                                                        </mat-radio-button>
+                                                                        <mat-radio-button
+                                                                            class="example-radio-button1 radio-list"
+                                                                            value="Up to 50"> Up to 50
+                                                                        </mat-radio-button>
+                                                                        <mat-radio-button
+                                                                            class="example-radio-button1 radio-list"
+                                                                            value="Up to 100"> Up to 100
+                                                                        </mat-radio-button>
+                                                                        <mat-radio-button
+                                                                            class="example-radio-button1 radio-list"
+                                                                            value="Up to 500"> Up to 500
+                                                                        </mat-radio-button>
+                                                                        <mat-radio-button
+                                                                            class="example-radio-button1 radio-list"
+                                                                            value="More than 100"> More than 100
+                                                                        </mat-radio-button>
+                                                                    </mat-radio-group>
+                                                                    <div *ngIf="addBranchForm.controls.no_of_emp.invalid && (addBranchForm.controls.no_of_emp.dirty || addBranchForm.controls.no_of_emp.touched || submitted )"
+                                                                        class="">
+                                                                        <p style="color: #f64336;"
+                                                                            *ngIf="addBranchForm.controls.no_of_emp.errors.required">
+                                                                            Please select number of Employees
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <ng-select [multiple]="true"
+                                                                    formControlName="issued_in_countries"
+                                                                    (change)="getCities($event)"
+                                                                    placeholder="Select Issued in Country">
+                                                                    <ng-option *ngFor="let country of countries"
+                                                                        [value]="country.isoCode">
+                                                                        {{country.name}}</ng-option>
+                                                                </ng-select>
+                                                                <div *ngIf="addBranchForm.controls.issued_in_countries.invalid && (addBranchForm.controls.issued_in_countries.dirty || addBranchForm.controls.issued_in_countries.touched || submitted )"
+                                                                    class="">
+                                                                    <mat-error
+                                                                        *ngIf="addBranchForm.controls.issued_in_countries.errors.required">
+                                                                        Please select issued countries
+                                                                    </mat-error>
+                                                                </div>
+                                                                <ng-select [multiple]="true"
+                                                                    formControlName="issued_in_cities"
+                                                                    placeholder="Select Issued in Cities">
+                                                                    <ng-option *ngFor="let city of cities"
+                                                                        [value]="city.name">
+                                                                        {{city.name}}</ng-option>
+                                                                </ng-select>
+                                                                <div *ngIf="addBranchForm.controls.issued_in_cities.invalid && (addBranchForm.controls.issued_in_cities.dirty || addBranchForm.controls.issued_in_cities.touched || submitted )"
+                                                                    class="">
+                                                                    <mat-error
+                                                                        *ngIf="addBranchForm.controls.issued_in_cities.errors.required">
+                                                                        Please select issued cities
+                                                                    </mat-error>
+                                                                </div>
+                                                                <mat-form-field appearance="">
+                                                                    <mat-label>License Number</mat-label>
+                                                                    <input matInput placeholder="Licence Number"
+                                                                        formControlName="licence_number" required>
+                                                                </mat-form-field>
+                                                                <div *ngIf="addBranchForm.controls.licence_number.invalid && (addBranchForm.controls.licence_number.dirty || addBranchForm.controls.licence_number.touched || submitted )"
+                                                                    class="">
+                                                                    <mat-error
+                                                                        *ngIf="addBranchForm.controls.licence_number.errors.required">
+                                                                        Please enter licence number
+                                                                    </mat-error>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="service-details-wrpr">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <h3 class="custom-heading"><span>Service Details</span>
+                                                                </h3>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <!-- <mat-form-field appearance=""> -->
+                                                                <mat-label>Please List the Services and Products you
+                                                                    Provide</mat-label>
+                                                                    <ng-select [multiple]="true" formControlName="service_category"
+                                                                        (change)="getSubCat($event)" placeholder="Select Service Category">
+                                                                        <ng-option *ngFor="let category of categiryArr"
+                                                                        [value]="category._id">
+                                                                        {{category.name}}
+                                                                        </ng-option>
+                                                                    </ng-select>
+                                                                    <div *ngIf="addBranchForm.controls.service_category.invalid && (addBranchForm.controls.service_category.dirty || addBranchForm.controls.service_category.touched)"
+                                                                        class="">
+                                                                        <mat-error
+                                                                            *ngIf="addBranchForm.controls.service_category.errors.required">
+                                                                            Service Category is required
+                                                                        </mat-error>
+                                                                        <!-- <p style="color: red;"
+                                                                            *ngIf="serviceFormGroup.controls.service_category.errors.required">
+                                                                            Service Category is required
+                                                                        </p> -->
+                                                                    </div>
+
+                                                                    <ng-select [multiple]="true" formControlName="service_sub_category"
+                                                                            placeholder="Select Service Sub Category">
+                                                                        <ng-option *ngFor="let SubCat of subCatArr"
+                                                                        [value]="SubCat._id">
+                                                                        {{SubCat.name}}
+                                                                        </ng-option>
+                                                                     </ng-select>
+                                                               
+                                                               <div *ngIf="addBranchForm.controls.service_sub_category.invalid && (addBranchForm.controls.service_sub_category.dirty || addBranchForm.controls.service_sub_category.touched)"
+                                                                   class="">
+                                                                   <mat-error
+                                                                       *ngIf="addBranchForm.controls.service_sub_category.errors.required">
+                                                                       Service Sub Category is required
+                                                                   </mat-error>
+                                                                   <!-- <p style="color: red;"
+                                                                       *ngIf="serviceFormGroup.controls.service_sub_category.errors.required">
+                                                                       Service Sub Category is required
+                                                                   </p> -->
+                                                               </div>
+                                                                <!-- <ng-select [multiple]="true"
+                                                                    placeholder="Select Services"
+                                                                    formControlName="services_products">
+                                                                    <ng-option *ngFor="let service of service_list"
+                                                                        [value]="service._id">
+                                                                        {{service.name}}</ng-option>
+                                                                </ng-select> -->
+                                                                <!-- <input matInput
+                                                                        placeholder="List the Services and Products"
+                                                                        required> -->
+                                                                <!-- </mat-form-field> -->
+                                                                <!-- <div *ngIf="addBranchForm.controls.services_products.invalid && (addBranchForm.controls.services_products.dirty || addBranchForm.controls.services_products.touched || submitted )"
+                                                                    class="">
+                                                                    <mat-error
+                                                                        *ngIf="addBranchForm.controls.services_products.errors.required">
+                                                                        Please enter the Services and
+                                                                        Products
+                                                                    </mat-error>
+                                                                </div> -->
+                                                                <div class="signup-form">
+                                                                    <label id="example-radio-group-label">Typical
+                                                                        Service Cost Range</label>
+                                                                    <mat-radio-group
+                                                                        aria-labelledby="example-radio-group-label"
+                                                                        class="example-radio-group radio-list"
+                                                                        formControlName="service_cost">
+                                                                        <mat-radio-button class="example-radio-button "
+                                                                            value="Up to 10,000" checked> Up to 10,000
+                                                                            AED
+                                                                        </mat-radio-button>
+                                                                        <mat-radio-button
+                                                                            class="example-radio-button1 radio-list"
+                                                                            value="Up to 50,000"> Up to 50,000 AED
+                                                                        </mat-radio-button>
+                                                                        <mat-radio-button
+                                                                            class="example-radio-button1 radio-list"
+                                                                            value="Up to 100,000"> Up to 100,000 AED
+                                                                        </mat-radio-button>
+                                                                        <mat-radio-button
+                                                                            class="example-radio-button1 radio-list"
+                                                                            value="Up to 500,000"> Up to 500,000 AED
+                                                                        </mat-radio-button>
+                                                                        <mat-radio-button
+                                                                            class="example-radio-button1 radio-list"
+                                                                            value="Above 500,000"> Above 500,000 AED
+                                                                        </mat-radio-button>
+                                                                    </mat-radio-group>
+                                                                    <div *ngIf="addBranchForm.controls.service_cost.invalid && (addBranchForm.controls.service_cost.dirty || addBranchForm.controls.service_cost.touched || submitted )"
+                                                                        class="">
+                                                                        <p style="color:#f64336;"
+                                                                            *ngIf="addBranchForm.controls.service_cost.errors.required">
+                                                                            Please select the Services cost
+                                                                            range
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <!-- <mat-form-field appearance=""> -->
+                                                                <mat-label>Countries &amp; Cities Range Where Your
+                                                                    Services Cover</mat-label>
+                                                                <!-- <input matInput placeholder="Enter City Range" required> -->
+                                                                <ng-select [multiple]="true"
+                                                                    (change)="getCities($event)"
+                                                                    placeholder="Select Countries"
+                                                                    formControlName="service_country">
+                                                                    <ng-option *ngFor="let country of countries"
+                                                                        [value]="country.isoCode">
+                                                                        {{country.name}}</ng-option>
+                                                                </ng-select>
+                                                                <div *ngIf="addBranchForm.controls.service_country.invalid && (addBranchForm.controls.service_country.dirty || addBranchForm.controls.service_country.touched || submitted )"
+                                                                    class="">
+                                                                    <mat-error
+                                                                        *ngIf="addBranchForm.controls.service_country.errors.required">
+                                                                        Please select service countries
+                                                                    </mat-error>
+                                                                </div>
+                                                                <ng-select [multiple]="true" placeholder="Select Cities"
+                                                                    formControlName="service_city">
+                                                                    <ng-option *ngFor="let city of cities"
+                                                                        [value]="city.name">
+                                                                        {{city.name}}</ng-option>
+                                                                </ng-select>
+                                                                <div *ngIf="addBranchForm.controls.service_city.invalid && (addBranchForm.controls.service_city.dirty || addBranchForm.controls.service_city.touched || submitted )"
+                                                                    class="">
+                                                                    <mat-error
+                                                                        *ngIf="addBranchForm?.controls?.service_city?.errors.required">
+                                                                        Please select service cities
+                                                                    </mat-error>
+                                                                </div>
+                                                                <!-- </mat-form-field> -->
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- <div class="branch-details-wrpr">
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <h3 class="custom-heading"><span>Branch Details</span></h3> </div>
+                                                                        <div class="col-md-6">
+                                                                            <div class="branch-wrpr">
+                                                                                <label id="example-radio-group-label">Do you have Branches?</label>
+                                                                                <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group">
+                                                                                    <mat-radio-button class="example-radio-button" checked> Yes </mat-radio-button>
+                                                                                    <mat-radio-button class="example-radio-button1"> No </mat-radio-button>
+                                                                                </mat-radio-group>
+                                                                                <mat-form-field appearance="">
+                                                                                    <mat-label>No. of Branches</mat-label>
+                                                                                    <input matInput placeholder="No. of Branches" required> </mat-form-field>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div> -->
+                                                </div>
+
+                                                <div class="submit-btn mt-3" align="center">
+                                                    <button type="submit" class="btn btn-change-fill"
+                                                        (click)="addBranch()">Save</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

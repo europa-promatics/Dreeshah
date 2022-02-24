@@ -1,0 +1,71 @@
+<!-- <app-db-header></app-db-header> -->
+<app-seller-header></app-seller-header>
+<div class="dashboard-wrapper">
+    <div class="custom-container d-flex">
+        <app-sidebar></app-sidebar>
+        <div class="main-wrap">
+            <div class="dashboard-heading">
+                <h1 class="text-left">Notifications</h1>
+            </div>
+            <div class="db-wrapper">
+                <div class="row justify-content-center">
+                    <div class="col-sm-10" >
+                        <div class="card-shdow paymnt-crds" *ngFor="let notification of allNotifications">
+                            <div class="d-flex justify-content-between">
+                            <div class="d-flex">
+                                    <img src="assets/imgs/message-image.jpeg" class="img-fluid round-image">
+                                    <div class="crd-txt">
+                                        <h4>{{notification?.title}}</h4>
+                                        <p>{{notification?.body}}</p>
+                                    </div>
+                            </div>
+                            <p >2 mins ago</p>
+                                
+                            </div>
+                        </div>
+                        <div class="card-shdow paymnt-crds" *ngIf="allNotifications.length==0">
+                            <div class="d-flex justify-content-between">
+                            <div class="d-flex">
+                                    <!-- <img src="assets/imgs/message-image.jpeg" class="img-fluid round-image"> -->
+                                    <div class="crd-txt">
+                                        <h4>No notifications</h4>
+                                        <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p> -->
+                                    </div>
+                            </div>
+                            <!-- <p >2 mins ago</p> -->
+                                
+                            </div>
+                        </div>
+                        <!-- <div class="card-shdow paymnt-crds">
+                            <div class="d-flex justify-content-between">
+                            <div class="d-flex">
+                                    <img src="assets/imgs/message-image.jpeg" class="img-fluid round-image">
+                                    <div class="crd-txt">
+                                        <h4>James Matthew</h4>
+                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                                    </div>
+                            </div>
+                            <p >2 mins ago</p>
+                                
+                            </div>
+                        </div>
+                        <div class="card-shdow paymnt-crds">
+                            <div class="d-flex justify-content-between">
+                            <div class="d-flex">
+                                    <img src="assets/imgs/message-image.jpeg" class="img-fluid round-image">
+                                    <div class="crd-txt">
+                                        <h4>James Matthew</h4>
+                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                                    </div>
+                            </div>
+                            <p >2 mins ago</p>
+                                
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

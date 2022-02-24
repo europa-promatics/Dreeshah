@@ -1,0 +1,257 @@
+<app-header></app-header>
+<section class="add-proj-wrpr">
+    <div class="custom_container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="add-proj-form-wrp">
+                            <div class="proj-form-head">
+                                <h1>Upload Content to a Project</h1>
+                                <p>A Project is a collection of photos and videos of your own work or products. Projects
+                                    are usually best organized by client, job site, or product line. Or upload photos to
+                                    an ideabook</p>
+                            </div>
+                            <div class="add-proj-form">
+                                <form [formGroup]="formGroup">
+                                    <div class="form-group">
+                                        <mat-form-field>
+                                            <mat-label>Select Project</mat-label>
+                                            <mat-select [(ngModel)]="select_project"
+                                                [ngModelOptions]="{standalone: true}"
+                                                (selectionChange)="changeProjectType($event.value)">
+                                                <mat-option value="new">Create a New Project</mat-option>
+                                                <mat-option value="existing">Your Existing Project</mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="form-group" *ngIf="select_project == 'existing'">
+                                        <mat-form-field>
+                                            <mat-label>Select your existing Project</mat-label>
+                                            <mat-select [(ngModel)]="project_id" [ngModelOptions]="{standalone: true}"
+                                                (selectionChange)="getProjectById($event.value)">
+                                                <mat-option *ngFor="let project of projects" [value]="project._id">
+                                                    {{project.project_name}}</mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                    <div *ngIf="select_project == 'new' || project_id != ''">
+                                        <div class="form-group">
+                                            <mat-form-field appearance="">
+                                                <mat-label>New Project Name</mat-label>
+                                                <input matInput placeholder="" required formControlName="project_name">
+                                            </mat-form-field>
+                                            <div *ngIf="formGroup.controls.project_name.invalid && (formGroup.controls.project_name.dirty || formGroup.controls.project_name.touched || submit_button)"
+                                                class="">
+                                                <p style="color: red;"
+                                                    *ngIf="formGroup.controls.project_name.errors.required">
+                                                    Please fill project name
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <mat-form-field appearance="">
+                                            <mat-label>Project Address</mat-label>
+                                            <input matInput placeholder="" required formControlName="project_address">
+                                        </mat-form-field>
+                                        <div *ngIf="formGroup.controls.project_address.invalid && (formGroup.controls.project_address.dirty || formGroup.controls.project_address.touched || submit_button)"
+                                            class="">
+                                            <p style="color: red;"
+                                                *ngIf="formGroup.controls.project_address.errors.required">
+                                                Please fill project address
+                                            </p>
+                                        </div>
+                                        <div class="signup-form">
+                                            <label id="example-radio-group-label">Category</label>
+                                            <mat-radio-group aria-labelledby="example-radio-group-label"
+                                                class="example-radio-group" formControlName="project_category">
+                                                <mat-radio-button class="example-radio-button"
+                                                    *ngFor="let category of ServiceCat" [value]="category._id">
+                                                    {{category.name}}
+                                                </mat-radio-button>
+                                            </mat-radio-group>
+                                            <div *ngIf="formGroup.controls.project_category.invalid && (formGroup.controls.project_category.dirty || formGroup.controls.project_category.touched || submit_button)"
+                                                class="">
+                                                <p style="color: red;"
+                                                    *ngIf="formGroup.controls.project_category.errors.required">
+                                                    Please select project category
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <mat-form-field>
+                                            <mat-label>Styles</mat-label>
+                                            <mat-select formControlName="project_style">
+                                                <mat-option *ngFor="let style of styles" [value]="style._id">
+                                                    {{style.name}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                        <div *ngIf="formGroup.controls.project_style.invalid && (formGroup.controls.project_style.dirty || formGroup.controls.project_style.touched || submit_button)"
+                                            class="">
+                                            <p style="color: red;"
+                                                *ngIf="formGroup.controls.project_style.errors.required">
+                                                Please select project style
+                                            </p>
+                                        </div>
+                                        <mat-form-field appearance="">
+                                            <mat-label>Link to Website</mat-label>
+                                            <input matInput placeholder="" value="https://" required
+                                                formControlName="project_website">
+                                        </mat-form-field>
+                                        <div *ngIf="formGroup.controls.project_website.invalid && (formGroup.controls.project_website.dirty || formGroup.controls.project_website.touched || submit_button)"
+                                            class="">
+                                            <p style="color: red;"
+                                                *ngIf="formGroup.controls.project_website.errors.required">
+                                                Please fill project Website
+                                            </p>
+                                            <p style="color: red;"
+                                                *ngIf="formGroup.controls.project_website.errors.pattern">
+                                                Please fill valid project Website
+                                            </p>
+                                        </div>
+                                        <div class="form-group signup-form">
+                                            <label>Keywords (Separated by cliking enter)</label>
+                                            <tag-input formControlName="project_keyword" maxItems="10"
+                                                class="keywords--chips form-control height-unset" [placeholder]="">
+                                            </tag-input>
+                                        </div>
+                                        <div *ngIf="formGroup.controls.project_keyword.invalid && (formGroup.controls.project_keyword.dirty || formGroup.controls.project_keyword.touched || submit_button)"
+                                            class="">
+                                            <p style="color: red;"
+                                                *ngIf="formGroup.controls.project_keyword.errors.required">
+                                                Please add project keywords
+                                            </p>
+                                        </div>
+                                        <div class="form-group signup-form">
+                                            <label>Content <span class="mandatory-star">*</span></label>
+                                            <div class="img-uploader-wrp">
+                                                <div class="img-prnt"
+                                                    *ngIf="select_project == 'existing' && project_details">
+                                                    <ngx-dropzone-preview
+                                                        *ngFor="let img of project_details.project_images; let i = index;"
+                                                        [removable]="false" class="drpzne-related">
+                                                        <ngx-dropzone-label>
+                                                            <div class="drp-prnt">
+                                                                <img src="{{image_path}}{{img.name}}"
+                                                                    class="img-fluid drp-thumb">
+                                                                <div class="btn btn-round-close"
+                                                                    (click)="removeProjectImage(i)">
+                                                                    <div class="remove-badge-box">
+                                                                        <ngx-dropzone-remove-badge _ngcontent-prs-c99=""
+                                                                            _nghost-prs-c100=""
+                                                                            class="ng-star-inserted">
+                                                                            <svg _ngcontent-prs-c100="">
+                                                                                <line _ngcontent-prs-c100="" x1="0"
+                                                                                    y1="0" x2="10" y2="10"></line>
+                                                                                <line _ngcontent-prs-c100="" x1="0"
+                                                                                    y1="10" x2="10" y2="0"></line>
+                                                                            </svg>
+                                                                        </ngx-dropzone-remove-badge>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </ngx-dropzone-label>
+                                                    </ngx-dropzone-preview>
+                                                </div>
+
+                                                <ngx-dropzone (change)="onSelect($event)" class="custom--dropzone" accept="image/jpeg,image/jpg,image/png,image/gif" >
+                                                    <ngx-dropzone-label>Click or Drag and Drop files to Upload
+                                                    </ngx-dropzone-label>
+                                                    <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview"
+                                                        *ngFor="let f of files" [file]="f" [removable]="true"
+                                                        (removed)="onRemove(f)">
+                                                    </ngx-dropzone-image-preview>
+                                                </ngx-dropzone>
+
+                                            </div>
+                                            <!-- <ngx-dropzone (change)="onSelect($event)" class="custom--dropzone">
+                                            <ngx-dropzone-label>Click or Drag and Drop files to Upload
+                                            </ngx-dropzone-label>
+                                            <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview"
+                                                *ngFor="let f of files" [file]="f" [removable]="true"
+                                                (removed)="onRemove(f)">
+                                            </ngx-dropzone-image-preview>
+                                        </ngx-dropzone> -->
+                                        </div>
+                                        <small>By uploading photos, you are approving their display by Houzz, saying
+                                            that
+                                            you either own the rights to the image or that you have permission or a
+                                            license
+                                            to do so from the copyright holder, and agreeing to abide by Dreeshah's
+                                            <span class="theme-link"><a href="/TermsAndConditions">terms of
+                                                    use.</a></span></small>
+                                        <div class="check--wrp mt-2">
+                                            <div class="form-group mb-0 signup-form">
+                                                <label>Where Do You want to Publish?<span
+                                                        class="mandatory-star">*</span></label>
+                                            </div>
+                                            <div class="example-section">
+                                                <mat-checkbox class="example-margin"
+                                                    formControlName="project_publish_professional">Professional
+                                                </mat-checkbox>
+                                                <mat-checkbox class="example-margin"
+                                                    formControlName="project_publish_services">Services</mat-checkbox>
+                                                <mat-checkbox class="example-margin"
+                                                    formControlName="project_publish_product">Products</mat-checkbox>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12 text-center">
+                                                <div class="upload-btn mt-2">
+                                                    <!-- <button class="btn btn-change-fill min-width-0">Publish</button> -->
+                                                    <!-- <button class="btn btn-change-fill min-width-0">Delete</button> -->
+                                                    <button class="btn btn-change-fill min-width-0"
+                                                        (click)="submit()">Save</button>
+                                                    <button class="btn btn-change-fill min-width-0" (click)="cancel()">Cancel</button>
+                                                    <!-- <button class="btn btn-change-fill min-width-0">Save Later</button> -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="phto-gdlns-wrpr">
+                            <div class="phto-gdlns-head">
+                                <h3>Photo Guidelines</h3>
+                                <p>Photos that do not meet these guidelines will be removed.</p>
+                            </div>
+                            <div class="guidelines-section">
+                                <!--  icon -->
+                                <div class="guidelines-text">
+                                    <div class="guidelines-title">Do's</div>
+                                    <ul class="list--type">
+                                        <li class="">Photos of residential spaces</li>
+                                        <li>Large Photos (1200 pixels wide or more)</li>
+                                        <li>JPEG, GIF, PNG, or 1-Page TIFF file formats</li>
+                                        <li>Good Quality Photos</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="guidelines-section">
+                                <!--  <i icon -->
+                                <div class="guidelines-text">
+                                    <div class="guidelines-title">Don'ts</div>
+                                    <ul class="list--type">
+                                        <li class="">Photos of commercial or office spaces, Products photos with
+                                            non-white background or multiple items</li>
+                                        <li>Low quality or small size photos</li>
+                                        <li>PDF, Multi-Page TIFF, or EPS file formats</li>
+                                        <li>Photos with watermarks, text or advertisements</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<app-footer></app-footer>

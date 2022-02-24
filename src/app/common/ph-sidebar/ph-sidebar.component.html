@@ -1,0 +1,217 @@
+<div class="ph-sidebar-wrapper">
+  <div class="d-flex" id="wrapper">
+    <div id="sidebar-wrapper">
+      <div class="list-group list-group-flush">
+        <div class="sidebar-menu">
+          <ul class="no-list">
+            <li>
+              <a
+                routerLink="/photographerDashboard"
+                class="
+                  sidebar-list-item
+                  list-group-item list-group-item-action
+                  active
+                "
+                ><i class="fa fa-chart-line mr-3"></i>Dashboard</a
+              >
+            </li>
+            <li>
+              <div class="filter-accordion">
+                <div class="accordion" id="accordionList">
+                  <a
+                    href=""
+                    class="
+                      list-group-item
+                      sidebar-list-item
+                      list-group-item-action
+                      accordion-toggle
+                      collapsed
+                    "
+                    data-toggle="collapse"
+                    data-target="#collapseList"
+                  >
+                    <i class="fa fa-user mr-3"></i>My Profile
+                    <span class="pls_ico abs_icn_fq"
+                      ><i class="fa fa-angle-down"></i
+                    ></span>
+                    <span class="mns_ico abs_icn_fq"
+                      ><i class="fa fa-angle-up"></i
+                    ></span>
+                  </a>
+                  <div
+                    id="collapseList"
+                    class="collapse"
+                    aria-labelledby="headingOne"
+                    data-parent="#accordionList"
+                  >
+                    <ul>
+                      <li>
+                        <a
+                          routerLink="/photographerProfile"
+                          class="
+                            list-group-item
+                            sidebar-list-item
+                            list-group-item-action
+                          "
+                          ><i class="fa fa-tasks mr-3"></i>Personal
+                          Information</a
+                        >
+                      </li>
+                    <!--  <li>
+                        <a
+                          routerLink="/address-photographer"
+                          class="
+                            list-group-item
+                            sidebar-list-item
+                            list-group-item-action
+                          "
+                          ><i class="fa fa-pencil mr-3"></i>Address</a
+                        >
+                      </li>-->
+                      <li>
+                        <a
+                          routerLink="/change-password-photographer"
+                          class="
+                            list-group-item
+                            sidebar-list-item
+                            list-group-item-action
+                          "
+                          ><i class="fa fa-key mr-3"></i>Change Password</a
+                        >
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+                <a
+                routerLink="/photographerBranchListing" 
+                  class="list-group-item sidebar-list-item list-group-item-action"
+                  ><i class="fa fa-home mr-3"></i>Branches</a
+                >
+              </li>
+            <li>
+              <a
+                routerLink="/payment-methods"
+                class="list-group-item sidebar-list-item list-group-item-action"
+                ><i class="fa fa-heart mr-3"></i>Payment Method</a
+              >
+            </li>
+            <li>
+                <a
+                  routerLink="/my-catalogue"
+                  class="list-group-item sidebar-list-item list-group-item-action"
+                  ><i class="fa fa-images mr-3"></i>My Catalogues</a
+                >
+              </li>
+            <li>
+              <a
+                routerLink="/my-membership"
+                class="list-group-item sidebar-list-item list-group-item-action"
+                ><i class="fa fa-images mr-3"></i>My Memberships</a
+              >
+            </li>
+            <li>
+              <a
+                routerLink="/photographerRequest"
+                class="list-group-item sidebar-list-item list-group-item-action"
+                ><i class="fa fa-ticket mr-3"></i>Photography Package Request</a
+              >
+            </li>
+            <li>
+              <a
+                routerLink="/photographerPackageManagement"
+                class="list-group-item sidebar-list-item list-group-item-action"
+                ><i class="fa fa-shopping-cart mr-3"></i>Photography Package
+                Management</a
+              >
+            </li>
+            <!-- <li>
+                            <a routerLink="/photographerOrderManagement" 
+                            class="list-group-item sidebar-list-item list-group-item-action">
+                            <i class="fa fa-credit-card mr-3"></i>Advertisement Management</a>
+                        </li> -->
+            <!-- <li>
+              <a
+                routerLink="/photographerRefundManagement"
+                class="list-group-item sidebar-list-item list-group-item-action"
+                ><i class="fa fa-credit-card mr-3"></i>Refund Management</a
+              >
+            </li> -->
+            <li>
+              <a
+                routerLink="/my-appointment-seller"
+                class="list-group-item sidebar-list-item list-group-item-action"
+                ><i class="fas fa-calendar-plus mr-3"></i>Book Appointment</a
+              >
+            </li>
+            <li>
+                <a
+                  routerLink="/earnings"
+                  class="list-group-item sidebar-list-item list-group-item-action"
+                  ><i class="fa fa-cog mr-3"></i>Earnings</a
+                >
+              </li>
+              <!-- <li>
+                <a
+                  routerLink="/photographerInqueriesManagement"
+                  class="list-group-item sidebar-list-item list-group-item-action"
+                  ><i class="fa fa-cog mr-3"></i>Inqueries</a
+                >
+              </li> -->
+              <li>
+                <a
+                  routerLink="/seller-discounts"
+                  class="list-group-item sidebar-list-item list-group-item-action"
+                  ><i class="fa fa-cog mr-3"></i>Discount</a
+                >
+              </li>
+                 
+            <!-- <li>
+                <a
+                  routerLink="/photographerGiftCard"
+                  class="list-group-item sidebar-list-item list-group-item-action"
+                  ><i class="fa fa-cog mr-3"></i>Gift Cards</a
+                >
+              </li> -->
+          <!-- <li>
+              <a
+                routerLink="/photographerStaffPrivileges"
+                class="list-group-item sidebar-list-item list-group-item-action"
+                ><i class="fa fa-user mr-3"></i>Add Staff</a
+              >
+            </li>--> 
+            <li>
+              <a
+                routerLink="/sellerStaffPrivileges"
+                class="list-group-item sidebar-list-item list-group-item-action"
+                ><i class="fa fa-user mr-3"></i> Staff & Staff Privileges</a
+              >
+            </li>
+      
+            
+         
+            <li>
+              <a
+                routerLink="/photographer-album"
+                class="list-group-item sidebar-list-item list-group-item-action"
+                ><i class="fa fa-heart mr-3"></i>My Albums</a
+              >
+            </li>
+            <!--  <li>
+                            <a routerLink="/photographer-request" class="list-group-item sidebar-list-item list-group-item-action"><i class="fa fa-images mr-3"></i>Request</a>
+                        </li> -->
+            <li>
+              <a
+                (click)="logout()"
+                class="list-group-item sidebar-list-item list-group-item-action"
+                ><i class="fa fa-sign-out mr-3"></i>Logout</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

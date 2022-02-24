@@ -1,0 +1,117 @@
+<div class="seller-header">
+
+    <header class="header_home">
+        <div class="custom_container">
+            <nav class="navbar navbar-expand-lg navbar-light align-items-center">
+                <a class="navbar-brand" href="#">
+                <img src="assets/imgs/logo.png" class="img-fluid">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto">
+                    
+                        <li class="nav-item drop-item">
+                            <div class="User-area1">
+                                <div class="User-avtar1">
+                                    <div class="notification-wrap1">
+                                        <span class="notification1">
+                                            <a (click)="readNotifications()"><i class="fa fa-bell"></i></a>
+                                            <!-- <span class="badge1">4</span> -->
+                                        </span>
+                                    </div>
+                                </div>
+                                <ul class="User-Dropdown1 U-open1" id="notify">
+                                    <p class="text-center notification-head">Notifications</p>
+                                    <li *ngFor="let notification of allUnreadNotifications">
+                                        <div class="alert alert-danger1 alert-dismissible fade show">
+                                            <strong><i class="fa fa-exclamation-triangle mr-2"></i></strong> {{notification?.title}}
+                                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                        </div>
+                                    </li>
+                                    <li *ngIf="allNotifications.length==0">
+                                        <div class="alert alert-danger1 alert-dismissible fade show" id="alert-green">
+                                            <strong><i class="fa fa-exclamation-triangle mr-2"></i></strong> No New Notifications
+                                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="alert alert-danger1 alert-dismissible fade show">
+                                            <a routerLink="/notifications"><strong><i class="fa fa-exclamation-triangle mr-2"></i>View all notifications</strong></a> 
+                                            <!-- <button type="button" class="close" data-dismiss="alert">&times;</button> -->
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item drop-item">
+                            <div class="User-area1">
+                                <div class="">
+                                    <div class="notification-wrap1">
+                                        <span class="notification1">
+                                         <a routerLink="/mycart" class="position-relative"><i class="fa fa-shopping-cart"></i><span class="badge cstm-badge-green">{{cartItemCount}}</span></a>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item drop-item">
+                            <div class="User-area1">
+                                <div class="">
+                                    <div class="notification-wrap1">
+                                        <span class="notification1">
+                                           <a routerLink="/mychat"><i class="fab fa-facebook-messenger"></i></a>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item drop-item" *ngIf="userData?.user_type == 'customer'">
+                            
+                            <div class="user_drop">
+                                <button mat-button [matMenuTriggerFor]="menu" >
+                                    <img src="https://demo.wponlinesupport.com/themes/wp-iclean-responsive/wp-content/uploads/sites/8/2017/04/team-6.jpg"/> 
+                                </button>
+                                <mat-menu #menu="matMenu" xPosition="before">
+                                    <ul class="comnon_drop">
+                                        <li><a (click)="myProfile()"><i class="fa fa-user mr-3"></i>My Profile</a></li>
+                                        <li><a (click)="dashboard()"><i class="fa fa-chart-line mr-3"></i>Dashboard</a></li>
+                                        <li><a routerLink="/my-albums"><i class="fa fa-images mr-3"></i>My Albums</a></li>
+                                        <li><a (click)="myBooking()"><i class="fa fa-ticket mr-3"></i>My Bookings</a></li>
+                                        <li><a routerLink="/myorders"  ><i class="fa fa-shopping-cart mr-3"></i>My Orders</a></li>
+                                        <li><a  (click)="logout()" ><i class="fa fa-sign-out mr-3"></i>Logout</a></li>
+                                    </ul>
+                                </mat-menu>
+                            </div>
+                        </li>
+
+                        <li class="nav-item drop-item" *ngIf="userData?.user_type == 'professional'">
+                            
+                            <div class="user_drop">
+                                <button mat-button [matMenuTriggerFor]="menu" >
+                                    <img src="https://demo.wponlinesupport.com/themes/wp-iclean-responsive/wp-content/uploads/sites/8/2017/04/team-6.jpg"/> 
+                                </button>
+                                <mat-menu #menu="matMenu" xPosition="before">
+                                    <ul class="comnon_drop">
+                                        <li><a (click)="myProfile()"><i class="fa fa-user mr-3"></i>My Profile</a></li>
+                                        <li><a (click)="dashboard()"><i class="fa fa-chart-line mr-3"></i>Dashboard</a></li>
+                                        <!-- <li><a routerLink="/my-albums"><i class="fa fa-images mr-3"></i>My Albums</a></li> -->
+                                        <li><a (click)="myBooking()"><i class="fa fa-ticket mr-3"></i>My Bookings</a></li>
+                                        <!-- <li><a href="#"><i class="fa fa-shopping-cart mr-3"></i>My Orders</a></li> -->
+                                        <li><a href="#" (click)="logout()" ><i class="fa fa-sign-out mr-3"></i>Logout</a></li>
+                                    </ul>
+                                </mat-menu>
+                            </div>
+                        </li>
+                    </ul>
+                    <!-- <div class="serch_ehdr mr-auto ml-auto">
+                        <input type="" class="srch_inpt form-control" name="" placeholder="Search Item . . .">
+                        <span class="abs_icons"><i class="fa fa-search"></i></span>
+                        </div> -->
+                    <!--  -->
+                </div>
+            </nav>
+        </div>
+    </header>
+</div>

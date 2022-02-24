@@ -1,0 +1,121 @@
+<!--<app-db-header></app-db-header>-->
+<app-seller-header></app-seller-header>
+<div class="dashboard-wrapper">
+	<div class="custom-container d-flex">
+		<app-sidebar></app-sidebar>
+		<div class="main-wrap">
+			<div class="card">
+				<div class="card-body">
+					<div class="row">
+						<div class="col-md-12">	
+							<div class="card margn-top seller-quotation-d-card">
+								<div class="card-body">
+									<div class="dashboard-table-heading border-bottom">
+										<h1>Product Detail</h1>
+									</div>
+									<div class="form-info-quotation">
+										<div class="row">	
+											<div class="col-md-9">
+												<div class="form-field-data">
+													<p>
+														<span class="form-label-data">Product:</span> <span class="form-value-data">Product1</span>
+													</p>
+													<p>
+														<span class="form-label-data">Product Name:</span> <span class="form-value-data">Stainless Steel Pipes</span>
+													</p>
+													<p>
+														<span class="form-label-data">Price:</span> <span class="form-value-data">$200</span>
+													</p>
+													<p>
+														<span class="form-label-data">Color:</span> <span class="form-value-data">Red</span>
+													</p>
+													<p>
+														<span class="form-label-data">Length:</span> <span class="form-value-data">120cm</span>
+													</p>
+													<p>
+														<span class="form-label-data">Width:</span> <span class="form-value-data">56cm</span>
+													</p>
+													<p>
+														<span class="form-label-data">Depth:</span> <span class="form-value-data">45cm</span>
+													</p>
+													<p>
+														<span class="form-label-data">Height:</span> <span class="form-value-data">56cm</span>
+													</p>
+													<p>
+														<span class="form-label-data">Thickness:</span> <span class="form-value-data">80cm</span>
+													</p>
+													<p>
+														<span class="form-label-data">Particles:</span> <span class="form-value-data">20cm</span>
+													</p>
+													<p>
+														<span class="form-label-data">Name:</span> <span class="form-value-data">Grace Lawerence</span>
+													</p>
+													<p>
+														<span class="form-label-data">Email:</span> <span class="form-value-data">gracelawerence@gmail.com</span>
+													</p>
+													<p>
+														<span class="form-label-data">Phone Number:</span> <span class="form-value-data">6541878889</span>
+													</p>
+													<p>
+														<span class="form-label-data">Address:</span> <span class="form-value-data">Toronto,Uk</span>
+													</p>
+												</div>
+											</div>
+											<div class="col-md-3">
+												<div class="quotation-detail">
+													<a class="btn btn-round-blue" role="button" data-target="#instructionModal" data-toggle="modal"><i class="fa fa-pencil"></i></a>
+
+													<a class="btn btn-round-blue" role="button"><i class="fa fa-check"></i></a>
+
+													<a class="btn btn-round-blue" role="button"><i class="fa fa-times"></i></a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<app-footer></app-footer>
+<div class="quotation-form-modal">
+    <div class="modal" id="instructionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title" id="exampleModalLabel">Modify Order</h2>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <mat-form-field appearance="">
+                                    <mat-label>Instructions</mat-label>
+                                    <input matInput placeholder="Instructions" required>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <mat-form-field appearance="">
+                                    <mat-label>Description</mat-label>
+                                    <textarea matInput placeholder="Description"></textarea>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-12 mt-3" align="center">
+                            <button type="submit" class="btn btn-change-fill" data-dismiss="modal" >Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

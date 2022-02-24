@@ -1,0 +1,250 @@
+<app-consultant-header></app-consultant-header>
+<div class="seller-quotation-wrapper">
+	<div class="custom-container d-flex">
+		<app-ph-sidebar></app-ph-sidebar>
+		<div class="main-wrap">
+			<div class="card">
+				<div class="card-body">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="wishlist-heading mb-2 d-flex justify-content-between align-items-center">
+								<div>
+									<h1>Package Management</h1>  
+								</div>  
+								<div class="">
+									<a data-toggle="modal" data-target="#photographerRequest" class="btn btn-round-blue"><i class="fa fa-plus"></i></a>
+								</div>                                
+							</div>
+
+						</div>
+						<div class="col-md-3">
+							<div class="card card-ph-statistics">
+								<div class="card-body">
+									<i class="fas fa-cash-register"></i>
+									<h3>Total Package</h3>
+									<p>20</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="card card-ph-statistics" id="card-blue">
+								<div class="card-body">
+									<i class="fas fa-badge-check"></i>
+									<h3>Purchased Package</h3>
+									<p>10</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="card card-ph-statistics" id="card-yellow">
+								<div class="card-body">
+									<i class="fas fa-cart-arrow-down"></i>
+									<h3>Remaining Package</h3>
+									<p>10</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="card card-ph-statistics" id="card-turquoise">
+								<div class="card-body">
+									<i class="far fa-heart"></i>
+									<h3>Popular Package</h3>
+									<p>Pro</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="ph-card--wrp">
+						<div class="row">
+							<div class="col-md-4" *ngFor="let i of packages">
+								<div class="ft-recipe"> 
+									<div class="ft-recipe__content">
+										<header class="content__header">
+											<div class="row-wrapper">
+												<a data-toggle="modal" data-target="#photographerRequest" routerLink="/packageManagementDetail" class="btn btn-round-blue"><i class="fa fa-pencil"></i></a>
+												<a routerLink="" class="btn btn-round-blue"><i class="fa fa-trash"></i></a>
+											</div>
+										</header>
+										<h2 class="recipe-title">{{i?.name}}<span class="ml-2">AED {{i?.price}}</span></h2>
+										<p class="description">
+													{{i.no_of_packages}}</p>
+										<div class="card--feature-list">
+											<ul class="pricing-plan-features">
+												<li *ngFor="let j of i?.services"><span class="feature-check"><i class="fa fa-check"></i></span>{{j}}</li>
+												<!-- <li><span class="feature-check"><i class="fa fa-check"></i></span>Feature-2</li>
+												<li><span class="feature-cross"><i class="fa fa-times"></i></span>Feature-3</li>
+												<li><span class="feature-cross"><i class="fa fa-times"></i></span>Feature-4</li> -->
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- <div class="col-md-4">
+								<div class="ft-recipe"> 
+									<div class="ft-recipe__content">
+										<header class="content__header">
+											<div class="row-wrapper">
+												<a data-toggle="modal" data-target="#photographerRequest" routerLink="/packageManagementDetail" class="btn btn-round-blue"><i class="fa fa-pencil"></i></a>
+												<a routerLink="" class="btn btn-round-blue"><i class="fa fa-trash"></i></a>
+											</div>
+										</header>
+										<h2 class="recipe-title">Pro<span class="ml-2">$20</span></h2>
+										<p class="description">
+										Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
+										<div class="card--feature-list">
+											<ul class="pricing-plan-features">
+												<li><span class="feature-check"><i class="fa fa-check"></i></span>Feature-1</li>
+												<li><span class="feature-check"><i class="fa fa-check"></i></span>Feature-2</li>
+												<li><span class="feature-cross"><i class="fa fa-times"></i></span>Feature-3</li>
+												<li><span class="feature-cross"><i class="fa fa-times"></i></span>Feature-4</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div> 
+							<div class="col-md-4">
+								<div class="ft-recipe"> 
+									<div class="ft-recipe__content">
+										<header class="content__header">
+											<div class="row-wrapper">
+												<a data-toggle="modal" data-target="#photographerRequest" routerLink="/packageManagementDetail" class="btn btn-round-blue"><i class="fa fa-pencil"></i></a>
+												<a routerLink="" class="btn btn-round-blue"><i class="fa fa-trash"></i></a>
+											</div>
+										</header>
+										<h2 class="recipe-title">Luxury<span class="ml-2">$20</span></h2>
+										<p class="description">
+										Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
+										<div class="card--feature-list">
+											<ul class="pricing-plan-features">
+												<li><span class="feature-check"><i class="fa fa-check"></i></span>Feature-1</li>
+												<li><span class="feature-check"><i class="fa fa-check"></i></span>Feature-2</li>
+												<li><span class="feature-cross"><i class="fa fa-times"></i></span>Feature-3</li>
+												<li><span class="feature-cross"><i class="fa fa-times"></i></span>Feature-4</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="ft-recipe"> 
+									<div class="ft-recipe__content">
+										<header class="content__header">
+											<div class="row-wrapper">
+												<a data-toggle="modal" data-target="#photographerRequest" routerLink="/packageManagementDetail" class="btn btn-round-blue"><i class="fa fa-pencil"></i></a>
+												<a routerLink="" class="btn btn-round-blue"><i class="fa fa-trash"></i></a>
+											</div>
+										</header>
+										<h2 class="recipe-title">Basic<span class="ml-2">$20</span></h2>
+										<p class="description">
+										Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
+										<div class="card--feature-list">
+											<ul class="pricing-plan-features">
+												<li><span class="feature-check"><i class="fa fa-check"></i></span>Feature-1</li>
+												<li><span class="feature-check"><i class="fa fa-check"></i></span>Feature-2</li>
+												<li><span class="feature-cross"><i class="fa fa-times"></i></span>Feature-3</li>
+												<li><span class="feature-cross"><i class="fa fa-times"></i></span>Feature-4</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="ft-recipe"> 
+									<div class="ft-recipe__content">
+										<header class="content__header">
+											<div class="row-wrapper">
+												<a data-toggle="modal" data-target="#photographerRequest" routerLink="/packageManagementDetail" class="btn btn-round-blue"><i class="fa fa-pencil"></i></a>
+												<a routerLink="" class="btn btn-round-blue"><i class="fa fa-trash"></i></a>
+											</div>
+										</header>
+										<h2 class="recipe-title">Pro<span class="ml-2">$20</span></h2>
+										<p class="description">
+										Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
+										<div class="card--feature-list">
+											<ul class="pricing-plan-features">
+												<li><span class="feature-check"><i class="fa fa-check"></i></span>Feature-1</li>
+												<li><span class="feature-check"><i class="fa fa-check"></i></span>Feature-2</li>
+												<li><span class="feature-cross"><i class="fa fa-times"></i></span>Feature-3</li>
+												<li><span class="feature-cross"><i class="fa fa-times"></i></span>Feature-4</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="ft-recipe"> 
+									<div class="ft-recipe__content">
+										<header class="content__header">
+											<div class="row-wrapper">
+												<a data-toggle="modal" data-target="#photographerRequest" routerLink="/packageManagementDetail" class="btn btn-round-blue"><i class="fa fa-pencil"></i></a>
+												<a routerLink="" class="btn btn-round-blue"><i class="fa fa-trash"></i></a>
+											</div>
+										</header>
+										<h2 class="recipe-title">Luxury<span class="ml-2">$20</span></h2>
+										<p class="description">
+										Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
+										<div class="card--feature-list">
+											<ul class="pricing-plan-features">
+												<li><span class="feature-check"><i class="fa fa-check"></i></span>Feature-1</li>
+												<li><span class="feature-check"><i class="fa fa-check"></i></span>Feature-2</li>
+												<li><span class="feature-cross"><i class="fa fa-times"></i></span>Feature-3</li>
+												<li><span class="feature-cross"><i class="fa fa-times"></i></span>Feature-4</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>-->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<app-footer></app-footer>
+
+<div class="quotation-form-modal">
+	<div class="modal" id="photographerRequest" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h2 class="modal-title" id="exampleModalLabel">Package Detail</h2>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-group mb-0">
+								<mat-form-field appearance="">
+									<mat-label>Package Name</mat-label>
+									<input matInput placeholder="Package Name" value="Basic" required readonly="true">
+								</mat-form-field>
+							</div>
+						</div>
+						<div class="col-md-12">
+							<div class="form-group mb-0">
+								<mat-form-field appearance="">
+									<mat-label>Price</mat-label>
+									<input matInput placeholder="Price" required>
+								</mat-form-field>
+							</div>
+						</div>
+						<div class="col-md-12">
+							<div class="form-group mb-0">
+								<mat-form-field appearance="">
+									<mat-label>Description</mat-label>
+									<textarea matInput placeholder="Add Package Description"></textarea>
+								</mat-form-field>
+							</div>
+						</div>
+						<div class="col-md-12 mt-3" align="center">
+							<button type="submit" class="btn btn-change-fill" data-dismiss="modal" >Submit</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

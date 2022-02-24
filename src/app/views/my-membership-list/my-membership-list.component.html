@@ -1,0 +1,139 @@
+<app-seller-header  *ngIf="user?.user_type=='professional'"></app-seller-header>
+<app-consultant-header  *ngIf="user?.user_type=='photographer'"></app-consultant-header>
+<div class="seller-membership-wrapper">
+	<div class="custom-container d-flex">
+		<app-seller-sidebar *ngIf="user?.user_type=='professional'"></app-seller-sidebar>
+		<app-ph-sidebar *ngIf="user?.user_type=='photographer'"></app-ph-sidebar>
+		<div class="main-wrap">
+			<div class="card" *ngFor="let item of plans">
+				<div class="card-body" >
+					<div class="row">
+						<div class="col-md-12">
+							<div class="pricing-section seller-subscription-plans mt-5">
+								<h2 class="text-center">{{item?.title}}</h2>
+								<div class="main_div">
+                                    <div class="row justify-content-center membrshp_row text-center">
+                                        <div class="col-md-8">
+                                            <div class="membrshp_icn">
+                                               <i class="fas fa-gem"></i>
+                                            </div>
+                                            <p class="amt">{{item?.currency | titlecase}} {{item?.price}} </p>
+											<p class="amt pt-0 pb-4">Duration : {{item?.duration}} Months</p>
+                                            <!-- <div class="d-flex justify-content-between">
+                                                <div class="date_div">
+                                                    <label>Start Date</label>
+                                                    <p>05/06/2021</p>
+                                                </div>
+                                                <div class="date_div">
+                                                    <label> End Date</label>
+                                                    <p>11/12/2021</p>
+                                                </div>
+                                            </div> -->
+                                            <hr/>
+
+                                            <div class="product-list__column-category">
+                                                <ul class="features">
+													<li *ngFor="let i of item?.benefits"><i class="fa fa-check mr-3"></i>{{i}}</li>
+                                                    <!-- <li><i class="fa fa-check mr-3"></i>Feature2</li>
+                                                    <li><i class="fa fa-check mr-3"></i>Feature3</li>
+                                                    <li><i class="fa fa-check mr-3"></i>Feature4</li>
+                                                    <li><i class="fa fa-check mr-3"></i>Feature5</li> -->
+                                                </ul>
+                                            </div>
+
+                                            <div class="d-flex justify-content-center my-5">
+												<div class="btn-box">
+													<a class="btn btn-change-fill" (click)="buy(item)" >Buy Now</a>
+												</div>
+											</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+								<!-- <div class="outer-box">
+									<div class="row">
+										<div class="col-lg-12 ">
+											<div class="productList">
+												<ul class="product-list" data-view="bookmarkStatesLoader">
+													<li class="js-google-analytics__list-event-container">
+														<div class="product-list__columns-container">
+															<div class="product-list__column-detail">
+																<div class="product-list__item-thumbnail">
+																	<div class="item-thumbnail">
+																		<div class="item-thumbnail__image">
+																			<div class="icon-box">
+																				<div class="icon-outer"><i class="fas fa-gem"></i></div>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<div class="product-list__column-category">
+																<ul class="features">
+																	<li *ngFor="let i of item?.benefits"><i class="fa fa-check mr-3"></i>{{i}}</li>
+																	<li><i class="fa fa-check mr-3"></i>Feature2</li>
+																	<li><i class="fa fa-check mr-3"></i>Feature3</li>
+																	<li><i class="fa fa-check mr-3"></i>Feature4</li>
+																	<li><i class="fa fa-check mr-3"></i>Feature5</li>
+																</ul>
+															</div>
+															<div class="product-list__column-price">
+																<p class="product-list__price-desktop">{{item?.currency | titlecase}} {{item?.price}}</p>
+																<div class="pricing-block">
+																<div class="price-box">
+																<div class="title">{{item?.title}}</div>
+																<h4 class="price mt-3">Duration: {{item?.duration}} Months</h4>
+																<h4 class="price">End Date: 11-Nov-2020</h4>
+															</div>
+															</div>	
+															</div>
+															
+														</div>
+													</li>
+												</ul>
+											</div>
+										</div>
+										<div class="col-md-6 offset-md-3">
+											<div class="d-flex justify-content-between mt-2">
+												<div class="btn-box">
+													<a class="btn btn-change-fill" (click)="buyNow(item)">Buy Now</a>
+												</div>
+												<div class="btn-box">
+													<a href="#" class="btn btn-change-fill">Cancel plan</a>
+												</div>
+												<div class="btn-box">
+													<a href="#" class="btn btn-change-fill">Make Plan Inactive</a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div> -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<app-footer></app-footer>
+<div class="modal fade" id="buymdl" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title" id="exampleModalLabel">Are you sure you want to buy this membership?</h1>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+       
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-change-fill"  data-dismiss="modal" (click)="buyNow()">Yes</button>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,117 @@
+<app-seller-header></app-seller-header>
+<div class="seller-prod-list-wrapper">
+    <div class="custom-container d-flex">
+        <app-seller-sidebar></app-seller-sidebar>
+        <div class="main-wrap">
+            <form>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1>Add Gift Card Product</h1>
+                    </div>
+
+                    <div class="col-md-8">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <mat-form-field appearance="">
+                                        <mat-label>Title</mat-label>
+                                        <input matInput placeholder="Title">
+                                    </mat-form-field>
+                                </div>
+                                <div class="ck-editor">
+                                    <label>Description</label>
+                                    <ckeditor data="<p>Hello, world!</p>"></ckeditor>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card mt-3">
+                            <div class="card-body">
+                                <div class="dropzone mt-3">
+                                    <div class="media-link">
+                                        <div>
+                                            <h4>Add images, videos or 3D models to show customers product's details and features</h4>
+                                        </div>
+                                    </div>
+                                    <ngx-dropzone (change)="onSelect($event)">
+										<ngx-dropzone-label>Upload Here!</ngx-dropzone-label>
+										<ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+											<ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+										</ngx-dropzone-preview>
+									</ngx-dropzone>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                    	<div class="card">
+                            <div class="card-body">
+                                <div class="seller-prod-list-heading">
+                                    <h2 class="mb-0">Product Status</h2>
+                                    <p>Product will be hidden from all sales channels</p>
+                                </div>
+                                <div class="gft_status d-flex justify-content-start">
+                                	<span class="icon_gstat"><i class="far fa-play-circle"></i></span>
+                                	<div class="gtf_info">
+	                                	<h4 class="mb-0">Status</h4>
+	                                	<span>Draft</span>
+	                                </div>
+                                </div>
+                                <div class="gft_status d-flex justify-content-start">
+                                	<span class="icon_gstat"><i class="far fa-play-circle"></i></span>
+                                	<div class="gtf_info">
+	                                	<h4 class="mb-0">Sales channels and apps</h4>
+	                                	<span>6 Selected</span>
+	                                </div>
+                                </div>
+                                <div class="gft_status d-flex justify-content-start">
+                                	<span class="icon_gstat"><i class="far fa-play-circle"></i></span>
+                                	<div class="gtf_info">
+	                                	<h4 class="mb-0">Organisation</h4>
+	                                	<span>Type, vendor, tags</span>
+	                                </div>
+                                </div>
+                                <div class="gft_status d-flex justify-content-start">
+                                	<span class="icon_gstat"><i class="far fa-play-circle"></i></span>
+                                	<div class="gtf_info">
+	                                	<h4 class="mb-0">Collection</h4>
+	                                	<span>No Collections</span>
+	                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    	<div class="card mt-3">
+                            <div class="card-body">
+                            	<div class="ad_dnom">
+                            		<h2>Denominations</h2>
+                            	</div>
+                                <div class="form-group">
+                                	<div class="row">
+                                		<div class="col-md-10">
+                                			<mat-form-field appearance="">
+		                                        <mat-label>Add Denomination</mat-label>
+		                                        <input matInput placeholder="Title">
+		                                    </mat-form-field>
+                                		</div>
+                                		<div class="col-md-2">
+                                			<a class="btn btn-round-blue"><i class="fa fa-plus"></i></a>
+                                		</div>
+                                	</div>
+                                	<div class="gft_status d-flex justify-content-between align-items-center">
+                                		<h4 class="mb-0">AED 100</h4>
+                                		<span class="rmv_dnom"><i class="far fa-trash-alt"></i></span>
+                                	</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                    	<div class="upload-btn mt-2 text-center">
+                    		<button class="btn btn-change-fill min-width-0">Create</button>
+                    	</div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

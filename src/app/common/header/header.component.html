@@ -1,0 +1,546 @@
+<div class="headerr">
+    <div class="top-header">
+        <div class="custom_container">
+            <div class="row">
+                <div class="social-icon text-left col-sm-4">
+                    <ul class="list-inline">
+                        <li>
+                            <a class="navbar-brand" href="#">
+                                <img src="assets/imgs/logow.png" class="img-fluid">
+                            </a>
+                        </li>
+                        <!-- <li class="list-inline-item">
+                            <a href="#"><i class="fab fa-facebook" aria-hidden="true"></i></a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#"><i class="fab fa-youtube" aria-hidden="true"></i></a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#"><i class="fa fa-play" aria-hidden="true"></i></a>
+                        </li> -->
+                    </ul>
+                </div>
+                <div class="contct_heder social-icon text-right col-sm-8">
+                    <ul class="list-inline d-flex justify-content-end align-items-center">
+                        <li class="list-inline-item">
+                            <span>Language</span>
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    English
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" href="#">English</a>
+                                    <a class="dropdown-item" href="#">English</a>
+                                    <a class="dropdown-item" href="#">English</a>
+                                    <a class="dropdown-item" href="#">English</a>
+                                </div>
+                            </div>
+                        </li>
+                       <!--  <li class="list-inline-item">
+                            <a href="#"><i class="fa fa-phone rot_phon"></i> +91 94786 16633</a>
+                        </li> -->
+                        <li class="list-inline-item">
+                            <span>Currency</span>
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    USD
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" href="#">USD</a>
+                                    <a class="dropdown-item" href="#">CAD</a>
+                                    <a class="dropdown-item" href="#">SAR</a>
+                                    <a class="dropdown-item" href="#">INR</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-inline-item">
+                            <span>Country</span>
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <img class="img-fluid img_cntry_hdr"
+                                        src="https://cdn.britannica.com/33/4833-004-297297B9/Flag-United-States-of-America.jpg">
+                                    USA
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" href="#"><img class="img-fluid img_cntry_hdr"
+                                            src="https://cdn.britannica.com/33/4833-004-297297B9/Flag-United-States-of-America.jpg">
+                                        USA</a>
+                                    <a class="dropdown-item" href="#"><img class="img-fluid img_cntry_hdr"
+                                            src="https://images-na.ssl-images-amazon.com/images/I/51j6eebed6L._AC_SL1500_.jpg">
+                                        Canada</a>
+                                    <a class="dropdown-item" href="#"><img class="img-fluid img_cntry_hdr"
+                                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Flag_of_Saudi_Arabia.svg/640px-Flag_of_Saudi_Arabia.svg.png">
+                                        Saudi</a>
+                                    <a class="dropdown-item" href="#"><img class="img-fluid img_cntry_hdr"
+                                            src="https://www.crwflags.com/fotw/images/i/in_v1.gif"> India</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-inline-item">
+                            <a class="btn btn_green rounded-circle msnger-icn" routerLink="/mychat"><i class="fab fa-facebook-messenger"></i></a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a class="btn btn_green" data-toggle="modal" data-target="#exampleModalCenter">Browse by map</a>
+                        </li>
+                        <!-- <li class="list-inline-item" *ngIf="!isLogin"> -->
+                        <li class="list-inline-item" >
+                            <!-- <a class="btn btn_green" routerLink="/login">Sign In</a> -->
+                            <a class="btn btn_green" (click)="signIn()">Sign In</a>
+                        </li>
+                        <!-- <li class="list-inline-item" *ngIf="!isLogin"> -->
+                        <li class="list-inline-item">
+                            <a class="btn btn_green" routerLink="/signup">Sign Up</a>
+                        </li>
+                        <li class="nav-item drop-itemm" *ngIf="isLogin && userData.user_type == 'customer'">
+                            <div class="user_drop">
+                                <button mat-button [matMenuTriggerFor]="menu" >
+                                    <img src="https://demo.wponlinesupport.com/themes/wp-iclean-responsive/wp-content/uploads/sites/8/2017/04/team-6.jpg"/> 
+                                </button>
+                                <mat-menu #menu="matMenu" xPosition="before">
+                                    <ul class="comnon_drop">
+                                        <li><a (click)="myProfile()"><i class="fa fa-user mr-3"></i>My Profile</a></li>
+                                        <li><a  (click)="dashboard()"><i class="fa fa-chart-line mr-3"></i>Dashboard</a></li>
+                                        <li><a routerLink="/my-albums"><i class="fa fa-images mr-3"></i>My Albums</a></li>
+                                        <li><a (click)="myBooking()"><i class="fa fa-ticket mr-3"></i>My Bookings</a></li>
+                                        <li><a routerLink="/myorders"><i class="fa fa-shopping-cart mr-3"></i>My Orders</a></li>
+                                        <li><a href="#" (click)="logout()" ><i class="fa fa-sign-out mr-3"></i>Logout</a></li>
+                                    </ul>
+                                </mat-menu>
+                            </div>
+                        </li>
+                        <li class="nav-item drop-itemm" *ngIf="isLogin && userData.user_type == 'professional'">
+                            <div class="user_drop">
+                                <button mat-button [matMenuTriggerFor]="menu" >
+                                    <img src="https://demo.wponlinesupport.com/themes/wp-iclean-responsive/wp-content/uploads/sites/8/2017/04/team-6.jpg"/> 
+                                </button>
+                                <mat-menu #menu="matMenu" xPosition="before">
+                                    <ul class="comnon_drop">
+                                        <li><a (click)="myProfile()"><i class="fa fa-user mr-3"></i>My Profile</a></li>
+                                        <li><a  (click)="dashboard()"><i class="fa fa-chart-line mr-3"></i>Dashboard</a></li>
+                                        <!-- <li><a routerLink="/my-albums"><i class="fa fa-images mr-3"></i>My Albums</a></li> -->
+                                        <li><a (click)="myBooking()"><i class="fa fa-ticket mr-3"></i>My Bookings</a></li>
+                                        <!-- <li><a href="#"><i class="fa fa-shopping-cart mr-3"></i>My Orders</a></li> -->
+                                        <li><a href="#" (click)="logout()" ><i class="fa fa-sign-out mr-3"></i>Logout</a></li>
+                                    </ul>
+                                </mat-menu>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <header class="header_home">
+        <div class="custom_container">
+            <nav class="navbar navbar-expand-lg navbar-light align-items-center navv_barr">
+                <!-- <a class="navbar-brand" href="#">
+                    <img src="assets/imgs/logow.png" class="img-fluid">
+                </a> -->
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <div class="header_mnu d-flex justify-content-between align-items-center">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item active d-flex align-items-center">
+                                <i class="fa fa-home mr-1"></i>
+                                <a class="nav-link" routerLink="/">Home</a>
+                            </li>
+                            <li class="nav-item has_menu">
+                                <a class="nav-link" routerLink="/catalogue">Catalogue<i class="fa fa-angle-down ml-1"></i></a>
+                                <ul class="big_menu">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="sub_menu mb-4">
+                                                <h4 class="mb-2">KITCHEN AND DINING</h4>
+                                                <ul class="insd_menu_lst">
+                                                    <li>
+                                                        <a routerLink="/catalogue"><i class="fa fa-angle-right mr-1"></i>Kitchen</a>
+                                                    </li>
+                                                    <li>
+                                                        <a routerLink="/catalogue"><i class="fa fa-angle-right mr-1"></i> Modular
+                                                            Kitchen</a>
+                                                        </li>
+                                                    <li>
+                                                        <a routerLink="/catalogue"><i class="fa fa-angle-right mr-1"></i>Dining Room</a>
+                                                    </li>
+                                                    <li>
+                                                        <a routerLink="/catalogue"><i class="fa fa-angle-right mr-1"></i>Home Bar</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="sub_menu mb-4">
+                                                <h4 class="mb-2">LIVING</h4>
+                                                <ul class="insd_menu_lst">
+                                                    <li><a  routerLink="/catalogue"><i class="fa fa-angle-right mr-1"></i>Living Room</a>
+                                                    </li>
+                                                    <li><a  routerLink="/catalogue"><i class="fa fa-angle-right mr-1"></i>Home Theater</a>
+                                                    </li>
+                                                    <li><a routerLink="/catalogue"><i class="fa fa-angle-right mr-1"></i>Home Office</a>
+                                                    </li>
+                                                    <li><a  routerLink="/catalogue"><i class="fa fa-angle-right mr-1"></i>Staircase</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="sub_menu mb-4">
+                                                <h4 class="mb-2">BED & BATH</h4>
+                                                <ul class="insd_menu_lst">
+                                                    <li><a  routerLink="/catalogue"><i class="fa fa-angle-right mr-1"></i>Bedroom</a></li>
+                                                    <li><a  routerLink="/catalogue"><i class="fa fa-angle-right mr-1"></i>Nursery</a></li>
+                                                    <li><a  routerLink="/catalogue"><i class="fa fa-angle-right mr-1"></i>Kid's Room</a>
+                                                    </li>
+                                                    <li><a  routerLink="/catalogue"><i class="fa fa-angle-right mr-1"></i>Bathroom</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="sub_menu mb-4">
+                                                <h4 class="mb-2">OUTDOOR</h4>
+                                                <ul class="insd_menu_lst">
+                                                    <li><a  routerLink="/catalogue"><i class="fa fa-angle-right mr-1"></i>Garden</a></li>
+                                                    <li><a routerLink="/catalogue"><i class="fa fa-angle-right mr-1"></i>Patio</a></li>
+                                                    <li><a  routerLink="/catalogue"><i class="fa fa-angle-right mr-1"></i>Terrace &
+                                                            Balcony</a></li>
+                                                    <li><a  routerLink="/catalogue"><i class="fa fa-angle-right mr-1"></i>Courtyard</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="sub_menu mb-4">
+                                                <h4 class="mb-2">MORE ROOMS</h4>
+                                                <ul class="insd_menu_lst">
+                                                    <li><a routerLink="/catalogue"><i class="fa fa-angle-right mr-1"></i>Puja Room</a>
+                                                    </li>
+                                                    <li><a routerLink="/catalogue"><i class="fa fa-angle-right mr-1"></i>Wardrobe</a></li>
+                                                    <li><a  routerLink="/catalogue"><i class="fa fa-angle-right mr-1"></i>Exterior</a></li>
+                                                    <li><a  routerLink="/catalogue"><i class="fa fa-angle-right mr-1"></i>Swimming Pool</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <a  routerLink="/catalogue">View All <i class="fa fa-angle-right mr-1"></i></a>
+                                        </div>
+                                    </div>
+                                </ul>
+                            </li>
+
+                            <li class="nav-item has_menu">
+                                <a class="nav-link" routerLink="/professionals">Professionals <i
+                                        class="fa fa-angle-down"></i></a>
+                                <ul class="big_menu">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="sub_menu mb-4">
+                                                <h4 class="mb-2">DESIGN AND REMODELLING</h4>
+                                                <ul class="insd_menu_lst">
+                                                    <li><a routerLink="/services"><i class="fa fa-angle-right mr-1"></i>Building
+                                                            Contractors</a></li>
+
+                                                    <li><a routerLink="/services"><i class="fa fa-angle-right mr-1"></i>Building
+                                                            Consultants</a></li>
+
+                                                    <li><a routerLink="/services"><i clss="fa fa-angle-right mr-1"></i>Interior
+                                                            Designers & Suppliers</a></li>
+
+                                                    <li><a routerLink="/services"><i class="fa fa-angle-right mr-1"></i>Wardrobe
+                                                            Designers & Suppliers </a></li>
+
+                                                    <li><a routerLink="/services"><i class="fa fa-angle-right mr-1"></i>Bathroom
+                                                            Designers & Suppliers</a></li>
+                                                    <span class="moretext-s">
+                                                        <li><a routerLink="/services"><i
+                                                                    class="fa fa-angle-right mr-1"></i>Windows Designers &
+                                                                Suppliers</a></li>
+                                                        <li><a routerLink="/services"><i
+                                                                    class="fa fa-angle-right mr-1"></i>Doors Designers &
+                                                                Suppliers</a></li>
+                                                        <li><a routerLink="/services"><i
+                                                                    class="fa fa-angle-right mr-1"></i>Furniture Designers &
+                                                                Suppliers</a></li>
+                                                        <li><a routerLink="/services"><i class="fa fa-angle-right mr-1"></i>Rugs
+                                                                Designers & Suppliers</a></li>
+                                                        <li><a routerLink="/services"><i
+                                                                    class="fa fa-angle-right mr-1"></i>Wallpapers Designers &
+                                                                Suppliers</a></li>
+                                                        <li><a routerLink="/services"><i
+                                                                    class="fa fa-angle-right mr-1"></i>Gypsum Designers &
+                                                                Suppliers</a></li>
+                                                        <li><a routerLink="/services"><i
+                                                                    class="fa fa-angle-right mr-1"></i>Floor Tiles Designers &
+                                                                Suppliers</a></li>
+                                                    </span>
+                                                    <a routerLink="/" class="moreless-button-s mr-3">View All <i
+                                                            class="fa fa-angle-right mr-1"></i></a>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="sub_menu mb-4">
+                                                <h4 class="mb-2">OUTDOOR AND GARDEN</h4>
+                                                <ul class="insd_menu_lst">
+                                                    <li><a routerLink="/services"><i
+                                                                class="fa fa-angle-right mr-1"></i>Landscape Architects</a></li>
+                                                    <li><a routerLink="/services"><i
+                                                                class="fa fa-angle-right mr-1"></i>Landscape Contractors</a>
+                                                    </li>
+                                                    <li><a routerLink="/services"><i
+                                                                class="fa fa-angle-right mr-1"></i>Gardening Suppliers</a></li>
+                                                    <li><a routerLink="/services"><i class="fa fa-angle-right mr-1"></i>Stone
+                                                            Suppliers</a></li>
+                                                    <li><a routerLink="/services"><i
+                                                                class="fa fa-angle-right mr-1"></i>Interlock Suppliers</a></li>
+                                                    <li><a routerLink="/services"><i class="fa fa-angle-right mr-1"></i>
+                                                            External Lighting Suppliers</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="sub_menu mb-4">
+                                                <h4 class="mb-2">HOME AND CORPORATE SERVICES</h4>
+                                                <ul class="insd_menu_lst">
+                                                    <li><a routerLink="/services"><i class="fa fa-angle-right mr-1"></i>Air
+                                                            Conditioning Suppliers</a></li>
+                                                    <li><a routerLink="/services"><i class="fa fa-angle-right mr-1"></i>Internal
+                                                            Lighting Suppliers</a></li>
+                                                    <li><a routerLink="/services"><i class="fa fa-angle-right mr-1"></i>
+                                                            Painting Suppliers</a></li>
+                                                    <li><a routerLink="/services"><i class="fa fa-angle-right mr-1"></i>Painting
+                                                            Contractor</a></li>
+                                                    <li><a routerLink="/services"><i
+                                                                class="fa fa-angle-right mr-1"></i>Electricity Contractor</a>
+                                                    </li>
+                                                    <li><a routerLink="/services"><i class="fa fa-angle-right mr-1"></i>Pest
+                                                            Control Specialist</a></li>
+                                                    <li><a routerLink="/services"><i class="fa fa-angle-right mr-1"></i>Moving
+                                                            Specialist</a></li>
+                                                    <li><a routerLink="/services"><i
+                                                                class="fa fa-angle-right mr-1"></i>Carpenting Specialist</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <!-- <a routerLink="">View All <i class="fa fa-angle-right mr-1"></i></a> -->
+                                        </div>
+                                    </div>
+                                </ul>
+                            </li>
+                            <li class="nav-item has_menu">
+                                <a class="nav-link" routerLink="/services">Services <i class="fa fa-angle-down"></i></a>
+                                <ul class="big_menu">
+                                    <div class="row">
+                                        <div class="col-sm-6" *ngFor="let cat of categories">
+                                            <div class="sub_menu mb-4" *ngIf="cat.sub_categories.length > 0">
+                                                <h4 class="mb-2">{{cat.name}}</h4>
+                                                <ul class="insd_menu_lst" *ngIf="cat.sub_categories.length > 0">
+                                                    <li
+                                                        *ngFor="let subCat of cat.sub_categories | slice:0:(cat.slice_list ? cat.slice_list : 5); let i = index">
+                                                        <a (click)="navigate(cat._id,subCat._id)" >
+                                                            <i class="fa fa-angle-right mr-1"></i>{{subCat.name}}
+                                                        </a>
+                                                    </li>
+                                                    <a class="moreless-button-s mr-3" *ngIf="cat.sub_categories.length > 5"
+                                                        (click)="cat.slice_list != 20 ? cat.slice_list = 20 : cat.slice_list = 5">View
+                                                        All
+                                                        <i class="fa fa-angle-right mr-1"></i></a>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <!-- <div class="col-sm-6">
+                                            <div class="sub_menu mb-4">
+                                                <h4 class="mb-2">OUTDOOR AND GARDEN</h4>
+                                                <ul class="insd_menu_lst">
+                                                    <li><a routerLink="/services"><i class="fa fa-angle-right mr-1"></i>Landscape Architects</a></li>
+                                                    <li><a routerLink="/services"><i class="fa fa-angle-right mr-1"></i>Landscape Contractors</a></li>
+                                                    <li><a routerLink="/services"><i class="fa fa-angle-right mr-1"></i>Gardening Suppliers</a></li>
+                                                    <li><a routerLink="/services"><i class="fa fa-angle-right mr-1"></i>Stone  Suppliers</a></li>
+                                                    <li><a routerLink="/services"><i class="fa fa-angle-right mr-1"></i>Interlock Suppliers</a></li>
+                                                    <li><a routerLink="/services"><i class="fa fa-angle-right mr-1"></i> External Lighting Suppliers</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="sub_menu mb-4">
+                                                <h4 class="mb-2">HOME AND CORPORATE SERVICES</h4>
+                                                <ul class="insd_menu_lst">
+                                                    <li><a routerLink="/services"><i class="fa fa-angle-right mr-1"></i>Air Conditioning Suppliers</a></li>
+                                                    <li><a routerLink="/services"><i class="fa fa-angle-right mr-1"></i>Internal Lighting Suppliers</a></li>
+                                                    <li><a routerLink="/services"><i class="fa fa-angle-right mr-1"></i> Painting Suppliers</a></li>
+                                                    <li><a routerLink="/services"><i class="fa fa-angle-right mr-1"></i>Painting Contractor</a></li>
+                                                    <li><a routerLink="/services"><i class="fa fa-angle-right mr-1"></i>Electricity Contractor</a></li>
+                                                    <li><a routerLink="/services"><i class="fa fa-angle-right mr-1"></i>Pest Control Specialist</a></li>
+                                                    <li><a routerLink="/services"><i class="fa fa-angle-right mr-1"></i>Moving Specialist</a></li>
+                                                    <li><a routerLink="/services"><i class="fa fa-angle-right mr-1"></i>Carpenting Specialist</a></li>
+                                                </ul>
+                                            </div>
+                                        </div> -->
+                                    </div>
+                                </ul>
+                            </li>
+                            <!-- <li class="nav-item">
+                                <a class="nav-link has_menu" routerLink="/products">Products</a>
+                            </li> -->
+                            <li class="nav-item has_menu">
+                                <a class="nav-link" routerLink="/products">Products <i class="fa fa-angle-down"></i></a>
+                                <ul class="big_menu">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="sub_menu mb-4">
+                                                <h4 class="mb-2">DESIGN AND REMODELLING</h4>
+                                                <ul class="insd_menu_lst">
+                                                    <li><a routerLink="/products"><i class="fa fa-angle-right mr-1"></i>Building
+                                                            Contractors</a></li>
+
+                                                    <li><a routerLink="/products"><i class="fa fa-angle-right mr-1"></i>Building
+                                                            Consultants</a></li>
+
+                                                    <li><a routerLink="/products"><i class="fa fa-angle-right mr-1"></i>Interior
+                                                            Designers & Suppliers</a></li>
+
+                                                    <li><a routerLink="/products"><i class="fa fa-angle-right mr-1"></i>Wardrobe
+                                                            Designers & Suppliers </a></li>
+
+                                                    <li><a routerLink="/products"><i class="fa fa-angle-right mr-1"></i>Bathroom
+                                                            Designers & Suppliers</a></li>
+                                                    <span class="moretext-s">
+                                                        <li><a routerLink="/products"><i
+                                                                    class="fa fa-angle-right mr-1"></i>Windows Designers &
+                                                                Suppliers</a></li>
+                                                        <li><a routerLink="/products"><i
+                                                                    class="fa fa-angle-right mr-1"></i>Doors Designers &
+                                                                Suppliers</a></li>
+                                                        <li><a routerLink="/products"><i
+                                                                    class="fa fa-angle-right mr-1"></i>Furniture Designers &
+                                                                Suppliers</a></li>
+                                                        <li><a routerLink="/products"><i class="fa fa-angle-right mr-1"></i>Rugs
+                                                                Designers & Suppliers</a></li>
+                                                        <li><a routerLink="/products"><i
+                                                                    class="fa fa-angle-right mr-1"></i>Wallpapers Designers &
+                                                                Suppliers</a></li>
+                                                        <li><a routerLink="/products"><i
+                                                                    class="fa fa-angle-right mr-1"></i>Gypsum Designers &
+                                                                Suppliers</a></li>
+                                                        <li><a routerLink="/products"><i
+                                                                    class="fa fa-angle-right mr-1"></i>Floor Tiles Designers &
+                                                                Suppliers</a></li>
+                                                    </span>
+                                                    <a class="moreless-button-s mr-3">View All <i
+                                                            class="fa fa-angle-right mr-1"></i></a>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="sub_menu mb-4">
+                                                <h4 class="mb-2">OUTDOOR AND GARDEN</h4>
+                                                <ul class="insd_menu_lst">
+                                                    <li><a routerLink="/products"><i
+                                                                class="fa fa-angle-right mr-1"></i>Landscape Architects</a></li>
+                                                    <li><a routerLink="/products"><i
+                                                                class="fa fa-angle-right mr-1"></i>Landscape Contractors</a>
+                                                    </li>
+                                                    <li><a routerLink="/products"><i
+                                                                class="fa fa-angle-right mr-1"></i>Gardening Suppliers</a></li>
+                                                    <li><a routerLink="/products"><i class="fa fa-angle-right mr-1"></i>Stone
+                                                            Suppliers</a></li>
+                                                    <li><a routerLink="/products"><i
+                                                                class="fa fa-angle-right mr-1"></i>Interlock Suppliers</a></li>
+                                                    <li><a routerLink="/products"><i class="fa fa-angle-right mr-1"></i>
+                                                            External Lighting Suppliers</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="sub_menu mb-4">
+                                                <h4 class="mb-2">HOME AND CORPORATE SERVICES</h4>
+                                                <ul class="insd_menu_lst">
+                                                    <li><a routerLink="/products"><i class="fa fa-angle-right mr-1"></i>Air
+                                                            Conditioning Suppliers</a></li>
+                                                    <li><a routerLink="/products"><i class="fa fa-angle-right mr-1"></i>Internal
+                                                            Lighting Suppliers</a></li>
+                                                    <li><a routerLink="/products"><i class="fa fa-angle-right mr-1"></i>
+                                                            Painting Suppliers</a></li>
+                                                    <li><a routerLink="/products"><i class="fa fa-angle-right mr-1"></i>Painting
+                                                            Contractor</a></li>
+                                                    <li><a routerLink="/products"><i
+                                                                class="fa fa-angle-right mr-1"></i>Electricity Contractor</a>
+                                                    </li>
+                                                    <li><a routerLink="/products"><i class="fa fa-angle-right mr-1"></i>Pest
+                                                            Control Specialist</a></li>
+                                                    <li><a routerLink="/products"><i class="fa fa-angle-right mr-1"></i>Moving
+                                                            Specialist</a></li>
+                                                    <li><a routerLink="/products"><i
+                                                                class="fa fa-angle-right mr-1"></i>Carpenting Specialist</a>
+                                                    </li>
+
+                                                </ul>
+                                            </div>
+                                            <!-- <a routerLink="">View All <i class="fa fa-angle-right mr-1"></i></a> -->
+                                        </div>
+                                    </div>
+                                </ul>
+                            </li>
+                        </ul>
+                        <div class="hedr_icn" >
+                            <i class="fa fa-search mr-2"></i>
+                           <!-- <a routerLink="/mycart"  class="position--relative"> -->
+                            <a (click)="cartfunc()"  class="position--relative">
+                                <i class="fa fa-shopping-cart mr-2" ></i>
+                                <span class="cntr_nmbr" *ngIf = "isLogin && userData.user_type == 'customer' ">{{cartItemCount}}</span>
+                            </a>
+                           <!-- <a routerLink="/mywishlist">  <i class="fa fa-heart"></i></a>   -->
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+    </header>
+</div>
+<div class="modal fade map_mdl" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Our Professionals</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+            <agm-map class="map_vew"
+            [latitude]='lat' 
+            [longitude]='long'
+            [zoom]='zoom'
+            
+            >
+             
+              <agm-marker 
+              
+                 *ngFor="let marker of markers" 
+                 
+                 (markerClick)="markerClicked(marker.id)"
+                 [latitude]="marker.professional_address?marker.professional_address.latitude:''" 
+                   [longitude]="marker.professional_address?marker.professional_address.longitude:''">    
+                       <agm-info-window #infoWindow>
+                           {{ marker.professional_address? marker.professional_address.city:'' }}
+                     </agm-info-window>
+             </agm-marker> 
+             
+         </agm-map>
+          
+        </div>
+        <!-- <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div> -->
+      </div>
+    </div>
+  </div>

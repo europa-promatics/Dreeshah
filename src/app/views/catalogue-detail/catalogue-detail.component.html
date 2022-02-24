@@ -1,0 +1,147 @@
+<app-header></app-header>
+<div class="wrapper_shala outer_most_main">
+    <section class="common_image_section page_headrer_wrkshop">
+        <div class="container">
+            <div class="page_head_wrap">
+                <h2 class="aboutus_head">Interior</h2>
+                <p class="page_head">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor inc idunt ut labore
+                    et
+                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                    aliquip
+                    ex ea commodo consequat.
+                </p>
+            </div>
+        </div>
+    </section>
+    <nav aria-label="breadcrumb mb-0 mt-5">
+        <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a routerLink="/">Catalogue</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Catalogue Detail</li>
+        </ol>
+    </nav>
+    <div class="catalogue-wrapper catalogueDtlDiv">
+        <div class="custom_container">
+            <div class="row">
+                <div class="col-md-12 mt-5" align="center">
+                    <h2 _ngcontent-fjy-c135="" class="choose_us_head noned">Catalogue Detail</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="related-service-slider">
+                        <div class="product-slider-heading mt-2 catlg_slider">
+
+                        </div>
+                        <div class="main_ideas_wrap">
+                            <owl-carousel-o [options]="related_products_slider">
+                                <ng-template carouselSlide *ngFor="let interior of interiorSubCatalogue">
+                                    <figure>
+
+                                        <div style="width: 100%; " (click)="click(interior.id)"
+                                            class="border border-#6a9792 rounded-pill">
+                                            <h3 class="idi-bahr room_name rounded-pill "
+                                                style="text-align: center; color: #6a9792 ">{{interior.name}}</h3>
+                                        </div>
+                                    </figure>
+                                </ng-template>
+
+                            </owl-carousel-o>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="row mg-none">
+                        <div class="col-lg-4">
+                            <h3 class="cstm-hd-2">All</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="catalogue-wrapper-col mt-3 mb-5">
+                        <div class="simple-effet-image clearfix prdtDtlDiv">
+                            <div class="row">
+                                <div class="col-md-4" *ngFor="let interior of subcatlist"
+                                    style="    margin-top: 1%;">
+                                    <div class="card">
+                                        <div class="prdcutImg">
+
+                                            <a routerLink="/catalogue-ImageDetail/{{interior._id}}">
+
+                                                <span *ngIf="!interior?.album[0]?.image">
+                                                    <img src="../../../assets/imgs/noImage.jpg" alt="image-1">
+                                                </span>
+                                                <!-- <span *ngIf="interior?.album[0]?.image">
+                                                <img src="{{imgpath}}{{interior?.album[0]?.image}}" alt="image-1"
+                                                    class="bfr-effct-img">
+                                            </span> -->
+                                                <span
+                                                    *ngIf="interior?.album[0]?.media_type=='image/jpeg'||'image/png'">
+                                                    <span *ngIf="interior?.album[0]?.image">
+                                                        <img src="{{imgpath}}{{interior?.album[0]?.image}}"
+                                                            alt="image-1" class="bfr-effct-img">
+                                                    </span>
+
+                                                </span>
+                                                <span *ngIf="interior?.album[0]?.media_type=='video/mp4'">
+                                                    <video width="350" height="300" controls>
+                                                        <source
+                                                            src="https://developers.promaticstechnologies.com/dreeshah_apis/public/AllImages/{{interior?.album[0]?.image}}"
+                                                            type="video/mp4">
+                                                    </video>
+                                                </span>
+                                            </a>
+
+                                        </div>
+                                        <!-- <div class="icnDiv">
+                                        <mat-icon>share</mat-icon>
+                                        <mat-icon>get_app</mat-icon>
+                                        <mat-icon>favorite_border</mat-icon>
+                                    </div> -->
+                                        <div class="prdctDtl">
+                                            <div _ngcontent-fwg-c289="" class="catalogue-name">
+                                                <h4 class="RRRRRRRRRR"></h4>
+                                                <div class="contIcnDiv cstm-mat">
+                                                    <mat-icon>share</mat-icon>2k
+                                                    <mat-icon>get_app</mat-icon>3k
+                                                    <mat-icon>favorite_border</mat-icon>3k
+                                                </div>
+                                            </div>
+
+                                            <div class="proff mt-3">
+                                                <span *ngIf="interior.catalogue_sub_sub_category_id">
+                                                    <span>{{interior.catalogue_sub_sub_category_id.category_type}}</span></span>
+                                                <span>{{interior.type}}</span>
+                                            </div>
+
+                                            <div class="proffDtl proff">
+                                                <span *ngIf="interior.catalogue_sub_sub_category_id">
+                                                    <h4>{{interior.catalogue_sub_sub_category_id.name}}</h4>
+                                                </span>
+                                                <span *ngIf="interior.user_id">
+                                                    <h4>{{interior.user_id.first_name}}
+                                                        {{interior.user_id.last_name}}
+                                                    </h4>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="lengthi == '0'">
+                        NO RESULT FOUND
+                    </div>
+                    <div>
+                        <mat-paginator [length]="lengthi" [pageIndex]="topPage" [pageSize]="limit"
+                            [pageSizeOptions]="getPageSizeOptions()" (page)="paginationOptionChange($event)"
+                            showFirstLastButtons>
+                        </mat-paginator>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <app-footer></app-footer>
+</div>

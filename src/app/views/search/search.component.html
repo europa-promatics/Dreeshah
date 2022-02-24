@@ -1,0 +1,390 @@
+<!-- <app-db-header></app-db-header> -->
+<app-seller-header></app-seller-header>
+<div class="dashboard-wrapper">
+    <div class="custom-container d-flex">
+        <app-sidebar></app-sidebar>
+        <div class="main-wrap">
+            <div class="dashboard-heading">
+                <div class="form-group srch-bar position-relative">
+                    <input routerLink="/search" type="text" class="form-control" (keyup)="search($event)" placeholder="Search">
+                    <i class="fa fa-search"></i>
+                </div>
+            </div>
+            <div class="db-wrapper">
+                <div class="products_sec" *ngIf="products.length>0">
+                    <div class="section_title d-flex justify-content-between align-items-center">
+                        <h2>Our Products</h2>
+                        <!-- <a class="cp_a">View All >></a> -->
+                    </div>
+                    <div class="main_prod_contnr">
+                        <owl-carousel-o [options]="prdct_slider">
+                            <ng-template carouselSlide *ngFor="let i of products">
+                                <figure class="singl_prodct">
+                                    <img *ngIf="i.product_media && i.product_media[0]" src="{{prodUrl}}{{i?.product_media[0]?.name}}" class="img-fluid">
+                                    <div class="prod_meta">
+                                        <div class="blog_article_body">
+                                            <a class="article_title">{{i?.product_title}}</a>
+                                            <div class="ratng_star align-items-center d-flex justify-content-between">
+                                                <div class="star_color" data-toggle="tooltip" title="" data-original-title="3.5 out of 5 stars">
+                                                    <span class="star_rev">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star-half-alt"></i>
+                                                    <i class="far fa-star"></i>
+                                                    </span>
+                                                    <span class="rev_nmbr">{{i?.total_rating}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="rt_qty">
+                                                <div>
+                                                    <p class="rat_prod">AED {{i?.pricing?.price}}<del>AED {{i?.pricing?.comprice}}</del></p>
+                                                    <!-- <span>+ SAR 20.76 Shipping</span> -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </figure>
+                            </ng-template>
+                            <!-- <ng-template carouselSlide>
+                                <figure class="singl_prodct">
+                                    <img src="https://rukminim1.flixcart.com/image/612/612/k0bbb0w0/towel-rod/e/6/b/4201146503912-prime-stainless-steel-304-grade-impulse-original-imafkfq6qxsxh9qx.jpeg?q=70" class="img-fluid">
+                                    <div class="prod_meta">
+                                        <div class="blog_article_body">
+                                            <a class="article_title">Stainless Steel pipes</a>
+                                            <div class="ratng_star align-items-center d-flex justify-content-between">
+                                                <div class="star_color" data-toggle="tooltip" title="" data-original-title="3.5 out of 5 stars">
+                                                    <span class="star_rev">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star-half-alt"></i>
+                                                    <i class="far fa-star"></i>
+                                                    </span>
+                                                    <span class="rev_nmbr"> 1,933</span>
+                                                </div>
+                                            </div>
+                                            <div class="rt_qty">
+                                                <div>
+                                                    <p class="rat_prod">SAR 122.00 <del>SAR 95.50</del></p>
+                                                    <span>+ SAR 20.76 Shipping</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </figure>
+                            </ng-template>
+                            <ng-template carouselSlide>
+                                <figure class="singl_prodct">
+                                    <img src="https://rooftraders.co.uk/pub/media/catalog/product/cache/2474b722d7d164e42ff8f09b603d4ab8/m/o/molan-sunwood-ridge-white.jpg" class="img-fluid">
+                                    <div class="prod_meta">
+                                        <div class="blog_article_body">
+                                            <a class="article_title">Stainless Steel pipes</a>
+                                            <div class="ratng_star align-items-center d-flex justify-content-between">
+                                                <div class="star_color" data-toggle="tooltip" title="" data-original-title="3.5 out of 5 stars">
+                                                    <span class="star_rev">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star-half-alt"></i>
+                                                    <i class="far fa-star"></i>
+                                                    </span>
+                                                    <span class="rev_nmbr"> 1,933</span>
+                                                </div>
+                                            </div>
+                                            <div class="rt_qty">
+                                                <div>
+                                                    <p class="rat_prod">SAR 122.00 <del>SAR 95.50</del></p>
+                                                    <span>+ SAR 20.76 Shipping</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </figure>
+                            </ng-template>
+                            <ng-template carouselSlide>
+                                <figure class="singl_prodct">
+                                    <img src="https://imgus-vip.tongtool.com/s/qoqsztvtosqrznquosvvqxxwwrsquzusyuypJPGN.jpg" class="img-fluid">
+                                    <div class="prod_meta">
+                                        <div class="blog_article_body">
+                                            <a class="article_title">Stainless Steel pipes</a>
+                                            <div class="ratng_star align-items-center d-flex justify-content-between">
+                                                <div class="star_color" data-toggle="tooltip" title="" data-original-title="3.5 out of 5 stars">
+                                                    <span class="star_rev">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star-half-alt"></i>
+                                                    <i class="far fa-star"></i>
+                                                    </span>
+                                                    <span class="rev_nmbr"> 1,933</span>
+                                                </div>
+                                            </div>
+                                            <div class="rt_qty">
+                                                <div>
+                                                    <p class="rat_prod">SAR 122.00 <del>SAR 95.50</del></p>
+                                                    <span>+ SAR 20.76 Shipping</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </figure>
+                            </ng-template> -->
+                        </owl-carousel-o>
+                    </div>
+                </div>
+                <div class="top-rated-prof" *ngIf="professionals.length>0">
+                    <div class="section_title d-flex justify-content-between align-items-center">
+                        <h2>Professionals</h2>
+                    </div>
+                    <div class="main_ideas_wrap trp-wrapper">
+                        <owl-carousel-o [options]="trp_slider">
+                            <ng-template carouselSlide *ngFor="let i of professionals">
+                                <figure class="trp_image">
+                                    <img src="{{profileUrl}}{{i.profile_image}}" class="img-fluid" alt="image" />
+                                    <div class="fig_div_abs text-center">
+                                        <h3 class="trp_name margn-top">{{i.first_name}} {{i.last_name}}</h3>
+                                        <div class="trp_rating">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </div>
+                                        <h3 class="trp_name">Director</h3>
+                                    </div>
+                                </figure>
+                            </ng-template>
+                            <!-- <ng-template carouselSlide>
+                                <figure class="trp_image">
+                                    <img src="https://www.efilecabinet.com/wp-content/uploads/2019/05/g2-testimonial-male.jpg" class="img-fluid" alt="room1" />
+                                    <div class="fig_div_abs text-center">
+                                        <h3 class="trp_name margn-top">Jon Doe</h3>
+                                        <div class="trp_rating">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </div>
+                                        <h3 class="trp_name">CEO</h3>
+                                    </div>
+                                </figure>
+                            </ng-template>
+                            <ng-template carouselSlide>
+                                <figure class="trp_image">
+                                    <img src="https://webindiasolutions.biz/webindiasolutions.co.in/predmac/wp-content/uploads/2017/04/team-6-1.jpg" class="img-fluid" alt="room1" />
+                                    <div class="fig_div_abs text-center">
+                                        <h3 class="trp_name margn-top">Susan Maria</h3>
+                                        <div class="trp_rating">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </div>
+                                        <h3 class="trp_name">Business Analyst</h3>
+                                    </div>
+                                </figure>
+                            </ng-template>
+                            <ng-template carouselSlide>
+                                <figure class="trp_image">
+                                    <img src="https://diviteamplugin.divi-professional.com/wp-content/uploads/2017/08/team4.jpg" class="img-fluid" alt="room1" />
+                                    <div class="fig_div_abs text-center">
+                                        <h3 class="trp_name margn-top">Grace Lawerence</h3>
+                                        <div class="trp_rating">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </div>
+                                        <h3 class="trp_name">Tech Specialist</h3>
+                                    </div>
+                                </figure>
+                            </ng-template>
+                            <ng-template carouselSlide>
+                                <figure class="trp_image">
+                                    <img src="https://www.efilecabinet.com/wp-content/uploads/2019/05/g2-testimonial-male.jpg" class="img-fluid" alt="room1" />
+                                    <div class="fig_div_abs text-center">
+                                        <h3 class="trp_name margn-top">Sinan Akram</h3>
+                                        <div class="trp_rating">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </div>
+                                        <h3 class="trp_name">Manger</h3>
+                                    </div>
+                                </figure>
+                            </ng-template>
+                            <ng-template carouselSlide>
+                                <figure class="trp_image">
+                                    <img src="https://www.efilecabinet.com/wp-content/uploads/2019/05/g2-testimonial-male.jpg" class="img-fluid" alt="room1" />
+                                    <div class="fig_div_abs text-center">
+                                        <h3 class="trp_name margn-top">Jon Doe</h3>
+                                        <div class="trp_rating">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </div>
+                                        <h3 class="trp_name">CEO</h3>
+                                    </div>
+                                </figure>
+                            </ng-template>
+                            <ng-template carouselSlide>
+                                <figure class="trp_image">
+                                    <img src="https://www.efilecabinet.com/wp-content/uploads/2019/05/g2-testimonial-male.jpg" class="img-fluid" alt="room1" />
+                                    <div class="fig_div_abs text-center">
+                                        <h3 class="trp_name margn-top">Jon Doe</h3>
+                                        <div class="trp_rating">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </div>
+                                        <h3 class="trp_name">CEO</h3>
+                                    </div>
+                                </figure>
+                            </ng-template> -->
+                        </owl-carousel-o>
+                    </div>
+                </div>
+                <div class="products_sec"*ngIf="services.length>0">
+                    <div class="section_title d-flex justify-content-between align-items-center">
+                        <h2>Our Services</h2>
+                        <!-- <a class="cp_a">View All >></a> -->
+                    </div>
+                    <div class="main_prod_contnr" >
+                        <owl-carousel-o [options]="services_slider">
+                            <ng-template carouselSlide *ngFor="let i of services">
+                                <figure class="singl_prodct">
+                                    <img src="{{imagePath}}{{i.service_image}}" class="img-fluid">
+                                    <div class="prod_meta">
+                                        <div class="blog_article_body">
+                                            <p class="article_title">{{i.service_name}}</p>
+                                            <p>{{i.service_description}}</p>
+                                            <p>Contact</p>
+                                            <div class="ratng_star align-items-center d-flex justify-content-between">
+                                                <p>{{i?.service_category[0]?.name}}</p>
+                                                <div class="star_color" data-toggle="tooltip" title="" data-original-title="3.5 out of 5 stars">
+                                                    <span class="star_rev">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star-half-alt"></i>
+                                                    <i class="far fa-star"></i>
+                                                    </span>
+                                                    <span class="rev_nmbr">1,933</span>
+                                                </div>
+                                            </div>
+                                            <div class="rt_qty">
+                                                <div class="align-items-center d-flex justify-content-between">
+                                                    <p class="rat_prod">AED {{i?.price}}</p>
+                                                    <span>{{i?.country[0]}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </figure>
+                            </ng-template>
+                            <!-- <ng-template carouselSlide>
+                                <figure class="singl_prodct">
+                                    <img src="https://rukminim1.flixcart.com/image/612/612/k0bbb0w0/towel-rod/e/6/b/4201146503912-prime-stainless-steel-304-grade-impulse-original-imafkfq6qxsxh9qx.jpeg?q=70" class="img-fluid">
+                                    <div class="prod_meta">
+                                        <div class="blog_article_body">
+                                            <p class="article_title">Service Name</p>
+                                            <p>Description</p>
+                                            <p>Contact</p>
+                                            <div class="ratng_star align-items-center d-flex justify-content-between">
+                                                <p>Category</p>
+                                                <div class="star_color" data-toggle="tooltip" title="" data-original-title="3.5 out of 5 stars">
+                                                    <span class="star_rev">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star-half-alt"></i>
+                                                    <i class="far fa-star"></i>
+                                                    </span>
+                                                    <span class="rev_nmbr"> 1,933</span>
+                                                </div>
+                                            </div>
+                                            <div class="rt_qty">
+                                                <div class="align-items-center d-flex justify-content-between">
+                                                    <p class="rat_prod">SAR 122.00 <del>SAR 95.50</del></p>
+                                                    <span>India</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </figure>
+                            </ng-template>
+                            <ng-template carouselSlide>
+                                <figure class="singl_prodct">
+                                    <img src="https://rooftraders.co.uk/pub/media/catalog/product/cache/2474b722d7d164e42ff8f09b603d4ab8/m/o/molan-sunwood-ridge-white.jpg" class="img-fluid">
+                                    <div class="prod_meta">
+                                        <div class="blog_article_body">
+                                            <p class="article_title">Service Name</p>
+                                            <p>Description</p>
+                                            <p>Contact</p>
+                                            <div class="ratng_star align-items-center d-flex justify-content-between">
+                                                <p>Category</p>
+                                                <div class="star_color" data-toggle="tooltip" title="" data-original-title="3.5 out of 5 stars">
+                                                    <span class="star_rev">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star-half-alt"></i>
+                                                    <i class="far fa-star"></i>
+                                                    </span>
+                                                    <span class="rev_nmbr"> 1,933</span>
+                                                </div>
+                                            </div>
+                                            <div class="rt_qty">
+                                                <div class="align-items-center d-flex justify-content-between">
+                                                    <p class="rat_prod">SAR 122.00 <del>SAR 95.50</del></p>
+                                                    <span>India</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </figure>
+                            </ng-template> -->
+                            <!-- <ng-template carouselSlide>
+                                <figure class="singl_prodct">
+                                    <img src="https://imgus-vip.tongtool.com/s/qoqsztvtosqrznquosvvqxxwwrsquzusyuypJPGN.jpg" class="img-fluid">
+                                    <div class="prod_meta">
+                                        <div class="blog_article_body">
+                                            <p class="article_title">Service Name</p>
+                                            <p>Description</p>
+                                            <p>Contact</p>
+                                            <div class="ratng_star align-items-center d-flex justify-content-between">
+                                                <p>Category</p>
+                                                <div class="star_color" data-toggle="tooltip" title="" data-original-title="3.5 out of 5 stars">
+                                                    <span class="star_rev">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star-half-alt"></i>
+                                                    <i class="far fa-star"></i>
+                                                    </span>
+                                                    <span class="rev_nmbr"> 1,933</span>
+                                                </div>
+                                            </div>
+                                            <div class="rt_qty">
+                                                <div class="align-items-center d-flex justify-content-between">
+                                                    <p class="rat_prod">SAR 122.00 <del>SAR 95.50</del></p>
+                                                    <span>India</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </figure>
+                            </ng-template> -->
+                        </owl-carousel-o>
+                    </div>
+                </div>
+                
+
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

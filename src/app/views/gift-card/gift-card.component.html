@@ -1,0 +1,178 @@
+<app-seller-header></app-seller-header>
+<div class="seller-membership-wrapper">
+	<div class="custom-container d-flex">
+		<app-seller-sidebar></app-seller-sidebar>
+		<div class="main-wrap">
+			<div class="card">
+				<div class="card-body" >
+					<div class="row">
+						<div class="col-md-12">
+							<h1>Gift Cards</h1>
+						</div>
+						<div class="col-md-8 offset-md-2 mt-3">
+						   <div class="gift-wrapper">
+						      <div align="center" class="gift-illustration"><img src="assets/imgs/giftcard.png" alt="image" class="img-fluid"></div>
+						      <!-- <div class="gift-heading">
+						         <h1 class="text-center">Digital Gift Card</h1>
+						      </div> -->
+						      <div class="gift-description">
+						         <p class="text-center">Gift cards can be sold as product , or sent directly to customers.</p>
+						      </div>
+						   </div>
+						    <div class="seller-gift-card-wrapper">
+							   <div class="gift-card-wrapper mt-5">
+							      <div class="card">
+							         <div class="card-body">
+							            <div class="gift-card-icon">
+							               <p class="text-center"><i aria-hidden="true" class="fa fa-tag"></i></p>
+							            </div>
+							            <div class="gift-card-heading">
+							               <h3 class="text-center">Add Gift Cards</h3>
+							            </div>
+							            <div class="gift-card-description">
+							               <p class="text-center">Let customers buy gift card from your store.</p>
+							            </div>
+							            <div align="center" class="gift-card-btn">
+							            	<button class="btn btn-change-fill" routerLink="/add-gifts">Add Gift Card
+							            	</button>
+							            </div>
+							         </div>
+							      </div>
+							      <div class="card">
+							         <div class="card-body">
+							            <div class="gift-card-icon">
+							               <p class="text-center"><i aria-hidden="true" class="fa fa-paper-plane"></i></p>
+							            </div>
+							            <div class="gift-card-heading">
+							               <h3 class="text-center">Issue Gift Card</h3>
+							            </div>
+							            <div class="gift-card-description">
+							               <p class="text-center">Send a gift card directly to a customer.</p>
+							            </div>
+							            <div align="center" class="gift-card-btn">
+							            	<button class="btn btn-change-fill" routerLink="/issue-gift-card">Issue Gift Cards
+							            	</button>
+							            </div>
+							         </div>
+							      </div>
+							   </div>
+							   <!-- <div class="gift-link mt-3">
+							      <p class="text-center">By using gift cards you agree to our<a href=""> Terms of Service</a></p>
+							   </div> -->
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							  <div class="wrap cf">
+								    <div class="cart">
+								      <h4>Issue Gift Cards</h4>
+								      <p class="rcent_crd">Most Recently Used</p>
+								      <ul class="cartWrap">
+								         <li class="items odd items-bordered" *ngFor="let i of giftCards">
+								            <div class="infoWrap">
+								               <div class="cartSection">
+								                  <p class="itemNumber">{{i.note}} <span class="badge badge-success status-badge ml-3">Full</span></p>
+								                  <h3 *ngIf="i.never_expires==true">Never Expires</h3>
+												  <h3 *ngIf="!i.never_expires">{{i.expiry_date | date}}</h3>
+								               </div>
+								              <!--  <div class="date-time">
+								                  <p class="badge badge-success status-badge">Full</p>
+								               </div> -->
+								               <div class="prodTotal cartSection">
+								                  <div class="sav-later-btn">
+								                  	AED {{i.value}} / AED {{i.value}}
+								             	  </div>
+								             	</div>
+								            </div>
+								         </li>
+								         <!-- <li class="items even items-bordered">
+								            <div class="infoWrap">
+								               <div class="cartSection">
+								                  <p class="itemNumber">Nadya Alil<span class="badge badge-success status-badge ml-3">Full</span></p>
+								                  <h3>Code Ending Iquod</h3>
+								               </div>
+								               <div class="date-time">
+								                  <p class="badge badge-success status-badge">Full</p>
+								               </div>
+								               <div class="prodTotal cartSection">
+								                  <div class="sav-later-btn">
+								                  	AED10.00 / AED10.00
+								             	  </div>
+								             	</div>
+								            </div>
+								         </li>
+								         <li class="items even items-bordered">
+								            <div class="infoWrap">
+								               <div class="cartSection">
+								                  <p class="itemNumber">Nadya Alil<span class="badge badge-secondary status-badge ml-3">Disable</span></p>
+								                  <h3>Code Ending Iquod</h3>
+								               </div>
+								               <div class="prodTotal cartSection">
+								                  <div class="sav-later-btn">
+								                  	AED10.00 / AED10.00
+								             	  </div>
+								             	</div>
+								            </div>
+								         </li> -->
+								      </ul>
+								    </div>
+								    <div class="cart pt-3">
+								      <h4>Gift Card Products</h4>
+								      <p class="rcent_crd">Most Recently Updated</p>
+								      <ul class="cartWrap">
+								         <li class="items odd items-bordered">
+								            <div class="infoWrap">
+								               <div class="cartSection">
+								                  <p class="itemNumber">Nadya Alil <span class="badge badge-success status-badge ml-3">Full</span></p>
+								                  <h3>Code Ending Iquod</h3>
+								               </div>
+								              <!--  <div class="date-time">
+								                  <p class="badge badge-success status-badge">Full</p>
+								               </div> -->
+								               <div class="prodTotal cartSection">
+								                  <div class="sav-later-btn">
+								                  	AED10.00 / AED10.00
+								             	  </div>
+								             	</div>
+								            </div>
+								         </li>
+								         <li class="items even items-bordered">
+								            <div class="infoWrap">
+								               <div class="cartSection">
+								                  <p class="itemNumber">Nadya Alil<span class="badge badge-success status-badge ml-3">Full</span></p>
+								                  <h3>Code Ending Iquod</h3>
+								               </div>
+								              <!--  <div class="date-time">
+								                  <p class="badge badge-success status-badge">Full</p>
+								               </div> -->
+								               <div class="prodTotal cartSection">
+								                  <div class="sav-later-btn">
+								                  	AED10.00 / AED10.00
+								             	  </div>
+								             	</div>
+								            </div>
+								         </li>
+								         <li class="items even items-bordered">
+								            <div class="infoWrap">
+								               <div class="cartSection">
+								                  <p class="itemNumber">Nadya Alil<span class="badge badge-secondary status-badge ml-3">Disable</span></p>
+								                  <h3>Code Ending Iquod</h3>
+								               </div>
+								               <div class="prodTotal cartSection">
+								                  <div class="sav-later-btn">
+								                  	AED10.00 / AED10.00
+								             	  </div>
+								             	</div>
+								            </div>
+								         </li>
+								      </ul>
+								    </div>
+								</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

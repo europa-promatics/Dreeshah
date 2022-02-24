@@ -1,0 +1,482 @@
+<app-seller-header  *ngIf="user?.user_type=='professional'"></app-seller-header>
+<app-consultant-header  *ngIf="user?.user_type=='photographer'"></app-consultant-header>
+<div class="seller-appointments-wrapper">
+	<div class="custom-container d-flex">
+		<app-seller-sidebar *ngIf="user?.user_type=='professional'"></app-seller-sidebar>
+		<app-ph-sidebar *ngIf="user?.user_type=='photographer'"></app-ph-sidebar>
+		<div class="main-wrap">
+			<div class="card">
+				<div class="card-body">
+					<div class="row">
+						<div class="col-md-12">
+							<mat-tab-group>
+								<mat-tab label="All Appointments">
+									<div class="col-md-12 mt-3">
+										<div class="db-header--wraap">
+											<div class="dashboard-table-heading">
+												<h1>All Appointments</h1>
+											</div>
+											<div class="user-search-input d-flex">
+												<div class="form-group mb-0">
+													<input type="text" name="search-user" placeholder="Search" (keyup)="filterByServiceName($event.target.value,'all')" class="form-control">
+												</div>
+												<div class="add-schedule-btn">
+													<a routerLink="/addSchedule" class="btn btn-round-blue ml-2"><i class="fa fa-plus"></i></a>
+												</div>
+											</div>
+										</div>
+										<div class="appointment-table margn-top">
+											<table class="table table-bordered table-responsive table-striped" *ngIf="appointmentCount != 0">
+												<thead class="thead-light">
+													<tr>
+														<th scope="col">Sr no.</th>
+														<th scope="col">Photo</th>
+														<th scope="col">Name</th>
+														<th scope="col">Date & Time</th>
+														<!-- <th scope="col">Professional</th> -->
+														<th scope="col">Location</th>
+														<th scope="col">Service Detail</th>
+														<th scope="col">Subject</th>
+														<th scope="col">Purpose</th>
+														<th scope="col">Status</th>
+														<!-- <th scope="col">Action</th> -->
+													</tr>
+												</thead>
+												<tbody>
+													<tr *ngFor=" let list of allAppointment; let i=index">
+														<th scope="row">{{i+1}}</th>
+														<td class="prof-img--avatar" *ngIf="list.user_id?.profile_image">
+															<img src="{{profile_image_path}}{{list.user_id?.profile_image}}">
+														</td>
+														<td class="prof-img--avatar" *ngIf="!list.user_id?.profile_image">
+															<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAYFBMVEX///8AAACgoKClpaXu7u5vb2/U1NScnJzm5ubp6ekLCwvDw8OkpKT19fUhISHi4uKsrKw2NjZycnIUFBROTk5GRkY8PDyzs7N5eXkRERFWVla+vr5KSkpgYGBbW1uPj49e7VtFAAAB8UlEQVR4nO3b626iQACA0WLtlepatd2Lu9v3f8sVRBAKLk1ImJmc86sDhfQLMzox9eYGAAAAAAAAAAAAAAAAAAAAAADgmvuHxXQe7ufO6bHIprSYO6fH7aSFt3Pn9DgWria61SrYwuVEt1oqnIfCL1A4E4VfkGbhZr9+O2elWLh8LXcy68fTKMHC92qzti5HCRZ+b++4Iyr88W3ctXd14b4YxlN4l/18GnXtW11YTtNoCssnM2rmNs/wVzGMpbD6sx9HXHuoCzfFMJLC83PZjUncV7/8Wo7iKGwm3vOItbj6fQo83SGKwibwaMzLTb79sz1UP8dQ2ArMnocm6sCbSQSF7cDBtZgPhIRf2A0ceNPIhz5TC76wJ7BvLR6abVpH6IW9gZ8nal6d6GkJvLA/MOtu4PL6xOeYsAuHAjtrMb84/tK9VdCFVwIvN3CH1vHuWgy58GpgsxbzzolOT7iFq+3VwHoD1w3sBgVbuPv7n8Ds9KZx6DnemqjBFo5x3MD1BbZfbqIuzNabgRMXTXEXDmuiUi1s1mKyhfVaTLfw3JVwYfUUUy4M/TPvKRRpaRcWbYkXHidq6oXZS7j/MTSVj13qhVnyz1DhTBQqVDg/hQoVzk9h/IXpf2cm/e89AQAAAAAAAAAAAAAAAAAAAAAAIfkHHT0UCPv9sXUAAAAASUVORK5CYII=">
+														</td>
+														<td>{{list?.name}}</td>
+														<td class="date-time-appointment"><p>{{list?.date}}</p>
+															<p>{{list?.time}}</p>
+														</td>
+														<td>{{list?.location}}</td>
+														<td>
+															<!-- <span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat.</span> -->
+															<span class="purpose">{{list?.service_id?.service_description}}</span>
+														</td>
+														<!-- <td>Sophie</td> -->
+														<td>{{list?.service_id?.service_name}}</td>
+														<td>
+															<span class="purpose">{{list.request_details}}</span>
+															<!-- <span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+														tempor incididunt</span> -->
+													</td>
+														
+														<td *ngIf="list.status=='rejected'">
+															<span class="badge badge-danger status-badge">{{list.status}}</span>
+														</td>
+
+														<td *ngIf="list.status=='approved'">
+															<span class="badge badge-success status-badge">{{list.status}}</span>
+														</td>
+
+														<td *ngIf="list.status=='pending'">
+															<span class="badge badge-info status-badge">{{list.status}}</span>
+														</td>
+
+														<!-- <td>
+															<button class="btn btn-round-blue"><i class="fa fa-pencil"></i></button>
+															<button class="btn btn-round-blue"><i class="fa fa-check"></i></button>
+														</td> -->
+													</tr>
+													<!-- <tr>
+														<th scope="row">2</th>
+														<td class="prof-img--avatar">
+															<img src="http://medic-app-react.next-item.com//content/user-40-1.jpg">
+														</td>
+														<td>Liam</td>
+														<td class="date-time-appointment"><p>18 Dec 2018</p>
+															<p>10:15 - 10:30</p>
+														</td>
+														<td>Mumbai</td>
+														<td>
+															<span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat.</span>
+														</td>
+														
+														<td>Quotaion</td>
+														<td><span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+														tempor incididunt</span></td>
+														
+														<td>
+															<span class="badge badge-success status-badge">Approved</span>
+														</td>
+														<td>
+															
+															<button class="btn btn-round-blue"><i class="fa fa-check"></i></button>
+														</td>
+													</tr> -->
+													
+												</tbody>
+											</table>
+											<div *ngIf="appointmentCount == 0">
+												No Record
+											</div>
+											<div>
+												<!-- <mat-paginator [length]="length" [pageSize]="10" [pageSizeOptions]="getPageSizeOptions()"
+												(page)="paginationOptionChange($event)"> -->
+												<mat-paginator [length]="length" [pageSize]="10" 
+												(page)="paginationOptionChange($event)">
+											</mat-paginator>
+											</div>
+											
+										</div>
+									</div>
+								</mat-tab>
+								<mat-tab label="Pending">
+									<div class="col-md-12 mt-3">
+										<div class="db-header--wraap">
+											<div class="dashboard-table-heading">
+												<h1>Pending Appointments</h1>
+											</div>
+											<div class="user-search-input">
+												<div class="form-group mb-0">
+													<input type="text" name="search-user" placeholder="Search" (keyup)="filterByServiceName($event.target.value,'pending')" class="form-control">
+												</div>
+											</div>
+										</div>
+										<div class="appointment-table margn-top">
+											<table class="table table-bordered table-responsive table-striped" *ngIf="pendingCount != 0">
+												<thead class="thead-light">
+													<tr>
+														<th scope="col">Sr no.</th>
+														<th scope="col">Photo</th>
+														<th scope="col">Name</th>
+														<th scope="col">Date & Time</th>
+														<!-- <th scope="col">Professional</th> -->
+														<th scope="col">Location</th>
+														<th scope="col">Service Detail</th>
+														<th scope="col">Subject</th>
+														<th scope="col">Purpose</th>
+														<th scope="col">Status</th>
+														<th scope="col">Action</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr *ngFor=" let list of pendingAppointment; let i=index">
+														<th scope="row">{{i+1}}</th>
+														<td class="prof-img--avatar">
+															<img src="{{profile_image_path}}{{list.user_id?.profile_image}}">
+															<!-- <img src="http://medic-app-react.next-item.com//content/user-40-1.jpg"> -->
+														</td>
+														<td>{{list?.name}}</td>
+														<td class="date-time-appointment"><p>{{list?.date}}</p>
+															<p>{{list?.time}}</p>
+														</td>
+														<td>{{list?.location}}</td>
+														<td>
+															<!-- <span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat.</span> -->
+															<span class="purpose">{{list?.service_id?.service_description}}</span>
+														</td>
+														<!-- <td>Sophie</td> -->
+														<td>{{list?.service_id?.service_name}}</td>
+														<td>
+															<span class="purpose">{{list.request_details}}</span>
+															<!-- <span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+														tempor incididunt</span> -->
+													</td>
+														
+														<td>
+															<span class="badge badge-dark status-badge">{{list.status}}</span>
+														</td>
+														<td>
+															<!-- <span class
+
+																="badge badge-warning status-badge">Pending</span>-->
+															<div class="btn-group mt-1 mb-1" role="group">
+																<button class="btn btn-change-fill btn-sm min-width-40" (click)="acceptQuote(list)" ><i class="fa fa-check"></i></button>
+																<button class="btn btn-change-fill btn-sm min-width-40" (click)="rejectQuote(list)"  ><i class="fa fa-times"></i></button>
+															</div>
+														</td>
+														<!-- <td>
+															<button class="btn btn-round-blue"><i class="fa fa-pencil"></i></button>
+															<button class="btn btn-round-blue"><i class="fa fa-check"></i></button>
+														</td> -->
+													</tr>
+													<!-- <tr>
+														<th scope="row">2</th>
+														<td class="prof-img--avatar">
+															<img src="http://medic-app-react.next-item.com//content/user-40-1.jpg">
+														</td>
+														<td>Liam</td>
+														<td class="date-time-appointment"><p>18 Dec 2018</p>
+															<p>10:15 - 10:30</p>
+														</td>
+														<td>Mumbai</td>
+														<td>
+															<span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat.</span>
+														</td>
+														
+														<td>Quotaion</td>
+														<td><span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+														tempor incididunt</span></td>
+														
+														<td>
+															<span class="badge badge-danger status-badge">Pending</span>
+														</td>
+														<td>
+															
+															<button class="btn btn-round-blue"><i class="fa fa-check"></i></button>
+														</td>
+													</tr> -->
+													
+												</tbody>
+											</table>
+											<div *ngIf="pendingCount == 0">
+												<h2>No Record</h2>
+											</div>
+										</div>
+									</div>
+								</mat-tab>
+								<mat-tab label="Approved">
+									<div class="col-md-12 mt-3">
+										<div class="db-header--wraap">
+											<div class="dashboard-table-heading">
+												<h1>Approved Appointments</h1>
+											</div>
+											<div class="user-search-input">
+												<div class="form-group mb-0" >
+													<input type="text" name="search-user" placeholder="Search" (keyup)="filterByServiceName($event.target.value,'approved')" class="form-control">
+												</div>
+											</div>
+										</div>
+										<div class="appointment-table margn-top">
+											<table class="table table-bordered table-responsive table-striped" *ngIf="approvedCount != 0" >
+												<thead class="thead-light">
+													<tr>
+														<th scope="col">Sr no.</th>
+														<th scope="col">Photo</th>
+														<th scope="col">Name</th>
+														<th scope="col">Date & Time</th>
+														<!-- <th scope="col">Professional</th> -->
+														<th scope="col">Location</th>
+														<th scope="col">Service Detail</th>
+														<th scope="col">Subject</th>
+														<th scope="col">Purpose</th>
+														<th scope="col">Status</th>
+														<!-- <th scope="col">Action</th> -->
+													</tr>
+												</thead>
+												<tbody>
+													<tr *ngFor="let list of approvedAppointment; ; let i=index">
+														<th scope="row">{{i+1}}</th>
+														<td class="prof-img--avatar">
+															<img src="{{profile_image_path}}{{list.user_id?.profile_image}}">
+															<!-- <img src="http://medic-app-react.next-item.com//content/user-40-1.jpg"> -->
+														</td>
+														<td>{{list?.name}}</td>
+														<td class="date-time-appointment"><p>{{list?.date}}</p>
+															<p>{{list?.time}}</p>
+														</td>
+														<td>{{list?.location}}</td>
+														<td>
+															<!-- <span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat.</span> -->
+															<span class="purpose">{{list?.service_id?.service_description}}</span>
+														</td>
+														<!-- <td>Sophie</td> -->
+														<td>{{list?.service_id?.service_name}}</td>
+														<td>
+															<span class="purpose">{{list.request_details}}</span>
+															<!-- <span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+														tempor incididunt</span> -->
+													</td>
+														
+														<td>
+															<span class="badge badge-success status-badge">{{list.status}}</span>
+														</td>
+														<!-- <td>
+															<span class
+
+																="badge badge-warning status-badge">Pending</span>
+															<div class="btn-group mt-1 mb-1" role="group">
+																<button class="btn btn-change-fill btn-sm min-width-40" (click)="acceptQuote(list)" ><i class="fa fa-check"></i></button>
+																<button class="btn btn-change-fill btn-sm min-width-40" (click)="rejectQuote(list)"  ><i class="fa fa-times"></i></button>
+															</div>
+														</td> -->
+														<!-- <td>
+															<button class="btn btn-round-blue"><i class="fa fa-pencil"></i></button>
+															<button class="btn btn-round-blue"><i class="fa fa-check"></i></button>
+														</td> -->
+													</tr>
+													<!-- <tr>
+														<th scope="row">2</th>
+														<td class="prof-img--avatar">
+															<img src="http://medic-app-react.next-item.com//content/user-40-1.jpg">
+														</td>
+														<td>Liam</td>
+														<td class="date-time-appointment"><p>18 Dec 2018</p>
+															<p>10:15 - 10:30</p>
+														</td>
+														<td>Mumbai</td>
+														<td>
+															<span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat.</span>
+														</td>
+														
+														<td>Quotaion</td>
+														<td><span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+														tempor incididunt</span></td>
+														
+														<td>
+															<span class="badge badge-success status-badge">Approved</span>
+														</td>
+														<td>
+															
+															<button class="btn btn-round-blue"><i class="fa fa-check"></i></button>
+														</td>
+													</tr> -->
+													
+												</tbody>
+											</table>
+											<div *ngIf="approvedCount == 0">
+												No Record
+											</div>
+										</div>
+									</div>
+								</mat-tab>
+								<mat-tab label="Completed">
+									<div class="col-md-12 mt-3">
+										<div class="db-header--wraap">
+											<div class="dashboard-table-heading">
+												<h1>Completed Appointments</h1>
+											</div>
+											<div class="user-search-input">
+												<div class="form-group mb-0">
+													<input type="text" name="search-user" placeholder="Search" (keyup)="filterByServiceName($event.target.value,'completed')" class="form-control">
+												</div>
+											</div>
+										</div>
+										<div class="appointment-table margn-top">
+											<table class="table table-bordered table-responsive table-striped" *ngIf="completedCount != 0">
+												<thead class="thead-light">
+													<tr>
+														<th scope="col">Sr no.</th>
+														<th scope="col">Photo</th>
+														<th scope="col">Name</th>
+														<th scope="col">Date & Time</th>
+														<!-- <th scope="col">Professional</th> -->
+														<th scope="col">Location</th>
+														<th scope="col">Service Detail</th>
+														<th scope="col">Subject</th>
+														<th scope="col">Purpose</th>
+														<th scope="col">Status</th>
+														<!-- <th scope="col">Action</th> -->
+													</tr>
+												</thead>
+												<tbody>
+													<tr *ngFor="let list of completedAppointment; ; let i=index">
+														<th scope="row">{{i+1}}</th>
+														<td class="prof-img--avatar">
+															<img src="{{profile_image_path}}{{list.user_id?.profile_image}}">
+															
+														</td>
+														<td>{{list?.name}}</td>
+														<td class="date-time-appointment"><p>{{list?.date}}</p>
+															<p>{{list?.time}}</p>
+														</td>
+														<td>{{list?.location}}</td>
+														<td>														
+															<span class="purpose">{{list?.service_id?.service_description}}</span>
+														</td>
+														
+														<td>{{list?.service_id?.service_name}}</td>
+														<td>
+															<span class="purpose">{{list.request_details}}</span>
+															
+														</td>
+														
+														<td>
+															<span class="badge badge-danger status-badge">{{list.status}}</span>
+														</td>
+														
+													</tr>
+											
+												</tbody>
+											</table>
+											<div *ngIf="completedCount == 0">
+												No Record
+											</div>
+										</div>
+									</div>
+								</mat-tab>
+								<mat-tab label="Rejected">
+									<div class="col-md-12 mt-3">
+										<div class="db-header--wraap">
+											<div class="dashboard-table-heading">
+												<h1>Rejected Appointments</h1>
+											</div>
+											<div class="user-search-input">
+												<div class="form-group mb-0">
+													<input type="text" name="search-user" placeholder="Search" (keyup)="filterByServiceName($event.target.value,'rejected')" class="form-control">
+												</div>
+											</div>
+										</div>
+										<div class="appointment-table margn-top">
+											<table class="table table-bordered table-responsive table-striped" *ngIf="rejectedCount != 0">
+												<thead class="thead-light">
+													<tr>
+														<th scope="col">Sr no.</th>
+														<th scope="col">Photo</th>
+														<th scope="col">Name</th>
+														<th scope="col">Date & Time</th>
+														<!-- <th scope="col">Professional</th> -->
+														<th scope="col">Location</th>
+														<th scope="col">Service Detail</th>
+														<th scope="col">Subject</th>
+														<th scope="col">Purpose</th>
+														<th scope="col">Status</th>
+														<!-- <th scope="col">Action</th> -->
+													</tr>
+												</thead>
+												<tbody>
+													<tr *ngFor="let list of rejectedAppointment; let i=index">
+														<th scope="row">{{i+1}}</th>
+														<td class="prof-img--avatar">
+															<img src="{{profile_image_path}}{{list.user_id?.profile_image}}">
+															<!-- <img src="http://medic-app-react.next-item.com//content/user-40-1.jpg"> -->
+														</td>
+														<td>{{list?.name}}</td>
+														<td class="date-time-appointment"><p>{{list?.date}}</p>
+															<p>{{list?.time}}</p>
+														</td>
+														<td>{{list?.location}}</td>
+														<td>
+															<!-- <span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat.</span> -->
+															<span class="purpose">{{list?.service_id?.service_description}}</span>
+														</td>
+														<!-- <td>Sophie</td> -->
+														<td>{{list?.service_id?.service_name}}</td>
+														<td>
+															<span class="purpose">{{list.request_details}}</span>
+															<!-- <span class="purpose">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+														tempor incididunt</span> -->
+														</td>
+														
+														<td>
+															<span class="badge badge-danger status-badge">{{list.status}}</span>
+														</td>
+														
+													</tr>
+													
+													
+												</tbody>
+											</table>
+											<div *ngIf="rejectedCount == 0">
+												No Record
+											</div>
+										</div>
+									</div>
+								</mat-tab>
+							</mat-tab-group>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<app-footer></app-footer>

@@ -1,0 +1,368 @@
+<app-consultant-header></app-consultant-header>
+
+<div class="dashboard-wrapper consultant-dashboard-wrapper">
+	<div class="custom-container d-flex">
+		<app-ph-sidebar></app-ph-sidebar>
+		<div class="main-wrap p-0">
+			<div class="header db-bg-primary pb-6 seller-db-header">
+				<div class="container-fluid">
+					<div class="header-body">
+						<div class="row">
+							<div class="col-md-4">
+								<div class="card card-stats bg-gradient">
+									<div class="card-body">
+										<div class="row">
+											<div class="col-md-8">
+												<h5 class="card-title cd-card-title text-uppercase text-muted mb-0">Total Images</h5>
+												<span class="font-weight-bold mb-0">3600</span>
+											</div>
+											<div class="col-md-4">
+												<div class=" icon icon-shape bg-gradient-red text-white rounded-circle shadow">
+													<i class="fa fa-analytics"></i>
+												</div>
+											</div>
+										</div>
+										<div class="gradient"></div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-4 ">
+								<div class="card card-stats bg-gradient2">
+									<div class="card-body">
+										<div class="row">
+											<div class="col-md-8">
+												<h5 class="card-title cd-card-title text-uppercase text-muted mb-0">Total Albums</h5>
+												<span class=" font-weight-bold mb-0">900</span>
+											</div>
+											<div class="col-md-4">
+												<div class="icon icon-shape bg-gradient-orange text-white rounded-circle shadow">
+													<i class="fa fa-gem"></i>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-4 ">
+								<div class="card card-stats bg-gradient3">
+									<div class="card-body">
+										<div class="row">
+											<div class="col-md-8">
+												<h5 class="card-title cd-card-title text-uppercase text-muted mb-0">Total Clients</h5>
+												<span class="font-weight-bold mb-0">1500</span>
+											</div>
+											<div class="col-md-4">
+												<div class="icon icon-shape bg-gradient-green text-white rounded-circle shadow">
+													<i class="fa fa-gem"></i>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						<!-- 	<div class="col-md-4 ">
+								<div class="card card-stats bg-gradient4">
+									<div class="card-body">
+										<div class="row">
+											<div class="col-md-8">
+												<h5 class="card-title cd-card-title text-uppercase text-muted mb-0">Successfully Submitted RFPs</h5>
+												<span class=" font-weight-bold mb-0">49,65%</span>
+											</div>
+											<div class="col-md-4">
+												<div class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">
+													<i class="fa fa-gem"></i>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div> -->
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="bg-gray  p-3">
+				<div class="main-card-content ">
+					<div class="card">
+						<div class="card-body">
+							<div class="col-md-12">
+								<div class="dashboard-table-heading"> 
+									<h1>Latest Quotations</h1>
+								</div> 
+								<div class="dashboard-table">
+									<table class="table table-bordered">
+										<thead class="thead-dark"> 
+											<tr>
+												<th scope="col">Sr no.</th>
+												<th scope="col">Professional Name</th>
+												<th scope="col">Service Request</th>
+												<th scope="col">Action</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<th scope="row">1</th>
+												<td>Charles</td>
+												<td>Lorem ipsum dolor sit amet, consectetur adipisicing elit</td>
+												<td>
+													<button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+														<mat-icon>remove_red_eye</mat-icon>
+													</button>
+													<mat-menu #menu="matMenu">
+														<button mat-menu-item>
+															<mat-icon>check</mat-icon>
+															<span>Accept</span>
+														</button>
+														<button mat-menu-item>
+															<mat-icon>close</mat-icon>
+															<span>Reject</span>
+														</button>
+														<button mat-menu-item>
+															<mat-icon>equalizer</mat-icon>
+															<span>Negotiate</span>
+														</button>
+														<button mat-menu-item>
+															<mat-icon>phone_in_talk</mat-icon>
+															<span>Call</span>
+														</button>
+													</mat-menu>
+												</td>
+											</tr>
+											<tr>
+												<th scope="row">2</th>
+												<td>Charles</td>
+												<td>Lorem ipsum dolor sit amet, consectetur adipisicing elit</td>
+												<td>
+													<button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+														<mat-icon>remove_red_eye</mat-icon>
+													</button>
+													<mat-menu #menu="matMenu">
+														<button mat-menu-item>
+															<mat-icon>check</mat-icon>
+															<span>Accept</span>
+														</button>
+														<button mat-menu-item>
+															<mat-icon>close</mat-icon>
+															<span>Reject</span>
+														</button>
+														<button mat-menu-item>
+															<mat-icon>equalizer</mat-icon>
+															<span>Negotiate</span>
+														</button>
+														<button mat-menu-item>
+															<mat-icon>phone_in_talk</mat-icon>
+															<span>Call</span>
+														</button>
+													</mat-menu>
+												</td>
+											</tr>
+											<tr>
+												<th scope="row">3</th>
+												<td>Charles</td>
+												<td>Lorem ipsum dolor sit amet, consectetur adipisicing elit</td>
+												<td>
+													<button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+														<mat-icon>remove_red_eye</mat-icon>
+													</button>
+													<mat-menu #menu="matMenu">
+														<button mat-menu-item>
+															<mat-icon>check</mat-icon>
+															<span>Accept</span>
+														</button>
+														<button mat-menu-item>
+															<mat-icon>close</mat-icon>
+															<span>Reject</span>
+														</button>
+														<button mat-menu-item>
+															<mat-icon>equalizer</mat-icon>
+															<span>Negotiate</span>
+														</button>
+														<button mat-menu-item>
+															<mat-icon>phone_in_talk</mat-icon>
+															<span>Call</span>
+														</button>
+													</mat-menu>
+												</td>
+											</tr>
+											<tr>
+												<th scope="row">4</th>
+												<td>Charles</td>
+												<td>Lorem ipsum dolor sit amet, consectetur adipisicing elit</td>
+												<td>
+													<button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+														<mat-icon>remove_red_eye</mat-icon>
+													</button>
+													<mat-menu #menu="matMenu">
+														<button mat-menu-item>
+															<mat-icon>check</mat-icon>
+															<span>Accept</span>
+														</button>
+														<button mat-menu-item>
+															<mat-icon>close</mat-icon>
+															<span>Reject</span>
+														</button>
+														<button mat-menu-item>
+															<mat-icon>equalizer</mat-icon>
+															<span>Negotiate</span>
+														</button>
+														<button mat-menu-item>
+															<mat-icon>phone_in_talk</mat-icon>
+															<span>Call</span>
+														</button>
+													</mat-menu>
+												</td>
+											</tr>
+											<tr>
+												<th scope="row">5</th>
+												<td>Charles</td>
+												<td>Lorem ipsum dolor sit amet, consectetur adipisicing elit</td>
+												<td>
+													<button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+														<mat-icon>remove_red_eye</mat-icon>
+													</button>
+													<mat-menu #menu="matMenu">
+														<button mat-menu-item>
+															<mat-icon>check</mat-icon>
+															<span>Accept</span>
+														</button>
+														<button mat-menu-item>
+															<mat-icon>close</mat-icon>
+															<span>Reject</span>
+														</button>
+														<button mat-menu-item>
+															<mat-icon>equalizer</mat-icon>
+															<span>Negotiate</span>
+														</button>
+														<button mat-menu-item>
+															<mat-icon>phone_in_talk</mat-icon>
+															<span>Call</span>
+														</button>
+													</mat-menu>
+												</td>
+											</tr>
+											<tr>
+												<th scope="row">6</th>
+												<td>Charles</td>
+												<td>Lorem ipsum dolor sit amet, consectetur adipisicing elit</td>
+												<td>
+													<button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+														<mat-icon>remove_red_eye</mat-icon>
+													</button>
+													<mat-menu #menu="matMenu">
+														<button mat-menu-item>
+															<mat-icon>check</mat-icon>
+															<span>Accept</span>
+														</button>
+														<button mat-menu-item>
+															<mat-icon>close</mat-icon>
+															<span>Reject</span>
+														</button>
+														<button mat-menu-item>
+															<mat-icon>equalizer</mat-icon>
+															<span>Negotiate</span>
+														</button>
+														<button mat-menu-item>
+															<mat-icon>phone_in_talk</mat-icon>
+															<span>Call</span>
+														</button>
+													</mat-menu>
+												</td>
+											</tr>
+											<tr>
+												<th scope="row">7</th>
+												<td>Charles</td>
+												<td>Lorem ipsum dolor sit amet, consectetur adipisicing elit</td>
+												<td>
+													<button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+														<mat-icon>remove_red_eye</mat-icon>
+													</button>
+													<mat-menu #menu="matMenu">
+														<button mat-menu-item>
+															<mat-icon>check</mat-icon>
+															<span>Accept</span>
+														</button>
+														<button mat-menu-item>
+															<mat-icon>close</mat-icon>
+															<span>Reject</span>
+														</button>
+														<button mat-menu-item>
+															<mat-icon>equalizer</mat-icon>
+															<span>Negotiate</span>
+														</button>
+														<button mat-menu-item>
+															<mat-icon>phone_in_talk</mat-icon>
+															<span>Call</span>
+														</button>
+													</mat-menu>
+												</td>
+											</tr>
+											<tr>
+												<th scope="row">8</th>
+												<td>Charles</td>
+												<td>Lorem ipsum dolor sit amet, consectetur adipisicing elit</td>
+												<td>
+													<button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+														<mat-icon>remove_red_eye</mat-icon>
+													</button>
+													<mat-menu #menu="matMenu">
+														<button mat-menu-item>
+															<mat-icon>check</mat-icon>
+															<span>Accept</span>
+														</button>
+														<button mat-menu-item>
+															<mat-icon>close</mat-icon>
+															<span>Reject</span>
+														</button>
+														<button mat-menu-item>
+															<mat-icon>equalizer</mat-icon>
+															<span>Negotiate</span>
+														</button>
+														<button mat-menu-item>
+															<mat-icon>phone_in_talk</mat-icon>
+															<span>Call</span>
+														</button>
+													</mat-menu>
+												</td>
+											</tr>
+											<tr>
+												<th scope="row">9</th>
+												<td>Charles</td>
+												<td>Lorem ipsum dolor sit amet, consectetur adipisicing elit</td>
+												<td>
+													<button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+														<mat-icon>remove_red_eye</mat-icon>
+													</button>
+													<mat-menu #menu="matMenu">
+														<button mat-menu-item>
+															<mat-icon>check</mat-icon>
+															<span>Accept</span>
+														</button>
+														<button mat-menu-item>
+															<mat-icon>close</mat-icon>
+															<span>Reject</span>
+														</button>
+														<button mat-menu-item>
+															<mat-icon>equalizer</mat-icon>
+															<span>Negotiate</span>
+														</button>
+														<button mat-menu-item>
+															<mat-icon>phone_in_talk</mat-icon>
+															<span>Call</span>
+														</button>
+													</mat-menu>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</div>
+<app-footer></app-footer>

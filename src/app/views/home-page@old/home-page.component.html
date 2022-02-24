@@ -1,0 +1,1202 @@
+<app-header></app-header>
+<div class="wrapper_shala outer_most_main">
+    <section class="her_sldr_don">
+        <div class="hero_carosel">
+            <owl-carousel-o [options]="heroOpt">
+                <ng-template carouselSlide>
+                    <div class="hero-img">
+                        <img src="assets/imgs/bnr2.jpg" alt="">  
+                    </div>
+                    <div class="desc_sldr text-left">
+                        <!-- <span class="tag">Dreeshah</span> -->
+                        <h2>Get inspired.......</h2>
+                        <p class="carsl_cnt">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                            tempor incididunt ut labore et dolore magna aliqua.
+                        </p>
+                        <p class="carsl_btn"><a href="#" class="btn btn_theme">Know More</a></p>
+                    </div>
+                </ng-template>
+                <ng-template carouselSlide>
+                    <div class="hero-img">
+                        <img src="assets/imgs/bnr3.jpg" alt="">  
+                    </div>
+                    <div class="desc_sldr text-left">
+                        <!-- <span class="tag">Dreeshah</span> -->
+                        <h2>Shop products.</h2>
+                        <p class="carsl_cnt">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                            tempor incididunt ut labore et dolore magna aliqua.
+                        </p>
+                    </div>
+                </ng-template>
+                <ng-template carouselSlide>
+                    <div class="hero-img">
+                        <img src="assets/imgs/bnr1.jpg" alt="">  
+                    </div>
+                    <div class="desc_sldr text-left">
+                        <!-- <span class="tag">Dreeshah</span> -->
+                        <h2>Find pros.</h2>
+                        <p class="carsl_cnt">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                            tempor incididunt ut labore et dolore magna aliqua.
+                        </p>
+                        <p class="carsl_btn"><a href="#" class="btn btn_theme">Know More</a></p>
+                    </div>
+                </ng-template>
+            </owl-carousel-o>
+        </div>
+        <!-- <div class="synced-slides">
+            <a routerLink="one">1</a>
+            <a routerLink="two">2</a>
+            <a routerLink="Three">3</a>
+        </div> -->
+    </section>
+    <section class="home_ideas_sec">
+        <div class="custom_container">
+            <div class="section_title d-flex justify-content-between align-items-center">
+                <h2>Our Catalogue</h2>
+            </div>
+            <div class="row">
+                <div class="col-md-6" routerLink="/catalogue">
+                    <div class="img_wrapwr position-relative"  routerLink="/catalogue">
+                        <img src="https://i2.wp.com/homedecordesigns.com/wp-content/uploads/2014/10/IndianHome8.jpg?fit=900%2C624" class="img-fluid">
+                        <div class="main-text">
+                            <h2 class="text-center"><a > Interior</a></h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6"  >
+                    <div class="img_wrapwr position-relative" routerLink="/catalogue">
+                        <img src="https://i.pinimg.com/originals/40/2b/2e/402b2e96062030ae500ab501a8572012.png" class="img-fluid">
+                        <div class="main-text">
+                            <h2 class="text-center"><a routerLink="/catalogue">Exterior</a></h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="home_ideas_sec" >
+        <div class="custom_container">
+            <div class="section_title d-flex justify-content-between align-items-center">
+                <h2>Browse Ideas by Room</h2>
+                <a href="" class="cp_a">View All >></a>
+            </div>
+            <div class="main_ideas_wrap">
+                <owl-carousel-o [options]="room_slider">
+                    <ng-template carouselSlide>
+                        <figure class="wrap_idea_singl">
+                            <img src="https://www.goodhomesmagazine.com/images/2020/04/GoodHome_Artemisia_Matt_Graphite_Shaker_BQ_From_1298_For_8_Unit_Kitchen.jpg" class="img-fluid" alt="room1" />
+                            <div class="fig_div_abs text-center">
+                                <h3 class="room_name">Kitchen</h3>
+                            </div>
+                        </figure>
+                    </ng-template>
+                    <ng-template carouselSlide>
+                        <figure class="wrap_idea_singl">
+                            <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80" class="img-fluid" alt="room1" />
+                            <div class="fig_div_abs text-center">
+                                <h3 class="room_name">Bath</h3>
+                            </div>
+                        </figure>
+                    </ng-template>
+                    <ng-template carouselSlide>
+                        <figure class="wrap_idea_singl">
+                            <img src="https://www.bocadolobo.com/en/inspiration-and-ideas/wp-content/uploads/2018/03/Discover-the-Ultimate-Master-Bedroom-Styles-and-Inspirations-6_1.jpg" class="img-fluid" alt="room1" />
+                            <div class="fig_div_abs text-center">
+                                <h3 class="room_name">Bedroom</h3>
+                            </div>
+                        </figure>
+                    </ng-template>
+                    <ng-template carouselSlide>
+                        <figure class="wrap_idea_singl">
+                            <img src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/living-room-ideas-rds-work-queens-road-01-1594232912.jpg" class="img-fluid" alt="room1" />
+                            <div class="fig_div_abs text-center">
+                                <h3 class="room_name">Living</h3>
+                            </div>
+                        </figure>
+                    </ng-template>
+                    <ng-template carouselSlide>
+                        <figure class="wrap_idea_singl">
+                            <img src="https://madebymood.com/wp-content/uploads/2015/08/Gorgeous-round-foyer-table-in-Hall-Victorian-with-Long-Hallway-next-to-Small-Foyer-alongside-Hall-Table-andFoyer-Table-.jpg" class="img-fluid" alt="room1" />
+                            <div class="fig_div_abs text-center">
+                                <h3 class="room_name">Corridor</h3>
+                            </div>
+                        </figure>
+                    </ng-template>
+                    <ng-template carouselSlide>
+                        <figure class="wrap_idea_singl">
+                            <img src="https://www.thespruce.com/thmb/7bBW240OhURF49D4icYYIGYVZZ8=/1080x741/filters:fill(auto,1)/nikolestarrinteriors_105948601_3998934700148972_1660806659944552221_n-f0cc18d7bc49444a8afb7ccb962079c0.jpg" class="img-fluid" alt="room1" />
+                            <div class="fig_div_abs text-center">
+                                <h3 class="room_name">Dinning</h3>
+                            </div>
+                        </figure>
+                    </ng-template>
+                    <ng-template carouselSlide>
+                        <figure class="wrap_idea_singl">
+                            <img src="https://media.architecturaldigest.com/photos/56b524de4ac3d842677b9ac0/master/w_2323,h_1548,c_limit/home-office-01.jpg" class="img-fluid" alt="room1" />
+                            <div class="fig_div_abs text-center">
+                                <h3 class="room_name">Home & Office</h3>
+                            </div>
+                        </figure>
+                    </ng-template>
+                    <ng-template carouselSlide>
+                        <figure class="wrap_idea_singl">
+                            <img src="https://www.homestratosphere.com/wp-content/uploads/2019/11/1.cool-home-bar-rustic-industrial-style-nov4.jpg" class="img-fluid" alt="room1" />
+                            <div class="fig_div_abs text-center">
+                                <h3 class="room_name">Home Bar</h3>
+                            </div>
+                        </figure>
+                    </ng-template>
+                </owl-carousel-o>
+            </div>
+        </div>
+    </section>
+    <!-- how it works -->
+    <section class="how-it-works">
+                <div class="custom_container">
+        <div class="card hiw-card">
+            <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12 hiw-heading bottom-line mb-3">
+                            <h2 class="text-center">How it works</h2>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="hiw-wrapper">
+                                <div class="hiw-icon text-center">
+                                    <img src="assets/imgs/hire.png">
+                                </div>
+                                <div class="hiw-title text-center mt-2">
+                                    <p>Find a property</p>
+                                </div>
+                                <div class="hiw-description text-center">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                        consequat.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="hiw-wrapper">
+                                <div class="hiw-icon text-center">
+                                    <img src="assets/imgs/professional.png">
+                                </div>
+                                <div class="hiw-title text-center mt-2">
+                                    <p>Top rated professionals</p>
+                                </div>
+                                <div class="hiw-description text-center">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                        consequat. 
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="hiw-wrapper">
+                                <div class="hiw-icon text-center">
+                                    <img src="assets/imgs/home.png">
+                                </div>
+                                <div class="hiw-title text-center mt-2">
+                                    <p>Hire and get work done</p>
+                                </div>
+                                <div class="hiw-description text-center">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                        consequat.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- top rated professioanls -->
+    <section class="top-rated-prof">
+        <div class="custom_container">
+            <div class="col-md-12 trp_section_title">
+                <h2>Top Rated Professionals</h2>
+             </div>
+            <div class="main_ideas_wrap trp-wrapper">
+                <owl-carousel-o [options]="trp_slider">
+                    <ng-template carouselSlide>
+                        <figure class="trp_image">
+                            <img src="https://www.orbitmedia.com/wp-content/uploads/2016/08/Andy-Profile-600-400x400.png" class="img-fluid" alt="image" />
+                            <div class="fig_div_abs text-center">
+                                <h3 class="trp_name margn-top">James Wilson</h3>
+                                <div class="trp_rating">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                                <h3 class="trp_name">Director</h3>
+                            </div>
+                        </figure>
+                    </ng-template>
+                    <ng-template carouselSlide>
+                        <figure class="trp_image">
+                            <img src="https://www.efilecabinet.com/wp-content/uploads/2019/05/g2-testimonial-male.jpg" class="img-fluid" alt="room1" />
+                            <div class="fig_div_abs text-center">
+                                <h3 class="trp_name margn-top">Jon Doe</h3>
+                                <div class="trp_rating">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                                <h3 class="trp_name">CEO</h3>
+                            </div>
+                        </figure>
+                    </ng-template>
+                    <ng-template carouselSlide>
+                        <figure class="trp_image">
+                            <img src="https://webindiasolutions.biz/webindiasolutions.co.in/predmac/wp-content/uploads/2017/04/team-6-1.jpg" class="img-fluid" alt="room1" />
+                            <div class="fig_div_abs text-center">
+                                <h3 class="trp_name margn-top">Susan Maria</h3>
+                                <div class="trp_rating">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                                <h3 class="trp_name">Business Analyst</h3>
+                            </div>
+                        </figure>
+                    </ng-template>
+                    <ng-template carouselSlide>
+                        <figure class="trp_image">
+                            <img src="https://diviteamplugin.divi-professional.com/wp-content/uploads/2017/08/team4.jpg" class="img-fluid" alt="room1" />
+                            <div class="fig_div_abs text-center">
+                                <h3 class="trp_name margn-top">Grace Lawerence</h3>
+                                <div class="trp_rating">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                                <h3 class="trp_name">Tech Specialist</h3>
+                            </div>
+                        </figure>
+                    </ng-template>
+                    <ng-template carouselSlide>
+                        <figure class="trp_image">
+                            <img src="https://www.efilecabinet.com/wp-content/uploads/2019/05/g2-testimonial-male.jpg" class="img-fluid" alt="room1" />
+                            <div class="fig_div_abs text-center">
+                                <h3 class="trp_name margn-top">Sinan Akram</h3>
+                                <div class="trp_rating">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                                <h3 class="trp_name">Manger</h3>
+                            </div>
+                        </figure>
+                    </ng-template>
+                    <ng-template carouselSlide>
+                        <figure class="trp_image">
+                            <img src="https://www.efilecabinet.com/wp-content/uploads/2019/05/g2-testimonial-male.jpg" class="img-fluid" alt="room1" />
+                            <div class="fig_div_abs text-center">
+                                <h3 class="trp_name margn-top">Jon Doe</h3>
+                                <div class="trp_rating">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                                <h3 class="trp_name">CEO</h3>
+                            </div>
+                        </figure>
+                    </ng-template>
+                    <ng-template carouselSlide>
+                        <figure class="trp_image">
+                            <img src="https://www.efilecabinet.com/wp-content/uploads/2019/05/g2-testimonial-male.jpg" class="img-fluid" alt="room1" />
+                            <div class="fig_div_abs text-center">
+                                <h3 class="trp_name margn-top">Jon Doe</h3>
+                                <div class="trp_rating">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                                <h3 class="trp_name">CEO</h3>
+                            </div>
+                        </figure>
+                    </ng-template>
+                </owl-carousel-o>
+            </div>
+        </div>
+    </section>
+    <!-- recently joined professioanls -->
+    <section class="rjp">
+        <div class="custom_container">     
+             <div class="col-md-12 trp_section_title">
+                <h2>Recently joined Professionals</h2>
+             </div>
+            <div class="main_ideas_wrap trp-wrapper">
+                <owl-carousel-o [options]="rjp_slider">
+                    <ng-template carouselSlide>
+                        <figure class="trp_image">
+                            <img src="https://bebopbusiness.no/wp-content/uploads/2016/12/spearker_8-300x300.jpg" class="img-fluid" alt="image" />
+                            <div class="fig_div_abs text-center">
+                                <h3 class="trp_name margn-top">Liza</h3>
+                                <div class="trp_rating">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                                <h3 class="trp_name">Business Analyst</h3>
+                            </div>
+                        </figure>
+                    </ng-template>
+                    <ng-template carouselSlide>
+                        <figure class="trp_image">
+                            <img src="https://webindiasolutions.biz/webindiasolutions.co.in/predmac/wp-content/uploads/2017/04/team-6-1.jpg" class="img-fluid">
+                            <div class="fig_div_abs text-center">
+                                <h3 class="trp_name margn-top">Hania Rizvi</h3>
+                                <div class="trp_rating">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                                <h3 class="trp_name">Financial Advisor</h3>
+                            </div>
+                        </figure>
+                    </ng-template>
+                    <ng-template carouselSlide>
+                        <figure class="trp_image">
+                            <img src="https://webindiasolutions.biz/webindiasolutions.co.in/predmac/wp-content/uploads/2017/04/team-6-1.jpg" class="img-fluid" alt="room1" />
+                            <div class="fig_div_abs text-center">
+                                <h3 class="trp_name margn-top">Grace Lawerence</h3>
+                                <div class="trp_rating">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                                <h3 class="trp_name">System Analyst</h3>
+                            </div>
+                        </figure>
+                    </ng-template>
+                    <ng-template carouselSlide>
+                        <figure class="trp_image">
+                            <img src="https://diviteamplugin.divi-professional.com/wp-content/uploads/2017/08/team4.jpg" class="img-fluid" alt="room1" />
+                            <div class="fig_div_abs text-center">
+                                <h3 class="trp_name margn-top">Caira Thomas</h3>
+                                <div class="trp_rating">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                                <h3 class="trp_name">Frontend Engineer</h3>
+                            </div>
+                        </figure>
+                    </ng-template>
+                    <ng-template carouselSlide>
+                        <figure class="trp_image">
+                            <img src="https://www.efilecabinet.com/wp-content/uploads/2019/05/g2-testimonial-male.jpg" class="img-fluid" alt="room1" />
+                            <div class="fig_div_abs text-center">
+                                <h3 class="trp_name margn-top">Sinan Akram</h3>
+                                <div class="trp_rating">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                                <h3 class="trp_name">Backend Developer</h3>
+                            </div>
+                        </figure>
+                    </ng-template>
+                    <ng-template carouselSlide>
+                        <figure class="trp_image">
+                            <img src="https://www.efilecabinet.com/wp-content/uploads/2019/05/g2-testimonial-male.jpg" class="img-fluid" alt="room1" />
+                            <div class="fig_div_abs text-center">
+                                <h3 class="trp_name margn-top">Jon Doe</h3>
+                                <div class="trp_rating">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                                <h3 class="trp_name">Designer</h3>
+                            </div>
+                        </figure>
+                    </ng-template>
+                    <ng-template carouselSlide>
+                        <figure class="trp_image">
+                            <img src="https://www.efilecabinet.com/wp-content/uploads/2019/05/g2-testimonial-male.jpg" class="img-fluid" alt="room1" />
+                            <div class="fig_div_abs text-center">
+                                <h3 class="trp_name margn-top">Jon Doe</h3>
+                                <div class="trp_rating">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                                <h3 class="trp_name">Content Writer</h3>
+                            </div>
+                        </figure>
+                    </ng-template>
+                </owl-carousel-o>
+            </div>
+        </div>
+    </section>
+   <!--  <section class="rjp">
+            <div class="custom_container">
+                <div class="row">
+                    <div class="col-md-12 trp_section_title">
+                        <h2>Recently joined Professionals</h2>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="rjp-card-wrapper">
+                                    <div class="rjp-card-img text-center">
+                                        <img src="https://bebopbusiness.no/wp-content/uploads/2016/12/spearker_8-300x300.jpg" class="img-fluid">
+                                    </div>
+                                    <div class="rjp-details text-center mt-2">
+                                        <p class="rjp-name">Liza</p>
+                                        <p>Business Analyst</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="rjp-card-wrapper">
+                                    <div class="rjp-card-img text-center">
+                                        <img src="https://bebopbusiness.no/wp-content/uploads/2016/12/spearker_8-300x300.jpg" class="img-fluid">
+                                    </div>
+                                    <div class="rjp-details text-center mt-2">
+                                        <p class="rjp-name">John Doe</p>
+                                        <p>Financial Advisor</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="rjp-card-wrapper">
+                                    <div class="rjp-card-img text-center">
+                                        <img src="https://bebopbusiness.no/wp-content/uploads/2016/12/spearker_8-300x300.jpg" class="img-fluid">
+                                    </div>
+                                    <div class="rjp-details text-center mt-2">
+                                        <p class="rjp-name">John Doe</p>
+                                        <p>Financial Advisor</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="rjp-card-wrapper">
+                                    <div class="rjp-card-img text-center">
+                                        <img src="https://bebopbusiness.no/wp-content/uploads/2016/12/spearker_8-300x300.jpg" class="img-fluid">
+                                    </div>
+                                    <div class="rjp-details text-center mt-2">
+                                        <p class="rjp-name">John Doe</p>
+                                        <p>Financial Advisor</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section> -->
+    <section class="app_down_sec">
+        <div class="container">
+            <div class="wrap_app">
+                <div class="row align-items-center">
+                    <div class="col-sm-6">
+                        <img src="assets/imgs/ap2.png" class="img-fluid" alt="App Shots">
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="aps_right">
+                            <div class="sec_heading no_pad">
+                                <h2 class="text-left">Available on App Store &amp; Play Store.</h2>
+                            </div>
+                            <div class="para_app">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.</p>
+                                <a href="javascript:;"><img src="assets/imgs/1.png" class="img-fluid" alt="store images"></a>
+                                <a href="javascript:;"><img src="assets/imgs/2.png" class="img-fluid" alt="store images"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="work_sec_how bg_blue">
+        <div class="custom_container">
+            <div class="row align-items-center">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-6">
+                    <div class="mision_left">
+                        <div class="sub_head">
+                            <h3 class="pos_rel">Preparation with Ease</h3>
+                            <h3>Why Choose Us</h3>
+                        </div>
+                        <div class="meta_dean d-flex">
+                            <div class="meta_info">
+                                <h5>Browse Pros by Cities.” </h5>
+                                <small> Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</small>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="para_mision">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            </p>
+                            <hr class="mb-2">
+                            <p class="quote_dean"><i>“Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.”</i></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-5">
+                    <div class="img_mision pos_rel">
+                        <img src="assets/imgs/mision.png" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="style_ideas_sec">
+        <div class="custom_container">
+            <div class="section_title d-flex justify-content-between align-items-center">
+                <h2>Browse Ideas by Style</h2>
+                <a href="" class="cp_a">View All >></a>
+            </div>
+            <div class="main_ideas_wrap">
+                <owl-carousel-o [options]="style_slider">
+                    <ng-template carouselSlide>
+                        <figure class="wrap_idea_singl">
+                            <img src="https://i2.wp.com/homedecordesigns.com/wp-content/uploads/2014/10/IndianHome8.jpg?fit=900%2C624" class="img-fluid" alt="room1" />
+                            <div class="fig_div_abs text-center">
+                                <h3 class="room_name">Indian</h3>
+                            </div>
+                        </figure>
+                    </ng-template>
+                    <ng-template carouselSlide>
+                        <figure class="wrap_idea_singl">
+                            <img src="https://cdn.boydforcongress.com/wp-content/uploads/modern-luxury-homes-las-vegas-henderson-escala_403170-840x450.jpg" class="img-fluid" alt="room1" />
+                            <div class="fig_div_abs text-center">
+                                <h3 class="room_name">Modern</h3>
+                            </div>
+                        </figure>
+                    </ng-template>
+                    <ng-template carouselSlide>
+                        <figure class="wrap_idea_singl">
+                            <img src="https://i2.wp.com/homedecordesigns.com/wp-content/uploads/2014/10/IndianHome8.jpg?fit=900%2C624" class="img-fluid" alt="room1" />
+                            <div class="fig_div_abs text-center">
+                                <h3 class="room_name">Indian</h3>
+                            </div>
+                        </figure>
+                    </ng-template>
+                    <ng-template carouselSlide>
+                        <figure class="wrap_idea_singl">
+                            <img src="https://cdn.boydforcongress.com/wp-content/uploads/modern-luxury-homes-las-vegas-henderson-escala_403170-840x450.jpg" class="img-fluid" alt="room1" />
+                            <div class="fig_div_abs text-center">
+                                <h3 class="room_name">Modern</h3>
+                            </div>
+                        </figure>
+                    </ng-template>
+                </owl-carousel-o>
+            </div>
+        </div>
+    </section>
+    <section class="products_sec">
+        <div class="custom_container">
+            <div class="section_title d-flex justify-content-between align-items-center">
+                <h2>Our Products</h2>
+                <a routerLink="/products" class="cp_a">View All >></a>
+            </div>
+            <div class="main_prod_contnr">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <figure class="singl_prodct">
+                            <img src="https://www.thestatesman.com/wp-content/uploads/2019/08/stainless-steel.jpg" class="img-fluid">
+                            <div class="prod_meta">
+                                <div class="blog_article_body">
+                                    <a class="article_title">Stainless Steel pipes</a>
+                                    <div class="ratng_star align-items-center d-flex justify-content-between">
+                                        <div class="star_color" data-toggle="tooltip" title="" data-original-title="3.5 out of 5 stars">
+                                            <span class="star_rev">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star-half-alt"></i>
+                                            <i class="far fa-star"></i>
+                                            </span>
+                                            <span class="rev_nmbr"> 1,933</span>
+                                        </div>
+                                    </div>
+                                    <div class="rt_qty">
+                                        <div>
+                                            <p class="rat_prod">SAR 122.00 <del>SAR 95.50</del></p>
+                                            <span>+ SAR 20.76 Shipping</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </figure>
+                    </div>
+                    <div class="col-sm-3">
+                        <figure class="singl_prodct">
+                            <img src="https://rukminim1.flixcart.com/image/612/612/k0bbb0w0/towel-rod/e/6/b/4201146503912-prime-stainless-steel-304-grade-impulse-original-imafkfq6qxsxh9qx.jpeg?q=70" class="img-fluid">
+                            <div class="prod_meta">
+                                <div class="blog_article_body">
+                                    <a class="article_title">Stainless Steel pipes</a>
+                                    <div class="ratng_star align-items-center d-flex justify-content-between">
+                                        <div class="star_color" data-toggle="tooltip" title="" data-original-title="3.5 out of 5 stars">
+                                            <span class="star_rev">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star-half-alt"></i>
+                                            <i class="far fa-star"></i>
+                                            </span>
+                                            <span class="rev_nmbr"> 1,933</span>
+                                        </div>
+                                    </div>
+                                    <div class="rt_qty">
+                                        <div>
+                                            <p class="rat_prod">SAR 122.00 <del>SAR 95.50</del></p>
+                                            <span>+ SAR 20.76 Shipping</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </figure>
+                    </div>
+                    <div class="col-sm-3">
+                        <figure class="singl_prodct">
+                            <img src="https://rooftraders.co.uk/pub/media/catalog/product/cache/2474b722d7d164e42ff8f09b603d4ab8/m/o/molan-sunwood-ridge-white.jpg" class="img-fluid">
+                            <div class="prod_meta">
+                                <div class="blog_article_body">
+                                    <a class="article_title">Stainless Steel pipes</a>
+                                    <div class="ratng_star align-items-center d-flex justify-content-between">
+                                        <div class="star_color" data-toggle="tooltip" title="" data-original-title="3.5 out of 5 stars">
+                                            <span class="star_rev">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star-half-alt"></i>
+                                            <i class="far fa-star"></i>
+                                            </span>
+                                            <span class="rev_nmbr"> 1,933</span>
+                                        </div>
+                                    </div>
+                                    <div class="rt_qty">
+                                        <div>
+                                            <p class="rat_prod">SAR 122.00 <del>SAR 95.50</del></p>
+                                            <span>+ SAR 20.76 Shipping</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </figure>
+                    </div>
+                    <div class="col-sm-3">
+                        <figure class="singl_prodct">
+                            <img src="https://imgus-vip.tongtool.com/s/qoqsztvtosqrznquosvvqxxwwrsquzusyuypJPGN.jpg" class="img-fluid">
+                            <div class="prod_meta">
+                                <div class="blog_article_body">
+                                    <a class="article_title">Stainless Steel pipes</a>
+                                    <div class="ratng_star align-items-center d-flex justify-content-between">
+                                        <div class="star_color" data-toggle="tooltip" title="" data-original-title="3.5 out of 5 stars">
+                                            <span class="star_rev">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star-half-alt"></i>
+                                            <i class="far fa-star"></i>
+                                            </span>
+                                            <span class="rev_nmbr"> 1,933</span>
+                                        </div>
+                                    </div>
+                                    <div class="rt_qty">
+                                        <div>
+                                            <p class="rat_prod">SAR 122.00 <del>SAR 95.50</del></p>
+                                            <span>+ SAR 20.76 Shipping</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- latest products -->
+        <section class="products_sec">
+        <div class="custom_container">
+            <div class="section_title d-flex justify-content-between align-items-center">
+                <h2>New Arrivals</h2>
+                <a routerLink="/products" class="cp_a">View All >></a>
+            </div>
+            <div class="main_prod_contnr">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <figure class="singl_prodct">
+                            <img src="https://bsmedia.business-standard.com/_media/bs/img/article/2015-05/20/full/1432123181-7473.gif" class="img-fluid">
+                            <div class="new-product">
+                                <span>New</span>
+                            </div>
+                            <div class="prod_meta">
+                                <div class="blog_article_body">
+                                    <a class="article_title">Stainless Steel pipes</a>
+                                    <div class="ratng_star align-items-center d-flex justify-content-between">
+                                        <div class="star_color" data-toggle="tooltip" title="" data-original-title="3.5 out of 5 stars">
+                                            <span class="star_rev">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star-half-alt"></i>
+                                            <i class="far fa-star"></i>
+                                            </span>
+                                            <span class="rev_nmbr"> 1,933</span>
+                                        </div>
+                                    </div>
+                                    <div class="rt_qty">
+                                        <div>
+                                            <p class="rat_prod">SAR 122.00 <del>SAR 95.50</del></p>
+                                            <span>+ SAR 20.76 Shipping</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </figure>
+                    </div>
+                    <div class="col-sm-3">
+                        <figure class="singl_prodct">
+                            <img src="https://inhabitat.com/wp-content/blogs.dir/1/files/2016/06/Mushroom-Tower-Queens-Wind-TUrbines1-889x591.jpg" class="img-fluid">
+                            <div class="new-product">
+                                <span>New</span>
+                            </div>
+                            <div class="prod_meta">
+                                <div class="blog_article_body">
+                                    <a class="article_title">Stainless Steel pipes</a>
+                                    <div class="ratng_star align-items-center d-flex justify-content-between">
+                                        <div class="star_color" data-toggle="tooltip" title="" data-original-title="3.5 out of 5 stars">
+                                            <span class="star_rev">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star-half-alt"></i>
+                                            <i class="far fa-star"></i>
+                                            </span>
+                                            <span class="rev_nmbr"> 1,933</span>
+                                        </div>
+                                    </div>
+                                    <div class="rt_qty">
+                                        <div>
+                                            <p class="rat_prod">SAR 122.00 <del>SAR 95.50</del></p>
+                                            <span>+ SAR 20.76 Shipping</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </figure>
+                    </div>
+                    <div class="col-sm-3">
+                        <figure class="singl_prodct">
+                            <img src="https://www.thestatesman.com/wp-content/uploads/2019/08/stainless-steel.jpg" class="img-fluid">
+                            <div class="new-product">
+                                <span>New</span>
+                            </div>
+                            <div class="prod_meta">
+                                <div class="blog_article_body">
+                                    <a class="article_title">Stainless Steel pipes</a>
+                                    <div class="ratng_star align-items-center d-flex justify-content-between">
+                                        <div class="star_color" data-toggle="tooltip" title="" data-original-title="3.5 out of 5 stars">
+                                            <span class="star_rev">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star-half-alt"></i>
+                                            <i class="far fa-star"></i>
+                                            </span>
+                                            <span class="rev_nmbr"> 1,933</span>
+                                        </div>
+                                    </div>
+                                    <div class="rt_qty">
+                                        <div>
+                                            <p class="rat_prod">SAR 122.00 <del>SAR 95.50</del></p>
+                                            <span>+ SAR 20.76 Shipping</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </figure>
+                    </div>
+                    <div class="col-sm-3">
+                        <figure class="singl_prodct">
+                            <img src="https://i0.wp.com/econaur.com/wp-content/uploads/2019/09/HP_Wienerberger.jpg?resize=512%2C512&ssl=1" class="img-fluid">
+                            <div class="new-product">
+                                <span>New</span>
+                            </div>
+                            <div class="prod_meta">
+                                <div class="blog_article_body">
+                                    <a class="article_title">Stainless Steel pipes</a>
+                                    <div class="ratng_star align-items-center d-flex justify-content-between">
+                                        <div class="star_color" data-toggle="tooltip" title="" data-original-title="3.5 out of 5 stars">
+                                            <span class="star_rev">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star-half-alt"></i>
+                                            <i class="far fa-star"></i>
+                                            </span>
+                                            <span class="rev_nmbr"> 1,933</span>
+                                        </div>
+                                    </div>
+                                    <div class="rt_qty">
+                                        <div>
+                                            <p class="rat_prod">SAR 122.00 <del>SAR 95.50</del></p>
+                                            <span>+ SAR 20.76 Shipping</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- old testimonials section -->
+    <!-- <section class="testimonial_sec">
+        <div class="container">
+            <div class="section_title d-flex justify-content-between align-items-center">
+                <h2>What our Clients Says</h2>
+            </div>
+            <div class="testmonal_inner">
+                <owl-carousel-o [options]="testimonial">
+                    <ng-template carouselSlide>
+                        <div class="clnt_info_meta d-flex align-items-start">
+                            <div class="clnt_img">
+                                <img src="assets/imgs/bnr3.jpg" alt="">  
+                            </div>
+                            <div class="desc_sldr text-left">
+                                <div class="clnt_info_tst pos_rel">
+                                    <h2 class="m-0">Maria Simpson</h2>
+                                    <small class="text-muted">Founder & CFO: <strong>Lorem Ipsum</strong></small>
+                                    <span class="abs_quot"><i class="fas fa-quote-right"></i></span>
+                                </div>
+                                <h3 class="my-3">Timely Delivery of Project</h3>
+                                <p class="carsl_cnt">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna sed do eiusmod tempor aliqua. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna sed do eiusmod tempor aliqua. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna sed do eiusmod tempor aliqua.</p>
+                            </div>
+                        </div>
+                    </ng-template>
+                    <ng-template carouselSlide>
+                        <div class="clnt_info_meta d-flex align-items-start">
+                            <div class="clnt_img">
+                                <img src="assets/imgs/bnr1.jpg" alt="">  
+                            </div>
+                            <div class="desc_sldr text-left">
+                                <div class="clnt_info_tst pos_rel">
+                                    <h2 class="m-0">John Morris</h2>
+                                    <small class="text-muted">Builder: <strong>Max Work</strong></small>
+                                    <span class="abs_quot"><i class="fas fa-quote-right"></i></span>
+                                </div>
+                                <h3 class="my-3">Timely Delivery of Project</h3>
+                                <p class="carsl_cnt">Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna sed do eiusmod tempor aliqua. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna sed do eiusmod tempor aliqua. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna sed do eiusmod tempor aliqua.</p>
+                            </div>
+                        </div>
+                    </ng-template>
+                </owl-carousel-o>
+            </div>
+        </div>
+    </section>
+ -->
+    <!-- new testimonials Section -->
+    <section class="testimonial_sec">
+        <div class="container">
+            <div class="testimonials-outer">     
+            <div class="section_title testimonial-title">
+                <h2 class="text-center">What our Clients Says</h2>
+            </div>
+            
+            <div class="testmonal_inner">
+                <owl-carousel-o [options]="testimonial">
+                    <ng-template carouselSlide>
+                        <div class="clnt_info_meta">
+                            <div class="desc_sldr text-center">
+                                <p class="carsl_cnt">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna sed do eiusmod tempor aliqua.</p>
+                            </div>
+                            <div class="d-flex align-items-center justify-content-between testimonial-flex"> 
+                               <div class="clnt_img">
+                                <img src="https://blog.hubspot.com/hubfs/Customer-testimonial-page.jpg" alt="" class="img-fluid">  
+                            </div>
+                            <div class="clnt_info_tst">
+                                    <h2 class="m-0 text-white">Maria Simpson</h2>
+                                    <small class="text-white">Founder & CFO: <strong>Lorem Ipsum</strong></small>
+                                    <span class="abs_quot"><i class="fas fa-quote-right"></i></span>
+                                    <span class="abs_quot-left"><i class="fas fa-quote-left"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                 <ng-template carouselSlide>
+                        <div class="clnt_info_meta">
+                            <div class="desc_sldr text-center">
+                                <p class="carsl_cnt">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna sed do eiusmod tempor aliqua. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna sed do eiusmod tempor aliqua. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna sed do eiusmod tempor aliqua.</p>
+                            </div>
+                            <div class="d-flex align-items-center justify-content-between testimonial-flex"> 
+                               <div class="clnt_img">
+                                <img src="http://meltsinmouth.in/wp-content/uploads/2016/08/452729-indian-man-new.jpg" alt="" class="img-fluid">  
+                            </div>
+                            <div class="clnt_info_tst">
+                                    <h2 class="m-0 text-white">John Morris</h2>
+                                    <small class="text-white">Builder: <strong>Max Work</strong></small>
+                                    <span class="abs_quot"><i class="fas fa-quote-right"></i></span>
+                                    <span class="abs_quot-left"><i class="fas fa-quote-left"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                </owl-carousel-o>
+            </div>
+            </div>
+        </div>
+    </section>
+        <section class="statistic-counter">
+        <div class="container">
+            <div class="counetr-container">
+                <div class="row">
+                    <div class="col-md-12 mb-5 bottom-line">
+                        <h1 class="text-center text-white counter-heading">Lorem Ipsum</h1>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="counter-wrapper">
+                            <div class="counter-icon" align="center">
+                                <i class="fa fa-rocket" aria-hidden="true"></i>
+                            </div>
+                            <div class="countern contr_comn">
+                                <p>400+</p>
+                            </div>
+                            <div class="counter-description">Projects Done</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="counter-wrapper">
+                            <div class="counter-icon" align="center">
+                                <i class="fa fa-users" aria-hidden="true"></i>
+                            </div>
+                            <div class="counterno contr_comn">
+                                <p>100+</p>
+                            </div>
+                            <div class="counter-description">Team Members</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="counter-wrapper">
+                            <div class="counter-icon " align="center">
+                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                            </div>
+                            <div class="counternp contr_comn">
+                                <p>15</p>
+                            </div>
+                            <div class="counter-description">Years Experience</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="counter-wrapper">
+                            <div class="counter-icon" align="center">
+                                <i class="fa fa-comment" aria-hidden="true"></i>
+                            </div>
+                            <div class="counternq contr_comn">
+                                <p>500+</p>
+                            </div>
+                            <div class="counter-description">Satisfied Clients</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+     <section class="fitness-ads-sec">
+        <div class="custom_container">
+            <div class="ad-sec-thumb">
+                <div class="row">
+                    <div class="col-md-12 mb-5 bottom-line">
+                        <h1 class="text-center counter-heading">Lorem Ipsum</h1>
+                    </div>
+                    <div class="col-md-3 p-0">
+                        <div class="ad-sec">
+                            <h1>Lorem Ipsum</h1>
+                            <h6>Starts at $25</h6>
+                            <div class="img-gradient">
+                                <img src="https://cdn.pixabay.com/photo/2019/06/01/11/04/plant-4243898_960_720.jpg" class="img-fluid">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 p-0">
+                        <div class="ad-sec">
+                            <h1>Lorem Ipsum</h1>
+                            <h6>Starts at $25</h6>
+                            <div class="img-gradient">
+                                <img src="https://cdn.pixabay.com/photo/2019/11/02/20/50/camera-4597415_960_720.jpg" class="img-fluid">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 p-0">
+                        <div class="ad-sec">
+                            <h1>Lorem Ipsum</h1>
+                            <h6>Starts at $25</h6>
+                            <div class="img-gradient">
+                                <img src="https://cdn.pixabay.com/photo/2017/02/20/15/28/home-2082922_960_720.jpg" class="img-fluid">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 p-0">
+                        <div class="ad-sec">
+                            <h1>Lorem Ipsum</h1>
+                            <h6>Starts at $25</h6>
+                            <div class="img-gradient">
+                                <img src="https://cdn.pixabay.com/photo/2015/05/31/14/26/plant-791947_960_720.jpg" class="img-fluid">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ad-thum-info">
+               <div class="row">
+                <div class="col-md-12 mb-5 bottom-line" style="visibility: hidden;">
+                        <h1 class="text-center counter-heading">Lorem Ipsum</h1>
+                    </div>
+                <div class="col-md-3 p-0">
+                    <div class="ad-sec">
+                        <h1>Lorem Ipsum</h1>
+                        <h6>Starts at $25</h6>
+                        <div class="img-gradient--cntent">
+                            <img src="https://cdn.pixabay.com/photo/2019/06/01/11/04/plant-4243898_960_720.jpg" class="img-fluid">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-9 p-0">
+                    <div class="ad-content">
+                    <div class="icon-close-ad text-right">
+                        <button class="btn btn-close">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="main-para-heading">
+                        <h1>Lorem Ipsum</h1>
+                    </div>
+                        <div class="main-para">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                        </div>
+                        <div class="purchase-btns float-right">
+                            <button class="btn btn-purchase">
+                                Purchase Now
+                            </button>
+                            <button class="btn btn-get-sttd">
+                                Get Started
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+    <section class="recent_news_sec">
+        <div class="container">
+            <div class="section_title d-flex justify-content-between align-items-center">
+                <h2>We are in News</h2>
+                <a href="" class="cp_a">View All >></a>
+            </div>
+            <div class="main_ideas_wrap">
+                <owl-carousel-o [options]="news_slider">
+                    <ng-template carouselSlide>
+                        <figure class="wrap_idea_singl img-news ">
+                            <img src="https://bedsdirectuk.net/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/f/l/florence-01.jpg" class="img-fluid" alt="room1" />
+                            <div class="fig_div_news text-left">
+                                <h4 class="catg_post"><span>Popular</span> <span>Popular</span></h4>
+                                <h3 class="room_name">6 best designs to steal from indian bedrooms</h3>
+                            </div>
+                        </figure>
+                    </ng-template>
+                    <ng-template carouselSlide>
+                        <figure class="wrap_idea_singl img-news">
+                            <img src="https://cdn.home-designing.com/wp-content/uploads/2019/07/luxury-living-room-1.jpg" class="img-fluid" alt="room1" />
+                            <div class="fig_div_news text-left">
+                                <h4 class="catg_post"><span>Popular</span> <span>Popular</span></h4>
+                                <h3 class="room_name">Grey & Gold are the heroes</h3>
+                            </div>
+                        </figure>
+                    </ng-template>
+                    <ng-template carouselSlide>
+                        <figure class="wrap_idea_singl img-news">
+                            <img src="https://cdn.mos.cms.futurecdn.net/bYvunzJ7poz6xHkC2aDka7-768-80.jpg" class="img-fluid" alt="room1" />
+                            <div class="fig_div_news text-left">
+                                <h4 class="catg_post"><span>Popular</span> <span>Popular</span></h4>
+                                <h3 class="room_name">Different ways to add furniture</h3>
+                            </div>
+                        </figure>
+                    </ng-template>
+                    <ng-template carouselSlide>
+                        <figure class="wrap_idea_singl img-news">
+                            <img src="https://cdn.decorpad.com/photos/2013/05/03/a89b505c03b9.jpg" class="img-fluid" alt="room1" />
+                            <div class="fig_div_news text-left">
+                                <h4 class="catg_post"><span>Popular</span> <span>Popular</span></h4>
+                                <h3 class="room_name">23 ideas for lighting a small home</h3>
+                            </div>
+                        </figure>
+                    </ng-template>
+                    <ng-template carouselSlide>
+                        <figure class="wrap_idea_singl img-news">
+                            <img src="https://st.hzcdn.com/simgs/86b17f3f0e46e313_4-3957/home-design.jpg" class="img-fluid" alt="room1" />
+                            <div class="fig_div_news text-left">
+                                <h4 class="catg_post"><span>Popular</span> <span>Popular</span></h4>
+                                <h3 class="room_name">Placement of dishwasher in Kitchen</h3>
+                            </div>
+                        </figure>
+                    </ng-template>
+                    <ng-template carouselSlide>
+                        <figure class="wrap_idea_singl img-news">
+                            <img src="https://static.dezeen.com/uploads/2017/10/ned-hotel-soho-house-co-sydell-group-interiors-uk-london_dezeen_2364_col_21-852x479.jpg" class="img-fluid" alt="room1" />
+                            <div class="fig_div_news text-left">
+                                <h4 class="catg_post"><span>Popular</span> <span>Popular</span></h4>
+                                <h3 class="room_name">An opulent home with nice interrior</h3>
+                            </div>
+                        </figure>
+                    </ng-template>
+                </owl-carousel-o>
+            </div>
+        </div>
+    </section>
+    <app-footer></app-footer>
+</div>

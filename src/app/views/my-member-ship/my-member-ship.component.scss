@@ -1,0 +1,42 @@
+.membrshp_icn i.fas.fa-gem {
+    height: 80px;
+    width: 80px;
+    line-height: 92px;
+    border-radius: 50%;
+    font-size: 33px;
+    color: #0b4c89;
+    transition: all 600ms ease;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    background: #dce7f1;
+}
+p.amt {
+    font-weight: 500;
+    color: #000;
+    padding-top: 12px;
+    padding-bottom: 14px;
+}
+.amt1 {
+    font-weight: 500;
+    color: #7a7a7a;
+}
+.date_div p {
+    font-weight: 500;
+    color: #000;
+}
+
+.main_div .product-list__column-category {
+    display: block;
+    width: 100%;
+    margin: 0 0;
+}
+.main_div .product-list__column-category .features li {
+    text-align: left;
+}
+p.mbershp_pln {
+    font-size: 23px;
+    margin-bottom: 0 !important;
+    font-weight: 500;
+    color: #000;
+}

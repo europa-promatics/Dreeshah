@@ -1,0 +1,241 @@
+<app-seller-header></app-seller-header>
+<div class="seller-quotation-wrapper">
+	<div class="custom-container d-flex">
+		<app-seller-sidebar></app-seller-sidebar>
+		<div class="main-wrap">
+			<div class="card">
+				<div class="card-body">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="">
+								<div class="">
+									<h1>Add Customer</h1>
+								</div>
+								<form [formGroup]="addForm">
+									<div class="form-group">
+	                                    <mat-form-field class="" appearance="">
+										    <mat-label>First Name</mat-label>
+										    <input matInput placeholder="" formControlName="firstName">
+										</mat-form-field> 
+									</div> 
+									<div class="">
+										<p style="color: red;"
+										*ngIf="addForm.controls['firstName'].hasError('required')  && ( addForm.controls['firstName'].touched)">
+										This field is required </p>
+									<p style="color: red;"
+										*ngIf="!addForm.controls['firstName'].hasError('required') && addForm.controls['firstName'].hasError('pattern')">
+										Please Enter Alphabets Only
+									</p>
+									</div>
+									<div class="form-group">
+	                                    <mat-form-field class="" appearance="">
+										    <mat-label>Last Name</mat-label>
+										    <input matInput placeholder="" value="" formControlName="lastName">
+										</mat-form-field> 
+									</div> 
+									<div class="">
+										<p style="color: red;"
+										*ngIf="addForm.controls['lastName'].hasError('required')  && ( addForm.controls['lastName'].touched)">
+										This field is required </p>
+									<p style="color: red;"
+										*ngIf="!addForm.controls['lastName'].hasError('required') && addForm.controls['lastName'].hasError('pattern')">
+										Please Enter Alphabets Only
+									</p>
+									</div>
+									<div class="form-group">
+	                                    <mat-form-field class="" appearance="">
+										    <mat-label>Email Address</mat-label>
+										    <input matInput placeholder="" value="" formControlName="email">
+										</mat-form-field> 
+									</div> 
+									<div class="">
+										<p style="color: red;"
+										*ngIf="addForm.controls['email'].hasError('required')  && ( addForm.controls['email'].touched)">
+										This field is required </p>
+									<p style="color: red;"
+										*ngIf="!addForm.controls['email'].hasError('required') && addForm.controls['email'].hasError('pattern')">
+										Please Enter Valid Email Address
+									</p>
+									</div>
+									<div class="form-group">
+	                                    <mat-form-field class="" appearance="">
+										    <mat-label>Phone Number</mat-label>
+										    <input matInput placeholder="" value="" formControlName="phone">
+										</mat-form-field> 
+									</div> 
+									<div class="">
+										<p style="color: red;"
+										*ngIf="addForm.controls['phone'].hasError('required')  && ( addForm.controls['phone'].touched)">
+										This field is required </p>
+									<p style="color: red;"
+										*ngIf="!addForm.controls['phone'].hasError('required') && addForm.controls['phone'].hasError('pattern')">
+										Please Enter Digits Only
+									</p>
+									<p style="color: red;" *ngIf="!addForm.controls['phone'].hasError('required') && addForm.controls['phone'].hasError('minlength')">
+										 Phone number must contain a minimum of 7 digits</p>
+                                    <p style="color: red;" *ngIf="!addForm.controls['phone'].hasError('required') && addForm.controls['phone'].hasError('maxlength')">
+                                         Phone number must not exceed 20 digits</p>
+									</div>
+									<div class="form-group">
+	                                    <mat-form-field class="example-full-width" appearance="">
+										    <mat-label>Company</mat-label>
+										    <input matInput placeholder="" value="" formControlName="company">
+										</mat-form-field> 
+									</div> 
+									<div class="">
+										<p style="color: red;"
+										*ngIf="addForm.controls['company'].hasError('required')  && ( addForm.controls['company'].touched)">
+										This field is required </p>
+										</div>
+									<div class="form-group">
+	                                    <mat-form-field class="example-full-width" appearance="">
+										    <mat-label>Address</mat-label>
+										    <textarea matInput formControlName="address"></textarea>
+										</mat-form-field> 
+									</div> 
+									<div class="">
+										<p style="color: red;"
+										*ngIf="addForm.controls['address'].hasError('required')  && ( addForm.controls['address'].touched)">
+										This field is required </p>
+										</div>
+									<div class="form-group">
+	                                    <mat-form-field class="example-full-width" appearance="">
+										    <mat-label>Apartments</mat-label>
+										    <input matInput placeholder="" value="" formControlName="apartments">
+										</mat-form-field> 
+									</div> 
+								   
+									
+									<div class="">
+										<p style="color: red;"
+										*ngIf="addForm.controls['apartments'].hasError('required')  && ( addForm.controls['apartments'].touched)">
+										This field is required </p>
+										<p style="color: red;" *ngIf="!addForm.controls['apartments'].hasError('required') && addForm.controls['apartments'].hasError('maxlength')">
+											Apartments must not exceed 20 Characters</p>
+										</div>
+									<div class="form-group">
+	                                    <mat-form-field class="example-full-width" appearance="">
+										    <mat-label>City</mat-label>
+										    <input matInput placeholder="" value="" formControlName="city">
+										</mat-form-field> 
+									</div> 
+									<div class="">
+										<p style="color: red;"
+										*ngIf="addForm.controls['city'].hasError('required')  && ( addForm.controls['city'].touched)">
+										This field is required </p>
+										</div>
+									<mat-form-field appearance="fill">
+									  <mat-label>Country Region</mat-label>
+									  <mat-select formControlName="country">
+									    <mat-option [value]="country.name" *ngFor="let country of countries">{{country.name}}</mat-option>
+									    
+									  </mat-select>
+									</mat-form-field>
+									<div class="">
+										<p style="color: red;"
+										*ngIf="addForm.controls['country'].hasError('required')  && ( addForm.controls['country'].touched)">
+										This field is required </p>
+										</div>
+
+									<!-- <mat-form-field appearance="fill">
+									  <mat-label>Emirate</mat-label>
+									  <mat-select>
+									    <mat-option value="one">1</mat-option>
+									    <mat-option value="two">2</mat-option>
+									  </mat-select>
+									</mat-form-field> -->
+									<mat-form-field appearance="fill">
+										<mat-label>Company Phone Number</mat-label>
+										<input matInput placeholder="" value="" formControlName="cphone">
+									  </mat-form-field>
+									  <div class="">
+										<p style="color: red;"
+										*ngIf="addForm.controls['cphone'].hasError('required')  && ( addForm.controls['cphone'].touched)">
+										This field is required </p>
+									<p style="color: red;"
+										*ngIf="!addForm.controls['cphone'].hasError('required') && addForm.controls['cphone'].hasError('pattern')">
+										Please Enter Digits Only
+									</p>
+									<p style="color: red;" *ngIf="!addForm.controls['cphone'].hasError('required') && addForm.controls['cphone'].hasError('minlength')">
+										Phone number must contain a minimum of 7 digits</p>
+								   <p style="color: red;" *ngIf="!addForm.controls['cphone'].hasError('required') && addForm.controls['cphone'].hasError('maxlength')">
+										Phone number must not exceed 20 digits</p>
+									</div>
+									<!-- <div class="form-group">
+										<mat-form-field appearance="">
+										  <mat-label>Country Region</mat-label>
+										  <select>
+										    <option value="">1</option>
+										  </select>
+										</mat-form-field>
+									</div>
+									 <div class="form-group">
+										<mat-form-field appearance="">
+										  <mat-label>Emirate</mat-label>
+										  <select>
+										    <option value="">1</option>
+										  </select>
+										</mat-form-field>
+									</div> -->
+									<div class="form-group">
+	                                    <mat-form-field class="example-full-width" appearance="">
+										    <mat-label>Note</mat-label>
+										    <textarea matInput formControlName="note"></textarea>
+										</mat-form-field> 
+									</div> 
+									<div class="">
+										<p style="color: red;"
+										*ngIf="addForm.controls['note'].hasError('required')  && ( addForm.controls['note'].touched)">
+										This field is required </p>
+										</div>
+									<div class="form-group">
+	                                    <label id="example-radio-group-label font-weight-bold">Collect Taxes</label>
+										<mat-radio-group
+										  aria-labelledby="example-radio-group-label" formControlName="taxes"
+										  class="example-radio-group">
+										  <mat-radio-button value="true">
+										    Yes
+										  </mat-radio-button>
+										  <mat-radio-button value="false">
+										    No
+										  </mat-radio-button>
+										</mat-radio-group>
+									</div>
+									<div class="">
+										<p style="color: red;"
+										*ngIf="addForm.controls['taxes'].hasError('required')  && ( addForm.controls['taxes'].touched)">
+										This field is required </p>
+										</div>
+
+									<!-- <mat-form-field appearance="fill">
+									  <mat-label>Tags</mat-label>
+									  <input matInput placeholder="" value="">
+									  <mat-select>
+									    <mat-option value="one">Tag 1</mat-option>
+									    <mat-option value="two">Tag 2</mat-option>
+									  </mat-select>
+									</mat-form-field> -->
+
+									<div class="form-group">
+										<h4>Tags</h4>
+										<tag-input maxItems="10" class="keywords--chips form-control height-unset" formControlName="tags"></tag-input>
+									</div>
+									<div class="">
+										<p style="color: red;"
+										*ngIf="addForm.controls['tags'].hasError('required')  && ( addForm.controls['tags'].touched)">
+										This field is required </p>
+										</div>
+									<div class="text-center my-3">
+										<button class="btn btn-change-fill" [disabled]="addForm.invalid" (click)="addCustomer()">Add
+		        						</button>
+									</div>
+								</form>
+							</div>
+								
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

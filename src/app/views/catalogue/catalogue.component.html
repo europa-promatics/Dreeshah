@@ -1,0 +1,250 @@
+<app-header></app-header>
+<section class="common_image_section page_headrer_wrkshop">
+    <div class="container">
+        <div class="page_head_wrap">
+            <h2 class="aboutus_head">Catalogue</h2>
+            <p class="page_head">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor inc                                                                                                                                 idunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            </p>
+        </div>
+    </div>
+</section>
+    <nav aria-label="breadcrumb mb-0 mt-5">
+        <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Catalogue</li>
+        </ol>
+    </nav>
+<div class="catalogue-wrapper">
+    <div class="custom_container">
+        <div class="row">
+            <div class="col-md-12 mt-5" align="center">
+                <h1 class="text-center mt-3 mb-3">Catalogue</h1>
+            </div>
+        </div>
+       <!--  <div class="mb-4">
+            <div class="catalogue-disply-align">
+                <div class="form-group d-flex">
+                    <input id="exampleFormControlInput5" type="email" placeholder="Search" class="form-control" required="true">
+                    <button type="submit" class="btn btn-filter">Filters</button>
+                </div>
+                <div class="">
+                    <div class="form-group row">
+                        <label for="staticEmail" class="col-sm-7 col-form-label">Display Per Page</label>
+                        <div class="col-sm-5">
+                            <select class="form-control" id="exampleFormControlSelect1">
+                                <option>12</option>
+                                <option>24</option>
+                                <option>46</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+        <div class="">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="catalogue-wrapper-col mt-3 mb-5">
+                        <div class="simple-effet-image clearfix">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="effect-image-1">
+                                        <img src="https://i2.wp.com/homedecordesigns.com/wp-content/uploads/2014/10/IndianHome8.jpg?fit=900%2C624" alt="image-1" class="bfr-effct-img">
+                                        <div class="overlay-text-effect-3">
+                                          <h1><a routerLink="/catalogue-detail">Interior</a></h1>
+                                      </div>
+                                  </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="effect-image-1">
+                                        <img src="https://i.pinimg.com/originals/40/2b/2e/402b2e96062030ae500ab501a8572012.png" alt="image-1" class="bfr-effct-img">
+                                        <div class="overlay-text-effect-3 overlay-text-1" >
+                                          <h1><a routerLink="/catalogue-detail">Exterior</a></h1>
+                                      </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="effect-image-1">
+                                        <img src="https://i2.wp.com/homedecordesigns.com/wp-content/uploads/2014/10/IndianHome8.jpg?fit=900%2C624" alt="image-1" class="bfr-effct-img">
+                                        <div class="overlay-text-effect-3">
+                                          <h1><a routerLink="/catalogue-detail">Interior</a></h1>
+                                      </div>
+                                  </div>
+                              </div>
+                            </div>
+
+                        <!--     <div class="col-md-12">
+                                <div class="catalogue-banner">
+                                    <img src="assets/imgs/ad21.png" class="img-fluid">
+                                </div>
+                            </div>
+                            <div class="col-md-10 mt-3">
+                                <div class="catalogue-figure d-flex">
+                                    <div *ngFor="let item of items; index as i">
+                                        <div class="img-wrapper">
+                                            <img 
+                                            [lightbox]="i"
+                                            [src]="item.data.thumb" 
+                                            class="img-fluid" 
+                                            >
+                                            <div class="catalogue-img-caption album-item-info mr-3 ml-3">
+                                                <div class="photographer-info-wrapper">
+                                                    <p class="">{{item.data.photographerName}}</p>
+                                                    <p>{{item.data.photographerRate}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="catalogue-img-caption album-item-info mr-3 ml-3">
+                                            <p class="album-item-title">{{item.data.title}}</p>
+                                            <p>{{item.data.rate}}</p>
+                                        </div>
+                                        <div class="catalogue-img-caption album-item-info mr-3 ml-3">
+                                            <p class="album-item-title">{{item.data.ProfName}}</p>
+                                            <p>{{item.data.profRate}}</p>
+                                        </div>
+                                        <div class="catalogue-img-caption album-item-info mr-3 ml-3">
+                                            <p>Saves: {{item.data.saves}}</p>
+                                            <p>Share: {{item.data.shares}}</p>
+                                        </div>
+                                        <div class="catalogue-img-caption album-item-info mr-3 ml-3">
+                                            <p><i class={{item.data.text}}></i></p>
+                                            <p class="down-share"><i class={{item.data.download}}></i>
+                                                <i class={{item.data.share}}></i>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="catalogue-banner-sm">
+                                    <img src="assets/imgs/ad31.png" class="img-fluid">
+                                </div>
+                            </div>
+                            <div class="col-md-4 offset-md-4">
+                                <nav aria-label="..." align="center">
+                                    <ul class="pagination">
+                                        <li class="page-item disabled">
+                                            <a class="page-link" href="#" tabindex="-1">Previous</a>
+                                        </li>
+                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                        <li class="page-item active">
+                                            <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                                        </li>
+                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                        <li class="page-item">
+                                            <a class="page-link" href="#">Next</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+             <div class="row">
+                <div class="col-md-12">
+                    <div class="catalogue-wrapper-col mt-3 mb-5">
+                        <div class="simple-effet-image clearfix">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="effect-image-1">
+                                        <img src="https://i2.wp.com/homedecordesigns.com/wp-content/uploads/2014/10/IndianHome8.jpg?fit=900%2C624" alt="image-1" class="bfr-effct-img">
+                                        <div class="overlay-text-effect-3">
+                                          <h1><a routerLink="/catalog-interior">Interior</a></h1>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="col-md-4">
+                                <div class="effect-image-1">
+                                    <img src="https://i.pinimg.com/originals/40/2b/2e/402b2e96062030ae500ab501a8572012.png" alt="image-1" class="bfr-effct-img">
+                                    <div class="overlay-text-effect-3 overlay-text-1" >
+                                      <h1><a routerLink="/catalog-interior">Exterior</a></h1>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="col-md-4">
+                                    <div class="effect-image-1">
+                                        <img src="https://i2.wp.com/homedecordesigns.com/wp-content/uploads/2014/10/IndianHome8.jpg?fit=900%2C624" alt="image-1" class="bfr-effct-img">
+                                        <div class="overlay-text-effect-3">
+                                          <h1><a routerLink="/catalog-interior">Interior</a></h1>
+                                      </div>
+                                  </div>
+                              </div>
+                      </div>
+
+                        <!--     <div class="col-md-12">
+                                <div class="catalogue-banner">
+                                    <img src="assets/imgs/ad21.png" class="img-fluid">
+                                </div>
+                            </div>
+                            <div class="col-md-10 mt-3">
+                                <div class="catalogue-figure d-flex">
+                                    <div *ngFor="let item of items; index as i">
+                                        <div class="img-wrapper">
+                                            <img 
+                                            [lightbox]="i"
+                                            [src]="item.data.thumb" 
+                                            class="img-fluid" 
+                                            >
+                                            <div class="catalogue-img-caption album-item-info mr-3 ml-3">
+                                                <div class="photographer-info-wrapper">
+                                                    <p class="">{{item.data.photographerName}}</p>
+                                                    <p>{{item.data.photographerRate}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="catalogue-img-caption album-item-info mr-3 ml-3">
+                                            <p class="album-item-title">{{item.data.title}}</p>
+                                            <p>{{item.data.rate}}</p>
+                                        </div>
+                                        <div class="catalogue-img-caption album-item-info mr-3 ml-3">
+                                            <p class="album-item-title">{{item.data.ProfName}}</p>
+                                            <p>{{item.data.profRate}}</p>
+                                        </div>
+                                        <div class="catalogue-img-caption album-item-info mr-3 ml-3">
+                                            <p>Saves: {{item.data.saves}}</p>
+                                            <p>Share: {{item.data.shares}}</p>
+                                        </div>
+                                        <div class="catalogue-img-caption album-item-info mr-3 ml-3">
+                                            <p><i class={{item.data.text}}></i></p>
+                                            <p class="down-share"><i class={{item.data.download}}></i>
+                                                <i class={{item.data.share}}></i>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="catalogue-banner-sm">
+                                    <img src="assets/imgs/ad31.png" class="img-fluid">
+                                </div>
+                            </div>
+                            <div class="col-md-4 offset-md-4">
+                                <nav aria-label="..." align="center">
+                                    <ul class="pagination">
+                                        <li class="page-item disabled">
+                                            <a class="page-link" href="#" tabindex="-1">Previous</a>
+                                        </li>
+                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                        <li class="page-item active">
+                                            <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                                        </li>
+                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                        <li class="page-item">
+                                            <a class="page-link" href="#">Next</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+
+<app-footer></app-footer>

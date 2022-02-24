@@ -1,0 +1,384 @@
+<!--<app-db-header></app-db-header>-->
+<app-seller-header  *ngIf="user?.user_type=='professional'"></app-seller-header>
+<app-consultant-header  *ngIf="user?.user_type=='photographer'"></app-consultant-header>
+<div class="seller-disounts-wrapper">
+	<div class="custom-container d-flex">
+		<app-seller-sidebar  *ngIf="user?.user_type=='professional'"></app-seller-sidebar>
+    <app-ph-sidebar *ngIf="user?.user_type=='photographer'"></app-ph-sidebar>
+		<div class="main-wrap">
+			<div class="card">
+				<div class="card-body">
+                    <div class="disc_hdng d-flex justify-content-between">
+                        <h1>Discounts</h1>
+                        <div class="disc_actns d-flex align-items-center">
+                            <h4  class="mr-2 mb-0"><a  href="">
+                                <i class="fas fa-arrow-alt-from-bottom mr-2"></i>Export</a>
+                            </h4>
+                            <a class="btn btn-change-fill "   [routerLink]="['/creatediscount']">Create New Discount</a>
+                        </div>
+                    </div>
+					<mat-tab-group>
+						<mat-tab label="Discount Codes"> 
+							<mat-tab-group>
+                                <mat-tab label="All"> 
+                                    <div class="col-md-12 mt-3">
+                                        <div class="user-search-input">
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-dropdown btn-outline-secondary dropdown-toggle">
+                                                        Filter
+                                                    </button>
+                                                    <div class="dropdown-menu"><a href="#" class="dropdown-item">Action</a><a href="#" class="dropdown-item">Another action</a><a href="#" class="dropdown-item">Something else here</a>
+                                                        <div role="separator" class="dropdown-divider">
+
+                                                        </div>
+                                                        <a href="#" class="dropdown-item">Separated link</a>
+                                                    </div>
+                                                </div>
+                                                <div class="searchContainer">
+                                                    <i class="fa fa-search searchIcon"></i><input type="search" name="search" placeholder="Search..." class="searchBox">
+                                                </div>
+                                            </div>
+                                            <div  class="discount-list-wrapper">
+                                                <ul *ngFor="let price of list;let i=index" >
+                                                   <li  class="d-flex justify-content-between align-items-cener border-top border-bottom">
+                                                      <div  class="list-content">
+                                                         <input  type="checkbox" value="" id="defaultCheck1" class="form-check-input custom-check"><label  for="defaultCheck1" class="form-check-label"> {{price?.discount_value}}% off on All products </label>
+                                                         <!-- <p >40% off 45 Products on Minimum Purchase of Dhs. 200.00</p> -->
+                                                      </div>
+                                                      <div ><span  class="badge badge-success">{{price?.status}}</span></div>
+                                                      <div ><span  class="use-no">{{price?.usage?.usage_value}} Used</span></div>
+                                                      <div ><span  class="expiry-date">{{price?.expiry_date|date}}</span></div>
+                                                   </li>
+                                                   <!-- <li  class="d-flex justify-content-between align-items-cener border-top border-bottom">
+                                                      <div  class="list-content">
+                                                         <input  type="checkbox" value="" id="defaultCheck1" class="form-check-input custom-check"><label  for="defaultCheck1" class="form-check-label"> 100 Discount over 1000 Purchase </label>
+                                                         <p >Dhs 100.00 off on all products on minimum purchase of Dhs. 10000.00</p>
+                                                      </div>
+                                                      <div ><span  class="badge badge-secondary">Expired</span></div>
+                                                      <div ><span  class="use-no">0 Used</span></div>
+                                                      <div ><span  class="expiry-date">From June 6</span></div>
+                                                   </li> -->
+                                                   <!-- <li  class="d-flex justify-content-between align-items-cener border-top border-bottom">
+                                                      <div  class="list-content">
+                                                         <input  type="checkbox" value="" id="defaultCheck1" class="form-check-input custom-check"><label  for="defaultCheck1" class="form-check-label"> Buy 1 Body Scrub &amp; Get 1 Banan Hand Scrub with 20% off </label>
+                                                         <p >Buy 1 Item, get 1 item at 20% off</p>
+                                                      </div>
+                                                      <div ><span  class="badge badge-secondary">Expired</span></div>
+                                                      <div ><span  class="use-no">0 Used</span></div>
+                                                      <div ><span  class="expiry-date">From June 6</span></div>
+                                                   </li> -->
+                                                </ul>
+                                                <div ></div>
+                                             </div>
+                                        </div>
+                                    </div>
+                                </mat-tab>
+                                <mat-tab label="Active">
+                                    <div  class="discount-list-wrapper">
+                                        <ul *ngFor="let pricee of lists" >
+                                           <li  class="d-flex justify-content-between align-items-cener border-top border-bottom">
+                                              <div  class="list-content">
+                                                 <input  type="checkbox" value="" id="defaultCheck1" class="form-check-input custom-check"><label  for="defaultCheck1" class="form-check-label"> {{pricee?.discount_value}} off on Abaya Sets </label>
+                                                 <!-- <p >40% off 45 Products on Minimum Purchase of Dhs. 200.00</p> -->
+                                              </div>
+                                              <div ><span  class="badge badge-success">>{{pricee?.status}}</span></div>
+                                              <div ><span  class="use-no">{{pricee?.usage?.usage_value}}</span></div>
+                                              <div ><span  class="expiry-date">{{pricee?.expiry_date|date}}</span></div>
+                                           </li>
+                                           <!-- <li  class="d-flex justify-content-between align-items-cener border-top border-bottom">
+                                              <div  class="list-content">
+                                                 <input  type="checkbox" value="" id="defaultCheck1" class="form-check-input custom-check"><label  for="defaultCheck1" class="form-check-label"> 100 Discount over 1000 Purchase </label>
+                                                 <p >Dhs 100.00 off on all products on minimum purchase of Dhs. 10000.00</p>
+                                              </div>
+                                              <div ><span  class="badge badge-secondary">Expired</span></div>
+                                              <div ><span  class="use-no">0 Used</span></div>
+                                              <div ><span  class="expiry-date">From June 6</span></div>
+                                           </li> -->
+                                           <!-- <li  class="d-flex justify-content-between align-items-cener border-top border-bottom">
+                                              <div  class="list-content">
+                                                 <input  type="checkbox" value="" id="defaultCheck1" class="form-check-input custom-check"><label  for="defaultCheck1" class="form-check-label"> Buy 1 Body Scrub &amp; Get 1 Banan Hand Scrub with 20% off </label>
+                                                 <p >Buy 1 Item, get 1 item at 20% off</p>
+                                              </div>
+                                              <div ><span  class="badge badge-secondary">Expired</span></div>
+                                              <div ><span  class="use-no">0 Used</span></div>
+                                              <div ><span  class="expiry-date">From June 6</span></div>
+                                           </li> -->
+                                        </ul>
+                                        <div ></div>
+                                     </div>
+                                </mat-tab>
+                                <mat-tab label="Scheduled"> 
+                                    <div  class="discount-list-wrapper">
+                                        <ul *ngFor="let pric of listss;let i=index" >
+                                           <li  class="d-flex justify-content-between align-items-cener border-top border-bottom">
+                                              <div  class="list-content">
+                                                 <input  type="checkbox" value="" id="defaultCheck1" class="form-check-input custom-check"><label  for="defaultCheck1" class="form-check-label"> {{pric?.discount_value}} off on Abaya Sets </label>
+                                                 <!-- <p >40% off 45 Products on Minimum Purchase of Dhs. 200.00</p> -->
+                                              </div>
+                                              <div ><span  class="badge badge-success">{{pric?.status}}</span></div>
+                                              <div ><span  class="use-no">{{pric?.usage?.usage_value}} Used</span></div>
+                                              <div ><span  class="expiry-date">{{pric?.expiry_date|date}}</span></div>
+                                           </li>
+                                           <!-- <li  class="d-flex justify-content-between align-items-cener border-top border-bottom">
+                                              <div  class="list-content">
+                                                 <input  type="checkbox" value="" id="defaultCheck1" class="form-check-input custom-check"><label  for="defaultCheck1" class="form-check-label"> 100 Discount over 1000 Purchase </label>
+                                                 <p >Dhs 100.00 off on all products on minimum purchase of Dhs. 10000.00</p>
+                                              </div>
+                                              <div ><span  class="badge badge-secondary">Expired</span></div>
+                                              <div ><span  class="use-no">0 Used</span></div>
+                                              <div ><span  class="expiry-date">From June 6</span></div>
+                                           </li> -->
+                                           <!-- <li  class="d-flex justify-content-between align-items-cener border-top border-bottom">
+                                              <div  class="list-content">
+                                                 <input  type="checkbox" value="" id="defaultCheck1" class="form-check-input custom-check"><label  for="defaultCheck1" class="form-check-label"> Buy 1 Body Scrub &amp; Get 1 Banan Hand Scrub with 20% off </label>
+                                                 <p >Buy 1 Item, get 1 item at 20% off</p>
+                                              </div>
+                                              <div ><span  class="badge badge-secondary">Expired</span></div>
+                                              <div ><span  class="use-no">0 Used</span></div>
+                                              <div ><span  class="expiry-date">From June 6</span></div>
+                                           </li> -->
+                                        </ul>
+                                        <div ></div>
+                                     </div>
+                                </mat-tab>
+                                <mat-tab label="Expired">
+                                    <div  class="discount-list-wrapper">
+                                        <ul *ngFor="let pri of listsss">
+                                           <li  class="d-flex justify-content-between align-items-cener border-top border-bottom">
+                                              <div  class="list-content">
+                                                 <input  type="checkbox" value="" id="defaultCheck1" class="form-check-input custom-check"><label  for="defaultCheck1" class="form-check-label"> {{pri?.discount_value}} off on Abaya Sets </label>
+                                                 <!-- <p >40% off 45 Products on Minimum Purchase of Dhs. 200.00</p> -->
+                                              </div>
+                                              <div ><span  class="badge badge-success">{{pri?.status}}</span></div>
+                                              <div ><span  class="use-no">{{pri?.usage?.usage_value}} Used</span></div>
+                                              <div ><span  class="expiry-date">{{pri?.expiry_date|date}}</span></div>
+                                           </li>
+                                           <!-- <li  class="d-flex justify-content-between align-items-cener border-top border-bottom">
+                                              <div  class="list-content">
+                                                 <input  type="checkbox" value="" id="defaultCheck1" class="form-check-input custom-check"><label  for="defaultCheck1" class="form-check-label"> 100 Discount over 1000 Purchase </label>
+                                                 <p >Dhs 100.00 off on all products on minimum purchase of Dhs. 10000.00</p>
+                                              </div>
+                                              <div ><span  class="badge badge-secondary">Expired</span></div>
+                                              <div ><span  class="use-no">0 Used</span></div>
+                                              <div ><span  class="expiry-date">From June 6</span></div>
+                                           </li> -->
+                                           <!-- <li  class="d-flex justify-content-between align-items-cener border-top border-bottom">
+                                              <div  class="list-content">
+                                                 <input  type="checkbox" value="" id="defaultCheck1" class="form-check-input custom-check"><label  for="defaultCheck1" class="form-check-label"> Buy 1 Body Scrub &amp; Get 1 Banan Hand Scrub with 20% off </label>
+                                                 <p >Buy 1 Item, get 1 item at 20% off</p>
+                                              </div>
+                                              <div ><span  class="badge badge-secondary">Expired</span></div>
+                                              <div ><span  class="use-no">0 Used</span></div>
+                                              <div ><span  class="expiry-date">From June 6</span></div>
+                                           </li> -->
+                                        </ul>
+                                        <div ></div>
+                                     </div>
+                                </mat-tab>
+                            </mat-tab-group>
+						</mat-tab>
+						<mat-tab label="Automatic Discounts">
+							<mat-tab-group>
+                                <mat-tab label="All"> 
+                                    <div class="col-md-12 mt-3">
+                                        <div class="user-search-input">
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-dropdown btn-outline-secondary dropdown-toggle">
+                                                        Filter
+                                                    </button>
+                                                    <div class="dropdown-menu"><a href="#" class="dropdown-item">Action</a><a href="#" class="dropdown-item">Another action</a><a href="#" class="dropdown-item">Something else here</a>
+                                                        <div role="separator" class="dropdown-divider">
+
+                                                        </div>
+                                                        <a href="#" class="dropdown-item">Separated link</a>
+                                                    </div>
+                                                </div>
+                                                <div class="searchContainer">
+                                                    <i class="fa fa-search searchIcon"></i><input type="search" name="search" placeholder="Search..." class="searchBox">
+                                                </div>
+                                            </div>
+                                            <div  class="discount-list-wrapper">
+                                                <ul >
+                                                   <li  class="d-flex justify-content-between align-items-cener border-top border-bottom">
+                                                      <div  class="list-content">
+                                                         <input  type="checkbox" value="" id="defaultCheck1" class="form-check-input custom-check"><label  for="defaultCheck1" class="form-check-label"> 40% off on Abaya Sets </label>
+                                                         <p >40% off 45 Products on Minimum Purchase of Dhs. 200.00</p>
+                                                      </div>
+                                                      <div ><span  class="badge badge-success">Active</span></div>
+                                                      <div ><span  class="use-no">0 Used</span></div>
+                                                      <div ><span  class="expiry-date">From June 6</span></div>
+                                                   </li>
+                                                   <li  class="d-flex justify-content-between align-items-cener border-top border-bottom">
+                                                      <div  class="list-content">
+                                                         <input  type="checkbox" value="" id="defaultCheck1" class="form-check-input custom-check"><label  for="defaultCheck1" class="form-check-label"> 100 Discount over 1000 Purchase </label>
+                                                         <p >Dhs 100.00 off on all products on minimum purchase of Dhs. 10000.00</p>
+                                                      </div>
+                                                      <div ><span  class="badge badge-secondary">Expired</span></div>
+                                                      <div ><span  class="use-no">0 Used</span></div>
+                                                      <div ><span  class="expiry-date">From June 6</span></div>
+                                                   </li>
+                                                   <li  class="d-flex justify-content-between align-items-cener border-top border-bottom">
+                                                      <div  class="list-content">
+                                                         <input  type="checkbox" value="" id="defaultCheck1" class="form-check-input custom-check"><label  for="defaultCheck1" class="form-check-label"> Buy 1 Body Scrub &amp; Get 1 Banan Hand Scrub with 20% off </label>
+                                                         <p >Buy 1 Item, get 1 item at 20% off</p>
+                                                      </div>
+                                                      <div ><span  class="badge badge-secondary">Expired</span></div>
+                                                      <div ><span  class="use-no">0 Used</span></div>
+                                                      <div ><span  class="expiry-date">From June 6</span></div>
+                                                   </li>
+                                                </ul>
+                                                <div ></div>
+                                             </div>
+                                        </div>
+                                    </div>
+                                </mat-tab>
+                                <mat-tab label="Active">
+                                    <div  class="discount-list-wrapper">
+                                        <ul >
+                                           <li  class="d-flex justify-content-between align-items-cener border-top border-bottom">
+                                              <div  class="list-content">
+                                                 <input  type="checkbox" value="" id="defaultCheck1" class="form-check-input custom-check"><label  for="defaultCheck1" class="form-check-label"> 40% off on Abaya Sets </label>
+                                                 <p >40% off 45 Products on Minimum Purchase of Dhs. 200.00</p>
+                                              </div>
+                                              <div ><span  class="badge badge-success">Active</span></div>
+                                              <div ><span  class="use-no">0 Used</span></div>
+                                              <div ><span  class="expiry-date">From June 6</span></div>
+                                           </li>
+                                           <li  class="d-flex justify-content-between align-items-cener border-top border-bottom">
+                                              <div  class="list-content">
+                                                 <input  type="checkbox" value="" id="defaultCheck1" class="form-check-input custom-check"><label  for="defaultCheck1" class="form-check-label"> 100 Discount over 1000 Purchase </label>
+                                                 <p >Dhs 100.00 off on all products on minimum purchase of Dhs. 10000.00</p>
+                                              </div>
+                                              <div ><span  class="badge badge-secondary">Expired</span></div>
+                                              <div ><span  class="use-no">0 Used</span></div>
+                                              <div ><span  class="expiry-date">From June 6</span></div>
+                                           </li>
+                                           <li  class="d-flex justify-content-between align-items-cener border-top border-bottom">
+                                              <div  class="list-content">
+                                                 <input  type="checkbox" value="" id="defaultCheck1" class="form-check-input custom-check"><label  for="defaultCheck1" class="form-check-label"> Buy 1 Body Scrub &amp; Get 1 Banan Hand Scrub with 20% off </label>
+                                                 <p >Buy 1 Item, get 1 item at 20% off</p>
+                                              </div>
+                                              <div ><span  class="badge badge-secondary">Expired</span></div>
+                                              <div ><span  class="use-no">0 Used</span></div>
+                                              <div ><span  class="expiry-date">From June 6</span></div>
+                                           </li>
+                                        </ul>
+                                        <div ></div>
+                                     </div>
+                                </mat-tab>
+                                <mat-tab label="Scheduled"> 
+                                    <div  class="discount-list-wrapper">
+                                        <ul >
+                                           <li  class="d-flex justify-content-between align-items-cener border-top border-bottom">
+                                              <div  class="list-content">
+                                                 <input  type="checkbox" value="" id="defaultCheck1" class="form-check-input custom-check"><label  for="defaultCheck1" class="form-check-label"> 40% off on Abaya Sets </label>
+                                                 <p >40% off 45 Products on Minimum Purchase of Dhs. 200.00</p>
+                                              </div>
+                                              <div ><span  class="badge badge-success">Active</span></div>
+                                              <div ><span  class="use-no">0 Used</span></div>
+                                              <div ><span  class="expiry-date">From June 6</span></div>
+                                           </li>
+                                           <li  class="d-flex justify-content-between align-items-cener border-top border-bottom">
+                                              <div  class="list-content">
+                                                 <input  type="checkbox" value="" id="defaultCheck1" class="form-check-input custom-check"><label  for="defaultCheck1" class="form-check-label"> 100 Discount over 1000 Purchase </label>
+                                                 <p >Dhs 100.00 off on all products on minimum purchase of Dhs. 10000.00</p>
+                                              </div>
+                                              <div ><span  class="badge badge-secondary">Expired</span></div>
+                                              <div ><span  class="use-no">0 Used</span></div>
+                                              <div ><span  class="expiry-date">From June 6</span></div>
+                                           </li>
+                                           <li  class="d-flex justify-content-between align-items-cener border-top border-bottom">
+                                              <div  class="list-content">
+                                                 <input  type="checkbox" value="" id="defaultCheck1" class="form-check-input custom-check"><label  for="defaultCheck1" class="form-check-label"> Buy 1 Body Scrub &amp; Get 1 Banan Hand Scrub with 20% off </label>
+                                                 <p >Buy 1 Item, get 1 item at 20% off</p>
+                                              </div>
+                                              <div ><span  class="badge badge-secondary">Expired</span></div>
+                                              <div ><span  class="use-no">0 Used</span></div>
+                                              <div ><span  class="expiry-date">From June 6</span></div>
+                                           </li>
+                                        </ul>
+                                        <div ></div>
+                                     </div>
+                                </mat-tab>
+                                <mat-tab label="Expired">
+                                    <div  class="discount-list-wrapper">
+                                        <ul >
+                                           <li  class="d-flex justify-content-between align-items-cener border-top border-bottom">
+                                              <div  class="list-content">
+                                                 <input  type="checkbox" value="" id="defaultCheck1" class="form-check-input custom-check"><label  for="defaultCheck1" class="form-check-label"> 40% off on Abaya Sets </label>
+                                                 <p >40% off 45 Products on Minimum Purchase of Dhs. 200.00</p>
+                                              </div>
+                                              <div ><span  class="badge badge-success">Active</span></div>
+                                              <div ><span  class="use-no">0 Used</span></div>
+                                              <div ><span  class="expiry-date">From June 6</span></div>
+                                           </li>
+                                           <li  class="d-flex justify-content-between align-items-cener border-top border-bottom">
+                                              <div  class="list-content">
+                                                 <input  type="checkbox" value="" id="defaultCheck1" class="form-check-input custom-check"><label  for="defaultCheck1" class="form-check-label"> 100 Discount over 1000 Purchase </label>
+                                                 <p >Dhs 100.00 off on all products on minimum purchase of Dhs. 10000.00</p>
+                                              </div>
+                                              <div ><span  class="badge badge-secondary">Expired</span></div>
+                                              <div ><span  class="use-no">0 Used</span></div>
+                                              <div ><span  class="expiry-date">From June 6</span></div>
+                                           </li>
+                                           <li  class="d-flex justify-content-between align-items-cener border-top border-bottom">
+                                              <div  class="list-content">
+                                                 <input  type="checkbox" value="" id="defaultCheck1" class="form-check-input custom-check"><label  for="defaultCheck1" class="form-check-label"> Buy 1 Body Scrub &amp; Get 1 Banan Hand Scrub with 20% off </label>
+                                                 <p >Buy 1 Item, get 1 item at 20% off</p>
+                                              </div>
+                                              <div ><span  class="badge badge-secondary">Expired</span></div>
+                                              <div ><span  class="use-no">0 Used</span></div>
+                                              <div ><span  class="expiry-date">From June 6</span></div>
+                                           </li>
+                                        </ul>
+                                        <div ></div>
+                                     </div>
+                                </mat-tab>
+                            </mat-tab-group>
+						</mat-tab>
+					</mat-tab-group>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<app-footer></app-footer>
+<div class="quotation-form-modal">
+    <div class="modal" id="instructionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title" id="exampleModalLabel">Modify Order</h2>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <mat-form-field appearance="">
+                                    <mat-label>Instructions</mat-label>
+                                    <input matInput placeholder="Instructions" required>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <mat-form-field appearance="">
+                                    <mat-label>Description</mat-label>
+                                    <textarea matInput placeholder="Description"></textarea>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-12 mt-3" align="center">
+                            <button type="submit" class="btn btn-change-fill" data-dismiss="modal" >Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

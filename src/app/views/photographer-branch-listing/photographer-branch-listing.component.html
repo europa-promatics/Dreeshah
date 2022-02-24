@@ -1,0 +1,897 @@
+<!-- <p>selller-branch-listing works!</p> -->
+<app-consultant-header></app-consultant-header>
+<div class="seller-address-wrapper">
+    <div class="custom-container d-flex">
+        <app-ph-sidebar></app-ph-sidebar>
+        <div class="main-wrap">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="seller-address-info branch-head">
+                                <div class="seller-address-heading">
+                                    <h2>Photographer Branch Listing</h2>
+                                </div>
+                                <div class="seller-brnch-btn">
+                                    <a class="text-white" routerLink="/photographerAddBranch"><i class="fa fa-pencil mr-2"></i>Add Branch</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="saved-address-cards">
+                        <div class="row">
+                            <div class="col-md-12 mt-5 mb-5" align="center" *ngIf="length ==0">
+                                <h1 class="text-center">No branches added Yet</h1>
+                            </div>
+                            <div class="col-md-4" *ngFor="let b of listingArr">
+                                <div class="profile-card-7 ">
+                                    <img *ngIf="!b.branch_profile" src="https://cdn.pixabay.com/photo/2017/04/24/13/37/architecture-2256489_960_720.jpg" class="img img-responsive">
+                                    <img *ngIf="b.branch_profile" src="{{profileUrl}}{{b.branch_profile}}" class="img img-responsive">
+                                    <div class="profile-content">
+                                        <!-- <div class="icon-inside">
+                                            <i class="fa fa-pencil" data-toggle="modal" data-target="#exampleModal" aria-hidden="true"></i>
+                                        </div> -->
+                                        <div class="profile-name">General Details</div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="profile-overview">
+                                                    <p>First Name</p>
+                                                    <h5>{{b.first_name}}</h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="profile-overview">
+                                                    <p>Last Name</p>
+                                                    <h5>{{b.last_name}}</h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="profile-overview">
+                                                    <p>Email</p>
+                                                    <h5>{{b.email}}</h5>
+                                                </div>
+                                            </div>
+                                          
+                                            <!-- <div class="col-md-6">
+                                                <div class="profile-overview">
+                                                    <p>Work Email</p>
+                                                    <h5>{{b.contact_details.branch_email}}</h5>
+                                                </div>
+                                            </div> -->
+                                      
+                                      
+                                           
+                                            <div class="col-md-6">
+                                                <div class="profile-overview" style="    margin-top: 60%;
+                                                margin-left: 42%">
+                                                    <b routerLink="/photographerBranch/{{b._id}}">View Details</b>
+                                                    <!-- <h5>Interior Designers</h5> -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="col-md-4">
+                                <div class="profile-card-7 ">
+                                    <img src="https://cdn.pixabay.com/photo/2017/04/24/13/37/architecture-2256489_960_720.jpg" class="img img-responsive">
+                                    <div class="profile-content">
+                                        <div class="icon-inside">
+                                            <i class="fa fa-pencil" data-toggle="modal" data-target="#exampleModal" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="profile-name">Address Details</div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="profile-overview">
+                                                    <p>Address Line1</p>
+                                                    <h5>4045, School House Lane, Opposite Well Society</h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="profile-overview">
+                                                    <p>City</p>
+                                                    <h5>Ludhiana</h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="profile-overview">
+                                                    <p>Country</p>
+                                                    <h5>India</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> -->
+                            <!-- <div class="col-md-4">
+                                <div class="profile-card-7 ">
+                                    <img src="https://cdn.pixabay.com/photo/2017/04/24/13/37/architecture-2256489_960_720.jpg" class="img img-responsive">
+                                    <div class="profile-content">
+                                        <div class="icon-inside">
+                                            <i class="fa fa-pencil" data-toggle="modal" data-target="#exampleModal" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="profile-name">Business Details</div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="profile-overview">
+                                                    <p>Branch Establishment Year</p>
+                                                    <h5>2010</h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="profile-overview">
+                                                    <p>License Number</p>
+                                                    <h5>8970AF450BB</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> -->
+                            <!-- <div class="col-md-4">
+                                <div class="profile-card-7 ">
+                                    <img src="https://cdn.pixabay.com/photo/2017/04/24/13/37/architecture-2256489_960_720.jpg" class="img img-responsive">
+                                    <div class="profile-content">
+                                        <div class="icon-inside">
+                                            <i class="fa fa-pencil" data-toggle="modal" data-target="#exampleModal" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="profile-name">Service Details</div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="profile-overview">
+                                                    <p>List of Services and Products</p>
+                                                    <h5>Interior Designing,Wardrobe Designing, Interlock Designing, Building Consultant</h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="profile-overview">
+                                                    <p>Typical Service Cost Range</p>
+                                                    <h5>10,000 AED</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> -->
+                            <!-- <div class="col-md-4">
+                                <div class="profile-card-7 ">
+                                    <img src="https://cdn.pixabay.com/photo/2017/04/24/13/37/architecture-2256489_960_720.jpg" class="img img-responsive">
+                                    <div class="profile-content">
+                                        <div class="icon-inside">
+                                            <i class="fa fa-pencil" data-toggle="modal" data-target="#exampleModal" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="profile-name">Contact Details</div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="profile-overview">
+                                                    <p>Co-ordinator Name</p>
+                                                    <h5>Sian Hussain</h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="profile-overview">
+                                                    <p>Branch Email</p>
+                                                    <h5>Info@dreesha.com</h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="profile-overview">
+                                                    <p>Branch Website</p>
+                                                    <h5>www.dreeshah.com</h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="profile-overview">
+                                                    <p>Mobile Number</p>
+                                                    <h5>87512213212</h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="profile-overview">
+                                                    <p>Business Mobile Number</p>
+                                                    <h5>6551121168</h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="profile-overview">
+                                                    <p>Instagram Account</p>
+                                                    <h5>@dreeshah</h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="profile-overview">
+                                                    <p>Youtube Channel</p>
+                                                    <h5>dreeshah</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> -->
+                            <div class="col-md-12">
+                                <div class="seller-new-address-form">
+                                    <div class="form-box mt-3">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="signup-col p-0">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <h3 class="custom-heading"><span>General Details</span></h3>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="companyName">First Name*</label>
+                                                                <input type="email" name="companyName" id="companyName" placeholder="First Name" class="form-control">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="companyName">Email*</label>
+                                                                <input type="email" name="companyName" id="companyName" placeholder="Email" class="form-control">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="companyName">Confirm Password*</label>
+                                                                <input type="password" name="companyName" id="companyName" placeholder="Confirm Password" class="form-control">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="companyName">Branch Name in Arabic*</label>
+                                                                <input type="text" name="companyName" id="companyName" placeholder="Branch Name in Arabic" class="form-control">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="companyName">A Brief About the Branch*</label>
+                                                                <textarea class="form-control" rows="3" placeholder="A Brief About the Branch" class="form-control"></textarea>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="companyName">Certifications &amp; Awards*</label>
+                                                                <input type="text" name="companyName" id="companyName" placeholder="Certifications & Awards" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="companyName">Last Name*</label>
+                                                                <input type="email" name="companyName" id="companyName" placeholder="Last Name" class="form-control">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="companyName">Password*</label>
+                                                                <input type="password" name="companyName" id="companyName" placeholder="Password" class="form-control">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="companyName">Branch Name in English*</label>
+                                                                <input type="text" name="companyName" id="companyName" placeholder="Branch Name in English" class="form-control">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="">Branch Type*</label>
+                                                                <select name="signup" class="custom-select">
+                                                                    <option selected>Choose</option>
+                                                                    <option value="seller">Manufacturer</option>
+                                                                    <option value="service provider">Supplier</option>
+                                                                    <option value="service provider">Retailer</option>
+                                                                    <option value="service provider">Online Retailer</option>
+                                                                    <option value="service provider">Designer/Professional</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="">Branch Category*</label>
+                                                                <select name="signup" class="custom-select">
+                                                                    <option selected>Choose</option>
+                                                                    <option value="seller">Building Contractors</option>
+                                                                    <option value="service provider">Building Consultants</option>
+                                                                    <option value="service provider">Interior Designers</option>
+                                                                    <option value="service provider">Kitchen Designers &amp; Suppliers
+                                                                    </option>
+                                                                    <option value="service provider">Wardrobe Designers &amp; Suppliers</option>
+                                                                    <option value="service provider">Bathroom Designers &amp; Suppliers</option>
+                                                                    <option value="service provider">Windows Designers &amp; Suppliers</option>
+                                                                    <option value="service provider">Furniture Designers &amp; Suppliers</option>
+                                                                    <option value="service provider">Doors Designers &amp; Suppliers</option>
+                                                                    <option value="service provider">Rugs Designers &amp; Suppliers</option>
+                                                                    <option value="service provider">Wallpapers Designers &amp; Suppliers</option>
+                                                                    <option value="service provider">Gypsum Boards Designers &amp; Suppliers</option>
+                                                                    <option value="service provider">Tiles Designers &amp; Suppliers</option>
+                                                                    <option value="service provider">Stone Designers &amp; Suppliers</option>
+                                                                    <option value="service provider">Interlock Designers &amp; Suppliers</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <h3 class="custom-heading"><span>Address Details</span></h3>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="companyName">Address Line1*</label>
+                                                                <input type="text" name="companyName" id="companyName" placeholder="Address Line1" class="form-control">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="companyName">City*</label>
+                                                                <input type="text" name="companyName" id="companyName" placeholder="City" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="companyName">Address Line2*</label>
+                                                                <input type="text" name="companyName" id="companyName" placeholder="Address Line2" class="form-control">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="companyName">Country*</label>
+                                                                <input type="text" name="companyName" id="companyName" placeholder="Country" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <h3 class="custom-heading"><span>Contact Details</span></h3>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="companyName">Co-ordinator Name in English*</label>
+                                                                <input type="text" name="companyName" id="companyName" placeholder="Co-ordinator Name in English" class="form-control">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="companyName">Branch Email*</label>
+                                                                <input type="text" name="companyName" id="companyName" placeholder="Branch Email" class="form-control">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="companyName">Mobile Number*</label>
+                                                                <input type="number" name="companyName" id="companyName" placeholder="Mobile Number" class="form-control">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="companyName">Instagram Account*</label>
+                                                                <input type="text" name="companyName" id="companyName" placeholder="Instagram Account" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="companyName">Co-ordinator Name in Arabic*</label>
+                                                                <input type="text" name="companyName" id="companyName" placeholder="Co-ordinator Name in Arabic" class="form-control">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="companyName">Branch Website*</label>
+                                                                <input type="text" name="companyName" id="companyName" placeholder="Branch Website" class="form-control">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="companyName">Business Mobile Number*</label>
+                                                                <input type="number" name="companyName" id="companyName" placeholder="Business Mobile Number" class="form-control">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="companyName">Youtube Channel*</label>
+                                                                <input type="text" name="companyName" id="companyName" placeholder="Youtube Channel" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <h3 class="custom-heading"><span>Business Details</span></h3>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="companyName">Branch Establishment Year*</label>
+                                                                <input type="number" name="companyName" id="companyName" placeholder="Branch Establishment Year" class="form-control">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="companyName">Please Upload Your Branch Licence*</label>
+                                                                <input type="file" name="companyName" id="companyName" placeholder="City and Coutry" class="form-control">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>No of Employees*</label><br/>
+                                                                <label class="radio-inline mb-0">1 to 10
+                                                                <input type="radio" checked="checked" name="is_company">
+                                                                <span class="checkround"></span>
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="radio-inline mb-0">Up to 50
+                                                                <input type="radio" name="is_company">
+                                                                <span class="checkround"></span>
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="radio-inline mb-0">Up to 100
+                                                                <input type="radio" name="is_company">
+                                                                <span class="checkround"></span>
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="radio-inline mb-0">Up to 500
+                                                                <input type="radio" name="is_company">
+                                                                <span class="checkround"></span>
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="radio-inline mb-0">More than 500
+                                                                <input type="radio" name="is_company">
+                                                                <span class="checkround"></span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="companyName">Issued in (Mention the city & Country)*</label>
+                                                                <input type="text" name="companyName" id="companyName" placeholder="City and Coutry" class="form-control">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="companyName">Licence Number*</label>
+                                                                <input type="number" name="companyName" id="companyName" placeholder="Licence Number" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <h3 class="custom-heading"><span>Service Details</span></h3>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="companyName">Please List the Services and Products you Provide*</label>
+                                                                <input type="text" name="companyName" id="companyName" placeholder="List the Services and Products" class="form-control">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>Typical Service Cost Range</label><br/>
+                                                                <label class="radio-inline mb-0">Up to 10,000 AED
+                                                                <input type="radio" checked="checked" name="is_company">
+                                                                <span class="checkround"></span>
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="radio-inline mb-0">Up to 50,000 AED
+                                                                <input type="radio" name="is_company">
+                                                                <span class="checkround"></span>
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="radio-inline mb-0">Up to 100,000 AED
+                                                                <input type="radio" name="is_company">
+                                                                <span class="checkround"></span>
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="radio-inline mb-0">Up to 500,000 AED
+                                                                <input type="radio" name="is_company">
+                                                                <span class="checkround"></span>
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="radio-inline mb-0">Above 500,000 AED
+                                                                <input type="radio" name="is_company">
+                                                                <span class="checkround"></span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="companyName">Countries &amp; Cities Range Where Your Services Cover*</label>
+                                                                <input type="text" name="companyName" id="companyName" placeholder="Enter Cities Range" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <h3 class="custom-heading"><span>Branch Details</span></h3>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="branch-wrpr">
+                                                                <p>Do you have Branches?</p>
+                                                                <div class="form-check form-check-inline">
+                                                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                                                    <!--  <span class="checkround"></span> -->
+                                                                    <label class="form-check-label" for="inlineRadio1">Yes</label>
+                                                                </div>
+                                                                <div class="form-check form-check-inline">
+                                                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                                                    <!--  <span class="checkround"></span> -->
+                                                                    <label class="form-check-label" for="inlineRadio2">No</label>
+                                                                </div>
+                                                                <div class="form-group  mt-1" id="field_input">
+                                                                    <label for="companyName">No. of Branches</label>
+                                                                    <input type="text" name="companyName" id="companyName" placeholder="No. of Branches" class="form-control">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="seller-info-btn" align="center">
+                                                                <button type="submit" class="btn btn-change-fill">Next</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>
+<!-- stepper modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header edit-branch-header">
+        <h2 class="modal-title" id="exampleModalLabel">Edit Branch Details</h2>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <mat-horizontal-stepper [linear]="isLinear" labelPosition="bottom" #stepper>
+                                                        <mat-step [stepControl]="firstFormGroup" state="generalDetails">
+                                                            <form [formGroup]="firstFormGroup">
+                                                                <ng-template matStepLabel></ng-template>
+                                                                <div class="general-details-wrpr">
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <h3 class="custom-heading"><span>General Details</span></h3>
+                                                                        </div>
+                                                                        <div class="col-md-12">
+                                                                            <div class="form-group">
+                                                                                <mat-form-field appearance="">
+                                                                <mat-label>Email</mat-label>
+                                                                <input matInput placeholder="john doe" required> </mat-form-field>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <mat-form-field appearance="">
+                                                                <mat-label>Branch Email</mat-label>
+                                                                <input matInput placeholder="Branch Email" required> </mat-form-field>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                 <mat-form-field>
+                                                                                <mat-label>Branch Type</mat-label>
+                                                                                <mat-select>
+                                                                                    <mat-option value="31">Choose</mat-option>
+                                                                                    <mat-option value="11">Manufacturer</mat-option>
+                                                                                    <mat-option value="21">Supplier</mat-option>
+                                                                                    <mat-option value="31">Retailer</mat-option>
+                                                                                    <mat-option value="32">Online Retailer</mat-option>
+                                                                                    <mat-option value="33">Designer/Professional</mat-option>
+                                                                                </mat-select>
+                                                                            </mat-form-field>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <mat-form-field>
+                                                                                <mat-label>Branch Category</mat-label>
+                                                                                <mat-select>
+                                                                                    <mat-option value="9">Building Contractors</mat-option>
+                                                                                    <mat-option value="96">Building Consultants</mat-option>
+                                                                                    <mat-option value="86">Interior Designers</mat-option>
+                                                                                    <mat-option value="95">Kitchen Designers &amp; Suppliers</mat-option>
+                                                                                    <mat-option value="94">Wardrobe Designers &amp; Suppliers</mat-option>
+                                                                                    <mat-option value="93">Bathroom Designers &amp; Suppliers</mat-option>
+                                                                                    <mat-option value="92">Windows Designers &amp; Suppliers</mat-option>
+                                                                                    <mat-option value="91">Furniture Designers &amp; Suppliers</mat-option>
+                                                                                    <mat-option value="90">Doors Designers &amp; Suppliers</mat-option>
+                                                                                    <mat-option value="89">Rugs Designers &amp; Suppliers</mat-option>
+                                                                                    <mat-option value="85">Wallpapers Designers &amp; Suppliers</mat-option>
+                                                                                    <mat-option value="66">Gypsum Boards Designers &amp; Suppliers</mat-option>
+                                                                                    <mat-option value="91">Tiles Designers &amp; Suppliers</mat-option>
+                                                                                    <mat-option value="23">Stone Designers &amp; Suppliers</mat-option>
+                                                                                    <mat-option value="65">Interlock Designers &amp; Suppliers</mat-option>
+                                                                                </mat-select>
+                                                                            </mat-form-field>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                        </mat-step>
+                                                        <mat-step [stepControl]="secondFormGroup" state="addressDetails">
+                                                            <form [formGroup]="secondFormGroup">
+                                                                <div class="address-details-wrpr">
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <h3 class="custom-heading"><span>Address Details</span></h3>
+                                                                        </div>
+                                                                        <div class="col-md-12">
+                                                                              <mat-form-field appearance="">
+                                                                                <mat-label>PIN Code</mat-label>
+                                                                                <input matInput placeholder="646131" required> </mat-form-field>
+                                                                            <mat-form-field appearance="">
+                                                                                <mat-label>Area, Colony, Street, Sector</mat-label>
+                                                                                <input matInput placeholder="Area, Colony, Street, Sector" required> </mat-form-field>
+                                                                            <mat-form-field appearance="">
+                                                                                <mat-label>City</mat-label>
+                                                                                <input matInput placeholder="Chennai" required> </mat-form-field>
+                                                                            <mat-form-field appearance="">
+                                                                                <mat-label>Flat, House no, Building, Company</mat-label>
+                                                                                <input matInput placeholder="Flat, Housae no, Building, Company" required> </mat-form-field>
+                                                                            <mat-form-field appearance="">
+                                                                                <mat-label>Landmark</mat-label>
+                                                                                <input matInput placeholder="Near City Hospital" required> </mat-form-field>
+                                                                            <mat-form-field>
+                                                                                <mat-label>State</mat-label>
+                                                                                <mat-select>
+                                                                                    <mat-option value="31">Choose</mat-option>
+                                                                                    <mat-option value="11">State1</mat-option>
+                                                                                    <mat-option value="21">State2</mat-option>
+                                                                                    <mat-option value="31">State3</mat-option>
+                                                                                </mat-select>
+                                                                            </mat-form-field>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                        </mat-step>
+                                                        <mat-step [stepControl]="secondFormGroup" state="contactDetails">
+                                                            <form [formGroup]="secondFormGroup">
+                                                                <div class="contact-details-wrpr">
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <h3 class="custom-heading"><span>Contact Details</span></h3>
+                                                                        </div>
+                                                                        <div class="col-md-12">
+                                                                            <div class="form-group">
+                                                                                <label for="companyName">Co-ordinator Name in English*</label>
+                                                                                <input type="text" name="companyName" id="companyName" placeholder="Co-ordinator Name in English" class="form-control">
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="companyName">Branch Email*</label>
+                                                                                <input type="text" name="companyName" id="companyName" placeholder="Branch Email" class="form-control">
+                                                                            </div>
+                                                                             <div class="form-group">
+                                                                                <label for="companyName">Branch Website*</label>
+                                                                                <input type="text" name="companyName" id="companyName" placeholder="Branch Website" class="form-control">
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="companyName">Mobile Number*</label>
+                                                                                <input type="number" name="companyName" id="companyName" placeholder="Mobile Number" class="form-control">
+                                                                            </div>
+                                                                             <div class="form-group">
+                                                                                <label for="companyName">Business Mobile Number*</label>
+                                                                                <input type="number" name="companyName" id="companyName" placeholder="Business Mobile Number" class="form-control">
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="companyName">Instagram Account*</label>
+                                                                                <input type="text" name="companyName" id="companyName" placeholder="Instagram Account" class="form-control">
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="companyName">Youtube Channel*</label>
+                                                                                <input type="text" name="companyName" id="companyName" placeholder="Youtube Channel" class="form-control">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                        </mat-step>
+                                                        <mat-step [stepControl]="secondFormGroup" state="businessDetails">
+                                                            <form [formGroup]="secondFormGroup">
+                                                                <div class="business-details-wrpr">
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <h3 class="custom-heading">
+                                                                                <span>Business Details</span>
+                                                                            </h3>
+                                                                        </div>
+                                                                        <div class="col-md-12">
+                                                                             <mat-form-field appearance="">
+                                                                                <mat-label>Branch Establishment Year</mat-label>
+                                                                                <input matInput placeholder="Branch Establishment Year" required> </mat-form-field>
+                                                                           <mat-form-field appearance="">
+                                                                                <mat-label>Issued in (Mention the city & Country)</mat-label>
+                                                                                <input matInput placeholder="City & Country" required> </mat-form-field>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                        </mat-step>
+                                                        <mat-step [stepControl]="secondFormGroup" state="serviceDetails">
+                                                            <form [formGroup]="secondFormGroup">
+                                                                <div class="service-details-wrpr">
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <h3 class="custom-heading"><span>Service Details</span></h3>
+                                                                        </div>
+                                                                        <div class="col-md-12">
+                                                                           <mat-form-field appearance="">
+                                                                                <mat-label>Please List the Services and Products you Provide</mat-label>
+                                                                                <input matInput placeholder="List the Services and Products" required> </mat-form-field>
+                                                                            <label id="example-radio-group-label">Typical Service Cost Range</label>
+                                                                                <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group radio-list">
+                                                                                    <mat-radio-button class="example-radio-button mat-radio-checked" checked value="25"> Up to 10,000 AED </mat-radio-button>
+                                                                                    <mat-radio-button class="example-radio-button1 radio-list" value="20"> Up to 50,000 AED </mat-radio-button>
+                                                                                    <mat-radio-button class="example-radio-button1 radio-list" value="24"> Up to 100,000 AED </mat-radio-button>
+                                                                                    <mat-radio-button class="example-radio-button1 radio-list" value="23"> Up to 500,000 AED </mat-radio-button>
+                                                                                    <mat-radio-button class="example-radio-button1 radio-list" value="22"> Above 500,000 AED </mat-radio-button>
+                                                                                </mat-radio-group>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                        </mat-step>
+                                                        <ng-template matStepperIcon="generalDetail">
+                                                            <mat-icon>description</mat-icon>
+                                                        </ng-template>
+                                                        <ng-template matStepperIcon="addressDetails">
+                                                            <mat-icon>location_on</mat-icon>
+                                                        </ng-template>
+                                                        <ng-template matStepperIcon="contactDetails">
+                                                            <mat-icon>perm_contact_calendar</mat-icon>
+                                                        </ng-template>
+                                                        <ng-template matStepperIcon="businessDetails">
+                                                            <mat-icon>business</mat-icon>
+                                                        </ng-template>
+                                                        <ng-template matStepperIcon="serviceDetails">
+                                                            <mat-icon>local_laundry_service</mat-icon>
+                                                        </ng-template>
+                                                        <ng-template matStepperIcon="branchDetails">
+                                                            <mat-icon>location_city</mat-icon>
+                                                        </ng-template>
+                                                    </mat-horizontal-stepper>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-change-fill" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-change-fill">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<!--  <div class="col-md-4">
+    <div class="card branch-card">
+    	<div class="contentBox">
+    		<div class="contnt-wrpr">	
+    			<p>Email:Tom@gmail.com</p>
+    			<p>Work Email:info@tomsoftwaresolution.com</p>
+    			<p>Branch Type:Manufacturer</p>
+    			<p>Branch Category:Interior Designers</p>
+    		</div>
+    	</div>
+    	<div class="card-footer-text">
+    		<h3 class="">General Details</h3>
+    	</div>
+    </div>
+    </div> 
+    <div class="col-md-4">
+    <div class="card branch-card">
+    	<div class="contentBox">
+    		<div class="contnt-wrpr">	
+    			<p>Branch Establishment Year:2010</p>
+    			<p>License Number:8970AF450BB</p>
+    		</div>
+    	</div>
+    	<div class="card-footer-text">
+    		<h3 class="">Business Details</h3>
+    	</div>
+    </div>
+    </div> -->
+<!-- <div class="col-md-4">
+    <div class="card branch-card">
+    	<div class="contentBox">
+    		<div class="contnt-wrpr">	
+    			<p>List of Services and Products:</p>
+    			<p>Interior Designing,Wardrobe Designing, Interlock Designing, Building Consultant</p>
+    			<p>Typical Service Cost Range:10,000 AED</p>
+    		</div>
+    	</div>
+    	<div class="card-footer-text">
+    		<h3 class="">Service Details</h3>
+    	</div>
+    </div>
+    </div> -->
+<!-- <div class="col-md-4">
+    <div class="card branch-card">
+    	<div class="contentBox">
+    		<div class="contnt-wrpr">	
+    			<p>Co-ordinator Name: Sian Hussain</p>
+    			<p>Branch Email: Info@dreesha.com</p>
+    			<p>Branch Website: www.dreeshah.com</p>
+    			<p>Mobile Number: 87512213212</p>
+    			<p>Business Mobile Number: 6551121168</p>
+    			<p>Instagram Account: @dreeshah</p>
+    			<p>Youtube Channel: dreesha.com</p>
+    		</div>
+    		<div class="card-footer-text">
+    			<h3 class="">Contact Details</h3>
+    		</div>
+    	</div>
+    </div> -->
+<!-- <div class="card branch-card">
+    <div class="card-body">
+    	<div class="seller-address-cards d-flex justify-content-between mt-3">
+    		<div class="main-address-content">
+    			<h3 class="">General Details</h3>
+    			<div class="contnt-wrpr">	
+    				<p>Email:Tom@gmail.com</p>
+    				<p>Work Email:info@tomsoftwaresolution.com</p>
+    				<p>Branch Type:Manufacturer</p>
+    				<p>Branch Category:Interior Designers</p>
+    			</div>
+    		</div>
+    	</div>
+    </div>
+    </div> -->
+<!-- <div class="col-md-4">
+    <div class="card branch-card">
+    <div class="card-body">
+    	<div class="seller-address-cards d-flex justify-content-between mt-3">
+    		<div class="main-address-content">
+    			<h3 class="">Address Details</h3>
+    			<div class="contnt-wrpr">	
+    				<p>Address Line1:
+    				4045, School House Lane, Opposite Well Society</p>
+    				<p>City:Ludhiana</p>
+    				<p>Country:India</p>
+    				<p></p>	
+    			</div>
+    		</div>
+    	</div>
+    </div>
+    </div>
+    </div>
+    <div class="col-md-4">
+    <div class="card branch-card">
+    <div class="card-body">
+    	<div class="seller-address-cards d-flex justify-content-between mt-3">
+    		<div class="main-address-content">
+    			<h3 class="">Business Details</h3>
+    			<div class="contnt-wrpr">	
+    				<p>Branch Establishment Year:2010</p>
+    				<p>License Number:8970AF450BB</p>
+    			</div>
+    		</div>
+    	</div>
+    </div>
+    </div>
+    </div>
+    <div class="col-md-4">
+    <div class="card branch-card">
+    <div class="card-body">
+    	<div class="seller-address-cards d-flex justify-content-between mt-3">
+    		<div class="main-address-content">
+    			<h3 class="">Service Details</h3>
+    			<div class="contnt-wrpr">	
+    			<p>List of Services and Products:</p>
+    			<p>Interior Designing,Wardrobe Designing, Interlock Designing, Building Consultant</p>
+    			<p>Typical Service Cost Range:10,000 AED</p>
+    		</div>
+    		</div>
+    	</div>
+    </div>
+    </div>
+    </div>
+    <div class="col-md-4">
+    <div class="card branch-card">
+    <div class="card-body">
+    	<div class="seller-address-cards d-flex justify-content-between mt-3">
+    		<div class="main-address-content">
+    			<h3 class="">Contact Details</h3>
+    			<div class="contnt-wrpr">	
+    			<p>Co-ordinator Name: Sian Hussain</p>
+    			<p>Branch Email: Info@dreesha.com</p>
+    			<p>Branch Website: www.dreeshah.com</p>
+    			<p>Mobile Number: 87512213212</p>
+    			<p>Business Mobile Number: 6551121168</p>
+    			<p>Instagram Account: @dreeshah</p>
+    			<p>Youtube Channel: Info@dreesha.com</p>
+    			</div>
+    		</div>
+    	</div>
+    </div>
+    </div>
+     <div class="col-md-4">
+                                <div class="card branch-card">
+                                	<div class="contentBox">
+                                		<div class="contnt-wrpr">	
+                                			<p>Address Line1:
+                                			4045, School House Lane, Opposite Well Society</p>
+                                			<p>City:Ludhiana</p>
+                                			<p>Country:India</p>
+                                			<p></p>	
+                                		</div>
+                                	</div>
+                                	<div class="card-footer-text">
+                                		<h3 class="">Address Details</h3>
+                                	</div>
+                                </div>
+                                </div> 
+    </div> -->

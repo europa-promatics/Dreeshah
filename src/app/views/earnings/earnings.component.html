@@ -1,0 +1,110 @@
+<app-seller-header  *ngIf="user?.user_type=='professional'"></app-seller-header>
+<app-consultant-header  *ngIf="user?.user_type=='photographer'"></app-consultant-header>
+<section class="seller-quotation-wrapper">
+	<div class="custom-container d-flex">
+		<app-seller-sidebar  *ngIf="user?.user_type=='professional'"></app-seller-sidebar>
+    <app-ph-sidebar *ngIf="user?.user_type=='photographer'"></app-ph-sidebar>
+				<div class="main-wrap">
+        <div class="row">
+            <div class="col-md-10 offset-1">
+                <div class="card">
+                    
+                    <div class="card-body">
+                        <div class="text-right">
+                            <div class="serch_ehdr mb-3">
+                                <input type="" name="" placeholder="Search Item . . ." class="srch_inpt form-control" (keyup)="filter($event)" >
+                                <span class="abs_icons"><i class="fa fa-search"></i></span>
+                            </div>
+                        </div>
+                        
+                        <div class="card-shdow paymnt-crds eanings-crd">
+                            <div class="d-flex justify-content-center">
+                                <i class="fas fa-credit-card"></i>
+                                <div class="crd-txt">
+                                    <h4>Total Earnings</h4>
+                                    <p>{{allEarnigns}}</p>
+                                </div>
+                            </div>
+                       </div>
+                       <div class="fltrs-abov">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <div class="datepick-custm">
+                                        <mat-form-field appearance="fill">
+                                            <mat-label>Choose from date</mat-label>
+                                            <input matInput #from [matDatepicker]="picker" (dateChange)="onSelectingStartDate($event)">
+                                            <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
+                                            <mat-datepicker #picker></mat-datepicker>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="datepick-custm">
+                                            <mat-form-field appearance="fill">
+                                                <mat-label>Choose to date</mat-label>
+                                                <input matInput #toInput [matDatepicker]="picker2" (dateChange)="onSelectingEndDate($event)">
+                                                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                                                <mat-datepicker #picker2></mat-datepicker>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3"></div>
+                                    <div class="col-sm-3 srch-earnings">
+                                        <select id="sort-by" class="form-control">
+                                            <option value="" selected="" disabled="" hidden="">Filter</option>
+                                            <option value="Low">Completed</option>
+                                            <option value="High">Failed</option>
+                                        </select>
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6" *ngFor="let item of this.details;let i = index">
+                                <div class="card-shdow paymnt-crds">
+                                    <p class="d-flex justify-content-between">
+                                        <span>Order No: {{item?.order_id?.order_no}}</span>
+                                        <span><a class="badge badge-success">Completed</a></span>
+                                    </p>
+                                    <p class="d-flex justify-content-between">
+                                        <span>
+                                            <h3 class="mb-0">Username</h3>
+                                            <span>{{item?.user_id?.first_name}} {{item?.user_id?.last_name}}</span>
+                                        </span>
+                                        <span>
+                                            <h3 class="mb-0">Date</h3>
+                                            <span>{{item?.createdAt | date}}</span>
+                                        </span>
+                                        
+                                    </p>
+                                    <p class="d-flex justify-content-between align-items-center">
+                                        <span>
+                                            <h3 class="mb-0">Total Amount</h3>
+                                            <span>{{item?.product_id?.pricing?.price}}</span>
+                                        </span>
+                                        <span>
+                                            <a routerLink="/earning-details//{{item._id}}" (click)="fun(item)"><i class="fal fa-chevron-right"></i></a>
+                                        </span>
+                                        
+                                    </p>
+                                </div>
+                            </div>
+
+                        </div>
+                       
+                       <div>
+                       
+                        
+                       </div>
+                       
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+ 
+  	
+	</section>
+
+ 

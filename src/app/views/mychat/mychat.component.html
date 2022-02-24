@@ -1,0 +1,176 @@
+<app-seller-header></app-seller-header>
+<section class="mychat-wrapper">
+  <div class="custom-container d-flex">
+    <app-seller-sidebar  *ngIf="isLoginData?.user_type=='professional'" ></app-seller-sidebar>
+
+    <app-sidebar *ngIf="isLoginData?.user_type=='customer'"></app-sidebar>
+    <div class="main-wrap">
+      <div class="people-list" id="people-list" >
+        <div class="search">
+          <input type="text" placeholder="search" />
+        </div>
+        <ul class="list" *ngIf="isLoginData?.user_type=='customer'">
+          <li
+            class="clearfix"
+            *ngFor="let val of firebaseData"
+            (click)="selectReceiver(val)"
+          >
+              <div class="d-flex align-items-center cht_div" *ngIf="val.receiver_type=='professional'">
+                <div>
+                  <img class="profileImg" src="{{ val.receiver_image }}" alt="avatar" />
+                </div>
+                <div class="name pl-3">
+                  <p class="mb-0">{{ val.receiver_name }}</p>
+                </div>
+              </div>
+          </li>
+        </ul>
+        <ul class="list" *ngIf="isLoginData?.user_type=='professional'">
+          <li
+            class="clearfix"
+            *ngFor="let val of firebaseData"
+            (click)="selectReceiver(val)"
+          >
+          <div class="d-flex align-items-center cht_div" *ngIf="val.receiver_type=='professional'">
+            <div>
+              <img class="profileImg" src="{{ val.sender_image}}" alt="avatar" />
+            </div>
+            <div class="name pl-3">
+              <p class="mb-0">{{ val.sender_name }}</p>
+            </div>
+          </div>
+          
+          </li>
+        </ul>
+      </div>
+      <div class="chat" *ngIf="receiver">
+        <div class="chat-header clearfix" *ngIf="isLoginData?.user_type=='customer'">
+          <img
+            class="profileImg"
+            src="{{ receiverData?.receiver_image }}"
+            alt="avatar"
+          />
+          <div
+            class="
+              chat-about-wrap
+              d-flex
+              justify-content-between
+              align-items-center
+            "
+          >
+            <div class="chat-about">
+              <div class="chat-with">
+                <span class="chat-cate">{{ receiverData?.receiver_name }}</span>
+              </div>
+              <div class="chat-num-messages"></div>
+            </div>
+          </div>
+        </div>
+        <div class="chat-header clearfix" *ngIf="isLoginData?.user_type=='professional'">
+          <img
+            class="profileImg"
+            src="{{ receiverData.sender_image }}"
+            alt="avatar"
+          />
+          <div
+            class="
+              chat-about-wrap
+              d-flex
+              justify-content-between
+              align-items-center
+            "
+          >
+            <div class="chat-about">
+              <div class="chat-with">
+                <span class="chat-cate">{{ receiverData?.sender_name }}</span>
+              </div>
+              <div class="chat-num-messages"></div>
+            </div>
+          </div>
+        </div>
+        <div class="chat-history">
+          <div class="chat-history-wrpp" #scrollMe>
+            <ul>
+              <ng-container *ngFor="let val of this.messages">
+                
+                <div class="py-2 my-1 text-center position-relative mx-2" *ngIf="val.displayDate">
+                  <div class="position-absolute w-100 top-50 start-50 translate-middle" style="z-index: 2">
+                      <span class="d-inline-block bg-white px-2 text-muted">{{val.displayDate}}</span>
+                  </div>
+                  <div class="position-absolute w-100 top-50 start-0 border-muted border-top"></div>
+                </div>
+                <li class="clearfix pr-2 pt-3" *ngIf="val.sender_id==isLoginData?._id">
+                  
+                  <!--<div class="message-data align-right">
+                    <i class="fa fa-circle me"></i>
+                  </div>-->
+                    <div class="message other-message float-right" *ngIf="val.message_type == 'text'" >
+                        {{ val.message }}
+                    </div>
+                    <div class="messageAttachment float-right" *ngIf="val.message_type == 'image'" >
+                        <img class="img-thumbnail imageBox float-right" src="{{ val.message }}" /> 
+                    </div>
+                    <div class="messageAttachment float-right" *ngIf="val.message_type == 'video'" >
+                      <video class="img-thumbnail imageBox float-right" controls>
+                        <source src="{{ val.message }}" type="video/mp4">
+                      </video>
+                    </div>
+                    <small class=" pr-2 float-right timeBox">{{val.displayTime}}</small>
+                </li>
+                <li class="clearfix pl-2 pt-3" *ngIf="val.receiver_id==isLoginData?._id">
+                  <!--<div class="message-data">
+                    <span class="message-data-name"
+                      ><i class="fa fa-circle online"></i>
+                    </span>
+                  </div>-->
+                    <div class="message my-message" *ngIf="val.message_type == 'text'" >
+                        {{ val.message }}
+                    </div>
+                    <div class="messageAttachment" *ngIf="val.message_type == 'image'" >
+                        <img class="img-thumbnail imageBox" src="{{ val.message }}" /> 
+                    </div>
+                    <div class="messageAttachment " *ngIf="val.message_type == 'video'" >
+                      <video class="img-thumbnail imageBox " controls>
+                        <source src="{{ val.message }}" type="video/mp4">
+                      </video>
+                    </div>
+                    <small class="float-left pl-2 timeBox-left">{{val.displayTime}}</small>
+                </li>
+              </ng-container>
+            </ul>
+          </div>
+         
+          <form [formGroup]="magForm" (ngSubmit)="submit()">
+            <div class="chat-message clearfix">
+              <input
+                name="messageToSend"
+                [(ngModel)]="messageToSend"
+                id="message-to-send"
+                formControlName="messageToSend"
+                placeholder="Type your message"
+                type="text"
+              />
+              
+  
+              <button type="submit" class="btn send-message">
+                <i class="fa fa-paper-plane"></i>
+              </button>
+              <label class="send-attachment addmargin" *ngIf="!uploadprogress">
+                <i class="fa fa-paperclip"></i>
+                    <input type="file" style="display: none" type="file" accept="image/*,video/*" id="upload-file-info1" (change)="onSelectFile($event)"
+                />
+              </label>
+              <ng-container *ngIf="uploadprogress" >
+                <div class="loadingPercent">{{uploadprogress}}%</div>
+                <div class="spinner-border text-secondary" role="status" style="margin-top: 7px; width: 24px; height: 24px;" >
+                    <span class="sr-only" id="loading"></span>
+                </div>
+            </ng-container>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<app-footer></app-footer>

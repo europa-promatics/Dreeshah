@@ -1,0 +1,96 @@
+<app-seller-header></app-seller-header>
+<div class="seller-membership-wrapper">
+	<div class="custom-container d-flex">
+		<app-seller-sidebar></app-seller-sidebar>
+		<div class="main-wrap">
+		   <div class="row">
+		      <div class="col-md-12 mt-3">
+		         <a routerlink="/seller-gift-card" href="#/seller-gift-card"><i class="fa fa-angle-left mr-2"></i>Gift Card</a>
+		         <h1>Issue Gift Card</h1>
+		      </div>
+		   </div>
+		   <div class="row">
+		      <div class="col-md-8 mt-3">
+		         <div class="card">
+		            <div class="card-body">
+		               <h2 class="mt-2 mb-3">Gift Card Details</h2>
+		               <div class="gift-form-wrapper">
+		                  <form [formGroup]="giftForm">
+		                     <div class="form-group">
+		                        <mat-form-field class="example-full-width" appearance="">
+								    <mat-label>Gift Card Code</mat-label>
+								    <input matInput placeholder="" value="" formControlName="code">
+								</mat-form-field>  
+		                     </div>
+		                     <div class="form-group">
+		                        <mat-form-field class="example-full-width" appearance="">
+								    <mat-label>Initial Value</mat-label>
+								    <input matInput placeholder="" value="" formControlName="value">
+								</mat-form-field>
+		                     </div>
+		                  </form>
+		               </div>
+		            </div>
+		         </div>
+		         <div class="card mt-3 mb-2">
+					 <form [formGroup]="expiryForm">
+						<div class="card-body">
+						<h2 class="mt-2 mb-3">Expiration Dates</h2>
+						<label id="example-radio-group-label">Pick your favorite season</label>
+							<mat-radio-group
+							aria-labelledby="example-radio-group-label"
+							class="example-radio-group" formControlName="expiry">
+							<mat-radio-button value="true">
+								No Expiry Date
+							</mat-radio-button>
+							<mat-radio-button value="false">
+								Set Expiry Date
+							</mat-radio-button>
+							</mat-radio-group>
+							<mat-form-field appearance="fill" *ngIf="expiryForm.value.expiry=='false'">
+								<mat-label>Choose a date</mat-label>
+								<input matInput [matDatepicker]="picker" formControlName="expiryDate">
+								<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+								<mat-datepicker #picker></mat-datepicker>
+							</mat-form-field>
+							
+						<p>Countries have different laws for gift card expiry dates. Check the laws of your copuntry before changing this date</p>
+						</div>
+					</form>
+		         </div>
+		      </div>
+		      <div class="col-md-4 mt-3">
+		         <div class="gift-customers">
+		            <div class="card">
+		               <div class="card-body">
+		                  <h2 class="mt-2 mb-3">Find or Create a Customer</h2>
+		                  <p>To send the gift card code, add a customer with an email addres or phone number</p>
+		                  <div class="form-group">
+		                     <button class="btn btn-change-fill" routerLink="/customers-list-orders">Add Customers
+							</button>
+		                  </div>
+		               </div>
+		            </div>
+		            <div class="card mt-3 mb-2">
+		               <div class="card-body">
+		                  <h2 class="mt-2 mb-3">Notes</h2>
+		                  <mat-form-field appearance="">
+		                  	 <mat-label>Add Note</mat-label>
+							 <textarea matInput [(ngModel)]="Note"></textarea>
+						  </mat-form-field>
+		                  <small class="mt-2">These notes are private and won't be shared with the customer.</small>
+		               </div>
+		            </div>
+		         </div>
+		      </div>
+		   </div>
+
+			<div class="row justify-content-center mt-2">
+				<div align="center" class="gift-card-btn">
+					<button class="btn btn-change-fill" (click)="addGiftCard()">Submit
+					</button>
+				</div>
+			</div>
+				
+</div>
+

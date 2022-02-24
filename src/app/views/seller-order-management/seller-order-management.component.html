@@ -1,0 +1,370 @@
+<app-seller-header></app-seller-header>
+<div class="seller-orders-management-wrapper">
+	<div class="custom-container d-flex">
+		<app-seller-sidebar></app-seller-sidebar>
+		<div class="main-wrap">
+			<div class="card">
+				<div class="card-body">
+					<div class="row">
+						<div class="col-md-12 mt-3">
+							<h1>Orders Management</h1>
+						</div>
+						<div class="col-md-9">
+							<div class="so-search-history-wrapper">
+								<div class="user-search-input">
+									<div class="form-group">
+										<input type="text" name="search-user" placeholder="Filter By Name" (keyup)="filterByServiceName($event.target.value,'all')" class="form-control">
+									</div>
+								</div>
+								<div class="so-search-history">
+									<div class="form-group col-md-12">
+										<select name="signup" class="custom-select form-control">
+											<option selected>Filter</option>
+											<option value="seller">Today</option>
+											<option value="service provider">Yesterday</option>
+											<option value="service provider">Yesterday</option>
+											<option value="service provider">Current Week</option>
+											<option value="service provider">Previous Week</option>
+											<option value="service provider">Current Month</option>
+											<option value="service provider">Previous Month</option>
+											<option value="service provider">Current Year</option>
+											<option value="service provider">Yesterday</option>
+											<option value="service provider">Previous Year</option>
+
+										</select>
+									</div>
+								</div>
+									<div>
+										<button class="btn btn-change-fill">Search</button>	
+									</div>
+								<div class="seller-export-btn">
+									<button class="btn btn-change-fill">Export</button>
+								</div>
+								
+							</div>
+						</div>		
+						<div class="col-md-12 mt-3">
+							<div class="row custom-mat-date-picker">
+								<div class="col-md-3">
+									<mat-form-field>
+										<input matInput [matDatepicker] = "picker1" placeholder = "Choose a date">
+										<mat-datepicker-toggle matSuffix [for] = "picker1"></mat-datepicker-toggle>
+										<mat-datepicker #picker1></mat-datepicker>
+									</mat-form-field>
+								</div>
+								<div class="col-md-3">
+									<mat-form-field>
+										<input matInput [matDatepicker] = "picker2" placeholder = "Choose a date">
+										<mat-datepicker-toggle matSuffix [for] = "picker2"></mat-datepicker-toggle>
+										<mat-datepicker #picker2></mat-datepicker>
+									</mat-form-field>
+								</div>	
+								<div class="col-md-3">
+									<div class="so-search-history">
+									<div class="form-group col-md-12 mb-0">
+										<select name="signup" class="custom-select form-control mt-12">
+											<option selected>Filter</option>
+											<option value="seller">Today</option>
+											<option value="service provider">Yesterday</option>
+											<option value="service provider">Yesterday</option>
+											<option value="service provider">Current Week</option>
+											<option value="service provider">Previous Week</option>
+											<option value="service provider">Current Month</option>
+											<option value="service provider">Previous Month</option>
+											<option value="service provider">Current Year</option>
+											<option value="service provider">Yesterday</option>
+											<option value="service provider">Previous Year</option>
+
+										</select>
+									</div>
+								</div>
+								</div>
+								<!-- <div class="col-md-3">
+									<div class="cr-nw-order mt-12">
+										<a routerLink="/seller-create-order" class="btn btn-change-fill">Create Order</a>
+									</div>
+								</div> -->
+							</div>
+						</div>
+						<div class="col-md-12">
+							<div class="dashboard-table">
+								<table matSort class="table table-hover mat-sort table-responsive" id="tab-cstm">
+									<thead class="thead-dark"> 
+										<tr>
+											<th mat-sort-header="1">Order No.</th>
+											<th mat-sort-header="2">Order Date</th>
+											<th mat-sort-header="3">Username</th>
+											<th mat-sort-header="4">Seller Name</th>
+											<th mat-sort-header="5">Branch Name</th>
+											<th mat-sort-header="6">Order Status</th>
+											<th mat-sort-header="6">No of Items</th>
+											<th mat-sort-header="7">Order Total</th>
+											<th mat-sort-header="8">Payment Mode</th>
+											<th mat-sort-header="8">Payment Status</th>
+											<th mat-sort-header="9">Quantity Delivered</th>
+											<th mat-sort-header="10">Action</th>
+											<th mat-sort-header="11">View Details</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr *ngFor=" let detail of orderData">	
+											<td><a href="#" class="order-id-link">464649</a></td>
+											<td>{{ detail.order_details.updatedAt | date :'medium'}}</td>
+											<td>{{detail.user_details.first_name}}</td>
+											<td>{{userData.first_name}} {{userData.last_name}}</td>
+											<td>Modern Store</td>
+											<td>{{detail.order_status}} </td>
+											<td>{{detail.product_quantity}}
+												<a data-toggle="modal" data-target="#exampleModal" (click)="ClicKFunction2()" class="btn btn-link">Update</a>
+											</td>
+											<td>${{detail.order_details.amount}}</td>
+											<td>Card</td>
+											<td>{{detail.order_details.payment_status}}</td>
+											<td>200pcs</td>
+											<td><p><a class="btn-link cancel-order-lnk">Cancel</a></p>
+												<p><a class="btn-link refund-order-lnk mt-2">Refund</a></p>
+												<p><a class="btn-link exhange-order-lnk mt-2">Exchange</a></p>
+											</td>
+											<td><p><a class="btn btn-round-blue" (click)="orderDetails(detail)"><i class="fa fa-eye"></i></a></p>
+											</td>
+										</tr>
+										<!-- <tr>	
+											<td><a href="#" class="order-id-link">858894</a></td>
+											<td>19-oct-2020  11:37pm</td>
+											<td>Tom</td>
+											<td>Grace Lawerence</td>
+											<td>Modern Store</td>
+											<td>Order Cancelled</td>
+											<td>15
+												<a data-toggle="modal" data-target="#exampleModal" class="btn btn-link">Update</a>
+											</td>
+											<td>$266</td>
+											<td>Card</td>
+											<td>Paid</td>
+											<td>200pcs</td>
+											<td><p><a class="btn-link cancel-order-lnk">Cancel</a></p>
+												<p><a class="btn-link refund-order-lnk mt-2">Refund</a></p>
+												<p><a class="btn-link exhange-order-lnk mt-2">Exchange</a></p>
+											</td>
+										</tr> -->
+										<!-- <tr>	
+											<td><a href="#" class="order-id-link">526396</a></td>
+											<td>19-oct-2020  11:37pm</td>
+											<td>James</td>
+											<td>Grace Lawerence</td>
+											<td>Modern Store</td>
+											<td>Order Placed</td>
+											<td>7
+												<a data-toggle="modal" data-target="#exampleModal" class="btn btn-link">Update</a>
+											</td>
+											<td>$499</td>
+											<td>Card</td>
+											<td>Partially Paid</td>
+											<td>200pcs</td>
+											<td><p><a class="btn-link cancel-order-lnk">Cancel</a></p>
+												<p><a class="btn-link refund-order-lnk mt-2">Refund</a></p>
+												<p><a class="btn-link exhange-order-lnk mt-2">Exchange</a></p>
+											</td>
+										</tr> -->
+										<!-- <tr>
+											<td><a href="#" class="order-id-link">415632</a></td>
+											<td>19-oct-2020  11:37pm</td>
+											<td>Daniel</td>
+											<td>Grace Lawerence</td>
+											<td>Modern Store</td>
+											<td>Reached Warehouse</td>
+											<td>25
+												<a data-toggle="modal" data-target="#exampleModal" class="btn btn-link">Update</a>
+											</td>
+											<td>$699</td>
+											<td>Card</td>
+											<td>Refunded</td>
+											<td>200pcs</td>
+											<td><p><a class="btn-link cancel-order-lnk">Cancel</a></p>
+												<p><a class="btn-link refund-order-lnk mt-2">Refund</a></p>
+												<p><a class="btn-link exhange-order-lnk mt-2">Exchange</a></p>
+											</td>
+										</tr> -->
+										<!-- <tr>
+											<td><a href="#" class="order-id-link">965874</a></td>
+											<td>19-oct-2020  11:37pm</td>
+											<td>John</td>
+											<td>Grace Lawerence</td>
+											<td>Modern Store</td>
+											<td>Delivered</td>
+											<td>23
+												<a data-toggle="modal" data-target="#exampleModal" class="btn btn-link">Update</a>
+											</td>
+											<td>$299</td>
+											<td>Card</td>
+											<td>Partially Refunded</td>
+											<td>200pcs</td>
+											<td><p><a class="btn-link cancel-order-lnk">Cancel</a></p>
+												<p><a class="btn-link refund-order-lnk mt-2">Refund</a></p>
+												<p><a class="btn-link exhange-order-lnk mt-2">Exchange</a></p>
+											</td>
+										</tr> -->
+										<!-- <tr>	
+											<td><a href="#" class="order-id-link">857496</a></td>
+											<td>19-oct-2020  11:37pm</td>
+											<td>Tanzie</td>
+											<td>Grace Lawerence</td>
+											<td>Modern Store</td>
+											<td>Order Cancelled</td>
+											<td>5
+												<a data-toggle="modal" data-target="#exampleModal" class="btn btn-link">Update</a>
+											</td>
+											<td>$399</td>
+											<td>Card</td>
+											<td>Pending</td>
+											<td>200pcs</td>
+											<td><p><a class="btn-link cancel-order-lnk">Cancel</a></p>
+												<p><a class="btn-link refund-order-lnk mt-2">Refund</a></p>
+												<p><a class="btn-link exhange-order-lnk mt-2">Exchange</a></p>
+											</td>
+										</tr> -->
+										<!-- <tr>
+											<td><a href="#" class="order-id-link">968745</a></td>
+											<td>19-oct-2020  11:37pm</td>
+											<td>Marko</td>
+											<td>Grace Lawerence</td>
+											<td>Modern Store</td>
+											<td>Order Dispatched</td>
+											<td>5
+												<a data-toggle="modal" data-target="#exampleModal" class="btn btn-link">Update</a>
+											</td>
+											<td>$999</td>
+											<td>Card</td>
+											<td>Unpaid</td>
+											<td>200pcs</td>
+											<td><p><a class="btn-link cancel-order-lnk">Cancel</a></p>
+												<p><a class="btn-link refund-order-lnk mt-2">Refund</a></p>
+												<p><a class="btn-link exhange-order-lnk mt-2">Exchange</a></p>
+											</td>
+										</tr> -->
+										<!-- <tr>	
+											<td><a href="#" class="order-id-link">321456</a></td>
+											<td>19-oct-2020  11:37pm</td>
+											<td>Belgiri</td>
+											<td>Grace Lawerence</td>
+											<td>Modern Store</td>
+											<td>Order Placed</td>
+											<td>5
+												<a data-toggle="modal" data-target="#exampleModal" class="btn btn-link">Update</a>
+											</td>
+											<td>$299</td>
+											<td>Card</td>
+											<td>Voided</td>
+											<td>200pcs</td>
+											<td><p><a class="btn-link cancel-order-lnk">Cancel</a></p>
+												<p><a class="btn-link refund-order-lnk mt-2">Refund</a></p>
+												<p><a class="btn-link exhange-order-lnk mt-2">Exchange</a></p>
+											</td>
+										</tr> -->
+										<!-- <tr>
+											<td><a href="#" class="order-id-link">464649</a></td>
+											<td>19-oct-2020  11:37pm</td>
+											<td>Charles</td>
+											<td>Grace Lawerence</td>
+											<td>Modern Store</td>
+											<td>Order Placed</td>
+											<td>5
+												<a data-toggle="modal" data-target="#exampleModal" class="btn btn-link">Update</a>
+											</td>
+											<td>$299</td>
+											<td>Card</td>
+											<td>Partially Refunded</td>
+											<td>200pcs</td>
+											<td><p><a class="btn-link cancel-order-lnk">Cancel</a></p>
+												<p><a class="btn-link refund-order-lnk mt-2">Refund</a></p>
+												<p><a class="btn-link exhange-order-lnk mt-2">Exchange</a></p>
+											</td>
+										</tr> -->
+									</tbody>
+								</table>
+								<div class="seller-table-entries-wrapper">
+									<!-- <div class="seller-table-entries">
+										<p>Showing 1 to 10 out of 1350</p>
+									</div> -->
+									<!-- <div class="table-pagination">
+										<nav aria-label="Page navigation example">
+											<ul class="pagination justify-content-end">
+												<li class="page-item disabled">
+													<a class="page-link" href="#" tabindex="-1">Previous</a>
+												</li>
+												<li class="page-item"><a class="page-link" href="#">1</a></li>
+												<li class="page-item"><a class="page-link" href="#">2</a></li>
+												<li class="page-item"><a class="page-link" href="#">3</a></li>
+												<li class="page-item">
+													<a class="page-link" href="#">Next</a>
+												</li>
+											</ul>
+										</nav>
+									</div> -->
+								</div>
+								<div class="update-quantity-modal" >
+									<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+										<div class="modal-dialog" role="document">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h5 class="modal-title" id="exampleModalLabel">Update Status</h5>
+													<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+														<span aria-hidden="true">&times;</span>
+													</button>
+												</div>
+												<div class="modal-body">
+													<form>
+														<div class="quantity-status-form" >
+															<form [formGroup]=Form1>
+																<div class="form-group" >
+																	<label for="quantity">Total Quantity</label>
+																	<input type="text" class="form-control" id="quantity"  placeholder="Enter Quantity"
+																	[formControl]="Form1.controls['quantity']" [(ngModel)]="quantity">
+																</div>
+																<p style="color: red; margin-top: -1.25em;"
+                                        							*ngIf="Form1.controls['quantity'].errors?.required && ( Form1.controls['quantity'].touched || submit_button)">
+                                        								Quantity is Required
+																</p>
+																<div class="form-group">
+																	<label for="pieces">Select Pcs</label>
+																	<input type="text" class="form-control" id="pieces" placeholder="Enter Pieces"
+																	[formControl]="Form1.controls['pcs']" [(ngModel)]="pcs">
+																</div>
+																<p style="color: red; margin-top: -1.25em;"
+                                        							*ngIf="Form1.controls['pcs'].errors?.required && ( Form1.controls['pcs'].touched || submit_button)">
+                                        								Field is Required
+																</p>
+																<div class="form-group">
+																	<label>Select Status</label><br/>
+																	<select name="signup" class="custom-select" placeholder="Select Status" [formControl]="Form1.controls['status']" [(ngModel)]="status">
+																		<!-- <option selected>Select Status</option> -->
+																		<option value="Order Placed/Received">Order Placed/Received</option>
+																		<option value="Under Packaging">Under Packaging</option>
+																		<option value="Out from Warehouse">Out from Warehouse</option>
+																		<option value="Reached Local Warehouse">Reached Local Warehouse</option>
+																		<option value="Out for Delivery">Out for Delivery</option>
+																		<option value="Delivered">Delivered</option>
+																	</select>
+																</div>
+																<p style="color: red; margin-top: -1.25em;"
+                                        							*ngIf="Form1.controls['status'].errors?.required && ( Form1.controls['status'].touched || submit_button)">
+                                        								Field is Required
+																</p>
+																<button type="submit" class="btn btn-change-fill" (click)="submit()" data-dismiss="modal" aria-label="Close" >Update Status</button>
+															</form>
+														</div>
+													</form>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>	
+							</div>
+						</div>	
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<app-footer></app-footer>

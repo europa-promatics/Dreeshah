@@ -1,0 +1,103 @@
+<app-seller-header></app-seller-header>
+<div class="seller-membership-wrapper">
+	<div class="custom-container d-flex">
+		<app-seller-sidebar></app-seller-sidebar>
+		<div class="main-wrap">
+			<div class="row">
+		        <div class="col-md-12 mt-3">
+			        <!-- <a routerlink="/seller-gift-card" href="#/seller-gift-card"><i class="fa fa-angle-left mr-2"></i>Customers List</a> -->
+			        <h1>Customers List</h1>
+		        </div>
+		    </div>
+		    <div class="row justify-content-center">
+		        <div class="col-md-10">
+			        <div class="wrap cf">
+			        	<div class="card">
+			           		<div class="card-body">
+				      			<div class="cart">
+			           				<ul>
+									    <li class="items odd items-bordered" *ngFor="let i of customers">
+										    <div class="infoWrap">
+										        <div class="row align-items-center">
+											      	<div class="col-md-2 img_col">
+											         	<img class="prfle_img" src="https://www.shareicon.net/data/512x512/2016/05/24/770137_man_512x512.png">
+											        </div>
+											        <div class="col-md-8">
+											        	<h3>{{i.first_name}} {{i.last_name}}</h3>
+											        	<p>{{i.email}}</p>
+											        </div>
+											    </div>
+										    </div>
+										</li>
+										<!-- <li class="items odd items-bordered">
+										    <div class="infoWrap">
+										        <div class="row align-items-center">
+											      	<div class="col-md-2 img_col">
+											         	<img class="prfle_img" src="https://www.shareicon.net/data/512x512/2016/05/24/770137_man_512x512.png">
+											        </div>
+											        <div class="col-md-8">
+											        	<h3>John Doe</h3>
+											        	<p>Email Address : john@gmail.com</p>
+											        </div>
+											    </div>
+										    </div>
+										</li>
+										<li class="items odd items-bordered">
+										    <div class="infoWrap">
+										        <div class="row align-items-center">
+											      	<div class="col-md-2 img_col">
+											         	<img class="prfle_img" src="https://www.shareicon.net/data/512x512/2016/05/24/770137_man_512x512.png">
+											        </div>
+											        <div class="col-md-8">
+											        	<h3>John Doe</h3>
+											        	<p>Email Address : john@gmail.com</p>
+											        </div>
+											    </div>
+										    </div>
+										</li>
+										<li class="items odd items-bordered">
+										    <div class="infoWrap">
+										        <div class="row align-items-center">
+											      	<div class="col-md-2 img_col">
+											         	<img class="prfle_img" src="https://www.shareicon.net/data/512x512/2016/05/24/770137_man_512x512.png">
+											        </div>
+											        <div class="col-md-8">
+											        	<h3>John Doe</h3>
+											        	<p>Email Address : john@gmail.com</p>
+											        </div>
+											    </div>
+										    </div>
+										</li>
+										<li class="items odd items-bordered">
+										    <div class="infoWrap">
+										        <div class="row align-items-center">
+											      	<div class="col-md-2 img_col">
+											         	<img class="prfle_img" src="https://www.shareicon.net/data/512x512/2016/05/24/770137_man_512x512.png">
+											        </div>
+											        <div class="col-md-8">
+											        	<h3>John Doe</h3>
+											        	<p>Email Address : john@gmail.com</p>
+											        </div>
+											    </div>
+										    </div>
+										</li> -->
+									</ul>
+								</div>
+								<div class="row justify-content-center mt-2">
+									<div align="center" class="gift-card-btn">
+										<button class="btn btn-change-fill" routerLink="/addCustomerorder">Add Customers
+										</button>
+									</div>
+								</div>
+							</div>
+							
+						</div>
+					</div>
+					
+				</div>
+				
+		   </div>
+		   
+		</div>
+	</div>
+</div>

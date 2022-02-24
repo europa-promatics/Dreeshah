@@ -1,0 +1,118 @@
+<app-seller-header></app-seller-header>
+<div class="seller-quotation-mgmt-wrapper">
+	<div class="custom-container d-flex">
+		<app-seller-sidebar></app-seller-sidebar>
+		<div class="main-wrap">
+			<div class="card">
+				<div class="card-body">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="wishlist-wrapper">
+								<div class="wishlist-heading mb-2 d-flex justify-content-between align-items-center">
+									<div>
+										<h1>Grant Staff Privileges</h1>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-12">
+						<div class="cr-ordr-frm">
+							<div class="card">
+								<div class="card-body">
+									<label>Privileges</label>
+									<div class="row">
+										<!-- <div class="col-md-4" >
+											<ul class="checks_ul">
+												<li *ngFor="let a of privListArr; let i=index;" class="li_chks">
+													<mat-checkbox [value]="a.name" (change)="privilageName(a.name,a.id,$event)" class="example-margin" >{{a.name}}</mat-checkbox>
+												</li>
+											</ul>
+										</div> -->
+										<div class="col-md-12">
+											<div class="grant_table">
+												<div class="dashboard-table margn-top">
+													<table class="table table-bordered table-striped">
+														<thead class="thead-light">
+															<tr>
+																<th scope="col">Name</th>
+																<th scope="col">
+																	<!-- <th mat-header-cell *matHeaderCellDef> -->
+																	
+																	<!-- <mat-checkbox class="example-margin"
+																		[checked]="allComplete"
+																		[indeterminate]="someComplete()"
+																		(change)="setAll($event)"			
+																	>Read Only</mat-checkbox> -->
+																	Read Only
+																</th>
+																<th scope="col">
+																	<!-- <mat-checkbox class="example-margin"
+																		[checked]="allComplete1"
+																		[indeterminate]="someComplete1()"
+																		(change)="setAll1($event.checked)"	
+																	>Read/Write</mat-checkbox> -->
+																	Read/Write
+																</th>
+															</tr>
+														</thead>
+														<tbody>
+															<tr *ngFor="let subtask of privListArr">
+																<td scope="row">{{subtask.name}}</td>
+																<td>
+																	<mat-checkbox (change)=ReadOnly(subtask._id,true,$event) 
+																	[checked]="abc(subtask._id) || subtask.completed"
+																	(ngModelChange)="updateAllComplete()" >
+																	  
+																	   
+																	</mat-checkbox>
+																 </td>
+																<!-- <td>
+																	
+
+
+																	<mat-checkbox (change)=ReadOnly(subtask._id,true,$event)>
+																	
+																	</mat-checkbox>
+																</td> -->
+
+																<td>
+																	<mat-checkbox (change)=readWrite(subtask._id,true,$event) 
+																	[(ngModel)]="subtask.completed1"
+																	(ngModelChange)="updateAllComplete1()" >
+																	  
+																	   
+																	</mat-checkbox>
+
+																	<!-- <mat-checkbox
+																		(change)="readWrite(subtask._id,true,$event)"> -->
+																		<!-- [(ngModel)]="subtask.completed"		 -->
+																		<!-- (ngModelChange)="updateAllComplete1()"														 -->
+																	<!-- </mat-checkbox> -->
+																</td>
+															</tr>
+														</tbody>
+													</table>
+													<div class="submt--btn"  align="center">
+														<button class="btn btn-change-fill"
+															(click)="add()">Submit</button>
+													</div>
+												</div>
+											</div>
+										</div>
+
+										<!-- <div class="submt--btn" text-align="center">
+											<button class="btn btn-change-fill" (click)="add()">Submit</button>
+										</div> -->
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<app-footer></app-footer>

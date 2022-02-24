@@ -1,0 +1,258 @@
+<app-seller-header></app-seller-header>
+<div class="seller-prod-list-wrapper">
+    <div class="custom-container d-flex">
+        <app-seller-sidebar></app-seller-sidebar>
+        <div class="main-wrap">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="wishlist-wrapper">
+                                <div class="wishlist-heading mb-2 d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h1>Product List</h1>  
+                                    </div>  
+                                    <div class="">
+                                        <a routerLink="/seller-add-product" class="btn btn-round-blue"><i class="fa fa-plus"></i></a>
+                                    </div>                                
+                                </div>
+                                <div class="wishlist-heading mb-2 d-flex justify-content-between align-items-center">
+                                    <div>
+                                       <button class="btn btn-change-fill" id="filterBtn"><i class="fa fa-filter mr-2"></i>Filter <i class="fa fa-caret-down ml-2"></i></button>
+                                       <button class="btn btn-change-fill" id="sortBtn"><i class="fa fa-sort mr-2"></i>Sort<i class="fa fa-caret-down ml-2"></i></button>
+                                    </div>
+                                    
+
+                                     
+                                    <div class="search-bar-product-list">
+                                        <div class="serch_ehdr mr-auto ml-auto">
+                                            <input type="text" class="srch_inpt form-control" name="product_title" [(ngModel)] = "product_title" (ngModelChange)="Search()" placeholder="Enter Product Title To Search ">
+                                            <span class="abs_icons"><i class="fa fa-search"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="filterContent" class="mt-3">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <mat-form-field>
+                                                <mat-label>Select Status</mat-label>
+                                                    <mat-select>
+                                                        <mat-option value="option1">Active</mat-option>
+                                                        <mat-option value="option2">Inactive</mat-option>
+                                                        <mat-option value="option3">Delete</mat-option>
+                                                    </mat-select>
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="col-md-3">
+                                             <mat-form-field>
+                                                <mat-label>Select Action</mat-label>
+                                                    <mat-select>
+                                                        <mat-option value="option1">Make Active</mat-option>
+                                                        <mat-option value="option2">Make Inactive</mat-option>
+                                                        <mat-option value="option3">Delete</mat-option>
+                                                    </mat-select>
+                                            </mat-form-field>
+                                        </div>
+                                        <!-- <div class="col-md-2">
+                                            <button class="btn btn-change-fill"><a routerLink="/seller-add-product" >Add Product <i class="fa fa-plus ml-2"></i></a></button>
+                                        </div> -->
+                                        <div class="col-md-2">
+                                            <button class="btn btn-change-fill">Export <i class="fa fa-arrow-up"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="wishlist-table">
+                                    <div id="cart-view">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="cart-view-area">
+                                                    <div class="cart-view-table aa-wishlist-table">
+                                                        <!--  <form action="#" method="post"> -->
+                                                        <div class="">
+
+                                                            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+                                                                <!-- Checkbox Column -->
+                                                                <ng-container matColumnDef="select">
+                                                                  <th mat-header-cell *matHeaderCellDef>
+                                                                    <mat-checkbox (change)="$event ? masterToggle() : null"
+                                                                                  [checked]="selection.hasValue() && isAllSelected()"
+                                                                                  [indeterminate]="selection.hasValue() && !isAllSelected()">
+                                                                                  <!-- [aria-label]="checkboxLabel()" -->
+                                                                                 
+                                                                                  
+                                                                    </mat-checkbox>
+                                                                  </th>
+                                                                  <td mat-cell *matCellDef="let row">
+                                                                    <mat-checkbox (click)="$event.stopPropagation()"
+                                                                                  (change)="$event ? selection.toggle(row) : null"
+                                                                                  [checked]="selection.isSelected(row)">
+                                                                                   <!-- [aria-label]="checkboxLabel(row)"  -->
+                                                                                  
+                                                                                  
+                                                                    </mat-checkbox>
+                                                                  </td>
+                                                                </ng-container>
+
+                                                                <ng-container matColumnDef="product_media">
+                                                                    <th mat-header-cell *matHeaderCellDef> Image  </th>
+                                                                    <td mat-cell *matCellDef="let element"> <img src="{{imgpath}}{{element.product_media[0].name}}" class="img"/> </td>
+                                                                    <!-- <td mat-cell *matCellDef="let element"> <img [src]="element.imageUrl" class="img"/> </td> -->
+                                                                </ng-container>
+                                                              
+                                                                <!-- Product Title -->
+                                                                <ng-container matColumnDef="product_title" >
+                                                                  <th mat-header-cell *matHeaderCellDef> Product Title </th>                                                               
+                                                                  <td mat-cell *matCellDef="let element" > {{element.product_title}} </td>
+                                                                </ng-container>
+                                                                
+                                                                <!-- Product Description -->                                                              
+                                                                <!-- <ng-container matColumnDef="product_description">
+                                                                    <th mat-header-cell *matHeaderCellDef> Product Description </th>
+                                                                    <td mat-cell *matCellDef="let element" ><div [innerHtml]="element.product_description"></div></td>
+                                                                  </ng-container> -->
+                                                                                                                                                                                         
+                                                                <!-- Weight Column -->
+                                                                <ng-container matColumnDef="weight">
+                                                                  <th mat-header-cell *matHeaderCellDef> Weight </th>
+                                                                  <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+                                                                </ng-container>
+                                                                                                                                                                                    
+                                                                <!-- Vendor Column -->
+                                                                <ng-container matColumnDef="shipping">
+                                                                  <th mat-header-cell *matHeaderCellDef> Shipping </th>
+                                                                  <td mat-cell *matCellDef="let element"> {{element.shipping}} </td>
+                                                                </ng-container>
+
+                                                                <!-- Variant Column -->
+                                                                <ng-container matColumnDef="variant">
+                                                                    <th mat-header-cell *matHeaderCellDef> Variant </th>
+                                                                    <td mat-cell *matCellDef="let element"> {{element.variant}} </td>
+                                                                  </ng-container>
+
+                                                                <!-- Price Column -->
+                                                                  <ng-container matColumnDef="pricing" >
+                                                                    <th mat-header-cell *matHeaderCellDef> Price </th>
+                                                                    <td mat-cell *matCellDef="let element"> {{element.pricing.price}} </td>                                                                   
+                                                                  </ng-container>  
+                                                              
+                                                                <!-- Quantity Column -->
+                                                                <ng-container matColumnDef="quantity">
+                                                                    <th mat-header-cell *matHeaderCellDef> Quantity </th>
+                                                                    <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
+                                                                  </ng-container>
+
+
+                                                                <ng-container matColumnDef="status">
+                                                                    <th mat-header-cell *matHeaderCellDef> Status
+                                                                    </th>
+                                                                    <td mat-cell *matCellDef="let element">
+                                                                        <!-- <i *ngIf="element.status == 'active'"
+                                                                            class="fa fa-check-circle"
+                                                                            aria-hidden="true"></i> -->
+                                                                            <i 
+                                                                            class="fa fa-check-circle"
+                                                                            aria-hidden="true"></i>
+                                                                        <i *ngIf="element.status == 'inactive'"
+                                                                            class="fa fa-times-circle"
+                                                                            aria-hidden="true"
+                                                                            style="color: red; font-size: 23px;"></i>
+                                                                    </td>
+                                                                </ng-container>
+
+
+
+                                                                <ng-container matColumnDef="action">
+                                                                    <th mat-header-cell *matHeaderCellDef> Action
+                                                                    </th>
+                                                                    <td mat-cell *matCellDef="let element">
+                                                                        <button class="fdsafas" mat-icon-button
+                                                                            [matMenuTriggerFor]="menu"
+                                                                            (click)="$event.stopPropagation()">
+                                                                            <mat-icon>settings</mat-icon>
+                                                                        </button>
+                                                                        <mat-menu #menu="matMenu">
+                                                                            <button mat-menu-item>
+                                                                                <mat-icon>create</mat-icon>
+                                                                                <a>Edit</a>
+                                                                            </button>
+                                                                            <button mat-menu-item >                                                                                                                                                            
+                                                                                <mat-icon>check_circle
+                                                                                </mat-icon>
+                                                                                <span>Make Active</span>
+                                                                            </button>
+                                                                            <button mat-menu-item>                                                                                                                                                              
+                                                                                <mat-icon>check_circle_outline
+                                                                                </mat-icon>
+                                                                                <span>Make Inactive</span>
+                                                                            </button>
+                                                                            <button mat-menu-item
+                                                                            (click)="deleteService()" >
+                                                                                <mat-icon>delete</mat-icon>
+                                                                                <span>Delete</span>
+                                                                            </button>
+                                                                        </mat-menu>
+                                                                    </td>
+                                                                </ng-container>
+
+                                                                
+
+                                                                <!-- <ng-container matColumnDef="status">
+                                                                    <th mat-header-cell *matHeaderCellDef> Status</th>
+                                                                    <td mat-cell *matCellDef="let element"> <mat-icon class="green-icon">check_circle_outline
+
+                                                                    </mat-icon></td>
+                                                                </ng-container> -->
+
+                                                                <!-- <ng-container matColumnDef="setting">
+                                                                    <th mat-header-cell *matHeaderCellDef> Setting</th>
+                                                                    <td mat-cell *matCellDef="let element"> 
+                                                                        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                                                                            <mat-icon>settings</mat-icon>
+                                                                        </button>
+                                                                        <mat-menu #menu="matMenu">
+                                                                            <button mat-menu-item>
+                                                                               <mat-icon>create</mat-icon>
+                                                                                <span>Edit</span>
+                                                                            </button>
+                                                                            <button mat-menu-item >
+                                                                                <mat-icon>check_circle</mat-icon>
+                                                                                <span>Make Active</span>
+                                                                            </button>
+                                                                            <button mat-menu-item>
+                                                                               <mat-icon>check_circle_outline</mat-icon>
+                                                                                <span>Make Inactive</span>
+                                                                            </button>
+                                                                            <button mat-menu-item>
+                                                                              <mat-icon>delete</mat-icon>
+                                                                                <span>Delete</span>
+                                                                            </button>
+                                                                        </mat-menu>
+                                                                    </td>
+                                                                </ng-container> -->
+
+                                                                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                                                <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+                                                                    <!-- (click)="selection.toggle(row)" -->
+                                                                </tr>
+                                                            </table>
+                                                            <mat-paginator  [length]="length" [pageSize]="10" [pageSizeOptions]="getPageSizeOptions()" (page)="paginationOptionChange($event)" >
+
+                                                            </mat-paginator>
+                                                        </div>
+                                                        <!--      </form> -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

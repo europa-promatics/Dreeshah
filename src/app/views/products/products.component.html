@@ -1,0 +1,1031 @@
+<app-header></app-header>
+<div class="products-wrapper">
+	<section class="common_image_section page_headrer_wrkshop">
+        <div class="container">
+            <div class="page_head_wrap">
+                <h2 class="aboutus_head">Our Products</h2>
+                <p class="page_head">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                </p>
+            </div>
+        </div>
+    </section>
+	<nav aria-label="breadcrumb mb-0 mt-5">
+		<ol class="breadcrumb mb-0">
+			<li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+			<li class="breadcrumb-item active" aria-current="page">Products</li>
+		</ol>
+	</nav>
+	<div class="custom_container mt-3">
+		<div class="row">
+			<div class="col-md-3">
+				<div class="filter-list-wrapper">
+					<div class="card">
+						<div class="card-body">
+							<div class="filter-head d-flex justify-content-between">
+								<div>
+									<h3 class="top_head">Filters</h3>
+								</div>
+								<div>
+									<a routerLink="/">
+										<h3 class="top_head theme-link">Reset All</h3>
+									</a>
+								</div>
+							</div>
+							<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+								<div class="panel panel-default mt-3">
+									<div class="panel-heading" role="tab" id="headingOne">
+										<h4 class="panel-title">
+											<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+												Category <i class="fa fa-chevron-down float-right"></i>
+											</a>
+										</h4>
+									</div>
+									<div id="collapseOne" class="panel-collapse show collapse in" role="tabpanel" aria-labelledby="headingOne">
+										<div class="panel-body">
+											<div class="form-group col-sm">
+												<label class="checkbox-inline">Architectural Design
+													<input type="checkbox" checked="checked">
+													<span class="checkmark"></span>
+												</label>
+											</div>
+											<div class="form-group col-sm">
+												<label class="checkbox-inline">Structural Design
+													<input type="checkbox">
+													<span class="checkmark"></span>
+												</label>
+											</div>
+											<div class="form-group col-sm">
+												<label class="checkbox-inline">Electrical Design
+													<input type="checkbox">
+													<span class="checkmark"></span>
+												</label>
+											</div>
+											<div class="form-group col-sm">
+												<label class="checkbox-inline">Mechanical Design
+													<input type="checkbox">
+													<span class="checkmark"></span>
+												</label>
+											</div>
+											<div class="form-group col-sm">
+												<label class="checkbox-inline">Interior Design
+													<input type="checkbox">
+													<span class="checkmark"></span>
+												</label>
+											</div>
+											<h3 class="text-left ml-3">Customer rating</h3>
+											<div class="custom-slider">
+												<ng5-slider [(value)]="value" [options]="options"></ng5-slider>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!--  -->
+								<div class="panel panel-default">
+									<div class="panel-heading" role="tab" id="headingFour">
+										<h4 class="panel-title">
+											<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="true" aria-controls="collapseOne">
+												Areas Covered<i class="fa fa-chevron-down float-right"></i>
+											</a>
+										</h4>
+									</div>
+									<div id="collapseFour" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingFour">
+										<div class="panel-body">
+											<div class="form-group col-sm">
+												<label class="checkbox-inline">A
+													<input type="checkbox" checked="checked">
+													<span class="checkmark"></span>
+												</label>
+											</div>
+											<div class="form-group col-sm">
+												<label class="checkbox-inline">B
+													<input type="checkbox">
+													<span class="checkmark"></span>
+												</label>
+											</div>
+											<div class="form-group col-sm">
+												<label class="checkbox-inline">C
+													<input type="checkbox">
+													<span class="checkmark"></span>
+												</label>
+											</div>
+											<div class="form-group col-sm">
+												<label class="checkbox-inline">D
+													<input type="checkbox">
+													<span class="checkmark"></span>
+												</label>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="panel panel-default">
+									<div class="panel-heading" role="tab" id="headingTwo">
+										<h4 class="panel-title">
+											<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+												Locations<i class="fa fa-chevron-down float-right"></i>
+											</a>
+										</h4>
+									</div>
+									<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+										<div class="panel-body">
+											<div class="form-group col-sm">
+												<label class="checkbox-inline">Villas
+													<input type="checkbox" checked="checked">
+													<span class="checkmark"></span>
+												</label>
+											</div>
+											<div class="form-group col-sm">
+												<label class="checkbox-inline">Places
+													<input type="checkbox" checked="checked">
+													<span class="checkmark"></span>
+												</label>
+											</div>
+											<div class="form-group col-sm">
+												<label class="checkbox-inline">Hotels
+													<input type="checkbox" checked="checked">
+													<span class="checkmark"></span>
+												</label>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="panel panel-default">
+									<div class="panel-heading" role="tab" id="headingThree">
+										<h4 class="panel-title">
+											<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+												Products Cost Range <i class="fa fa-chevron-down float-right"></i>
+											</a>
+										</h4>
+									</div>
+									<div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+										<div class="panel-body">
+											<div class="custom-slider">
+												<ng5-slider [(value)]="value" [options]="options"></ng5-slider>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-9">
+				<div class="products-wrappr main-product-container">
+					<div class="row">
+                        <!-- <div class="col-md-6 mt-3">
+                            <input type="search" name="search-products" placeholder="search products" class="form-control">
+                            </div>
+                            <div class="col-md-3 mt-3">
+                            <button class="btn btn-change-fill">Search</button>
+                            </div>
+                            <div class="col-md-3">
+                            <div class="form-group">
+                            	<label for="exampleFormControlSelect1"></label>
+                            	<select class="form-control custom-select" id="exampleFormControlSelect1">
+                            		<option>Sort</option>
+                            		<option>
+                            			<div class="form-group col-sm">
+                            				<label class="radio-inline">Highest Price First
+                            					<input type="radio" checked="checked" name="style1" id="style1">
+                            					<span class="checkround"></span>
+                            				</label>
+                            			</div>
+                            		</option>
+                            		<option>
+                            			<div class="form-group col-sm">
+                            				<label class="radio-inline">Lowest Price First
+                            					<input type="radio" name="style2" id="style2">
+                            					<span class="checkround"></span>
+                            				</label>
+                            			</div>
+                            		</option>
+                            		<option>
+                            			<div class="form-group col-sm">
+                            				<label class="radio-inline">Ascending Order(A-z)
+                            					<input type="radio" name="style3" id="style3">
+                            					<span class="checkround"></span>
+                            				</label>
+                            			</div>
+                            		</option>
+                            		<option>
+                            			<div class="form-group col-sm">
+                            				<label class="radio-inline">Descending Order(A-z)
+                            					<input type="radio" name="style4" id="style4">
+                            					<span class="checkround"></span>
+                            				</label>
+                            			</div>
+                            		</option>
+                            	</select>
+                            </div> -->
+                            <div class="col-md-12">
+                            	<div class="wishlist-heading mb-2">
+                            		<h2>Our Products</h2>
+                            		<div class="wishlist-heading mb-2 d-flex justify-content-between align-items-center">
+                            			<div>
+                            				<button class="btn btn-change-fill" id="filterBtn"><i class="fas fa-sliders-h mr-2"></i>Select Category<i class="fa fa-caret-down ml-2"></i></button>
+                            			</div>
+                            			<div class="search-bar-product-list">
+                            				<div class="serch_ehdr mr-auto ml-auto">
+                            					<input type="text" (keyup)="search($event.target.value)" class="srch_inpt form-control" name="" placeholder="Search">
+                            					<span class="abs_icons"><i class="fa fa-search"></i></span>
+                            				</div>
+                            			</div>
+                            		</div>
+                            		<div id="filterContent" class="mt-3">
+                            			<div class="row">
+                            				<div class="col-md-3">
+                            					<div class="form-group">
+                            						<select class="custom-select" id="exampleFormControlSelect1" (change)="sortprice($event.target.value)">
+                            							<option>Ascending Order(A-Z)</option>
+                            							<option>Descending Order(Z-A)</option>
+														<option value = "price" >Highest Price First</option>
+                            							<option value = "asc" >Lowest Price First</option>
+                            							
+                            						</select>
+                            					</div>
+                            				</div>
+                            				<div class="col-md-3">
+											<div class="form-group col-xs">
+												<select name="login" class="custom-select">
+													<option selected>Product Category</option>
+													<option value="Customer">Architects & Building Designers</option>
+													<option value="Professionals">Interior Designers & Decorators</option>
+												</select>
+											</div>
+											</div>
+											  <div class="col-md-4">
+                                <div class="form-group">
+                                    <!-- <label for="exampleFormControlSelect1"> Select Sub Category</label> -->
+                                    <select class="custom-select" id="exampleFormControlSelect1">
+                                        <option>Select Sub Category</option>
+                                        <option>Building Contractors</option>
+                                        <option>Building Consultants</option>
+                                        <option>Interior Designers</option>
+                                        <option>Kitchen Designers &amp; Suppliers</option>
+                                        <option>Wardrobe Designers & Suppliers</option>
+                                        <option>Bathroom Designers & Suppliers</option>
+                                        <option>Windows Designers & Suppliers</option>
+                                        <option>Doors Designers & Suppliers</option>
+                                        <option>Furniture Designers & Suppliers</option>
+                                        <option>Rugs Designers & Suppliers</option>
+                                        <option>Wallpapers Designers & Suppliers</option>
+                                        <option>Gypsum Designers & Suppliers</option>
+                                        <option>Floor Tiles Designers & Suppliers</option>
+                                    </select>
+                                </div>
+                            </div>
+                            			<!-- 	<div class="col-md-3">
+                            					<mat-form-field>
+                            						<mat-label>Select Professional Category</mat-label>
+                            						<mat-select>
+                            							<mat-option value="option1">Design &amp; Remodelling</mat-option>
+                            							<mat-option value="option2">Outdoor &amp; Garden</mat-option>
+                            							<mat-option value="option3">Home &amp; Corporate Services</mat-option>
+                            						</mat-select>
+                            					</mat-form-field>
+                            				</div> -->
+                            		<!-- 		<div class="col-md-3">
+                            					<mat-form-field>
+                            						<mat-label>Select Sub Category</mat-label>
+                            						<mat-select>
+                            							<mat-option value="">Building Contractors</mat-option>
+                            							<mat-option value="">Building Consultants</mat-option>
+                            							<mat-option value="">Interior Designers</mat-option>
+                            							<mat-option value="">Kitchen Designers &amp; Suppliers</mat-option>
+                            							<mat-option value="">Wardrobe Designers & Suppliers</mat-option>
+                            							<mat-option value="">Bathroom Designers & Suppliers</mat-option>
+                            							<mat-option value="">Windows Designers & Suppliers</mat-option>
+                            							<mat-option value="">Doors Designers & Suppliers</mat-option>
+                            							<mat-option value="">Furniture Designers & Suppliers</mat-option>
+                            							<mat-option value="">Rugs Designers & Suppliers</mat-option>
+                            							<mat-option value="">Wallpapers Designers & Suppliers</mat-option>
+                            							<mat-option value="">Gypsum Designers & Suppliers</mat-option>
+                            							<mat-option value="">Floor Tiles Designers & Suppliers</mat-option>
+                            						</mat-select>
+                            					</mat-form-field>
+                            				</div> -->
+                            			</div>
+                            		</div>
+                            	</div>
+                            </div>
+                        </div>
+                    <!-- <div class="prof-categories-wrapper mt-3">
+                        <div class="row">
+                        	<div class="col-md-4">
+                        		<div class="form-group">
+                        			<label for="exampleFormControlSelect1">Select Professional Categroies</label>
+                        			<select class="form-control" id="exampleFormControlSelect1">
+                        				<option>Select</option>
+                        				<option>Design &amp; Remodelling</option>
+                        				<option>Outdoor &amp; Garden</option>
+                        				<option>Home &amp; Corporate Services</option>
+                        			</select>
+                        		</div>
+                        	</div>
+                        	<div class="col-md-4">
+                        		<div class="form-group">
+                        			<label for="exampleFormControlSelect1"> Select Sub Category</label>
+                        			<select class="form-control" id="exampleFormControlSelect1">
+                        				<option>Select</option>
+                        				<option>Building Contractors</option>
+                        				<option>Building Consultants</option>
+                        				<option>Interior Designers</option>
+                        				<option>Kitchen Designers &amp; Suppliers</option>
+                        				<option>Wardrobe Designers & Suppliers</option>
+                        				<option>Bathroom Designers & Suppliers</option>
+                        				<option>Windows Designers & Suppliers</option>
+                        				<option>Doors Designers & Suppliers</option>
+                        				<option>Furniture Designers & Suppliers</option>
+                        				<option>Rugs Designers & Suppliers</option>
+                        				<option>Wallpapers Designers & Suppliers</option>
+                        				<option>Gypsum Designers & Suppliers</option>
+                        				<option>Floor Tiles Designers & Suppliers</option>
+                        			</select>
+                        		</div>
+                        	</div>
+                        </div>
+                    </div> -->
+                    <!-- <div class="section_title d-flex justify-content-between align-items-center mt-2">
+                        <h2>Our Products</h2>
+                    </div> -->
+                    <div class="main_prod_contnr mt-2">
+                    	<div class="row">
+                    		<div class="col-sm-4" *ngFor="let product of prodData|  paginate: config" >
+							<!-- <div class="col-sm-4" *ngFor="let product of prodData |  paginate:{ itemsPerPage: 5, currentPage: p, 
+								totalItems: count }" >-->
+                    			<div class="prod-cata" > 
+                    				<div class="ps-product">
+                    					
+										<a routerLink="/products-details/{{product?._id}}"><div class="product-image" style="background-image: url({{imgpath}}{{product?.product_media[0]?.name}})" >
+											
+										</div></a>
+                    					<div class="product-desc">
+                    						<span class="new">New</span> 
+                    						
+											<span class="caption " ><a routerLink="/products-details/{{product?._id}}">{{product?.product_title}}</a></span>
+                    						<span class="rating"> 
+                    							<i class="fas fa-star"></i> 
+                    							<i class="fas fa-star"></i> 
+                    							<i class="fas fa-star"></i>
+                    							<i class="fas fa-star"></i> 
+                    							<i class="fas fa-star grey"></i> 
+                    						</span>
+                    						<div class="price"> <strong>£{{product.pricing.price}}</strong> <span>£18.00</span></div>
+                    					</div>
+                    					<div class="product-info">
+                    						<div class="header showDetailsBtn"> Details</div>
+                    						<div class="info showDetailsContent">
+                    							<div class="size">
+                    								<span>Size</span>
+                    								<ul>
+                    									<li class=""><a href="#">S</a></li>
+                    									<li class=""><a href="#">L</a></li>
+                    									<li class=""><a href="#">M</a></li>
+                    									<li class=""><a href="#">XL</a></li>
+                    									<li class="active"><a href="#">3X</a></li>
+                    								</ul>
+                    							</div>
+                    							<div class="color">
+                    								<span>Color</span>
+                    								<ul>
+                    									<li class="yellow active"><a href="#"></a></li>
+                    									<li class="green "><a href="#"></a></li>
+                    									<li class="red"><a href="#"></a></li>
+                    								</ul>
+                    							</div>
+                    							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius doloremque dolorum dolore omnis, similique vel nulla molestiae quae accusantium, incidunt.</p>
+                    						</div>
+                    					</div>
+                    				</div>
+                    			</div>
+								
+                    		</div>
+							
+                    		<!-- <div class="col-sm-4" >
+                    			<div class="prod-cata">
+                    				<div class="ps-product">
+                    					<div class="product-image" style="background-image: url(https://rukminim1.flixcart.com/image/612/612/k0bbb0w0/towel-rod/e/6/b/4201146503912-prime-stainless-steel-304-grade-impulse-original-imafkfq6qxsxh9qx.jpeg?q=70)"></div>
+                    					<div class="product-desc">
+                    						 <span class="title">Product<strong>Name</strong></span> 
+                    						<span class="new">New</span> 
+                    						<span class="caption">Stainless Steel pipes</span> 
+                    						<span class="rating"> 
+                    							<i class="fas fa-star"></i> 
+                    							<i class="fas fa-star"></i> 
+                    							<i class="fas fa-star"></i>
+                    							<i class="fas fa-star"></i> 
+                    							<i class="fas fa-star grey"></i> 
+                    						</span>
+                    						<div class="price"> <strong>£9.00</strong> <span>£18.00</span></div>
+                    					</div>
+                    					<div class="product-info">
+                    						<div class="header showDetailsBtn"> Details</div>
+                    						<div class="info showDetailsContent">
+                    							<div class="size">
+                    								<span>Size</span>
+                    								<ul>
+                    									<li class=""><a href="#">S</a></li>
+                    									<li class=""><a href="#">L</a></li>
+                    									<li class=""><a href="#">M</a></li>
+                    									<li class=""><a href="#">XL</a></li>
+                    									<li class="active"><a href="#">3X</a></li>
+                    								</ul>
+                    							</div>
+                    							<div class="color">
+                    								<span>Color</span>
+                    								<ul>
+                    									<li class="yellow active"><a href="#"></a></li>
+                    									<li class="green "><a href="#"></a></li>
+                    									<li class="red"><a href="#"></a></li>
+                    								</ul>
+                    							</div>
+                    							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius doloremque dolorum dolore omnis, similique vel nulla molestiae quae accusantium, incidunt.</p>
+                    						</div>
+                    					</div>
+                    				</div>
+                    			</div>
+                    		</div> -->
+                    		<!-- <div class="col-sm-4">
+                    			<div class="prod-cata">
+                    				<div class="ps-product">
+                    					<div class="product-image" style="background-image: url(https://rooftraders.co.uk/pub/media/catalog/product/cache/2474b722d7d164e42ff8f09b603d4ab8/m/o/molan-sunwood-ridge-white.jpg)"></div>
+                    					<div class="product-desc">
+                    						 <span class="title">Product<strong>Name</strong></span> 
+                    						<span class="new">New</span> 
+                    						<span class="caption">Stainless Steel pipes</span> 
+                    						<span class="rating"> 
+                    							<i class="fas fa-star"></i> 
+                    							<i class="fas fa-star"></i> 
+                    							<i class="fas fa-star"></i>
+                    							<i class="fas fa-star"></i> 
+                    							<i class="fas fa-star grey"></i> 
+                    						</span>
+                    						<div class="price"> <strong>£9.00</strong> <span>£18.00</span></div>
+                    					</div>
+                    					<div class="product-info">
+                    						<div class="header showDetailsBtn"> Details</div>
+                    						<div class="info showDetailsContent">
+                    							<div class="size">
+                    								<span>Size</span>
+                    								<ul>
+                    									<li class=""><a href="#">S</a></li>
+                    									<li class=""><a href="#">L</a></li>
+                    									<li class=""><a href="#">M</a></li>
+                    									<li class=""><a href="#">XL</a></li>
+                    									<li class="active"><a href="#">3X</a></li>
+                    								</ul>
+                    							</div>
+                    							<div class="color">
+                    								<span>Color</span>
+                    								<ul>
+                    									<li class="yellow active"><a href="#"></a></li>
+                    									<li class="green "><a href="#"></a></li>
+                    									<li class="red"><a href="#"></a></li>
+                    								</ul>
+                    							</div>
+                    							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius doloremque dolorum dolore omnis, similique vel nulla molestiae quae accusantium, incidunt.</p>
+                    						</div>
+                    					</div>
+                    				</div>
+                    			</div>
+                    		</div> -->
+                    		<!-- <div class="col-sm-4">
+                    			<div class="prod-cata">
+                    				<div class="ps-product">
+                    					<div class="product-image" style="background-image: url(https://imgus-vip.tongtool.com/s/qoqsztvtosqrznquosvvqxxwwrsquzusyuypJPGN.jpg)"></div>
+                    					<div class="product-desc">
+                    						<span class="title">Product<strong>Name</strong></span> 
+                    						<span class="new">New</span> 
+                    						<span class="caption">Stainless Steel pipes</span> 
+                    						<span class="rating"> 
+                    							<i class="fas fa-star"></i> 
+                    							<i class="fas fa-star"></i> 
+                    							<i class="fas fa-star"></i>
+                    							<i class="fas fa-star"></i> 
+                    							<i class="fas fa-star grey"></i> 
+                    						</span>
+                    						<div class="price"> <strong>£9.00</strong> <span>£18.00</span></div>
+                    					</div>
+                    					<div class="product-info">
+                    						<div class="header showDetailsBtn"> Details</div>
+                    						<div class="info showDetailsContent">
+                    							<div class="size">
+                    								<span>Size</span>
+                    								<ul>
+                    									<li class=""><a href="#">S</a></li>
+                    									<li class=""><a href="#">L</a></li>
+                    									<li class=""><a href="#">M</a></li>
+                    									<li class=""><a href="#">XL</a></li>
+                    									<li class="active"><a href="#">3X</a></li>
+                    								</ul>
+                    							</div>
+                    							<div class="color">
+                    								<span>Color</span>
+                    								<ul>
+                    									<li class="yellow active"><a href="#"></a></li>
+                    									<li class="green "><a href="#"></a></li>
+                    									<li class="red"><a href="#"></a></li>
+                    								</ul>
+                    							</div>
+                    							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius doloremque dolorum dolore omnis, similique vel nulla molestiae quae accusantium, incidunt.</p>
+                    						</div>
+                    					</div>
+                    				</div>
+                    			</div>
+                    		</div> -->
+                    		<!-- <div class="col-sm-4">
+                    			<div class="prod-cata">
+                    				<div class="ps-product">
+                    					<div class="product-image" style="background-image: url(https://bsmedia.business-standard.com/_media/bs/img/article/2015-05/20/full/1432123181-7473.gif)"></div>
+                    					<div class="product-desc">
+                    						 <span class="title">Product<strong>Name</strong></span> 
+                    						<span class="new">New</span> 
+                    						<span class="caption">Stainless Steel pipes</span> 
+                    						<span class="rating"> 
+                    							<i class="fas fa-star"></i> 
+                    							<i class="fas fa-star"></i> 
+                    							<i class="fas fa-star"></i>
+                    							<i class="fas fa-star"></i> 
+                    							<i class="fas fa-star grey"></i> 
+                    						</span>
+                    						<div class="price"> <strong>£9.00</strong> <span>£18.00</span></div>
+                    					</div>
+                    					<div class="product-info">
+                    						<div class="header showDetailsBtn"> Details</div>
+                    						<div class="info showDetailsContent">
+                    							<div class="size">
+                    								<span>Size</span>
+                    								<ul>
+                    									<li class=""><a href="#">S</a></li>
+                    									<li class=""><a href="#">L</a></li>
+                    									<li class=""><a href="#">M</a></li>
+                    									<li class=""><a href="#">XL</a></li>
+                    									<li class="active"><a href="#">3X</a></li>
+                    								</ul>
+                    							</div>
+                    							<div class="color">
+                    								<span>Color</span>
+                    								<ul>
+                    									<li class="yellow active"><a href="#"></a></li>
+                    									<li class="green "><a href="#"></a></li>
+                    									<li class="red"><a href="#"></a></li>
+                    								</ul>
+                    							</div>
+                    							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius doloremque dolorum dolore omnis, similique vel nulla molestiae quae accusantium, incidunt.</p>
+                    						</div>
+                    					</div>
+                    				</div>
+                    			</div>
+                    		</div> -->
+                    		<!-- <div class="col-sm-4">
+                    			<div class="prod-cata">
+                    				<div class="ps-product">
+                    					<div class="product-image" style="background-image: url(https://inhabitat.com/wp-content/blogs.dir/1/files/2016/06/Mushroom-Tower-Queens-Wind-TUrbines1-889x591.jpg)"></div>
+                    					<div class="product-desc">
+                    						 <span class="title">Product<strong>Name</strong></span> 
+                    						<span class="new">New</span> 
+                    						<span class="caption">Stainless Steel pipes</span> 
+                    						<span class="rating"> 
+                    							<i class="fas fa-star"></i> 
+                    							<i class="fas fa-star"></i> 
+                    							<i class="fas fa-star"></i>
+                    							<i class="fas fa-star"></i> 
+                    							<i class="fas fa-star grey"></i> 
+                    						</span>
+                    						<div class="price"> <strong>£9.00</strong> <span>£18.00</span></div>
+                    					</div>
+                    					<div class="product-info">
+                    						<div class="header showDetailsBtn"> Details</div>
+                    						<div class="info showDetailsContent">
+                    							<div class="size">
+                    								<span>Size</span>
+                    								<ul>
+                    									<li class=""><a href="#">S</a></li>
+                    									<li class=""><a href="#">L</a></li>
+                    									<li class=""><a href="#">M</a></li>
+                    									<li class=""><a href="#">XL</a></li>
+                    									<li class="active"><a href="#">3X</a></li>
+                    								</ul>
+                    							</div>
+                    							<div class="color">
+                    								<span>Color</span>
+                    								<ul>
+                    									<li class="yellow active"><a href="#"></a></li>
+                    									<li class="green "><a href="#"></a></li>
+                    									<li class="red"><a href="#"></a></li>
+                    								</ul>
+                    							</div>
+                    							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius doloremque dolorum dolore omnis, similique vel nulla molestiae quae accusantium, incidunt.</p>
+                    						</div>
+                    					</div>
+                    				</div>
+                    			</div>
+                    		</div> -->
+                    		<!-- <div class="col-md-12 mb-3">
+                    			<div class="catalogue-banner">
+                    				<img src="assets/imgs/ad21.png" class="img-fluid">
+                    			</div>
+                    		</div> -->
+                    		<!-- <div class="col-sm-4">
+                    			<div class="prod-cata">
+                    				<div class="ps-product">
+                    					<div class="product-image" style="background-image: url(https://www.thestatesman.com/wp-content/uploads/2019/08/stainless-steel.jpg)"></div>
+                    					<div class="product-desc">
+                    						 <span class="title">Product<strong>Name</strong></span> 
+                    						<span class="new">New</span> 
+                    						<span class="caption">Stainless Steel pipes</span> 
+                    						<span class="rating"> 
+                    							<i class="fas fa-star"></i> 
+                    							<i class="fas fa-star"></i> 
+                    							<i class="fas fa-star"></i>
+                    							<i class="fas fa-star"></i> 
+                    							<i class="fas fa-star grey"></i> 
+                    						</span>
+                    						<div class="price"> <strong>£9.00</strong> <span>£18.00</span></div>
+                    					</div>
+                    					<div class="product-info">
+                    						<div class="header showDetailsBtn"> Details</div>
+                    						<div class="info showDetailsContent">
+                    							<div class="size">
+                    								<span>Size</span>
+                    								<ul>
+                    									<li class=""><a href="#">S</a></li>
+                    									<li class=""><a href="#">L</a></li>
+                    									<li class=""><a href="#">M</a></li>
+                    									<li class=""><a href="#">XL</a></li>
+                    									<li class="active"><a href="#">3X</a></li>
+                    								</ul>
+                    							</div>
+                    							<div class="color">
+                    								<span>Color</span>
+                    								<ul>
+                    									<li class="yellow active"><a href="#"></a></li>
+                    									<li class="green "><a href="#"></a></li>
+                    									<li class="red"><a href="#"></a></li>
+                    								</ul>
+                    							</div>
+                    							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius doloremque dolorum dolore omnis, similique vel nulla molestiae quae accusantium, incidunt.</p>
+                    						</div>
+                    					</div>
+                    				</div>
+                    			</div>
+                    		</div> -->
+                    		<!-- <div class="col-sm-4">
+                    			<div class="prod-cata">
+                    				<div class="ps-product">
+                    					<div class="product-image" style="background-image: url(https://rukminim1.flixcart.com/image/612/612/k0bbb0w0/towel-rod/e/6/b/4201146503912-prime-stainless-steel-304-grade-impulse-original-imafkfq6qxsxh9qx.jpeg?q=70)"></div>
+                    					<div class="product-desc">
+                    						 <span class="title">Product<strong>Name</strong></span> 
+                    						<span class="new">New</span> 
+                    						<span class="caption">Stainless Steel pipes</span> 
+                    						<span class="rating"> 
+                    							<i class="fas fa-star"></i> 
+                    							<i class="fas fa-star"></i> 
+                    							<i class="fas fa-star"></i>
+                    							<i class="fas fa-star"></i> 
+                    							<i class="fas fa-star grey"></i> 
+                    						</span>
+                    						<div class="price"> <strong>£9.00</strong> <span>£18.00</span></div>
+                    					</div>
+                    					<div class="product-info">
+                    						<div class="header showDetailsBtn"> Details</div>
+                    						<div class="info showDetailsContent">
+                    							<div class="size">
+                    								<span>Size</span>
+                    								<ul>
+                    									<li class=""><a href="#">S</a></li>
+                    									<li class=""><a href="#">L</a></li>
+                    									<li class=""><a href="#">M</a></li>
+                    									<li class=""><a href="#">XL</a></li>
+                    									<li class="active"><a href="#">3X</a></li>
+                    								</ul>
+                    							</div>
+                    							<div class="color">
+                    								<span>Color</span>
+                    								<ul>
+                    									<li class="yellow active"><a href="#"></a></li>
+                    									<li class="green "><a href="#"></a></li>
+                    									<li class="red"><a href="#"></a></li>
+                    								</ul>
+                    							</div>
+                    							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius doloremque dolorum dolore omnis, similique vel nulla molestiae quae accusantium, incidunt.</p>
+                    						</div>
+                    					</div>
+                    				</div>
+                    			</div>
+                    		</div> -->
+                    		<!-- <div class="col-sm-4">
+                    			<div class="prod-cata">
+                    				<div class="ps-product">
+                    					<div class="product-image" style="background-image: url(https://rooftraders.co.uk/pub/media/catalog/product/cache/2474b722d7d164e42ff8f09b603d4ab8/m/o/molan-sunwood-ridge-white.jpg)"></div>
+                    					<div class="product-desc">
+                    						<span class="title">Product<strong>Name</strong></span> 
+                    						<span class="new">New</span> 
+                    						<span class="caption">Stainless Steel pipes</span> 
+                    						<span class="rating"> 
+                    							<i class="fas fa-star"></i> 
+                    							<i class="fas fa-star"></i> 
+                    							<i class="fas fa-star"></i>
+                    							<i class="fas fa-star"></i> 
+                    							<i class="fas fa-star grey"></i> 
+                    						</span>
+                    						<div class="price"> <strong>£9.00</strong> <span>£18.00</span></div>
+                    					</div>
+                    					<div class="product-info">
+                    						<div class="header showDetailsBtn"> Details</div>
+                    						<div class="info showDetailsContent">
+                    							<div class="size">
+                    								<span>Size</span>
+                    								<ul>
+                    									<li class=""><a href="#">S</a></li>
+                    									<li class=""><a href="#">L</a></li>
+                    									<li class=""><a href="#">M</a></li>
+                    									<li class=""><a href="#">XL</a></li>
+                    									<li class="active"><a href="#">3X</a></li>
+                    								</ul>
+                    							</div>
+                    							<div class="color">
+                    								<span>Color</span>
+                    								<ul>
+                    									<li class="yellow active"><a href="#"></a></li>
+                    									<li class="green "><a href="#"></a></li>
+                    									<li class="red"><a href="#"></a></li>
+                    								</ul>
+                    							</div>
+                    							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius doloremque dolorum dolore omnis, similique vel nulla molestiae quae accusantium, incidunt.</p>
+                    						</div>
+                    					</div>
+                    				</div>
+                    			</div>
+                    		</div> -->
+                    		<!-- <div class="col-sm-4">
+                    			<div class="prod-cata">
+                    				<div class="ps-product">
+                    					<div class="product-image" style="background-image: url(https://imgus-vip.tongtool.com/s/qoqsztvtosqrznquosvvqxxwwrsquzusyuypJPGN.jpg)"></div>
+                    					<div class="product-desc">
+                    						 <span class="title">Product<strong>Name</strong></span> 
+                    						<span class="new">New</span> 
+                    						<span class="caption">Stainless Steel pipes</span> 
+                    						<span class="rating"> 
+                    							<i class="fas fa-star"></i> 
+                    							<i class="fas fa-star"></i> 
+                    							<i class="fas fa-star"></i>
+                    							<i class="fas fa-star"></i> 
+                    							<i class="fas fa-star grey"></i> 
+                    						</span>
+                    						<div class="price"> <strong>£9.00</strong> <span>£18.00</span></div>
+                    					</div>
+                    					<div class="product-info">
+                    						<div class="header showDetailsBtn"> Details</div>
+                    						<div class="info showDetailsContent">
+                    							<div class="size">
+                    								<span>Size</span>
+                    								<ul>
+                    									<li class=""><a href="#">S</a></li>
+                    									<li class=""><a href="#">L</a></li>
+                    									<li class=""><a href="#">M</a></li>
+                    									<li class=""><a href="#">XL</a></li>
+                    									<li class="active"><a href="#">3X</a></li>
+                    								</ul>
+                    							</div>
+                    							<div class="color">
+                    								<span>Color</span>
+                    								<ul>
+                    									<li class="yellow active"><a href="#"></a></li>
+                    									<li class="green "><a href="#"></a></li>
+                    									<li class="red"><a href="#"></a></li>
+                    								</ul>
+                    							</div>
+                    							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius doloremque dolorum dolore omnis, similique vel nulla molestiae quae accusantium, incidunt.</p>
+                    						</div>
+                    					</div>
+                    				</div>
+                    			</div>
+                    		</div> -->
+                    		<!-- <div class="col-sm-4">
+                    			<div class="prod-cata">
+                    				<div class="ps-product">
+                    					<div class="product-image" style="background-image: url(https://bsmedia.business-standard.com/_media/bs/img/article/2015-05/20/full/1432123181-7473.gif)"></div>
+                    					<div class="product-desc">
+                    						 <span class="title">Product<strong>Name</strong></span> 
+                    						<span class="new">New</span> 
+                    						<span class="caption">Stainless Steel pipes</span> 
+                    						<span class="rating"> 
+                    							<i class="fas fa-star"></i> 
+                    							<i class="fas fa-star"></i> 
+                    							<i class="fas fa-star"></i>
+                    							<i class="fas fa-star"></i> 
+                    							<i class="fas fa-star grey"></i> 
+                    						</span>
+                    						<div class="price"> <strong>£9.00</strong> <span>£18.00</span></div>
+                    					</div>
+                    					<div class="product-info">
+                    						<div class="header showDetailsBtn"> Details</div>
+                    						<div class="info showDetailsContent">
+                    							<div class="size">
+                    								<span>Size</span>
+                    								<ul>
+                    									<li class=""><a href="#">S</a></li>
+                    									<li class=""><a href="#">L</a></li>
+                    									<li class=""><a href="#">M</a></li>
+                    									<li class=""><a href="#">XL</a></li>
+                    									<li class="active"><a href="#">3X</a></li>
+                    								</ul>
+                    							</div>
+                    							<div class="color">
+                    								<span>Color</span>
+                    								<ul>
+                    									<li class="yellow active"><a href="#"></a></li>
+                    									<li class="green "><a href="#"></a></li>
+                    									<li class="red"><a href="#"></a></li>
+                    								</ul>
+                    							</div>
+                    							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius doloremque dolorum dolore omnis, similique vel nulla molestiae quae accusantium, incidunt.</p>
+                    						</div>
+                    					</div>
+                    				</div>
+                    			</div>
+                    		</div>
+                    		 <div class="col-sm-4">
+                    			<div class="prod-cata">
+                    				<div class="ps-product">
+                    					<div class="product-image" style="background-image: url(https://inhabitat.com/wp-content/blogs.dir/1/files/2016/06/Mushroom-Tower-Queens-Wind-TUrbines1-889x591.jpg)"></div>
+                    					<div class="product-desc">
+                    						 <span class="title">Product<strong>Name</strong></span> 
+                    						<span class="new">New</span> 
+                    						<span class="caption">Stainless Steel pipes</span> 
+                    						<span class="rating"> 
+                    							<i class="fas fa-star"></i> 
+                    							<i class="fas fa-star"></i> 
+                    							<i class="fas fa-star"></i>
+                    							<i class="fas fa-star"></i> 
+                    							<i class="fas fa-star grey"></i> 
+                    						</span>
+                    						<div class="price"> <strong>£9.00</strong> <span>£18.00</span></div>
+                    					</div>
+                    					<div class="product-info">
+                    						<div class="header showDetailsBtn"> Details</div>
+                    						<div class="info showDetailsContent">
+                    							<div class="size">
+                    								<span>Size</span>
+                    								<ul>
+                    									<li class=""><a href="#">S</a></li>
+                    									<li class=""><a href="#">L</a></li>
+                    									<li class=""><a href="#">M</a></li>
+                    									<li class=""><a href="#">XL</a></li>
+                    									<li class="active"><a href="#">3X</a></li>
+                    								</ul>
+                    							</div>
+                    							<div class="color">
+                    								<span>Color</span>
+                    								<ul>
+                    									<li class="yellow active"><a href="#"></a></li>
+                    									<li class="green "><a href="#"></a></li>
+                    									<li class="red"><a href="#"></a></li>
+                    								</ul>
+                    							</div>
+                    							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius doloremque dolorum dolore omnis, similique vel nulla molestiae quae accusantium, incidunt.</p>
+                    						</div>
+                    					</div>
+                    				</div>
+                    			</div>
+                    		</div>  -->
+                    	</div>
+						<div  align="center">
+							<!-- <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls> -->
+							<pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+						</div>		
+                    </div>
+                    <div class="modal fade" id="filterModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    	<div class="modal-dialog modal-dialog-centered" role="document">
+                    		<div class="modal-content">
+                    			<div class="modal-body">
+                    				<div class="row">
+                    					<div class="col-md-4">
+                    						<div class="styles-filter">
+                    							<h2>Styles <i class="fa fa-angle-right"></i></h2>
+                    						</div>
+                    					</div>
+                    					<div class="col-md-4">
+                    						<h3>Filter by style</h3>
+                    						<div class="filter-style-types">
+                    							<div class="form-group col-sm">
+                    								<label class="radio-inline">Indian
+                    									<input type="radio" checked="checked" name="style1" id="style1">
+                    									<span class="checkround"></span>
+                    								</label>
+                    							</div>
+                    							<div class="form-group col-sm">
+                    								<label class="radio-inline">Modern
+                    									<input type="radio" name="style2" id="style2">
+                    									<span class="checkround"></span>
+                    								</label>
+                    							</div>
+                    							<div class="form-group col-sm">
+                    								<label class="radio-inline">American
+                    									<input type="radio" name="style3" id="style3">
+                    									<span class="checkround"></span>
+                    								</label>
+                    							</div>
+                    							<div class="form-group col-sm">
+                    								<label class="radio-inline">Coastal
+                    									<input type="radio" name="style4" id="style4">
+                    									<span class="checkround"></span>
+                    								</label>
+                    							</div>
+                    							<div class="form-group col-sm">
+                    								<label class="radio-inline">Mediterranean
+                    									<input type="radio" name="style5" id="style5">
+                    									<span class="checkround"></span>
+                    								</label>
+                    							</div>
+                    							<div class="form-group col-sm">
+                    								<label class="radio-inline">Shabby-Chic Style
+                    									<input type="radio" name="style6" id="style6">
+                    									<span class="checkround"></span>
+                    								</label>
+                    							</div>
+                    							<div class="form-group col-sm">
+                    								<label class="radio-inline">Tropical
+                    									<input type="radio" name="style6" id="style6">
+                    									<span class="checkround"></span>
+                    								</label>
+                    							</div>
+                    						</div>
+                    					</div>
+                    					<div class="col-md-4">
+                    						<div class="filter-style-types mt-5">
+                    							<div class="form-group col-sm">
+                    								<label class="radio-inline">Modern
+                    									<input type="radio" name="style7" id="style7">
+                    									<span class="checkround"></span>
+                    								</label>
+                    							</div>
+                    							<div class="form-group col-sm">
+                    								<label class="radio-inline">American
+                    									<input type="radio" name="style8" id="style7">
+                    									<span class="checkround"></span>
+                    								</label>
+                    							</div>
+                    							<div class="form-group col-sm">
+                    								<label class="radio-inline">Coastal
+                    									<input type="radio" name="style9" id="style9">
+                    									<span class="checkround"></span>
+                    								</label>
+                    							</div>
+                    							<div class="form-group col-sm">
+                    								<label class="radio-inline">Mediterranean
+                    									<input type="radio" name="style10" id="style10">
+                    									<span class="checkround"></span>
+                    								</label>
+                    							</div>
+                    							<div class="form-group col-sm">
+                    								<label class="radio-inline">Shabby-Chic Style
+                    									<input type="radio" name="style11" id="style11">
+                    									<span class="checkround"></span>
+                    								</label>
+                    							</div>
+                    							<div class="form-group col-sm">
+                    								<label class="radio-inline">Tropical
+                    									<input type="radio" name="style12" id="style12">
+                    									<span class="checkround"></span>
+                    								</label>
+                    							</div>
+                    							<div class="form-group col-sm">
+                    								<label class="radio-inline">Indian
+                    									<input type="radio" checked="checked" name="style13" id="style13">
+                    									<span class="checkround"></span>
+                    								</label>
+                    							</div>
+                    						</div>
+                    					</div>
+                    				</div>
+                    			</div>
+                    			<div class="modal-footer">
+                    				<a href="" class="link-clear-all">Clear All</a>
+                    				<button type="button" class="btn btn-outline-blue">Done</button>
+                    			</div>
+                    		</div>
+                    	</div>
+                    </div>
+                    <!-- <div class="col-md-4 offset-md-4" align="center">
+                    	<nav aria-label="...">
+                    		<ul class="pagination">
+                    			<li class="page-item active">
+                    				<a class="page-link" href="#">1 <span class="sr-only">(current)</span></a>
+                    			</li>
+                    			<li class="page-item"><a class="page-link" href="#">2</a></li>
+                    			<li class="page-item"><a class="page-link" href="#">3</a></li>
+                    			<li class="page-item">
+                    				<a class="page-link" href="#">Next</a>
+                    			</li>
+                    		</ul>
+                    	</nav>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

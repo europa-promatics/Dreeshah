@@ -1,0 +1,460 @@
+<app-seller-header></app-seller-header>
+	<section class="seller-quotation-wrapper">
+		<!-- <div class="seller-quotation-wrapper"> -->
+			<div class="custom-container d-flex">
+				<app-seller-sidebar></app-seller-sidebar>
+				<div class="main-wrap">
+					<div class="card">
+						<div class="card-body">
+							<mat-tab-group>
+								<mat-tab label="All Requests">
+									<div class="col-md-12 mt-3">
+										<div class="db-header--wraap">
+										<div class="dashboard-table-heading">
+											<h1>All Quotation Request</h1>
+										</div>
+										<div class="user-search-input d-flex">
+											<div class="form-group mr-4">
+												<select class="custom-select" id="exampleFormControlSelect1">
+													<option>Approved</option>
+													<option>Rejected</option>
+													<option >Ask For Modification</option>
+													<option>Quotation Pending</option>
+													<option>Quotation Issued</option>
+													
+												</select>
+											</div>
+											<div class="form-group mb-0" >
+												<input type="text" name="search-user" placeholder="Search" (keyup)="filterByServiceName($event.target.value,'all')" class="form-control">
+											</div>
+											<div class="quote--chat--btn">
+												<a routerLink="/mychat" class="btn btn-change-fill min-width-0"><i class="fa fa-comments"></i></a>
+												<a routerLink="/seller-modify-requests" class="btn btn-change-fill min-width-0"><i class="fal fa-comment-alt-edit"></i></a>
+											</div>
+										</div>
+
+										</div>
+										<div class="dashboard-table margn-top">
+											<table class="table table-bordered table-striped" *ngIf="quotationCount != 0">
+												<thead class="thead-light">
+													<tr>
+														<th scope="col">Sr no.</th>
+														<th scope="col">Quotation Ref</th>
+														<th scope="col">Date</th>
+														<th scope="col">Service Name</th>
+														<th scope="col">Service image</th>
+														<th scope="col">Service Submission Date</th>
+														<th scope="col">Quotation Status</th>
+														<th scope="col">View</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr *ngFor = "let list of allQuotations let i = index" >
+														<th scope="row">{{ i + 1 }}</th>
+														<td>{{ list.quotation_ref ? list.quotation_ref: 'N/A' }}</td>
+														<td>{{ list.date | date:'dd-MMM-yyyy'}}</td>
+														<td class=""><a routerLink="/sellerQuotationDetails/{{list._id}}" class="theme-link">{{ list.service_name ? list.service_name: 'N/A' }}</a></td>
+														<td class="quotation-service-img">
+															<!-- <img src="https://www.thestatesman.com/wp-content/uploads/2019/08/stainless-steel.jpg" class="img-fluid"> -->
+															<img src="{{image_path}}{{list.professional_service_id.service_image}}" />
+														</td>
+														<td>{{ list.expected_date | date:'dd-MMM-yyyy'}}</td>
+														<!-- <td><a routerLink="/seller-create-order" class="btn btn-change-fill btn-sm">Create Order <i class="fa fa-plus ml-2"></i></a></td> -->
+														<td ><span class="badge badge-dark status-badge">{{list.status}}</span></td>
+														<!-- <td *ngIf="list.status == 'in-progress'"><span class="badge badge-dark status-badge">In Progress</span></td> -->
+														<!-- <td *ngIf="list.status == 'rejected'"><span class="badge badge-danger status-badge">Rejected</span></td> -->
+														<td><a routerLink="/sellerQuotationDetails/{{list._id}}" class="btn btn-round-blue"><i class="fa fa-eye"></i></a></td>
+													</tr>
+												</tbody>
+											</table>
+											
+											<div *ngIf="quotationCount == 0">
+												<h2>No Record</h2>
+											</div>
+										</div>
+										<div>
+											<!-- <mat-paginator [length]="length" [pageSize]="10" [pageSizeOptions]="getPageSizeOptions()"
+											(page)="paginationOptionChange($event)"> -->
+											<mat-paginator [length]="length" [pageSize]="10" 
+											(page)="paginationOptionChange($event)">
+										</mat-paginator>
+										</div>
+									</div>
+								</mat-tab>
+								<mat-tab label="New Request"> 
+									<div class="col-md-12 mt-3">
+										<div class="db-header--wraap">
+										<div class="dashboard-table-heading">
+											<h1>New Request</h1>
+										</div>
+										<div class="user-search-input">
+											<div class="form-group mb-0">
+												<input type="text" name="search-user" placeholder="Search" (keyup)="filterByServiceName($event.target.value,'pending')" class="form-control">
+											</div>
+										</div>
+										</div>
+										<div class="dashboard-table margn-top">
+											<table class="table table-bordered table-striped" *ngIf="pendingCount != 0">
+												<thead class="thead-light">
+													<tr>
+														<th scope="col">Sr no.</th>
+														<th scope="col">Quotation Ref</th>
+														<th scope="col">Date</th>
+														<th scope="col">Service Name</th>
+														<th scope="col">Service image</th>
+														<th scope="col">Service Submission Date</th>
+														<th scope="col">Accept/Reject</th>
+														<th scope="col">View</th>
+													</tr>
+												</thead>
+												<tbody>
+													 <tr *ngFor = "let list of pendingList let i = index" >
+														<th scope="row">{{ i + 1 }}</th>
+														<td>{{ list.quotation_ref ? list.quotation_ref: 'N/A' }}</td>
+														<td>{{ list.date | date:'dd-MMM-yyyy'}}</td>
+														<td class=""><a routerLink="/sellerQuotationDetails/{{list._id}}" class="theme-link">{{ list.service_name ? list.service_name: 'N/A' }}</a></td> 
+														<td class="quotation-service-img">
+															<!-- <img src="https://www.thestatesman.com/wp-content/uploads/2019/08/stainless-steel.jpg" class="img-fluid"> -->
+															<img src="{{image_path}}{{list.professional_service_id.service_image}}" />
+														</td>
+														<td>{{ list.expected_date | date:'dd-MMM-yyyy'}}</td>
+														<!-- <td *ngIf="list.expected_date = 'pending'"> -->
+														<td>
+															<!-- <span class
+
+																="badge badge-warning status-badge">Pending</span>-->
+															<div class="btn-group mt-1 mb-1" role="group">
+																<button class="btn btn-change-fill btn-sm min-width-40" [routerLink]="['/seller-add-issue-quote']" [queryParams]="{quote_id:list._id, cust_id:list.customer_id}" ><i class="fa fa-check"></i></button>
+																<button class="btn btn-change-fill btn-sm min-width-40" (click)="rejectQuote(list)" ><i class="fa fa-times"></i></button>
+															</div>
+														</td>
+														<td><a routerLink="/sellerQuotationDetails/{{list._id}}" class="btn btn-round-blue"><i class="fa fa-eye"></i></a></td>
+													</tr>
+												</tbody>
+											</table>
+
+											<div *ngIf="pendingCount == 0">
+												<h2>No Record</h2>
+											</div>
+										</div>
+									</div>
+								</mat-tab>
+								<mat-tab label="Issue Quotation">
+									<div class="col-md-12 mt-3">
+										<div class="db-header--wraap">
+										<div class="dashboard-table-heading">
+											<h1>All In Progress Request</h1>
+										</div>
+										<div class="user-search-input">
+											<div class="form-group mb-0">
+												<input type="text" name="search-user" placeholder="Search" (keyup)="filterByServiceName($event.target.value,'inprogress')" class="form-control">
+											</div>
+										</div>
+										</div>
+										<div class="dashboard-table margn-top">
+											<table class="table table-bordered table-striped" *ngIf="progressCount != 0">
+												<thead class="thead-light">
+													<tr>
+														<th scope="col">Sr no.</th>
+														<th scope="col">Quotation Ref</th>
+														<th scope="col">Date</th>
+														<th scope="col">Service Name</th>
+														<th scope="col">Service image</th>
+														<th scope="col">Service Submission Date</th>
+														<th scope="col">Quotation Status</th>
+														<th scope="col">View</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr *ngFor = "let list of progressList let i = index" >
+														<th scope="row">{{ i + 1 }}</th>
+														<td>{{ list.quotation_ref ? list.quotation_ref: 'N/A' }}</td>
+														<td>{{ list.date | date:'dd-MMM-yyyy'}}</td>
+														<td class=""><a routerLink="/sellerQuotationDetails/{{list._id}}" class="theme-link">{{ list.service_name ? list.service_name: 'N/A' }}</a></td>
+														<td class="quotation-service-img">
+															<!-- <img src="https://www.thestatesman.com/wp-content/uploads/2019/08/stainless-steel.jpg" class="img-fluid"> -->
+															<img src="{{image_path}}{{list.professional_service_id.service_image}}" />
+														</td>
+														<td>{{ list.expected_date | date:'dd-MMM-yyyy'}}</td>
+														<!-- <td *ngIf="list.expected_date = 'pending'"> -->
+														<td>
+															 <span class
+
+																="badge badge-dark status-badge">In Progress</span>
+															
+														</td>
+														<td><a routerLink="/sellerQuotationDetails/{{list._id}}" class="btn btn-round-blue"><i class="fa fa-eye"></i></a></td>
+													</tr>
+												</tbody>
+											</table>
+											<div *ngIf="progressCount == 0">
+												<h2>No Record</h2>
+											</div>
+										</div>
+									</div>
+								</mat-tab>
+								<mat-tab label="Modify Requests" matBadge="1">
+									<div class="col-md-12 mt-3">
+										<div class="db-header--wraap">
+										<div class="dashboard-table-heading">
+											<h1>All Modify Requests</h1>
+										</div>
+										<div class="user-search-input">
+											<div class="form-group mb-0">
+												<input type="text" name="search-user" placeholder="Search" (keyup)="filterByServiceName($event.target.value,'modify')" class="form-control">
+											</div>
+										</div>
+										</div>
+										<div class="dashboard-table margn-top">
+											<table class="table table-bordered table-striped" *ngIf="modifyCount != 0">
+												<thead class="thead-light">
+													<tr>
+														<th scope="col">Sr no.</th>
+														<th scope="col">Quotation Ref</th>
+														<th scope="col">Date</th>
+														<th scope="col">Service Name</th>
+														<th scope="col">Service image</th>
+														<th scope="col">Service Submission Date</th>
+														<th scope="col">Quotation Status</th>
+														<th scope="col">Action</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr *ngFor = "let list of modifyList let i = index" >
+														<th scope="row">{{ i + 1 }}</th>
+														<td>{{ list.quotation_ref ? list.quotation_ref: 'N/A' }}</td>
+														<td>{{ list.date | date:'dd-MMM-yyyy'}}</td>
+														<td class=""><a routerLink="/sellerQuotationDetails/{{list._id}}" class="theme-link">{{ list.service_name ? list.service_name: 'N/A' }}</a></td>
+														<td class="quotation-service-img">
+															<!-- <img src="https://www.thestatesman.com/wp-content/uploads/2019/08/stainless-steel.jpg" class="img-fluid"> -->
+															<img src="{{image_path}}{{list.professional_service_id.service_image}}" />
+														</td>
+														<td>{{ list.expected_date | date:'dd-MMM-yyyy'}}</td>
+														<!-- <td *ngIf="list.expected_date = 'pending'"> -->
+														<td>
+															 <span class
+
+																="badge badge-dark status-badge">In Progress</span>
+															
+														</td>
+														<td><a routerLink="/sellerQuotationDetails/{{list._id}}" class="btn btn-round-blue"><i class="fa fa-eye"></i></a></td>
+													</tr>
+													
+												</tbody>
+											</table>
+											<div *ngIf="modifyCount == 0">
+												<h2>No Record</h2>
+											</div>
+										</div>
+									</div>
+								</mat-tab>
+								<mat-tab label="Rejected">
+									<div class="col-md-12 mt-3">
+										<div class="db-header--wraap">
+										<div class="dashboard-table-heading">
+											<h1>All Rejected Request</h1>
+										</div>
+										<div class="user-search-input">
+											<div class="form-group mb-0">
+												<input type="text" name="search-user" placeholder="Search" (keyup)="filterByServiceName($event.target.value,'rejected')" class="form-control">
+											</div>
+										</div>
+										</div>
+										<div class="dashboard-table margn-top">
+											<table class="table table-bordered table-striped" *ngIf="rejectCount != 0">
+												<thead class="thead-light">
+													<tr>
+														<th scope="col">Sr no.</th>
+														<th scope="col">Quotation Ref</th>
+														<th scope="col">Date</th>
+														<th scope="col">Service Name</th>
+														<th scope="col">Service Image</th>
+														<th scope="col">Service Submission Date</th>
+														<th scope="col">Quotation Status</th>
+														<th scope="col">View</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr *ngFor = "let list of rejectedList let i = index" >
+														<th scope="row">{{ i + 1 }}</th>
+														<td>{{ list.quotation_ref ? list.quotation_ref: 'N/A' }}</td>
+														<td>{{ list.date | date:'dd-MMM-yyyy'}}</td>
+														<td class=""><a routerLink="/sellerQuotationDetails/{{list._id}}" class="theme-link">{{ list.service_name ? list.service_name: 'N/A' }}</a></td>
+														<td class="quotation-service-img">
+															<!-- <img src="https://www.thestatesman.com/wp-content/uploads/2019/08/stainless-steel.jpg" class="img-fluid"> -->
+															<img src="{{image_path}}{{list.professional_service_id.service_image}}" />
+														</td>
+														<td>{{ list.expected_date | date:'dd-MMM-yyyy'}}</td>
+														<!-- <td><a routerLink="/seller-create-order" class="btn btn-change-fill btn-sm">Create Order <i class="fa fa-plus ml-2"></i></a></td> -->
+														<td *ngIf="list.status == 'rejected'"><span class="badge badge-danger status-badge">Rejected</span></td>
+														<td><a routerLink="/sellerQuotationDetails/{{list._id}}" class="btn btn-round-blue"><i class="fa fa-eye"></i></a></td>
+													</tr>
+												</tbody>
+											</table>
+											<div *ngIf="rejectCount == 0">
+												<h2>No Record</h2>
+											</div>
+										</div>
+									</div>
+								 </mat-tab>
+								<mat-tab label="Approved">
+									<div class="col-md-12 mt-3">
+										<div class="db-header--wraap">
+										<div class="dashboard-table-heading">
+											<h1>All Approved Request</h1>
+										</div>
+										<div class="user-search-input">
+											<div class="form-group mb-0">
+												<input type="text" name="search-user" placeholder="Search" (keyup)="filterByServiceName($event.target.value,'approved')" class="form-control">
+											</div>
+										</div>
+										</div>
+										<div class="dashboard-table margn-top">
+											<table class="table table-bordered table-striped" *ngIf="approvedCount != 0">
+												<thead class="thead-light">
+													<tr>
+														<th scope="col">Sr no.</th>
+														<th scope="col">Quotation Ref</th>
+														<th scope="col">Date</th>
+														<th scope="col">Service Name</th>
+														<th scope="col">Service image</th>
+														<th scope="col">Service Submission Date</th>
+														<th scope="col">Quotation Status</th>
+														<th scope="col">Action</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr *ngFor = "let list of approvedList let i = index" >
+														<th scope="row">{{ i + 1 }}</th>
+														<td>{{ list.quotation_ref ? list.quotation_ref: 'N/A' }}</td>
+														<td>{{ list.date | date:'dd-MMM-yyyy'}}</td>
+														<td class=""><a routerLink="/sellerQuotationDetails/{{list._id}}" class="theme-link">{{ list.service_name ? list.service_name: 'N/A' }}</a></td>
+														<td class="quotation-service-img">
+															<!-- <img src="https://www.thestatesman.com/wp-content/uploads/2019/08/stainless-steel.jpg" class="img-fluid"> -->
+															<img src="{{image_path}}{{list.professional_service_id.service_image}}" />
+														</td>
+														<td>{{ list.expected_date | date:'dd-MMM-yyyy'}}</td>
+														<td><a [routerLink]="['/seller-create-order']" [queryParams]="{quote_id: list._id, quote_ref:list.quotation_ref,status:list.status}" class="btn btn-change-fill btn-sm">Create Order <i class="fa fa-plus ml-2"></i></a></td>
+														
+														<td><a routerLink="/sellerQuotationDetails/{{list._id}}" class="btn btn-round-blue"><i class="fa fa-eye"></i></a></td>
+													</tr>
+													
+												</tbody>
+											</table>
+											<div *ngIf="approvedCount == 0">
+												<h2>No Record</h2>
+											</div>
+										</div>
+									</div>
+								 </mat-tab>
+								<mat-tab label="Completed">
+									<div class="col-md-12 mt-3">
+										<div class="db-header--wraap">
+										<div class="dashboard-table-heading">
+											<h1>All Completed Request</h1>
+										</div>
+										<div class="user-search-input">
+											<div class="form-group mb-0">
+												<input type="text" name="search-user" placeholder="Search" (keyup)="filterByServiceName($event.target.value,'completed')" class="form-control">
+											</div>
+										</div>
+										</div>
+										<div class="dashboard-table margn-top">
+											<table class="table table-bordered table-striped" *ngIf="completedCount != 0">
+												<thead class="thead-light">
+													<tr>
+														<th scope="col">Sr no.</th>
+														<th scope="col">Quotation Ref</th>
+														<th scope="col">Date</th>
+														<th scope="col">Service Name</th>
+														<th scope="col">Service image</th>
+														<th scope="col">Service Submission Date</th>
+														<th scope="col">Quotation Status</th>
+														<th scope="col">Action</th>
+													</tr>
+												</thead>
+												<tbody>
+
+													<tr *ngFor = "let list of completedList let i = index" >
+														<th scope="row">{{ i + 1 }}</th>
+														<td>{{ list.quotation_ref ? list.quotation_ref: 'N/A' }}</td>
+														<td>{{ list.date | date:'dd-MMM-yyyy'}}</td>
+														<td class=""><a routerLink="/sellerQuotationDetails/{{list._id}}" class="theme-link">{{ list.service_name ? list.service_name: 'N/A' }}</a></td>
+														<td class="quotation-service-img">
+															<!-- <img src="https://www.thestatesman.com/wp-content/uploads/2019/08/stainless-steel.jpg" class="img-fluid"> -->
+															<img src="{{image_path}}{{list.professional_service_id.service_image}}" />
+														</td>
+														<td>{{ list.expected_date | date:'dd-MMM-yyyy'}}</td>
+														<td ><span class="badge badge-success status-badge">{{list.status}}</span></td> 
+														 <td *ngIf="list.status == 'rejected'"><span class="badge badge-danger status-badge">Rejected</span></td>
+														<td><a routerLink="/sellerQuotationDetails/{{list._id}}" class="btn btn-round-blue"><i class="fa fa-eye"></i></a></td>
+													</tr>
+													
+												</tbody>
+											</table>
+
+											<div *ngIf="completedCount == 0">
+												<h2>No Record</h2>
+											</div>
+										</div>
+									</div>
+								 </mat-tab>
+								<mat-tab label="Closed">
+									<div class="col-md-12 mt-3">
+										<div class="db-header--wraap">
+										<div class="dashboard-table-heading">
+											<h1>All Closed Request</h1>
+										</div>
+										<div class="user-search-input">
+											<div class="form-group mb-0">
+												<input type="text" name="search-user" placeholder="Search" class="form-control">
+											</div>
+										</div>
+										</div>
+										<div class="dashboard-table margn-top">
+											<table class="table table-bordered table-striped" *ngIf="closedCount != 0">
+												<thead class="thead-light">
+													<tr>
+														<th scope="col">Sr no.</th>
+														<th scope="col">Quotation Ref</th>
+														<th scope="col">Date</th>
+														<th scope="col">Service Name</th>
+														<th scope="col">Service image</th>
+														<th scope="col">Service Submission Date</th>
+														<th scope="col">Quotation Status</th>
+														<th scope="col">Action</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr *ngFor = "let list of closedList let i = index" >
+														<th scope="row">{{ i + 1 }}</th>
+														<td>{{ list.quotation_ref ? list.quotation_ref: 'N/A' }}</td>
+														<td>{{ list.date | date:'dd-MMM-yyyy'}}</td>
+														<td class=""><a routerLink="/sellerQuotationDetails/{{list._id}}" class="theme-link">{{ list.service_name ? list.service_name: 'N/A' }}</a></td>
+														<td class="quotation-service-img">
+															<!-- <img src="https://www.thestatesman.com/wp-content/uploads/2019/08/stainless-steel.jpg" class="img-fluid"> -->
+															<img src="{{image_path}}{{list.professional_service_id.service_image}}" />
+														</td>
+														<td>{{ list.expected_date | date:'dd-MMM-yyyy'}}</td>
+														<!-- <td><a routerLink="/seller-create-order" class="btn btn-change-fill btn-sm">Create Order <i class="fa fa-plus ml-2"></i></a></td> -->
+														 <td *ngIf="list.status == 'rejected'"><span class="badge badge-danger status-badge">Rejected</span></td>
+														<td><a routerLink="/sellerQuotationDetails/{{list._id}}" class="btn btn-round-blue"><i class="fa fa-eye"></i></a></td>
+													</tr>
+													 
+												</tbody>
+											</table>
+											<div *ngIf="closedCount == 0">
+												<h2>No Record</h2>
+											</div>
+										</div>
+									</div>
+								</mat-tab>
+							</mat-tab-group>
+						</div>
+					</div>
+				</div>
+			</div>
+		<!-- </div> -->
+		
+	</section>
+<app-footer></app-footer>

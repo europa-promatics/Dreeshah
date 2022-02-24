@@ -1,0 +1,80 @@
+<app-seller-header></app-seller-header>
+<div class="seller-quotation-d-wrapper">
+	<div class="custom-container d-flex">
+		<app-seller-sidebar></app-seller-sidebar>
+		<div class="main-wrap">
+			<div class="card">
+				<div class="card-body">
+					<div class="row">
+						<div class="col-md-12">	
+							<div class="card margn-top seller-quotation-d-card">
+								<div class="card-body">
+									<div class="row border-bottom">
+										<div class="col-md-3">	
+											<div class="dashboard-table-heading ">
+												<h1>{{quoteData ? quoteData.service_name : ""}}</h1>
+											</div>
+										</div>
+										<div class="col-md-9">
+												<div class="quotation-detail float-right">
+													<a class="btn btn-change-fill" role="button" [routerLink]="['/seller-add-issue-quote']" [queryParams]="{quote_id: this.quote_id, cust_id:this.id}">Issue Quotation</a>
+												</div>
+											</div>
+									</div>
+									<div class="form-info-quotation">
+										<div class="row">	
+											<div class="col-md-9">
+												<div class="form-field-data">
+													<p>
+														<span class="form-label-data">Customer Name:</span> <span class="form-value-data">{{quoteData ? quoteData.name : ""}}</span>
+													</p>
+													<p>
+														<span class="form-label-data">Email:</span> <span class="form-value-data">{{quoteData ? quoteData.email : ""}}</span>
+													</p>
+													<p>
+														<span class="form-label-data">Phone Number:</span> <span class="form-value-data">{{quoteData ? quoteData.phone_number : ""}}</span>
+													</p>
+													<p>
+														<span class="form-label-data">Quotation ref:</span> <span class="form-value-data">{{quoteData ? quoteData.quotation_ref : ""}}</span>
+													</p>
+													<p>
+														<span class="form-label-data">Date and Time:</span> <span class="form-value-data">{{quoteData ? quoteData.date : ""}}</span>
+													</p>
+													<p>
+														<span class="form-label-data">Sales Representative:</span> <span class="form-value-data">{{quoteData ? quoteData.sales_representative : ""}}</span>
+													</p>
+													<p>
+														<span class="form-label-data">Service Name:</span> <span class="form-value-data">{{quoteData ? quoteData.service_name : ""}}</span>
+													</p>
+													<p>
+														<span class="form-label-data">Location:</span> <span class="form-value-data">{{quoteData ? quoteData.location : ""}}</span>
+													</p>
+													<!-- <p>
+														<span class="form-label-data">Service Number:</span> <span class="form-value-data">{{quoteData.sales_representative}}</span>
+													</p> -->
+													<p>
+														<span class="form-label-data">Quantity:</span> <span class="form-value-data">{{quoteData ? quoteData.quantity : ""}} pcs</span>
+													</p>
+													<p>
+														<span class="form-label-data">Expected Date of Service:</span> <span class="form-value-data">{{quoteData ? quoteData.expected_date : ""}}</span>
+													</p>
+													<p>
+														<span class="form-label-data">Estimated Budget:</span> <span class="form-value-data">${{quoteData ? quoteData.estimated_budget : ""}}</span>
+													</p>
+													<p>
+														<span class="form-label-data">Description:</span> <span class="form-value-data">{{quoteData ? quoteData.description : ""}}</span>
+													</p>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<app-footer></app-footer>

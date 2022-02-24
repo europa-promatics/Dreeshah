@@ -1,0 +1,192 @@
+<!-- <app-db-header></app-db-header> -->
+<app-seller-header></app-seller-header>
+<div class="dashboard-wrapper">
+    <div class="custom-container d-flex">
+        <app-sidebar></app-sidebar>
+        <div class="main-wrap">
+            <div class="dashboard-heading d-flex justify-content-between">
+                <h1 class="text-left">Dashboard</h1>
+                <div class="form-group srch-bar position-relative">
+                    <input routerLink="/search" type="text" class="form-control" placeholder="Search">
+                    <i class="fa fa-search"></i>
+                </div>
+            </div>
+            <div class="db-wrapper">
+                <div class="row">
+                    <div class="col-3">
+                        <div class="card  db-card" id="db-card1">
+                            <div class="card-body">
+                                <span class="views-wrapper">
+                                    <h3>Total Sales</h3>
+                                    <p><i class="fa fa-arrow-up"></i>
+                                        $89860000
+                                    </p>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="card db-card" id="db-card2">
+                            <div class="card-body">
+                                <span class="views-wrapper">
+                                    <h3>Total Income</h3>
+                                    <p><i class="fa fa-arrow-up"></i>
+                                        $568000
+                                    </p>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="card  db-card" id="db-card3">
+                            <div class="card-body">
+                                <span class="views-wrapper">
+                                    <h3>Total Clients</h3>
+                                    <p><i class="fa fa-arrow-up"></i>
+                                        1500
+                                    </p>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="card  db-card" id="db-card4">
+                            <div class="card-body">
+                                <span class="views-wrapper">
+                                    <h3>Total Revenue</h3>
+                                    <p><i class="fa fa-arrow-up"></i>
+                                        $580000
+                                    </p>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <section class="dashboard-card-wrapper">
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="card dashboard-card">
+                                <div class="card-body">
+                                    <div class="chart-relative">
+                                        <div id="chartdiv" class="chart-common"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="card dashboard-card">
+                                <div class="card-body">
+                                    <div class="chart-relative">
+                                        <div id="chartdiv2" class="chart-common"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="dashboard-table-wrapper">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="dashboard-table-heading">
+                                        <h1>Recent orders</h1>
+                                    </div>
+                                    <div class="dashboard-table">
+                                        <table class="table table-bordered">
+                                            <thead class="thead-dark">
+                                                <tr>
+                                                    <th scope="col">Sr no.</th>
+                                                    <th scope="col">OrderId</th>
+                                                    <th scope="col">Customers</th>
+                                                    <th scope="col">From</th>
+                                                    <th scope="col">Price</th>
+                                                    <th scope="col">Status</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <th scope="row">1</th>
+                                                    <td><a href="#" class="order-id-link">464649</a></td>
+                                                    <td>Charles</td>
+                                                    <td>Brazil</td>
+                                                    <td>$299</td>
+                                                    <td><span class="badge badge-danger status-badge">Cancelled</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">2</th>
+                                                    <td><a href="#" class="order-id-link">858894</a></td>
+                                                    <td>Tom</td>
+                                                    <td>London</td>
+                                                    <td>$266</td>
+                                                    <td><span class="badge badge-success status-badge">Successful</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">3</th>
+                                                    <td><a href="#" class="order-id-link">526396</a></td>
+                                                    <td>James</td>
+                                                    <td>California</td>
+                                                    <td>$499</td>
+                                                    <td><span class="badge badge-success status-badge">Successful</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">4</th>
+                                                    <td><a href="#" class="order-id-link">415632</a></td>
+                                                    <td>Daniel</td>
+                                                    <td>Las vegas</td>
+                                                    <td>$699</td>
+                                                    <td><span class="badge badge-warning status-badge">Shipped</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">5</th>
+                                                    <td><a href="#" class="order-id-link">965874</a></td>
+                                                    <td>John</td>
+                                                    <td>California</td>
+                                                    <td>$299</td>
+                                                    <td><span class="badge badge-info status-badge">Processed</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">6</th>
+                                                    <td><a href="#" class="order-id-link">857496</a></td>
+                                                    <td>Tanzie</td>
+                                                    <td>New York</td>
+                                                    <td>$399</td>
+                                                    <td><span class="badge badge-danger status-badge">Cancelled</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">7</th>
+                                                    <td><a href="#" class="order-id-link">968745</a></td>
+                                                    <td>Marko</td>
+                                                    <td>Russia</td>
+                                                    <td>$999</td>
+                                                    <td><span class="badge badge-warning status-badge">Shipped</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">8</th>
+                                                    <td><a href="#" class="order-id-link">321456</a></td>
+                                                    <td>Belgiri</td>
+                                                    <td>Korea</td>
+                                                    <td>$299</td>
+                                                    <td><span class="badge badge-info status-badge">Processed</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">9</th>
+                                                    <td><a href="#" class="order-id-link">464649</a></td>
+                                                    <td>Charles</td>
+                                                    <td>Brazil</td>
+                                                    <td>$299</td>
+                                                    <td><span class="badge badge-danger status-badge">Cancelled</span></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

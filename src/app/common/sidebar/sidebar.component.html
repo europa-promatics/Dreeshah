@@ -1,0 +1,68 @@
+<div class="user-sidebar-wrapper">
+    <div class="d-flex" id="wrapper">
+        <div id="sidebar-wrapper">
+            <div class="list-group list-group-flush">
+                <div class="sidebar-menu">
+                    <ul class="no-list">
+                        <li>
+                            <a routerLink="/dashboard" class="sidebar-list-item list-group-item list-group-item-action active"><i class="fa fa-chart-line mr-3"></i>Dashboard</a>
+                        </li>
+                        <li>
+                            <div class="filter-accordion">
+                                <div class="accordion" id="accordionList">
+                                    <a href="" class="list-group-item sidebar-list-item list-group-item-action accordion-toggle collapsed" data-toggle="collapse" data-target="#collapseList">
+	                                    <i class="fa fa-user mr-3"></i>My Profile 
+	                                    <span class="pls_ico abs_icn_fq"><i class="fa fa-angle-down"></i></span> <span class="mns_ico abs_icn_fq"><i class="fa fa-angle-up"></i></span>     
+	                                </a>
+                                    <div id="collapseList" class="collapse" aria-labelledby="headingOne" data-parent="#accordionList">
+                                        <ul>
+                                            <li><a routerLink="/myprofile" class="list-group-item sidebar-list-item list-group-item-action" ><i class="fa fa-tasks mr-3"></i>Personal Information</a></li>
+                                            <li><a routerLink="/address" class="list-group-item sidebar-list-item list-group-item-action"><i class="fa fa-pencil mr-3"></i>Address</a></li>
+                                            <li><a routerLink="/change-password" class="list-group-item sidebar-list-item list-group-item-action"><i class="fa fa-key mr-3"></i>Change Password</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <a routerLink="/mywishlist" class="list-group-item sidebar-list-item list-group-item-action"><i class="fa fa-heart mr-3"></i>My Wishlist</a>
+                        </li>
+                        <li>
+                            <a routerLink="/mycart" class="list-group-item sidebar-list-item list-group-item-action"><i class="fa fa-shopping-cart mr-3"></i>My Cart</a>
+                        </li>
+                        <li>
+                            <a routerLink="/my-albums" class="list-group-item sidebar-list-item list-group-item-action"><i class="fa fa-images mr-3"></i>My Albums</a>
+                        </li>
+                        <li>
+                            <a routerLink="/my-appointment" class="list-group-item sidebar-list-item list-group-item-action"><i class="fa fa-ticket mr-3"></i>My Bookings</a>
+                        </li>
+                        <li>
+                            <a routerLink="/myorders" class="list-group-item sidebar-list-item list-group-item-action"><i class="fa fa-shopping-cart mr-3"></i>My Orders</a>
+                        </li>
+                        <li>
+                            <a routerLink="/customer-quotation" class="list-group-item sidebar-list-item list-group-item-action"><i class="fa fa-file mr-3"></i>My Quotation</a>
+                        </li>
+                        <li>
+                            <a routerLink="/customer-quotation-management" class="list-group-item sidebar-list-item list-group-item-action"><i class="fa fa-shopping-cart mr-3"></i>My Quotation Management</a>
+                        </li>
+                        <li>
+                            <a class="list-group-item sidebar-list-item list-group-item-action"><i class="fa fa-credit-card mr-3"></i>My Payments</a>
+                        </li>
+                        <li>
+                            <a routerLink="/wallet" class="list-group-item sidebar-list-item list-group-item-action"><i class="fa fa-credit-card mr-3"></i>Wallet</a>
+                        </li>  
+                                            <!--   <li>
+                            <a rouetr class="list-group-item sidebar-list-item list-group-item-action"><i class="fa fa-cog mr-3"></i>Account Settings</a>
+                        </li>
+  <li>
+                            <a routerLink="/change-password" class="list-group-item sidebar-list-item list-group-item-action"><i class="fa fa-cog mr-3"></i>Change Password</a>
+                        </li> -->
+                        <li>
+                            <a (click)="logout()" class="list-group-item sidebar-list-item list-group-item-action"><i class="fa fa-sign-out mr-3"></i>Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

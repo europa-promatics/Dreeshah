@@ -1,0 +1,209 @@
+<!--<app-db-header></app-db-header>-->
+<app-seller-header></app-seller-header>
+<!-- <div class="view-details-wrapper">
+ -->    <div class="d-flex">
+        <app-sidebar></app-sidebar>
+        <div class="main-wrap mb-5">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="view-details-header">
+                                <div class="view-details-order-link">
+                                    <p><a routerLink="/myorders"><i class="fa fa-angle-left mr-2"></i>Back to Orders</a></p>
+                                </div>
+                                <div class="view-details-product-name">
+                                    <h1 class="">{{orderProdDetail?.product_id?.product_title}} <span class="badge badge-info ml-3"></span></h1>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="view-details-left-card">
+                                        <div class="card mt-3 view-details-card">
+                                            <div class="card-header view-details-card-header">
+                                                <div class="view-details-right-card-header">
+                                                    <div class="view-details-order-id">
+                                                        <p> Order Status</p>
+                                                    </div>
+                                                    <div class="view-details-print-invoice">
+                                                        <button class="btn btn-change-fill">Date:{{ orderProdDetail?.updatedAt | date :'medium'}}</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="tab-content" id="myTabContent">
+                                                <div class="tab-pane fade show active p-3" id="one" role="tabpanel" aria-labelledby="one-tab">
+                                                    <div class="view-item-details-wrapper">
+                                                        <div class="timeline">
+                                                            <div class="timeline-container right">
+                                                                <div class="content">
+                                                                    
+                                                                    <p class="mt-2">Order Placed</p>
+                                                                    <!-- <ul class="list-group">
+                                                                        <li class="list-group-item"><span>5 FEB</span>  Cras justo odio</li>
+                                                                        <li class="list-group-item"><span>7 FEB</span>  Dapibus ac facilisis in</li>
+                                                                        <li class="list-group-item"><span>8 FEB</span>  Morbi leo risus</li>
+                                                                        <li class="list-group-item"><span>9 FEB</span>  Porta ac consectetur ac</li>
+                                                                        <li class="list-group-item"><span>10 FEB</span> Vestibulum at eros</li>
+                                                                        </ul> -->
+                                                                </div>
+                                                            </div>
+                                                          
+                                                            <div class="timeline-container active right">
+                                                                <div class="content ">
+                                                                    <p class="mt-2">Order Confirmation</p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="timeline-container active right">
+                                                                <div class="content">
+                                                                    <p class="mt-2">Order Dispatched</p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="timeline-container active right">
+                                                                <div class="content">
+                                                                    <p class="mt-2">Order Shipped</p>
+                                                                   
+                                                                </div>
+                                                            </div>
+                                                            <div class="timeline-container active right">
+                                                                <div class="content">
+                                                                    <p class="mt-2">Order Delivered</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-8" >
+                                    <div class="card mt-3 view-details-card">
+                                        <div class="card-header view-details-card-header">
+                                            <div class="view-details-right-card-header">
+                                                <div class="view-details-order-id">
+                                                    <p>OrderID: {{orderProdDetail?.order_id?.order_no}}</p>
+                                                </div>
+                                                <div class="view-details-print-invoice">
+                                                    <button class="btn btn-change-fill">Print Invoice</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-content" id="myTabContent">
+                                            <div class="tab-pane fade show active p-3" id="one" role="tabpanel" aria-labelledby="one-tab">
+                                                <div class="row">
+                                                    <div class="col-md-7">
+                                                        <div class="view-item-details-wrapper">
+                                                            <div class="vd-item-details-heading">
+                                                                <h3>Item Details</h3>
+                                                            </div>
+                                                            <div class="wrap mb-0 ">
+                                                                <div class="cart view-details-cart">
+                                                                    <ul class="cartWrap">
+                                                                        <li class="items odd view-details-items">
+                                                                            <div class="infoWrap">
+                                                                                <div class="cartSection">
+                                                                                    <img src="{{imgpath}}{{orderProdDetail?.product_id?.product_media[0]?.name}}" alt="" class="itemImg mb-3 ml-0" />
+                                                                                  
+                                                                                    <h3>{{orderProdDetail?.product_id?.product_title}}</h3>
+
+                                                                                    <h4 class="item-price">${{orderProdDetail?.product_id?.pricing?.price}}</h4>
+                                                                                    <div class="sav-later-btn mt-5 ml-0">
+                                                                                        <a routerLink="/products-details/{{orderProdDetail?._id}}" class="btn btn-change-fill">View Item</a>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-5">
+                                                       <!-- <div class="view-details-item-details">
+                                                            <div class="supplier-details mt-2">
+                                                                <div class="supplier-heading">
+                                                                    <h3>Supplier</h3>
+                                                                </div>
+                                                                <div class="supplier-info">
+                                                                    <p>Westcoast Mountains Co.</p>
+                                                                    <p>98888,Manufacturer Street</p>
+                                                                    <p>Toronto,Canada</p>
+                                                                    <p>988964</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>-->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-content" id="myTabContent">
+                                            <div class="tab-pane fade show active p-3" id="one" role="tabpanel" aria-labelledby="one-tab">
+                                                <div class="row">
+                                                    <div class="col-md-7">
+                                                        <div class="view-item-details-wrapper">
+                                                            <div class="vd-item-details-heading">
+                                                                <h3>Price Structure </h3>
+                                                            </div>
+                                                            <div class="subtotal mt-2">
+                                                                <ul>
+                                                                    <li class="totalRow"><span class="label">Subtotal</span><span class="value label-value">${{orderProdDetail?.product_id?.pricing?.price}}</span></li>
+                                                                    <li class="totalRow"><span class="label">Shipping</span><span class="value label-value">{{orderProdDetail?.product_id?.shipping}}</span></li>
+                                                                  
+                                                                    <li class="totalRow final"><span class="label">Total</span><span class="value label-value">${{orderProdDetail?.product_id?.pricing.price}}</span></li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-5">
+                                                        <div class="view-details-item-details">
+                                                            <div class="supplier-details mt-2">
+                                                                <div class="supplier-heading">
+                                                                    <h3>Payment Status :{{orderProdDetail?.order_id?.payment_status}}</h3>
+                                                                </div>
+                                                                <div class="supplier-info">
+                                                                    <p></p>
+                                                                </div>
+                                                                <div class="qr-code-image" align="center">
+                                                                     <p>Payment Date: {{orderProdDetail?.order_id?.payment_date | date :'medium' }}</p>
+                                                                   <img src="https://pngimg.com/uploads/qr_code/qr_code_PNG2.png" class="img-fluid">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="view-item-details-wrapper mt-3">
+                                                            <div class="vd-item-details-heading">
+                                                                <h3>Pickup Information</h3>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-5">
+                                                                    <div class="pick-up-info">
+                                                                        <p>{{orderProdDetail?.order_id?.address?.address_line1}}</p>
+                                                                        <p>{{orderProdDetail?.order_id?.address?.address_line2}}</p>
+                                                                        <p>{{orderProdDetail?.order_id?.address?.city}}</p>
+                                                                        <p>{{orderProdDetail?.order_id?.address?.country}}</p>
+                                                                        <p>{{orderProdDetail?.order_id?.address?.state}}</p>
+                                                                        <p>{{orderProdDetail?.order_id?.address?.zip_code}}</p>
+                                                                        <p>{{orderProdDetail?.order_id?.address?.phone_number}}</p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-7">
+                                                                  <!--  <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d13687.527532239596!2d75.84176365!3d30.94586325!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1602824735247!5m2!1sen!2sin" width="350" height="250" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>-->
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- </div> -->
+<app-footer></app-footer>

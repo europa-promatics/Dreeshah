@@ -1,0 +1,1600 @@
+<app-seller-header></app-seller-header>
+<div class="seller-address-wrapper">
+    <div class="custom-container d-flex">
+        <app-seller-sidebar></app-seller-sidebar>
+        <div class="main-wrap">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="seller-address-info branch-head">
+                                <div class="seller-address-heading">
+                                    <h2>Branch Detail</h2>
+                                </div>
+                                <!-- <div class="seller-brnch-btn">
+                                    <a class="text-white" routerLink="/sellerEditBranch"><i class="fa fa-pencil mr-2"></i>Add Branch</a>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="saved-address-cards">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="profile-card-7 ">
+                                    <img *ngIf="!brImg"
+                                        src="https://cdn.pixabay.com/photo/2017/04/24/13/37/architecture-2256489_960_720.jpg"
+                                        class="img img-responsive">
+                                    <img *ngIf="brImg" src="{{profileUrl}}{{brImg}}" class="img img-responsive">
+                                    <div class="profile-content">
+                                        <div class="icon-inside">
+                                            <i class="fa fa-pencil" data-toggle="modal" data-target="#exampleModal"
+                                                aria-hidden="true"></i>
+                                        </div>
+                                        <div class="profile-name">General Details</div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="profile-overview">
+                                                    <p>First Name</p>
+                                                    <h5>{{firstName}}</h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="profile-overview">
+                                                    <p>Last Name</p>
+                                                    <h5>{{lastName}}</h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="profile-overview">
+                                                    <p>Email</p>
+                                                    <h5>{{email}}</h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="profile-overview">
+                                                    <p>Branch Name English</p>
+                                                    <h5>{{brEn}}</h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="profile-overview">
+                                                    <p>Branch Name Arabic</p>
+                                                    <h5>{{brAr}}</h5>
+                                                </div>
+                                            </div>
+                                            <!-- <div class="col-md-6">
+                                                <div class="profile-overview">
+                                                    <p>Branch Type</p>
+                                                    <h5>{{branchType}}</h5>
+                                                </div>
+                                            </div> -->
+                                            <!-- <div class="col-md-6">
+                                                <div class="profile-overview">
+                                                    <p>Branch Category</p>
+                                                    <h5>{{branchTypeCat}}</h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="profile-overview">
+                                                    <p>A Brief About the Branch</p>
+                                                    <h5>{{branchBrief}}</h5>
+                                                </div>
+                                            </div> -->
+                                            <!-- <div class="col-md-6">
+                                                <div class="profile-overview">
+                                                    <p>Work Email</p>
+                                                    <h5>info@tomsoftwaresolution.com</h5>
+                                                </div>
+                                            </div> -->
+                                            <div class="col-md-6">
+                                                <div class="profile-overview">
+                                                    <p>Branch Type</p>
+                                                    <h5>{{branchType}}</h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="profile-overview">
+                                                    <p>Branch Category</p>
+                                                    <h5>{{branchTypeCat}}</h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="profile-overview">
+                                                    <p>Brief About the Branch</p>
+                                                    <h5>{{branchBrief}}</h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <!-- <div class="profile-overview">
+                                                    <p>Certification & Awards</p>
+                                                    <span *ngFor="let img of certificationArr">
+                                                        <img *ngIf="certificationArr.length>0" src="{{imgUrl}}{{img.image}}" height="25px" width="25px">
+                                                    </span>
+                                                    
+                                                   
+                                                </div> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4" >
+                                <div class="profile-card-7 ">
+                                    <img *ngIf="!brImg"
+                                        src="https://cdn.pixabay.com/photo/2017/04/24/13/37/architecture-2256489_960_720.jpg"
+                                        class="img img-responsive">
+                                    <img *ngIf="brImg" src="{{profileUrl}}{{brImg}}" class="img img-responsive">
+                                    <div class="profile-content">
+                                        <div class="icon-inside">
+                                            <i class="fa fa-pencil" data-toggle="modal" data-target="#exampleModal" (click)="hello(1)"
+                                                aria-hidden="true"></i>
+                                        </div>
+                                        <div class="profile-name">Address Details</div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="profile-overview">
+                                                    <p>Country</p>
+                                                    <h5>{{country}}</h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="profile-overview">
+                                                    <p>State </p>
+                                                    <h5>{{state}}</h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="profile-overview">
+                                                    <p>Phone Number</p>
+                                                    <h5>{{phone_number}}</h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="profile-overview">
+                                                    <p>First Name </p>
+                                                    <h5>{{addr_first_name}}</h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="profile-overview">
+                                                    <p>Last Name</p>
+                                                    <h5>{{addr_last_name}}</h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="profile-overview">
+                                                    <p>Address Line 1</p>
+                                                    <h5>{{address_line_1}}</h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="profile-overview">
+                                                    <p>Address Line 2</p>
+                                                    <h5>{{address_line_2}}</h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="profile-overview">
+                                                    <p>Landmark</p>
+                                                    <h5>{{landmark}}</h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="profile-overview">
+                                                    <p>Pincode</p>
+                                                    <h5>{{pincode}}</h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="profile-overview">
+                                                    <p>City</p>
+                                                    <h5>{{city}}</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="profile-card-7 ">
+                                    <img *ngIf="!brImg"
+                                        src="https://cdn.pixabay.com/photo/2017/04/24/13/37/architecture-2256489_960_720.jpg"
+                                        class="img img-responsive">
+                                    <img *ngIf="brImg" src="{{profileUrl}}{{brImg}}" class="img img-responsive">
+                                    <div class="profile-content">
+                                        <div class="icon-inside">
+                                            <i class="fa fa-pencil" data-toggle="modal" data-target="#exampleModal"  (click)="hello(2)"
+                                                aria-hidden="true"></i>
+                                        </div>
+                                        <div class="profile-name">Contact Details</div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="profile-overview">
+                                                    <p>Co-ordinator Name English</p>
+                                                    <h5>{{coNameEng}}</h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="profile-overview">
+                                                    <p>Co-ordinator Name Arabic</p>
+                                                    <h5>{{coNameAr}}</h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="profile-overview">
+                                                    <p>Branch Email</p>
+                                                    <h5>{{brEmail}}</h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="profile-overview">
+                                                    <p>Branch Website</p>
+                                                    <h5>{{brWeb}}</h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="profile-overview">
+                                                    <p>Mobile Number</p>
+                                                    <h5>{{mobile}}</h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="profile-overview">
+                                                    <p>Business Mobile Number</p>
+                                                    <h5>{{bMobile}}</h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="profile-overview">
+                                                    <p>Instagram Account</p>
+                                                    <h5>{{insta}}</h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="profile-overview">
+                                                    <p>Youtube Channel</p>
+                                                    <h5>{{youtube}}</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="profile-card-7 ">
+                                    <img *ngIf="!brImg"
+                                        src="https://cdn.pixabay.com/photo/2017/04/24/13/37/architecture-2256489_960_720.jpg"
+                                        class="img img-responsive">
+                                    <img *ngIf="brImg" src="{{profileUrl}}{{brImg}}" class="img img-responsive">
+                                    <div class="profile-content">
+                                        <div class="icon-inside">
+                                            <i class="fa fa-pencil" data-toggle="modal" data-target="#exampleModal" (click)="hello(3)"
+                                                aria-hidden="true"></i>
+                                        </div>
+                                        <div class="profile-name">Business Details</div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="profile-overview">
+                                                    <p>Branch Establishment Year</p>
+                                                    <h5>{{bsEstYear}}</h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="profile-overview">
+                                                    <p>Issued In Country</p>
+                                                    <h5 *ngFor="let c of newIssuedCountryArr">{{c}}</h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="profile-overview">
+                                                    <p>Issued In Cities</p>
+                                                    <h5 *ngFor="let c of issuedCity">{{c}}</h5>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="profile-overview">
+                                                    <p>License Number</p>
+                                                    <h5>{{licenceNumber}}</h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="profile-overview">
+                                                    <p>Number of Employees</p>
+                                                    <h5>{{noOfEmp}}</h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="profile-overview">
+                                                    <p>Number of Employees</p>
+                                                    <h5>{{noOfEmp}}</h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="profile-overview">
+                                                    <p>Branch Licence</p>
+                                                    <img class="licImg" src="{{imgUrl}}{{licImg}}" />
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="profile-card-7 ">
+                                    <img *ngIf="!brImg"
+                                        src="https://cdn.pixabay.com/photo/2017/04/24/13/37/architecture-2256489_960_720.jpg"
+                                        class="img img-responsive">
+                                    <img *ngIf="brImg" src="{{profileUrl}}{{brImg}}" class="img img-responsive">
+                                    <div class="profile-content">
+                                        <div class="icon-inside">
+                                            <i class="fa fa-pencil" data-toggle="modal" data-target="#exampleModal" (click)="hello(4)"
+                                                aria-hidden="true"></i>
+                                        </div>
+                                        <div class="profile-name">Service Details</div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="profile-overview">
+                                                    <p>List of Services </p>
+                                                    <h5  *ngFor="let service of servicesCat">{{service.name}}</h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="profile-overview">
+                                                    <p>List of Sub Services </p>
+                                                    <h5 *ngFor="let sub of servicesSubCat">{{sub.name}}</h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="profile-overview">
+                                                    <p>Typical Service Cost Range</p>
+                                                    <h5>{{serCost}}</h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="profile-overview">
+                                                    <p>Service Country </p>
+                                                    <h5 *ngFor="let ser of newCountryArr">{{ser}}</h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="profile-overview">
+                                                    <p>Service City </p>
+                                                    <h5 *ngFor="let ser of serCityArr">{{ser}}</h5>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                         
+                            <div class="col-md-12">
+                                <div class="seller-new-address-form">
+                                    <div class="form-box mt-3">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="signup-col p-0">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <h3 class="custom-heading"><span>General Details</span></h3>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="companyName">First Name*</label>
+                                                                <input type="email" name="companyName" id="companyName"
+                                                                    placeholder="First Name" class="form-control">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="companyName">Email*</label>
+                                                                <input type="email" name="companyName" id="companyName"
+                                                                    placeholder="Email" class="form-control">
+                                                            </div>
+                                                            <!-- <div class="form-group">
+                                                                <label for="companyName">Confirm Password*</label>
+                                                                <input type="password" name="companyName" id="companyName" placeholder="Confirm Password" class="form-control">
+                                                            </div> -->
+                                                            <div class="form-group">
+                                                                <label for="companyName">Branch Name in Arabic*</label>
+                                                                <input type="text" name="companyName" id="companyName"
+                                                                    placeholder="Branch Name in Arabic"
+                                                                    class="form-control">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="companyName">A Brief About the
+                                                                    Branch*</label>
+                                                                <textarea class="form-control" rows="3"
+                                                                    placeholder="A Brief About the Branch"
+                                                                    class="form-control"></textarea>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="companyName">Certifications &amp;
+                                                                    Awards*</label>
+                                                                <input type="text" name="companyName" id="companyName"
+                                                                    placeholder="Certifications & Awards"
+                                                                    class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="companyName">Last Name*</label>
+                                                                <input type="email" name="companyName" id="companyName"
+                                                                    placeholder="Last Name" class="form-control">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="companyName">Password*</label>
+                                                                <input type="password" name="companyName"
+                                                                    id="companyName" placeholder="Password"
+                                                                    class="form-control">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="companyName">Branch Name in English*</label>
+                                                                <input type="text" name="companyName" id="companyName"
+                                                                    placeholder="Branch Name in English"
+                                                                    class="form-control">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="">Branch Type*</label>
+                                                                <select name="signup" class="custom-select">
+                                                                    <option selected>Choose</option>
+                                                                    <option value="seller">Manufacturer</option>
+                                                                    <option value="service provider">Supplier</option>
+                                                                    <option value="service provider">Retailer</option>
+                                                                    <option value="service provider">Online Retailer
+                                                                    </option>
+                                                                    <option value="service provider">
+                                                                        Designer/Professional</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="">Branch Category*</label>
+                                                                <select name="signup" class="custom-select">
+                                                                    <option selected>Choose</option>
+                                                                    <option value="seller">Building Contractors</option>
+                                                                    <option value="service provider">Building
+                                                                        Consultants</option>
+                                                                    <option value="service provider">Interior Designers
+                                                                    </option>
+                                                                    <option value="service provider">Kitchen Designers
+                                                                        &amp; Suppliers
+                                                                    </option>
+                                                                    <option value="service provider">Wardrobe Designers
+                                                                        &amp; Suppliers</option>
+                                                                    <option value="service provider">Bathroom Designers
+                                                                        &amp; Suppliers</option>
+                                                                    <option value="service provider">Windows Designers
+                                                                        &amp; Suppliers</option>
+                                                                    <option value="service provider">Furniture Designers
+                                                                        &amp; Suppliers</option>
+                                                                    <option value="service provider">Doors Designers
+                                                                        &amp; Suppliers</option>
+                                                                    <option value="service provider">Rugs Designers
+                                                                        &amp; Suppliers</option>
+                                                                    <option value="service provider">Wallpapers
+                                                                        Designers &amp; Suppliers</option>
+                                                                    <option value="service provider">Gypsum Boards
+                                                                        Designers &amp; Suppliers</option>
+                                                                    <option value="service provider">Tiles Designers
+                                                                        &amp; Suppliers</option>
+                                                                    <option value="service provider">Stone Designers
+                                                                        &amp; Suppliers</option>
+                                                                    <option value="service provider">Interlock Designers
+                                                                        &amp; Suppliers</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <h3 class="custom-heading"><span>Address Details</span></h3>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="companyName">Country*</label>
+                                                                <input type="text" name="companyName" id="companyName"
+                                                                    placeholder="Country" class="form-control">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="companyName">State*</label>
+                                                                <input type="text" name="companyName" id="companyName"
+                                                                    placeholder="Country" class="form-control">
+                                                            </div>
+                                                           
+                                                         
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="companyName">Phone Number*</label>
+                                                                <input type="text" name="companyName" id="companyName"
+                                                                    placeholder="Phone Number" class="form-control">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="companyName">First Name*</label>
+                                                                <input type="text" name="companyName" id="companyName"
+                                                                    placeholder="First Name" class="form-control">
+                                                            </div>
+                                                           
+                                                         
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="companyName">Last Name*</label>
+                                                                <input type="text" name="companyName" id="companyName"
+                                                                    placeholder="Last Name" class="form-control">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="companyName">Address Line1*</label>
+                                                                <input type="text" name="companyName" id="companyName"
+                                                                    placeholder="Address Line 1" class="form-control">
+                                                            </div>
+                                                         
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                           
+                                                            <div class="form-group">
+                                                                <label for="companyName">Address Line2*</label>
+                                                                <input type="text" name="companyName" id="companyName"
+                                                                    placeholder="Address Line2" class="form-control">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="companyName">City*</label>
+                                                                <input type="text" name="companyName" id="companyName"
+                                                                    placeholder="City" class="form-control">
+                                                            </div>
+                                                         
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                           
+                                                            <div class="form-group">
+                                                                <label for="companyName">Pincode*</label>
+                                                                <input type="text" name="companyName" id="companyName"
+                                                                    placeholder="Pincode" class="form-control">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="companyName">LandMark*</label>
+                                                                <input type="text" name="companyName" id="companyName"
+                                                                    placeholder="LandMark" class="form-control">
+                                                            </div>
+                                                         
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <h3 class="custom-heading"><span>Contact Details</span></h3>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="companyName">Co-ordinator Name in
+                                                                    English*</label>
+                                                                <input type="text" name="companyName" id="companyName"
+                                                                    placeholder="Co-ordinator Name in English"
+                                                                    class="form-control">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="companyName">Branch Email*</label>
+                                                                <input type="text" name="companyName" id="companyName"
+                                                                    placeholder="Branch Email" class="form-control">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="companyName">Mobile Number*</label>
+                                                                <input type="number" name="companyName" id="companyName"
+                                                                    placeholder="Mobile Number" class="form-control">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="companyName">Instagram Account*</label>
+                                                                <input type="text" name="companyName" id="companyName"
+                                                                    placeholder="Instagram Account"
+                                                                    class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="companyName">Co-ordinator Name in
+                                                                    Arabic*</label>
+                                                                <input type="text" name="companyName" id="companyName"
+                                                                    placeholder="Co-ordinator Name in Arabic"
+                                                                    class="form-control">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="companyName">Branch Website*</label>
+                                                                <input type="text" name="companyName" id="companyName"
+                                                                    placeholder="Branch Website" class="form-control">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="companyName">Business Mobile Number*</label>
+                                                                <input type="number" name="companyName" id="companyName"
+                                                                    placeholder="Business Mobile Number"
+                                                                    class="form-control">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="companyName">Youtube Channel*</label>
+                                                                <input type="text" name="companyName" id="companyName"
+                                                                    placeholder="Youtube Channel" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <h3 class="custom-heading"><span>Business Details</span>
+                                                            </h3>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="companyName">Branch Establishment
+                                                                    Year*</label>
+                                                                <input type="number" name="companyName" id="companyName"
+                                                                    placeholder="Branch Establishment Year"
+                                                                    class="form-control">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="companyName">Please Upload Your Branch
+                                                                    Licence*</label>
+                                                                <input type="file" name="companyName" id="companyName"
+                                                                    placeholder="City and Coutry" class="form-control">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>No of Employees*</label><br />
+                                                                <label class="radio-inline mb-0">1 to 10
+                                                                    <input type="radio" checked="checked"
+                                                                        name="is_company">
+                                                                    <span class="checkround"></span>
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="radio-inline mb-0">Up to 50
+                                                                    <input type="radio" name="is_company">
+                                                                    <span class="checkround"></span>
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="radio-inline mb-0">Up to 100
+                                                                    <input type="radio" name="is_company">
+                                                                    <span class="checkround"></span>
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="radio-inline mb-0">Up to 500
+                                                                    <input type="radio" name="is_company">
+                                                                    <span class="checkround"></span>
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="radio-inline mb-0">More than 500
+                                                                    <input type="radio" name="is_company">
+                                                                    <span class="checkround"></span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="companyName">Issued in (Mention the city &
+                                                                    Country)*</label>
+                                                                <input type="text" name="companyName" id="companyName"
+                                                                    placeholder="City and Coutry" class="form-control">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="companyName">Licence Number*</label>
+                                                                <input type="number" name="companyName" id="companyName"
+                                                                    placeholder="Licence Number" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <h3 class="custom-heading"><span>Service Details</span></h3>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="companyName">Please List the Services and
+                                                                    Products you Provide*</label>
+                                                                <input type="text" name="companyName" id="companyName"
+                                                                    placeholder="List the Services and Products"
+                                                                    class="form-control">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>Typical Service Cost Range</label><br />
+                                                                <label class="radio-inline mb-0">Up to 10,000 AED
+                                                                    <input type="radio" checked="checked"
+                                                                        name="is_company">
+                                                                    <span class="checkround"></span>
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="radio-inline mb-0">Up to 50,000 AED
+                                                                    <input type="radio" name="is_company">
+                                                                    <span class="checkround"></span>
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="radio-inline mb-0">Up to 100,000 AED
+                                                                    <input type="radio" name="is_company">
+                                                                    <span class="checkround"></span>
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="radio-inline mb-0">Up to 500,000 AED
+                                                                    <input type="radio" name="is_company">
+                                                                    <span class="checkround"></span>
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="radio-inline mb-0">Above 500,000 AED
+                                                                    <input type="radio" name="is_company">
+                                                                    <span class="checkround"></span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="companyName">Countries &amp; Cities Range
+                                                                    Where Your Services Cover*</label>
+                                                                <input type="text" name="companyName" id="companyName"
+                                                                    placeholder="Enter Cities Range"
+                                                                    class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <h3 class="custom-heading"><span>Branch Details</span></h3>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="branch-wrpr">
+                                                                <p>Do you have Branches?</p>
+                                                                <div class="form-check form-check-inline">
+                                                                    <input class="form-check-input" type="radio"
+                                                                        name="inlineRadioOptions" id="inlineRadio1"
+                                                                        value="option1">
+                                                                    <!--  <span class="checkround"></span> -->
+                                                                    <label class="form-check-label"
+                                                                        for="inlineRadio1">Yes</label>
+                                                                </div>
+                                                                <div class="form-check form-check-inline">
+                                                                    <input class="form-check-input" type="radio"
+                                                                        name="inlineRadioOptions" id="inlineRadio2"
+                                                                        value="option2">
+                                                                    <!--  <span class="checkround"></span> -->
+                                                                    <label class="form-check-label"
+                                                                        for="inlineRadio2">No</label>
+                                                                </div>
+                                                                <div class="form-group  mt-1" id="field_input">
+                                                                    <label for="companyName">No. of Branches</label>
+                                                                    <input type="text" name="companyName"
+                                                                        id="companyName" placeholder="No. of Branches"
+                                                                        class="form-control">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="seller-info-btn" align="center">
+                                                                <button type="submit"
+                                                                    class="btn btn-change-fill">Next</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>
+<!-- stepper modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header edit-branch-header">
+                <h2 class="modal-title" id="exampleModalLabel">Edit Branch Details</h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <mat-horizontal-stepper labelPosition="bottom" #stepper>
+                    <mat-step [stepControl]="firstFormGroup" state="generalDetail">
+                        <form [formGroup]="firstFormGroup">
+                            <ng-template matStepLabel></ng-template>
+                            <div class="general-details-wrpr">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h3 class="custom-heading"><span>General
+                                                Details</span></h3>
+                                    </div>
+                                    <label class="labeltext"
+                                    >Add Branch Image 
+                                    </label>
+                                    <div class="profile-picture">
+                                        <img *ngIf="!image && !brImg"
+                                            src="https://demo.wponlinesupport.com/themes/wp-iclean-responsive/wp-content/uploads/sites/8/2017/04/team-6.jpg"
+                                            alt="image" class="img-fluid">
+
+                                        <img *ngIf="image" [src]="image" alt="image" class="img-fluid">
+                                        <img *ngIf="!image && brImg" src="{{profileUrl}}{{brImg}}" alt="image"
+                                            class="img-fluid">
+                                        <!-- <img *ngIf="!image && imgProfile" src="{{profileUrl}}{{imgProfile}}" alt="image"
+                                                                class="img-fluid"> -->
+                                        <div class="change-prof-image">
+                                            <label>
+                                                <!-- <input type="file"
+                                                                            style="display: none;"
+                                                                            class="form-control custom-file-upload"
+                                                                            (change)="profilePicChange($event)"> -->
+                                                <i class="fa fa-image"></i> Change Picture<input type="file"
+                                                    style="display: none;" name="prof-image"
+                                                    (change)="profilePicChange($event)">
+                                                <!-- <button type="button" class="btn btn-change-fill mt-2"><i
+                                                                            class="fa fa-image"></i> Change Picture<input type="file"
+                                                                            style="display: none;" name="prof-image" (change)="profilePicChange($event)"></button> -->
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <mat-form-field appearance="">
+                                            <mat-label>First Name</mat-label>
+                                            <input matInput required formControlName="first_name"
+                                                [(ngModel)]="firstName" placeholder="john">
+                                        </mat-form-field>
+                                        <div *ngIf="firstFormGroup.controls.first_name.invalid && (firstFormGroup.controls.first_name.dirty || firstFormGroup.controls.first_name.touched || next1)"
+                                            class="">
+                                            <mat-error *ngIf="firstFormGroup.controls.first_name.errors.required">
+                                                First Name is required
+                                            </mat-error>
+                                            <mat-error *ngIf="firstFormGroup.controls.first_name.errors.pattern">
+                                                Please enter alphabets only
+                                            </mat-error>
+                                        </div>
+                                        <mat-form-field appearance="">
+                                            <mat-label>Email</mat-label>
+                                            <input matInput formControlName="email" placeholder="johndoe@gmai.com"
+                                                required [(ngModel)]="email">
+                                        </mat-form-field>
+                                        <div *ngIf="firstFormGroup.controls.email.invalid && (firstFormGroup.controls.email.dirty || firstFormGroup.controls.email.touched || next1)"
+                                            class="">
+                                            <mat-error *ngIf="firstFormGroup.controls.email.errors.required">
+                                                Please enter email address
+                                            </mat-error>
+                                            <mat-error *ngIf="firstFormGroup.controls.email.errors.pattern">
+                                                Please enter valid email address
+                                            </mat-error>
+                                        </div>
+                                    
+                                        <mat-form-field appearance="">
+                                            <mat-label>Branch Name in Arabic
+                                            </mat-label>
+                                            <input matInput placeholder="Branch Name" required
+                                                formControlName="branch_name_arabic" [(ngModel)]="brAr">
+                                        </mat-form-field>
+                                        <div *ngIf="firstFormGroup.controls.branch_name_arabic.invalid && (firstFormGroup.controls.branch_name_arabic.dirty || firstFormGroup.controls.branch_name_arabic.touched || next1)"
+                                            class="">
+                                            <mat-error
+                                                *ngIf="firstFormGroup.controls.branch_name_arabic.errors.required">
+                                                Please enter Branch Name in
+                                                Arabic
+                                            </mat-error>
+                                            <mat-error
+                                            *ngIf="
+                                            firstFormGroup.controls 
+                                                .branch_name_arabic?.errors
+                                                ?.pattern
+                                            "
+                                          >
+                                            Please enter Arabic only
+                                          </mat-error>
+                                        </div>
+                                        <mat-form-field class="example-full-width">
+                                            <mat-label>A Brief About the Branch
+                                            </mat-label>
+                                            <textarea matInput [(ngModel)]="branchBrief"
+                                                placeholder="A Brief About the Branch"
+                                                formControlName="brief_about_branch"></textarea>
+                                        </mat-form-field>
+                             
+                                        <div *ngIf="firstFormGroup.controls.brief_about_branch.invalid && (firstFormGroup.controls.brief_about_branch.dirty || firstFormGroup.controls.brief_about_branch.touched || next1)"
+                                            class="">
+                                            <mat-error
+                                                *ngIf="firstFormGroup.controls.brief_about_branch.errors.required">
+                                                Please enter brief about branch
+                                            </mat-error>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <mat-form-field appearance="">
+                                            <mat-label>Last Name</mat-label>
+                                            <input matInput placeholder="john doe" required formControlName="last_name"
+                                                [(ngModel)]="lastName">
+                                        </mat-form-field>
+                                        <div *ngIf="firstFormGroup.controls.last_name.invalid && (firstFormGroup.controls.last_name.dirty || firstFormGroup.controls.last_name.touched || next1)"
+                                            class="">
+                                            <mat-error *ngIf="firstFormGroup.controls.last_name.errors.required">
+                                                Last Name is required
+                                            </mat-error>
+                                            <mat-error *ngIf="firstFormGroup.controls.last_name.errors.pattern">
+                                                Please enter alphabets only
+                                            </mat-error>
+                                        </div>
+                                      
+                                        <mat-form-field appearance="">
+                                            <mat-label>Branch Name in English
+                                            </mat-label>
+                                            <input matInput required placeholder="Branch Name in English"
+                                                formControlName="branch_name_eng" [(ngModel)]="brEn">
+                                        </mat-form-field>
+                                        <div *ngIf="firstFormGroup.controls.branch_name_eng.invalid && (firstFormGroup.controls.branch_name_eng.dirty || firstFormGroup.controls.branch_name_eng.touched || next1)"
+                                            class="">
+                                            <mat-error *ngIf="firstFormGroup.controls.branch_name_eng.errors.required">
+                                                Please enter Branch Name in
+                                                English
+                                            </mat-error>
+                                        </div>
+                                        <mat-form-field>
+                                            <mat-label>{{branchType}}</mat-label>
+                                            <mat-select (selectionChange)="branchCatListing($event.value)"
+                                                formControlName="branch_type" [(ngModel)]="branchTypeId">
+                                                <!-- <mat-option value="31">Choose
+                                        </mat-option> -->
+                                                <mat-option disabled>Branch Type</mat-option>
+                                                <mat-option *ngFor="let branch of branch_type" [value]="branch.id">
+                                                    {{branch.name}}
+                                                </mat-option>
+                                   
+                                            </mat-select>
+                                        </mat-form-field>
+                                        <mat-form-field>
+                                            <mat-label>{{branchTypeCat}}</mat-label>
+                                            <mat-select formControlName="branch_cat" [(ngModel)]="branchTypeCatId">
+                                                <mat-option disabled>Branch Category</mat-option>
+                                                <mat-option *ngFor="let cat of branch_cat" [value]="cat.id">
+                                                    {{cat.name}}
+                                                </mat-option>
+                                   
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </form>
+                    </mat-step>
+                    <mat-step [stepControl]="addressFormGroup" state="addressDetails">
+                        <form [formGroup]="addressFormGroup">
+                            <div class="address-details-wrpr">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h3 class="custom-heading"><span>Address
+                                                Details</span></h3>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <mat-form-field>
+                                            <mat-label>Country</mat-label>
+                                            <mat-select [(ngModel)]="country"
+                                                (selectionChange)="selectCountry($event)" name="country"
+                                                [formControl]="addressFormGroup.controls['country']"
+                                                required>
+                                                <mat-option disabled>Select Country</mat-option>
+                                                <mat-option *ngFor="let country of countries"
+                                                    [value]="country">{{country.name}}</mat-option>
+                                            </mat-select>
+                                     </mat-form-field>
+                                            <p style="color: red; margin-top: -1.25em;"
+                                                *ngIf="addressFormGroup.controls['country'].errors?.required && ( addressFormGroup.controls['country'].touched)">
+                                                Please Select Country 
+                                            </p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <mat-form-field>
+                                            <mat-label>State</mat-label>
+                                            <mat-select  [(ngModel)]="state" name="state"
+                                            
+                                                [formControl]="addressFormGroup.controls['state']"
+                                                required>
+                                                <mat-option disabled>Select State</mat-option>
+                                                <mat-option *ngFor="let state of states"
+                                                    [value]="state">{{state.name}}</mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                                <p style="color: red; margin-top: -1.25em;"
+                                                    *ngIf="addressFormGroup.controls['state'].errors?.required && ( addressFormGroup.controls['state'].touched)">
+                                                    Please Select State
+                                                </p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <mat-form-field appearance="">
+                                            <mat-label>FirstName</mat-label>
+                                            <input matInput placeholder="FirstName" required formControlName="addr_first_name"
+                                                [(ngModel)]="addr_first_name">
+                                        </mat-form-field>
+                                        <div *ngIf="addressFormGroup.controls.addr_first_name.invalid && (addressFormGroup.controls.addr_first_name.dirty || addressFormGroup.controls.addr_first_name.touched || next2)"
+                                            class="">
+                                            <mat-error *ngIf="addressFormGroup.controls.addr_first_name.errors.required">
+                                                Please enter FirstName
+                                            </mat-error>
+                                          
+                                    </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <mat-form-field appearance="">
+                                            <mat-label>LastName</mat-label>
+                                            <input matInput placeholder="LastName" required formControlName="addr_last_name"
+                                                [(ngModel)]="addr_last_name">
+                                        </mat-form-field>
+                                        <div *ngIf="addressFormGroup.controls.addr_last_name.invalid && (addressFormGroup.controls.addr_last_name.dirty || addressFormGroup.controls.addr_first_name.touched || next2)"
+                                            class="">
+                                            <mat-error *ngIf="addressFormGroup.controls.addr_last_name.errors.required">
+                                                Please enter LastName
+                                            </mat-error>
+                                            
+                                    </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <mat-form-field appearance="">
+                                            <mat-label>Address Line 1</mat-label>
+                                            <input matInput placeholder="Address Line 1" required formControlName="address_line_1"
+                                                [(ngModel)]="address_line_1">
+                                        </mat-form-field>
+                                        <div *ngIf="addressFormGroup.controls.address_line_1.invalid && (addressFormGroup.controls.address_line_1.dirty || addressFormGroup.controls.address_line_1.touched || next2)"
+                                            class="">
+                                            <mat-error *ngIf="addressFormGroup.controls.address_line_1.errors.required">
+                                                Please enter Address Line 1
+                                            </mat-error>
+                                           
+                                    </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <mat-form-field appearance="">
+                                            <mat-label>Address Line 2</mat-label>
+                                            <input matInput placeholder="LastName" required formControlName="address_line_2"
+                                                [(ngModel)]="address_line_2">
+                                        </mat-form-field>
+                                        <div *ngIf="addressFormGroup.controls.address_line_2.invalid && (addressFormGroup.controls.address_line_2.dirty || addressFormGroup.controls.addr_first_name.touched || next2)"
+                                            class="">
+                                            <mat-error *ngIf="addressFormGroup.controls.address_line_2.errors.required">
+                                                Please enter Address Line 2
+                                            </mat-error>
+                                       
+                                    </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <mat-form-field appearance="">
+                                            <mat-label>PIN Code</mat-label>
+                                            <input matInput placeholder="646131" required formControlName="pincode"
+                                                [(ngModel)]="pincode">
+                                        </mat-form-field>
+                                        <div *ngIf="addressFormGroup.controls.pincode.invalid && (addressFormGroup.controls.pincode.dirty || addressFormGroup.controls.pincode.touched || next2)"
+                                            class="">
+                                            <mat-error *ngIf="addressFormGroup.controls.pincode.errors.required">
+                                                Please enter pincode
+                                            </mat-error>
+                                            <mat-error *ngIf="addressFormGroup.controls.pincode.errors.pattern">
+                                                Please enter valid pincode
+                                            </mat-error>
+                                        </div>
+                                    
+                                        <mat-form-field appearance="">
+                                            <mat-label>City</mat-label>
+                                            <input matInput placeholder="Chennai" required formControlName="city"
+                                                [(ngModel)]="city">
+                                        </mat-form-field>
+                                        <div *ngIf="addressFormGroup.controls.city.invalid && (addressFormGroup.controls.city.dirty || addressFormGroup.controls.city.touched || next2)"
+                                            class="">
+                                            <mat-error *ngIf="addressFormGroup.controls.city.errors.required">
+                                                Please enter city
+                                            </mat-error>
+                                        </div>
+                                        <!-- <mat-checkbox class="example-margin"
+                                    formControlName="defaultaddress"> Use as
+                                    my default Address. </mat-checkbox> -->
+                                    </div>
+                                    <div class="col-md-6">
+                                        <mat-form-field appearance="">
+                                            <mat-label>Phone Number
+                                                </mat-label>
+                                            <input matInput [(ngModel)]="phone_number"
+                                                placeholder="Phone Number" required
+                                                formControlName="phone_number">
+                                        </mat-form-field>
+                                        <div *ngIf="addressFormGroup.controls.phone_number.invalid && (addressFormGroup.controls.phone_number.dirty || addressFormGroup.controls.phone_number.touched || next2)"
+                                            class="">
+                                            <mat-error *ngIf="addressFormGroup.controls.phone_number.errors.required">
+                                                Please enter Phone Number
+                                            </mat-error>
+                                        </div>
+                                        <mat-form-field appearance="">
+                                            <mat-label>Landmark</mat-label>
+                                            <input matInput [(ngModel)]="landmark" placeholder="Near City Hospital"
+                                                required formControlName="landmark">
+                                        </mat-form-field>
+                                        <div *ngIf="addressFormGroup.controls.landmark.invalid && (addressFormGroup.controls.landmark.dirty || addressFormGroup.controls.landmark.touched || next2)"
+                                            class="">
+                                            <mat-error *ngIf="addressFormGroup.controls.landmark.errors.required">
+                                                Please enter landmark
+                                            </mat-error>
+                                        </div>
+                                      
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="col-md-12">
+                        <div class="seller-info-btn" align="center">
+                            <button matStepperNext
+                                class="btn btn-change-fill"
+                                (click)="addressFormSubmit()">Next</button>
+                        </div>
+                    </div> -->
+                        </form>
+                    </mat-step>
+                    <mat-step [stepControl]="contactFormGroup" state="contactDetails">
+                        <form [formGroup]="contactFormGroup">
+                            <div class="contact-details-wrpr">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h3 class="custom-heading"><span>Contact
+                                                Details</span></h3>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <mat-form-field appearance="">
+                                            <mat-label>Co-ordinator Name in English
+                                            </mat-label>
+                                            <input matInput [(ngModel)]="coNameEng"
+                                                placeholder="Co-ordinator Name in English" required
+                                                formControlName="co_ordinator_eng">
+                                        </mat-form-field>
+                                        <div *ngIf="contactFormGroup.controls.co_ordinator_eng.invalid && (contactFormGroup.controls.co_ordinator_eng.dirty || contactFormGroup.controls.co_ordinator_eng.touched || next3)"
+                                            class="">
+                                            <mat-error
+                                                *ngIf="contactFormGroup.controls.co_ordinator_eng.errors.required">
+                                                Please enter Co-ordinator Name in
+                                                English
+                                            </mat-error>
+                                        </div>
+                                        <mat-form-field appearance="">
+                                            <mat-label>Branch Email</mat-label>
+                                            <input matInput [(ngModel)]="brEmail" placeholder="Branch Email" required
+                                                formControlName="branch_email">
+                                        </mat-form-field>
+                                        <div *ngIf="contactFormGroup.controls.branch_email.invalid && (contactFormGroup.controls.branch_email.dirty || contactFormGroup.controls.branch_email.touched || next3)"
+                                            class="">
+                                            <mat-error *ngIf="contactFormGroup.controls.branch_email.errors.required">
+                                                Please enter branch email
+                                            </mat-error>
+                                            <mat-error *ngIf="contactFormGroup.controls.branch_email?.errors?.pattern">
+                                                Please enter valid branch email
+                                            </mat-error>
+                                        </div>
+                                        <mat-form-field appearance="">
+                                            <mat-label>Mobile Number</mat-label>
+                                            <input matInput [(ngModel)]="mobile" placeholder="Mobile Number" required
+                                                formControlName="mobile_number">
+                                        </mat-form-field>
+                                        <div *ngIf="contactFormGroup.controls.mobile_number.invalid && (contactFormGroup.controls.mobile_number.dirty || contactFormGroup.controls.mobile_number.touched || next3)"
+                                            class="">
+                                            <mat-error *ngIf="contactFormGroup.controls.mobile_number.errors.required">
+                                                Please enter mobile number
+                                            </mat-error>
+                                            <mat-error *ngIf="contactFormGroup.controls.mobile_number?.errors?.pattern">
+                                                Please enter valid mobile number
+                                            </mat-error>
+                                        </div>
+                                        <mat-form-field appearance="">
+                                            <mat-label>Instagram Account</mat-label>
+                                            <input matInput [(ngModel)]="insta" placeholder="Instagram Account"
+                                                formControlName="insta_acc">
+                                            <!-- required
+                                        formControlName="insta_acc" -->
+                                        </mat-form-field>
+                                        <!-- <div *ngIf="contactFormGroup.controls.insta_acc.invalid && (contactFormGroup.controls.insta_acc.dirty || contactFormGroup.controls.insta_acc.touched || next3)"
+                                    class="">
+                                    <mat-error
+                                        *ngIf="contactFormGroup.controls.insta_acc.errors.required">
+                                        Please enter Instagram Account
+                                    </mat-error>
+                                </div> -->
+                                    </div>
+                                    <div class="col-md-6">
+                                        <mat-form-field appearance="">
+                                            <mat-label>Co-ordinator Name in Arabic
+                                            </mat-label>
+                                            <input matInput [(ngModel)]="coNameAr"
+                                                placeholder="Co-ordinator Name in Arabic" required
+                                                formControlName="co_ordinator_arabic">
+                                        </mat-form-field>
+                                        <div *ngIf="contactFormGroup.controls.co_ordinator_arabic.invalid && (contactFormGroup.controls.co_ordinator_arabic.dirty || contactFormGroup.controls.co_ordinator_arabic.touched || next3)"
+                                            class="">
+                                            <mat-error
+                                                *ngIf="contactFormGroup.controls.co_ordinator_arabic.errors.required">
+                                                Please enter Co-ordinator Name in
+                                                Arabic
+                                            </mat-error>
+                                            <mat-error
+                                            *ngIf="
+                                            contactFormGroup.controls
+                                                .co_ordinator_arabic?.errors
+                                                ?.pattern
+                                            "
+                                          >
+                                            Please enter Arabic only
+                                          </mat-error>
+                                        </div>
+
+                                        <mat-form-field appearance="">
+                                            <mat-label>Branch Website</mat-label>
+                                            <input matInput placeholder="Branch Website" required [(ngModel)]="brWeb"
+                                                formControlName="branch_website">
+                                        </mat-form-field>
+                                        <div *ngIf="contactFormGroup.controls.branch_website.invalid && (contactFormGroup.controls.branch_website.dirty || contactFormGroup.controls.branch_website.touched || next3)"
+                                            class="">
+                                            <mat-error *ngIf="contactFormGroup.controls.branch_website.errors.required">
+                                                Please enter branch website
+                                            </mat-error>
+                                            <mat-error
+                                                *ngIf="contactFormGroup.controls.branch_website?.errors?.pattern">
+                                                Please enter valid branch website
+                                            </mat-error>
+                                        </div>
+                                        <mat-form-field appearance="">
+                                            <mat-label>Business Mobile Number
+                                            </mat-label>
+                                            <input matInput [(ngModel)]="bMobile" placeholder="Business Mobile Number"
+                                                required formControlName="business_mobile_number">
+                                        </mat-form-field>
+                                        <div *ngIf="contactFormGroup.controls.business_mobile_number.invalid && (contactFormGroup.controls.business_mobile_number.dirty || contactFormGroup.controls.business_mobile_number.touched || next3)"
+                                            class="">
+                                            <mat-error
+                                                *ngIf="contactFormGroup.controls.business_mobile_number.errors.required">
+                                                Please enter business mobile number
+                                            </mat-error>
+                                            <mat-error
+                                                *ngIf="contactFormGroup.controls.business_mobile_number?.errors?.pattern">
+                                                Please enter valid business mobile
+                                                number
+                                            </mat-error>
+                                            <mat-error
+                                                *ngIf="contactFormGroup.controls.business_mobile_number?.errors?.minlength">
+                                                Please enter valid business mobile
+                                                number
+                                            </mat-error>
+                                            <mat-error
+                                                *ngIf="contactFormGroup.controls.business_mobile_number?.errors?.maxlength">
+                                                Please enter valid business mobile
+                                                number
+                                            </mat-error>
+                                        </div>
+                                        <mat-form-field appearance="">
+                                            <mat-label>Youtube Channel</mat-label>
+                                            <input matInput [(ngModel)]="youtube" placeholder="Youtube Channel"
+                                                formControlName="youtube_channel">
+                                            <!-- required -->
+                                            <!-- formControlName="youtube_channel" -->
+                                        </mat-form-field>
+                                        <!-- <div *ngIf="contactFormGroup.controls.youtube_channel.invalid && (contactFormGroup.controls.youtube_channel.dirty || contactFormGroup.controls.youtube_channel.touched || next3)"
+                                    class="">
+                                    <mat-error
+                                        *ngIf="contactFormGroup.controls.youtube_channel.errors.required">
+                                        Please enter youtube channel
+                                    </mat-error>
+                                </div> -->
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="col-md-12">
+                        <div class="seller-info-btn" align="center">
+                            <button matStepperNext
+                                class="btn btn-change-fill"
+                                (click)="contactFormSubmit()">Next</button>
+                        </div>
+                    </div> -->
+                        </form>
+                    </mat-step>
+                    <mat-step [stepControl]="businessFormGroup" state="businessDetails">
+                        <form [formGroup]="businessFormGroup">
+                            <div class="business-details-wrpr">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h3 class="custom-heading"><span>Business
+                                                Details</span></h3>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <mat-form-field appearance="">
+                                            <mat-label>Branch Establishment Year
+                                            </mat-label>
+                                            <input matInput [(ngModel)]="bsEstYear"
+                                                placeholder="Branch Establishment Year" required
+                                                formControlName="branch_year">
+                                        </mat-form-field>
+                                        <div *ngIf="businessFormGroup.controls.branch_year.invalid && (businessFormGroup.controls.branch_year.dirty || businessFormGroup.controls.branch_year.touched || next4)"
+                                            class="">
+                                            <mat-error *ngIf="businessFormGroup.controls.branch_year.errors.required">
+                                                Please enter branch year
+                                            </mat-error>
+                                            <mat-error *ngIf="businessFormGroup.controls.branch_year.errors.pattern">
+                                                Please enter valid branch year
+                                            </mat-error>
+                                            <mat-error *ngIf="businessFormGroup.controls.branch_year.errors.minlength">
+                                                Please enter min 4 letter
+                                            </mat-error>
+                                            <mat-error *ngIf="businessFormGroup.controls.branch_year.errors.maxlength">
+                                                Please enter max 4 letter
+                                            </mat-error>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="custom-label">Please
+                                                Upload Your Branch Licence*</label>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <img *ngIf="temp" [src]="licence_img" height="50"
+                                                        class="lic-img-thumb">
+                                                    <img *ngIf="!temp" src="{{imgUrl}}{{licImg}}" height="50"
+                                                        class="lic-img-thumb">
+                                                    <label>
+                                                        <span class="btn btn-change-fill"><i
+                                                                class="fas fa-upload mr-2"></i>
+                                                            <input type="file" style="display: none;"
+                                                                class="form-control custom-file-upload"
+                                                                (change)="onFileChange($event)">Upload</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div *ngIf="businessFormGroup.controls.branch_licence.invalid && (businessFormGroup.controls.branch_licence.dirty || businessFormGroup.controls.branch_licence.touched || next4)"
+                                                class="">
+                                                <p style="color: red;"
+                                                    *ngIf="businessFormGroup.controls.branch_licence.errors.required">
+                                                    Please upload branch licence
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="signup-form">
+                                            <label id="example-radio-group-label">No
+                                                of Employees</label>
+                                            <mat-radio-group [(ngModel)]="noOfEmp"
+                                                aria-labelledby="example-radio-group-label"
+                                                class="example-radio-group radio-list" formControlName="no_of_emp">
+                                                <mat-radio-button checked="noOfEmp == 'Up to 10' ? true : false"
+                                                    class="example-radio-button radio-list" value="1 to 10"> 1 to 10
+
+                                                </mat-radio-button>
+                                                <mat-radio-button class="example-radio-button1 radio-list"
+                                                    checked="noOfEmp == 'Up to 50' ? true : false" value="Up to 50"
+                                                    (click)="tess($event)"> Up to 50
+                                                </mat-radio-button>
+                                                <mat-radio-button class="example-radio-button1 radio-list"
+                                                    value="Up to 100" checked="noOfEmp == 'Up to 100' ? true : false">
+                                                    Up to 100
+                                                </mat-radio-button>
+                                                <mat-radio-button class="example-radio-button1 radio-list"
+                                                    value="Up to 500" checked="noOfEmp == 'Up to 500' ? true : false">
+                                                    Up to 500
+                                                </mat-radio-button>
+                                                <mat-radio-button class="example-radio-button1 radio-list"
+                                                    value="More than 100"
+                                                    checked="noOfEmp == 'More than 100' ? true : false"> More than
+                                                    100
+                                                </mat-radio-button>
+                                            </mat-radio-group>
+                                        </div>
+                                        <div *ngIf="businessFormGroup.controls.no_of_emp.invalid && (businessFormGroup.controls.no_of_emp.dirty || businessFormGroup.controls.no_of_emp.touched || next4)"
+                                            class="">
+                                            <p style="color: red;"
+                                                *ngIf="businessFormGroup.controls.no_of_emp.errors.required">
+                                                Please select number of Employees
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+
+                                        <ng-select [multiple]="true" formControlName="issued_in_countries"
+                                            [(ngModel)]="issuedCountry" (change)="getCities($event)"
+                                            placeholder="Select Issued in Country">
+                                            <ng-option *ngFor="let country of countries" [value]="country.isoCode">
+                                                {{country.name}}</ng-option>
+                                        </ng-select>
+                                        <div *ngIf="businessFormGroup.controls.issued_in_countries.invalid && (businessFormGroup.controls.issued_in_countries.dirty || businessFormGroup.controls.issued_in_countries.touched || next4)"
+                                            class="">
+                                            <mat-error
+                                                *ngIf="businessFormGroup.controls.issued_in_countries.errors.required">
+                                                Please select issued countries
+                                            </mat-error>
+                                        </div>
+                                        <ng-select [multiple]="true" formControlName="issued_in_cities"
+                                            [(ngModel)]="issuedCity" placeholder="Select Issued in Cities">
+                                            <ng-option *ngFor="let city of cities" [value]="city.name">
+                                                {{city.name}}</ng-option>
+                                        </ng-select>
+                                        <div *ngIf="businessFormGroup.controls.issued_in_cities.invalid && (businessFormGroup.controls.issued_in_cities.dirty || businessFormGroup.controls.issued_in_cities.touched || next4)"
+                                            class="">
+                                            <mat-error
+                                                *ngIf="businessFormGroup.controls.issued_in_cities.errors.required">
+                                                Please select issued cities
+                                            </mat-error>
+                                        </div>
+                                        <div class="mt-2">
+                                            <mat-form-field appearance="">
+                                                <mat-label>License Number
+                                                </mat-label>
+                                                <input matInput [(ngModel)]="licenceNumber" placeholder="Licence Number"
+                                                    required formControlName="licence_number">
+                                            </mat-form-field>
+                                            <div *ngIf="businessFormGroup.controls.licence_number.invalid && (businessFormGroup.controls.licence_number.dirty || businessFormGroup.controls.licence_number.touched || next4)"
+                                                class="">
+                                                <mat-error
+                                                    *ngIf="businessFormGroup.controls.licence_number.errors.required">
+                                                    Please enter licence number
+                                                </mat-error>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="col-md-12">
+                        <div class="seller-info-btn" align="center">
+                            <button matStepperNext
+                                class="btn btn-change-fill"
+                                (click)="businessFormSubmit()">Next</button>
+                        </div>
+                    </div> -->
+                        </form>
+                    </mat-step>
+                    <mat-step [stepControl]="serviceFormGroup" state="serviceDetails">
+                        <form [formGroup]="serviceFormGroup">
+                            <div class="service-details-wrpr">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h3 class="custom-heading"><span>Service
+                                                Details</span></h3>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="issued-in">Please List the
+                                            Services and
+                                            Products you Provide</label>
+                                        <ng-select [multiple]="true" placeholder="Select Services"
+                                            formControlName="services_products" [(ngModel)]="servicesArr">
+                                            <ng-option *ngFor="let service of service_list" [value]="service._id">
+                                                {{service.name}}</ng-option>
+                                        </ng-select>
+                                        <!-- <mat-form-field appearance="">
+                                    <mat-label>Please List the Services and
+                                        Products you Provide</mat-label>
+                                    <mat-select
+                                        formControlName="services_products">
+                                        <mat-option
+                                            *ngFor="let ele of service_list; let i = index"
+                                            [value]="ele._id">
+                                            {{ele.name}}
+                                        </mat-option>
+                                    </mat-select>
+
+                                </mat-form-field> -->
+                                        <div *ngIf="serviceFormGroup.controls.services_products.invalid && (serviceFormGroup.controls.services_products.dirty || serviceFormGroup.controls.services_products.touched || next5)"
+                                            class="">
+                                            <mat-error
+                                                *ngIf="serviceFormGroup.controls.services_products.errors.required">
+                                                Please enter the Services and
+                                                Products
+                                            </mat-error>
+                                        </div>
+                                        <div class="signup-form">
+                                            <label id="example-radio-group-label">Typical
+                                                Service Cost Range</label>
+                                            <mat-radio-group [(ngModel)]="serCost"
+                                                aria-labelledby="example-radio-group-label"
+                                                class="example-radio-group radio-list" formControlName="service_cost">
+                                                <mat-radio-button class="example-radio-button radio-list"
+                                                    value="Up to 10,000"
+                                                    checked="serCost == 'Up to 10,000' ? true : false"> Up
+                                                    to 10,000
+                                                    AED </mat-radio-button>
+                                                <mat-radio-button class="example-radio-button1 radio-list"
+                                                    value="Up to 50,000"
+                                                    checked="serCost == 'Up to 50,000' ? true : false"> Up to
+                                                    50,000 AED
+                                                </mat-radio-button>
+                                                <mat-radio-button class="example-radio-button1 radio-list"
+                                                    value="Up to 100,000"
+                                                    checked="serCost == 'Up to 100,000' ? true : false"> Up to
+                                                    100,000 AED
+                                                </mat-radio-button>
+                                                <mat-radio-button class="example-radio-button1 radio-list"
+                                                    value="Up to 500,000"
+                                                    checked="serCost == 'Up to 500,000' ? true : false"> Up to
+                                                    500,000 AED
+                                                </mat-radio-button>
+                                                <mat-radio-button class="example-radio-button1 radio-list"
+                                                    value="Above 500,000"
+                                                    checked="serCost == 'Above 500,000' ? true : false"> Above
+                                                    500,000 AED
+                                                </mat-radio-button>
+                                            </mat-radio-group>
+                                        </div>
+                                        <div *ngIf="serviceFormGroup.controls.service_cost.invalid && (serviceFormGroup.controls.service_cost.dirty || serviceFormGroup.controls.service_cost.touched || next5)"
+                                            class="">
+                                            <p style="color: red;"
+                                                *ngIf="serviceFormGroup.controls.service_cost.errors.required">
+                                                Please select the Services cost
+                                                range
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="issued-in">Countries &amp;
+                                            Cities Range
+                                            Where Your Services Cover</label>
+                                        <ng-select [multiple]="true" (change)="getCities($event)"
+                                            placeholder="Select Countries" formControlName="service_country"
+                                            [(ngModel)]="serCountryArr">
+                                            <ng-option *ngFor="let country of countries" [value]="country.isoCode">
+                                                {{country.name}}</ng-option>
+                                        </ng-select>
+                                        <div *ngIf="serviceFormGroup.controls.service_country.invalid && (serviceFormGroup.controls.service_country.dirty || serviceFormGroup.controls.service_country.touched || next5)"
+                                            class="">
+                                            <mat-error
+                                                *ngIf="serviceFormGroup.controls.service_country.errors.required">
+                                                Please select service countries
+                                            </mat-error>
+                                        </div>
+                                        <ng-select [multiple]="true" placeholder="Select Cities"
+                                            formControlName="service_city" [(ngModel)]="serCityArr">
+                                            <ng-option *ngFor="let city of cities" [value]="city.name">
+                                                {{city.name}}</ng-option>
+                                        </ng-select>
+                                        <div *ngIf="serviceFormGroup.controls.service_city.invalid && (serviceFormGroup.controls.service_city.dirty || serviceFormGroup.controls.service_city.touched || next5)"
+                                            class="">
+                                            <mat-error
+                                                *ngIf="serviceFormGroup?.controls?.service_city?.errors.required">
+                                                Please select service cities
+                                            </mat-error>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                 
+                    </mat-step>
+            
+                    <ng-template matStepperIcon="generalDetail">
+                        <mat-icon>description</mat-icon>
+                    </ng-template>
+                    <ng-template matStepperIcon="addressDetails">
+                        <mat-icon>location_on</mat-icon>
+                    </ng-template>
+                    <ng-template matStepperIcon="contactDetails">
+                        <mat-icon>perm_contact_calendar</mat-icon>
+                    </ng-template>
+                    <ng-template matStepperIcon="businessDetails">
+                        <mat-icon>business</mat-icon>
+                    </ng-template>
+                    <ng-template matStepperIcon="serviceDetails">
+                        <mat-icon>local_laundry_service</mat-icon>
+                    </ng-template>
+                    <ng-template matStepperIcon="branchDetails">
+                        <mat-icon>location_city</mat-icon>
+                    </ng-template>
+                </mat-horizontal-stepper>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-change-fill" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-change-fill" (click)="UpdateBranch()" data-dismiss="modal">Save
+                    changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="loader" class="load_er">
+    <mat-progress-spinner color="primary" mode="indeterminate">
+    </mat-progress-spinner>
+</div>
+
+
+

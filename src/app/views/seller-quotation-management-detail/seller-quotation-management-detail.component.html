@@ -1,0 +1,57 @@
+<app-seller-header></app-seller-header>
+<div class="dashboard-wrapper">
+	<div class="custom-container d-flex">
+		<app-seller-sidebar></app-seller-sidebar>
+		<div class="main-wrap">
+			<div class="card">
+				<div class="card-body">
+					<div class="row">
+						<div class="col-md-12">	
+							<div class="card margn-top seller-quotation-d-card">
+								<div class="card-body">
+									<div class="dashboard-table-heading border-bottom">
+										<h1>Quotation Payment Detail</h1>
+									</div>
+									<div class="form-info-quotation">
+										<div class="row" *ngFor="let list of ClosedQuotations;let i=index">	
+											<div class="col-md-9" >
+												<div class="form-field-data" >
+													<div class="col-md-12">
+														<div class="quotation-detail">
+		                                                 <a [routerLink]="['/seller-create-order']" [queryParams]="{quote_id: list?.quotation_id?._id, quote_ref:list?.quotation_id?.quotation_ref}" class="btn btn-round-blue"> <i class="fa fa-eye"></i></a>
+														</div>
+													</div>
+													<p>
+														<span class="form-label-data">Service Name:</span> <span class="form-value-data">{{list?.quotation_id?.service_name}}</span>
+													</p>
+													<p>
+														<span class="form-label-data">MileStone:</span> <span class="form-value-data">1</span>
+													</p>
+													<p *ngFor="let value of list.issue_quotation;let j= index">
+														<span class="form-label-data">Start Date:</span> <span class="form-value-data">{{value.payment_terms[j].start_date}}</span>
+													</p>
+													<p  *ngFor="let value of list.issue_quotation;let j= index">
+														<span class="form-label-data">End Date:</span> <span class="form-value-data">{{value.payment_terms[j].end_date}}</span>
+													</p>
+													<p>
+														<span class="form-label-data">Status:</span> <span class="badge badge-success status-badge">{{list?.status}}</span>
+													</p>
+													<div class="col-md-3">
+														<div class="quotation-detail">
+														</div>
+													</div>
+												</div>
+											</div>
+											
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<app-footer></app-footer>

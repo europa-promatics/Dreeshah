@@ -1,0 +1,177 @@
+<app-seller-header  *ngIf="user?.user_type=='professional'"></app-seller-header>
+<app-consultant-header  *ngIf="user?.user_type=='photographer'"></app-consultant-header>
+<div class="seller-quotation-mgmt-wrapper">
+	<div class="custom-container d-flex">
+		<app-seller-sidebar *ngIf="user?.user_type=='professional'"></app-seller-sidebar>
+		<app-ph-sidebar *ngIf="user?.user_type=='photographer'"></app-ph-sidebar>
+		<div class="main-wrap">
+			<div class="card">
+				<div class="card-body">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="wishlist-wrapper">
+								<div class="wishlist-heading mb-2 d-flex justify-content-between align-items-center">
+									<div>
+										<h1>Customers Who bought Your Package</h1>
+									</div>
+									<!-- <div class="">
+										<a (click)="addStaff()"  class="btn btn-round-blue"><i
+												class="fa fa-plus"></i></a>
+									</div> -->
+									<!-- <div class="">
+										<a (click)="editStaff()" class="btn btn-round-blue"><i
+												class="fa fa-edit"></i></a>
+									</div> -->
+								</div>
+							</div>
+							<div>
+								<div class="dashboard-table margn-top">
+									<table class="table table-bordered table-striped">
+										<thead class="thead-light">
+											<tr>
+												<th scope="col">Sr no.</th>
+												<th scope="col">Professional's Name</th>
+												<!-- <th scope="col">Professional's Email</th> -->
+												<th scope="col">Phone Number</th>
+												<!-- <th scope="col">Package Name</th> -->
+												<th scope="col">Start Date</th>
+                                                <th scope="col">End Date</th>
+												 <th scope="col">Amount Paid</th> 
+												<!-- <th scope="col">Action</th> -->
+												
+											</tr>
+										</thead>
+										<tbody>
+											<tr *ngFor="let l of staffArr; let i=index;">
+												<th scope="row">{{i+1}}</th>
+												<td> {{l.user_id.first_name}} {{l.user_id.last_name}} </td>
+												<td>{{l.user_id.phone_number}}</td>
+												<td>{{l.start_date | date}}</td>
+												<td>{{l.end_date | date}}</td>
+												<td >AED {{l.amount}}</td>
+												<!-- <td></td> -->
+												<!-- <td>
+													<button class="btn btn-change-fill"
+														routerLink="/sellerGrantPrivilages/{{l.id}}">Grant
+														Privilege</button>
+												</td> -->
+												
+											</tr>
+											<!-- <tr>
+												<th scope="row">2</th>
+												<td>Grace Lawerence</td>
+												<td>Gracelawerence@gmail.com</td>
+												<td>96952466545</td>
+												<td>Branch Name</td>
+												<td>View</td>
+												<td>
+													<button class="btn btn-change-fill">Grant Privilege</button>
+												</td>
+											</tr>
+											<tr>
+												<th scope="row">3</th>
+												<td>Grace Lawerence</td>
+												<td>Gracelawerence@gmail.com</td>
+												<td>96952466545</td>
+												<td>Branch Name</td>
+												<td>View</td>
+												<td>
+													<button class="btn btn-change-fill">Grant Privilege</button>
+												</td>
+											</tr>
+											<tr>
+												<th scope="row">4</th>
+												<td>Grace Lawerence</td>
+												<td>Gracelawerence@gmail.com</td>
+												<td>96952466545</td>
+												<td>Branch Name</td>
+												<td>View</td>
+												<td>
+													<button class="btn btn-change-fill">Grant Privilege</button>
+												</td>
+											</tr>
+											<tr>
+												<th scope="row">5</th>
+												<td>Grace Lawerence</td>
+												<td>Gracelawerence@gmail.com</td>
+												<td>96952466545</td>
+												<td>Branch Name</td>
+												<td>View</td>
+												<td>
+													<button class="btn btn-change-fill">Grant Privilege</button>
+												</td>
+											</tr>
+											<tr>
+												<th scope="row">6</th>
+												<td>Grace Lawerence</td>
+												<td>Gracelawerence@gmail.com</td>
+												<td>96952466545</td>
+												<td>Branch Name</td>
+												<td>View</td>
+												<td>
+													<button class="btn btn-change-fill">Grant Privilege</button>
+												</td>
+											</tr>
+											<tr>
+												<th scope="row">7</th>
+												<td>Grace Lawerence</td>
+												<td>Gracelawerence@gmail.com</td>
+												<td>96952466545</td>
+												<td>Branch Name</td>
+												<td>View</td>
+												<td>
+													<button class="btn btn-change-fill">Grant Privilege</button>
+												</td>
+											</tr>
+											<tr>
+												<th scope="row">8</th>
+												<td>Grace Lawerence</td>
+												<td>Gracelawerence@gmail.com</td>
+												<td>96952466545</td>
+												<td>Branch Name</td>
+												<td>View</td>
+												<td>
+													<button class="btn btn-change-fill">Grant Privilege</button>
+												</td>
+											</tr>
+											<tr>
+												<th scope="row">9</th>
+												<td>Grace Lawerence</td>
+												<td>Gracelawerence@gmail.com</td>
+												<td>96952466545</td>
+												<td>Branch Name</td>
+												<td>View</td>
+												<td>
+													<button class="btn btn-change-fill">Grant Privilege</button>
+												</td>
+											</tr>
+											<tr>
+												<th scope="row">10</th>
+												<td>Grace Lawerence</td>
+												<td>Gracelawerence@gmail.com</td>
+												<td>96952466545</td>
+												<td>Branch Name</td>
+												<td>View</td>
+												<td>
+													<button class="btn btn-change-fill">Grant Privilege</button>
+												</td>
+											</tr> -->
+										</tbody>
+									</table>
+									<div>
+										<mat-paginator [length]="length" [pageSize]="10"
+											[pageSizeOptions]="getPageSizeOptions()"
+											(page)="paginationOptionChange($event)">
+										</mat-paginator>
+										<!-- [length]="length" -->
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<app-footer></app-footer>

@@ -1,0 +1,115 @@
+<app-header></app-header>
+<div class="wrapper_shala outer_most_main">
+    <section class="common_image_section page_headrer_wrkshop">
+        <div class="container">
+            <div class="page_head_wrap">
+                <h2 class="aboutus_head">Interior</h2>
+                <p class="page_head">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor inc idunt ut labore
+                    et
+                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                    aliquip
+                    ex ea commodo consequat.
+                </p>
+            </div>
+        </div>
+    </section>
+    <nav aria-label="breadcrumb mb-0 mt-5">
+        <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Catalogue</li>
+        </ol>
+    </nav>
+    <div class="catalogue-wrapper">
+        <div class="custom_container">
+            <div class="row">
+
+            </div>
+            <div class="col-md-12">
+                <div class="related-service-slider">
+                    <div class="product-slider-heading mt-2 catlg_slider">
+
+                    </div>
+                    <div class="main_ideas_wrap">
+                        <owl-carousel-o [options]="related_products_slider">
+                            <ng-template carouselSlide *ngFor="let interior of interiorCatalogue"
+                                style="cursor: pointer;">
+                                <figure class="wrap_idea_singl"
+                                    routerLink="/catalogue-interior-detail//{{interior.id}}">
+                                    <img *ngIf="interior?.image?.length" src="{{imgpath}}{{interior?.image}}"
+                                        class="img-fluid" alt="room1" />
+                                    <img *ngIf="!interior?.image?.length" src="../../../assets/imgs/noImage.jpg"
+                                        class="img-fluid" alt="room1" />
+                                    <div class="fig_div_abs text-center">
+                                        <h3 class="room_name" style="cursor: pointer;">{{interior?.name}}</h3>
+
+                                    </div>
+                                </figure>
+                            </ng-template>
+
+                        </owl-carousel-o>
+                    </div>
+                </div>
+            </div>
+            <!--  <div class="mb-4">
+                <div class="catalogue-disply-align">
+                    <div class="form-group d-flex">
+                        <input id="exampleFormControlInput5" type="email" placeholder="Search" class="form-control" required="true">
+                        <button type="submit" class="btn btn-filter">Filters</button>
+                    </div>
+                    <div class="">
+                        <div class="form-group row">
+                            <label for="staticEmail" class="col-sm-7 col-form-label">Display Per Page</label>
+                            <div class="col-sm-5">
+                                <select class="form-control" id="exampleFormControlSelect1">
+                                    <option>12</option>
+                                    <option>24</option>
+                                    <option>46</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+            <div class="col-md-12">
+                <div class="catalogue-wrapper-col mt-3 mb-5">
+                    <div class="simple-effet-image clearfix prdtDtlDiv">
+                        <div class="row">
+                            <div class="col-md-3" style="    margin-top: 1%;"
+                                *ngFor="let interior of interiorCatalogue">
+                                <div class="card" routerLink="/catalogue-interior-detail/{{interior.id}}">
+                                    <div class="prdcutImg">
+
+                                        <a>
+                                            <img *ngIf="interior?.image?.length" src="{{imgpath}}{{interior?.image}}"
+                                                alt="image-1" class="bfr-effct-img heightIMg">
+                                            <img *ngIf="!interior?.image?.length" src="../../../assets/imgs/noImage.jpg"
+                                                alt="image-1" class="bfr-effct-img heightIMg">
+                                        </a>
+
+                                    </div>
+
+                                    <div class="prdctDtl">
+
+                                        <div _ngcontent-pvf-c289="" class="custm_address text-left ">
+                                            <address _ngcontent-pvf-c289="">{{interior?.name}} </address>
+
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <app-footer></app-footer>
+</div>

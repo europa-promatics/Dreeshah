@@ -1,0 +1,365 @@
+<app-seller-header></app-seller-header>
+<div class="seller-quotation-wrapper">
+	<div class="custom-container d-flex">
+		<app-seller-sidebar></app-seller-sidebar>
+		<div class="main-wrap">
+			<div class="card">
+				<div class="card-body">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="card">
+								<div class="card-body">
+									<div class="add-proj-form-wrp">
+										<div class="proj-form-head">
+											<h1>Upload Content to a Project</h1>
+											<p>A Project is a collection of photos and videos of your own work or
+												products. Projects are usually best organized by client, job site, or
+												product line. Or upload photos to an ideabook</p>
+										</div>
+										<div class="add-proj-form">
+											<form [formGroup]="addProjectForm">
+												<div class="form-group" *ngIf="getProjectArr.length >0">
+													<mat-form-field>
+														<mat-label>Select Project</mat-label>
+														<mat-select formControlName="sellerProject"
+															(selectionChange)="SelectProject($event)">
+															<mat-option *ngFor="let ar of getProjectArr"
+																[value]="ar.project_name">{{ar.project_name}}
+															</mat-option>
+															<!-- <mat-option value="2">Which Project was it Part of?</mat-option>
+															<mat-option value="3">Your Existing Project</mat-option> -->
+														</mat-select>
+													</mat-form-field>
+												</div>
+												<div class="form-group">
+													<mat-form-field appearance="">
+														<mat-label>New Project Name</mat-label>
+														<input formControlName="newProjName" matInput placeholder=""
+															>
+													</mat-form-field>
+													<div *ngIf="addProjectForm.controls.newProjName.invalid && (addProjectForm.controls.newProjName.dirty || addProjectForm.controls.newProjName.touched || submit)"
+														class="">
+														<mat-error
+															*ngIf="addProjectForm.controls.newProjName.errors.required">
+															Please Enter Project Name
+														</mat-error>
+													</div>
+												</div>
+												<div class="form-group">
+													<mat-form-field appearance="">
+														<mat-label>Project Description</mat-label>
+														<input formControlName="description" matInput placeholder=""
+															>
+													</mat-form-field>
+													<div *ngIf="addProjectForm.controls.description.invalid && (addProjectForm.controls.description.dirty || addProjectForm.controls.description.touched || submit)"
+														class="">
+														<mat-error
+															*ngIf="addProjectForm.controls.description.errors.required">
+															Please Enter description
+														</mat-error>
+													</div>
+												</div>
+												<mat-form-field appearance="">
+													<mat-label>Project Address</mat-label>
+													<input formControlName="projectAddress" matInput placeholder=""
+														>
+												</mat-form-field>
+												<div *ngIf="addProjectForm.controls.projectAddress.invalid && (addProjectForm.controls.projectAddress.dirty || addProjectForm.controls.projectAddress.touched || submit)"
+													class="">
+													<mat-error
+														*ngIf="addProjectForm.controls.projectAddress.errors.required">
+														Please Enter Project Name
+													</mat-error>
+												</div>
+
+												<div class="form-group">
+													<ng-select [multiple]="true" formControlName="country"
+													 placeholder="Countries" multiple (change)="getCities($event)">
+														<ng-option *ngFor="let city of countries"
+															[value]="city">
+															{{city.name}}</ng-option>
+													</ng-select>
+													<div *ngIf="addProjectForm.controls.country.invalid && (addProjectForm.controls.country.dirty || addProjectForm.controls.country.touched || submit)"
+														class="">
+														<p style="color: red;"
+															*ngIf="addProjectForm.controls.country.errors.required">
+															Country is required
+														</p>
+													</div>
+												</div>
+												<div class="form-group">
+													
+													<ng-select [multiple]="true" formControlName="city"
+													 placeholder="Cities" multiple (change)="getreqdCities($event)">
+														<ng-option *ngFor="let city of cities"
+															[value]="city">
+															{{city.name}}</ng-option>
+													</ng-select>
+													
+													<div *ngIf="addProjectForm.controls.city.invalid && (addProjectForm.controls.city.dirty || addProjectForm.controls.city.touched || submit)"
+														class="">
+														<p style="color: red;"
+															*ngIf="addProjectForm.controls.city.errors.required">
+															City  is Required
+														</p>
+													</div> 
+												</div>
+
+												<ng-select [multiple]="true" formControlName="category"
+												placeholder="{{catDrop != null ? catDrop : 'Category'}}" multiple (change)="getCategories($event)">
+												   <ng-option  *ngFor="let a of categiryArr" [value]="a.id">
+													   {{a.name}}</ng-option>
+											   	</ng-select>
+												<!-- <div class="signup-form"> -->
+												<!-- <div *ngFor="let a of categiryArr"> -->
+
+												<!-- <mat-form-field>
+													<mat-label>{{catDrop != null ? catDrop : 'Category'}} </mat-label>
+													<mat-select formControlName="category" multiple>
+														<mat-option>
+															{{a.name}}</mat-option>
+
+													</mat-select>
+												</mat-form-field> -->
+												<div *ngIf="addProjectForm.controls.category.invalid && (addProjectForm.controls.category.dirty || addProjectForm.controls.category.touched || submit)"
+													class="">
+													<mat-error *ngIf="addProjectForm.controls.category.errors.required">
+														Please Select category
+													</mat-error>
+												</div>
+												<div class="form-group">
+													<ng-select [multiple]="true" formControlName="CatName"
+													placeholder="{{catDrop != null ? catDrop : 'Sub-Category'}}" multiple (change)="getSubCategories($event)">
+													   <ng-option  *ngFor="let a of newArr" [value]="a.id">
+														   {{a.name}}</ng-option>
+													   </ng-select>	
+												<!-- <mat-form-field>
+													<mat-label>{{catDrop != null ? catDrop : 'Sub-Category'}} </mat-label>
+													<mat-select formControlName="CatName" multiple>
+														<mat-option *ngFor="let a of newArr" [value]="a.id">
+															{{a.name}}</mat-option>
+
+													</mat-select>
+												</mat-form-field> -->
+												
+												
+												</div>
+												<div *ngIf="addProjectForm.controls.CatName.invalid && (addProjectForm.controls.CatName.dirty || addProjectForm.controls.CatName.touched || submit)"
+													class="">
+													<mat-error *ngIf="addProjectForm.controls.CatName.errors.required">
+														Please Select Sub-Category
+													</mat-error>
+												</div>
+
+											
+												<!-- </div> -->
+
+												<mat-form-field>
+													<mat-label>{{styleDrop != null ? styleDrop : 'Styles'}}</mat-label>
+													<mat-select formControlName="styles">
+
+														<mat-option *ngFor="let b of styleArr" [value]="b._id">
+															{{b.name}}</mat-option>
+
+													</mat-select>
+												</mat-form-field>
+												<div *ngIf="addProjectForm.controls.styles.invalid && (addProjectForm.controls.styles.dirty || addProjectForm.controls.styles.touched || submit)"
+													class="">
+													<mat-error *ngIf="addProjectForm.controls.styles.errors.required">
+														Please Select Style
+													</mat-error>
+												</div>
+												<mat-form-field appearance="">
+													<mat-label>Project Year</mat-label>
+													<mat-select formControlName="projectYear"  (selectionChange)="getBranchYear($event)" required>
+														<mat-option>--</mat-option>
+														<mat-option *ngFor="let year of years" [value]="year">
+														  {{year}}
+														</mat-option>
+													  </mat-select>
+													<!-- <input (keypress)="numberOnly($event)" (keyup)="yaarcheck($event)"
+														maxlength="4" formControlName="projectYear" matInput
+														placeholder="" value="year"> -->
+												</mat-form-field>
+												<div *ngIf="addProjectForm.controls.projectYear.invalid && (addProjectForm.controls.projectYear.dirty || addProjectForm.controls.projectYear.touched || submit)"
+												class="">
+												<mat-error *ngIf="addProjectForm.controls.projectYear.errors.required">
+													Please Select Project Year
+												</mat-error>
+											</div>
+												<!-- <mat-form-field appearance="">
+													<mat-label>Branch Establishment Year
+													</mat-label>
+												   
+														<mat-select formControlName="branch_year" [(ngModel)]="year" (selectionChange)="getBranchYear($event)" required>
+															<mat-option>--</mat-option>
+															<mat-option *ngFor="let year of years" [value]="year">
+															  {{year}}
+															</mat-option>
+														  </mat-select>
+													
+												</mat-form-field> -->
+												<!-- <div *ngIf="addProjectForm.controls.projectYear.invalid && (addProjectForm.controls.projectYear.dirty || addProjectForm.controls.projectYear.touched || submit)"
+													class="">
+													<div *ngIf="addProjectForm.controls.projectYear.errors.required">
+													<p  style="color: #f44336">Please Enter Project Year</p>	
+													</div>
+
+												</div> -->
+												<!-- <div *ngIf="emptyProjYear">
+													<p  style="color: #f44336">Please Enter Project Year</p>	
+												</div> -->
+												<div *ngIf="greaterYear">
+													<p style="color: #f44336">Enter Year Can not be greater than current
+														year</p>
+												</div>
+												<div *ngIf="lesserYear">
+													<p style="color: #f44336">Enter Year Can not be Less than 1995</p>
+												</div>
+												<div *ngIf="invalidYear">
+													<p style="color: #f44336">Please Enter Valid year</p>
+												</div>
+												<mat-form-field appearance="">
+													<mat-label>Project Cost in AED</mat-label>
+													<mat-select formControlName="projectCost" >
+														<mat-option [value]="10000">Up to 10,000 AED</mat-option>
+														<mat-option [value]="50000">Up to 50,000 AED</mat-option>
+														<mat-option [value]="100000">Up to 100,000 AED</mat-option>
+														<mat-option [value]="500000">Up to 500,000 AED</mat-option>
+														<mat-option [value]="500000">Above 500,000 AED</mat-option>
+														
+													  </mat-select>
+													<!-- <input (keypress)="numberOnly($event)" maxlength="7"
+														formControlName="projectCost" matInput placeholder=""
+														value="1000"> -->
+												</mat-form-field>
+												<div *ngIf="addProjectForm.controls.projectCost.invalid && (addProjectForm.controls.projectCost.dirty || addProjectForm.controls.projectCost.touched || submit)"
+													class="">
+													<mat-error
+														*ngIf="addProjectForm.controls.projectCost.errors.required">
+														Please Enter Project Cost 
+													</mat-error>
+												</div>
+												<mat-form-field appearance="">
+													<mat-label>Link to Website</mat-label>
+													<input formControlName="website" matInput placeholder="">
+												</mat-form-field>
+												<div *ngIf="addProjectForm.get('website').errors && addProjectForm.get('website').errors.pattern">
+													<p style="color: #f44336">Please Enter Valid url</p>
+												</div>
+												<div class="form-group signup-form">
+													<label>Key-Words</label>
+													<tag-input formControlName="keyWords" [(ngModel)]='items'
+														maxItems="10" class="keywords--chips form-control height-unset"
+														[placeholder]="">
+													</tag-input>
+												</div>
+												<ng-select [multiple]="true" formControlName="getNoticed"
+													placeholder="Get noticed on other profiles by crediting other pros on
+													this project" multiple (change)="bridevt($event)">
+													   <ng-option  *ngFor="let a of branchListArr" [value]="a._id">
+														{{a.first_name}} {{a.last_name}}</ng-option>
+													   </ng-select>	
+												<!-- <mat-form-field>
+
+													<mat-label>Get noticed on other profiles by crediting other pros on
+														this project</mat-label>
+													<mat-select formControlName="getNoticed" multiple
+														(selectionChange)="bridevt($event)">
+														<mat-option *ngFor="let b of branchListArr" [value]="b._id">
+															{{b.first_name}} {{b.last_name}}
+														</mat-option>
+
+													</mat-select>
+												</mat-form-field> -->
+												<!-- <div class="row">
+													<div class="col-md-12"> <span class="text-added"></span> </div>
+													<div class="col-md-8">
+														<mat-form-field appearance="">
+															<mat-label>Get noticed on other profiles by crediting other pros on this project (i.e. Architect, Interior Designer, Photographer, Plumber, Electrician, etc) </mat-label>
+															<input  formControlName="getNoticed" matInput placeholder="" value="" required> 
+														</mat-form-field>
+													</div>
+													<div class="col-md-4">
+														<div class="add-proj-btn">
+															<button class="btn btn-change-fill">Add</button>
+														</div>
+													</div>
+												</div> -->
+												<div class="form-group signup-form">
+													<label>Content <span class="mandatory-star">*</span></label>
+													<ngx-dropzone  accept="image/jpeg,image/jpg,image/png"
+														(change)="onSelect($event)" class="custom--dropzone">
+														<ngx-dropzone-label >Click or Drag and
+															Drop files to
+															Uplaod
+														</ngx-dropzone-label>
+														<ngx-dropzone-preview *ngFor="let f of files" [removable]="true"
+															(removed)="onRemove(f)">
+															<ngx-dropzone-label>{{ f.name }} ({{ f.type }})
+															</ngx-dropzone-label>
+														</ngx-dropzone-preview>
+													</ngx-dropzone>
+													<div>
+														<!-- *ngIf="addProjectForm.controls.projectYear.invalid && (addProjectForm.controls.projectYear.dirty || addProjectForm.controls.projectYear.touched || submit)" -->
+														<!-- <p style="color:#f44336 "
+															*ngIf="addProjectForm.controls.dropzone.invalid && (addProjectForm.controls.dropzone.dirty || addProjectForm.controls.dropzone.touched || submit)">
+															Please Upload atleast one image</p> -->
+														<p *ngIf="ngxDrop" style="color :#f44336">
+															Please Upload atleast one image</p>
+													</div>
+												</div>
+
+												<small>By uploading photos, you are approving their display by Houzz,
+													saying that you either own the rights to the image or that you have
+													permission or a license to do so from the copyright holder, and
+													agreeing to abide by Dreeshah's <span class="theme-link"><a
+															routerLink="/terms-condition">terms of
+															use.</a></span></small>
+												<div class="check--wrp mt-2">
+													<div class="form-group mb-0 signup-form">
+														<label>Where Do You want to Publish?<span
+																class="mandatory-star">*</span></label>
+													</div>
+													<div class="example-section">
+														<mat-checkbox class="example-margin" value="professional"
+															(change)="checkFunctionPro($event)">Professional
+														</mat-checkbox>
+														<mat-checkbox class="example-margin" value="service"
+															(change)="checkFunctionService($event)">Services
+														</mat-checkbox>
+														<mat-checkbox class="example-margin" value="product"
+															(change)="checkFunctionproduct($event)">Products
+														</mat-checkbox>
+													</div>
+													<div>
+														<p *ngIf="checkboxEr" style="color :#f44336">
+															Please select atleast one checkbox where you want to publish
+														</p>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-md-8 offset-md-2">
+														<div class="upload-btn mt-2">
+															<button class="btn btn-change-fill min-width-0" style="margin-left:  40% ;"
+																(click)="addProject()">Publish</button>
+															<!-- <button class="btn btn-change-fill min-width-0">Delete</button> -->
+														
+															<!-- <button class="btn btn-change-fill min-width-0">Cancel</button> -->
+															
+														</div>
+													</div>
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<app-footer></app-footer>

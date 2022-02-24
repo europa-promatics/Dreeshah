@@ -1,0 +1,385 @@
+<app-seller-header></app-seller-header>
+<div class="seller-quotation-d-wrapper">
+    <div class="custom-container d-flex">
+        <app-seller-sidebar></app-seller-sidebar>
+        <div class="main-wrap">
+            <div class="card">
+                <div class="card-body">
+                    <form [formGroup]="quotationForm">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="dashboard-table-heading border-bottom">
+                                <h1>Add Quotation</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modify-quote-sec" >
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <mat-form-field appearance="">
+                                        <mat-label>Title</mat-label>
+                                        <input matInput placeholder="Title"  formControlName="title"  [(ngModel)]="title">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <mat-form-field appearance="">
+                                        <mat-label>Warranty</mat-label>
+                                        <input matInput placeholder="warranty"  formControlName="warranty" [(ngModel)]="warrenty"> 
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <mat-form-field appearance="">
+                                        <mat-label>Offer Validity</mat-label>
+                                        <input matInput placeholder=""  formControlName="offer_validity"[(ngModel)]="offerValidity"> 
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <mat-form-field>
+                                    <mat-label>Choose an option</mat-label>
+                                    <mat-select>
+                                      <mat-option value="option1">Days</mat-option>
+                                      <mat-option value="option2">Weeks</mat-option>
+                                      <mat-option value="option3">Months</mat-option>
+                                      <mat-option value="option3">Years</mat-option>
+                                    </mat-select>
+                                  </mat-form-field>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <mat-form-field appearance="">
+                                        <mat-label>Price</mat-label>
+                                        <input matInput placeholder="" formControlName="price" [(ngModel)]="price"> 
+                                    </mat-form-field>
+                                </div>
+                                <div style="color: #E80358" *ngIf="quotationForm.controls['price'].hasError('pattern')">Please Use Only Digits</div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <mat-form-field appearance="">
+                                        <mat-label>Quantity</mat-label>
+                                        <input matInput placeholder="Quantity"  formControlName="quantity" [(ngModel)]="quantity"> 
+                                    </mat-form-field>
+                                </div>
+                                <div style="color: #E80358" *ngIf="!quotationForm.controls['quantity'].valid  && ( quotationForm.controls['quantity'].touched)">Please Provide Quantity </div>
+                                <div style="color: #E80358" *ngIf="quotationForm.controls['quantity'].hasError('pattern')">Please Use Only Digits</div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <mat-form-field appearance="">
+                                        <mat-label>Vat</mat-label>
+                                        <input matInput placeholder="Vat" required formControlName="vat" [(ngModel)]="vat"> 
+                                    </mat-form-field>
+                                </div>
+                                <div style="color: #E80358" *ngIf="!quotationForm.controls['vat'].valid  && ( quotationForm.controls['vat'].touched)">Please Provide Quantity </div>
+                                <div style="color: #E80358" *ngIf="quotationForm.controls['vat'].hasError('pattern')">Please Use Only Digits</div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <h2>No. of sections</h2>
+                                    <span>Click on Plus icon to add detail</span> 
+                                    <button class="btn btn-round-blue pls-icn float-right mr-2" (click)="removeSections(items)"><i class="fa fa-minus"  ></i></button>
+
+                                    <button class="btn btn-round-blue pls-icn float-right mr-2" (click)="addSections()"><i class="fa fa-plus"  ></i></button>
+                                  
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            
+                            <div class="col-md-12" formArrayName="titles">
+
+                                <cdk-accordion class="example-accordion" *ngFor="let item of this.quotationForm?.get('titles')?.controls; let i = index">
+                                    <cdk-accordion-item
+                                    #accordionItem="cdkAccordionItem"
+                                    class="example-accordion-item"
+                                    role="button"
+                                    tabindex="0"
+                                    [attr.id]="'accordion-header-' + index"
+                                    [attr.aria-expanded]="accordionItem.expanded"
+                                    [attr.aria-controls]="'accordion-body-' + index">
+                                    <div class="example-accordion-item-header d-flex" (click)="accordionItem.toggle()">
+                                        <mat-form-field appearance="">
+                                            <mat-label>Enter Title</mat-label>
+                                            <input matInput placeholder="Title" [formControl]="quotationForm?.controls.titles.controls[i].controls.title1"> 
+                                        </mat-form-field>
+                                        <span class="example-accordion-item-description">
+                                            <mat-icon>keyboard_arrow_down</mat-icon>
+                                        </span>
+                                    </div>
+                                    <div
+                                        class="example-accordion-item-body"
+                                        role="region"
+                                        [style.display]="accordionItem.expanded ? '' : 'none'"
+                                        [attr.id]="'accordion-body-' + index"
+                                        [attr.aria-labelledby]="'accordion-header-' + index">
+                                        <div class="d-flex addDtlBtn">
+                                            <span>on Plus icon to add detail</span> 
+                                            <span (click)="showDetails(item)" ><mat-icon>add_circle</mat-icon></span>
+                                            
+                                        </div>
+                                      
+                                    </div>
+                                    </cdk-accordion-item>
+                                </cdk-accordion>
+                                    <div  *ngFor="let item of quotationForm.value.titles;let i=index">
+                                       
+                                        <!-- <div ng-bind="selected.item.Country"></div> -->
+                                      
+                                        <table class="tabb-55 form-group">
+                                          <tbody>
+                                              
+                                              <tr>
+                                                  <th scope="row" colspan="2">
+                                                      <div class="pd">
+                                                          {{quotationForm.value.titles[i].title1}}
+                                                      </div>
+                                                  </th>
+                                              </tr>
+                                              <tr >
+                                                  <td>
+                                                    <div class="pd">
+                                                      <b>Item Name</b>
+                                                      </div>
+                                                    </td>
+                                                  <td class="text-right">
+                                                    <div class="pd">
+                                                      <b>Price</b>
+                                                      </div>
+                                                    </td>
+                                              </tr>
+                                              <tr *ngFor="let value of item.items;let j=index">
+                                                  <td>
+                                                      <div class="pd">
+                                                          {{quotationForm.value.titles[i].items[j].name}}
+                                                      </div>
+                                                  </td>
+                                                  <td class="text-right">
+                                                      <div class="pd">
+                                                          {{quotationForm.value.titles[i].items[j].price}}
+                                                      </div>
+                                                  </td>
+                                              </tr>											
+                                          </tbody>
+                                      </table>
+                                          
+                                          
+                                      
+                                      </div>
+                                 
+
+                                  
+                            </div>
+
+
+                            
+                            <div class="col-md-12 signup-form">
+                                <div class="ck-editor">
+                                    <label>Scope of Work</label>
+                                    <ckeditor  formControlName="scope_of_work" [data]="scope_of_work">
+                                    </ckeditor>
+                                </div>
+                            </div>
+                            <div class="col-md-12 signup-form mt-3">
+                                <div class="ck-editor">
+                                    <label>Exclusions</label>
+                                    <ckeditor  formControlName="exclusion" [data]="exclusion">
+                                    </ckeditor>
+                                </div>
+                            </div>
+                             <div class="col-md-12 signup-form mt-3">
+                                <div class="ck-editor">
+                                    <label>Add Terms and Conditions of Dreeshah</label>
+                                    <ckeditor  formControlName="add_terms_and_conditions_of_dreeshah" [data]="add_terms_and_conditions_of_dreeshah">
+                                    </ckeditor>
+                                </div>
+                            </div>
+                             <div class="col-md-12 signup-form mt-3">
+                                <div class="ck-editor">
+                                    <label>Add Terms and Conditions of Seller</label>
+                                    <ckeditor formControlName="add_terms_and_conditions_of_seller" [data]="add_terms_and_conditions_of_seller">
+                                    </ckeditor>
+                                </div>
+                            </div>
+                            <div class="col-md-12 mt-3">
+                                <h2>Payment Terms</h2>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                                <mat-label> Add Milestone</mat-label>
+                                                <button class="btn btn-round-blue mns-icn float-right" (click)="removeMilestones(items)"><i class="fa fa-minus"></i></button>
+
+                                                <button class="btn btn-round-blue pls-icn float-right mr-2" (click)="addMilestones()"><i class="fa fa-plus"  ></i></button>
+                                        </div>
+                                        
+                                    </div>
+                                   
+                                </div>
+                                 <div formArrayName="paymentterms">
+                                            <div *ngFor="let item of this.quotationForm?.get('paymentterms')?.controls;let i=index">
+                                            <div class="form-group">
+                                                
+                                                <mat-form-field appearance="">
+                                                    <input matInput placeholder="Enter Payment Percentage" [formControl]="quotationForm?.controls.paymentterms.controls[i].controls.payment_percent" [(ngModel)]="item.payment_percent"> 
+                                                </mat-form-field>
+
+
+                                            </div>
+                                            <div style="color: #E80358" *ngIf="!quotationForm?.controls.paymentterms.controls[i].controls.payment_percent.valid  && ( quotationForm?.controls.paymentterms.controls[i].controls.payment_percent.touched)">Please Provide Payment Percentage</div>
+                                            <div style="color: #E80358" *ngIf="quotationForm?.controls.paymentterms.controls[i].controls.payment_percent.hasError('pattern')">Please Use Only Digits</div>
+                                        
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <mat-form-field >
+                                                    <mat-label>Start Date</mat-label>
+                                                    <input matInput [matDatepicker]="picker5" [formControl]="quotationForm?.controls.paymentterms.controls[i].controls.start_date" [(ngModel)]="item.start_date">
+                                                    <mat-datepicker-toggle matSuffix [for]="picker5"></mat-datepicker-toggle>
+                                                    <mat-datepicker #picker5></mat-datepicker>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <mat-form-field >
+                                                    <mat-label>End Date</mat-label>
+                                                    <input matInput [matDatepicker]="picker6" [formControl]="quotationForm?.controls.paymentterms.controls[i].controls.end_date" [(ngModel)]="item.end_date">
+                                                    <mat-datepicker-toggle matSuffix [for]="picker6"></mat-datepicker-toggle>
+                                                    <mat-datepicker #picker6></mat-datepicker>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                    </div>
+                        </div>
+                    </div>
+                            <div class="col-md-12 mt-3">
+                            	<h2>Work Schedule</h2>
+                                
+                                
+
+                                <div class="parent-module" >
+                                    <span>on Plus icon to add detail</span> 
+                                    <button class="btn btn-round-blue mns-icn float-right" (click)="remove(items)"><i class="fa fa-minus"></i></button>
+                                    <button class="btn btn-round-blue pls-icn float-right mr-2" (click)="add($event)"><i class="fa fa-plus"  ></i></button>
+                                <div class="quote-main-module mt-3"  formArrayName="workSchedule" >      
+                                <div class="form-group"*ngFor="let item of this.quotationForm?.get('workSchedule')?.controls; let i=index">
+                                    <div >
+                                    <div class="module-1">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <mat-form-field appearance="">
+                                                    <mat-label>Module</mat-label>
+                                                    <input matInput placeholder="" [formControl]="quotationForm?.controls.workSchedule.controls[i].controls.module" [(ngModel)]="item.module"> 
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <mat-form-field appearance="">
+                                                    <mat-label>Module Description</mat-label>
+                                                    <input matInput placeholder=""  [formControl]="quotationForm?.controls.workSchedule.controls[i].controls.description" [(ngModel)]="item.description"> 
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                          
+                                            <input type="text" placeholder="start date - end date" ngxDaterangepickerMd  class="form-control dte_rnge"  [formControl]="quotationForm?.controls.workSchedule.controls[i].controls.date_range" startKey="start" endKey="end" [(ngModel)]="reqDates[i]"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                   
+                                </div>
+                                </div>    
+                                </div>
+
+                                
+                                
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <mat-form-field>
+                                        <div>
+                                          <mat-toolbar>
+                                            <!-- Display files names -->
+                                            <input matInput  readonly name="name" />
+                                      
+                                            
+                                          </mat-toolbar>
+                                      
+                                          <!-- Fetch selected filed on change -->
+                                          <input type="file" #fileInput id="uploadFile" (change)="uploadFileEvt($event)" name="uploadFile" multiple="multiple"
+                                            accept="image/*" formControlName="image"/>{{image}}
+                                        </div>
+                                        <div style="color: #E80358" *ngIf="!quotationForm.controls['image'].valid  && ( quotationForm.controls['image'].touched)">Please Select Image</div>
+                                      </mat-form-field>
+                                </div>
+
+                            </div>
+                        <div class="col-md-12 mt-3" align="center">
+                            <button class="btn btn-change-fill" data-dismiss="modal" data-target="#SuccessModal" data-toggle="modal" (click)="submitQutation()">Submit</button>
+                        </div>
+                       
+                    </div>
+                </div></form>
+            </div>
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h2 class="modal-title" id="exampleModalLabel">Enter Details</h2>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                        <form [formGroup]="ItemForm">
+                            <div formArrayName="items">
+                                <div  *ngFor="let item of ItemForm?.get('items')?.controls;let i=index">
+                                    <div class="row">
+                                    <div class="col-md-12">
+                                        <mat-form-field appearance="">
+                                            <mat-label>Item Name</mat-label>
+                                            <input matInput placeholder="item" [formControl]="ItemForm?.controls.items.controls[i].controls.name"> 
+                                        </mat-form-field>
+                                    </div>
+                                    <div style="color: #E80358; padding-left: 15px;" *ngIf="!ItemForm?.controls.items.controls[i].controls.name.valid  && ( ItemForm?.controls.items.controls[i].controls.name.touched)">Please Provide Item Name </div>
+                                    </div>
+                                    <div class="row">
+
+                                    <div class="col-md-12">
+                                        <mat-form-field appearance="">
+                                            <mat-label>Price</mat-label>
+                                            <input matInput placeholder="price"  [formControl]="ItemForm?.controls.items.controls[i].controls.price"> 
+                                        </mat-form-field>
+                                    </div>
+                                    <div style="color: #E80358;padding-left: 15px;" *ngIf="!ItemForm?.controls.items.controls[i].controls.price.valid  && ( ItemForm?.controls.items.controls[i].controls.price.touched)">Please Provide Price </div>
+                                    <div style="color: #E80358;padding-left: 15px;" *ngIf="ItemForm?.controls.items.controls[i].controls.price.hasError('pattern')">Please Use Only Digits</div>
+                                  </div>
+
+                                </div>
+                            </div>
+                        
+                          <div class="addRemoveIcns2"></div>
+                          <div class="addRemoveIcns">
+                            <mat-icon (click)="removeitems(items)">remove_circle</mat-icon>
+                            <mat-icon (click)="additems()">add_circle</mat-icon>
+                          </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary" (click)="saveTitleandItems(items)">Save changes</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

@@ -1,0 +1,303 @@
+<app-consultant-header></app-consultant-header>
+<div class="photographer-dashboard-wrapper">
+    <div class="custom-container d-flex">
+        <app-ph-sidebar></app-ph-sidebar>
+        <div class="main-wrap">
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="card">
+                        <div class="card-body">
+                            <mat-tab-group>
+                                <mat-tab label="Personal Information">
+                                    <div class="personal-infor-wrapper">
+                                        <div class="d-flex justify-content-between">
+                                            <div class="photographer-headr">
+                                                <h2 class="custom-head">Personal Information</h2>
+                                            </div>
+                                            <div class="edit--btn">
+                                                <a routerLink="/photographerEditProfile" class="btn btn-round-blue"><i
+                                                        class="fa fa-pencil"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="saved-address-cards">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="card mt-5">
+                                                    <div class="card-body p-0">
+                                                        <div class="profile-card-7 m-0 ">
+                                                            <img src="https://cdn.pixabay.com/photo/2017/04/24/13/37/architecture-2256489_960_720.jpg"
+                                                                class="img img-responsive">
+                                                            <div class="profile-content">
+                                                                <div class="icon-inside">
+                                                                    <a routerLink="/photographerEditProfile"><i
+                                                                            class="fa fa-pencil"
+                                                                            aria-hidden="true"></i></a>
+                                                                </div>
+                                                                <div class="profile-name">General Details</div>
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                        <div class="profile-overview">
+                                                                            <p>First Name</p>
+                                                                            <h5>{{userDetails?.first_name}}</h5>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="profile-overview">
+                                                                            <p>Last Name</p>
+                                                                            <h5>{{userDetails?.last_name}}</h5>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-8">
+                                                                        <div class="profile-overview">
+                                                                            <p>Email</p>
+                                                                            <h5>{{userDetails?.email}}</h5>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="card mt-5">
+                                                    <div class="card-body p-0">
+                                                        <div class="profile-card-7 m-0 ">
+                                                            <img src="https://cdn.pixabay.com/photo/2017/04/24/13/37/architecture-2256489_960_720.jpg"
+                                                                class="img img-responsive">
+                                                            <div class="profile-content">
+                                                                <div class="icon-inside">
+                                                                    <a routerLink="/photographerEditProfile"><i
+                                                                            class="fa fa-pencil"
+                                                                            aria-hidden="true"></i></a>
+                                                                </div>
+                                                                <div class="profile-name">Contact Details</div>
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                        <div class="profile-overview">
+                                                                            <p>Photographer Name in English</p>
+                                                                            <h5>{{userDetails?.contact_details.name_eng}}</h5>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="profile-overview">
+                                                                            <p>Photographer Name in Arabic</p>
+                                                                            <h5>{{userDetails?.contact_details.name_arabic}}</h5>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="profile-overview">
+                                                                            <p>Business Website</p>
+                                                                            <h5>{{userDetails?.contact_details.business_website}}</h5>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="profile-overview">
+                                                                            <p>Mobile Number</p>
+                                                                            <h5>{{userDetails?.contact_details.mobile_number}}</h5>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="profile-overview">
+                                                                            <p>Business Mobile Number</p>
+                                                                            <h5>{{userDetails?.contact_details.business_mobile_number}}</h5>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="profile-overview">
+                                                                            <p>Business Email</p>
+                                                                            <h5>{{userDetails?.contact_details.business_email}}</h5>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="profile-overview">
+                                                                            <p>Instagram Account</p>
+                                                                            <h5>{{userDetails?.contact_details.insta_acc}}</h5>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="profile-overview">
+                                                                            <p>Youtube Channel</p>
+                                                                            <h5>{{userDetails?.contact_details.youtube_channel}}</h5>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="card mt-5">
+                                                    <div class="card-body p-0">
+                                                        <div class="profile-card-7 m-0 ">
+                                                            <img src="https://cdn.pixabay.com/photo/2017/04/24/13/37/architecture-2256489_960_720.jpg"
+                                                                class="img img-responsive">
+                                                            <div class="profile-content">
+                                                                <div class="icon-inside">
+                                                                    <a routerLink="/photographerEditProfile"><i
+                                                                            class="fa fa-pencil"
+                                                                            aria-hidden="true"></i></a>
+                                                                </div>
+                                                                <div class="profile-name">Business Details</div>
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                        <div class="profile-overview">
+                                                                            <p>Company (studio) Name</p>
+                                                                            <h5>{{userDetails?.business_details.company_name_eng}}</h5>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="profile-overview">
+                                                                            <p>Business Address Line1</p>
+                                                                            <h5>{{userDetails?.business_details.address_1}}</h5>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="profile-overview">
+                                                                            <p>Business Address Line2</p>
+                                                                            <h5>{{userDetails?.business_details.address_2}}</h5>
+                                                                        </div>
+                                                                    </div>
+                                                              
+                                                                    <div class="col-md-6">
+                                                                        <div class="profile-overview">
+                                                                            <p>Country</p>
+                                                                            <h5>{{userDetails?.business_details.country}}</h5>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="profile-overview">
+                                                                            <p>City</p>
+                                                                            <h5>{{userDetails?.business_details.city}}</h5>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="profile-overview">
+                                                                            <p>Company Establishment Year</p>
+                                                                             <h5> {{userDetails?.business_details.establishment_year}}</h5>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="profile-overview">
+                                                                            <p>Brief About the Company</p>
+                                                                             <h5> </h5>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="profile-overview">
+                                                                            <p>Issued in Mention the Country</p>
+                                                                            <h5>{{userDetails?.business_details.issued_in_countries}}</h5>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="profile-overview">
+                                                                            <p>Issued in Mention the City</p>
+                                                                            <h5>{{userDetails?.business_details.issued_in_cities}}</h5>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="profile-overview">
+                                                                            <p>License Number </p>
+                                                                            <h5>{{userDetails?.business_details.licence_number}}</h5>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="profile-overview">
+                                                                            <p>Certifications & Awards </p>
+                                                                            <h5>{{userDetails?.business_details.certificate_awards}}</h5>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="profile-overview">
+                                                                            <p>License Picture </p>
+                                                                            <h5><i class="fa fa-file-image"></i>{{userDetails?.business_details.licence_img}}</h5>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        
+                                            <div class="col-md-6">
+                                                <div class="card mt-5">
+                                                    <div class="card-body p-0">
+                                                        <div class="profile-card-7 m-0">
+                                                            <img src="https://cdn.pixabay.com/photo/2017/04/24/13/37/architecture-2256489_960_720.jpg"
+                                                                class="img img-responsive">
+                                                            <div class="profile-content">
+                                                                <div class="icon-inside">
+                                                                    <a routerLink="/photographerEditProfile"><i
+                                                                            class="fa fa-pencil"
+                                                                            aria-hidden="true"></i></a>
+                                                                </div>
+                                                                <div class="profile-name">Service Details</div>
+                                                                <div class="row">
+                                                                    <div class="col-md-12">
+                                                                        <div class="profile-overview">
+                                                                            <p>List of Services </p>
+                                                                            <h5 *ngFor="let service of userServices">{{service.name}}</h5>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-12">
+                                                                        <div class="profile-overview">
+                                                                            <p>List of Sub Services </p>
+                                                                            <h5 *ngFor="let service of SubServices">{{service.name}}</h5>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-12">
+                                                                        <div class="profile-overview">
+                                                                            <p>Typical Service Cost Range</p>
+                                                                            <h5>{{userDetails?.service_details.service_cost}} </h5>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-12">
+                                                                        <div class="profile-overview">
+                                                                            <p>Countries where your Service Cover</p>
+                                                                            <h5>{{userDetails?.service_details.service_country}} </h5>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-12">
+                                                                        <div class="profile-overview">
+                                                                            <p>City where your Service Cover</p>
+                                                                            <h5>{{userDetails?.service_details.service_city}} </h5>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </mat-tab>
+                              
+                            </mat-tab-group>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card photographer-picture-card">
+                        <div class="card-body">
+                            <p class="text-center">Profile Picture</p>
+                            <div class="profile-picture--photographer" align="center" *ngIf="userDetails?.profile_image"> 
+                                <img src="{{imgpath}}{{userDetails?.profile_image}}"
+                                    alt="image" class="img-fluid">
+                            </div>
+                            <div class="profile-picture--photographer" align="center"  *ngIf="!userDetails?.profile_image">
+                                <img src="assets/imgs/no-profile.webp"
+                                    alt="image" class="img-fluid">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>
