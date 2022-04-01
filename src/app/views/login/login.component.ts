@@ -37,17 +37,19 @@ export class LoginComponent implements OnInit {
   login() {
     var obj = {}
     var obj1 = {}
-    if(localStorage.getItem("cart_id")){
-            
+    if (localStorage.getItem("cart_id")) {
+
       var cart_id = localStorage.getItem("cart_id")
-      // console.log("inside condition", cart_id)
+
+      console.log("inside condition", cart_id)
       obj = {
+
         user_type: this.user_type,
         email: this.email,
         password: this.password,
         cart_id: cart_id
       }
-    }else{
+    } else {
       console.log("inside else condition")
       obj = {
         user_type: this.user_type,
@@ -74,29 +76,29 @@ export class LoginComponent implements OnInit {
         password: this.password
       }
     } */
-    
+
 
     this.CustomerService.login(obj).subscribe(data => {
       console.log(data)
       if (data.status == '200' || data.code == 200) {
         localStorage['userData'] = JSON.stringify(data.user);
         localStorage.setItem("remember_me", "yes"),
-        localStorage.setItem("token", data.token),
-        console.log("login_res", data)
-        localStorage["isLoggedIn"]=true,
-        this.toastr.success('Login successful', 'Success')
-        if(data.user.user_type == 'customer'){
+          localStorage.setItem("token", data.token),
+          console.log("login_res", data)
+        localStorage["isLoggedIn"] = true,
+          this.toastr.success('Login successful', 'Success')
+        if (data.user.user_type == 'customer') {
           // if(data.user._id){
           //   localStorage.setItem('user_Data',JSON.stringify(data.user));
           //   this.router.navigate(['/mychat'])
           // }else{
           //   this.toastr.error("Somthing bed happen")
           // }
-         
+
           this.router.navigate(['/dashboard']);
-        }else if(data.user.user_type == 'professional'){
+        } else if (data.user.user_type == 'professional') {
           this.router.navigate(['/seller-dashboard']);
-        }else{
+        } else {
           this.router.navigate(['/photographerDashboard']);
         }
       } else {

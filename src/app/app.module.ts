@@ -25,7 +25,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTabsModule } from '@angular/material/tabs';
 import { CKEditorModule } from 'ckeditor4-angular';
-import {CdkAccordionModule} from '@angular/cdk/accordion'
+import { CdkAccordionModule } from '@angular/cdk/accordion'
 // import { NgxStripeModule } from 'ngx-stripe';
 // import { CKEditorModule } from 'ng2-ckeditor';
 
@@ -77,52 +77,52 @@ import { NgxPaginationModule } from 'ngx-pagination';
 // Import the library
 import { NgxImageZoomModule } from 'ngx-image-zoom';
 import { AboutUsComponent } from './views/about-us/about-us.component';
-import{MycartComponent} from './views/mycart/mycart.component';
-import{MyWishlistComponent} from './views/my-wishlist/my-wishlist.component';
-import{CheckoutComponent} from './views/checkout/checkout.component';
-import{TermsConditionsComponent} from './views/terms-conditions/terms-conditions.component';
-import{PrivacyPolicyComponent} from './views/privacy-policy/privacy-policy.component';
-import{AddressComponent} from './views/address/address.component';
-import{MyOrdersComponent} from './views/my-orders/my-orders.component';
-import{EditAddressComponent} from './views/edit-address/edit-address.component';
-import{PhotographerUpdatePasswordComponent} from './views/photographer-update-password/photographer-update-password.component';
+import { MycartComponent } from './views/mycart/mycart.component';
+import { MyWishlistComponent } from './views/my-wishlist/my-wishlist.component';
+import { CheckoutComponent } from './views/checkout/checkout.component';
+import { TermsConditionsComponent } from './views/terms-conditions/terms-conditions.component';
+import { PrivacyPolicyComponent } from './views/privacy-policy/privacy-policy.component';
+import { AddressComponent } from './views/address/address.component';
+import { MyOrdersComponent } from './views/my-orders/my-orders.component';
+import { EditAddressComponent } from './views/edit-address/edit-address.component';
+import { PhotographerUpdatePasswordComponent } from './views/photographer-update-password/photographer-update-password.component';
 import { NgxMaskModule, IConfig } from 'ngx-mask';
 import { UserGuard } from './Auth/user.guard';
 
-import {ViewDetailsComponent} from './views/view-details/view-details.component';
-import {SellerOrderManagementComponent} from './views/seller-order-management/seller-order-management.component';
+import { ViewDetailsComponent } from './views/view-details/view-details.component';
+import { SellerOrderManagementComponent } from './views/seller-order-management/seller-order-management.component';
 
-import {ProfessionalsComponent} from'./views/professionals/professionals.component';
-import {MyAlbumsComponent} from './views/my-albums/my-albums.component';
+import { ProfessionalsComponent } from './views/professionals/professionals.component';
+import { MyAlbumsComponent } from './views/my-albums/my-albums.component';
 
-import {SellerBranchComponent} from './views/seller-branch/seller-branch.component';
-import {SellerEditBranchComponent} from './views/seller-edit-branch/seller-edit-branch.component';
+import { SellerBranchComponent } from './views/seller-branch/seller-branch.component';
+import { SellerEditBranchComponent } from './views/seller-edit-branch/seller-edit-branch.component';
 //import{ UserGuard } from './loginAuth/user.guard';
 import { SelllerBranchListingComponent } from './views/selller-branch-listing/selller-branch-listing.component';
 import { NgxMatIntlTelInputModule } from 'ngx-mat-intl-tel-input';
-import {MyAlbumsDetailComponent} from './views/my-albums-detail/my-albums-detail.component';
+import { MyAlbumsDetailComponent } from './views/my-albums-detail/my-albums-detail.component';
 import { StaffPrivilegesComponent } from './views/staff-privileges/staff-privileges.component';
 
-import {GrantPrivelegeComponent} from './views/staff-privileges/grant-privelege/grant-privelege.component';
+import { GrantPrivelegeComponent } from './views/staff-privileges/grant-privelege/grant-privelege.component';
 //import {SellerProjectsComponent} from './views/seller-projects/seller-projects.component';
-import {EditStaffComponent} from './views/staff-privileges/edit-staff/edit-staff.component';
+import { EditStaffComponent } from './views/staff-privileges/edit-staff/edit-staff.component';
 
 import { SellerAddStaffPrivilegesComponent } from './views/seller-add-staff-privileges/seller-add-staff-privileges.component';
 import { CatalogueDesigningComponent } from './views/catalogue-designing/catalogue-designing.component';
 import { SellerProjectListingPageComponent } from './views/seller-project-listing-page/seller-project-listing-page.component';
 import { ViewSingleProjectListComponent } from './views/seller-project-listing-page/view-single-project-list/view-single-project-list.component';
-import {SellerProjectsComponent} from './views/seller-projects/seller-projects.component';
+import { SellerProjectsComponent } from './views/seller-projects/seller-projects.component';
 import { RatingModule } from 'ng-starrating';
-import {SellerServiceDetailComponent} from './views/seller-service-list/seller-service-detail/seller-service-detail.component';
-import {MyBookingsComponent} from './views/my-bookings/my-bookings.component'
-import {CustomerAppointmentsComponent} from './views/customer-appointments/customer-appointments.component'
-import {SellerBookAppointmentComponent} from './views/seller-book-appointment/seller-book-appointment.component'
+import { SellerServiceDetailComponent } from './views/seller-service-list/seller-service-detail/seller-service-detail.component';
+import { MyBookingsComponent } from './views/my-bookings/my-bookings.component'
+import { CustomerAppointmentsComponent } from './views/customer-appointments/customer-appointments.component'
+import { SellerBookAppointmentComponent } from './views/seller-book-appointment/seller-book-appointment.component'
 //import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
-import {CustomerQuotationComponent} from './views/customer-quotation/customer-quotation.component'
-import {CustomerQuotationDetailsComponent} from './views/customer-quotation-details/customer-quotation-details.component'
-import {PhotographeraddressComponent} from './views/photographeraddress/photographeraddress.component'
+import { CustomerQuotationComponent } from './views/customer-quotation/customer-quotation.component'
+import { CustomerQuotationDetailsComponent } from './views/customer-quotation-details/customer-quotation-details.component'
+import { PhotographeraddressComponent } from './views/photographeraddress/photographeraddress.component'
 import { GooglePlaceModule } from "ngx-google-places-autocomplete";
-import {SellerIssueQuotationComponent} from './views/seller-issue-quotation/seller-issue-quotation.component';
+import { SellerIssueQuotationComponent } from './views/seller-issue-quotation/seller-issue-quotation.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { Ng2OrderModule } from 'ng2-order-pipe';
 import { CheckComponent } from './check/check.component';
@@ -134,8 +134,8 @@ import { CatalogueDetailComponent } from './views/catalogue-detail/catalogue-det
 import { MyCatalogueComponent } from './views/my-catalogue/my-catalogue.component';
 import { AddCatalogueComponent } from './views/add-catalogue/add-catalogue.component';
 import { MatInputModule } from '@angular/material/input';
-import {MatSelectModule} from '@angular/material/select';
-import { MatFormFieldModule,MatFormFieldControl } from '@angular/material/form-field'
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule, MatFormFieldControl } from '@angular/material/form-field'
 //import 'hammerjs'
 import firebase from "firebase/app";
 import { environment } from 'src/environments/environment';
@@ -194,6 +194,12 @@ import { PhotographerBoughtPackagesComponent } from './views/photographer-bought
 import { OrderdetailsComponent } from './views/orderdetails/orderdetails.component';
 import { AdvertisementDetailsComponent } from './views/advertisement-details/advertisement-details.component';
 import { PreviewProductComponent } from './views/preview-product/preview-product.component';
+import { CustomerAccountSettingComponent } from './views/customer-account-setting/customer-account-setting.component';
+import { CustomerNotificationsComponent } from './views/customer-notifications/customer-notifications.component';
+import { CustomerFAQComponent } from './views/customer-faq/customer-faq.component';
+import { CustomerTermAndConditionComponent } from './views/customer-term-and-condition/customer-term-and-condition.component';
+import { CustomerPrivacyPolicyComponent } from './views/customer-privacy-policy/customer-privacy-policy.component';
+
 firebase.initializeApp(environment.firebaseConfig);
 
 
@@ -265,7 +271,7 @@ firebase.initializeApp(environment.firebaseConfig);
     MyOrdersComponent,
     EditAddressComponent,
     PhotographeraddressComponent,
-  
+
     ViewDetailsComponent,
     SellerOrderManagementComponent,
 
@@ -303,7 +309,7 @@ firebase.initializeApp(environment.firebaseConfig);
     PaymentMethodsComponent,
     EarningsComponent,
     EarningDetailsComponent,
-   PhotographerDetailComponent,
+    PhotographerDetailComponent,
     MyMembershipListComponent,
     MyMemberShipComponent,
     SellerRefundManagementComponent,
@@ -320,14 +326,19 @@ firebase.initializeApp(environment.firebaseConfig);
     PhotographerBoughtPackagesComponent,
     OrderdetailsComponent,
     AdvertisementDetailsComponent,
-    PreviewProductComponent
+    PreviewProductComponent,
+    CustomerAccountSettingComponent,
+    CustomerNotificationsComponent,
+    CustomerFAQComponent,
+    CustomerTermAndConditionComponent,
+    CustomerPrivacyPolicyComponent
   ],
   imports: [
     BrowserModule,
     NgxDaterangepickerMd.forRoot(),
     MatSelectModule,
     // NgxStripeModule,
-    
+
     CommonModule,
     GooglePlaceModule,
     AppRoutingModule,
@@ -336,7 +347,7 @@ firebase.initializeApp(environment.firebaseConfig);
     BrowserAnimationsModule,
     NgxUiLoaderModule,
     // NgxUiLoaderHttpModule.forRoot({ showForeground:false }),
-    
+
     CarouselModule,
     CdkAccordionModule,
     NgxImageZoomModule,
@@ -371,25 +382,25 @@ firebase.initializeApp(environment.firebaseConfig);
     MatNativeDateModule,
     NgxMatMomentModule,
     RatingModule,
-    CKEditorModule, 
+    CKEditorModule,
     NgxImageZoomModule,
     MatInputModule,
     MatFormFieldModule,
 
     NgxMaskModule.forRoot(maskConfig),
     AgmCoreModule.forRoot({
-    //    apiKey: 'AIzaSyD7HfEfcZ9FLoaw8R58pg2h7me-gDuIltU',
-    //  libraries: ['places']
+      //    apiKey: 'AIzaSyD7HfEfcZ9FLoaw8R58pg2h7me-gDuIltU',
+      //  libraries: ['places']
     })
     //NgxIntlTelInputModule
 
-  
+
   ],
   providers: [
     MatDatepickerModule,
     MatNativeDateModule,
-    
-    
+
+
     UserGuard
   ],
   bootstrap: [AppComponent]

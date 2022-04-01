@@ -34,46 +34,46 @@ import { SellerQuotationComponent } from './views/seller-quotation/seller-quotat
 import { SellerQuotationDetailComponent } from './views/seller-quotation-detail/seller-quotation-detail.component';
 import { AboutUsComponent } from './views/about-us/about-us.component';
 
-import{MycartComponent} from './views/mycart/mycart.component';
+import { MycartComponent } from './views/mycart/mycart.component';
 //import{Myishlist, MyWishlistComponent} from './views/my-wishlist/my-wishlist.component';
-import{MyWishlistComponent} from './views/my-wishlist/my-wishlist.component';
-import{CheckoutComponent} from './views/checkout/checkout.component';
-import{TermsConditionsComponent} from './views/terms-conditions/terms-conditions.component';
-import{PrivacyPolicyComponent} from './views/privacy-policy/privacy-policy.component';
-import{AddressComponent} from './views/address/address.component';
-import{MyOrdersComponent} from './views/my-orders/my-orders.component';
-import{EditAddressComponent} from './views/edit-address/edit-address.component';
+import { MyWishlistComponent } from './views/my-wishlist/my-wishlist.component';
+import { CheckoutComponent } from './views/checkout/checkout.component';
+import { TermsConditionsComponent } from './views/terms-conditions/terms-conditions.component';
+import { PrivacyPolicyComponent } from './views/privacy-policy/privacy-policy.component';
+import { AddressComponent } from './views/address/address.component';
+import { MyOrdersComponent } from './views/my-orders/my-orders.component';
+import { EditAddressComponent } from './views/edit-address/edit-address.component';
 //import{ UserGuard } from './loginAuth/user.guard';
-import{ViewDetailsComponent} from './views/view-details/view-details.component';
-import{SellerOrderManagementComponent} from './views/seller-order-management/seller-order-management.component';
+import { ViewDetailsComponent } from './views/view-details/view-details.component';
+import { SellerOrderManagementComponent } from './views/seller-order-management/seller-order-management.component';
 
-import {ProfessionalsComponent} from'./views/professionals/professionals.component';
-import {MyAlbumsComponent} from './views/my-albums/my-albums.component';
-import {SellerBranchComponent} from './views/seller-branch/seller-branch.component';
-import {SellerEditBranchComponent} from './views/seller-edit-branch/seller-edit-branch.component';
+import { ProfessionalsComponent } from './views/professionals/professionals.component';
+import { MyAlbumsComponent } from './views/my-albums/my-albums.component';
+import { SellerBranchComponent } from './views/seller-branch/seller-branch.component';
+import { SellerEditBranchComponent } from './views/seller-edit-branch/seller-edit-branch.component';
 //import{ UserGuard } from './loginAuth/user.guard';
 import { SelllerBranchListingComponent } from './views/selller-branch-listing/selller-branch-listing.component';
-import {MyAlbumsDetailComponent} from './views/my-albums-detail/my-albums-detail.component';
+import { MyAlbumsDetailComponent } from './views/my-albums-detail/my-albums-detail.component';
 import { StaffPrivilegesComponent } from './views/staff-privileges/staff-privileges.component';
 
-import {GrantPrivelegeComponent} from './views/staff-privileges/grant-privelege/grant-privelege.component';
+import { GrantPrivelegeComponent } from './views/staff-privileges/grant-privelege/grant-privelege.component';
 //import {SellerProjectsComponent} from './views/seller-projects/seller-projects.component';
-import {EditStaffComponent} from './views/staff-privileges/edit-staff/edit-staff.component';
+import { EditStaffComponent } from './views/staff-privileges/edit-staff/edit-staff.component';
 
 import { SellerAddStaffPrivilegesComponent } from './views/seller-add-staff-privileges/seller-add-staff-privileges.component';
 
 import { SellerProjectListingPageComponent } from './views/seller-project-listing-page/seller-project-listing-page.component';
 import { ViewSingleProjectListComponent } from './views/seller-project-listing-page/view-single-project-list/view-single-project-list.component';
-import {SellerProjectsComponent} from './views/seller-projects/seller-projects.component';
-import {SellerServiceDetailComponent} from './views/seller-service-list/seller-service-detail/seller-service-detail.component';
-import {MyBookingsComponent} from './views/my-bookings/my-bookings.component'
-import {CustomerAppointmentsComponent} from './views/customer-appointments/customer-appointments.component'
-import {SellerBookAppointmentComponent} from './views/seller-book-appointment/seller-book-appointment.component'
-import {CustomerQuotationComponent} from './views/customer-quotation/customer-quotation.component'
-import {CustomerQuotationDetailsComponent} from './views/customer-quotation-details/customer-quotation-details.component'
-import {SellerIssueQuotationComponent} from './views/seller-issue-quotation/seller-issue-quotation.component'
-import {SellerAddIssueQuoteComponent} from './views/seller-add-issue-quote/seller-add-issue-quote.component'
-import {CustomerAddIssueQuoteComponent} from './views/customer-add-issue-quote/customer-add-issue-quote.component'
+import { SellerProjectsComponent } from './views/seller-projects/seller-projects.component';
+import { SellerServiceDetailComponent } from './views/seller-service-list/seller-service-detail/seller-service-detail.component';
+import { MyBookingsComponent } from './views/my-bookings/my-bookings.component'
+import { CustomerAppointmentsComponent } from './views/customer-appointments/customer-appointments.component'
+import { SellerBookAppointmentComponent } from './views/seller-book-appointment/seller-book-appointment.component'
+import { CustomerQuotationComponent } from './views/customer-quotation/customer-quotation.component'
+import { CustomerQuotationDetailsComponent } from './views/customer-quotation-details/customer-quotation-details.component'
+import { SellerIssueQuotationComponent } from './views/seller-issue-quotation/seller-issue-quotation.component'
+import { SellerAddIssueQuoteComponent } from './views/seller-add-issue-quote/seller-add-issue-quote.component'
+import { CustomerAddIssueQuoteComponent } from './views/customer-add-issue-quote/customer-add-issue-quote.component'
 
 import { PhotographerUpdatePasswordComponent } from './views/photographer-update-password/photographer-update-password.component';
 import { PhotographeraddressComponent } from './views/photographeraddress/photographeraddress.component';
@@ -122,6 +122,12 @@ import { OrderdetailsComponent } from './views/orderdetails/orderdetails.compone
 import { AdvertisementDetailsComponent } from './views/advertisement-details/advertisement-details.component';
 
 import { PreviewProductComponent } from './views/preview-product/preview-product.component';
+import { CustomerAccountSettingComponent } from './views/customer-account-setting/customer-account-setting.component';
+import { CustomerFAQComponent } from './views/customer-faq/customer-faq.component';
+import { CustomerNotificationsComponent } from './views/customer-notifications/customer-notifications.component';
+import { CustomerTermAndConditionComponent } from './views/customer-term-and-condition/customer-term-and-condition.component';
+import { CustomerPrivacyPolicyComponent } from './views/customer-privacy-policy/customer-privacy-policy.component';
+
 
 
 
@@ -150,25 +156,25 @@ const routes: Routes = [
 		component: MyMemberShipComponent,
 		canActivate: [UserGuard],
 	},
-	{ 
+	{
 		path: 'seller-discounts',
-		component:SellerdiscountsComponent,
+		component: SellerdiscountsComponent,
 		canActivate: [UserGuard],
 	},
-	{ 
+	{
 		path: 'seller-gift-card',
-		component:GiftCardComponent,
+		component: GiftCardComponent,
 		canActivate: [UserGuard],
 	},
-	{ 
+	{
 		path: 'creatediscount',
-    	component:CreatediscountComponent,
+		component: CreatediscountComponent,
 		canActivate: [UserGuard]
 	},
-	{ 
+	{
 		path: 'advertisement-form',
-    	component:AdvertisementDetailsComponent              ,
-		
+		component: AdvertisementDetailsComponent,
+
 	},
 	{
 		path: 'signup',
@@ -248,15 +254,15 @@ const routes: Routes = [
 	},
 	{
 		path: 'seller-dashboard',
-		component: SellerDashboardComponent 
+		component: SellerDashboardComponent
 	},
 	{
 		path: 'customer-add-issue-quote',
-		component: CustomerAddIssueQuoteComponent 
+		component: CustomerAddIssueQuoteComponent
 	},
 	{
 		path: 'seller-add-issue-quote',
-		component: SellerAddIssueQuoteComponent 
+		component: SellerAddIssueQuoteComponent
 	},
 	{
 		path: 'seller-password-change',
@@ -320,291 +326,313 @@ const routes: Routes = [
 		component: ProductsDetailsComponent
 	},
 	{
-		path:'mychat',
+		path: 'mychat',
 		component: MychatComponent,
 		canActivate: [UserGuard],
 	},
 	{
-		path:'mychat/:id',
+		path: 'mychat/:id',
 		component: MychatComponent,
 		canActivate: [UserGuard],
 	},
 	{
-		path:'sellerQuotation',
+		path: 'sellerQuotation',
 		component: SellerQuotationComponent
 	},
 	{
-		path:'sellerQuotationDetails/:quote_id',
+		path: 'sellerQuotationDetails/:quote_id',
 		component: SellerQuotationDetailComponent
 	},
 	{
-		path:'mycart',
+		path: 'mycart',
 		component: MycartComponent
 	},
 	{
-		path:'photographerRequest',
+		path: 'photographerRequest',
 		component: PhotographerBoughtPackagesComponent,
 		canActivate: [UserGuard]
 	},
 	{
-		path:'mywishlist',
+		path: 'mywishlist',
 		component: MyWishlistComponent,
 		canActivate: [UserGuard],
 	},
 	{
-		path:'checkout/:total',
+		path: 'checkout/:total',
 		component: CheckoutComponent
 	},
 	{
-		path:'checkout/:total/:qty/:id',
+		path: 'checkout/:total/:qty/:id',
 		component: CheckoutComponent
 	},
 	{
-		path:'terms-condition',
+		path: 'terms-condition',
 		component: TermsConditionsComponent
 	},
 	{
-		path:'privacy-policy',
+		path: 'privacy-policy',
 		component: PrivacyPolicyComponent
 	},
 	{
-		path:'address',
+		path: 'address',
 		component: AddressComponent,
 		canActivate: [UserGuard],
 	},
 	{
-		path:'address-photographer',
+		path: 'address-photographer',
 		component: PhotographeraddressComponent,
 		canActivate: [UserGuard],
 	},
 	{
-		path:'myorders',
+		path: 'myorders',
 		component: MyOrdersComponent,
 		canActivate: [UserGuard],
 	},
 	{
-		path:'editaddress/:id',
+		path: 'editaddress/:id',
 		component: EditAddressComponent,
 		canActivate: [UserGuard],
 	},
 	{
-		path:'view-order-details/:id',
+		path: 'view-order-details/:id',
 		component: ViewDetailsComponent,
 		canActivate: [UserGuard],
 	},
 	{
-		path:'seller-order-management',
+		path: 'seller-order-management',
 		component: SellerOrderManagementComponent,
 		canActivate: [UserGuard],
 	},
-	
+
 	{
-		path:'catalogue-interior-detail/:cata_id',
+		path: 'catalogue-interior-detail/:cata_id',
 		component: CatalogueDetailComponent,
 	},
 	{
-		path:'catalogue-interior',
+		path: 'catalogue-interior',
 		component: InteriorComponent,
 	},
 	{
-		path:'seller-refund-management',
+		path: 'seller-refund-management',
 		component: SellerRefundManagementComponent,
 	},
 	{
-		path:'catalogue-exterior',
+		path: 'catalogue-exterior',
 		component: ExteriorComponent,
 	},
 	{
-		path:'catalogue-exterior-detail/:id',
+		path: 'catalogue-exterior-detail/:id',
 		component: ExteriorCatalogueComponent,
 	},
 	{
-		path:'catalogue-designing',
+		path: 'catalogue-designing',
 		component: CatalogueDesigningComponent,
 	},
 	{
-		path:'catalogue-ImageDetail/:id',
+		path: 'catalogue-ImageDetail/:id',
 		component: CategoryImageDetailComponent,
 	},
 	{
-		path:'my-catalogue',
+		path: 'my-catalogue',
 		component: MyCatalogueComponent,
 	},
 	{
-		path:'add-catalogue/:id',
+		path: 'add-catalogue/:id',
 		component: AddCatalogueComponent,
 	},
 	{
-		path:'professionals',
+		path: 'professionals',
 		component: ProfessionalsComponent,
-		
+
 	},
 	{
-		path:'my-albums',
+		path: 'my-albums',
 		component: MyAlbumsComponent,
-		
+
 	},
 	{
-        path:'sellerBranch/:id',
-        component: SellerBranchComponent
-    },
-    {
-        path:'sellerEditBranch',
-        component: SellerEditBranchComponent
-    },
-    {
-        path:'sellerBranchListing',
-        component: SelllerBranchListingComponent
-    },
-	{
-        path:'photographerBranch/:id',
-        component: PhotographerBranchComponent
-    },
-    {
-        path:'photographerAddBranch',
-        component: PhotographerAddBranchComponent
-    },
-    {
-        path:'photographerBranchListing',
-        component: PhotographerBranchListingComponent
-    },
-	{
-        path:'album-detail/:id',
-        component: MyAlbumsDetailComponent
-    },
-	{
-        path:'sellerGrantPrivilages/:id',
-        component:GrantPrivelegeComponent
-    },
-    
-    {
-        path:'edit-staff/:id',
-        component:EditStaffComponent
-    },
-    {
-        path:'sellerStaffPrivileges',
-        component: StaffPrivilegesComponent
-    },
-	{
-        path:'addCustomerorder',
-        component: AddCustomerComponent
-    },
-    {
-        path:'sellerAddStaffPrivileges',
-        component: SellerAddStaffPrivilegesComponent
-    },
-	{
-        path:'sellerProjectListing',
-        component:SellerProjectListingPageComponent
-    },
-    {
-        path:'viewSellerProjectList/:id',
-        component:ViewSingleProjectListComponent
-    },
-{
-        path:'sellerProjects',
-        component:SellerProjectsComponent
-    },
-	{
-		path:'seller-service-detail/:id',
-		component:SellerServiceDetailComponent
+		path: 'sellerBranch/:id',
+		component: SellerBranchComponent
 	},
 	{
-		path:'my-bookings',
+		path: 'sellerEditBranch',
+		component: SellerEditBranchComponent
+	},
+	{
+		path: 'sellerBranchListing',
+		component: SelllerBranchListingComponent
+	},
+	{
+		path: 'photographerBranch/:id',
+		component: PhotographerBranchComponent
+	},
+	{
+		path: 'photographerAddBranch',
+		component: PhotographerAddBranchComponent
+	},
+	{
+		path: 'photographerBranchListing',
+		component: PhotographerBranchListingComponent
+	},
+	{
+		path: 'album-detail/:id',
+		component: MyAlbumsDetailComponent
+	},
+	{
+		path: 'sellerGrantPrivilages/:id',
+		component: GrantPrivelegeComponent
+	},
+
+	{
+		path: 'edit-staff/:id',
+		component: EditStaffComponent
+	},
+	{
+		path: 'sellerStaffPrivileges',
+		component: StaffPrivilegesComponent
+	},
+	{
+		path: 'addCustomerorder',
+		component: AddCustomerComponent
+	},
+	{
+		path: 'sellerAddStaffPrivileges',
+		component: SellerAddStaffPrivilegesComponent
+	},
+	{
+		path: 'sellerProjectListing',
+		component: SellerProjectListingPageComponent
+	},
+	{
+		path: 'viewSellerProjectList/:id',
+		component: ViewSingleProjectListComponent
+	},
+	{
+		path: 'sellerProjects',
+		component: SellerProjectsComponent
+	},
+	{
+		path: 'seller-service-detail/:id',
+		component: SellerServiceDetailComponent
+	},
+	{
+		path: 'my-bookings',
 		component: MyBookingsComponent,
 		canActivate: [UserGuard],
 	},
 	{
-		path:'customers-list-orders',
+		path: 'customers-list-orders',
 		component: CustomerListComponent,
 		canActivate: [UserGuard],
 	},
 	{
-		path:'add-gifts',
+		path: 'add-gifts',
 		component: AddGiftComponent,
 		canActivate: [UserGuard],
 	},
 	{
-		path:'my-appointment',
+		path: 'my-appointment',
 		component: CustomerAppointmentsComponent,
 		canActivate: [UserGuard],
 	},
 	{
-		path:'my-appointment-seller',
+		path: 'my-appointment-seller',
 		component: SellerBookAppointmentComponent,
 		canActivate: [UserGuard],
 	},
 	{
-		path:'customer-quotation',
+		path: 'customer-quotation',
 		component: CustomerQuotationComponent,
 		canActivate: [UserGuard],
 	},
 	{
-		path:'customer-quotation-management',
+		path: 'customer-quotation-management',
 		component: CustomerQuotationManagementComponent,
 		canActivate: [UserGuard],
 	},
 	{
-		path:'seller-quotation-management',
+		path: 'seller-quotation-management',
 		component: SellerQuotationManagementComponent,
 		canActivate: [UserGuard],
 	},
 	{
-		path:'seller-quotation-management-detail',
+		path: 'seller-quotation-management-detail',
 		component: SellerQuotationManagementDetailComponent,
 		canActivate: [UserGuard],
 	},
 	{
-		path:'customer-quotation-detail/:id',
+		path: 'customer-quotation-detail/:id',
 		component: CustomerQuotationDetailsComponent,
 		canActivate: [UserGuard],
 	},
 	{
-		path:'customer-issue-quotation/:id',
+		path: 'customer-issue-quotation/:id',
 		component: CustomerIssueQuotationComponent,
 		canActivate: [UserGuard],
 	},
 	{
-		path:'seller-issue-quotation',
+		path: 'seller-issue-quotation',
 		component: SellerIssueQuotationComponent,
 		canActivate: [UserGuard],
 	},
 	{
-		path:'issue-gift-card',
+		path: 'issue-gift-card',
 		component: IssueGiftComponent,
 		canActivate: [UserGuard],
 	},
 	{
-		path:'professioanl-detail/:id',
-		component:ProfessionalsDetailsComponent
+		path: 'professioanl-detail/:id',
+		component: ProfessionalsDetailsComponent
 	},
 	{
-		path:'payment-methods',
-		component:PaymentMethodsComponent
+		path: 'payment-methods',
+		component: PaymentMethodsComponent
 	},
 	{
-		path:'earnings',
-		component:EarningsComponent
+		path: 'earnings',
+		component: EarningsComponent
 	},
 	{
-		path:'notifications',
-		component:NotificationsComponent
+		path: 'notifications',
+		component: NotificationsComponent
 	},
 	{
-		path:'earning-details/:id',
-		component:EarningDetailsComponent
+		path: 'earning-details/:id',
+		component: EarningDetailsComponent
 	},
 	{
-		path:'wallet',
-		component:WalletComponent
+		path: 'wallet',
+		component: WalletComponent
 	},
 	{
-		path:'search',
-		component:SearchComponent
+		path: 'search',
+		component: SearchComponent
 	},
 	{
-		path:'preview',
-		component:PreviewProductComponent
+		path: 'preview',
+		component: PreviewProductComponent
+	},
+	{
+		path: 'customer-account-setting',
+		component: CustomerAccountSettingComponent
+
+	},
+	{
+		path: 'customer-notification',
+		component: CustomerNotificationsComponent,
+		canActivate: [UserGuard],
+	},
+	{
+		path: 'customer-faq',
+		component: CustomerFAQComponent
+	},
+	{
+		path: 'customer-term-and-condition',
+		component: CustomerTermAndConditionComponent
+	},
+	{
+		path: 'customer-privacy-policy',
+		component: CustomerPrivacyPolicyComponent
 	},
 	// {
 	// 	path: '',

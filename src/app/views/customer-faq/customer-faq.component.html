@@ -1,0 +1,37 @@
+<!-- ACTUAL CODE STARTS FROM HERE -->
+
+<app-seller-header></app-seller-header>
+<div class="seller-appointments-wrapper account-setting-wrapper">
+    <div class="custom-container d-flex">
+        <app-sidebar></app-sidebar>
+        <div class="main-wrap">
+            <div class="card">
+                <div class="card-body">
+                    <h1>FAQ</h1>
+                    <div class="row justify-content-center">
+                        <div class="col-md-10">
+                            <!--SEARCH CODE WILL BE HERE -->
+
+                            <div class="faq_main_wrap mt-4">
+                                <div class="faq-mat-accordion">
+                                    <mat-accordion *ngFor="let faqData of detail">
+                                        <mat-expansion-panel (opened)="panelOpenState = true"
+                                            (closed)="panelOpenState = false">
+                                            <mat-expansion-panel-header>
+                                                <mat-panel-title>
+                                                    <h2>{{faqData.question}}</h2>
+                                                </mat-panel-title>
+                                            </mat-expansion-panel-header>
+                                            <h4>{{faqData.answer}}</h4>
+                                        </mat-expansion-panel>
+                                    </mat-accordion>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

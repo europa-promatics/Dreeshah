@@ -1,5 +1,7 @@
-<app-header *ngIf = "!isLogin"></app-header>
-<!-- <app-db-header *ngIf = "isLogin"></app-db-header> -->
+<!-- ///////////////// <app-header *ngIf = "!isLogin"></app-header> //////////-->
+<!--<app-db-header *ngIf = "isLogin"></app-db-header> -->
+
+<!--//////////////////////////
 <app-seller-header *ngIf = "isLogin"></app-seller-header>
 <section class="common_image_section page_headrer_wrkshop" *ngIf = "!isLogin">
     <div class="container">
@@ -28,9 +30,11 @@
                                     <div class="form-group mb-0">
                                         <input type="text" name="search-user" placeholder="Search" class="form-control">
                                     </div>
-                                    <!-- <div class="add-schedule-btn">
+                                    //////////////////////////////////////////////// -->
+<!-- <div class="add-schedule-btn">
                                         <a routerLink="/addSchedule" class="btn btn-round-blue ml-2"><i class="fa fa-plus"></i></a>
                                     </div> -->
+<!--  /////////////////////////////////
                                 </div>
                                 <div class="wishlist-table"  >
                                     <section id="cart-view">  
@@ -65,7 +69,8 @@
                                                                             <td><span class="badge badge-success status-badge">In Stock</span></td>
                                                                             <td> <star-rating value="3" [totalstars]="5" checkedcolor="orange" uncheckedcolor="black" size="24px" readonly="true" ></star-rating></td>
                                                                             <td><a  class="btn btn-change-fill" (click)="addToCart(detail)">Add To Cart</a>
-                                                                                <!--    <div class="input-group quantity-btn-grp">
+                                                                                /////////////////////////////////////////// -->
+<!--    <div class="input-group quantity-btn-grp">
                                     <span class="input-group-btn">
                                         <button type="button" class="quantity-left-minus btn btn-danger btn-number"  data-type="minus" data-field="">
                                           <span class="fa fa-minus"></span>
@@ -78,9 +83,11 @@
                                         </button>
                                     </span>
                                 </div> -->
+<!--   //////////////////////////////////////
                                                                             </td>
                                                                         </tr>
-                        <!-- <tr>
+                        ////////////////////////////////////////// -->
+<!-- <tr>
                             <td><a class="remove" href="">
                                 <i class="fas fa-times"></i>
                             </a></td>
@@ -140,7 +147,8 @@
                             <td><span class="badge badge-danger status-badge">Out of Stock</span></td>
                             <td><a href="" class="btn btn-change-fill">Add To Cart</a></td>
                         </tr> -->
-                        <!-- <h2 *ngIf="wishListLength == 0">Wishlist Empty</h2> -->
+<!-- <h2 *ngIf="wishListLength == 0">Wishlist Empty</h2> -->
+<!--//////////////////////////////////
                     </tbody>
                     
                 </table>
@@ -164,4 +172,330 @@
 </section>
 
 
+<app-footer></app-footer>
+/////////////// march 3 2022 ////////////////// -->
+
+
+<!-- ACTUAL CODE STARTS FROM HERE -->
+
+
+<app-seller-header></app-seller-header>
+<div class="seller-appointments-wrapper">
+    <div class="custom-container d-flex">
+        <app-sidebar></app-sidebar>
+        <div class="main-wrap">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!--SEARCH CODE WILL BE HERE -->
+                            <div class="form-group has-search input-group">
+                                <!--  <span class="fa fa-search form-control-feedback"></span> -->
+                                <!-- <input type=search name=s results=5 [(ngModel)]="searchValue" class="form-control"
+                                    placeholder="Search">
+                                <button class="btn btn-change-fill" (click)="search(searchValue)">Search</button> -->
+                            </div>
+                            <!--Search code ends here-->
+                            <mat-tab-group>
+                                <mat-tab label="All">
+                                    <div class="col-md-12 mt-3">
+                                        <div class="db-header--wraap">
+                                            <div class="dashboard-table-heading">
+                                                <h1>All</h1>
+                                            </div>
+                                            <div class="user-search-input d-flex">
+                                                <div class="form-group mb-0">
+                                                    <!-- <input type="text" name="search-user" placeholder="Search"
+                                                        (keyup)="filterByServiceName($event.target.value,'all')"
+                                                        class="form-control"> -->
+                                                </div>
+                                                <!-- <div class="add-schedule-btn">
+													<a routerLink="/addSchedule" class="btn btn-round-blue ml-2"><i class="fa fa-plus"></i></a>
+												</div> -->
+                                            </div>
+                                        </div>
+                                        <div class="appointment-table margn-top">
+
+                                            <!--ALL section code will be coded here-->
+                                            <ng-container *ngFor="let item of wishlistDetailall">
+                                                <div class="wishlist_card card">
+                                                    <div class="row">
+                                                        <div class="col-sm-3">
+                                                            <div class="wish_prdct_imag">
+                                                                <img
+                                                                    src="{{image_base_url}}{{item.professional_id?.profile_image}}">
+                                                                <!-- onError="this.onerror=null;this.src='./Dreeshah/assets/img/profile-dummy.png'"> -->
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-9">
+                                                            <div class="wish_prdct_info">
+                                                                <div
+                                                                    class="prodct_wished_ttl d-flex justify-content-between">
+                                                                    <h2 class="prdct_name">
+                                                                        {{item.professional_id?.first_name}}
+                                                                        {{item.professional_id?.last_name}}</h2>
+                                                                    <i class="fas fa-heart"></i>
+                                                                </div>
+                                                                <h4 class="item-price">AED 76</h4>
+                                                                <div class="prdct_ratings">
+                                                                    <span class="prdct_stars">
+                                                                        <i class="fas fa-star rated"></i>
+                                                                        <i class="fas fa-star rated"></i>
+                                                                        <i class="fas fa-star"></i>
+                                                                        <i class="fas fa-star"></i>
+                                                                        <i class="fas fa-star"></i>
+                                                                    </span>
+                                                                    <span class="rated_number">(0)</span>
+                                                                </div>
+                                                                <div class="remove_wished text-right">
+                                                                    item id {{ item._id }} <br /> professional id
+                                                                    {{item.professional_id?._id}}
+                                                                    <button class="btn btn-change-fill"
+                                                                        (click)="removeAllWishListItem(item._id, item.professional_id._id)">Remove
+                                                                        Item</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </ng-container>
+
+
+
+
+
+
+                                            <!--ALL section code ends here-->
+
+                                        </div>
+                                    </div>
+
+                                </mat-tab>
+                                <mat-tab label="Professional">
+                                    <div class="col-md-12 mt-3">
+                                        <div class="db-header--wraap">
+                                            <div class="dashboard-table-heading">
+                                                <h1>Professional</h1>
+                                            </div>
+                                            <div class="user-search-input d-flex">
+                                                <div class="form-group mb-0">
+                                                    <!-- <input type="text" name="search-user" placeholder="Search"
+                                                        (keyup)="filterByServiceName($event.target.value,'all')"
+                                                        class="form-control"> -->
+                                                </div>
+                                                <!-- <div class="add-schedule-btn">
+													<a routerLink="/addSchedule" class="btn btn-round-blue ml-2"><i class="fa fa-plus"></i></a>
+												</div> -->
+                                            </div>
+                                        </div>
+                                        <div class="appointment-table margn-top">
+
+                                            <!--ALL section code will be coded here-->
+                                            <ng-container *ngFor="let item of wishlistDetailPro">
+                                                <div class="wishlist_card card">
+                                                    <div class="row">
+                                                        <div class="col-sm-3">
+                                                            <div class="wish_prdct_imag">
+                                                                <img
+                                                                    src="{{image_base_url}}{{item.professional_id?.profile_image}}">
+                                                                <!-- onError="this.onerror=null;this.src='./Dreeshah/assets/img/profile-dummy.png'"> -->
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-9">
+                                                            <div class="wish_prdct_info">
+                                                                <div
+                                                                    class="prodct_wished_ttl d-flex justify-content-between">
+                                                                    <h2 class="prdct_name">
+                                                                        {{item.professional_id?.first_name}}
+                                                                        {{item.professional_id?.last_name}}</h2>
+                                                                    <i class="fas fa-heart"></i>
+                                                                </div>
+                                                                <h4 class="item-price">AED 76</h4>
+                                                                <div class="prdct_ratings">
+                                                                    <span class="prdct_stars">
+                                                                        <i class="fas fa-star rated"></i>
+                                                                        <i class="fas fa-star rated"></i>
+                                                                        <i class="fas fa-star"></i>
+                                                                        <i class="fas fa-star"></i>
+                                                                        <i class="fas fa-star"></i>
+                                                                    </span>
+                                                                    <span class="rated_number">(0)</span>
+                                                                </div>
+                                                                <div class="remove_wished text-right">
+                                                                    <button class="btn btn-change-fill">Remove
+                                                                        Item</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </ng-container>
+
+
+
+
+
+
+                                            <!--ALL section code ends here-->
+
+                                        </div>
+                                    </div>
+
+                                </mat-tab>
+
+                                <mat-tab label="Product">
+                                    <div class="col-md-12 mt-3">
+                                        <div class="db-header--wraap">
+                                            <div class="dashboard-table-heading">
+                                                <h1>Product</h1>
+                                            </div>
+                                            <div class="user-search-input d-flex">
+                                                <div class="form-group mb-0">
+                                                    <!-- <input type="text" name="search-user" placeholder="Search"
+                                                        (keyup)="filterByServiceName($event.target.value,'all')"
+                                                        class="form-control"> -->
+                                                </div>
+                                                <!-- <div class="add-schedule-btn">
+													<a routerLink="/addSchedule" class="btn btn-round-blue ml-2"><i class="fa fa-plus"></i></a>
+												</div> -->
+                                            </div>
+                                        </div>
+                                        <div class="appointment-table margn-top">
+
+                                            <!--ALL section code will be coded here-->
+                                            <ng-container *ngFor="let item of wishlistDetailProduct">
+                                                <div class="wishlist_card card">
+                                                    <div class="row">
+                                                        <div class="col-sm-3">
+                                                            <div class="wish_prdct_imag">
+                                                                <img
+                                                                    src="{{image_base_url}}{{item.professional_id?.profile_image}}">
+                                                                <!-- onError="this.onerror=null;this.src='./Dreeshah/assets/img/profile-dummy.png'"> -->
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-9">
+                                                            <div class="wish_prdct_info">
+                                                                <div
+                                                                    class="prodct_wished_ttl d-flex justify-content-between">
+                                                                    <h2 class="prdct_name">
+                                                                        {{item.professional_id?.first_name}}
+                                                                        {{item.professional_id?.last_name}}</h2>
+                                                                    <i class="fas fa-heart"></i>
+                                                                </div>
+                                                                <h4 class="item-price">AED 76</h4>
+                                                                <div class="prdct_ratings">
+                                                                    <span class="prdct_stars">
+                                                                        <i class="fas fa-star rated"></i>
+                                                                        <i class="fas fa-star rated"></i>
+                                                                        <i class="fas fa-star"></i>
+                                                                        <i class="fas fa-star"></i>
+                                                                        <i class="fas fa-star"></i>
+                                                                    </span>
+                                                                    <span class="rated_number">(0)</span>
+                                                                </div>
+                                                                <div class="remove_wished text-right">
+                                                                    <button class="btn btn-change-fill"
+                                                                        (click)="removePorductWishListItem(item._id)">Remove
+                                                                        Item</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </ng-container>
+
+
+
+
+
+
+                                            <!--ALL section code ends here-->
+
+                                        </div>
+                                    </div>
+
+                                </mat-tab>
+
+
+                                <mat-tab label="Service">
+                                    <div class="col-md-12 mt-3">
+                                        <div class="db-header--wraap">
+                                            <div class="dashboard-table-heading">
+                                                <h1>Service</h1>
+                                            </div>
+                                            <div class="user-search-input d-flex">
+                                                <div class="form-group mb-0">
+                                                    <!-- <input type="text" name="search-user" placeholder="Search"
+                                                        (keyup)="filterByServiceName($event.target.value,'all')"
+                                                        class="form-control"> -->
+                                                </div>
+                                                <!-- <div class="add-schedule-btn">
+													<a routerLink="/addSchedule" class="btn btn-round-blue ml-2"><i class="fa fa-plus"></i></a>
+												</div> -->
+                                            </div>
+                                        </div>
+                                        <div class="appointment-table margn-top">
+
+                                            <!--ALL section code will be coded here-->
+                                            <ng-container *ngFor="let item of wishlistDetailServive">
+                                                <div class="wishlist_card card">
+                                                    <div class="row">
+                                                        <div class="col-sm-3">
+                                                            <div class="wish_prdct_imag">
+                                                                <img
+                                                                    src="{{image_base_url}}{{item.professional_id?.profile_image}}">
+                                                                <!-- onError="this.onerror=null;this.src='./Dreeshah/assets/img/profile-dummy.png'"> -->
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-9">
+                                                            <div class="wish_prdct_info">
+                                                                <div
+                                                                    class="prodct_wished_ttl d-flex justify-content-between">
+                                                                    <h2 class="prdct_name">
+                                                                        {{item.professional_id?.first_name}}
+                                                                        {{item.professional_id?.last_name}}</h2>
+                                                                    <i class="fas fa-heart"></i>
+                                                                </div>
+                                                                <h4 class="item-price">AED 76</h4>
+                                                                <div class="prdct_ratings">
+                                                                    <span class="prdct_stars">
+                                                                        <i class="fas fa-star rated"></i>
+                                                                        <i class="fas fa-star rated"></i>
+                                                                        <i class="fas fa-star"></i>
+                                                                        <i class="fas fa-star"></i>
+                                                                        <i class="fas fa-star"></i>
+                                                                    </span>
+                                                                    <span class="rated_number">(0)</span>
+                                                                </div>
+                                                                <div class="remove_wished text-right">
+                                                                    <button class="btn btn-change-fill">Remove
+                                                                        Item</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </ng-container>
+
+
+
+
+
+
+                                            <!--ALL section code ends here-->
+
+                                        </div>
+                                    </div>
+
+                                </mat-tab>
+
+
+                            </mat-tab-group>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <app-footer></app-footer>

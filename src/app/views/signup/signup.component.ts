@@ -5,23 +5,23 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { CustomerService } from '../../shared/customer.service'
 import { ToastrService } from 'ngx-toastr'
 
-import {COMMA, ENTER} from '@angular/cdk/keycodes';
-import {MatAutocompleteSelectedEvent, MatAutocomplete} from '@angular/material/autocomplete';
-import {MatChipInputEvent} from '@angular/material/chips';
-import {Observable} from 'rxjs';
-import {map, startWith} from 'rxjs/operators';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { MatAutocompleteSelectedEvent, MatAutocomplete } from '@angular/material/autocomplete';
+import { MatChipInputEvent } from '@angular/material/chips';
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
 
 
 import { Location } from '@angular/common'
 import { MatStepper } from '@angular/material/stepper';
-import {MatDatepicker} from '@angular/material/datepicker';
+import { MatDatepicker } from '@angular/material/datepicker';
 import * as _moment from 'moment';
 //import * as Moment from 'moment';
-import { Moment} from 'moment';
+import { Moment } from 'moment';
 import { element } from 'protractor';
 import { Twilio } from "twilio";
 
-const moment =  _moment;
+const moment = _moment;
 
 
 declare var $;
@@ -42,6 +42,7 @@ export class SignupComponent implements OnInit {
 	branch_cat = []
 	service_list = []
 	licence_img
+	cert_image
 	opened
 	customerForm: FormGroup;
 	otpForm: FormGroup;
@@ -77,7 +78,7 @@ export class SignupComponent implements OnInit {
 	first_name: any
 	last_name: any
 	phone_number: any
-	business_mobile_number :any
+	business_mobile_number: any
 	email: any
 	password: any
 	first: any
@@ -86,7 +87,7 @@ export class SignupComponent implements OnInit {
 	fourth: any
 	fifth: any
 	sixth: any
-	verify_type 
+	verify_type
 	p_false = false
 	save = false
 	next1 = false
@@ -105,17 +106,18 @@ export class SignupComponent implements OnInit {
 	}]
 	terms_checked = false
 	temp = false
+	temp2 = false
 	photo_licence_img
 	countryDial
-	years =[]
-	otpCheck =false
+	years = []
+	otpCheck = false
 
 	selectedCountryProf
 	selectedStateProf
 	lenArrCity
 	lenArrCategory
-	categiryArr=[]
-	subCatArr=[]
+	categiryArr = []
+	subCatArr = []
 	datePicker
 	dateBook
 	imgUpload
@@ -135,27 +137,27 @@ export class SignupComponent implements OnInit {
 	fruits: string[] = ['Lemon'];
 	allFruits: string[] = ['Apple', 'Lemon', 'Lime', 'Orange', 'Strawberry'];
 	@ViewChild('fruitInput') fruitInput: ElementRef<HTMLInputElement>;
-  	@ViewChild('auto') matAutocomplete: MatAutocomplete;
+	@ViewChild('auto') matAutocomplete: MatAutocomplete;
 	OTP: number;
-	locations=[];
+	locations = [];
 
 
 
-	
+
 
 	constructor(
 		private route: ActivatedRoute,
-		private router: Router,      
+		private router: Router,
 		public _formBuilder: FormBuilder,
 		public CustomerService: CustomerService,
 		private toastr: ToastrService,
 		private location: Location
 	) {
 		this.customerForm = this._formBuilder.group({
-			'first_name': [null, Validators.compose([Validators.required,Validators.pattern("^[A-Za-z]")])],
-			'last_name': [null, Validators.compose([Validators.required,Validators.pattern("^[A-Za-z]")])],
+			'first_name': [null, Validators.compose([Validators.required, Validators.pattern("[a-zA-Z ]*")])],
+			'last_name': [null, Validators.compose([Validators.required, Validators.pattern("[a-zA-Z ]*")])],
 			'phone_number': [null, Validators.compose([Validators.required, Validators.minLength(7), Validators.maxLength(16), Validators.pattern('^[0-9+]*')])],
-			'email': [null, Validators.compose([Validators.required,Validators.pattern("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}$"), Validators.minLength(1)])],
+			'email': [null, Validators.compose([Validators.required, Validators.pattern("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}$"), Validators.minLength(1)])],
 			'password': [null, Validators.compose([Validators.required, Validators.minLength(8), Validators.pattern('(?=.*[A-Za-z])(?=.*[0-9])(?=.*[$@$!#^~%*?&,.<>"\'\\;:\{\\\}\\\[\\\]\\\|\\\+\\\-\\\=\\\_\\\)\\\(\\\)\\\`\\\/\\\\\\]])[A-Za-z0-9\d$@].{7,}')])],
 			'confirm_password': [''],
 			'country': [null, Validators.compose([Validators.required])],
@@ -179,37 +181,37 @@ export class SignupComponent implements OnInit {
 
 	add(event: MatChipInputEvent): void {
 		const value = (event.value || '').trim();
-	
+
 		// Add our fruit
 		if (value) {
-		  this.fruits.push(value);
+			this.fruits.push(value);
 		}
-	
+
 		// Clear the input value
 		//event.chipInput!.clear();
-	
+
 		this.fruitCtrl.setValue(null);
-	  }
-	
-	  remove(fruit: string): void {
+	}
+
+	remove(fruit: string): void {
 		const index = this.fruits.indexOf(fruit);
-	
+
 		if (index >= 0) {
-		  this.fruits.splice(index, 1);
+			this.fruits.splice(index, 1);
 		}
-	  }
-	
-	  selected(event: MatAutocompleteSelectedEvent): void {
+	}
+
+	selected(event: MatAutocompleteSelectedEvent): void {
 		this.fruits.push(event.option.viewValue);
 		this.fruitInput.nativeElement.value = '';
 		this.fruitCtrl.setValue(null);
-	  }
-	
-	  private _filter(value: string): string[] {
+	}
+
+	private _filter(value: string): string[] {
 		const filterValue = value.toLowerCase();
-	
+
 		return this.allFruits.filter(fruit => fruit.toLowerCase().indexOf(filterValue) === 0);
-	  }
+	}
 
 
 
@@ -224,6 +226,7 @@ export class SignupComponent implements OnInit {
 		return this.customerForm.controls;
 	}
 	ngOnInit(): void {
+		console.log("jkashjkashdkaskldjklas", this.subCatArr);
 
 		this.getCountries();
 		this.getCategoryList()
@@ -271,10 +274,10 @@ export class SignupComponent implements OnInit {
 		// stepper
 		this.firstFormGroup = new FormGroup({
 			first_name: new FormControl('', [
-				Validators.required,Validators.pattern("^[A-Za-z]")
+				Validators.required, Validators.pattern("[a-zA-Z ]*")
 			]),
 			last_name: new FormControl('', [
-				Validators.required,Validators.pattern("^[A-Za-z]")
+				Validators.required, Validators.pattern("[a-zA-Z ]*")
 			]),
 			email: new FormControl('', [
 				Validators.required,
@@ -295,8 +298,8 @@ export class SignupComponent implements OnInit {
 			// 	Validators.required,
 			// ]),
 			branch_name_arabic: new FormControl('', [
-				Validators.required,Validators.pattern('[\u0600-\u06FF ]*')
-				]),
+				Validators.required, Validators.pattern('[\u0600-\u06FF ]*')
+			]),
 			branch_type: new FormControl('', [
 				Validators.required,
 			]),
@@ -307,19 +310,19 @@ export class SignupComponent implements OnInit {
 				Validators.required,
 			]),
 			certificate_awards: new FormControl('', [
-				 
+
 			]),
 		})
 
 		this.addressFormGroup = new FormGroup({
-			pincode:new FormControl('', [
+			pincode: new FormControl('', [
 				Validators.required, Validators.pattern('^[0-9]{6}$')
 			]),
 			fName: new FormControl('', [
-				Validators.required,Validators.pattern("^[A-Za-z]")
+				Validators.required, Validators.pattern("[a-zA-Z]*")
 			]),
 			lName: new FormControl('', [
-				Validators.required,Validators.pattern("^[A-Za-z]")
+				Validators.required, Validators.pattern("[a-zA-Z]*")
 			]),
 			aLine1: new FormControl('', [
 				Validators.required,
@@ -345,7 +348,7 @@ export class SignupComponent implements OnInit {
 				Validators.required, Validators.pattern('^[0-9+]*')
 			]),
 			defaultaddress: new FormControl(false, [
-				 Validators.required,
+				Validators.required,
 			]),
 		});
 
@@ -355,16 +358,16 @@ export class SignupComponent implements OnInit {
 				Validators.required,
 			]),
 			co_ordinator_arabic: new FormControl('', [
-				Validators.required,Validators.pattern('[\u0600-\u06FF ]*')
+				Validators.required, Validators.pattern('[\u0600-\u06FF ]*')
 			]),
 			branch_email: new FormControl('', [
 				Validators.required,
 				Validators.pattern("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}$")
 			]),
-			 branch_website: new FormControl('', [
-		 	Validators.required,
+			branch_website: new FormControl('', [
+				Validators.required,
 				Validators.pattern(Webreg)
-			 ]),
+			]),
 			//branch_website: new FormControl(),
 			mobile_number: new FormControl('', [
 				Validators.required
@@ -372,7 +375,7 @@ export class SignupComponent implements OnInit {
 			business_mobile_number: new FormControl('', [
 				Validators.required
 			]),
-			insta_acc: new FormControl('' ,[
+			insta_acc: new FormControl('', [
 				Validators.required
 			]),
 			youtube_channel: new FormControl('', [
@@ -471,10 +474,10 @@ export class SignupComponent implements OnInit {
 				Validators.pattern(Webreg)
 			]),
 			mobile_number: new FormControl('', [
-				Validators.required, 
+				Validators.required,
 			]),
 			business_mobile_number: new FormControl('', [
-				Validators.required, 
+				Validators.required,
 			]),
 			insta_acc: new FormControl('', [
 				Validators.required,
@@ -501,7 +504,7 @@ export class SignupComponent implements OnInit {
 				Validators.required,
 			]),
 			establishment_year: new FormControl('', [
-				Validators.required, Validators.minLength(4), Validators.maxLength(4), Validators.pattern('^[0-9]*')
+				Validators.required, Validators.minLength(4), Validators.maxLength(4), Validators.pattern('[0-9]*')
 			]),
 			about_company: new FormControl('', [
 				Validators.required,
@@ -533,7 +536,7 @@ export class SignupComponent implements OnInit {
 			service_cost: new FormControl('', [
 				Validators.required,
 			]),
-		
+
 		});
 
 		this.secondFormGroup = new FormGroup({})
@@ -541,19 +544,19 @@ export class SignupComponent implements OnInit {
 		this.serviceList()
 
 
-		this.generateArrayOfYears() 
+		this.generateArrayOfYears()
 	}
 
 	generateArrayOfYears() {
 		var max = new Date().getFullYear()
 		var min = max - 600
 		this.years = []
-	  
+
 		for (var i = max; i >= min; i--) {
-		  this.years.push(i)
+			this.years.push(i)
 		}
 		//console.log("List of the years>>>>>>",this.years)
-	  }
+	}
 
 	onKey(event: any) {
 		this.values = event.target.value;
@@ -578,19 +581,19 @@ export class SignupComponent implements OnInit {
 	numberOnly(event): boolean {
 		const charCode = (event.which) ? event.which : event.keyCode;
 		if (charCode > 31 && (charCode < 48 || charCode > 57)) {
-		  return false;
+			return false;
 		}
 		return true;
-	
-	  }
+
+	}
 
 	getCountries() {
 		this.CustomerService.getCountries().subscribe(data => {
 			console.log("main data is ====", data)
 			if (data.code == '200' || data.code == 200) {
 				this.countries = data.data
-				console.log('this.countries',this.countries);
-				
+				console.log('this.countries', this.countries);
+
 			}
 		}, err => {
 			console.log(err.status)
@@ -623,7 +626,7 @@ export class SignupComponent implements OnInit {
 
 
 	selectCountry(evt) {
-		console.log("CODEEEEEE>>>>>",evt)
+		console.log("CODEEEEEE>>>>>", evt)
 		var obj = {
 			countryCode: evt.value.isoCode
 		}
@@ -645,7 +648,7 @@ export class SignupComponent implements OnInit {
 
 		})
 
-		var obj1={
+		var obj1 = {
 			countryCode: evt.value.countryCode
 		}
 		this.CustomerService.getAllCities(obj1).subscribe(data => {
@@ -670,14 +673,14 @@ export class SignupComponent implements OnInit {
 		var arr = []
 		if (Array.isArray(event)) {
 			arr = event
-			this.lenArrCity =arr.length
+			this.lenArrCity = arr.length
 			this.businessFormGroup.controls['issued_in_countries'].setValue(event)
 		} else {
 			arr.push(event)
-			this.lenArrCity =arr.length
+			this.lenArrCity = arr.length
 		}
 		var obj = {
-			country_code: arr[this.lenArrCity-1]
+			country_code: arr[this.lenArrCity - 1]
 		}
 		console.log("===obj", obj)
 		this.CustomerService.getAllCities(obj).subscribe(data => {
@@ -696,9 +699,9 @@ export class SignupComponent implements OnInit {
 
 		})
 	}
-	myCityArr =[]
+	myCityArr = []
 	getCitiesState(event) {
-		this.myCityArr =[]
+		this.myCityArr = []
 		console.log("====event GET Cities State", event.value,)
 		console.log("====event GET Cities State", event.value.isoCode)
 		var arr = []
@@ -713,23 +716,22 @@ export class SignupComponent implements OnInit {
 		}
 		console.log("===obj", obj)
 		this.CustomerService.getAllCities(obj).subscribe(data => {
-			
+
 			data.data.forEach(e => {
-				let v= e.name
-				if(event.value.isoCode == e.stateCode)
-				{
+				let v = e.name
+				if (event.value.isoCode == e.stateCode) {
 					var c = {
-						cName : e.name,
+						cName: e.name,
 
 					}
 					this.myCityArr.push(c)
-					console.log("City |Array is>>>>",this.myCityArr)
+					console.log("City |Array is>>>>", this.myCityArr)
 				}
 			})
 			if (data.code == '200' || data.code == 200) {
 				this.stateCities = data.data
 				console.log("city data is ****************** ====", this.stateCities)
-				
+
 			}
 		}, err => {
 			console.log(err.status)
@@ -753,9 +755,9 @@ export class SignupComponent implements OnInit {
 		} else {
 			arr.push(event)
 		}
-		
-		
-		
+
+
+
 	}
 
 
@@ -800,8 +802,8 @@ export class SignupComponent implements OnInit {
 	branchCatListing(id) {
 		console.log(id)
 		var obj = {
-			
-			brand_type_id:id
+
+			brand_type_id: id
 		}
 		this.CustomerService.branch_cat(obj).subscribe(data => {
 			console.log("data is ====", data)
@@ -821,29 +823,29 @@ export class SignupComponent implements OnInit {
 	}
 
 
-	countryCode(evt){
-		console.log("Country Code is >>>>",evt)
-		this.countryDial='+'+ evt.dialCode
-		console.log("Country Code is >>>>",this.countryDial)
-	  }
+	countryCode(evt) {
+		console.log("Country Code is >>>>", evt)
+		this.countryDial = '+' + evt.dialCode
+		console.log("Country Code is >>>>", this.countryDial)
+	}
 
-	  countryCodeAddress(evt2){
-		console.log("Country Code is >>>>",evt2)
-		this.countryDialAddress='+'+ evt2.dialCode
-		console.log("countryDialAddress Code is >>>>",this.countryDialAddress)
-	  }
+	countryCodeAddress(evt2) {
+		console.log("Country Code is >>>>", evt2)
+		this.countryDialAddress = '+' + evt2.dialCode
+		console.log("countryDialAddress Code is >>>>", this.countryDialAddress)
+	}
 
-	  businessMobile(evt3){
-		console.log("Country Code is >>>>",evt3)
-		this.businessMobileCode='+'+ evt3.dialCode
-		console.log("business mobile Code is >>>>",this.businessMobileCode)
-	  }
+	businessMobile(evt3) {
+		console.log("Country Code is >>>>", evt3)
+		this.businessMobileCode = '+' + evt3.dialCode
+		console.log("business mobile Code is >>>>", this.businessMobileCode)
+	}
 
-	  businessLandline(evt4){
-		console.log("Country Code is >>>>",evt4)
-		this.businessLandCode='+'+ evt4.dialCode
-		console.log("business landline Code is >>>>",this.businessLandCode)
-	  }
+	businessLandline(evt4) {
+		console.log("Country Code is >>>>", evt4)
+		this.businessLandCode = '+' + evt4.dialCode
+		console.log("business landline Code is >>>>", this.businessLandCode)
+	}
 
 	tk
 	// signupCustomer() {
@@ -901,154 +903,147 @@ export class SignupComponent implements OnInit {
 
 
 	signupCustomer() {
-	if(this.verify_type=='mobile')
-	{
-		alert('type=mobile')
-	this.OTP=Math.floor(100000 + Math.random() * 900000);
+		if (this.verify_type == 'mobile') {
+			alert('type=mobile')
+			this.OTP = Math.floor(100000 + Math.random() * 900000);
 
-				 const From='+14128168787'
-				const To=this.phone_number
-				const Body='Your OTP is:'+this.OTP
+			const From = '+14128168787'
+			const To = this.phone_number
+			const Body = 'Your OTP is:' + this.OTP
 
-				this.CustomerService.getTwilioService(From,To,Body).subscribe(data => {
+			this.CustomerService.getTwilioService(From, To, Body).subscribe(data => {
 				//	console.log(data)
-					console.log('otp send successfully')
-					$('#verificationModal').modal('show');
-				
-				},err=>{
-				console.log('err=',err)
-				});
-}else{
-	this.regesterUser()
-}
+				console.log('otp send successfully')
+				$('#verificationModal').modal('show');
 
-
-
-	}
-
-	regesterUser()
-{
-
-	console.log(this.terms_checked)
-	console.log("Phone number is =======",this.phone_number)
-	console.log("City is >>>>>",this.selectedCity)
-	console.log("City Name is >>>>>",this.selectedCity.cName)
-
-
-
-	var obj = {
-		first_name: this.first_name,
-		last_name: this.last_name,
-		user_type: 'customer',
-		country: this.selectedCountry.name,
-		state: this.selectedState.name,
-		city: this.selectedCity.cName,
-		email: this.email,
-		password: this.password,
-		country_code: this.countryDial,
-		phone_number: this.phone_number,
-		
-		send_email:''
-	}
-	if(this.verify_type=='mobile')
-	{
-		obj.send_email='no'
-	}
-	else{
-		obj.send_email='yes'
-	}
-	if (!this.terms_checked) {
-		this.toastr.error("Please accept terms and condition")
-		return
-	}
-	console.log("Object of the customer signup form>>>>>",obj)
-	 this.CustomerService.signupCustomer(obj).subscribe(data => {
-		console.log(data)
-		if(this.verify_type='mobile')
-		{
-			$('#verificationModal').modal('hide');
+			}, err => {
+				console.log('err=', err)
+			});
+		} else {
+			this.regesterUser()
 		}
-		
-		if (data.code == '200' || data.code == 200) {
-			
-			if(this.verify_type='email')
-			{
-				$('#verificationModal').modal('show')
-			}
-			
 
-		
-			this.tk=data.token
-			if(this.verify_type=='mobile')
-			{
+
+
+	}
+
+	regesterUser() {
+
+		console.log(this.terms_checked)
+		console.log("Phone number is =======", this.phone_number)
+		console.log("City is >>>>>", this.selectedCity)
+		console.log("City Name is >>>>>", this.selectedCity.cName)
+
+
+
+		var obj = {
+			first_name: this.first_name,
+			last_name: this.last_name,
+			user_type: 'customer',
+			country: this.selectedCountry.name,
+			state: this.selectedState.name,
+			city: this.selectedCity.cName,
+			email: this.email,
+			password: this.password,
+			country_code: this.countryDial,
+			phone_number: this.phone_number,
+
+			send_email: ''
+		}
+		if (this.verify_type == 'mobile') {
+			obj.send_email = 'no'
+		}
+		else {
+			obj.send_email = 'yes'
+		}
+		if (!this.terms_checked) {
+			this.toastr.error("Please accept terms and condition")
+			return
+		}
+		console.log("Object of the customer signup form>>>>>", obj)
+		this.CustomerService.signupCustomer(obj).subscribe(data => {
+			console.log(data)
+			if (this.verify_type = 'mobile') {
+				$('#verificationModal').modal('hide');
+			}
+
+			if (data.code == '200' || data.code == 200) {
+
+				if (this.verify_type = 'email') {
+					$('#verificationModal').modal('show')
+				}
+
+
+
+				this.tk = data.token
+				if (this.verify_type == 'mobile') {
+					this.toastr.success('Registration done successfully', 'Success')
+
+				}
+
+			} else {
 				this.toastr.success('Registration done successfully', 'Success')
-
 			}
-			
-		} else {
-			this.toastr.success('Registration done successfully', 'Success')
-		}
-	}, err => {
-		console.log(err)
-		if (err.msg = "EMAIL_ALREADY_EXISTS") {
-			this.toastr.error("Email address already registered");
-			// this.loading = false;
-		} else {
+		}, err => {
 			console.log(err)
-			// this.loading = false;
-			this.CustomerService.commonError(err)
-		}
-		// this.toastr.error('Some error occured, please try again!!', 'Error')
+			if (err.msg = "EMAIL_ALREADY_EXISTS") {
+				this.toastr.error("Email address already registered");
+				// this.loading = false;
+			} else {
+				console.log(err)
+				// this.loading = false;
+				this.CustomerService.commonError(err)
+			}
+			// this.toastr.error('Some error occured, please try again!!', 'Error')
 
-	}) 
-}
-	
+		})
+	}
+
 
 	validateOtp() {
 		var otp = this.first + this.second + this.third + this.fourth + this.fifth + this.sixth
-		
-		
-		if(this.verify_type=='mobile' && this.OTP==otp)
-		{
+
+
+		if (this.verify_type == 'mobile' && this.OTP == otp) {
 			this.regesterUser();
 			return;
-		}else if(this.verify_type=='mobile' && this.OTP!=otp){
+		} else if (this.verify_type == 'mobile' && this.OTP != otp) {
 			this.toastr.error('Some error occured, please try again!!', 'Error')
 			return
 		}
 
 		console.log("IN the otp validate>>>>>???")
-		
+
 		console.log(otp)
 		// console.log("Token is>>>>",localStorage.getItem('token'))
-		if(!this.otpForm.valid){
-			this.otpCheck= true;
-			
-		}else{
-		var obj = {
-			otp: otp,
-			//token: localStorage.getItem('token')
-			token:this.tk
-		}
-		this.CustomerService.validateOtp(obj).subscribe(data => {
-			console.log(data)
-			if (data.code == '200' || data.code == 200) {
+		if (!this.otpForm.valid) {
+			this.otpCheck = true;
 
-				// console.log("edit form data ============",this.editUniForm)
-				// this.location.back()
-				$('#verificationModal').modal('hide');
-				this.toastr.success('Registration done successfully', 'Success')
-				this.router.navigate(['/login']);
-			} else {
-
-				this.toastr.error('Wrong otp', 'Error')
+		} else {
+			var obj = {
+				otp: otp,
+				//token: localStorage.getItem('token')
+				token: this.tk
 			}
-		}, err => {
-			console.log(err)
-			this.toastr.error('Some error occured, please try again!!', 'Error')
+			this.CustomerService.validateOtp(obj).subscribe(data => {
+				console.log(data)
+				if (data.code == '200' || data.code == 200) {
 
-		})
-	}
+					// console.log("edit form data ============",this.editUniForm)
+					// this.location.back()
+					$('#verificationModal').modal('hide');
+					this.toastr.success('Registration done successfully', 'Success')
+					this.router.navigate(['/login']);
+				} else {
+
+					this.toastr.error('Wrong otp', 'Error')
+				}
+			}, err => {
+				console.log(err)
+				this.toastr.error('Some error occured, please try again!!', 'Error')
+
+			})
+		}
 	}
 
 	somethingChanged(completed: boolean) {
@@ -1079,8 +1074,8 @@ export class SignupComponent implements OnInit {
 
 	businessFormSubmit() {
 		console.log(this.businessFormGroup.value)
-		console.log("Business License Number>>>",this.businessFormGroup.value.branch_licence)
-		console.log("Branch Year>>>>>",this.branch_year)
+		console.log("Business License Number>>>", this.businessFormGroup.value.branch_licence)
+		console.log("Branch Year>>>>>", this.branch_year)
 		this.next4 = true
 	}
 
@@ -1092,16 +1087,16 @@ export class SignupComponent implements OnInit {
 
 	branchFormSubmit() {
 		this.next6 = true
-		console.log("First Name>>>>>",this.firstFormGroup.value.first_name)
-		console.log("Last Name>>>>>",this.firstFormGroup.value.last_name)
-		console.log("Email>>>>>",this.firstFormGroup.value.email)
-		console.log("Password>>>>>",this.firstFormGroup.value.password)
-		console.log("Branch Name Eng>>>>>",this.firstFormGroup.value.branch_name_eng)
-		console.log("Branch Name Ara>>>>>",this.firstFormGroup.value.branch_name_arabic)
-		console.log("Branch type ID>>>>>",this.firstFormGroup.value.branch_type)
-		console.log("Branch Category ID>>>>>",this.firstFormGroup.value.branch_cat)
-		console.log("Certificate Array>>>>>",this.certificates_arr)
-		console.log("Branch Brief>>>>>",this.firstFormGroup.value.brief_about_branch)
+		console.log("First Name>>>>>", this.firstFormGroup.value.first_name)
+		console.log("Last Name>>>>>", this.firstFormGroup.value.last_name)
+		console.log("Email>>>>>", this.firstFormGroup.value.email)
+		console.log("Password>>>>>", this.firstFormGroup.value.password)
+		console.log("Branch Name Eng>>>>>", this.firstFormGroup.value.branch_name_eng)
+		console.log("Branch Name Ara>>>>>", this.firstFormGroup.value.branch_name_arabic)
+		console.log("Branch type ID>>>>>", this.firstFormGroup.value.branch_type)
+		console.log("Branch Category ID>>>>>", this.firstFormGroup.value.branch_cat)
+		console.log("Certificate Array>>>>>", this.certificates_arr)
+		console.log("Branch Brief>>>>>", this.firstFormGroup.value.brief_about_branch)
 		console.log(this.branchFormGroup.value)
 		var obj = {
 			first_name: this.firstFormGroup.value.first_name,
@@ -1118,20 +1113,20 @@ export class SignupComponent implements OnInit {
 			no_of_branches: this.branchFormGroup.value.no_of_branches,
 			//address_details: [{
 			pincode: this.addressFormGroup.value.pincode,
-			phone_number : this.addressFormGroup.value.phone_number,
-			address_line_1 : this.addressFormGroup.value.aLine1,
-			address_line_2 : this.addressFormGroup.value.aLine2,
-			addr_first_name : this.addressFormGroup.value.fName,
-			addr_last_name : this.addressFormGroup.value.lName,
+			phone_number: this.addressFormGroup.value.phone_number,
+			address_line_1: this.addressFormGroup.value.aLine1,
+			address_line_2: this.addressFormGroup.value.aLine2,
+			addr_first_name: this.addressFormGroup.value.fName,
+			addr_last_name: this.addressFormGroup.value.lName,
 			//house_no: this.addressFormGroup.value.house_no,
 			//area: this.addressFormGroup.value.area,
-			country_ph_code : this.countryDialAddress,
+			country_ph_code: this.countryDialAddress,
 			landmark: this.addressFormGroup.value.landmark,
 			country: this.addressFormGroup.value.country.name,
 			state: this.addressFormGroup.value.state.name,
 			city: this.addressFormGroup.value.city,
 			//}],
-			logistic_location_id:this.serviceFormGroup.value.placeOfDispatch,
+			logistic_location_id: this.serviceFormGroup.value.placeOfDispatch,
 			service_categories: this.serviceFormGroup.value.service_category,
 			service_subcategories: this.serviceFormGroup.value.service_sub_category,
 			contact_details: {
@@ -1178,7 +1173,7 @@ export class SignupComponent implements OnInit {
 					this.toastr.success('Registration done successfully', 'Success')
 				}
 			}, err => {
-				console.log("ERROR During Professional Sign up>>>>>",err)
+				console.log("ERROR During Professional Sign up>>>>>", err)
 				if (err.msg = "EMAIL_ALREADY_EXISTS") {
 					this.toastr.error("Email address already registered");
 					// this.loading = false;
@@ -1260,7 +1255,7 @@ export class SignupComponent implements OnInit {
 			}
 		}
 		console.log("final data===", obj);
-		if(this.photoServiceFormGroup.valid){
+		if (this.photoServiceFormGroup.valid) {
 			this.CustomerService.registerPhotographer(obj).subscribe(data => {
 				console.log(data)
 				if (data.code == '200' || data.code == 200) {
@@ -1268,7 +1263,7 @@ export class SignupComponent implements OnInit {
 					this.router.navigate(['/login']);
 					// localStorage.setItem('token', data.token);
 					// $('#verificationModal').modal('show');
-				} 
+				}
 			}, err => {
 				console.log(err)
 				if (err.msg = "EMAIL_ALREADY_EXISTS") {
@@ -1280,7 +1275,7 @@ export class SignupComponent implements OnInit {
 					this.CustomerService.commonError(err)
 				}
 				// this.toastr.error('Some error occured, please try again!!', 'Error')
-	
+
 			})
 		}
 	}
@@ -1298,7 +1293,7 @@ export class SignupComponent implements OnInit {
 		}
 		const file = evt.target.files[0];
 		if (file.type !== 'image/jpeg' && file.type !== 'image/png' && file.type !== 'image/jpg') {
-			 this.toastr.warning('Please upload jpg/png file')
+			this.toastr.warning('Please upload jpg/png/jpeg file')
 			return;
 		}
 		console.log(evt.target.files[0])
@@ -1315,8 +1310,8 @@ export class SignupComponent implements OnInit {
 	}
 
 	uploadCertificate(evt, index) {
-		console.log("Event of the upload data>>>>",evt)
-		console.log("index for the event>>>>",index)
+		console.log("Event of the upload data>>>>", evt)
+		console.log("index for the event>>>>", index)
 		var self = this
 		if (!evt.target) {
 			return;
@@ -1327,10 +1322,10 @@ export class SignupComponent implements OnInit {
 		if (evt.target.files.length !== 1) {
 			return;
 		}
-		this.imgUpload= evt.target.files[0]
+		this.imgUpload = evt.target.files[0]
 		const file = evt.target.files[0];
 		if (file.type !== 'image/jpeg' && file.type !== 'image/png' && file.type !== 'image/jpg') {
-			 this.toastr.warning('Please upload image file')
+			this.toastr.warning('Please upload image jpg/png/jpeg file')
 			return;
 		}
 		console.log(evt.target.files[0])
@@ -1338,6 +1333,9 @@ export class SignupComponent implements OnInit {
 		const fr = new FileReader();
 		fr.onloadend = (loadEvent) => {
 			let mainImage = fr.result;
+			self.cert_image = mainImage;
+			self.temp2 = true;
+
 			// alert(self.licence_img)
 		};
 		fr.readAsDataURL(file);
@@ -1410,19 +1408,19 @@ export class SignupComponent implements OnInit {
 		this.certificates_arr.splice(index, 1)
 	}
 
-	firstDate(value,i){
-		console.log(i,this.certificates_arr);
-		
+	firstDate(value, i) {
+		console.log(i, this.certificates_arr);
+
 		this.dateBook = moment(value).format("LL")
-		this.certificates_arr[i].date= value;
-	  }
+		this.certificates_arr[i].date = value;
+	}
 
 	addCertificate() {
 		var obj = {
 			image: '',
 			date: new Date()
 		}
-		console.log("object added is>>>>>>",obj)
+		console.log("object added is>>>>>>", obj)
 		this.certificates_arr.push(obj)
 		//console.log("ARRAY of object for the Certificate>>>>",this.certificates_arr)
 	}
@@ -1430,23 +1428,23 @@ export class SignupComponent implements OnInit {
 
 	date = new FormControl(moment());
 
-	chosenYearHandler(normalizedYear: Moment,datepicker: MatDatepicker<Moment>) {
-	  const ctrlValue = this.date.value;
-	  ctrlValue.year(normalizedYear.year());
-	  this.date.setValue(ctrlValue);
-	  datepicker.close();
+	chosenYearHandler(normalizedYear: Moment, datepicker: MatDatepicker<Moment>) {
+		const ctrlValue = this.date.value;
+		ctrlValue.year(normalizedYear.year());
+		this.date.setValue(ctrlValue);
+		datepicker.close();
 	}
-	htate(evt){
-		console.log("Fuction gorg frg CITY",evt)
+	htate(evt) {
+		console.log("Fuction gorg frg CITY", evt)
 	}
 
 
 	getCategoryList() {
 		this.CustomerService.getCatAndSubCat().subscribe(res => {
-		  console.log('res of category List', res)
-		  this.categiryArr = res.data
-		  // this.categiryArr.forEach((el, ind) => {
-	
+			console.log('res of category List', res)
+			this.categiryArr = res.data
+			// this.categiryArr.forEach((el, ind) => {
+
 			// this.CustomerService.getSubCat(el.id).subscribe(res => {
 			//   console.log('reeees', res)
 			//   res.sub_categories.forEach(element => {
@@ -1458,37 +1456,37 @@ export class SignupComponent implements OnInit {
 			//   });
 			//   console.log('newarrcategory', this.newArr)
 			// })
-	
-		  // })
-	
+
+			// })
+
 		})
-	  }
+	}
 
 
 	getSubCat(event) {
-		console.log("Event for the sub category>>>",event)
-		
+		console.log("Event for the sub category>>>", event)
+
 		var arr = []
-		
-			if (Array.isArray(event)) {
-				arr = event
-				//nameArr.push(event.name)
-		  this.lenArrCategory =arr.length
+
+		if (Array.isArray(event)) {
+			arr = event
+			//nameArr.push(event.name)
+			this.lenArrCategory = arr.length
 			//	this.formGroup.controls['issuedInCountry'].setValue(event)
-			} else {
-				arr.push(event)
-				//nameArr.push(event.name)
-		  this.lenArrCategory =arr.length
-			}
-			// nameArr.push(event.name)
-		event= arr[this.lenArrCategory-1]
-		console.log("EVENT>>>>>",event)
+		} else {
+			arr.push(event)
+			//nameArr.push(event.name)
+			this.lenArrCategory = arr.length
+		}
+		// nameArr.push(event.name)
+		event = arr[this.lenArrCategory - 1]
+		console.log("EVENT>>>>>", event)
 		//this.nameArr.push(event.name)
 		//console.log("Name Array: ",this.nameArr);
-		
-			// var obj = {
-			// 	category: arr[this.lenArrCity-1]
-			// }
+
+		// var obj = {
+		// 	category: arr[this.lenArrCity-1]
+		// }
 		// Old Start
 		// console.log("getting event", event, "arrr ===>", this.userDetails.user_services)
 		// var sub_cat = this.userDetails.user_services.filter(element => element.service_id.service_category_id == event);
@@ -1498,30 +1496,30 @@ export class SignupComponent implements OnInit {
 		//   this.ServiceSubCat.push(element.service_id)
 		// });
 		// End
-	
+
 		// New Work below
 		this.CustomerService.getSubCat(event).subscribe(res => {
-			  console.log('reveeeee sub category ', res)
-			  this.subCatArr=res.sub_categories
-	  })
-	
-	  }
+			console.log('reveeeee sub category ', res)
+			this.subCatArr = res.sub_categories
+		})
+
+	}
 
 
-	  getBranchYear(evt){
-		  console.log("Branch Year is>>>>>",evt.value)
-		  this.branchYear = evt.value
-	  }
+	getBranchYear(evt) {
+		console.log("Branch Year is>>>>>", evt.value)
+		this.branchYear = evt.value
+	}
 
-	  public handleAddressChange(address: any) {
-		  this.formattedAddress =address.formatted_address
-        // Do some stuff
-    }
-	getLogCities(){
-		this.CustomerService.getLogisticLocations().subscribe(data=>{
-			console.log("Logistics Location Data is================>",data);
-			this.locations=data.locations
+	public handleAddressChange(address: any) {
+		this.formattedAddress = address.formatted_address
+		// Do some stuff
+	}
+	getLogCities() {
+		this.CustomerService.getLogisticLocations().subscribe(data => {
+			console.log("Logistics Location Data is================>", data);
+			this.locations = data.locations
 		})
 	}
-	 
+
 }

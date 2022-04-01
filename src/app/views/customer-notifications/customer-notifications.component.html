@@ -1,0 +1,35 @@
+<!-- ACTUAL CODE STARTS FROM HERE -->
+
+<app-seller-header></app-seller-header>
+<div class="seller-appointments-wrapper account-setting-wrapper">
+    <div class="custom-container d-flex">
+        <app-sidebar></app-sidebar>
+        <div class="main-wrap">
+            <div class="card">
+                <div class="card-body">
+                    <h1>Notifications</h1>
+                    <h5>Total Notifications: {{totalNotification}}</h5>
+                    <div class="row justify-content-center">
+                        <div class="col-md-10">
+                            <div *ngFor="let notification of allNotifications">
+                                <div class="card account-setting-wrap p-0">
+                                    <div class="card-body">
+                                        <div class="notification-contnt d-flex justify-content-between">
+                                            <div class="notification-picture  d-flex">
+                                                <img src="/assets/imgs/profile-dummy.png" alt="image" class="img-fluid">
+                                                <div class="inner_notification">
+                                                    <h2 class=" text-bold mt-1">{{notification.title}}</h2>
+                                                    <p>{{notification.body}}</p>
+                                                </div>
+                                            </div>
+                                            <h5 class="notification_time">{{notification.updatedAt | date}}</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

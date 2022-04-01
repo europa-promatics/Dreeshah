@@ -13973,3 +13973,77 @@ span.cntr_nmbr {
 #tab-cstm{
     max-width: 100%!important;
 }
+// my wish list css
+
+.wish_prdct_imag img {
+    height: 150px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+.wishlist_card{
+    padding:25px;
+}
+.prodct_wished_ttl {
+    .prdct_name{
+        font-weight: bold;
+        margin-bottom: 6px;
+    }
+    i{
+        color:#6a9792;
+        font-size: 32px;
+    }
+}
+.wish_prdct_info{
+    .item-price{
+        font-weight: bold;
+    }
+    .prdct_ratings{
+        font-size: 18px;
+    }
+}
+// Account setting css
+.account-setting-wrap{
+    margin: 40px 0;
+    padding: 10px;
+    .setting_options{
+        margin-top: 25px;
+        .notificn_tab{
+            align-items: center;
+            margin-bottom: 16px;
+            i{
+                margin-right: 3px;
+                color: #6a9792;
+            }
+        }
+    }
+}
+// Notification listing page css
+.notification-picture {
+    img{
+        height: 120px;
+        width: 160px;
+        border-radius: 8px;
+    }
+}
+.notification-contnt{
+    .notification_time{
+        width: 20%;
+        text-align: right;
+    }
+    .inner_notification{
+        padding: 0 20px;
+    }
+    .text-bold{
+        margin-bottom: 2px;
+    }
+}
+// faq page css
+.faq_main_wrap{
+    h2{
+        margin-bottom: 0;
+    }
+    .faq-mat-accordion{
+        margin-bottom: 20px;
+    }
+}

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 // import * as Rx from "rxjs/Rx";
 import { Observable, throwError } from 'rxjs';
 import { map, catchError, retry, tap, finalize } from 'rxjs/operators';
-import {HttpClient, HttpHeaders, HttpErrorResponse, HttpRequest, HttpHandler, HttpEvent, HttpResponse  } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse, HttpRequest, HttpHandler, HttpEvent, HttpResponse } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { ToastrService } from 'ngx-toastr';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
@@ -17,19 +17,19 @@ export class CustomerService {
   userData
   apiUrl: any = environment.endPoint
   apiUrlAdmin: any = environment.endPointAdmin
-  apiChat:any=environment.endPointChat
-  apiOrder:any=environment.endPointOrder
+  apiChat: any = environment.endPointChat
+  apiOrder: any = environment.endPointOrder
   // httpOptions;
-  
-  
-  
- // token = JSON.parse(localStorage.getItem('token'));
+
+
+
+  // token = JSON.parse(localStorage.getItem('token'));
   token = localStorage.getItem('token');
   // token = JSON.stringify(localStorage.getItem('token'));
 
   httpOptions = {
     headers: new HttpHeaders({
-       token: this.token
+      token: this.token
     })
   }
 
@@ -48,13 +48,12 @@ export class CustomerService {
   // }
 
 
-  constructor(private loader:NgxUiLoaderService,private route:ActivatedRoute,private router:Router,private httpClient:HttpClient,private toastr: ToastrService) 
-    {
-  //   this.userData = localStorage['userData'] != null ? JSON.parse(localStorage['userData']) : null
-  //   if(this.userData != null){
-  //     this.token = JSON.parse(localStorage.getItem('token'));
-  //  }
-   
+  constructor(private loader: NgxUiLoaderService, private route: ActivatedRoute, private router: Router, private httpClient: HttpClient, private toastr: ToastrService) {
+    //   this.userData = localStorage['userData'] != null ? JSON.parse(localStorage['userData']) : null
+    //   if(this.userData != null){
+    //     this.token = JSON.parse(localStorage.getItem('token'));
+    //  }
+
     // console.log("token", this.token)
     this.httpOptions = {
       headers: new HttpHeaders({
@@ -63,35 +62,35 @@ export class CustomerService {
     };
 
     // console.log("Object ID: ",this.uuidv4());
-    
+
 
     //session_id
     // if(localStorage.getItem("session_data")){
-      
+
     // }
     // else{
     //   localStorage.setItem("session_data",this.uuidv4())
     // }
   }
 
-  getToken(){
+  getToken() {
 
-    if(localStorage.getItem("remember_me") && localStorage.getItem("remember_me") == "yes"){
-      
+    if (localStorage.getItem("remember_me") && localStorage.getItem("remember_me") == "yes") {
+
       return localStorage.getItem("token")
 
-    } if(localStorage.getItem("remember_me") && localStorage.getItem("remember_me") == "no") {
-      
+    } if (localStorage.getItem("remember_me") && localStorage.getItem("remember_me") == "no") {
+
       return sessionStorage.getItem("token")
 
-    }else{
+    } else {
 
       return null
-      
+
     }
   }
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    
+
     const started = Date.now();
     this.loader.start();
     let ok: string;
@@ -109,7 +108,7 @@ export class CustomerService {
       ),
       // Log when response observable either completes or errors
       finalize(() => {
-        
+
         this.loader.stop();
         const elapsed = Date.now() - started;
         if (ok == "succeeded") {
@@ -142,25 +141,25 @@ export class CustomerService {
 
     this.toastr.error(errorMessage)
   }
- 
 
-  error(error:any) {
+
+  error(error: any) {
     let errorMessage = '';
     if (error.error) {
       // client-side error and server side
-      if(Array.isArray(error.error.errors.msg)){ // validation error message
-        
-        if(error.error.errors.msg.length){
+      if (Array.isArray(error.error.errors.msg)) { // validation error message
+
+        if (error.error.errors.msg.length) {
           const ob = error.error.errors.msg[0]
-          if(ob.msg == "IS_EMPTY"){
+          if (ob.msg == "IS_EMPTY") {
             errorMessage = `${ob.param} missing`
-          }else{
+          } else {
             errorMessage = "Parameters missing"
 
           }
         }
-        
-      }else{
+
+      } else {
         errorMessage = error.error.errors.msg;
       }
     } else {
@@ -268,11 +267,11 @@ export class CustomerService {
 
       )
   }
- //photographer catalogue
+  //photographer catalogue
   getUserCatalogueList(): Observable<any> {
     let API_URL = `${this.apiUrl}/getUserCatalogueList`;
     console.log(API_URL)
-    return this.httpClient.get(API_URL,this.httpOptions)
+    return this.httpClient.get(API_URL, this.httpOptions)
       .pipe(
         map(res => {
           return res
@@ -307,7 +306,7 @@ export class CustomerService {
         })
       )
   }
-  
+
   getCatalogueQuestionAnswer(data): Observable<any> {
     let API_URL = `${this.apiUrl}/getCatalogueQuestionAnswer`;
     return this.httpClient.post(API_URL, data)
@@ -336,7 +335,7 @@ export class CustomerService {
 
       )
   }
-  
+
   deleteCatalogue(data): Observable<any> {
     let API_URL = `${this.apiUrl}/deleteCatalogue`;
     return this.httpClient.post(API_URL, data, this.httpOptions)
@@ -464,7 +463,7 @@ export class CustomerService {
   getStatesFromCountryName(data): Observable<any> {
     let API_URL = `${this.apiUrl}/getStateFromCountryName`;
     console.log(API_URL)
-    return this.httpClient.post(API_URL,data)
+    return this.httpClient.post(API_URL, data)
       .pipe(
         map(res => {
           return res
@@ -472,7 +471,7 @@ export class CustomerService {
 
       )
   }
-  
+
 
   getAllCities(data): Observable<any> {
     let API_URL = `${this.apiUrl}/getAllCities`;
@@ -576,7 +575,7 @@ export class CustomerService {
   addPhotographerBranch(data): Observable<any> {
     let API_URL = `${this.apiUrl}/addPhotographerBranch`;
     console.log(API_URL)
-    return this.httpClient.post(API_URL, data,this.httpOptions)
+    return this.httpClient.post(API_URL, data, this.httpOptions)
       .pipe(
         map((res: Response) => {
           return res;
@@ -585,12 +584,12 @@ export class CustomerService {
 
       );
   }
- 
+
 
   getPhotographerBranchList(): Observable<any> {
     let API_URL = `${this.apiUrl}/getPhotographerBranchList`;
     console.log(API_URL)
-    return this.httpClient.get(API_URL,this.httpOptions)
+    return this.httpClient.get(API_URL, this.httpOptions)
       .pipe(
         map((res: Response) => {
           return res;
@@ -603,7 +602,7 @@ export class CustomerService {
   getPhotographerBranchDetails(data): Observable<any> {
     let API_URL = `${this.apiUrl}/getPhotographerBranchDetails`;
     console.log(API_URL)
-    return this.httpClient.post(API_URL,data,this.httpOptions)
+    return this.httpClient.post(API_URL, data, this.httpOptions)
       .pipe(
         map((res: Response) => {
           return res;
@@ -615,7 +614,7 @@ export class CustomerService {
   editPhotographerBranch(data): Observable<any> {
     let API_URL = `${this.apiUrl}/editPhotographerBranch`;
     console.log(API_URL)
-    return this.httpClient.post(API_URL,data,this.httpOptions)
+    return this.httpClient.post(API_URL, data, this.httpOptions)
       .pipe(
         map((res: Response) => {
           return res;
@@ -643,7 +642,7 @@ export class CustomerService {
   //        token: token
   //     })
   //   }
-  
+
   //   this.httpOptions1 = {
   //     headers: new HttpHeaders({
   //       token: token,
@@ -703,7 +702,7 @@ export class CustomerService {
   getUserDetails(): Observable<any> {
     let API_URL = `${this.apiUrl}/getUserDetails`;
     console.log(API_URL)
-    return this.httpClient.post(API_URL,{},this.httpOptions)
+    return this.httpClient.post(API_URL, {}, this.httpOptions)
       .pipe(
         map((res: Response) => {
           return res;
@@ -781,7 +780,7 @@ export class CustomerService {
     let API_URL = `${this.apiUrl}/professional/upload/images`;
     console.log("token", this.httpOptions)
     console.log(API_URL)
-    return this.httpClient.post(API_URL, data,this.httpOptions)
+    return this.httpClient.post(API_URL, data, this.httpOptions)
       .pipe(
         map(res => {
           return res
@@ -794,7 +793,7 @@ export class CustomerService {
     let API_URL = `${this.apiUrl}/AddProfessionalServiceWeb`;
     console.log("token", this.httpOptions)
     console.log(API_URL)
-    return this.httpClient.post(API_URL,data,this.httpOptions)
+    return this.httpClient.post(API_URL, data, this.httpOptions)
       .pipe(
         map(res => {
           return res
@@ -1078,7 +1077,7 @@ export class CustomerService {
 
       )
   }
-  
+
   issueQuotation(data): Observable<any> {
     let API_URL = `${this.apiUrl}/issueQuotation/details`;
     console.log(API_URL)
@@ -1112,7 +1111,7 @@ export class CustomerService {
 
       )
   }
-  
+
   createRoom(data): Observable<any> {
     let API_URL = `${this.apiChat}/roomId`;
     console.log(API_URL)
@@ -1169,17 +1168,17 @@ export class CustomerService {
       )
   }
 
-  getProductVendorType(data):Observable<any>{
-    let API_URL= `${this.apiUrl}/getProductTypeVendor`;
-    return this.httpClient.post(API_URL,data,this.httpOptions)
-    .pipe(
-      map(res =>{
-        return res
-      })
-    )
+  getProductVendorType(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/getProductTypeVendor`;
+    return this.httpClient.post(API_URL, data, this.httpOptions)
+      .pipe(
+        map(res => {
+          return res
+        })
+      )
   }
 
-  
+
 
   getSubCat(id): Observable<any> {
     let API_URL = `${this.apiUrl}/product/subcategories/${id}`;
@@ -1192,7 +1191,7 @@ export class CustomerService {
   }
 
 
-  
+
   // productList(data): Observable<any> {
   //   let API_URL = `${this.apiUrl}/products`;
   //   return this.httpClient.post(API_URL,data,this.httpOptions )
@@ -1204,7 +1203,7 @@ export class CustomerService {
   // }
   productList(data): Observable<any> {
     let API_URL = `${this.apiUrl}/productsWithoutToken`;
-    return this.httpClient.post(API_URL,data)
+    return this.httpClient.post(API_URL, data)
       .pipe(
         map(res => {
           return res
@@ -1212,24 +1211,24 @@ export class CustomerService {
       )
   }
 
-  addProductService(data):Observable<any>{
-    let API_URL= `${this.apiUrl}/add_product`;
-    return this.httpClient.post(API_URL,data,this.httpOptions)
-    .pipe(
-      map(res =>{
-        return res
-      })
-    )
+  addProductService(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/add_product`;
+    return this.httpClient.post(API_URL, data, this.httpOptions)
+      .pipe(
+        map(res => {
+          return res
+        })
+      )
   }
 
-  addToCart(data):Observable<any>{
-    let API_URL= `${this.apiUrl}/addToCart`;
-    return this.httpClient.post(API_URL,data)
-    .pipe(
-      map(res =>{
-        return res
-      })
-    )
+  addToCart(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/addToCart`;
+    return this.httpClient.post(API_URL, data)
+      .pipe(
+        map(res => {
+          return res
+        })
+      )
   }
 
   // cartDetail(data):Observable<any>{
@@ -1241,24 +1240,24 @@ export class CustomerService {
   //     })
   //   )
   // }
-  cartDetail():Observable<any>{
-    let API_URL= `${this.apiUrl}/cartDetails`;
-    return this.httpClient.post(API_URL,{},this.httpOptions)
-    .pipe(
-      map(res =>{
-        return res
-      })
-    )
+  cartDetail(): Observable<any> {
+    let API_URL = `${this.apiUrl}/cartDetails`;
+    return this.httpClient.post(API_URL, {}, this.httpOptions)
+      .pipe(
+        map(res => {
+          return res
+        })
+      )
   }
 
-  cartDetailGuest(data):Observable<any>{
-    let API_URL= `${this.apiUrl}/cartDetailsNew`;
-    return this.httpClient.post(API_URL,{})
-    .pipe(
-      map(res =>{
-        return res
-      })
-    )
+  cartDetailGuest(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/cartDetailsNew`;
+    return this.httpClient.post(API_URL, {})
+      .pipe(
+        map(res => {
+          return res
+        })
+      )
   }
 
 
@@ -1272,80 +1271,9 @@ export class CustomerService {
   //   )
   // }
 
-  updateCartItem(data):Observable<any>{
-    let API_URL= `${this.apiUrl}/updateCartItemQty`;
-    return this.httpClient.post(API_URL,data)
-    .pipe(
-      map(res =>{
-        return res
-      })
-    )
-  }
-
-  addToWishList(data):Observable<any>{
-    let API_URL= `${this.apiUrl}/addToWishlist`;
-    return this.httpClient.post(API_URL,data)
-    .pipe(
-      map(res =>{
-        return res
-      })
-    )
-  }
-
-  wishlistDetail():Observable<any>{
-    let API_URL= `${this.apiUrl}/myWishlist`;
-    return this.httpClient.post(API_URL,{},this.httpOptions)
-    .pipe(
-      map(res =>{
-        return res
-      })
-    )
-  }
-
-  wishlistDetailGuest():Observable<any>{
-    let API_URL= `${this.apiUrl}/myWishlist`;
-    return this.httpClient.post(API_URL,{})
-    .pipe(
-      map(res =>{
-        return res
-      })
-    )
-  }
-
-  removeWishlistData(data):Observable<any>{
-    let API_URL= `${this.apiUrl}/removeFromWishlist`;
-    return this.httpClient.post(API_URL,data,this.httpOptions)
-    .pipe(
-      map(res =>{
-        return res
-      })
-    )
-  }
-
-  addRemoveWishlistData(data):Observable<any>{
-    let API_URL= `${this.apiUrl}/addRemoveFromWishlist`;
-    return this.httpClient.post(API_URL,data,this.httpOptions)
-    .pipe(
-      map(res =>{
-        return res
-      })
-    )
-  }
-
-  getGeneralContents(data):Observable<any>{
-    let API_URL= `${this.apiUrl}/getGeneralContent`;
-    return this.httpClient.post(API_URL,data)
-    .pipe(
-      map(res =>{
-        return res
-      })
-    )
-  }
-
-  getAllProduct(data): Observable<any> {
-    console.log("Value in the header is====>>>",this.httpOptions.headers)
-    let API_URL = `${this.apiUrl}/getAllProducts`;
-    return this.httpClient.post(API_URL,data,this.httpOptions )
+  updateCartItem(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/updateCartItemQty`;
+    return this.httpClient.post(API_URL, data)
       .pipe(
         map(res => {
           return res
@@ -1353,262 +1281,343 @@ export class CustomerService {
       )
   }
 
-  getProductDetail(data):Observable<any>{
-    let API_URL= `${this.apiUrl}/product/details`;
-    return this.httpClient.post(API_URL,data)
-    .pipe(
-      map(res =>{
-        return res
-      })
-    )
+  addToWishList(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/addToWishlist`;
+    return this.httpClient.post(API_URL, data)
+      .pipe(
+        map(res => {
+          return res
+        })
+      )
   }
 
-  getProductDetailGuest(data):Observable<any>{
-    let API_URL= `${this.apiUrl}/product/details`;
-    return this.httpClient.post(API_URL,data)
-    .pipe(
-      map(res =>{
-        return res
-      })
-    )
+  wishlistDetail(): Observable<any> {
+    let API_URL = `${this.apiUrl}/myWishlist`;
+    return this.httpClient.post(API_URL, this.httpOptions)
+      .pipe(
+        map(res => {
+          return res
+        })
+      )
   }
 
-  addNewAddres(data):Observable<any>{
-    let API_URL= `${this.apiUrl}/addNewAddress`;
-    return this.httpClient.post(API_URL,data,this.httpOptions)
-    .pipe(
-      map(res =>{
-        return res
-      })
-    )
+  wishlistParamDetail(paravalue): Observable<any> {
+    let API_URL = `${this.apiUrl}/myWishlist`;
+    return this.httpClient.post(API_URL, paravalue, this.httpOptions)
+      .pipe(
+        map(res => {
+          return res
+        })
+      )
   }
 
-  deleteAddress(data):Observable<any>{
-    let API_URL= `${this.apiUrl}/deleteAddresses`;
-    return this.httpClient.post(API_URL,data,this.httpOptions)
-    .pipe(
-      map(res =>{
-        return res
-      })
-    )
+  wishlistDetailGuest(): Observable<any> {
+    let API_URL = `${this.apiUrl}/myWishlist`;
+    return this.httpClient.post(API_URL, {})
+      .pipe(
+        map(res => {
+          return res
+        })
+      )
   }
 
-  addressLists():Observable<any>{
-    let API_URL= `${this.apiUrl}/addressList`;
-    return this.httpClient.get(API_URL,this.httpOptions)
-    .pipe(
-      map(res =>{
-        return res
-      })
-    )
+  removeWishlistData(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/removeFromWishlist`;
+    return this.httpClient.post(API_URL, data, this.httpOptions)
+      .pipe(
+        map(res => {
+          return res
+        })
+      )
   }
 
-  addNewCards(data):Observable<any>{
-    let API_URL= `${this.apiUrl}/addNewCard`;
-    return this.httpClient.post(API_URL,data,this.httpOptions)
-    .pipe(
-      map(res =>{
-        return res
-      })
-    )
+  addRemoveWishlistData(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/addRemoveFromWishlist`;
+    return this.httpClient.post(API_URL, data, this.httpOptions)
+      .pipe(
+        map(res => {
+          return res
+        })
+      )
   }
 
-  cardsLists():Observable<any>{
-    let API_URL= `${this.apiUrl}/cardsList`;
-    return this.httpClient.get(API_URL,this.httpOptions)
-    .pipe(
-      map(res =>{
-        return res
-      })
-    )
+  getGeneralContents(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/getGeneralContent`;
+    return this.httpClient.post(API_URL, data)
+      .pipe(
+        map(res => {
+          return res
+        })
+      )
   }
 
-  ordersCheckout(data):Observable<any>{
-    let API_URL= `${this.apiUrl}/orderCheckout`;
-    return this.httpClient.post(API_URL,data,this.httpOptions)
-    .pipe(
-      map(res =>{
-        return res
-      })
-    )
+  getAllProduct(data): Observable<any> {
+    console.log("Value in the header is====>>>", this.httpOptions.headers)
+    let API_URL = `${this.apiUrl}/getAllProducts`;
+    return this.httpClient.post(API_URL, data, this.httpOptions)
+      .pipe(
+        map(res => {
+          return res
+        })
+      )
   }
 
-  orderList(data):Observable<any>{
-    let API_URL= `${this.apiUrl}/getMyOrderList`;
-    return this.httpClient.post(API_URL,data,this.httpOptions)
-    .pipe(
-      map(res =>{
-        return res
-      })
-    )
+  getProductDetail(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/product/details`;
+    return this.httpClient.post(API_URL, data)
+      .pipe(
+        map(res => {
+          return res
+        })
+      )
   }
 
-  changePassword(data):Observable<any>{
-    let API_URL= `${this.apiUrl}/changeOldPassword`;
-    return this.httpClient.post(API_URL,data,this.httpOptions)
-    .pipe(
-      map(res =>{
-        return res
-      })
-    )
+  getProductDetailGuest(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/product/details`;
+    return this.httpClient.post(API_URL, data)
+      .pipe(
+        map(res => {
+          return res
+        })
+      )
   }
 
-  editAddress(data):Observable<any>{
-    let API_URL= `${this.apiUrl}/editOldAddress`;
-    return this.httpClient.post(API_URL,data,this.httpOptions)
-    .pipe(
-      map(res =>{
-        return res
-      })
-    )
+  addNewAddres(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/addNewAddress`;
+    return this.httpClient.post(API_URL, data, this.httpOptions)
+      .pipe(
+        map(res => {
+          return res
+        })
+      )
   }
 
-  defaultAddress(data):Observable<any>{
-    let API_URL= `${this.apiUrl}/setAddressDefault`;
-    return this.httpClient.post(API_URL,data,this.httpOptions)
-    .pipe(
-      map(res =>{
-        return res
-      })
-    )
+  deleteAddress(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/deleteAddresses`;
+    return this.httpClient.post(API_URL, data, this.httpOptions)
+      .pipe(
+        map(res => {
+          return res
+        })
+      )
   }
 
-  getOrderDetail(data):Observable<any>{
-    let API_URL= `${this.apiUrl}/getMyOrderDetails`;
-    return this.httpClient.post(API_URL,data,this.httpOptions)
-    .pipe(
-      map(res =>{
-        return res
-      })
-    )
+  addressLists(): Observable<any> {
+    let API_URL = `${this.apiUrl}/addressList`;
+    return this.httpClient.get(API_URL, this.httpOptions)
+      .pipe(
+        map(res => {
+          return res
+        })
+      )
   }
-  getOrderItem(data):Observable<any>{
-    let API_URL= `${this.apiOrder}/getOrderItems/accToStatus`;
-    return this.httpClient.post(API_URL,data,this.httpOptions)
-    .pipe(
-      map(res =>{
-        return res
-      })
-    )
+
+  addNewCards(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/addNewCard`;
+    return this.httpClient.post(API_URL, data, this.httpOptions)
+      .pipe(
+        map(res => {
+          return res
+        })
+      )
+  }
+
+  cardsLists(): Observable<any> {
+    let API_URL = `${this.apiUrl}/cardsList`;
+    return this.httpClient.get(API_URL, this.httpOptions)
+      .pipe(
+        map(res => {
+          return res
+        })
+      )
+  }
+
+  ordersCheckout(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/orderCheckout`;
+    return this.httpClient.post(API_URL, data, this.httpOptions)
+      .pipe(
+        map(res => {
+          return res
+        })
+      )
+  }
+
+  orderList(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/getMyOrderList`;
+    return this.httpClient.post(API_URL, data, this.httpOptions)
+      .pipe(
+        map(res => {
+          return res
+        })
+      )
+  }
+
+  changePassword(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/changeOldPassword`;
+    return this.httpClient.post(API_URL, data, this.httpOptions)
+      .pipe(
+        map(res => {
+          return res
+        })
+      )
+  }
+
+  editAddress(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/editOldAddress`;
+    return this.httpClient.post(API_URL, data, this.httpOptions)
+      .pipe(
+        map(res => {
+          return res
+        })
+      )
+  }
+
+  defaultAddress(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/setAddressDefault`;
+    return this.httpClient.post(API_URL, data, this.httpOptions)
+      .pipe(
+        map(res => {
+          return res
+        })
+      )
+  }
+
+  getOrderDetail(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/getMyOrderDetails`;
+    return this.httpClient.post(API_URL, data, this.httpOptions)
+      .pipe(
+        map(res => {
+          return res
+        })
+      )
+  }
+  getOrderItem(data): Observable<any> {
+    let API_URL = `${this.apiOrder}/getOrderItems/accToStatus`;
+    return this.httpClient.post(API_URL, data, this.httpOptions)
+      .pipe(
+        map(res => {
+          return res
+        })
+      )
+  }
+
+
+  cancelOrder(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/cancelOrderItems`;
+    return this.httpClient.post(API_URL, data, this.httpOptions)
+      .pipe(
+        map(res => {
+          return res
+        })
+      )
+  }
+  cancelOrderItem(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/cancelOrder`;
+    return this.httpClient.post(API_URL, data, this.httpOptions)
+      .pipe(
+        map(res => {
+          return res
+        })
+      )
+  }
+
+  cancelOrderList(): Observable<any> {
+    let API_URL = `${this.apiUrl}/getCancelledOrderList`;
+    return this.httpClient.get(API_URL, this.httpOptions)
+      .pipe(
+        map(res => {
+          return res
+        })
+      )
+  }
+
+  getOrderPurchasedByUserList(): Observable<any> {
+    console.log("Token is===>>>>", this.httpOptions.headers)
+    let API_URL = `${this.apiUrl}/getOrderPurchasedByUser`;
+    return this.httpClient.post(API_URL, {}, this.httpOptions)
+      .pipe(
+        map(res => {
+          return res
+        })
+      )
+  }
+
+  addUserAlbum(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/addUserAlbum`;
+    return this.httpClient.post(API_URL, data, this.httpOptions)
+      .pipe(
+        map(res => {
+          return res
+        })
+      )
+  }
+
+  getAlbumList(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/getMyAlbumList`;
+    return this.httpClient.post(API_URL, data, this.httpOptions)
+      .pipe(
+        map(res => {
+          return res
+        })
+      )
+  }
+
+  getAlbumDetail(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/getAlbumDetails`;
+    return this.httpClient.post(API_URL, data, this.httpOptions)
+      .pipe(
+        map(res => {
+          return res
+        })
+      )
   }
 
 
-  cancelOrder(data):Observable<any>{
-    let API_URL= `${this.apiUrl}/cancelOrderItems`;
-    return this.httpClient.post(API_URL,data,this.httpOptions)
-    .pipe(
-      map(res =>{
-        return res
-      })
-    )
-  }
-  cancelOrderItem(data):Observable<any>{
-    let API_URL= `${this.apiUrl}/cancelOrder`;
-    return this.httpClient.post(API_URL,data,this.httpOptions)
-    .pipe(
-      map(res =>{
-        return res
-      })
-    )
-  }
-
-  cancelOrderList():Observable<any>{
-    let API_URL= `${this.apiUrl}/getCancelledOrderList`;
-    return this.httpClient.get(API_URL,this.httpOptions)
-    .pipe(
-      map(res =>{
-        return res
-      })
-    )
-  }
-
-  getOrderPurchasedByUserList():Observable<any>{
-    console.log("Token is===>>>>",this.httpOptions.headers)
-    let API_URL= `${this.apiUrl}/getOrderPurchasedByUser`;
-    return this.httpClient.post(API_URL,{},this.httpOptions)
-    .pipe(
-      map(res =>{
-        return res
-      })
-    )
-  }
-
-  addUserAlbum(data):Observable<any>{
-    let API_URL= `${this.apiUrl}/addUserAlbum`;
-    return this.httpClient.post(API_URL,data,this.httpOptions)
-    .pipe(
-      map(res =>{
-        return res
-      })
-    )
-  }
-
-  getAlbumList(data):Observable<any>{
-    let API_URL= `${this.apiUrl}/getMyAlbumList`;
-    return this.httpClient.post(API_URL,data,this.httpOptions)
-    .pipe(
-      map(res =>{
-        return res
-      })
-    )
-  }
-
-  getAlbumDetail(data):Observable<any>{
-    let API_URL= `${this.apiUrl}/getAlbumDetails`;
-    return this.httpClient.post(API_URL,data,this.httpOptions)
-    .pipe(
-      map(res =>{
-        return res
-      })
-    )
+  editAlbumDetail(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/EditUserAlbum`;
+    return this.httpClient.post(API_URL, data, this.httpOptions)
+      .pipe(
+        map(res => {
+          return res
+        })
+      )
   }
 
 
-  editAlbumDetail(data):Observable<any>{
-    let API_URL= `${this.apiUrl}/EditUserAlbum`;
-    return this.httpClient.post(API_URL,data,this.httpOptions)
-    .pipe(
-      map(res =>{
-        return res
-      })
-    )
-  }
-  
-
-  deleteAlbum(data):Observable<any>{
-    let API_URL= `${this.apiUrl}/deleteSingleAlbum`;
-    return this.httpClient.post(API_URL,data,this.httpOptions)
-    .pipe(
-      map(res =>{
-        return res
-      })
-    )
+  deleteAlbum(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/deleteSingleAlbum`;
+    return this.httpClient.post(API_URL, data, this.httpOptions)
+      .pipe(
+        map(res => {
+          return res
+        })
+      )
   }
 
-  searchAlbum(data):Observable<any>{
-    let API_URL= `${this.apiUrl}/searchAlbum`;
-    return this.httpClient.post(API_URL,data,this.httpOptions)
-    .pipe(
-      map(res =>{
-        return res
-      })
-    )
+  searchAlbum(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/searchAlbum`;
+    return this.httpClient.post(API_URL, data, this.httpOptions)
+      .pipe(
+        map(res => {
+          return res
+        })
+      )
   }
 
-  getInventory():Observable<any>{
-    let API_URL= `${this.apiUrl}/getInventoryList`;
-    return this.httpClient.get(API_URL,this.httpOptions)
-    .pipe(
-      map(res =>{
-        return res
-      })
-    )
+  getInventory(): Observable<any> {
+    let API_URL = `${this.apiUrl}/getInventoryList`;
+    return this.httpClient.get(API_URL, this.httpOptions)
+      .pipe(
+        map(res => {
+          return res
+        })
+      )
   }
 
 
   updatedQuotationStatus(data): Observable<any> {
     let API_URL = `${this.apiUrl}/updateQuoteStatus`;
-    return this.httpClient.post(API_URL, data )
+    return this.httpClient.post(API_URL, data)
       .pipe(
         map(res => {
           return res
@@ -1617,33 +1626,33 @@ export class CustomerService {
   }
 
   editProfessionalProfile(data): Observable<any> {
-    console.log("Value in the header is:",this.httpOptions.headers)
+    console.log("Value in the header is:", this.httpOptions.headers)
     let API_URL = `${this.apiUrl}/editProfessionalProfile`;
     console.log(API_URL)
-    return this.httpClient.post(API_URL, data,this.httpOptions)
+    return this.httpClient.post(API_URL, data, this.httpOptions)
       .pipe(
-          map((res: Response) => {
-            return res;
-    }),
-    retry(1)
-    );
-    }
-    
-    uploadProfile(data): Observable<any> {
-      let API_URL = `${this.apiUrl}/uploadProfile`;
-      console.log(API_URL)
-      return this.httpClient.post(API_URL, data,this.httpOptions)
-        .pipe(
-           map((res: Response) => {
-              return res;
-    }),
-    retry(1)
-    );
-    }
+        map((res: Response) => {
+          return res;
+        }),
+        retry(1)
+      );
+  }
+
+  uploadProfile(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/uploadProfile`;
+    console.log(API_URL)
+    return this.httpClient.post(API_URL, data, this.httpOptions)
+      .pipe(
+        map((res: Response) => {
+          return res;
+        }),
+        retry(1)
+      );
+  }
 
   quoteDetails(data): Observable<any> {
     let API_URL = `${this.apiUrl}/quotationDetails`;
-    return this.httpClient.post(API_URL, data )
+    return this.httpClient.post(API_URL, data)
       .pipe(
         map(res => {
           return res
@@ -1654,7 +1663,7 @@ export class CustomerService {
   addProfessionalBranch(data): Observable<any> {
     let API_URL = `${this.apiUrl}/addProfessionalBranch`;
     console.log(API_URL)
-    return this.httpClient.post(API_URL, data,this.httpOptions)
+    return this.httpClient.post(API_URL, data, this.httpOptions)
       .pipe(
         map((res: Response) => {
           return res;
@@ -1663,11 +1672,11 @@ export class CustomerService {
 
       );
   }
-  
+
   getBranchList(): Observable<any> {
     let API_URL = `${this.apiUrl}/getBranchList`;
     console.log(API_URL)
-    return this.httpClient.get(API_URL,this.httpOptions)
+    return this.httpClient.get(API_URL, this.httpOptions)
       .pipe(
         map((res: Response) => {
           return res;
@@ -1679,7 +1688,7 @@ export class CustomerService {
   getBranchDetails(data): Observable<any> {
     let API_URL = `${this.apiUrl}/getBranchDetails`;
     console.log(API_URL)
-    return this.httpClient.post(API_URL,data,this.httpOptions)
+    return this.httpClient.post(API_URL, data, this.httpOptions)
       .pipe(
         map((res: Response) => {
           return res;
@@ -1691,7 +1700,7 @@ export class CustomerService {
   editProfessionalBranch(data): Observable<any> {
     let API_URL = `${this.apiUrl}/editProfessionalBranch`;
     console.log(API_URL)
-    return this.httpClient.post(API_URL,data,this.httpOptions)
+    return this.httpClient.post(API_URL, data, this.httpOptions)
       .pipe(
         map((res: Response) => {
           return res;
@@ -1704,7 +1713,7 @@ export class CustomerService {
   addProfessionalStaffs(data): Observable<any> {
     let API_URL = `${this.apiUrl}/addProfessionalStaffs`;
     console.log(API_URL)
-    return this.httpClient.post(API_URL,data,this.httpOptions)
+    return this.httpClient.post(API_URL, data, this.httpOptions)
       .pipe(
         map((res: Response) => {
           return res;
@@ -1716,7 +1725,7 @@ export class CustomerService {
   getProfessionalStaffList(data): Observable<any> {
     let API_URL = `${this.apiUrl}/getProfessionalStaffList`;
     console.log(API_URL)
-    return this.httpClient.post(API_URL,data,this.httpOptions)
+    return this.httpClient.post(API_URL, data, this.httpOptions)
       .pipe(
         map((res: Response) => {
           return res;
@@ -1728,7 +1737,7 @@ export class CustomerService {
   getPrivilegeList(): Observable<any> {
     let API_URL = `${this.apiUrl}/getAllPrivilegeList`;
     console.log(API_URL)
-    return this.httpClient.get(API_URL,this.httpOptions)
+    return this.httpClient.get(API_URL, this.httpOptions)
       .pipe(
         map((res: Response) => {
           return res;
@@ -1740,7 +1749,7 @@ export class CustomerService {
   addStaffPrivileges(data): Observable<any> {
     let API_URL = `${this.apiUrl}/addStaffPrivileges`;
     console.log(API_URL)
-    return this.httpClient.post(API_URL,data,this.httpOptions)
+    return this.httpClient.post(API_URL, data, this.httpOptions)
       .pipe(
         map((res: Response) => {
           return res;
@@ -1752,7 +1761,7 @@ export class CustomerService {
   editProfessionalStaffs(data): Observable<any> {
     let API_URL = `${this.apiUrl}/editProfessionalStaffs`;
     console.log(API_URL)
-    return this.httpClient.post(API_URL,data,this.httpOptions)
+    return this.httpClient.post(API_URL, data, this.httpOptions)
       .pipe(
         map((res: Response) => {
           return res;
@@ -1764,7 +1773,7 @@ export class CustomerService {
   getProfessionalStaffDetails(data): Observable<any> {
     let API_URL = `${this.apiUrl}/getProfessionalStaffDetails`;
     console.log(API_URL)
-    return this.httpClient.post(API_URL,data,this.httpOptions)
+    return this.httpClient.post(API_URL, data, this.httpOptions)
       .pipe(
         map((res: Response) => {
           return res;
@@ -1777,7 +1786,7 @@ export class CustomerService {
   addSellerProject(data): Observable<any> {
     let API_URL = `${this.apiUrl}/addProfessionalProject`;
     console.log(API_URL)
-    return this.httpClient.post(API_URL,data,this.httpOptions)
+    return this.httpClient.post(API_URL, data, this.httpOptions)
       .pipe(
         map((res: Response) => {
           return res;
@@ -1786,21 +1795,21 @@ export class CustomerService {
 
       );
   }
-  getProfessionalProjectsWithoutPagination(): Observable<any>{
-    let API_URL =`${this.apiUrl}/getProfessionalProjectsWithoutPagination`;
-    return this.httpClient.post(API_URL,{},this.httpOptions)
-    .pipe(
-      map((res: Response) => {
-        return res;
-      }),
-      retry(1),
-    );
+  getProfessionalProjectsWithoutPagination(): Observable<any> {
+    let API_URL = `${this.apiUrl}/getProfessionalProjectsWithoutPagination`;
+    return this.httpClient.post(API_URL, {}, this.httpOptions)
+      .pipe(
+        map((res: Response) => {
+          return res;
+        }),
+        retry(1),
+      );
   }
 
   getProfessionalServicesNew(data): Observable<any> {
     let API_URL = `${this.apiUrl}/getProfessionalServicesList`;
     console.log(API_URL)
-    return this.httpClient.post(API_URL, data,this.httpOptions)
+    return this.httpClient.post(API_URL, data, this.httpOptions)
       .pipe(
         map((res: Response) => {
           return res;
@@ -2030,7 +2039,7 @@ export class CustomerService {
   checkEmailstatus(data): Observable<any> {
     let API_URL = `${this.apiUrl}/emailAlreadyExist`;
     console.log(API_URL)
-    return this.httpClient.post(API_URL,data)
+    return this.httpClient.post(API_URL, data)
       .pipe(
         map(res => {
           return res
@@ -2041,7 +2050,7 @@ export class CustomerService {
   getprofessionals(data): Observable<any> {
     let API_URL = `${this.apiUrl}/getNearByProfessional`;
     console.log(API_URL)
-    return this.httpClient.post(API_URL,data)
+    return this.httpClient.post(API_URL, data)
       .pipe(
         map(res => {
           return res
@@ -2050,534 +2059,545 @@ export class CustomerService {
       )
   }
 
-  getTwilioService(From,To,Body){
+  getTwilioService(From, To, Body) {
 
 
     let body = new URLSearchParams();
-      body.set('To', To);
-      body.set('From', From);
-      body.set('Body', Body);
+    body.set('To', To);
+    body.set('From', From);
+    body.set('Body', Body);
 
     this.httpOptions = {
       headers: new HttpHeaders({
         'Authorization': 'Basic QUNmYmJiZjcwNzI2NWJlZDQ2YTFiOGM3ZGU4Yzg4NWM5OTowYjJiNTc5OGZmMjczZmI1NGY2ZDJjZTgwZDhmY2U1ZA==',
-        'Content-Type':'application/x-www-form-urlencoded'
+        'Content-Type': 'application/x-www-form-urlencoded'
       })
     };
-   
-   
-    const TWILIO_SID="ACfbbbf707265bed46a1b8c7de8c885c99"
+
+
+    const TWILIO_SID = "ACfbbbf707265bed46a1b8c7de8c885c99"
     let API_URL = `https://api.twilio.com/2010-04-01/Accounts/${TWILIO_SID}/Messages.json?`;
-    return this.httpClient.post(API_URL,body.toString(),this.httpOptions)
-    .pipe(
-      map(res => {
-        return res
-      }),
-    )
-}
-// getTopratedProfessionals(): Observable<any>
-// {
+    return this.httpClient.post(API_URL, body.toString(), this.httpOptions)
+      .pipe(
+        map(res => {
+          return res
+        }),
+      )
+  }
+  // getTopratedProfessionals(): Observable<any>
+  // {
 
-//   var data={
-//     user_type:'professional',
-    
-//   }
-  
-//   let API_URL = `https://developers.promaticstechnologies.com:3003/getUserTypeList`;
-//   console.log(API_URL)
-//   return this.httpClient.post(API_URL,data)
-//     .pipe(
-//       map(res => {
-//         return res
-//       }),
-//   
-//     )
-// }
+  //   var data={
+  //     user_type:'professional',
 
-AddQuotation(data): Observable<any> {
-  let API_URL = `${this.apiUrl}/professional/issueQuotation/add`;
-  console.log(API_URL)
-  return this.httpClient.post(API_URL,data,this.httpOptions)
-  //return this.httpClient.get(API_URL,this.httpOptions)
-    .pipe(
-      map(res => {
-        return res;
-      }),
-  
-    );
-}
+  //   }
 
-cancelOrCreateQuatationOrder(data): Observable<any> {
-  let API_URL = `${this.apiUrl}/cancelOrCreateQuatationOrder`;
-  console.log(API_URL)
-  return this.httpClient.post(API_URL,data,this.httpOptions)
-  //return this.httpClient.get(API_URL,this.httpOptions)
-    .pipe(
-      map(res => {
-        return res;
-      }),
-  
-    );
-}
-getQuationOrders(data): Observable<any> {
-  let API_URL = `${this.apiUrl}/getQuationOrders`;
-  console.log(API_URL)
-  return this.httpClient.post(API_URL,data,this.httpOptions)
-  //return this.httpClient.get(API_URL,this.httpOptions)
-    .pipe(
-      map(res => {
-        return res;
-      }),
-  
-    );
-}
-stripeApi(data): Observable<any> {
-  let API_URL =`${this.apiUrl}/paymentToken`;
-  console.log(API_URL)
-  return this.httpClient.post(API_URL,data,this.httpOptions)
-  //return this.httpClient.get(API_URL,this.httpOptions)
-    .pipe(
-      map(res => {
-        return res;
-      }),
-  
-    );
-}
-payQuationOrders(data): Observable<any> {
-  let API_URL = `${this.apiUrl}/payQuationOrders`;
-  console.log(API_URL)
-  return this.httpClient.post(API_URL,data,this.httpOptions)
-  //return this.httpClient.get(API_URL,this.httpOptions)
-    .pipe(
-      map(res => {
-        return res;
-      }),
-  
-    );
-}
-sendMilestoneFeedback(data): Observable<any> {
-  let API_URL = `${this.apiUrl}/feedbackOfMilestone`;
-  console.log(API_URL)
-  return this.httpClient.post(API_URL,data,this.httpOptions)
-  //return this.httpClient.get(API_URL,this.httpOptions)
-    .pipe(
-      map(res => {
-        return res;
-      }),
-  
-    );
-}
-changeStatusQuationOrders(data): Observable<any> {
-  let API_URL = `${this.apiUrl}/changeStatusQuationOrders`;
-  console.log(API_URL)
-  return this.httpClient.post(API_URL,data,this.httpOptions)
-  //return this.httpClient.get(API_URL,this.httpOptions)
-    .pipe(
-      map(res => {
-        return res;
-      }),
-  
-    );
-}
-getEarnings(data): Observable<any> {
-  let API_URL = `${this.apiUrl}/myEarningList`;
-  console.log(API_URL)
-  return this.httpClient.post(API_URL,data,this.httpOptions)
-  //return this.httpClient.get(API_URL,this.httpOptions)
-    .pipe(
-      map(res => {
-        return res;
-      }),
-  
-    );
-}
-getAllprofessionals(): Observable<any> {
-  let API_URL = `${this.apiUrl}/getAll/professionals/withoutPagination`;
-  console.log(API_URL)
-  return this.httpClient.get(API_URL)
-  //return this.httpClient.get(API_URL,this.httpOptions)
-    .pipe(
-      map(res => {
-        return res;
-      }),
-  
-    );
-}
-markAsDoneMilestone(data): Observable<any> {
-  let API_URL = `${this.apiUrl}/markAsDoneMilestone`;
-  console.log(API_URL)
-  return this.httpClient.post(API_URL,data,this.httpOptions)
-  //return this.httpClient.get(API_URL,this.httpOptions)
-    .pipe(
-      map(res => {
-        return res;
-      }),
-  
-    );
-}
-transactionWalletMoneyList(data): Observable<any> {
-  let API_URL = `${this.apiUrl}/transactionWalletMoneyList`;
-  console.log(API_URL)
-  return this.httpClient.post(API_URL,data,this.httpOptions)
-  //return this.httpClient.get(API_URL,this.httpOptions)
-    .pipe(
-      map(res => {
-        return res;
-      }),
-  
-    );
-}
-creditDebitWalletMoney(data): Observable<any> {
-  let API_URL = `${this.apiUrl}/creditDebitWalletMoney`;
-  console.log(API_URL)
-  return this.httpClient.post(API_URL,data,this.httpOptions)
-  //return this.httpClient.get(API_URL,this.httpOptions)
-    .pipe(
-      map(res => {
-        return res;
-      }),
-  
-    );
-}
+  //   let API_URL = `https://developers.promaticstechnologies.com:3003/getUserTypeList`;
+  //   console.log(API_URL)
+  //   return this.httpClient.post(API_URL,data)
+  //     .pipe(
+  //       map(res => {
+  //         return res
+  //       }),
+  //   
+  //     )
+  // }
 
-createRoomId(data): Observable<any> {
-  let API_URL = `${this.apiUrl}/create/get/roomId`;
-  console.log(API_URL)
-  return this.httpClient.post(API_URL,data,this.httpOptions)
-  //return this.httpClient.get(API_URL,this.httpOptions)
-    .pipe(
-      map(res => {
-        return res;
-      }),
-  
-    );
-}
-top10Photographers(): Observable<any> {
-  let API_URL = `${this.apiUrl}/get/top/photographer/list`;
-  console.log(API_URL)
-  return this.httpClient.get(API_URL)
-  //return this.httpClient.get(API_URL,this.httpOptions)
-    .pipe(
-      map(res => {
-        return res;
-      }),
-  
-    );
-}
-PhotographersDetails(data): Observable<any> {
-  let API_URL = `${this.apiUrl}/getUserDetailUsingId`;
-  console.log(API_URL)
-  return this.httpClient.post(API_URL,data,this.httpOptions)
-  //return this.httpClient.get(API_URL,this.httpOptions)
-    .pipe(
-      map(res => {
-        return res;
-      }),
-  
-    );
-}
-getMemberships(data): Observable<any> {
-  let API_URL = `${this.apiUrl}/getMemberShipPlans`;
-  console.log(API_URL)
-  return this.httpClient.post(API_URL,data,this.httpOptions)
-  //return this.httpClient.get(API_URL,this.httpOptions)
-    .pipe(
-      map(res => {
-        return res;
-      }),
-  
-    );
-}
-buyMemberships(data): Observable<any> {
-  let API_URL = `${this.apiUrl}/buyMemberShipPlan`;
-  console.log(API_URL)
-  return this.httpClient.post(API_URL,data,this.httpOptions)
-  //return this.httpClient.get(API_URL,this.httpOptions)
-    .pipe(
-      map(res => {
-        return res;
-      }),
-  
-    );
-}
-getMembershipDetails(data): Observable<any> {
-  let API_URL = `${this.apiUrl}/userMemberShipPlan`;
-  console.log(API_URL)
-  return this.httpClient.post(API_URL,data,this.httpOptions)
-  //return this.httpClient.get(API_URL,this.httpOptions)
-    .pipe(
-      map(res => {
-        return res;
-      }),
-  
-    );
-}
-CancelMembership(data): Observable<any> {
-  let API_URL = `${this.apiUrl}/changePlanStatusOfUser`;
-  console.log(API_URL)
-  return this.httpClient.post(API_URL,data,this.httpOptions)
-  //return this.httpClient.get(API_URL,this.httpOptions)
-    .pipe(
-      map(res => {
-        return res;
-      }),
-  
-    );
-}
-search(data): Observable<any> {
-  let API_URL = `${this.apiUrl}/searchInHomeScreen`;
-  console.log(API_URL)
-  return this.httpClient.post(API_URL,data,this.httpOptions)
-  //return this.httpClient.get(API_URL,this.httpOptions)
-    .pipe(
-      map(res => {
-        return res;
-      }),
-  
-    );
-}
-addDevice(data): Observable<any> {
-  let API_URL = `${this.apiUrl}/addUserDevice`;
-  console.log(API_URL)
-  return this.httpClient.post(API_URL,data,this.httpOptions)
-  //return this.httpClient.get(API_URL,this.httpOptions)
-    .pipe(
-      map(res => {
-        return res;
-      }),
-  
-    );
-}
-removeDevice(data): Observable<any> {
-  let API_URL = `${this.apiUrl}/removeDevice`;
-  console.log(API_URL)
-  return this.httpClient.post(API_URL,data,this.httpOptions)
-  //return this.httpClient.get(API_URL,this.httpOptions)
-    .pipe(
-      map(res => {
-        return res;
-      }),
-  
-    );
-}
-notifications(data): Observable<any> {
-  let API_URL = `${this.apiUrl}/getAllNotifications`;
-  console.log(API_URL)
-  return this.httpClient.post(API_URL,data,this.httpOptions)
-  //return this.httpClient.get(API_URL,this.httpOptions)
-    .pipe(
-      map(res => {
-        return res;
-      }),
-  
-    );
-}
-readNotifications(data): Observable<any> {
-  let API_URL = `${this.apiUrl}/markAsReadNotifications`;
-  console.log(API_URL)
-  return this.httpClient.post(API_URL,data,this.httpOptions)
-  //return this.httpClient.get(API_URL,this.httpOptions)
-    .pipe(
-      map(res => {
-        return res;
-      }),
-  
-    );
-}
-getdiscountlist(data): Observable<any> {
-  let API_URL = `${this.apiUrl}/professional/discounts`;
-  console.log(API_URL)
-  return this.httpClient.post(API_URL,data,this.httpOptions)
-  //return this.httpClient.get(API_URL,this.httpOptions)
-    .pipe(
-      map(res => {
-        return res;
-      }),
-  
-      catchError(this.error)
-    );
-}
-adddiscount(data): Observable<any> {
-  let API_URL = `${this.apiUrl}/professional/discounts/add`;
-  console.log(API_URL)
-  return this.httpClient.post(API_URL,data,this.httpOptions)
-  //return this.httpClient.get(API_URL,this.httpOptions)
-    .pipe(
-      map(res => {
-        return res;
-      }),
-  
-      catchError(this.error)
-    );
-}
-packagelist(data): Observable<any> {
-  let API_URL = `${environment.endPointAdmin}/get/package/list`;
-  console.log(API_URL)
-  return this.httpClient.post(API_URL,data,this.httpOptions)
-  //return this.httpClient.get(API_URL,this.httpOptions)
-    .pipe(
-      map(res => {
-        return res;
-      }),
-  
-      // catchError(this.error)
-    );
-}
-getAddedGiftCardToCustomers(data): Observable<any> {
-  let API_URL = `${this.apiUrl}/getAddedGiftCardToCustomers`;
-  console.log(API_URL)
-  return this.httpClient.post(API_URL,data,this.httpOptions)
-  //return this.httpClient.get(API_URL,this.httpOptions)
-    .pipe(
-      map(res => {
-        return res;
-      }),
-  
-      // catchError(this.error)
-    );
-}
-addGiftCard(data): Observable<any> {
-  let API_URL = `${this.apiUrl}/addGiftCardForCustomers`;
-  console.log(API_URL)
-  return this.httpClient.post(API_URL,data,this.httpOptions)
-  //return this.httpClient.get(API_URL,this.httpOptions)
-    .pipe(
-      map(res => {
-        return res;
-      }),
-  
-      // catchError(this.error)
-    );
-}
-getCustomerFromOrderItems(data): Observable<any> {
-  let API_URL = `${this.apiUrl}/getCustomerFromOrderItems`;
-  console.log(API_URL)
-  return this.httpClient.post(API_URL,data,this.httpOptions)
-  //return this.httpClient.get(API_URL,this.httpOptions)
-    .pipe(
-      map(res => {
-        return res;
-      }),
-  
-      // catchError(this.error)
-    );
-}
-addCustomerByProfessionalForGifts(data): Observable<any> {
-  let API_URL = `${this.apiUrl}/addCustomerByProfessionalForGifts`;
-  console.log(API_URL)
-  return this.httpClient.post(API_URL,data,this.httpOptions)
-  //return this.httpClient.get(API_URL,this.httpOptions)
-    .pipe(
-      map(res => {
-        return res;
-      }),
-  
-      // catchError(this.error)
-    );
-}
-buyPhotographerPackage(data): Observable<any> {
-  let API_URL = `${this.apiUrl}/buyPhotographerPackage`;
-  console.log(API_URL)
-  return this.httpClient.post(API_URL,data,this.httpOptions)
-  //return this.httpClient.get(API_URL,this.httpOptions)
-    .pipe(
-      map(res => {
-        return res;
-      }),
-  
-      // catchError(this.error)
-    );
-}
-getPhotographerPackageBookings(data): Observable<any> {
-  let API_URL = `${this.apiUrl}/getPhotographerPackageBookings`;
-  console.log(API_URL)
-  return this.httpClient.post(API_URL,data,this.httpOptions)
-  //return this.httpClient.get(API_URL,this.httpOptions)
-    .pipe(
-      map(res => {
-        return res;
-      }),
-  
-      // catchError(this.error)
-    );
-}
-getLogisticLocations(): Observable<any> {
-  let API_URL = `${this.apiUrl}/getLogisticLocations`;
-  console.log(API_URL)
-  return this.httpClient.get(API_URL)
-  //return this.httpClient.get(API_URL,this.httpOptions)
-    .pipe(
-      map(res => {
-        return res;
-      }),
-  
-      // catchError(this.error)
-    );
-}
-changeOrderItemStatus(data): Observable<any> {
-  let API_URL = `${this.apiUrl}/changeOrderItemStatus`;
-  console.log(API_URL)
-  return this.httpClient.post(API_URL,data,this.httpOptions)
-  //return this.httpClient.get(API_URL,this.httpOptions)
-    .pipe(
-      map(res => {
-        return res;
-      }),
-  
-      // catchError(this.error)
-    );
-}
-trackOrderStatus(data): Observable<any> {
-  let API_URL = `${this.apiUrl}/trackOrderStatus`;
-  console.log(API_URL)
-  return this.httpClient.post(API_URL,data,this.httpOptions)
-  //return this.httpClient.get(API_URL,this.httpOptions)
-    .pipe(
-      map(res => {
-        return res;
-      }),
-  
-      // catchError(this.error)
-    );
-}
-applyCoupan(data): Observable<any> {
-  let API_URL = `${this.apiUrl}/checkGiftCouponCodes`;
-  console.log(API_URL)
-  return this.httpClient.post(API_URL,data,this.httpOptions)
-  //return this.httpClient.get(API_URL,this.httpOptions)
-    .pipe(
-      map(res => {
-        return res;
-      }),
-  
-      // catchError(this.error)
-    );
-}
-getAdPlans(data): Observable<any>{
-  let API_URL = `${this.apiUrl}/getAdvertisementPackage`;
-  console.log(API_URL)
-  return this.httpClient.post(API_URL,data,this.httpOptions)
-  //return this.httpClient.get(API_URL,this.httpOptions)
-    .pipe(
-      map(res => {
-        return res;
-      }),
-  
-      // catchError(this.error)
-    );
-}
-addAdvertisement(data): Observable<any> {
-  let API_URL = `${this.apiUrl}/buyAdvertisementPackage`;
-  console.log(API_URL)
-  return this.httpClient.post(API_URL,data,this.httpOptions)
-  //return this.httpClient.get(API_URL,this.httpOptions)
-    .pipe(
-      map(res => {
-        return res;
-      }),
-  
-      // catchError(this.error)
-    );
-}
+  AddQuotation(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/professional/issueQuotation/add`;
+    console.log(API_URL)
+    return this.httpClient.post(API_URL, data, this.httpOptions)
+      //return this.httpClient.get(API_URL,this.httpOptions)
+      .pipe(
+        map(res => {
+          return res;
+        }),
+
+      );
+  }
+
+  cancelOrCreateQuatationOrder(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/cancelOrCreateQuatationOrder`;
+    console.log(API_URL)
+    return this.httpClient.post(API_URL, data, this.httpOptions)
+      //return this.httpClient.get(API_URL,this.httpOptions)
+      .pipe(
+        map(res => {
+          return res;
+        }),
+
+      );
+  }
+  getQuationOrders(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/getQuationOrders`;
+    console.log(API_URL)
+    return this.httpClient.post(API_URL, data, this.httpOptions)
+      //return this.httpClient.get(API_URL,this.httpOptions)
+      .pipe(
+        map(res => {
+          return res;
+        }),
+
+      );
+  }
+  stripeApi(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/paymentToken`;
+    console.log(API_URL)
+    return this.httpClient.post(API_URL, data, this.httpOptions)
+      //return this.httpClient.get(API_URL,this.httpOptions)
+      .pipe(
+        map(res => {
+          return res;
+        }),
+
+      );
+  }
+  payQuationOrders(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/payQuationOrders`;
+    console.log(API_URL)
+    return this.httpClient.post(API_URL, data, this.httpOptions)
+      //return this.httpClient.get(API_URL,this.httpOptions)
+      .pipe(
+        map(res => {
+          return res;
+        }),
+
+      );
+  }
+  sendMilestoneFeedback(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/feedbackOfMilestone`;
+    console.log(API_URL)
+    return this.httpClient.post(API_URL, data, this.httpOptions)
+      //return this.httpClient.get(API_URL,this.httpOptions)
+      .pipe(
+        map(res => {
+          return res;
+        }),
+
+      );
+  }
+  changeStatusQuationOrders(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/changeStatusQuationOrders`;
+    console.log(API_URL)
+    return this.httpClient.post(API_URL, data, this.httpOptions)
+      //return this.httpClient.get(API_URL,this.httpOptions)
+      .pipe(
+        map(res => {
+          return res;
+        }),
+
+      );
+  }
+  getEarnings(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/myEarningList`;
+    console.log(API_URL)
+    return this.httpClient.post(API_URL, data, this.httpOptions)
+      //return this.httpClient.get(API_URL,this.httpOptions)
+      .pipe(
+        map(res => {
+          return res;
+        }),
+
+      );
+  }
+  getAllprofessionals(): Observable<any> {
+    let API_URL = `${this.apiUrl}/getAll/professionals/withoutPagination`;
+    console.log(API_URL)
+    return this.httpClient.get(API_URL)
+      //return this.httpClient.get(API_URL,this.httpOptions)
+      .pipe(
+        map(res => {
+          return res;
+        }),
+
+      );
+  }
+  markAsDoneMilestone(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/markAsDoneMilestone`;
+    console.log(API_URL)
+    return this.httpClient.post(API_URL, data, this.httpOptions)
+      //return this.httpClient.get(API_URL,this.httpOptions)
+      .pipe(
+        map(res => {
+          return res;
+        }),
+
+      );
+  }
+  transactionWalletMoneyList(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/transactionWalletMoneyList`;
+    console.log(API_URL)
+    return this.httpClient.post(API_URL, data, this.httpOptions)
+      //return this.httpClient.get(API_URL,this.httpOptions)
+      .pipe(
+        map(res => {
+          return res;
+        }),
+
+      );
+  }
+  creditDebitWalletMoney(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/creditDebitWalletMoney`;
+    console.log(API_URL)
+    return this.httpClient.post(API_URL, data, this.httpOptions)
+      //return this.httpClient.get(API_URL,this.httpOptions)
+      .pipe(
+        map(res => {
+          return res;
+        }),
+
+      );
+  }
+
+  createRoomId(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/create/get/roomId`;
+    console.log(API_URL)
+    return this.httpClient.post(API_URL, data, this.httpOptions)
+      //return this.httpClient.get(API_URL,this.httpOptions)
+      .pipe(
+        map(res => {
+          return res;
+        }),
+
+      );
+  }
+  top10Photographers(): Observable<any> {
+    let API_URL = `${this.apiUrl}/get/top/photographer/list`;
+    console.log(API_URL)
+    return this.httpClient.get(API_URL)
+      //return this.httpClient.get(API_URL,this.httpOptions)
+      .pipe(
+        map(res => {
+          return res;
+        }),
+
+      );
+  }
+  PhotographersDetails(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/getUserDetailUsingId`;
+    console.log(API_URL)
+    return this.httpClient.post(API_URL, data, this.httpOptions)
+      //return this.httpClient.get(API_URL,this.httpOptions)
+      .pipe(
+        map(res => {
+          return res;
+        }),
+
+      );
+  }
+  getMemberships(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/getMemberShipPlans`;
+    console.log(API_URL)
+    return this.httpClient.post(API_URL, data, this.httpOptions)
+      //return this.httpClient.get(API_URL,this.httpOptions)
+      .pipe(
+        map(res => {
+          return res;
+        }),
+
+      );
+  }
+  buyMemberships(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/buyMemberShipPlan`;
+    console.log(API_URL)
+    return this.httpClient.post(API_URL, data, this.httpOptions)
+      //return this.httpClient.get(API_URL,this.httpOptions)
+      .pipe(
+        map(res => {
+          return res;
+        }),
+
+      );
+  }
+  getMembershipDetails(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/userMemberShipPlan`;
+    console.log(API_URL)
+    return this.httpClient.post(API_URL, data, this.httpOptions)
+      //return this.httpClient.get(API_URL,this.httpOptions)
+      .pipe(
+        map(res => {
+          return res;
+        }),
+
+      );
+  }
+  CancelMembership(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/changePlanStatusOfUser`;
+    console.log(API_URL)
+    return this.httpClient.post(API_URL, data, this.httpOptions)
+      //return this.httpClient.get(API_URL,this.httpOptions)
+      .pipe(
+        map(res => {
+          return res;
+        }),
+
+      );
+  }
+  search(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/searchInHomeScreen`;
+    console.log(API_URL)
+    return this.httpClient.post(API_URL, data, this.httpOptions)
+      //return this.httpClient.get(API_URL,this.httpOptions)
+      .pipe(
+        map(res => {
+          return res;
+        }),
+
+      );
+  }
+  addDevice(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/addUserDevice`;
+    console.log(API_URL)
+    return this.httpClient.post(API_URL, data, this.httpOptions)
+      //return this.httpClient.get(API_URL,this.httpOptions)
+      .pipe(
+        map(res => {
+          return res;
+        }),
+
+      );
+  }
+  removeDevice(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/removeDevice`;
+    console.log(API_URL)
+    return this.httpClient.post(API_URL, data, this.httpOptions)
+      //return this.httpClient.get(API_URL,this.httpOptions)
+      .pipe(
+        map(res => {
+          return res;
+        }),
+
+      );
+  }
+  notifications(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/getAllNotifications`;
+    console.log(API_URL)
+    return this.httpClient.post(API_URL, data, this.httpOptions)
+      //return this.httpClient.get(API_URL,this.httpOptions)
+      .pipe(
+        map(res => {
+          return res;
+        }),
+
+      );
+  }
+  readNotifications(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/markAsReadNotifications`;
+    console.log(API_URL)
+    return this.httpClient.post(API_URL, data, this.httpOptions)
+      //return this.httpClient.get(API_URL,this.httpOptions)
+      .pipe(
+        map(res => {
+          return res;
+        }),
+
+      );
+  }
+  getdiscountlist(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/professional/discounts`;
+    console.log(API_URL)
+    return this.httpClient.post(API_URL, data, this.httpOptions)
+      //return this.httpClient.get(API_URL,this.httpOptions)
+      .pipe(
+        map(res => {
+          return res;
+        }),
+
+        catchError(this.error)
+      );
+  }
+  adddiscount(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/professional/discounts/add`;
+    console.log(API_URL)
+    return this.httpClient.post(API_URL, data, this.httpOptions)
+      //return this.httpClient.get(API_URL,this.httpOptions)
+      .pipe(
+        map(res => {
+          return res;
+        }),
+
+        catchError(this.error)
+      );
+  }
+  packagelist(data): Observable<any> {
+    let API_URL = `${environment.endPointAdmin}/get/package/list`;
+    console.log(API_URL)
+    return this.httpClient.post(API_URL, data, this.httpOptions)
+      //return this.httpClient.get(API_URL,this.httpOptions)
+      .pipe(
+        map(res => {
+          return res;
+        }),
+
+        // catchError(this.error)
+      );
+  }
+  getAddedGiftCardToCustomers(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/getAddedGiftCardToCustomers`;
+    console.log(API_URL)
+    return this.httpClient.post(API_URL, data, this.httpOptions)
+      //return this.httpClient.get(API_URL,this.httpOptions)
+      .pipe(
+        map(res => {
+          return res;
+        }),
+
+        // catchError(this.error)
+      );
+  }
+  addGiftCard(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/addGiftCardForCustomers`;
+    console.log(API_URL)
+    return this.httpClient.post(API_URL, data, this.httpOptions)
+      //return this.httpClient.get(API_URL,this.httpOptions)
+      .pipe(
+        map(res => {
+          return res;
+        }),
+
+        // catchError(this.error)
+      );
+  }
+  getCustomerFromOrderItems(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/getCustomerFromOrderItems`;
+    console.log(API_URL)
+    return this.httpClient.post(API_URL, data, this.httpOptions)
+      //return this.httpClient.get(API_URL,this.httpOptions)
+      .pipe(
+        map(res => {
+          return res;
+        }),
+
+        // catchError(this.error)
+      );
+  }
+  addCustomerByProfessionalForGifts(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/addCustomerByProfessionalForGifts`;
+    console.log(API_URL)
+    return this.httpClient.post(API_URL, data, this.httpOptions)
+      //return this.httpClient.get(API_URL,this.httpOptions)
+      .pipe(
+        map(res => {
+          return res;
+        }),
+
+        // catchError(this.error)
+      );
+  }
+  buyPhotographerPackage(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/buyPhotographerPackage`;
+    console.log(API_URL)
+    return this.httpClient.post(API_URL, data, this.httpOptions)
+      //return this.httpClient.get(API_URL,this.httpOptions)
+      .pipe(
+        map(res => {
+          return res;
+        }),
+
+        // catchError(this.error)
+      );
+  }
+  getPhotographerPackageBookings(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/getPhotographerPackageBookings`;
+    console.log(API_URL)
+    return this.httpClient.post(API_URL, data, this.httpOptions)
+      //return this.httpClient.get(API_URL,this.httpOptions)
+      .pipe(
+        map(res => {
+          return res;
+        }),
+
+        // catchError(this.error)
+      );
+  }
+  getLogisticLocations(): Observable<any> {
+    let API_URL = `${this.apiUrl}/getLogisticLocations`;
+    console.log(API_URL)
+    return this.httpClient.get(API_URL)
+      //return this.httpClient.get(API_URL,this.httpOptions)
+      .pipe(
+        map(res => {
+          return res;
+        }),
+
+        // catchError(this.error)
+      );
+  }
+  changeOrderItemStatus(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/changeOrderItemStatus`;
+    console.log(API_URL)
+    return this.httpClient.post(API_URL, data, this.httpOptions)
+      //return this.httpClient.get(API_URL,this.httpOptions)
+      .pipe(
+        map(res => {
+          return res;
+        }),
+
+        // catchError(this.error)
+      );
+  }
+  trackOrderStatus(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/trackOrderStatus`;
+    console.log(API_URL)
+    return this.httpClient.post(API_URL, data, this.httpOptions)
+      //return this.httpClient.get(API_URL,this.httpOptions)
+      .pipe(
+        map(res => {
+          return res;
+        }),
+
+        // catchError(this.error)
+      );
+  }
+  applyCoupan(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/checkGiftCouponCodes`;
+    console.log(API_URL)
+    return this.httpClient.post(API_URL, data, this.httpOptions)
+      //return this.httpClient.get(API_URL,this.httpOptions)
+      .pipe(
+        map(res => {
+          return res;
+        }),
+
+        // catchError(this.error)
+      );
+  }
+  getAdPlans(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/getAdvertisementPackage`;
+    console.log(API_URL)
+    return this.httpClient.post(API_URL, data, this.httpOptions)
+      //return this.httpClient.get(API_URL,this.httpOptions)
+      .pipe(
+        map(res => {
+          return res;
+        }),
+
+        // catchError(this.error)
+      );
+  }
+  addAdvertisement(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/buyAdvertisementPackage`;
+    console.log(API_URL)
+    return this.httpClient.post(API_URL, data, this.httpOptions)
+      //return this.httpClient.get(API_URL,this.httpOptions)
+      .pipe(
+        map(res => {
+          return res;
+        }),
+
+        // catchError(this.error)
+      );
+  }
+
+  getFaqContents(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/getFaq`;
+    return this.httpClient.post(API_URL, data)
+      .pipe(
+        map(res => {
+          return res
+        })
+      )
+  }
+
 
 }

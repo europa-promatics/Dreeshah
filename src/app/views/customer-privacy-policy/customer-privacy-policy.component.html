@@ -1,0 +1,26 @@
+<!-- ACTUAL CODE STARTS FROM HERE -->
+
+<app-seller-header></app-seller-header>
+<div class="seller-appointments-wrapper account-setting-wrapper">
+    <div class="custom-container d-flex">
+        <app-sidebar></app-sidebar>
+        <div class="main-wrap">
+            <div class="card">
+                <div class="card-body">
+                    <h1>Privacy Policy</h1>
+                    <div class="row justify-content-center">
+                        <div class="col-md-10">
+                            <div class="faq_main_wrap mt-4">
+                                <div class="terms-content-wrp">
+                                    <!-- <h1 class="text-uppercase text-bold">{{detail?.title}}</h1> -->
+                                    <p [innerHtml]="detail?.description"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

@@ -60,15 +60,15 @@ export class EditMyProfileComponent implements OnInit {
 		this.image_path = "https://developers.promaticstechnologies.com/dreeshah_apis/public/userProfile/"
 
 		this.getProfile()
+
 	}
-	isNumberKey(evt)
-	{
-	   var charCode = (evt.which) ? evt.which : evt.keyCode;
-	   if (charCode != 46 && charCode > 31 
-		 && (charCode < 48 || charCode > 57))
-		  return false;
-	
-	   return true;
+	isNumberKey(evt) {
+		var charCode = (evt.which) ? evt.which : evt.keyCode;
+		if (charCode != 46 && charCode > 31
+			&& (charCode < 48 || charCode > 57))
+			return false;
+
+		return true;
 	}
 	getProfile() {
 		var obj = {
@@ -81,7 +81,7 @@ export class EditMyProfileComponent implements OnInit {
 				this.ProfileFormGroup.controls['first_name'].setValue(data.data.first_name);
 				this.ProfileFormGroup.controls['last_name'].setValue(data.data.last_name);
 				this.ProfileFormGroup.controls['email'].setValue(data.data.email);
-				this.ProfileFormGroup.controls['phone_number'].setValue("+"+data.data.country_code+ data.data.phone_number);
+				this.ProfileFormGroup.controls['phone_number'].setValue(data.data.phone_number);
 				if (data.data.profile_image) {
 					this.user_image = data.data.profile_image
 				}
@@ -103,7 +103,7 @@ export class EditMyProfileComponent implements OnInit {
 		}
 		const file = evt.target.files[0];
 		if (file.type !== 'image/jpeg' && file.type !== 'image/png' && file.type !== 'image/jpg') {
-			 this.toastr.warning('Please upload image file')
+			this.toastr.warning('Please upload image file')
 			return;
 		}
 		console.log(evt.target.files[0])
@@ -121,24 +121,29 @@ export class EditMyProfileComponent implements OnInit {
 		if (this.ProfileFormGroup.valid) {
 			var formdata: FormData = new FormData();
 			formdata.append('id', this.userData._id)
-			if(this.image){
+			if (this.image) {
 				formdata.append('profile_image', this.image)
 			}
 			formdata.append('first_name', this.ProfileFormGroup.value.first_name),
-			formdata.append('last_name', this.ProfileFormGroup.value.last_name),
-			formdata.append('phone_number', this.ProfileFormGroup.value.phone_number),
-			this.CustomerService.updateProfile(formdata).subscribe(data => {
-				console.log(data);
-				this.user_image = data.profile_image
-				this.CommonService.sendProfileImg(data.profile_image)
-				this.toastr.success("Profile updated successfully")
-				this.router.navigate(["/myprofile"])
-			})
+				formdata.append('last_name', this.ProfileFormGroup.value.last_name),
+				formdata.append('phone_number', this.ProfileFormGroup.value.phone_number),
+				this.CustomerService.updateProfile(formdata).subscribe(data => {
+					console.log(data);
+					this.user_image = data.profile_image
+					this.CommonService.sendProfileImg(data.profile_image)
+					this.toastr.success("Profile updated successfully")
+					this.router.navigate(["/myprofile"])
+				})
 		}
 	}
-	countryCode(evt){
-		console.log("Country Code is >>>>",evt)
-		this.countryDial='+'+ evt.dialCode
-		console.log("Country Code is >>>>",this.countryDial)
-	  }
+	countryCode(evt) {
+		debugger
+		console.log("Country Code is >>>>", evt)
+		this.countryDial = evt.dialCode
+		console.log("Country Code is >>>>", this.countryDial)
+	}
 }
+function evt(evt: any) {
+	throw new Error('Function not implemented.');
+}
+
