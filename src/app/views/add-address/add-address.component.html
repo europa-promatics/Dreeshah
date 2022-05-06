@@ -1,0 +1,183 @@
+<app-seller-header></app-seller-header>
+<!-- <section class="common_image_section page_headrer_wrkshop">
+<div class="container">
+<div class="page_head_wrap">
+<h2 class="aboutus_head">My Cart</h2>
+<p class="page_head">
+rfd
+</p>
+</div>
+</div>
+</section> -->
+<section class="my-cart-wrapper">
+    <div class="custom-container d-flex">
+        <app-sidebar></app-sidebar>
+        <div class="main-wrap mb-5">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-3"></div>
+                        <div class="col-sm-6">
+                            <h1>Add Address</h1>
+                        </div>
+                    </div>
+                    <form [formGroup]="addressForm" (ngSubmit)="addAddress()">
+                        <div class="row">
+                            <div class="col-sm-3"></div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="">Country/Region</label><br>
+                                    <select class="form-control mb-2" (change)="selectCountry($event)">
+                                        <option selected disabled value="">Select Country</option>
+                                        <option *ngFor="let country of countries" data-value="{{country?.isoCode}}">
+                                            {{country?.name}}</option>
+                                    </select>
+                                </div>
+                                <div
+                                    *ngIf="!addressForm.controls.country.valid && addressForm.controls.country.touched">
+                                    <p style="color: red" *ngIf="addressForm.controls.country.hasError('required')">
+                                        Please select country
+                                    </p>
+                                </div>
+                                <div class="from-group">
+                                    <label for="Fname">First name</label><br>
+                                    <input type="text" formControlName="first_name" class="form-control mb-2"
+                                        id="Fname">
+                                </div>
+                                <div
+                                    *ngIf="!addressForm.controls.first_name.valid && addressForm.controls.first_name.touched">
+                                    <p style="color: red" *ngIf="addressForm.controls.first_name.hasError('required')">
+                                        Please enter first name
+                                    </p>
+                                </div>
+                                <div class="from-group">
+                                    <label for="Fname">Last name</label><br>
+                                    <input type="text" class="form-control mb-2" formControlName="last_name" id="Lname">
+                                </div>
+                                <div
+                                    *ngIf="!addressForm.controls.last_name.valid && addressForm.controls.last_name.touched">
+                                    <p style="color: red" *ngIf="addressForm.controls.last_name.hasError('required')">
+                                        Please enter last name
+                                    </p>
+                                </div>
+                                <div class="from-group">
+                                    <label for="Phone">Mobile Number</label><br>
+                                    <input type="text" formControlName="phone_number" class="form-control mb-2"
+                                        id="phone">
+                                </div>
+                                <div
+                                    *ngIf="!addressForm.controls.phone_number.valid && addressForm.controls.phone_number.touched">
+                                    <p style="color: red"
+                                        *ngIf="addressForm.controls.phone_number.hasError('required')">
+                                        Please enter phone number
+                                    </p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="pno">Pincode</label><br>
+                                    <input type="text" id="pno" formControlName="zip_code" class="form-control mb-2">
+                                </div>
+                                <div
+                                    *ngIf="!addressForm.controls.zip_code.valid && addressForm.controls.zip_code.touched">
+                                    <p style="color: red" *ngIf="addressForm.controls.zip_code.hasError('required')">
+                                        Please enter zip code
+                                    </p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Flat, House no., Building, Company, Apartment</label><br>
+                                    <input type="text" id="pno" formControlName="address_line1"
+                                        class="form-control mb-2">
+                                </div>
+                                <div
+                                    *ngIf="!addressForm.controls.address_line1.valid && addressForm.controls.address_line1.touched">
+                                    <p style="color: red"
+                                        *ngIf="addressForm.controls.address_line1.hasError('required')">
+                                        Please enter address line 1
+                                    </p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Area, Street, Sector, Village</label><br>
+                                    <input type="text" class="form-control mb-2" formControlName="address_line2">
+                                </div>
+                                <div
+                                    *ngIf="!addressForm.controls.address_line2.valid && addressForm.controls.address_line2.touched">
+                                    <p style="color: red"
+                                        *ngIf="addressForm.controls.address_line2.hasError('required')">
+                                        Please enter address line 2
+                                    </p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Landmark</label><br>
+                                    <input type="text" class="form-control mb-2" formControlName="landmark">
+                                </div>
+                                <div
+                                    *ngIf="!addressForm.controls.landmark.valid && addressForm.controls.landmark.touched">
+                                    <p style="color: red" *ngIf="addressForm.controls.landmark.hasError('required')">
+                                        Please enter landmark
+                                    </p>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="">Town/City</label>
+                                            <input type="text" formControlName="city" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div *ngIf="!addressForm.controls.city.valid && addressForm.controls.city.touched">
+                                        <p style="color: red" *ngIf="addressForm.controls.city.hasError('required')">
+                                            Please enter city
+                                        </p>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="">State</label><br>
+                                            <select name="" id="" class="form-control" (change)="selectState($event)"
+                                                formControlName="state">
+                                                <option value="" disabled>choose a state</option>
+                                                <option *ngFor="let state of states" value="{{state?.name}}">
+                                                    {{state?.name}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div
+                                        *ngIf="!addressForm.controls.state.valid && addressForm.controls.state.touched">
+                                        <p style="color: red" *ngIf="addressForm.controls.state.hasError('required')">
+                                            Please enter state
+                                        </p>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <h3>Add delivery instructions</h3>
+                                            <p>Preferences are used to plan your delivery. However,
+                                                shipments can sometimes arrive early or later than planned.</p>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="">Address Type</label>
+                                            <select class="form-control" formControlName="address_type">
+                                                <option value="office"> Office/Commercial (10 AM - 6 PM delivery)
+                                                </option>
+                                                <option value="home"> Home (10 AM - 6 PM delivery) </option>
+                                            </select>
+                                        </div>
+                                        <div
+                                            *ngIf="!addressForm.controls.address_type.valid && addressForm.controls.address_type.touched">
+                                            <p style="color: red"
+                                                *ngIf="addressForm.controls.address_type.hasError('required')">
+                                                Please enter address type
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <button type="submit" class="btn btn-primary">Add Address</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3"></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<app-footer></app-footer>

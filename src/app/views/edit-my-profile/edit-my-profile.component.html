@@ -10,13 +10,13 @@
 						<div class="myprofile-container">
 							<div class="col-md-8 offset-md-2">
 								<div class="personal-info-header  toggle-flex profile-section-heading mt-3 d-flex">
-									<div>
-										<h1>Edit Information</h1>
+									<div class="w-100" >
+										<h1 class="text-center">Edit Information</h1>
 									</div>
 									<!-- <mat-slide-toggle>Slide me!</mat-slide-toggle> -->
 								</div>
 								<div class="profile-info-section">
-									<div class="profile-picture">
+									<div class="profile-picture SpProfile ">
 										<img *ngIf="!user_image && !profile_img" src="assets/imgs/no-profile.webp" alt="image" class="img-fluid">
 										<img *ngIf="user_image && !profile_img" src="{{image_path}}{{user_image}}" alt="image" class="img-fluid">
 										<img *ngIf="profile_img" [src]="profile_img" alt="image" class="img-fluid">

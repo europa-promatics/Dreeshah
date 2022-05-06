@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { CartService } from '../../shared/cart.service';
 import { CustomerService } from '../../shared/customer.service';
-
+import {environment} from '../../../environments/environment.prod';
 declare var $;
 
 @Component({
@@ -11,7 +11,8 @@ declare var $;
   styleUrls: ['./seller-header.component.scss']
 })
 export class SellerHeaderComponent implements OnInit {
-
+  imgUrl
+  profileUrl
   isLogin
   userId
   obj1
@@ -27,7 +28,9 @@ export class SellerHeaderComponent implements OnInit {
 
 ngOnInit(): void {
   this.userData = localStorage['userData'] != null ? JSON.parse(localStorage['userData']) : null
-
+  this.imgUrl=environment.professionalImg
+  this.profileUrl=environment.profileUrl
+  console.log('----->>>>>>>>>>>>>---------',this.userData);
   this.isLogin=localStorage.getItem("isLoggedIn")
     //this.getCatAndSubCat()
     var self= this

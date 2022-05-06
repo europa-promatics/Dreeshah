@@ -111,7 +111,7 @@ export class ForgotPasswordComponent implements OnInit {
         // this.location.back()
         $('#forgotPasswordModal').modal('hide');
         this.toastr.success('Verification done successfully', 'Success')
-        this.router.navigate(['/change-password']);
+        this.router.navigate(['/reset-password'],{queryParams:{email:this.email}});
       }else{
 
         this.toastr.error('Wrong otp', 'Error')

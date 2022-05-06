@@ -1537,6 +1537,7 @@ h3.custom-heading span {
     background-color: #aedef2;
     height: 100%;
     width: 100%;
+    border-top-right-radius: 23px;
 }
 
 .login-bg img {
@@ -11568,7 +11569,7 @@ span.btn.btn-round-blue.custm--edit {
     color: #fff;
 }
 .headerr {
-    position: fixed;
+    // position: fixed;
     z-index: 999;
     width: 100%;
 }
@@ -11577,18 +11578,18 @@ span.btn.btn-round-blue.custm--edit {
     padding: 8px 0;
 }
 .navv_barr {
-    background-color: rgba(0,0,0,0.5);
+    
     color: #fff;
 }
 .nav-item.active a {
-    color: #fff !important;
+    color: #000 !important;
 }
 .navbar-nav li.nav-item .nav-link:hover {
     border-bottom: unset;
 }
 .nav-item a {
     font-size: 14px;
-    color: #fff !important;
+    color: #000 !important;
     text-transform: capitalize;
     font-weight: 400;
 }
@@ -11606,10 +11607,10 @@ span.btn.btn-round-blue.custm--edit {
     color: #000;
 }
 .cstm_active .btn-secondary {
-    color: #000;
+    // color: #000;
 }
 .cstm_active .btn-secondary:hover{
-    color: #000;
+    // color: #000;
 }
 
 
@@ -14046,4 +14047,31 @@ span.cntr_nmbr {
     .faq-mat-accordion{
         margin-bottom: 20px;
     }
+}
+
+
+.top-header .list-inline-item > span {
+	color: #000;
+}
+.top-header .btn-secondary {
+	background: transparent;
+	font-size: 14px;
+	border: unset;
+	padding: 1px 0px 0 20px;
+	color: #000;
+}
+.Sp-btn{
+    background: transparent;
+    border: none;
+   box-shadow: none;
+   color: #111;
+}
+.top-header .social-icon > ul li a {
+	color: #ffffff;
+	display: inline-block;
+	padding: 6px 8px;
+	text-align: center;
+	transition: all 0.4s ease 0s;
+	line-height: 1.4;
+    border-radius: 0;
 }

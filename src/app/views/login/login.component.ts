@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
     this.customerForm = this._formBuilder.group({
       'email': [null, Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$'), Validators.minLength(1)])],
       'password': [null, Validators.compose([Validators.required])],
-      'user_type': [null, Validators.compose([Validators.required])],
+      // 'user_type': [null, Validators.compose([Validators.required])],
     })
   }
   hide = true;
@@ -35,6 +35,8 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+    this.customerForm.markAllAsTouched();
+    console.log(this.customerForm);
     var obj = {}
     var obj1 = {}
     if (localStorage.getItem("cart_id")) {
@@ -44,7 +46,7 @@ export class LoginComponent implements OnInit {
       console.log("inside condition", cart_id)
       obj = {
 
-        user_type: this.user_type,
+        // user_type: this.user_type,
         email: this.email,
         password: this.password,
         cart_id: cart_id
@@ -52,7 +54,7 @@ export class LoginComponent implements OnInit {
     } else {
       console.log("inside else condition")
       obj = {
-        user_type: this.user_type,
+        // user_type: this.user_type,
         email: this.email,
         password: this.password
       }
@@ -95,11 +97,11 @@ export class LoginComponent implements OnInit {
           //   this.toastr.error("Somthing bed happen")
           // }
 
-          this.router.navigate(['/dashboard']);
+          this.router.navigate(['/myprofile']);
         } else if (data.user.user_type == 'professional') {
-          this.router.navigate(['/seller-dashboard']);
+          this.router.navigate(['/seller-profile']);
         } else {
-          this.router.navigate(['/photographerDashboard']);
+          this.router.navigate(['/photographerProfile']);
         }
       } else {
         this.toastr.error('Invalid Credentials, please try again', 'Error')

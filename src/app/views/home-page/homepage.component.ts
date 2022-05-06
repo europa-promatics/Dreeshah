@@ -14,7 +14,7 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
   styleUrls: ['./homepage.component.scss']
 })
 export class HomepageComponent implements OnInit {
-
+  userData:any;
 	heroOpt: OwlOptions = {
 	    loop: true,
 	    mouseDrag: false,

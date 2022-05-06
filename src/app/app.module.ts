@@ -199,6 +199,8 @@ import { CustomerNotificationsComponent } from './views/customer-notifications/c
 import { CustomerFAQComponent } from './views/customer-faq/customer-faq.component';
 import { CustomerTermAndConditionComponent } from './views/customer-term-and-condition/customer-term-and-condition.component';
 import { CustomerPrivacyPolicyComponent } from './views/customer-privacy-policy/customer-privacy-policy.component';
+import { AddAddressComponent } from './views/add-address/add-address.component';
+import { ResetPasswordComponent } from './views/reset-password/reset-password.component';
 
 firebase.initializeApp(environment.firebaseConfig);
 
@@ -331,7 +333,9 @@ firebase.initializeApp(environment.firebaseConfig);
     CustomerNotificationsComponent,
     CustomerFAQComponent,
     CustomerTermAndConditionComponent,
-    CustomerPrivacyPolicyComponent
+    CustomerPrivacyPolicyComponent,
+    AddAddressComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,

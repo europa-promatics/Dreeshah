@@ -71,7 +71,7 @@
                             
                             <div class="user_drop">
                                 <button mat-button [matMenuTriggerFor]="menu" >
-                                    <img src="https://demo.wponlinesupport.com/themes/wp-iclean-responsive/wp-content/uploads/sites/8/2017/04/team-6.jpg"/> 
+                                    <img src="{{imgUrl}}{{userData?.profile_image}}"/> 
                                 </button>
                                 <mat-menu #menu="matMenu" xPosition="before">
                                     <ul class="comnon_drop">
@@ -90,7 +90,7 @@
                             
                             <div class="user_drop">
                                 <button mat-button [matMenuTriggerFor]="menu" >
-                                    <img src="https://demo.wponlinesupport.com/themes/wp-iclean-responsive/wp-content/uploads/sites/8/2017/04/team-6.jpg"/> 
+                                    <img src="{{profileUrl}}{{userData?.profile_image}}"/> 
                                 </button>
                                 <mat-menu #menu="matMenu" xPosition="before">
                                     <ul class="comnon_drop">

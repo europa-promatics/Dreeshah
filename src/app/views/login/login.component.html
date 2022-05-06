@@ -1,5 +1,5 @@
 <app-header></app-header>
-<section class="common_image_section page_headrer_wrkshop">
+<!-- <section class="common_image_section page_headrer_wrkshop">
     <div class="container">
         <div class="page_head_wrap">
             <h2 class="aboutus_head">Login</h2>
@@ -8,90 +8,85 @@
             </p>
         </div>
     </div>
+</section> -->
+<section class="Custom-login">
+    <div class="main-div mt-5 mb-5">
+        <div class="col-sm-6 login-Custcontent">
+            <p>Manage all your account activity, work efficiently</p>
+            <div class="image-cust">
+                <img src="assets/imgs/LoginImg.png" style="margin-top: 6rem;" alt="image" class="img-fluid d-block ml-auto mr-auto  mb-3">
+            </div>
+        </div>
+        <div class="col-sm-6 CustPad">
+            <div class="log-head">
+                <h1>Log in</h1>
+                <p>Let's get you all set up so you can verify your personal account
+                    and begin setting up your profile.</p><br/>
+                    <form [formGroup]="customerForm">
+                    <div class="form-group">
+                        <mat-form-field appearance="">
+                        <mat-label>Email</mat-label>
+                        <input matInput placeholder="johndoe@gmail.com" required class="form-control" [formControl]="customerForm.controls['email']" [(ngModel)]="email">
+                    </mat-form-field>
+                        <p style="color: red;
+																margin-top: -1.25em;"  *ngIf="!customerForm.controls['email'].valid  && ( customerForm.controls['email'].touched)" >Please provide valid Email address</p>
+                    </div>
+                    <div class="form-group">
+                        <mat-form-field>
+                        <mat-label>Password</mat-label>
+                        <input matInput [type]="hide ? 'password' : 'text'" [formControl]="customerForm.controls['password']" [(ngModel)]="password" required>
+                        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                    </mat-form-field>
+                    <p style="color: red;
+                    margin-top: -1.25em;"  *ngIf="!customerForm.controls['password'].valid  && ( customerForm.controls['password'].touched)" >Please provide valid password </p>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-login  form-control" (click)="login()" [disabled]="!customerForm.valid">Login</button>
+                        <p class=" " align="right"> <a routerLink="/forgot-password" class="theme-link">Forgot Password?</a></p> 
+                    </div>
+                    <div class="form-group text-right">
+                       
+										<p class="text-gray pt-0" align="right">Don't have an account? <a routerLink="/signup" class="theme-link">Sign up</a></p>
+                    </div>
+                    <div class="form-group">
+                        <div class="social-btns" align="center">
+                            <h3 class="text-gray">Or login With</h3>
+                        <button type="submit" class="btn btn-fb mr-3 "><img src="assets/imgs/fbicon.svg"></button>
+                    <button type="submit" class="btn btn-google "><img src="assets/imgs/googleicon.svg"></button>
+                    </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </section>
-<section class="log-in">
+<!-- <section class="log-in">
 	<div class="container">
 		<div class="login-container">
 			<div class="card mt-5 mb-5">
 				<div class="card-body login-card">
 					<div class="row">
-						<div class="col-md-4 login-column">
+						<div class="col-md-6 login-column">
 							<div class="login-bg">
-								<img src="assets/imgs/login.png" alt="image" class="img-fluid ml-2">
+								<img src="assets/imgs/LoginImg.png" alt="image" class="img-fluid ml-2">
 								<div class="login-content">
 									<p>Manage all your account activity, work efficiently</p>
 								</div>
 							</div>
 						</div>
-						<div class="col-md-8 mt-5 login-col">
+						<div class="col-md-6 mt-5 login-col">
 							<div class="login-heading">
 								<h1 class="ml-3">Login</h1>
 								<p class="ml-3">Let's get you all set up so you can verify your personal account<br/> and begin setting up your profile.</p>
 							</div>
-							<form [formGroup]="customerForm">
-								<div class="row login-form">
-									<div class="col-md-12">
-										<div class="form-group col-sm login-form">
-											  <mat-form-field>
-                                                                <mat-label>Login as:</mat-label>
-                                                                <mat-select [formControl]="customerForm.controls['user_type']" [(ngModel)]="user_type" required>
-                                                                    <mat-option value="" disabled>Select login type</mat-option>
-                                                                    <mat-option value="customer">Customer</mat-option>
-                                                                    <mat-option value="professional">Professional</mat-option>
-                                                                    <mat-option value="photographer">Photographer</mat-option>
-                                                                </mat-select>
-                                                            </mat-form-field>
-                                                            <p style="color: red;
-															margin-top: -1.25em;"  *ngIf="!customerForm.controls['user_type'].valid  && ( customerForm.controls['user_type'].touched)" >Please select login type</p>
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group col-sm">
-											<mat-form-field appearance="">
-                                                                <mat-label>Email</mat-label>
-                                                                <input matInput placeholder="johndoe@gmail.com" required [formControl]="customerForm.controls['email']" [(ngModel)]="email"> </mat-form-field>
-                                                                <p style="color: red;
-																margin-top: -1.25em;"  *ngIf="!customerForm.controls['email'].valid  && ( customerForm.controls['email'].touched)" >Please provide valid Email address</p>
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group col-sm">
-											<mat-form-field>
-                                                                <mat-label>Password</mat-label>
-                                                                <input matInput [type]="hide ? 'password' : 'text'" [formControl]="customerForm.controls['password']" [(ngModel)]="password" required>
-                                                                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-                                                                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                                                                </button>
-                                                            </mat-form-field>
-                                                            <p style="color: red;
-															margin-top: -1.25em;"  *ngIf="!customerForm.controls['password'].valid  && ( customerForm.controls['password'].touched)" >Please provide valid password </p>
-										</div>
-									</div>
-									<div class="col-md-6">
-											<button type="submit" class="btn btn-login ml-3 mt-2" (click)="login()" [disabled]="!customerForm.valid">Login</button>
-									</div>
-									<div class="col-md-6 mt-2">
-										<p class=" ml-3" align="right"> <a routerLink="/forgot-password" class="theme-link">Forgot Password?</a></p> 
-										<p class="text-gray ml-3 pt-0" align="right">Don't have an account? <a routerLink="/signup" class="theme-link">Sign up</a></p>
-									</div>
-									<div class="col-md-4"></div>
-									<div class="col-md-4">
-										
-										<div class="social-btns mb-5" align="center">
-												<h3 class="text-gray">Or login With</h3>
-											<button type="submit" class="btn btn-fb mr-3 "><img src="assets/imgs/fbicon.svg"></button>
-										<button type="submit" class="btn btn-google "><img src="assets/imgs/googleicon.svg"></button>
-										</div>
-										
-									</div>
-								</div>		
-							</form>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>			
 	</div>
-</section>
+</section> -->
 
 <app-footer></app-footer>

@@ -9,6 +9,9 @@ import { DbHeaderRoutingModule } from './db-header-routing.module';
   imports: [
     CommonModule,
     DbHeaderRoutingModule
+  ],
+  exports:[
+    DbHeaderModule
   ]
 })
 export class DbHeaderModule { }

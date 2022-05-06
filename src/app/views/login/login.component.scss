@@ -1,0 +1,39 @@
+.Custom-login{
+    background: #d9f0ff;
+}
+.main-div {
+	display:flex;
+	background-color: #fff;
+	width: 800px;
+	margin: auto;
+    box-shadow: 0px 0px 16px -2px rgba(53, 53, 53, 0.75);
+}
+.main-div  .login-Custcontent{
+    background: #aedef2;
+    border-top-right-radius: 200px;
+    padding-left: 20px;
+    padding-top: 40px;
+}
+.login-Custcontent .img-cust img{
+    width: 200px;
+}
+.main-div  .login-Custcontent p {
+	color: #102b4c;
+	font-weight: initial;
+    font-size: 20px;
+    line-height: 2.2rem;
+    padding-right: 10px !important;
+    position: unset;
+    max-width: 311px;
+}
+.CustPad{
+    padding: 40px;
+}
+.log-head h1{
+    color: #6a9792;
+    text-align: left;
+}
+.log-head p{
+    color: #525252;
+    text-align: left;
+}

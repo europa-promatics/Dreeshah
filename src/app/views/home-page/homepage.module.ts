@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { HomepageRoutingModule } from './homepage-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { DbHeaderModule } from 'src/app/common/db-header/db-header.module';
 
 @NgModule({
   declarations: [],
@@ -11,7 +12,8 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     CommonModule,
     HomepageRoutingModule,
     BrowserAnimationsModule,
-    CarouselModule
+    CarouselModule,
+    DbHeaderModule
   ]
 })
 export class HomepageModule { }

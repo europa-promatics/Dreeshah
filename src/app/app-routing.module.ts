@@ -128,6 +128,8 @@ import { CustomerNotificationsComponent } from './views/customer-notifications/c
 import { CustomerTermAndConditionComponent } from './views/customer-term-and-condition/customer-term-and-condition.component';
 import { CustomerPrivacyPolicyComponent } from './views/customer-privacy-policy/customer-privacy-policy.component';
 
+import { AddAddressComponent } from './views/add-address/add-address.component';
+import { ResetPasswordComponent } from './views/reset-password/reset-password.component';
 
 
 
@@ -135,6 +137,14 @@ const routes: Routes = [
 	{
 		path: '',
 		component: HomepageComponent
+	},
+  {
+		path: 'add-address',
+		component: AddAddressComponent
+	},
+  {
+		path: 'reset-password',
+		component: ResetPasswordComponent
 	},
 	{
 		path: 'my-membership-list',
