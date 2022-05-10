@@ -106,42 +106,52 @@ export class AddressComponent implements OnInit {
   deleteService(value) {
     console.log("Enter in the")
     console.log("Id to be deleted of address===>>>>",value)
+    if(value.is_default=='yes'){
       Swal.fire({
-      title: 'Are you sure?',
-      text: 'You will not be able to recover this Address!',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Yes, delete it!',
-      cancelButtonText: 'No, keep it'
-    }) .then((result) => {
-      if (result.value) {
-        Swal.fire(
-          'Deleted!',
-          'Your Address has been deleted.',
-          'success'
-        ).then(delete_service => {
-          var obj={
-            address_id:value
-          }
-            this.CustomerService.deleteAddress(obj).subscribe(data => {
-              console.log(data);
-              this.ngOnInit();
-              //this.toastr.success("Service deleted sucessfully")
-    }) 
-    $(document).ready(function(){
-      $("#add-address-btn").click(function(){
-        $(".add-address-form").toggle();
+        title:'This address is set as default',
+        text:'Please select another address as default',
+        icon:'warning',
+      })
+    }else{
+      // console.log(this)
+      Swal.fire({
+        title: 'Are you sure?',
+        text: 'You will not be able to recover this Address!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'No, keep it'
+      }) .then((result) => {
+        if (result.value) {
+          Swal.fire(
+            'Deleted!',
+            'Your Address has been deleted.',
+            'success'
+          ).then(delete_service => {
+            var obj={
+              address_id:value._id
+            }
+              this.CustomerService.deleteAddress(obj).subscribe(data => {
+                console.log(data);
+                this.ngOnInit();
+                //this.toastr.success("Service deleted sucessfully")
+      }) 
+      $(document).ready(function(){
+        $("#add-address-btn").click(function(){
+          $(".add-address-form").toggle();
+        });
       });
-    });
-        })
-      }  else if (result.dismiss === Swal.DismissReason.cancel) {
-        Swal.fire(
-          'Cancelled',
-          'Your Address is safe :)',
-          'error'
-        )
-      } 
-    })  
+          })
+        }  else if (result.dismiss === Swal.DismissReason.cancel) {
+          Swal.fire(
+            'Cancelled',
+            'Your Address is safe :)',
+            'error'
+          )
+        } 
+      }) 
+    }
+     
 
     $(document).ready(function(){
       $("#add-address-btn").click(function(){

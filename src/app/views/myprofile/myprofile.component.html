@@ -21,9 +21,9 @@
 			<div class="profile-card-wrapper">
 				<div class="row">
 					<div class="col-md-3 col-sm-3 col-xs-3">
-						<div class="card prof-card mt-3 mb-3">
+						<div class="card prof-card CustBack mt-3 mb-3">
 							<div class="card-body">
-								<p class="text-center">Profile</p>
+								<!-- <p class="text-center">Profile</p> -->
 								<div class="text-center profile-picture">
 									<img *ngIf="!user_image" src="assets/imgs/no-profile.webp" alt="image"
 										class="img-fluid">
@@ -38,8 +38,7 @@
 													accept="image/jpeg,image/jpg,image/png,image/gif"
 													(change)="onFileChange($event)"></span>
 										</label>
-										<h3 class="text-center text-bold mt-1" *ngIf="userDetails">
-											{{userDetails.first_name}} {{userDetails.last_name}}</h3>
+										<h3 class="text-center text-bold mt-1" ></h3>
 									</div>
 								</div>
 							</div>

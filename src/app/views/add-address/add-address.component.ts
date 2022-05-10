@@ -31,7 +31,7 @@ export class AddAddressComponent implements OnInit {
       address_line2: ['', [Validators.required]],
       landmark: ['', [Validators.required]],
       city: ['', [Validators.required]],
-      state: ['', [Validators.required]],
+      state: ['', [Validators.required]], 
     })
   }
 
