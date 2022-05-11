@@ -49,6 +49,7 @@ export class MyWishlistComponent implements OnInit {
 	wishListLength = 0
 	image_base_url = "https://developers.promaticstechnologies.com/dreeshah_apis/public/userProfile/"
 	wishlistDetailallp: any;
+  productImagePath = "https://developers.promaticstechnologies.com/dreeshah_apis/public/SellerProductImages/";
 
 
 	constructor(public CustomerService: CustomerService,

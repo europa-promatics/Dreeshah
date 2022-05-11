@@ -68,7 +68,7 @@
                                         >
                                         <!-- all first -->
                                         <div class="new-div" style="display: flex; padding-left: 5px; margin-top: 20px;">
-
+                                            
                                             <div class="btnsNms">
                                                 <div class="custom-control custom-checkbox" style="margin-top: 5px;">
                                                     <input type="checkbox" class="custom-control-input" id="customCheck1">
@@ -98,10 +98,23 @@
                                             </div>
     
                                         </div>
-                                            <div class="images mt-4">
+                                        <div class="d-flex ml-3 mt-3" *ngFor="let product of wishlistDetailProduct" style="position: relative;">
+                                            <input type="checkbox" style="  position: absolute;
+                                            top: 4px;">
+                                            <div class="images mt-4 mr-3">
                                                 <img style="width: 140px;
-                                                height: 140px;" src="http://www.pngall.com/wp-content/uploads/5/Interior-Design-PNG-File-Download-Free.png" alt="website template image">
+                                                height: 140px;" src="{{productImagePath}}{{product?.product_id?.product_media[0].name}}" alt="website template image">
                                             </div>
+                                            <div class="txtt">
+                                                <h3 class="m-0">Product Name: {{product?.product_id?.product_title}}</h3>
+                                                <h3 class="m-0">Detail: {{product?.product_id?.product_description}}</h3>
+                                            </div>
+                                            <div class="bt ml-auto">
+                                                <button class="CustBtn">Delete</button>
+                                            </div>
+                                        </div>
+                                            
+                                            
                                     </div>
                                     <div class="tab-pane fade" id="nav-ungrouped" role="tabpanel"
                                         aria-labelledby="nav-ungrouped-tab"   >
@@ -138,10 +151,21 @@
                                             </div>
     
                                         </div>
-                                            <div class="images mt-4">
+                                        <div class="d-flex ml-3 mt-3" style="position: relative;">
+                                            <input type="checkbox" style="  position: absolute;
+                                            top: 4px;">
+                                            <div class="images mt-4 mr-3">
                                                 <img style="width: 140px;
                                                 height: 140px;" src="http://www.pngall.com/wp-content/uploads/5/Interior-Design-PNG-File-Download-Free.png" alt="website template image">
                                             </div>
+                                            <div class="txtt">
+                                                <h3 class="m-0">Product Name</h3>
+                                                <h3 class="m-0">Detail</h3>
+                                            </div>
+                                            <div class="bt ml-auto">
+                                                <button class="CustBtn">Delete</button>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="tab-pane fade" id="nav-data" role="tabpanel"
                                         aria-labelledby="nav-data-tab">
@@ -177,10 +201,21 @@
                                             </div>
     
                                         </div>
-                                            <div class="images mt-4">
+                                        <div class="d-flex ml-3 mt-3" style="position: relative;">
+                                            <input type="checkbox" style="  position: absolute;
+                                            top: 4px;">
+                                            <div class="images mt-4 mr-3">
                                                 <img style="width: 140px;
                                                 height: 140px;" src="http://www.pngall.com/wp-content/uploads/5/Interior-Design-PNG-File-Download-Free.png" alt="website template image">
                                             </div>
+                                            <div class="txtt">
+                                                <h3 class="m-0">Product Name</h3>
+                                                <h3 class="m-0">Detail</h3>
+                                            </div>
+                                            <div class="bt ml-auto">
+                                                <button class="CustBtn">Delete</button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="tab-pane innerTabs fade" id="nav-profile" role="tabpanel"
@@ -243,10 +278,21 @@
                                             </div>
     
                                         </div>
-                                            <div class="images mt-4">
+                                        <div class="d-flex ml-3 mt-3 " style="position: relative;">
+                                            <input type="checkbox" style="  position: absolute;
+                                            top: 4px;">
+                                            <div class="images mt-4 mr-3">
                                                 <img style="width: 140px;
                                                 height: 140px;" src="http://www.pngall.com/wp-content/uploads/5/Interior-Design-PNG-File-Download-Free.png" alt="website template image">
-                                            </div>>
+                                            </div>
+                                            <div class="txtt">
+                                                <h3 class="m-0">Product Name</h3>
+                                                <h3 class="m-0">Detail</h3>
+                                            </div>
+                                            <div class="bt ml-auto">
+                                                <button class="CustBtn">Delete</button>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="tab-pane fade" id="nav-ungrouped" role="tabpanel"
                                         aria-labelledby="nav-ungrouped-tab">dsfszdfsfdsdfsd</div>
@@ -313,10 +359,21 @@
                                             </div>
     
                                         </div>
-                                            <div class="images mt-4">
+                                        <div class="d-flex ml-3 mt-3" style="position: relative;">
+                                            <input type="checkbox" style="  position: absolute;
+                                            top: 4px;">
+                                            <div class="images mt-4 mr-3">
                                                 <img style="width: 140px;
                                                 height: 140px;" src="http://www.pngall.com/wp-content/uploads/5/Interior-Design-PNG-File-Download-Free.png" alt="website template image">
                                             </div>
+                                            <div class="txtt">
+                                                <h3 class="m-0">Product Name</h3>
+                                                <h3 class="m-0">Detail</h3>
+                                            </div>
+                                            <div class="bt ml-auto">
+                                                <button class="CustBtn">Delete</button>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="tab-pane fade" id="nav-ungrouped" role="tabpanel"
                                         aria-labelledby="nav-ungrouped-tab">2</div>
