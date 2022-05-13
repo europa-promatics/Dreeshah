@@ -99,7 +99,7 @@ export class LoginComponent implements OnInit {
 
           this.router.navigate(['/myprofile']);
         } else if (data.user.user_type == 'professional') {
-          this.router.navigate(['/seller-profile']);
+          this.router.navigate(['/seller-profile-view']);
         } else {
           this.router.navigate(['/photographerProfile']);
         }

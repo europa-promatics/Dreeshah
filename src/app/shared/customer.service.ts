@@ -2599,5 +2599,12 @@ export class CustomerService {
       )
   }
 
+  createNewGroup(data):Observable<any>{
+    let API_URL = `${this.apiUrl}/addWishGroups`;
+    return this.httpClient.post(API_URL,data,this.httpOptions).pipe(map(res=>{
+      return res
+    }))
+  }
+
 
 }

@@ -201,6 +201,7 @@ import { CustomerTermAndConditionComponent } from './views/customer-term-and-con
 import { CustomerPrivacyPolicyComponent } from './views/customer-privacy-policy/customer-privacy-policy.component';
 import { AddAddressComponent } from './views/add-address/add-address.component';
 import { ResetPasswordComponent } from './views/reset-password/reset-password.component';
+import { SellerProfileViewComponent } from './views/seller-profile-view/seller-profile-view.component';
 
 firebase.initializeApp(environment.firebaseConfig);
 
@@ -335,7 +336,8 @@ firebase.initializeApp(environment.firebaseConfig);
     CustomerTermAndConditionComponent,
     CustomerPrivacyPolicyComponent,
     AddAddressComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    SellerProfileViewComponent
   ],
   imports: [
     BrowserModule,

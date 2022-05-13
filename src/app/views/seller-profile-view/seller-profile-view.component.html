@@ -1,0 +1,147 @@
+<!-- <app-db-header></app-db-header> -->
+<app-seller-header></app-seller-header>
+<section class="myprofile-wrapper">
+    <div class="custom-container d-flex">
+        <app-seller-sidebar></app-seller-sidebar>
+        <div class="main-wrap">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="personal-info-header profile-section-heading mt-3">
+                                <h1>Edit Information</h1>
+                                <a routerLink="/seller-profile" role="button" class="btn btn-change-fill"><i
+                                        class="fa fa-pencil mr-2"></i>Edit</a>
+                                <!-- <button type="button"  class="btn btn-change-fill"><i class="fa fa-pencil mr-2"></i>Edit</button> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="profile-card-wrapper">
+                <div class="row">
+                    <div class="col-md-3 col-sm-3 col-xs-3">
+                        <div class="card prof-card CustBack mt-3 mb-3">
+                            <div class="card-body">
+                                <!-- <p class="text-center">Profile</p> -->
+                                <div class="text-center profile-picture">
+                                    <img *ngIf="!user_image" src="assets/imgs/no-profile.webp" alt="image"
+                                        class="img-fluid">
+                                    <img *ngIf="user_image" src="{{image_path}}{{user_image}}" alt="image"
+                                        class="img-fluid">
+                                    <!-- <img *ngIf="profile_img && !user_image" [src]="profile_img" alt="image" class="img-fluid"> -->
+
+                                    <div class="change-prof-image">
+                                        <label>
+                                            <span class="camera-icon"><i class="fa fa-camera "></i><input type="file"
+                                                    style="display: none;" name="prof-image"
+                                                    accept="image/jpeg,image/jpg,image/png,image/gif"
+                                                    (change)="onFileChange($event)"></span>
+                                        </label>
+                                        <h3 class="text-center text-bold mt-1"></h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card prof-card mt-3 mb-3">
+                            <div class="card-body">
+                                <div class="help-card-wrapper">
+                                    <h3 class="text-center">Need Help?</h3>
+                                    <p class="text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+                                        do eiusmod
+                                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                        consequat.</p>
+                                    <div align="center">
+                                        <a routerLink="info@gmail.com" class="btn btn-change-fill">Chat With Admin</a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <!-- <div class="card mt-3 mb-3">
+								<div class="card-body">
+									<div class="profile-title-wrapper">
+										<h3>Lorem ipsum dolor sit amet</h3>
+										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+										tempor incididunt ut labore et dolore magna aliqua.</p>
+									</div>
+								</div>
+							</div> -->
+                        <div class="card mt-3">
+                            <div class="card-body prof-form-card">
+                                <div class="personal-info-form">
+
+                                    <div class="info-tabs">
+                                        <div class="profile-tabset tabset">
+                                            <!-- Tab 1 -->
+                                            <input type="radio" name="profile-tabset" id="tab1" aria-controls="about-us"
+                                                checked>
+                                            <label for="tab1">Personal Information</label>
+
+                                        </div>
+                                    </div>
+                                    <div class="tab-panels">
+                                        <div id="about-us" class="tab-panel">
+                                            <div class="form-box" *ngIf="userDetails">
+                                                <form class="form-horizontal" method="post" action=""
+                                                    id="companydetails" enctype="multipart/form-data">
+                                                    <div class="form-group">
+                                                        <label for="fname">First Name</label>
+                                                        <input type="text" [ngModelOptions]="{standalone: true}"
+                                                            [(ngModel)]="userDetails.first_name"
+                                                            class="form-control profile-form-field" id="fname"
+                                                            aria-describedby="emailHelp" placeholder="John"
+                                                            readonly="true">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="lname">Last Name</label>
+                                                        <input type="text" [ngModelOptions]="{standalone: true}"
+                                                            [(ngModel)]="userDetails.last_name"
+                                                            class="form-control profile-form-field" id="lname"
+                                                            aria-describedby="emailHelp" placeholder="Doe"
+                                                            readonly="true">
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="email">Email</label>
+                                                                <input type="text" [ngModelOptions]="{standalone: true}"
+                                                                    [(ngModel)]="userDetails.email"
+                                                                    class="form-control profile-form-field"
+                                                                    aria-describedby="emailHelp"
+                                                                    placeholder="johndoe@gmail.com" readonly="true">
+                                                            </div>
+                                                        </div>
+                                                        <!-- <div class="col-md-6"
+                                                            *ngIf="userDetails?.user_type != 'professional'">
+                                                            <label for="phone">Phone Number</label><br />
+                                                            <input type="text" [value]="userDetails?.phone_number" onerror="this.value='0000000000'"
+                                                                class="form-control profile-form-field" name="phone"
+                                                                id="email" aria-describedby="emailHelp"
+                                                                placeholder="855858555" readonly="true">
+                                                        </div> -->
+                                                    </div>
+
+                                                    <!-- <div class="col-md-6" *ngIf="userDetails?.user_type != 'professional'">
+																<label for="phone">State</label><br/>
+																<input type="text" [ngModelOptions]="{standalone: true}" [value]="'+' + userDetails?.country_code + userDetails?.phone_number" class="form-control profile-form-field" name="phone" id="email" aria-describedby="emailHelp" placeholder="855858555" readonly="true">
+															</div> -->
+
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<app-footer></app-footer>
