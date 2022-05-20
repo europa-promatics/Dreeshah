@@ -49,8 +49,8 @@
                                             </a> -->
                                             <a *ngFor="let group of allWishGroupsProducts"
                                                 class="nav-item nav-link" id="prod-nav-data-tab" data-toggle="tab"
-                                                href="#prod-nav-data" role="tab" aria-controls="prod-nav-data"
-                                                aria-selected="false"> {{group?.group_name}}
+                                                href="#prod-nav-data{{group._id}}" role="tab" aria-controls="prod-nav-data"
+                                                aria-selected="false"> {{group?.group_name}}{{group.records ? group.records.length : 0}}
                                                 <i class="fa fa-trash" aria-hidden="true"
                                                     style="margin-right: 10px; margin-left: 6px; font-size: 10px;"></i>
                                                 <i class="fa fa-edit" aria-hidden="true" style="font-size: 10px;"></i>
@@ -66,6 +66,66 @@
                                     <div class="tab-pane fade show active" id="prod-nav-inns" role="tabpanel"
                                         aria-labelledby="prod-nav-inns-tab">
                                         <!-- all first -->
+                                        <div class="new-div"
+                                            style="display: flex; padding-left: 5px; margin-top: 20px;">
+
+                                            <div class="btnsNms">
+                                                <div class="custom-control custom-checkbox" style="margin-top: 5px;">
+                                                    <input type="checkbox" class="custom-control-input"
+                                                        id="customCheck1">
+                                                    <label class="custom-control-label" for="customCheck1"></label>
+                                                </div>
+                                            </div>
+                                            <div class="btnsNms">
+                                                <button type="button" class="btn btn-light">Compare</button>
+                                            </div>
+                                            <div class="btnsNms">
+                                                <div class="user_drop">
+                                                    <button mat-button [matMenuTriggerFor]="menu">
+                                                        <button type="button" class="btn btn-light">Move to <i
+                                                                class="fa fa-angle-down" aria-hidden="true"></i>
+                                                        </button>
+                                                    </button>
+                                                    <mat-menu #menu="matMenu" xPosition="before">
+                                                        <ul class="comnon_drop">
+                                                            <li *ngFor="let group of allWishGroupsProducts"><a id="{{group?._id}}" (click)="moveToGroup($event)">{{group?.group_name}}</a></li>
+                                                        </ul>
+                                                    </mat-menu>
+                                                </div>
+                                            </div>
+                                            <div class="btnsNms">
+                                                <button type="button" class="btn btn-light">Delete</button>
+                                            </div>
+
+                                        </div>
+                                        <div class="d-flex ml-3 mt-3" *ngFor="let product of wishlistDetailProduct"
+                                            style="position: relative;">
+                                            <input type="checkbox" id="{{product?._id}}" (change)="checkBoxClick($event)" style="position: absolute;
+                                            top: 4px;">
+                                            <div class="images mt-4 mr-3">
+                                                <img style="width: 140px;
+                                                height: 140px;"
+                                                    src="{{productImagePath}}{{product?.product_id?.product_media[0].name}}"
+                                                    alt="website template image">
+                                            </div>
+                                            <div class="txtt">
+                                                <h3 class="m-0">Product Name: {{product?.product_id?.product_title}}
+                                                </h3>
+                                                <h3 class="m-0">Detail: {{product?.product_id?.product_description}}
+                                                </h3>
+                                            </div>
+                                            <div class="bt ml-auto">
+                                                <button type="button" (click)="removeFromWishlist(product?._id)"
+                                                    class="CustBtn">Delete</button>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                    <div class="tab-pane fade" id="prod-nav-ungrouped" role="tabpanel"
+                                        aria-labelledby="prod-nav-ungrouped-tab">
+
+                                        <!-- ungrouped first -->
                                         <div class="new-div"
                                             style="display: flex; padding-left: 5px; margin-top: 20px;">
 
@@ -119,6 +179,232 @@
                                                     class="CustBtn">Delete</button>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div *ngFor="let group of allWishGroupsProducts; let first = first" class="tab-pane fade" id="prod-nav-data{{group._id}}" role="tabpanel"
+                                        aria-labelledby="prod-nav-data-tab">
+                                        <!-- 25465 first -->
+                                        <div class="new-div"
+                                            style="display: flex; padding-left: 5px; margin-top: 20px;">
+
+                                            <div class="btnsNms">
+                                                <div class="custom-control custom-checkbox" style="margin-top: 5px;">
+                                                    <input type="checkbox" class="custom-control-input"
+                                                        id="customCheck1">
+                                                    <label class="custom-control-label" for="customCheck1"></label>
+                                                </div>
+                                            </div>
+                                            <div class="btnsNms">
+                                                <button type="button" class="btn btn-light">Compare</button>
+                                            </div>
+                                            <div class="btnsNms">
+                                                <div class="user_drop">
+                                                    <button mat-button [matMenuTriggerFor]="menu">
+                                                        <button type="button" class="btn btn-light">Move to <i
+                                                                class="fa fa-angle-down" aria-hidden="true"></i>
+                                                        </button>
+                                                    </button>
+                                                    <mat-menu #menu="matMenu" xPosition="before">
+                                                        <ul class="comnon_drop">
+                                                            <li *ngFor="let group of allWishGroupsProducts"><a id="{{group?._id}}" (click)="moveToGroup($event)">{{group?.group_name}}</a></li>
+                                                        </ul>
+                                                    </mat-menu>
+                                                </div>
+                                            </div>
+                                            <div class="btnsNms">
+                                                <button type="button" class="btn btn-light">Delete</button>
+                                            </div>
+
+                                        </div>
+                                        <div class="d-flex ml-3 mt-3" style="position: relative;" *ngFor="let record of group.records">
+                                            <input type="checkbox" style="  position: absolute;
+                                            top: 4px;">
+                                            <div class="images mt-4 mr-3">
+                                                <img style="width: 140px;
+                                                height: 140px;"
+                                                    [src]="productImagePath + record?.product_id?.product_media[0].name"
+                                                    alt="website template image">
+                                            </div>
+                                            <div class="txtt">
+                                                <h3 class="m-0">Product Name {{record?.product_id?.product_title}}</h3>
+                                                <h3 class="m-0">Detail {{record?.product_id?.product_description}}</h3>
+                                            </div>
+                                            <div class="bt ml-auto">
+                                                <button class="CustBtn">Delete</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- professional start -->
+                                <div class="tab-pane innerTabs fade" id="nav-profile" role="tabpanel"
+                                    aria-labelledby="nav-profile-tab">
+                                    <nav>
+                                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                            <a class="nav-item nav-link active" id="nav-inns-tab" data-toggle="tab"
+                                                href="#nav-inns" role="tab" aria-controls="nav-inns"
+                                                aria-selected="true">All(0)</a>
+                                            <!-- <a class="nav-item nav-link" id="nav-ungrouped-tab" data-toggle="tab"
+                                                href="#nav-ungrouped" role="tab" aria-controls="nav-ungrouped"
+                                                aria-selected="false"> Ungrouped(0)
+                                            </a> -->
+                                            <a *ngFor="let group of allWishGroupsServices" class="nav-item nav-link" id="nav-data-tab" data-toggle="tab"
+                                                href="#nav-data{{group?._id}}" role="tab" aria-controls="nav-data"
+                                                aria-selected="false"> {{group?.group_name}}{{group.records ? group.records.length : 0}}
+                                                <i class="fa fa-trash" aria-hidden="true"
+                                                    style="margin-right: 10px; margin-left: 6px; font-size: 10px;"></i>
+                                                <i class="fa fa-edit" aria-hidden="true" style="font-size: 10px;"></i>
+                                            </a>
+                                            <a class="nav-item nav-link" id="nav-newgrp-tab" data-toggle="tab"
+                                                href="#nav-newgrp" role="tab" aria-controls="nav-newgrp"
+                                                aria-selected="false"><i class="fa fa-plus" aria-hidden="true"
+                                                    style="margin-right: 10px; font-size: 10px;"></i>
+                                                <span data-toggle="modal" data-target="#exampleModal">Create new
+                                                    group</span></a>
+                                        </div>
+                                    </nav>
+                                    <div class="tab-pane fade show active" id="nav-inns" role="tabpanel"
+                                        aria-labelledby="nav-inns-tab">
+                                        <!-- all second -->
+                                        <div class="new-div"
+                                            style="display: flex; padding-left: 5px; margin-top: 20px;">
+
+                                            <div class="btnsNms">
+                                                <div class="custom-control custom-checkbox" style="margin-top: 5px;">
+                                                    <input type="checkbox" class="custom-control-input"
+                                                        id="customCheck1">
+                                                    <label class="custom-control-label" for="customCheck1"></label>
+                                                </div>
+                                            </div>
+                                            <div class="btnsNms">
+                                                <button type="button" class="btn btn-light">Compare</button>
+                                            </div>
+                                            <div class="btnsNms">
+                                                <div class="user_drop">
+                                                    <button mat-button [matMenuTriggerFor]="menu">
+                                                        <button type="button" class="btn btn-light">Move to <i
+                                                                class="fa fa-angle-down" aria-hidden="true"></i>
+                                                        </button>
+                                                    </button>
+                                                    <mat-menu #menu="matMenu" xPosition="before">
+                                                        <ul class="comnon_drop">
+                                                            <li *ngFor="let group of allWishGroupsProfessionals"><a id="{{group?._id}}"
+                                                                (click)="moveToGroup($event)">{{group?.group_name}}</a></li>
+                                                        </ul>
+                                                    </mat-menu>
+                                                </div>
+                                            </div>
+                                            <div class="btnsNms">
+                                                <button type="button" class="btn btn-light">Delete</button>
+                                            </div>
+
+                                        </div>
+                                        <div class="d-flex ml-3 mt-3 " style="position: relative;"
+                                            *ngFor="let pro of wishlistDetailPro">
+                                            <input type="checkbox" style="  position: absolute;
+                                            top: 4px;">
+                                            <div class="images mt-4 mr-3">
+                                                <img style="width: 140px;
+                                                height: 140px;"
+                                                    src="{{image_base_url}}{{pro?.professional_id?.profile_image}}"
+                                                    alt="website template image">
+                                            </div>
+                                            <div class="txtt">
+                                                <h3 class="m-0">Prfessional Name: {{pro?.professional_id?.first_name}}{{pro?.professional_id?.last_name}}</h3>
+                                                <h3 class="m-0">Detail: {{pro?.professional_id?.branch_brief}}</h3>
+                                            </div>
+                                            <div class="bt ml-auto">
+                                                <button (click)="removeFromWishlist(pro?._id)" class="CustBtn">Delete</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="nav-ungrouped" role="tabpanel"
+                                        aria-labelledby="nav-ungrouped-tab">dsfszdfsfdsdfsd</div>
+                                    <div class="tab-pane fade" id="nav-data" role="tabpanel"
+                                        aria-labelledby="nav-data-tab">3</div>
+                                </div>
+                                <!-- services start -->
+                                <div class="tab-pane innerTabs fade" id="nav-contact" role="tabpanel"
+                                    aria-labelledby="nav-contact-tab">
+                                    <nav>
+                                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                            <a class="nav-item nav-link active" id="nav-inns-tab" data-toggle="tab"
+                                                href="#ser-nav-inns" role="tab" aria-controls="ser-nav-inns"
+                                                aria-selected="true">All({{wishListSerLength}})</a>
+                                            <!-- <a class="nav-item nav-link" id="nav-ungrouped-tab" data-toggle="tab"
+                                                href="#prod-nav-ungrouped" role="tab" aria-controls="prod-nav-ungrouped"
+                                                aria-selected="false"> Ungrouped({{wishListproductLength}})
+                                            </a> -->
+                                            <a *ngFor="let group of allWishGroupsServices"
+                                                class="nav-item nav-link" id="ser-nav-data-tab" data-toggle="tab"
+                                                href="#ser-nav-data{{group._id}}" role="tab" aria-controls="ser-nav-data"
+                                                aria-selected="false"> {{group?.group_name}}({{group?.records ? group?.records?.length :0}})
+                                                <i class="fa fa-trash" aria-hidden="true"
+                                                    style="margin-right: 10px; margin-left: 6px; font-size: 10px;"></i>
+                                                <i class="fa fa-edit" aria-hidden="true" style="font-size: 10px;"></i>
+                                            </a>
+                                            <a class="nav-item nav-link" id="nav-newgrp-tab" data-toggle="tab"
+                                                href="#nav-newgrp" role="tab" aria-controls="nav-newgrp"
+                                                aria-selected="false"><i class="fa fa-plus" aria-hidden="true"
+                                                    style="margin-right: 10px; font-size: 10px;"></i>
+                                                <span data-toggle="modal" data-target="#exampleModal">Create new
+                                                    group</span></a>
+                                        </div>
+                                    </nav>
+                                    <div class="tab-pane fade show active" id="ser-nav-inns" role="tabpanel"
+                                        aria-labelledby="ser-nav-inns-tab">
+                                        <!-- all first -->
+                                        <div class="new-div"
+                                            style="display: flex; padding-left: 5px; margin-top: 20px;">
+
+                                            <div class="btnsNms">
+                                                <div class="custom-control custom-checkbox" style="margin-top: 5px;">
+                                                    <input type="checkbox" class="custom-control-input"
+                                                        id="customCheck1">
+                                                    <label class="custom-control-label" for="customCheck1"></label>
+                                                </div>
+                                            </div>
+                                            <div class="btnsNms">
+                                                <button type="button" class="btn btn-light">Compare</button>
+                                            </div>
+                                            <div class="btnsNms">
+                                                <div class="user_drop">
+                                                    <button mat-button [matMenuTriggerFor]="menu">
+                                                        <button type="button" class="btn btn-light">Move to <i
+                                                                class="fa fa-angle-down" aria-hidden="true"></i>
+                                                        </button>
+                                                    </button>
+                                                    <mat-menu #menu="matMenu" xPosition="before">
+                                                        <ul class="comnon_drop">
+                                                            <li *ngFor="let group of allWishGroupsServices"><a id="{{group?._id}}" (click)="moveToGroup($event)">{{group?.group_name}}</a></li>
+                                                        </ul>
+                                                    </mat-menu>
+                                                </div>
+                                            </div>
+                                            <div class="btnsNms">
+                                                <button type="button" class="btn btn-light">Delete</button>
+                                            </div>
+
+                                        </div>
+                                        <div class="d-flex ml-3 mt-3" *ngFor="let service of wishlistDetailServive"
+                                            style="position: relative;">
+                                            <input type="checkbox" style="  position: absolute;
+                                            top: 4px;">
+                                            <div class="images mt-4 mr-3">
+                                                <img style="width: 140px;
+                                                height: 140px;"
+                                                    src=""
+                                                    alt="website template image">
+                                            </div>
+                                            <div class="txtt">
+                                                <h3 class="m-0">Service Name: {{service?.service_id?.service_name}}
+                                                </h3>
+                                                <h3 class="m-0">Detail: {{service?.service_id?.service_description}}
+                                                </h3>
+                                            </div>
+                                            <div class="bt ml-auto">
+                                                <button type="button" (click)="removeFromWishlist(service?._id)"
+                                                    class="CustBtn">Delete</button>
+                                            </div>
+                                        </div>
 
 
                                     </div>
@@ -159,30 +445,30 @@
                                             </div>
 
                                         </div>
-                                        <div class="d-flex ml-3 mt-3" *ngFor="let product of wishlistDetailProduct"
+                                        <div class="d-flex ml-3 mt-3" *ngFor="let service of wishlistDetailServive"
                                             style="position: relative;">
                                             <input type="checkbox" style="  position: absolute;
                                             top: 4px;">
                                             <div class="images mt-4 mr-3">
                                                 <img style="width: 140px;
                                                 height: 140px;"
-                                                    src="{{productImagePath}}{{product?.product_id?.product_media[0].name}}"
+                                                    src=""
                                                     alt="website template image">
                                             </div>
                                             <div class="txtt">
-                                                <h3 class="m-0">Product Name: {{product?.product_id?.product_title}}
+                                                <h3 class="m-0">service Name: {{service?.service_id?.service_name}}
                                                 </h3>
-                                                <h3 class="m-0">Detail: {{product?.product_id?.product_description}}
+                                                <h3 class="m-0">Detail: {{service?.service_id?.service_description}}
                                                 </h3>
                                             </div>
                                             <div class="bt ml-auto">
-                                                <button type="button" (click)="removeFromWishlist(product?._id)"
+                                                <button type="button" (click)="removeFromWishlist(service?._id)"
                                                     class="CustBtn">Delete</button>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="tab-pane fade" id="prod-nav-data" role="tabpanel"
-                                        aria-labelledby="prod-nav-data-tab">
+                                    <div *ngFor="let group of allWishGroupsServices; let first = first" class="tab-pane fade" id="ser-nav-data{{group._id}}" role="tabpanel"
+                                        aria-labelledby="ser-nav-data-tab">
                                         <!-- 25465 first -->
                                         <div class="new-div"
                                             style="display: flex; padding-left: 5px; margin-top: 20px;">
@@ -217,18 +503,18 @@
                                             </div>
 
                                         </div>
-                                        <div class="d-flex ml-3 mt-3" style="position: relative;">
+                                        <div class="d-flex ml-3 mt-3" style="position: relative;" *ngFor="let record of group.records">
                                             <input type="checkbox" style="  position: absolute;
                                             top: 4px;">
                                             <div class="images mt-4 mr-3">
                                                 <img style="width: 140px;
                                                 height: 140px;"
-                                                    src="http://www.pngall.com/wp-content/uploads/5/Interior-Design-PNG-File-Download-Free.png"
+                                                    src=""
                                                     alt="website template image">
                                             </div>
                                             <div class="txtt">
-                                                <h3 class="m-0">Product Name</h3>
-                                                <h3 class="m-0">Detail</h3>
+                                                <h3 class="m-0">service Name {{record.service_id.service_name}}</h3>
+                                                <h3 class="m-0">Detail {{record?.service_id?.service_description}}</h3>
                                             </div>
                                             <div class="bt ml-auto">
                                                 <button class="CustBtn">Delete</button>
@@ -236,204 +522,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="tab-pane innerTabs fade" id="nav-profile" role="tabpanel"
-                                    aria-labelledby="nav-profile-tab">
-                                    <nav>
-                                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                                            <a class="nav-item nav-link active" id="nav-inns-tab" data-toggle="tab"
-                                                href="#nav-inns" role="tab" aria-controls="nav-inns"
-                                                aria-selected="true">All(0)</a>
-                                            <a class="nav-item nav-link" id="nav-ungrouped-tab" data-toggle="tab"
-                                                href="#nav-ungrouped" role="tab" aria-controls="nav-ungrouped"
-                                                aria-selected="false"> Ungrouped(0)
-                                            </a>
-                                            <a class="nav-item nav-link" id="nav-data-tab" data-toggle="tab"
-                                                href="#nav-data" role="tab" aria-controls="nav-data"
-                                                aria-selected="false"> prof(0)
-                                                <i class="fa fa-trash" aria-hidden="true"
-                                                    style="margin-right: 10px; margin-left: 6px; font-size: 10px;"></i>
-                                                <i class="fa fa-edit" aria-hidden="true" style="font-size: 10px;"></i>
-                                            </a>
-                                            <a class="nav-item nav-link" id="nav-newgrp-tab" data-toggle="tab"
-                                                href="#nav-newgrp" role="tab" aria-controls="nav-newgrp"
-                                                aria-selected="false"><i class="fa fa-plus" aria-hidden="true"
-                                                    style="margin-right: 10px; font-size: 10px;"></i>
-                                                <span data-toggle="modal" data-target="#exampleModal">Create new
-                                                    group</span></a>
-                                        </div>
-                                    </nav>
-                                    <div class="tab-pane fade show active" id="nav-inns" role="tabpanel"
-                                        aria-labelledby="nav-inns-tab">
-                                        <!-- all second -->
-                                        <div class="new-div"
-                                            style="display: flex; padding-left: 5px; margin-top: 20px;">
-
-                                            <div class="btnsNms">
-                                                <div class="custom-control custom-checkbox" style="margin-top: 5px;">
-                                                    <input type="checkbox" class="custom-control-input"
-                                                        id="customCheck1">
-                                                    <label class="custom-control-label" for="customCheck1"></label>
-                                                </div>
-                                            </div>
-                                            <div class="btnsNms">
-                                                <button type="button" class="btn btn-light">Compare</button>
-                                            </div>
-                                            <div class="btnsNms">
-                                                <div class="user_drop">
-                                                    <button mat-button [matMenuTriggerFor]="menu">
-                                                        <button type="button" class="btn btn-light">Move to <i
-                                                                class="fa fa-angle-down" aria-hidden="true"></i>
-                                                        </button>
-                                                    </button>
-                                                    <mat-menu #menu="matMenu" xPosition="before">
-                                                        <ul class="comnon_drop">
-                                                            <li><a>Ungrouped</a></li>
-                                                            <li><a>254654</a></li>
-                                                        </ul>
-                                                    </mat-menu>
-                                                </div>
-                                            </div>
-                                            <div class="btnsNms">
-                                                <button type="button" class="btn btn-light">Delete</button>
-                                            </div>
-
-                                        </div>
-                                        <div class="d-flex ml-3 mt-3 " style="position: relative;"
-                                            *ngFor="let pro of wishlistDetailPro">
-                                            <input type="checkbox" style="  position: absolute;
-                                            top: 4px;">
-                                            <div class="images mt-4 mr-3">
-                                                <img style="width: 140px;
-                                                height: 140px;"
-                                                    src="http://www.pngall.com/wp-content/uploads/5/Interior-Design-PNG-File-Download-Free.png"
-                                                    alt="website template image">
-                                            </div>
-                                            <div class="txtt">
-                                                <h3 class="m-0">Prfessional Name: </h3>
-                                                <h3 class="m-0">Detail: </h3>
-                                            </div>
-                                            <div class="bt ml-auto">
-                                                <button class="CustBtn">Delete</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane fade" id="nav-ungrouped" role="tabpanel"
-                                        aria-labelledby="nav-ungrouped-tab">dsfszdfsfdsdfsd</div>
-                                    <div class="tab-pane fade" id="nav-data" role="tabpanel"
-                                        aria-labelledby="nav-data-tab">3</div>
-                                </div>
-                                <div class="tab-pane innerTabs fade" id="nav-contact" role="tabpanel"
-                                    aria-labelledby="nav-contact-tab">
-                                    <nav>
-                                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                                            <a class="nav-item nav-link active" id="pro-nav-inns-tab" data-toggle="tab"
-                                                href="#pro-nav-inns" role="tab" aria-controls="pro-nav-inns"
-                                                aria-selected="true">All({{wishListSerLength}})</a>
-                                            <a class="nav-item nav-link" id="pro-nav-ungrouped-tab" data-toggle="tab"
-                                                href="#pro-nav-ungrouped" role="tab" aria-controls="pro-nav-ungrouped"
-                                                aria-selected="false"> Ungrouped({{wishListSerLength}})
-                                            </a>
-                                            <a class="nav-item nav-link" id="pro-nav-data-tab" data-toggle="tab"
-                                                href="#pro-nav-data" role="tab" aria-controls="pro-nav-data"
-                                                aria-selected="false"> ser(0)
-                                                <i class="fa fa-trash" aria-hidden="true"
-                                                    style="margin-right: 10px; margin-left: 6px; font-size: 10px;"></i>
-                                                <i class="fa fa-edit" aria-hidden="true" style="font-size: 10px;"></i>
-                                            </a>
-                                            <a class="nav-item nav-link" id="nav-newgrp-tab" data-toggle="tab"
-                                                href="#nav-newgrp" role="tab" aria-controls="nav-newgrp"
-                                                aria-selected="false"><i class="fa fa-plus" aria-hidden="true"
-                                                    style="margin-right: 10px; font-size: 10px;"></i>
-                                                <span data-toggle="modal" data-target="#exampleModal">Create new
-                                                    group</span></a>
-                                        </div>
-                                    </nav>
-                                    <div class="tab-pane fade show active" id="nav-inns" role="tabpanel"
-                                        aria-labelledby="nav-inns-tab">
-                                        <!-- all second  -->
-                                        <div class="new-div"
-                                            style="display: flex; padding-left: 5px; margin-top: 20px;">
-
-                                            <div class="btnsNms">
-                                                <div class="custom-control custom-checkbox" style="margin-top: 5px;">
-                                                    <input type="checkbox" class="custom-control-input"
-                                                        id="customCheck1">
-                                                    <label class="custom-control-label" for="customCheck1"></label>
-                                                </div>
-                                            </div>
-                                            <div class="btnsNms">
-                                                <button type="button" class="btn btn-light">Compare</button>
-                                            </div>
-                                            <div class="btnsNms">
-                                                <div class="user_drop">
-                                                    <button mat-button [matMenuTriggerFor]="menu">
-                                                        <button type="button" class="btn btn-light">Move to <i
-                                                                class="fa fa-angle-down" aria-hidden="true"></i>
-                                                        </button>
-                                                    </button>
-                                                    <mat-menu #menu="matMenu" xPosition="before">
-                                                        <ul class="comnon_drop">
-                                                            <li><a>Ungrouped</a></li>
-                                                            <li><a>254654</a></li>
-                                                        </ul>
-                                                    </mat-menu>
-                                                </div>
-                                            </div>
-                                            <div class="btnsNms">
-                                                <button type="button" class="btn btn-light">Delete</button>
-                                            </div>
-
-                                        </div>
-                                        <div class="d-flex ml-3 mt-3" style="position: relative;"
-                                            *ngFor="let service of allWishGroupsServices">
-                                            <input type="checkbox" style="  position: absolute;
-                                            top: 4px;">
-                                            <div class="images mt-4 mr-3">
-                                                <img style="width: 140px;
-                                                height: 140px;"
-                                                    src="{{serviceImagePath}}{{service?.service_id?.service_image}}"
-                                                    alt="website template image">
-                                            </div>
-                                            <div class="txtt">
-                                                <h3 class="m-0">Service Name: {{service?.service_id?.service_name}}</h3>
-                                                <h3 class="m-0">Detail: {{service?.service_id?.service_description}}
-                                                </h3>
-                                            </div>
-                                            <div class="bt ml-auto">
-                                                <button type="button" (click)="removeFromWishlist(service?._id)"
-                                                    class="CustBtn">Delete</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane fade" id="nav-ungrouped" role="tabpanel"
-                                        aria-labelledby="nav-ungrouped-tab">2</div>
-                                    <div class="tab-pane fade" id="nav-data" role="tabpanel"
-                                        aria-labelledby="nav-data-tab">3</div>
-                                </div>
-                                <!-- <div class="tab-pane fade" id="nav-profile" role="tabpanel"
-                                    aria-labelledby="nav-profile-tab">
-                                    <h5> this is second tab</h5>
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                                    Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-                                    unknown printer took a galley of type and scrambled it to make a type specimen book.
-                                    It has survived not only five centuries,
-                                </div> -->
-                                <!-- <div class="tab-pane fade" id="nav-contact" role="tabpanel"
-                                    aria-labelledby="nav-contact-tab">
-                                    <h5>Third tab</h5>
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                                    Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-                                    unknown printer took a galley of type and scrambled it to make a type specimen book.
-                                    It has survived not only five centuries,
-                                </div> -->
-                                <!-- <div class="tab-pane fade" id="nav-about" role="tabpanel"
-                                    aria-labelledby="nav-about-tab">
-                                    <h5>fourth tab</h5>
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                                    Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-                                    unknown printer took a galley of type and scrambled it to make a type specimen book.
-                                    It has survived not only five centuries,
-                                </div> -->
                             </div>
                             <!-- tabs end -->
 

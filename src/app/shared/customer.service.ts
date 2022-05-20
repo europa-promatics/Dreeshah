@@ -2606,5 +2606,11 @@ export class CustomerService {
     }))
   }
 
+  moveToGroup(data):Observable<any>{
+    let API_URL = `${this.apiUrl}/editWishList`;
+    return this.httpClient.post(API_URL,data,this.httpOptions).pipe(map(res=>{
+      return res
+    }))
+  }
 
 }

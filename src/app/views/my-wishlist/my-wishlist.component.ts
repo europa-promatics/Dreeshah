@@ -24,7 +24,8 @@ export class MyWishlistComponent implements OnInit {
   wishListSerLength: any;
   wishlistDetailProduct: any;
   wishListproductLength: any;
-
+  moveItemsArray = [];
+  // current_id: string;
 
   // ngOnInit(): void {
   // 	this.allData();
@@ -135,7 +136,8 @@ export class MyWishlistComponent implements OnInit {
   // }
 
   AllWishListDetail() {
-    console.log("inside wishlist details component", this.obj1)
+    
+    console.log("inside wishlist details component",this.isLogin)
     if (this.isLogin == "false") {
       console.log("In if")
       this.CustomerService.wishlistDetailGuest().subscribe(res => {
@@ -178,7 +180,7 @@ export class MyWishlistComponent implements OnInit {
 
 
   ProfessionalWishListDetail() {
-    //console.log("inside wishlist details component",this.obj1)
+    // console.log("inside wishlist details component1111",this.current_id)
     const profParaObj = {
       wishlist_type: 'professional',
     };
@@ -345,9 +347,40 @@ export class MyWishlistComponent implements OnInit {
     }
   }
 
+  checkBoxClick(event){
+    const checked = event.target.checked
+
+    console.log('--------------',event.target.checked)
+    if(checked==true){
+      this.moveItemsArray.push(event.target.id) //wishlist item id
+    }else{
+      const index = this.moveItemsArray.indexOf(event.target.id)
+      this.moveItemsArray.splice(index,1)
+    }
+    console.log('--------ARRAY------',this.moveItemsArray)
+  }
+
   moveToGroup(event){
     console.log(event.target.id)
+    if(this.moveItemsArray.length==0){
+      console.log('in ifff')
+      this.toastr.error('Please Select at least one item')
+      return
+    }else{
+      var obj = {
+        wishlistitems_id:this.moveItemsArray[0],
+        wish_groups_id:event.target.id
+      }
+      console.log('in elseeeee',obj)
+
+      this.CustomerService.moveToGroup(obj).subscribe(data=>{
+        console.log('moved group data',data)
+      })
+    }
+    this.ngOnInit()
+    this.moveItemsArray = []
   }
+
 }
 
 			// removeProfWishListItem(val) {
