@@ -4,7 +4,7 @@ import { environment } from 'src/environments/environment.prod';
 import { ToastrService } from 'ngx-toastr'
 import { any } from '@amcharts/amcharts4/.internal/core/utils/Array';
 import { valueToRelative } from '@amcharts/amcharts4/.internal/core/utils/Utils';
-import { FormBuilder,FormGroup,FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 
 declare var $;
 @Component({
@@ -31,7 +31,7 @@ export class MyWishlistComponent implements OnInit {
   // }
 
   groupForm;
-
+  productWishGroups
   wishlist_type: any
   professional
   profobj
@@ -52,28 +52,39 @@ export class MyWishlistComponent implements OnInit {
   wishlistDetailallp: any;
   productImagePath = "https://developers.promaticstechnologies.com/dreeshah_apis/public/SellerProductImages/";
   serviceImagePath = "https://developers.promaticstechnologies.com/dreeshah_apis/public/ProfessionalServices/";
-
+  allWishGroupsProducts;
+  allWishGroupsServices;
+  allWishGroupsProfessionals: any;
 
   constructor(
     public CustomerService: CustomerService,
     private toastr: ToastrService,
-    private fb:FormBuilder
-    ) {
-      this.groupForm = this.fb.group({
-        group_name:['',Validators.required]
-      })
-     }
+    private fb: FormBuilder
+  ) {
+    this.groupForm = this.fb.group({
+      group_name: ['', Validators.required]
+    })
+  }
 
   ngOnInit(): void {
     this.AllWishListDetail()
-    this.ProfessionalWishListDetail()
-    this.servicesWishListDetail()
-    this.productsWishListDetail()
+    // this.ProfessionalWishListDetail()
+    
+
 
     this.isLogin = localStorage.getItem("isLoggedIn")
-
+    this.CustomerService.getUserDetails().subscribe(res => {
+      this.allWishGroupsProducts = res.data.wish_groups
+      this.allWishGroupsServices = res.data.wish_groups
+      this.allWishGroupsProfessionals = res.data.wish_groups
+      console.log('this.allWishGroupsProducts: ', this.allWishGroupsProducts);
+      this.productsWishListDetail()
+      this.servicesWishListDetail()
+      this.ProfessionalWishListDetail()
+    })
     if (!this.isLogin && localStorage.getItem("session_data")) {
       this.userId = localStorage.getItem("session_data")
+
     } else {
       this.userId = ""
     }
@@ -189,6 +200,16 @@ export class MyWishlistComponent implements OnInit {
 
         // console.log("Professional wishlist detail data=======", this.wishlistDetailPro)
 
+        if (res.grouped.wishlistitems.length > 0) {
+          for (let i = 0; i < this.allWishGroupsProfessionals.length; i++) {
+            let index = res.grouped.wishlistitems.findIndex(item => { return item._id == this.allWishGroupsProfessionals[i]._id })
+            if (index != -1) {
+              this.allWishGroupsProfessionals[i].records = res.grouped.wishlistitems[index].records
+            }
+          }
+        }
+        console.log('this.allWishGroupsProfessionals[i].records: ', this.allWishGroupsProfessionals);
+
       })
     }
   }
@@ -202,7 +223,7 @@ export class MyWishlistComponent implements OnInit {
     if (this.isLogin == "false") {
       this.CustomerService.wishlistDetailGuest().subscribe(res => {
 
-        console.log("Wishlist Details:", res)
+        // console.log("Wishlist Details:", res)
         this.wishlistDetailProduct = res.data
 
         console.log(this.wishlistDetail)
@@ -215,10 +236,17 @@ export class MyWishlistComponent implements OnInit {
         this.wishlistDetailProduct = res.data
         this.wishListproductLength = this.wishlistDetailProduct.length
         console.log("Product wishlist detail data=======", this.wishlistDetailProduct)
-        for (let i = 0; i < this.wishlistDetailProduct.length; i++) {
-          const element = this.wishlistDetailProduct[i];
-          console.log('element: ', element);
+
+        // this.productWishGroups
+        if (res.grouped.wishlistitems.length > 0) {
+          for (let i = 0; i < this.allWishGroupsProducts.length; i++) {
+            let index = res.grouped.wishlistitems.findIndex(item => { return item._id == this.allWishGroupsProducts[i]._id })
+            if (index != -1) {
+              this.allWishGroupsProducts[i].records = res.grouped.wishlistitems[index].records
+            }
+          }
         }
+        console.log('this.allWishGroupsProducts[i].records: ', this.allWishGroupsProducts);
       })
     }
   }
@@ -230,7 +258,7 @@ export class MyWishlistComponent implements OnInit {
 
     }
     this.CustomerService.addRemoveWishlistData(this.obj5).subscribe(res => {
-      console.log("Wishlist Item Deleted:", res)
+      // console.log("Wishlist Item Deleted:", res)
       this.toastr.success("Item Removed From Wishlist")
       this.ngOnInit();
     })
@@ -245,7 +273,7 @@ export class MyWishlistComponent implements OnInit {
     if (this.isLogin == "false") {
       this.CustomerService.wishlistDetailGuest().subscribe(res => {
 
-        console.log("Wishlist Details:", res)
+        // console.log("Wishlist Details:", res)
         this.wishlistDetailServive = res.data
 
         console.log(this.wishlistDetail)
@@ -254,11 +282,21 @@ export class MyWishlistComponent implements OnInit {
     } else {
       this.CustomerService.wishlistParamDetail(serParaObj).subscribe(res => {
 
-        console.log("Wishlist Details:", res)
+        // console.log("Wishlist Details:", res)
         this.wishlistDetailServive = res.data
         this.wishListSerLength = this.wishlistDetailServive.length
 
-        console.log("Service wishlist detail data=======", this.wishlistDetailServive)
+        if (res.grouped.wishlistitems.length > 0) {
+          for (let i = 0; i < this.allWishGroupsServices.length; i++) {
+            console.warn('-----------------in for---------');
+            let index = res.grouped.wishlistitems.findIndex(item => { return item._id == this.allWishGroupsServices[i]._id })
+            if (index != -1) {
+              this.allWishGroupsServices[i].records = res.grouped.wishlistitems[index].records
+            }
+          }
+        }
+        console.log('this.allWishGroupsServices[i].records: ', this.allWishGroupsServices);
+        // console.log("Service wishlist detail data=======", this.wishlistDetailServive)
 
       })
     }
@@ -294,16 +332,21 @@ export class MyWishlistComponent implements OnInit {
     })
   }
 
-  createNewGroup(){
-    if(!this.groupForm.valid){
+  createNewGroup() {
+    if (!this.groupForm.valid) {
       return
-    }else{
-      console.log('group form-------------',this.groupForm.value)
-      this.CustomerService.createNewGroup(this.groupForm.value).subscribe(data=>{
-        console.log('------group form-----',data)
+    } else {
+      console.log('group form-------------', this.groupForm.value)
+      this.CustomerService.createNewGroup(this.groupForm.value).subscribe(data => {
+        console.log('------group form-----', data)
         $('.close').click()
       })
+      this.ngOnInit();
     }
+  }
+
+  moveToGroup(event){
+    console.log(event.target.id)
   }
 }
 
