@@ -2613,4 +2613,12 @@ export class CustomerService {
     }))
   }
 
+  groupDelete(data):Observable<any>{
+    let API_URL = `${this.apiUrl}/delete/group`;
+    return this.httpClient.post(API_URL,data,this.httpOptions).pipe(map(res=>{
+      return res
+    }))
+  }
+  
+
 }

@@ -49,13 +49,13 @@ export class MyWishlistComponent implements OnInit {
   quanty
   imgpath = environment.prodImg;
   wishListLength = 0
-  image_base_url = "https://developers.promaticstechnologies.com/dreeshah_apis/public/userProfile/"
   wishlistDetailallp: any;
+  image_base_url = "https://developers.promaticstechnologies.com/dreeshah_apis/public/userProfile/"
   productImagePath = "https://developers.promaticstechnologies.com/dreeshah_apis/public/SellerProductImages/";
   serviceImagePath = "https://developers.promaticstechnologies.com/dreeshah_apis/public/ProfessionalServices/";
-  allWishGroupsProducts;
-  allWishGroupsServices;
-  allWishGroupsProfessionals: any;
+  allWishGroupsProducts:any[] = [];
+  allWishGroupsServices:any[] = [];
+  allWishGroupsProfessionals: any[] = [];
 
   constructor(
     public CustomerService: CustomerService,
@@ -68,6 +68,7 @@ export class MyWishlistComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.moveItemsArray = []
     this.AllWishListDetail()
     // this.ProfessionalWishListDetail()
     
@@ -75,9 +76,17 @@ export class MyWishlistComponent implements OnInit {
 
     this.isLogin = localStorage.getItem("isLoggedIn")
     this.CustomerService.getUserDetails().subscribe(res => {
-      this.allWishGroupsProducts = res.data.wish_groups
-      this.allWishGroupsServices = res.data.wish_groups
-      this.allWishGroupsProfessionals = res.data.wish_groups
+      console.log('res: ', res);
+      for (let i = 0; i < res.data.wish_groups.length; i++) {
+        this.allWishGroupsProducts.push(res.data.wish_groups[i])
+        this.allWishGroupsServices.push(res.data.wish_groups[i])
+        this.allWishGroupsProfessionals.push(res.data.wish_groups[i])
+        
+      }
+      // this.allWishGroupsProducts = res.data.wish_groups
+      // this.allWishGroupsServices = res.data.wish_groups
+      // this.allWishGroupsProfessionals = res.data.wish_groups
+      console.log('this.allWishGroupsProfessionals: ', this.allWishGroupsProfessionals);
       console.log('this.allWishGroupsProducts: ', this.allWishGroupsProducts);
       this.productsWishListDetail()
       this.servicesWishListDetail()
@@ -196,13 +205,16 @@ export class MyWishlistComponent implements OnInit {
     } else {
       this.CustomerService.wishlistParamDetail(profParaObj).subscribe(res => {
 
-        // console.log("Wishlist Details:", res)
+        console.log("Wishlist Details pro:", res)
         this.wishlistDetailPro = res.data
         this.wishListProLength = this.wishlistDetailPro.length
 
         // console.log("Professional wishlist detail data=======", this.wishlistDetailPro)
-
+        this.allWishGroupsProfessionals
+        console.log('before this.allWishGroupsProfessionals: ', this.allWishGroupsProfessionals);
+        console.log('res.grouped.wishlistitems.length: ', res.grouped.wishlistitems.length);
         if (res.grouped.wishlistitems.length > 0) {
+          console.log('ififififiifif')
           for (let i = 0; i < this.allWishGroupsProfessionals.length; i++) {
             let index = res.grouped.wishlistitems.findIndex(item => { return item._id == this.allWishGroupsProfessionals[i]._id })
             if (index != -1) {
@@ -284,14 +296,16 @@ export class MyWishlistComponent implements OnInit {
     } else {
       this.CustomerService.wishlistParamDetail(serParaObj).subscribe(res => {
 
-        // console.log("Wishlist Details:", res)
+        console.log("services--------Wishlist Details:", res)
         this.wishlistDetailServive = res.data
         this.wishListSerLength = this.wishlistDetailServive.length
 
         if (res.grouped.wishlistitems.length > 0) {
+          console.log('in ifffff')
           for (let i = 0; i < this.allWishGroupsServices.length; i++) {
             console.warn('-----------------in for---------');
             let index = res.grouped.wishlistitems.findIndex(item => { return item._id == this.allWishGroupsServices[i]._id })
+            console.log('index: ', index);
             if (index != -1) {
               this.allWishGroupsServices[i].records = res.grouped.wishlistitems[index].records
             }
@@ -368,7 +382,7 @@ export class MyWishlistComponent implements OnInit {
       return
     }else{
       var obj = {
-        wishlistitems_id:this.moveItemsArray[0],
+        wishlistitems_id:this.moveItemsArray,
         wish_groups_id:event.target.id
       }
       console.log('in elseeeee',obj)
@@ -378,7 +392,37 @@ export class MyWishlistComponent implements OnInit {
       })
     }
     this.ngOnInit()
-    this.moveItemsArray = []
+  }
+
+  multipleDelete(){
+    console.log('in functyion');
+    if(this.moveItemsArray.length==0){
+      this.toastr.error('Please Select at least one item')
+      return
+    }else{
+      for (let i = 0; i < this.moveItemsArray.length; i++) {
+        let element = this.moveItemsArray[i];
+        var obj = {
+          wishlistitems_id: element
+        }
+        this.CustomerService.removeWishlistData(obj).subscribe(res=>{
+          if (res.code == 200 || res.code == '200') {
+            this.toastr.success('Item Removed From Wishlist')
+            this.ngOnInit();
+          }
+        })
+      }
+    }
+  }
+
+  deleteGroup(event){
+    this.CustomerService.groupDelete({group_id:event.target.id}).subscribe(res=>{
+      console.log(res)
+      if(res.data==200 || res.data=='200'){
+        this.toastr.success('Group Deleted Successfully')
+      }
+    })
+    this.ngOnInit();
   }
 
 }
