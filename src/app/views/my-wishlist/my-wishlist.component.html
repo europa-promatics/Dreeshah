@@ -81,12 +81,13 @@
                                                     <label class="custom-control-label" for="customCheck1"></label>
                                                 </div>
                                             </div> -->
-                                            <!-- <div class="btnsNms">
-                                                <button type="button" class="btn btn-light" data-toggle="modal"
-                                                    data-target="#exampleModalCenters">
+                                            <div class="btnsNms">
+                                                <button (click)="compareItems('product')" type="button" class="btn btn-light">
                                                     Compare
                                                 </button>
-                                            </div> -->
+                                                <button type="button" id="productModalBtn" [hidden]="true" data-toggle="modal"
+                                                data-target="#exampleModalCenters"></button>
+                                            </div>
                                             <div class="btnsNms">
                                                 <div class="user_drop">
                                                     <button mat-button [matMenuTriggerFor]="menu">
@@ -112,7 +113,7 @@
                                         </div>
                                         <div class="d-flex ml-3 mt-3" *ngFor="let product of wishlistDetailProduct"
                                             style="position: relative;">
-                                            <input type="checkbox" id="{{product?._id}}"
+                                            <input type="checkbox" id="{{product?.product_id?._id}}"
                                                 (change)="checkBoxClick($event)" style="position: absolute;
                                             top: 4px;">
                                             <div class="images  ml-4 mt-0 mr-3">
@@ -149,12 +150,13 @@
                                                     <label class="custom-control-label" for="customCheck1"></label>
                                                 </div>
                                             </div> -->
-                                            <!-- <div class="btnsNms">
-                                                <button type="button" class="btn btn-light" data-toggle="modal"
-                                                    data-target="#exampleModalCenters">
+                                            <div class="btnsNms">
+                                                <button (click)="compareItems('product')" type="button" class="btn btn-light">
                                                     Compare
                                                 </button>
-                                            </div> -->
+                                                <button type="button" id="productModalBtn" [hidden]="true" data-toggle="modal"
+                                                data-target="#exampleModalCenters"></button>
+                                            </div>
                                             <div class="btnsNms">
                                                 <div class="user_drop">
                                                     <button mat-button [matMenuTriggerFor]="menu">
@@ -215,12 +217,13 @@
                                                     <label class="custom-control-label" for="customCheck1"></label>
                                                 </div>
                                             </div> -->
-                                            <!-- <div class="btnsNms">
-                                                <button type="button" class="btn btn-light" data-toggle="modal"
-                                                    data-target="#exampleModalCenters">
+                                            <div class="btnsNms">
+                                                <button (click)="compareItems('product')" type="button" class="btn btn-light">
                                                     Compare
                                                 </button>
-                                            </div> -->
+                                                <button type="button" id="productModalBtn" [hidden]="true" data-toggle="modal"
+                                                data-target="#exampleModalCenters"></button>
+                                            </div>
                                             <div class="btnsNms">
                                                 <div class="user_drop">
                                                     <button mat-button [matMenuTriggerFor]="menu">
@@ -312,12 +315,13 @@
                                                     <label class="custom-control-label" for="customCheck1"></label>
                                                 </div>
                                             </div> -->
-                                            <!-- <div class="btnsNms">
-                                                <button type="button" class="btn btn-light" data-toggle="modal"
-                                                    data-target="#exampleModalCenters">
+                                            <div class="btnsNms">
+                                                <button (click)="compareItems('professional')" type="button" class="btn btn-light">
                                                     Compare
                                                 </button>
-                                            </div> -->
+                                                <button type="button" id="professionalModalBtn" [hidden]="true" data-toggle="modal"
+                                                data-target="#ProfessionalCompare"></button>
+                                            </div>
                                             <div class="btnsNms">
                                                 <div class="user_drop">
                                                     <button mat-button [matMenuTriggerFor]="menu">
@@ -343,7 +347,7 @@
                                         </div>
                                         <div class="d-flex ml-3 mt-3" *ngFor="let pro of wishlistDetailPro"
                                             style="position: relative;">
-                                            <input type="checkbox" id="{{pro?._id}}" (change)="checkBoxClick($event)"
+                                            <input type="checkbox" id="{{pro?.professional_id?._id}}" (change)="checkBoxClick($event)"
                                                 style="position: absolute;
                                             top: 4px;">
                                             <div class="images  ml-4 mt-0 mr-3">
@@ -380,12 +384,13 @@
                                                     <label class="custom-control-label" for="customCheck1"></label>
                                                 </div>
                                             </div> -->
-                                            <!-- <div class="btnsNms">
-                                                <button type="button" class="btn btn-light" data-toggle="modal"
-                                                    data-target="#exampleModalCenters">
+                                            <div class="btnsNms">
+                                                <button (click)="compareItems('professional')" type="button" class="btn btn-light">
                                                     Compare
                                                 </button>
-                                            </div> -->
+                                                <button type="button" id="professionalModalBtn" [hidden]="true" data-toggle="modal"
+                                                data-target="#ProfessionalCompare"></button>
+                                            </div>
                                             <div class="btnsNms">
                                                 <div class="user_drop">
                                                     <button mat-button [matMenuTriggerFor]="menu">
@@ -446,12 +451,13 @@
                                                     <label class="custom-control-label" for="customCheck1"></label>
                                                 </div>
                                             </div> -->
-                                            <!-- <div class="btnsNms">
-                                                <button type="button" class="btn btn-light" data-toggle="modal"
-                                                    data-target="#exampleModalCenters">
+                                            <div class="btnsNms">
+                                                <button (click)="compareItems('professional')" type="button" class="btn btn-light">
                                                     Compare
                                                 </button>
-                                            </div> -->
+                                                <button type="button" id="professionalModalBtn" [hidden]="true" data-toggle="modal"
+                                                data-target="#ProfessionalCompare"></button>
+                                            </div>
                                             <div class="btnsNms">
                                                 <div class="user_drop">
                                                     <button mat-button [matMenuTriggerFor]="menu">
@@ -544,12 +550,13 @@
                                                     <label class="custom-control-label" for="customCheck1"></label>
                                                 </div>
                                             </div> -->
-                                            <!-- <div class="btnsNms">
-                                                <button type="button" class="btn btn-light" data-toggle="modal"
-                                                    data-target="#exampleModalCenters">
+                                            <div class="btnsNms">
+                                                <button (click)="compareItems('service')" type="button" class="btn btn-light">
                                                     Compare
                                                 </button>
-                                            </div> -->
+                                                <button type="button" id="serviceModalBtn" [hidden]="true" data-toggle="modal"
+                                                data-target="#ServiceCompare"></button>
+                                            </div>
                                             <div class="btnsNms">
                                                 <div class="user_drop">
                                                     <button mat-button [matMenuTriggerFor]="menu">
@@ -575,7 +582,7 @@
                                         </div>
                                         <div class="d-flex ml-3 mt-3" *ngFor="let service of wishlistDetailServive"
                                             style="position: relative;">
-                                            <input type="checkbox" id="{{service?._id}}"
+                                            <input type="checkbox" id="{{service?.service_id?._id}}"
                                                 (change)="checkBoxClick($event)" style="position: absolute;
                                             top: 4px;">
                                             <div class="images ml-4 mt-0 mr-3">
@@ -612,12 +619,13 @@
                                                     <label class="custom-control-label" for="customCheck1"></label>
                                                 </div>
                                             </div> -->
-                                            <!-- <div class="btnsNms">
-                                                <button type="button" class="btn btn-light" data-toggle="modal"
-                                                    data-target="#exampleModalCenters">
+                                            <div class="btnsNms">
+                                                <button (click)="compareItems('service')" type="button" class="btn btn-light">
                                                     Compare
                                                 </button>
-                                            </div> -->
+                                                <button type="button" id="serviceModalBtn" [hidden]="true" data-toggle="modal"
+                                                data-target="#ServiceCompare"></button>
+                                            </div>
                                             <div class="btnsNms">
                                                 <div class="user_drop">
                                                     <button mat-button [matMenuTriggerFor]="menu">
@@ -678,12 +686,13 @@
                                                     <label class="custom-control-label" for="customCheck1"></label>
                                                 </div>
                                             </div> -->
-                                            <!-- <div class="btnsNms">
-                                                <button type="button" class="btn btn-light" data-toggle="modal"
-                                                    data-target="#exampleModalCenters">
+                                            <div class="btnsNms">
+                                                <button (click)="compareItems('service')" type="button" class="btn btn-light">
                                                     Compare
                                                 </button>
-                                            </div> -->
+                                                <button type="button" id="serviceModalBtn" [hidden]="true" data-toggle="modal"
+                                                data-target="#ServiceCompare"></button>
+                                            </div>
                                             <div class="btnsNms">
                                                 <div class="user_drop">
                                                     <button mat-button [matMenuTriggerFor]="menu">
@@ -783,25 +792,65 @@
                         <h3>Product Details</h3><br>
                         <div class="row">
                             <div class="col-sm-6">
-                                <p>Product Name</p>
-                                <p>Product second</p>
+                                <p>Product Name:</p>
+                                <p>Category:</p>
+                                <p>Sub-Category:</p>
+                                <p>Product Unique Id:</p>
+                                <p>Product Type:</p>
+                                <p>Weight:</p>
+                                <p>Available Colors:</p>
+                                <p>Description:</p>
+                                <p>Available Size:</p>
+                                <p>Quantity:</p>
+                                <p>Rating:</p>
+                                <p>Vendor Name:</p>
                             </div>
                             <div class="col-sm-6">
-                                <p>Name</p>
-                                <p>Second</p>
+                                <p>{{product_1?.product_title}}</p>
+                                <p>{{product_1?.category_id?.name}}</p>
+                                <p>{{product_1?.sub_category_id?.name}}</p>
+                                <p>{{product_1?.product_unique_id}}</p>
+                                <p>{{product_1?.product_details?.product_type?.product_type}}</p>
+                                <p>{{product_1?.weight_details?.weight}}</p>
+                                <p><span *ngFor="let color of product_1?.available_color">{{color?.color_name}}</span></p>
+                                <p>{{product_1?.product_description}}</p>
+                                <p><span *ngFor="let size of product_1?.available_size">{{size?.size}}</span></p>
+                                <p><span *ngFor="let quantity of product_1?.quantity">{{quantity?.branch_quantity}}</span></p>
+                                <p>{{product_1?.total_rating}}</p>
+                                <p>{{product_1?.vendor?.vendor_name}}</p>
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-6 SpPadding">
-                        <h3>Others Details</h3><br>
+                        <h3>Product Details</h3><br>
                         <div class="row">
                             <div class="col-sm-6">
-                                <p>Product Name</p>
-                                <p>Product second</p>
+                                <p>Product Name:</p>
+                                <p>Category:</p>
+                                <p>Sub-Category:</p>
+                                <p>Product Unique Id:</p>
+                                <p>Product Type:</p>
+                                <p>Weight:</p>
+                                <p>Available Colors:</p>
+                                <p>Description:</p>
+                                <p>Available Size:</p>
+                                <p>Quantity:</p>
+                                <p>Rating:</p>
+                                <p>Vendor Name:</p>
                             </div>
                             <div class="col-sm-6">
-                                <p>Name</p>
-                                <p>Second</p>
+                                <p>{{product_2?.product_title}}</p>
+                                <p>{{product_2?.category_id?.name}}</p>
+                                <p>{{product_2?.sub_category_id?.name}}</p>
+                                <p>{{product_2?.product_unique_id}}</p>
+                                <p>{{product_2?.product_details?.product_type?.product_type}}</p>
+                                <p>{{product_2?.weight_details?.weight}}</p>
+                                <p><span *ngFor="let color of product_2?.available_color">{{color?.color_name}}</span></p>
+                                <p>{{product_2?.product_description}}</p>
+                                <p><span *ngFor="let size of product_2?.available_size">{{size?.size}}</span></p>
+                                <p><span *ngFor="let quantity of product_2?.quantity">{{quantity?.branch_quantity}}</span></p>
+                                <p>{{product_2?.total_rating}}</p>
+                                <p>{{product_2?.vendor?.vendor_name}}</p>
                             </div>
                         </div>
                     </div>
@@ -827,11 +876,11 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-sm-6 Spborder">
-                        <h3>Product Details</h3><br>
+                        <h3>Professional Details</h3><br>
                         <div class="row">
                             <div class="col-sm-6">
-                                <p>Product Name</p>
-                                <p>Product second</p>
+                                <p>Professioanl Name</p>
+                                <p>Professioanl second</p>
                             </div>
                             <div class="col-sm-6">
                                 <p>Name</p>
@@ -843,8 +892,8 @@
                         <h3>Others Details</h3><br>
                         <div class="row">
                             <div class="col-sm-6">
-                                <p>Product Name</p>
-                                <p>Product second</p>
+                                <p>Professioanl Name</p>
+                                <p>Professioanl second</p>
                             </div>
                             <div class="col-sm-6">
                                 <p>Name</p>
@@ -874,11 +923,11 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-sm-6 Spborder">
-                        <h3>Product Details</h3><br>
+                        <h3>Service Details</h3><br>
                         <div class="row">
                             <div class="col-sm-6">
-                                <p>Product Name</p>
-                                <p>Product second</p>
+                                <p>Service Name</p>
+                                <p>Service second</p>
                             </div>
                             <div class="col-sm-6">
                                 <p>Name</p>
@@ -890,8 +939,8 @@
                         <h3>Others Details</h3><br>
                         <div class="row">
                             <div class="col-sm-6">
-                                <p>Product Name</p>
-                                <p>Product second</p>
+                                <p>Service Name</p>
+                                <p>Service second</p>
                             </div>
                             <div class="col-sm-6">
                                 <p>Name</p>
