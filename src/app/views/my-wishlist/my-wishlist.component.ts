@@ -53,9 +53,15 @@ export class MyWishlistComponent implements OnInit {
   image_base_url = "https://developers.promaticstechnologies.com/dreeshah_apis/public/userProfile/"
   productImagePath = "https://developers.promaticstechnologies.com/dreeshah_apis/public/SellerProductImages/";
   serviceImagePath = "https://developers.promaticstechnologies.com/dreeshah_apis/public/ProfessionalServices/";
-  allWishGroupsProducts:any[] = [];
-  allWishGroupsServices:any[] = [];
-  allWishGroupsProfessionals: any[] = [];
+  allWishGroupsProducts;
+  allWishGroupsServices;
+  allWishGroupsProfessionals;
+  product_1: any;
+  product_2: any;
+  service_1: any;
+  service_2: any;
+  user_1: any;
+  user_2: any;
 
   constructor(
     public CustomerService: CustomerService,
@@ -71,27 +77,22 @@ export class MyWishlistComponent implements OnInit {
     this.moveItemsArray = []
     this.AllWishListDetail()
     // this.ProfessionalWishListDetail()
-    
+
 
 
     this.isLogin = localStorage.getItem("isLoggedIn")
     this.CustomerService.getUserDetails().subscribe(res => {
-      console.log('res: ', res);
-      for (let i = 0; i < res.data.wish_groups.length; i++) {
-        this.allWishGroupsProducts.push(res.data.wish_groups[i])
-        this.allWishGroupsServices.push(res.data.wish_groups[i])
-        this.allWishGroupsProfessionals.push(res.data.wish_groups[i])
-        
-      }
-      // this.allWishGroupsProducts = res.data.wish_groups
-      // this.allWishGroupsServices = res.data.wish_groups
-      // this.allWishGroupsProfessionals = res.data.wish_groups
-      console.log('this.allWishGroupsProfessionals: ', this.allWishGroupsProfessionals);
-      console.log('this.allWishGroupsProducts: ', this.allWishGroupsProducts);
-      this.productsWishListDetail()
-      this.servicesWishListDetail()
-      this.ProfessionalWishListDetail()
+      this.allWishGroupsProducts = res.data.wish_groups
     })
+    this.CustomerService.getUserDetails().subscribe(res2 => {
+      this.allWishGroupsProfessionals = res2.data.wish_groups
+    })
+    this.CustomerService.getUserDetails().subscribe(res3 => {
+      this.allWishGroupsServices = res3.data.wish_groups
+    })
+    this.productsWishListDetail()
+    this.ProfessionalWishListDetail()
+    this.servicesWishListDetail()
     if (!this.isLogin && localStorage.getItem("session_data")) {
       this.userId = localStorage.getItem("session_data")
 
@@ -145,8 +146,8 @@ export class MyWishlistComponent implements OnInit {
   // }
 
   AllWishListDetail() {
-    
-    console.log("inside wishlist details component",this.isLogin)
+
+    console.log("inside wishlist details component", this.isLogin)
     if (this.isLogin == "false") {
       console.log("In if")
       this.CustomerService.wishlistDetailGuest().subscribe(res => {
@@ -361,51 +362,51 @@ export class MyWishlistComponent implements OnInit {
     }
   }
 
-  checkBoxClick(event){
+  checkBoxClick(event) {
     const checked = event.target.checked
 
-    console.log('--------------',event.target.checked)
-    if(checked==true){
+    console.log('--------------', event.target.checked)
+    if (checked == true) {
       this.moveItemsArray.push(event.target.id) //wishlist item id
-    }else{
+    } else {
       const index = this.moveItemsArray.indexOf(event.target.id)
-      this.moveItemsArray.splice(index,1)
+      this.moveItemsArray.splice(index, 1)
     }
-    console.log('--------ARRAY------',this.moveItemsArray)
+    console.log('--------ARRAY------', this.moveItemsArray)
   }
 
-  moveToGroup(event){
-    console.log(event.target.id)
-    if(this.moveItemsArray.length==0){
+  moveToGroup(event) {
+    console.log(event.target.id)  
+    if (this.moveItemsArray.length == 0) {
       console.log('in ifff')
       this.toastr.error('Please Select at least one item')
       return
-    }else{
+    } else {
       var obj = {
-        wishlistitems_id:this.moveItemsArray,
-        wish_groups_id:event.target.id
+        wishlistitems_id: this.moveItemsArray,
+        wish_groups_id: event.target.id
       }
-      console.log('in elseeeee',obj)
+      console.log('in elseeeee', obj)
 
-      this.CustomerService.moveToGroup(obj).subscribe(data=>{
-        console.log('moved group data',data)
+      this.CustomerService.moveToGroup(obj).subscribe(data => {
+        console.log('moved group data', data)
       })
     }
     this.ngOnInit()
   }
 
-  multipleDelete(){
+  multipleDelete() {
     console.log('in functyion');
-    if(this.moveItemsArray.length==0){
+    if (this.moveItemsArray.length == 0) {
       this.toastr.error('Please Select at least one item')
       return
-    }else{
+    } else {
       for (let i = 0; i < this.moveItemsArray.length; i++) {
         let element = this.moveItemsArray[i];
         var obj = {
           wishlistitems_id: element
         }
-        this.CustomerService.removeWishlistData(obj).subscribe(res=>{
+        this.CustomerService.removeWishlistData(obj).subscribe(res => {
           if (res.code == 200 || res.code == '200') {
             this.toastr.success('Item Removed From Wishlist')
             this.ngOnInit();
@@ -415,14 +416,55 @@ export class MyWishlistComponent implements OnInit {
     }
   }
 
-  deleteGroup(event){
-    this.CustomerService.groupDelete({group_id:event.target.id}).subscribe(res=>{
+  deleteGroup(event) {
+    this.CustomerService.groupDelete({ group_id: event.target.id }).subscribe(res => {
       console.log(res)
-      if(res.data==200 || res.data=='200'){
+      if (res.data == 200 || res.data == '200') {
         this.toastr.success('Group Deleted Successfully')
       }
     })
     this.ngOnInit();
+  }
+
+  compareItems(type) {
+    if (this.moveItemsArray.length == 2) {
+      if (type == 'product') {
+        this.CustomerService.getProductDetail({ product_id: this.moveItemsArray[0] }).subscribe(data => {
+          console.log('product detail--1-----', data.details)
+          this.product_1 = data.details
+        })
+        this.CustomerService.getProductDetail({ product_id: this.moveItemsArray[1] }).subscribe(data => {
+          console.log('product detail---2----', data.details)
+          this.product_2 = data.details
+        })
+        $('#productModalBtn').click()
+      }
+      else if (type == 'professional') {
+        this.CustomerService.getProductDetail({ product_id: this.moveItemsArray[0] }).subscribe(data => {
+          console.log('user detail--1-----', data.details)
+          this.user_1 = data.details
+        })
+        this.CustomerService.getProductDetail({ product_id: this.moveItemsArray[1] }).subscribe(data => {
+          console.log('user detail---2----', data.details)
+          this.user_2 = data.details
+        })
+        $('#professionalModalBtn').click()
+      }
+      else if (type == 'service') {
+        this.CustomerService.getProfessionalServicesDetails({ service_id: this.moveItemsArray[0] }).subscribe(data => {
+          console.log('service detail--1-----', data.result)
+          this.service_1 = data.result
+        })
+        this.CustomerService.getProfessionalServicesDetails({ service_id: this.moveItemsArray[1] }).subscribe(data => {
+          console.log('service detail---2----', data.result)
+          this.service_2 = data.result
+        })
+        $('#serviceModalBtn').click()
+      }
+    }
+    else {
+      this.toastr.error('Please select two items to compare');
+    }
   }
 
 }

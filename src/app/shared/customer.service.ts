@@ -2599,26 +2599,32 @@ export class CustomerService {
       )
   }
 
-  createNewGroup(data):Observable<any>{
+  createNewGroup(data): Observable<any> {
     let API_URL = `${this.apiUrl}/addWishGroups`;
-    return this.httpClient.post(API_URL,data,this.httpOptions).pipe(map(res=>{
+    return this.httpClient.post(API_URL, data, this.httpOptions).pipe(map(res => {
       return res
     }))
   }
 
-  moveToGroup(data):Observable<any>{
+  moveToGroup(data): Observable<any> {
     let API_URL = `${this.apiUrl}/editWishList`;
-    return this.httpClient.post(API_URL,data,this.httpOptions).pipe(map(res=>{
+    return this.httpClient.post(API_URL, data, this.httpOptions).pipe(map(res => {
       return res
     }))
   }
 
-  groupDelete(data):Observable<any>{
+  groupDelete(data): Observable<any> {
     let API_URL = `${this.apiUrl}/delete/group`;
-    return this.httpClient.post(API_URL,data,this.httpOptions).pipe(map(res=>{
+    return this.httpClient.post(API_URL, data, this.httpOptions).pipe(map(res => {
       return res
     }))
   }
-  
+
+  getProfessionalServicesDetails(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/getProfessionalServicesDetails`;
+    return this.httpClient.post(API_URL, data).pipe(map(res => {
+      return res
+    }))
+  }
 
 }
