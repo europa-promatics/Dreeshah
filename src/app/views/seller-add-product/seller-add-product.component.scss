@@ -1,3 +1,32 @@
 .col-md-12.border-top.mt-3 {
     padding: 20px 10px 20px 10px;
 }
+.imagess{
+    width: 69px;
+    height: 45px;
+    object-fit: cover;
+}
+.imagess img{
+    height: inherit;
+    object-fit: cover;
+    margin: -3px;   
+}
+.btn-custon{
+    margin-left: 106px;
+        /* background-color: #ececec; */
+        border-radius: 38px;
+        padding: 2px 25px;
+        border: 1px solid #f1f1f1;
+}
+.btn-custona{
+       /* background-color: #ececec; */
+       border-radius: 38px;
+       padding: 2px 25px;
+       border: 1px solid #f1f1f1;
+}
+.Custom-Color{
+    height: auto;
+    padding: 11px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+}
