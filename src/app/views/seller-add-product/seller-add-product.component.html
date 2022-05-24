@@ -86,7 +86,7 @@
                                             <h2>Media</h2>
                                         </div>
                                         <a class="theme-link" href="#" data-toggle="modal" data-target="#urlModal"
-                                            aria-haspopup="true" aria-expanded="false" >
+                                            aria-haspopup="true" aria-expanded="false">
                                             Add Media from URL
 
                                         </a>
@@ -118,7 +118,8 @@
 
                                         </div>
                                     </div>
-                                    <ngx-dropzone (change)="onSelect($event)" accept="image/jpeg,image/jpg,image/png,image/gif">
+                                    <ngx-dropzone (change)="onSelect($event)"
+                                        accept="image/jpeg,image/jpg,image/png,image/gif">
                                         <ngx-dropzone-label [(ngModel)]="media" required
                                             [formControl]="productForm.controls['media']">Add Files
                                         </ngx-dropzone-label>
@@ -129,6 +130,7 @@
                                         </ngx-dropzone-preview>
 
                                     </ngx-dropzone>
+                                    <p style="color: red;">Note:Image size should be less then 5 mb</p>
                                     <div>
                                         <p style="color: red; "
                                             *ngIf="productForm.controls['media'].errors?.required && ( productForm.controls['media'].touched || submit_button)">
@@ -169,7 +171,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <mat-form-field appearance="">
-                                                <mat-label>Compare at Price</mat-label>
+                                                <mat-label>Discount</mat-label>
                                                 <input (keypress)="keyPressNumbersDecimal($event)" matInput
                                                     placeholder="AED 0.00" required
                                                     [formControl]="productForm.controls['comprice']"
@@ -177,7 +179,7 @@
                                             </mat-form-field>
                                             <p style="color: red; margin-top: -1.25em;"
                                                 *ngIf="!productForm.controls['comprice'].valid  && ( productForm.controls['comprice'].touched || submit_button)">
-                                                Compare Price is Required</p>
+                                                Discount is Required</p>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -203,30 +205,53 @@
                                                 *ngIf="!productForm.controls['margin'].valid  && ( productForm.controls['margin'].touched || submit_button)">
                                                 Margin is Required</p>
                                         </div>
-                                      
-                                                <mat-form-field appearance="">
-                                                    <mat-label>Profit</mat-label>
-                                                    <input (keyup)="compval()" (keypress)="keyPressNumbersDecimal($event)"
-                                                        matInput placeholder="-" required
-                                                        [formControl]="productForm.controls['profit']" [(ngModel)]="profit">
-                                                </mat-form-field>
-                                                <p style="color: red; margin-top: -1.25em;"
-                                                    *ngIf="!productForm.controls['profit'].valid  && ( productForm.controls['profit'].touched || submit_button)">
-                                                    Profit is Required</p>
-                                                <p style="color: red; margin-top: -1.25em;" *ngIf="numbutton">
-                                                    Profit Should be less than Price
-                                                </p>
-                                           
+
+                                        <mat-form-field appearance="">
+                                            <mat-label>Profit</mat-label>
+                                            <input (keyup)="compval()" (keypress)="keyPressNumbersDecimal($event)"
+                                                matInput placeholder="-" required
+                                                [formControl]="productForm.controls['profit']" [(ngModel)]="profit">
+                                        </mat-form-field>
+                                        <p style="color: red; margin-top: -1.25em;"
+                                            *ngIf="!productForm.controls['profit'].valid  && ( productForm.controls['profit'].touched || submit_button)">
+                                            Profit is Required</p>
+                                        <p style="color: red; margin-top: -1.25em;" *ngIf="numbutton">
+                                            Profit Should be less than Price
+                                        </p>
+
                                     </div>
-                                   
-                                       
-                                 
-                                    
+
+
+
+
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <mat-checkbox class="" (change)="onChange5($event)"> Charge tax on this
                                                 Product</mat-checkbox>
                                         </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group" *ngIf="status5=='true'">
+                                            <mat-form-field appearance="">
+                                                <mat-label>Tax Price</mat-label>
+                                                <input (keypress)="keyPressNumbersDecimal($event)" matInput
+                                                    placeholder="Enter Percentage " required
+                                                    [formControl]="productForm.controls['taxPrice']"
+                                                    [(ngModel)]="taxPrice">
+
+                                            </mat-form-field>
+                                            <p style="color: red; margin-top: -1.25em;"
+                                                *ngIf="!productForm.controls['taxPrice'].valid  && ( productForm.controls['taxPrice'].touched || submit_button)">
+                                                Price is Required
+                                            </p>
+                                            <p style="color: red;">Note: Value must be in percentage e.g  0-100</p>
+                                            <!-- <p style="color: red; margin-top: -1.25em;"
+                                                    *ngIf="!numbutton">
+                                                    Enter Number Only
+                                                </p>  -->
+
+                                        </div>
+                                       
                                     </div>
                                 </div>
                             </div>
@@ -402,6 +427,38 @@
                                                 Product</mat-checkbox>
                                         </div>
                                     </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <mat-form-field>
+                                                <mat-label>Shipping  Options</mat-label>
+                                                <mat-select [formControl]="productForm.controls['ShippingOption']"
+                                                    [(ngModel)]="ShippingOption" (chnage)="changeShippingOption($event)">
+                                                    <mat-option value="professional">Professional</mat-option>
+                                                    <mat-option value="customer">Customer</mat-option>
+                                                    <mat-option value="dreeshah_admin">Dreeshah admin</mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                            <p style="color: red; "
+                                                *ngIf="!productForm.controls['ShippingOption'].valid  && ( productForm.controls['ShippingOption'].touched || submit_button)">
+                                                Select the Shipping Option</p>
+                                           
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group" *ngIf="ShippingOption=='professional'">
+                                            <mat-form-field appearance="">
+                                                <mat-label>Shipping Charges</mat-label>
+                                                <input matInput placeholder="Professional Shipping Charges"
+                                                    required [formControl]="productForm.controls['professionalShippingCharges']"
+                                                    [(ngModel)]="professionalShippingCharges"
+                                                    (keypress)="numberOnly($event)">
+                                            </mat-form-field>
+                                            <p style="color: red; "
+                                                *ngIf="!productForm.controls['professionalShippingCharges'].valid  && ( productForm.controls['professionalShippingCharges'].touched || submit_button)">
+                                                 Shipping Charges Required</p>
+                                           
+                                        </div>
+                                    </div>
                                     <div class="form-group col-md-12 border-top mt-3">
                                         <div class="seller-prod-list-heading">
                                             <h2>Weight</h2>
@@ -454,7 +511,7 @@
                                             <small>In most cases, Where the product is manufactured.</small>
                                         </div>
                                     </div>
-                                    <div class="col-md-12">
+                                    <!-- <div class="col-md-12">
                                         <div class="form-group">
                                             <mat-form-field appearance="">
                                                 <mat-label>HS (Harmonized System) Code</mat-label>
@@ -467,7 +524,7 @@
                                                 This Field is Required</p>
                                             <small>Used by border officersto classify this product.</small>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>
@@ -715,17 +772,17 @@
                                     </div>
                                 </div>
 
-                                </div>
-                            </div> 
-                        </div> 
+                            </div>
+                        </div>
+                    </div>
                     <div class="col-md-4">
-                                    <!-- <div class="card">
+                        <!-- <div class="card">
                                     <div class="card-body"> -->
-                                    <!-- <div class="col-md-12">
+                        <!-- <div class="col-md-12">
                                             
                                         </div> -->
 
-                                    <!-- <div class="panel-group" id="accordion" role="tablist"
+                        <!-- <div class="panel-group" id="accordion" role="tablist"
                                             aria-multiselectable="true">
                                             <div class="panel panel-default">
                                                 <div class="panel-heading" role="tab" id="headingOne">
@@ -809,20 +866,20 @@
                                                 </div>
                                             </div>
                                         </div> -->
-                                    <!-- </div>
+                        <!-- </div>
                                 </div> -->
 
-                            </div>
-                            <div class="col-md-8 seller-prod-submit mt-3" align="center">
-                                <div class="upload-btn mt-2">
-                                    <button type="submit" class="btn btn-change-fill min-width-0"
-                                        (click)="publish()">Publish</button>
-                                    <button  class="btn btn-change-fill min-width-0" routerLink="/preview">Preview</button>
-                                   <!-- <button class="btn btn-change-fill min-width-0">Save</button> -->
-                                    <!-- <button class="btn btn-change-fill min-width-0">Cancel</button>
+                    </div>
+                    <div class="col-md-8 seller-prod-submit mt-3" align="center">
+                        <div class="upload-btn mt-2">
+                            <button type="submit" class="btn btn-change-fill min-width-0"
+                                (click)="publish()">Publish</button>
+                            <button class="btn btn-change-fill min-width-0" routerLink="/preview">Preview</button>
+                            <!-- <button class="btn btn-change-fill min-width-0">Save</button> -->
+                            <!-- <button class="btn btn-change-fill min-width-0">Cancel</button>
                                     <button class="btn btn-change-fill min-width-0">Save Later</button> -->
-                                </div>
-                                <!-- <button class="btn btn-change-fill mr-3">
+                        </div>
+                        <!-- <button class="btn btn-change-fill mr-3">
                     Save
                     </button>
                     <button class="btn btn-change-fill mr-3">
@@ -831,8 +888,8 @@
                     <button class="btn btn-change-fill">
                     Discard
                     </button> -->
-                            </div>
-                        </div>
+                    </div>
+                </div>
 
 
 

@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { CustomerService } from '../../shared/customer.service';
 import { FormBuilder, FormGroup, Validators, FormControl, ValidationErrors } from '@angular/forms';
-import {AbstractControl, ValidatorFn } from '@angular/forms';
+import { AbstractControl, ValidatorFn } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ToastrService } from 'ngx-toastr'
 import { environment } from 'src/environments/environment';
+import { assertNotNull } from '@angular/compiler/src/output/output_ast';
 //import { AnyTxtRecord } from 'dns';
-declare var $:any;
+declare var $: any;
 @Component({
   selector: 'app-seller-add-product',
   templateUrl: './seller-add-product.component.html',
@@ -14,26 +15,33 @@ declare var $:any;
 })
 export class SellerAddProductComponent implements OnInit {
   productForm: FormGroup;
- 
-  checked ;
+
+  checked;
   submit_button = false;
   isTouch = false;
   title: any;
-  category:any;
-  sub_category:any;
-  categoryData:[];
+  category: any;
+  sub_category: any;
+  categoryData: [];
   userData;
-  pricing = {};
+  pricing = {
+    'price': null,
+    'comprice': null,
+    'costPerItem': null,
+    'margin': null,
+    'profit': null,
+    'tax': null
+  };
   inventory1 = {};
   quantity = {};
   customInfo = {};
-  numbutton =false;
+  numbutton = false;
   price: any;
   comprice: any;
   costitem: any;
   margin: any;
   profit: any;
-  tags:any;
+  tags: any;
   inventory: any;
   sku: any;
   field1: any;
@@ -48,15 +56,15 @@ export class SellerAddProductComponent implements OnInit {
   ServiceSubCat = [];
   ServiceCat = []
   region: any;
-  status1="no";
-  status2="no";
-  status3="false";
-  status4="false";
-  status5="false";
+  status1 = "no";
+  status2 = "no";
+  status3 = "false";
+  status4 = "false";
+  status5 = "false";
   collec: any;
   code: any;
   cbox1: any;
-  subvar=false;
+  subvar = false;
   ckeditorContent;
   media: any;
   vintage: any;
@@ -75,7 +83,7 @@ export class SellerAddProductComponent implements OnInit {
   branch_name_en
   qty
   qtyObject
-  itemQtyArr=[]
+  itemQtyArr = []
   collection
   weightData
   weightUnit
@@ -87,20 +95,22 @@ export class SellerAddProductComponent implements OnInit {
   productColorCode
   colorObject
   sizeObject
-  colorArr=[]
-  sizeArr=[]
-
+  colorArr = []
+  sizeArr = []
+  taxPrice: any;
+  ShippingOption:any
+  professionalShippingCharges: any;
   onSelect(event) {
     console.log(event);
 
     this.files.push(...event.addedFiles);
-    if(this.files.length==0){
-      this.isTouch=false
-    }else{
-      this.isTouch=true
+    if (this.files.length == 0) {
+      this.isTouch = false
+    } else {
+      this.isTouch = true
     }
     // this.isTouch = true;
-    this.media=this.files;
+    this.media = this.files;
     console.log(this.files)
   }
 
@@ -112,27 +122,27 @@ export class SellerAddProductComponent implements OnInit {
     console.log(this.url)
     this.validURL(this.url)
     //if(this.url ){
-      if(this.validURL(this.url)){
-          this.subvar = false
-          this.files2.push(this.url);
-          $('#urlModal').modal("hide")
-      }else{
-          this.subvar=true;
-  }
-  this.url=''
+    if (this.validURL(this.url)) {
+      this.subvar = false
+      this.files2.push(this.url);
+      $('#urlModal').modal("hide")
+    } else {
+      this.subvar = true;
+    }
+    this.url = ''
   }
 
-   validURL(url) {
-     var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol 
-     '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name 
-     '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v$4) address 
-     '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path 
-     '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string 
-     '(\\#[-a-z\\d_]*)?$','i'); // fragment locator return !!
-     
-     return pattern.test(url)
-    }
-   
+  validURL(url) {
+    var pattern = new RegExp('^(https?:\\/\\/)?' + // protocol 
+      '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name 
+      '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v$4) address 
+      '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path 
+      '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string 
+      '(\\#[-a-z\\d_]*)?$', 'i'); // fragment locator return !!
+
+    return pattern.test(url)
+  }
+
   removeRelatedImage(f) {
     // alert("ppppp")
     //this.Service_data.related_images.splice(i, 1)
@@ -142,7 +152,7 @@ export class SellerAddProductComponent implements OnInit {
   onChange1(evt1) {
     //this.condCheck();
     if (evt1.checked == true) {
-      this.status1 = "yes";  
+      this.status1 = "yes";
       this.productForm.controls['weight'].setValidators([Validators.required]);
       this.productForm.controls['weight'].updateValueAndValidity();
     } else {
@@ -153,22 +163,22 @@ export class SellerAddProductComponent implements OnInit {
     console.log(this.status1)
   }
 
- /*  condCheck(){
-    
-      if (this.checked.value == 'true' ) {
-          this.productForm.controls['weight'].setValidators([Validators.required]);
-          this.productForm.controls['weight'].updateValueAndValidity();
-      } else {
-          this.productForm.controls['weight'].clearValidators();
-          this.productForm.controls['weight'].updateValueAndValidity();
-      }
-  
-  } */
+  /*  condCheck(){
+     
+       if (this.checked.value == 'true' ) {
+           this.productForm.controls['weight'].setValidators([Validators.required]);
+           this.productForm.controls['weight'].updateValueAndValidity();
+       } else {
+           this.productForm.controls['weight'].clearValidators();
+           this.productForm.controls['weight'].updateValueAndValidity();
+       }
+   
+   } */
   // if(this.status1 == "yes"){
   //   this.productForm.get('weight').setValidators([
-    
+
   //   Validators.required,
-    
+
   //   ])
   // }
 
@@ -185,7 +195,7 @@ export class SellerAddProductComponent implements OnInit {
   onChange3(evt3) {
     //console.log("evt",evt3)
     if (evt3.checked == true) {
-      this.status3 ="true";
+      this.status3 = "true";
     } else {
       this.status3 = "false";
     }
@@ -195,7 +205,7 @@ export class SellerAddProductComponent implements OnInit {
   onChange4(evt4) {
     //console.log("evt",evt3)
     if (evt4.checked == true) {
-      this.status4 ="true";
+      this.status4 = "true";
     } else {
       this.status4 = "false";
     }
@@ -204,9 +214,11 @@ export class SellerAddProductComponent implements OnInit {
   onChange5(evt5) {
     //console.log("evt",evt5)
     if (evt5.checked == true) {
-      this.status5 ="true";
+      this.status5 = "true";
+      this.productForm.controls['taxPrice'].setValidators(Validators.required)
     } else {
       this.status5 = "false";
+      this.productForm.controls['taxPrice'].clearValidators()
     }
     console.log(this.status5)
   }
@@ -222,7 +234,7 @@ export class SellerAddProductComponent implements OnInit {
     private toastr: ToastrService,
     private router: Router,
   ) {
-    
+
     const reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
     this.productForm = this.formBuilder.group({
       'title': [null, Validators.compose([Validators.required])],
@@ -242,8 +254,8 @@ export class SellerAddProductComponent implements OnInit {
       'region': [null, Validators.compose([Validators.required])],
       //'weight': [null, Validators.compose([Validators.required])],
       'weight': [null],
-      'weightUnit' : [null],
-      'code': [null, Validators.compose([Validators.required])],
+      'weightUnit': [null],
+      // 'code': [null, Validators.compose([Validators.required])],
       //'checked': [false, Validators.compose([Validators.requiredTrue])],
       //'checked': [false],
       'ckedit': [null, Validators.compose([Validators.required])],
@@ -254,41 +266,44 @@ export class SellerAddProductComponent implements OnInit {
       'vendor': [null, Validators.compose([Validators.required])],
       'collection': [null, Validators.compose([Validators.required])],
       'tags': [null, Validators.compose([Validators.required])],
-    }  ) ;
-    
-    
+      "taxPrice":[null],
+      'ShippingOption': [null, Validators.compose([Validators.required])],
+      'professionalShippingCharges': [null],
+    });
+
+
 
   }
 
   ngOnInit(): void {
     this.getCategory();
-    this.professId=localStorage['userData'] != null ? JSON.parse(localStorage['userData']) : null;
+    this.professId = localStorage['userData'] != null ? JSON.parse(localStorage['userData']) : null;
     console.log(this.professId)
 
     this.CustomerService.getInventory().subscribe(data => {
-    //console.log("Response of the inventory is=====",data);
-     this.inventoryData=data.result
-     console.log("Response of the inventory is=====",this.inventoryData);
+      //console.log("Response of the inventory is=====",data);
+      this.inventoryData = data.result
+      console.log("Response of the inventory is=====", this.inventoryData);
     })
 
     this.CustomerService.getProductType().subscribe(res => {
       //console.log("Response of the product type is=====",res);
-       this.productTypeData=res.product_types
-       console.log("Response of the product type is=====",this.productTypeData);
+      this.productTypeData = res.product_types
+      console.log("Response of the product type is=====", this.productTypeData);
     })
 
     this.CustomerService.getBranchList().subscribe(res => {
       //console.log("Response of the Branch List is=====",res);
-       this.branchListData=res.result
-       console.log("Response of the Branch List is=====",this.branchListData);
+      this.branchListData = res.result
+      console.log("Response of the Branch List is=====", this.branchListData);
     })
-   
-    $(document).ready(function(){
-      $("#add-address-btn").click(function(){
+
+    $(document).ready(function () {
+      $("#add-address-btn").click(function () {
         $(".add-address-form").toggle();
       });
     });
-    
+
   }
 
 
@@ -300,122 +315,132 @@ export class SellerAddProductComponent implements OnInit {
       return null;
     }
   }
-  
+
 
 
   getCategory() {
-    this.CustomerService.getCategory().subscribe(data => {
-      console.log(data);
-     this.categoryData=data.categories
-     console.log(this.categoryData);
+
+    this.CustomerService.getUserDetails().subscribe(res => {
+      console.log("cat==>", res);
+
+      this.categoryData = res.data.service_categories
+      console.log(this.categoryData);
     })
   }
 
-  
+  changeShippingOption(e){
+if(e.target.value=='professional'){
+  this.productForm.controls['professionalShippingCharges'].setValidators(Validators.required)
+}else{
+  this.productForm.controls['professionalShippingCharges'].clearValidators()
+}
+  }
 
-  keyPressNumbersDecimal(event) {  
+
+  keyPressNumbersDecimal(event) {
     //this.compval()  
-    var charCode = (event.which) ? event.which : event.keyCode;    
-    if (charCode != 46 && charCode > 31      
-      && (charCode < 48 || charCode > 57)) {      
-        event.preventDefault();      
-        //this.numbutton=false;
-        return false;      
-            
-      }else{  
+    var charCode = (event.which) ? event.which : event.keyCode;
+    if (charCode != 46 && charCode > 31
+      && (charCode < 48 || charCode > 57)) {
+      event.preventDefault();
+      //this.numbutton=false;
+      return false;
+
+    } else {
       //this.numbutton=true;
-      return true;}
-               
-    }
-
-
-    numberOnly(event): boolean {
-      const charCode = (event.which) ? event.which : event.keyCode;
-      if (charCode > 31 && (charCode < 48 || charCode > 57)) {
-        return false;
-      }
       return true;
-  
     }
 
-    compval(){
-      console.log(this.price);
-        console.log(this.profit);
-      if(parseFloat(this.profit)>parseFloat(this.price)){
-        
-        this.numbutton=true;
-      }else{
-        this.numbutton=false;
-      }
+  }
+
+
+  numberOnly(event): boolean {
+    const charCode = (event.which) ? event.which : event.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+      return false;
     }
-    
+    return true;
 
-   variantSubmit(){
-     this.productColor= this.color
-     this.productSize = this.size
-     this.productColorCode = this.colorCode
-    console.log("Color>>>>>",this.color)
-    console.log("Size>>>>>",this.size)
-    console.log("Color Code>>>>>",this.colorCode)
+  }
 
-    this.colorObject={
-      color_name : this.color ,
-      color_code: this.colorCode ,
+  compval() {
+    console.log(this.price);
+    console.log(this.profit);
+    if (parseFloat(this.profit) > parseFloat(this.price)) {
+
+      this.numbutton = true;
+    } else {
+      this.numbutton = false;
+    }
+  }
+
+
+  variantSubmit() {
+    this.productColor = this.color
+    this.productSize = this.size
+    this.productColorCode = this.colorCode
+    console.log("Color>>>>>", this.color)
+    console.log("Size>>>>>", this.size)
+    console.log("Color Code>>>>>", this.colorCode)
+
+    this.colorObject = {
+      color_name: this.color,
+      color_code: this.colorCode,
     }
     this.colorArr.push(this.colorObject)
-    console.log("Color Object to be sent is>>>>>",this.colorObject)
+    console.log("Color Object to be sent is>>>>>", this.colorObject)
 
-    this.sizeObject= {
-      size : this.size
+    this.sizeObject = {
+      size: this.size
     }
-    console.log("Size Object to be sent is>>>>>",this.sizeObject)
+    console.log("Size Object to be sent is>>>>>", this.sizeObject)
 
     this.sizeArr.push(this.sizeObject)
 
     this.toastr.success("Added Successfully")
 
-    this.color=''
+    this.color = ''
     this.size = ''
     this.colorCode = ''
 
     $('#variantModal').modal('hide');
-   }
+  }
 
 
 
 
   getSubCat(event) {
-    
+
     console.log(event)
-    this.CustomerService.getSubCat(event).subscribe(data =>{
+    this.CustomerService.getSubCat(event).subscribe(data => {
       console.log(data);
-      this.ServiceSubCat=data.sub_categories
+      this.ServiceSubCat = data.sub_categories
       console.log(this.ServiceSubCat);
     })
-    
-    
-    
+
+
+
   }
 
-  getVendorList(event){
-    var obj={
+  getVendorList(event) {
+    var obj = {
       product_type_id: event
     }
     console.log(event)
-    this.CustomerService.getProductVendorType(obj).subscribe(data =>{
+    this.CustomerService.getProductVendorType(obj).subscribe(data => {
       //console.log("Reponse of the vendor List:",data);
-      this.vendorTypeData=data.result;
-      console.log("Reponse of the vendor List:",this.vendorTypeData);
+      this.vendorTypeData = data.result;
+      console.log("Reponse of the vendor List:", this.vendorTypeData);
     })
 
   }
 
 
-  addQuantity(index,quant){
-    console.log("Quantity is:",quant)
-    console.log("Index of the branch is:",index)
+  addQuantity(index, quant) {
+    console.log("Quantity is:", quant)
+    console.log("Index of the branch is:", index)
     this.branchListData[index].quantity = quant
-    console.log("array is===",this.branchListData)
+    console.log("array is===", this.branchListData)
   }
 
 
@@ -423,12 +448,12 @@ export class SellerAddProductComponent implements OnInit {
 
   publish() {
     console.log(this.files)
-   /*  if(parseInt(this.profit)>parseInt(this.price)){  
-        this.numbutton=true;
-        return
-    }else{
-          this.numbutton=false;
-         } */
+    /*  if(parseInt(this.profit)>parseInt(this.price)){  
+         this.numbutton=true;
+         return
+     }else{
+           this.numbutton=false;
+          } */
 
 
     this.submit_button = true;
@@ -437,7 +462,11 @@ export class SellerAddProductComponent implements OnInit {
       'comprice': parseFloat(this.productForm.value.comprice),
       'costPerItem': parseFloat(this.productForm.value.costitem),
       'margin': parseFloat(this.productForm.value.costitem),
-      'profit': parseFloat(this.productForm.value.profit)
+      'profit': parseFloat(this.productForm.value.profit),
+      'tax': null
+    }
+    if (this.status5) {
+      this.pricing.tax = this.taxPrice
     }
 
     this.inventory1 = {
@@ -462,43 +491,42 @@ export class SellerAddProductComponent implements OnInit {
       'unit': this.productForm.value.weightUnit
     }
 
-    this.product_details ={
-      product_type : this.productType ,
-      vendor : this.vendor,
-      collection : this.collection ,
+    this.product_details = {
+      product_type: this.productType,
+      vendor: this.vendor,
+      collection: this.collection,
+    }
+
+
+    this.branchListData.forEach(element => {
+      this.qtyObject = {
+        branch_name: element.branch_name_en,
+        branch_quantity: element.quantity,
+        branch_id: element._id
       }
+      this.itemQtyArr.push(this.qtyObject)
+      //console.log('aaaaaaaa',this.itemQtyArr)
+    })
 
+    console.log("Product Category Id is>>>>>", this.productForm.value.category)
+    console.log("Product Sub Category Id is>>>>>", this.productForm.value.sub_category)
+    console.log("Product Title is>>>>>", this.productForm.value.title)
+    console.log("Product Description is>>>>>", this.productForm.value.ckedit)
+    console.log("Pricing is>>>>>", this.pricing)
+    console.log("Inventory is>>>>>", this.inventory1)
+    console.log("Reponse of the quantity from branch in FORM=====", this.itemQtyArr)
+    console.log("Shipping Status Data is>>>>>", this.status1)
+    console.log("Weight Data is>>>>>", this.weightData)
+    console.log("Custome Information Data is>>>>>", this.customInfo)
+    console.log("Varaint Status Data is>>>>>", this.status2)
+    console.log("Visible to proffesional Status Data is>>>>>", this.status3)
+    console.log("Visible to customer Status Data is>>>>>", this.status4)
+    console.log("Charge Tax Status>>>>>", this.status5)
+    console.log("Available color data is>>>>>", this.colorObject)
+    console.log("Available Size data is>>>>>", this.sizeObject)
+    console.log("Product Details data is>>>>>", this.product_details)
+    console.log("TAGS>>>>>>>>", this.tags)
 
-    this.branchListData.forEach(element=>
-      {
-        this.qtyObject={
-          branch_name : element.branch_name_en,
-          branch_quantity : element.quantity,
-          branch_id :element._id
-        }
-        this.itemQtyArr.push(this.qtyObject)
-        //console.log('aaaaaaaa',this.itemQtyArr)
-      })
-
-    console.log("Product Category Id is>>>>>",this.productForm.value.category)
-    console.log("Product Sub Category Id is>>>>>",this.productForm.value.sub_category)
-    console.log("Product Title is>>>>>",this.productForm.value.title)
-    console.log("Product Description is>>>>>",this.productForm.value.ckedit)
-    console.log("Pricing is>>>>>",this.pricing)
-    console.log("Inventory is>>>>>",this.inventory1)
-    console.log("Reponse of the quantity from branch in FORM=====",this.itemQtyArr)
-    console.log("Shipping Status Data is>>>>>",this.status1)
-    console.log("Weight Data is>>>>>",this.weightData)
-    console.log("Custome Information Data is>>>>>",this.customInfo)
-    console.log("Varaint Status Data is>>>>>",this.status2)
-    console.log("Visible to proffesional Status Data is>>>>>",this.status3)
-    console.log("Visible to customer Status Data is>>>>>",this.status4)
-    console.log("Charge Tax Status>>>>>",this.status5)
-    console.log("Available color data is>>>>>",this.colorObject)
-    console.log("Available Size data is>>>>>",this.sizeObject)
-    console.log("Product Details data is>>>>>",this.product_details)
-    console.log("TAGS>>>>>>>>",this.tags)
-    
     console.log(this.productForm.value);
     var formData = new FormData();
     formData.append('product_title', this.productForm.value.title);
@@ -520,27 +548,32 @@ export class SellerAddProductComponent implements OnInit {
     formData.append('quantity', JSON.stringify(this.itemQtyArr));
     formData.append('product_details', JSON.stringify(this.product_details));
     formData.append('tags', JSON.stringify(this.tags));
+    formData.append('Shipping_option', this.productForm.value.ShippingOption);
+    if(this.professionalShippingCharges){
+      formData.append('Professional_shipping_charges', this.productForm.value.professionalShippingCharges);
+    }
+    
     //formData.append('professional_id',this.professId._id)
     this.files.forEach(element => {
-      formData.append('product_media',element);
+      formData.append('product_media', element);
     });
-    if (!this.productForm.valid  && this.files.length == 0) {
+    if (!this.productForm.valid && this.files.length == 0) {
       //this.toastr.error("Please fill required fields")
       return
     }
 
-    else{
-      
-    this.CustomerService.addProductService(formData).subscribe(res => {
-      console.log(res)
-      this.router.navigate(['/seller-product-list']);
-      this.toastr.success("Product added sucessfully")
-    })
+    else {
+
+      this.CustomerService.addProductService(formData).subscribe(res => {
+        console.log(res)
+        this.router.navigate(['/seller-product-list']);
+        this.toastr.success("Product added sucessfully")
+      })
+    }
   }
-  }
-
-  
 
 
-  
+
+
+
 }
