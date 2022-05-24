@@ -1,102 +1,159 @@
 <app-header *ngIf="!isLogin"></app-header>
 <!-- <app-db-header *ngIf="isLogin == 'true'"></app-db-header> -->
-<app-seller-header *ngIf="isLogin == 'true'"></app-seller-header> 
+<app-seller-header *ngIf="isLogin == 'true'"></app-seller-header>
 <!-- <app-seller-header *ngIf = "isLogin"></app-seller-header> -->
 <section class="common_image_section page_headrer_wrkshop" *ngIf="!isLogin">
     <div class="container">
         <div class="page_head_wrap">
             <h2 class="aboutus_head">My Cart</h2>
             <p class="page_head">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                ex ea commodo consequat.
             </p>
         </div>
     </div>
 </section>
 <section class="my-cart-wrapper">
-	<div class="custom-container d-flex">
-		<app-sidebar *ngIf = "isLogin"></app-sidebar>
-		<div class="main-wrap mb-5">
-			<div class="card">
-				<div class="card-body">
-					<div class="row">
-						<div class="col-md-12 ">
-							<h1>My Cart</h1>
-						</div>
-						<div class="col-md-8">
-							<div class="wrap cf">
-								<div class="cart">
-									<ul class="cartWrap">
-										<li class="items odd">
+    <div class="custom-container d-flex">
+        <app-sidebar *ngIf="isLogin"></app-sidebar>
+        <div class="main-wrap mb-5">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12 ">
+                            <h1>My Cart</h1>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="wrap cf">
+                                <div class="cart">
+                                    <ul class="cartWrap">
+                                        <li class="items odd">
 
-											<div *ngIf="cartDetail.length == 0">
-												<h2 >Cart Is Empty</h2>
-											</div>
+                                            <div *ngIf="cartDetail.length == 0">
+                                                <h2>Cart Is Empty</h2>
+                                            </div>
 
-											<div class="infoWrap" *ngFor="let detail of cartDetail"> 
-												<div class="cartSection">
-													<!-- <img src="http://www.pngall.com/wp-content/uploads/5/Home-Interior-Design-Transparent.png" alt="" class="itemImg" /> -->
-													<img  src="{{imgpath}}{{detail?.ProductDetails?.product_media[0]?.name}}" alt="" class="itemImg cartItemImageSize" />
-													<p class="itemNumber">{{detail.ProductDetails.product_unique_id}}</p>
-													<!-- <h3>Item Name 1</h3> -->
-													<h3>{{detail.ProductDetails.product_title}}</h3>
-													<h4 class="item-price">${{detail.ProductDetails.pricing.price}}</h4>
-													<p> <input (keyup)="Updateitem(detail,$event)" type="text"  class="qty" value={{detail.quantity}} /> x ${{detail.ProductDetails.pricing.price}}</p>
-													<!-- (keydown)="Updateitem()" -->
-													<p class="stockStatus"> In Stock</p>
-												</div>  
+                                            <div class="infoWrap" *ngFor="let detail of cartDetail">
+                                                <div class="cartSection">
+                                                    <!-- <img src="http://www.pngall.com/wp-content/uploads/5/Home-Interior-Design-Transparent.png" alt="" class="itemImg" /> -->
+                                                    <img src="{{imgpath}}{{detail?.ProductDetails?.product_media[0]?.name}}"
+                                                        alt="" class="itemImg cartItemImageSize" />
+                                                    <p class="itemNumber">{{detail.ProductDetails.product_unique_id}}
+                                                    </p>
+                                                    <!-- <h3>Item Name 1</h3> -->
+                                                    <h3>{{detail.ProductDetails.product_title}}</h3>
+                                                    <h4 class="item-price">${{detail.ProductDetails.pricing.price}}</h4>
+                                                    <p> <input (keyup)="Updateitem(detail,$event)" type="text"
+                                                            class="qty" value={{detail.quantity}} /> x
+                                                        ${{detail.ProductDetails.pricing.price}}</p>
+                                                    <!-- (keydown)="Updateitem()" -->
+                                                    <p class="stockStatus"> In Stock</p>
+                                                    <div class="d-flex">
+                                                        <h2 (click)="deleteItem(detail)" style="font-size:12px; cursor:pointer; color: #ff8a8a;"> Delete </h2>
+                                                        <div class="borderSP"></div>
+                                                        <h2 style="font-size:12px; cursor:pointer;">Save For Later</h2>
+                                                    </div>
+                                                </div>
+                                                <div class="prodTotal cartSection">
+                                                    <!-- <p>$15.00</p> -->
+                                                    <div class="sav-later-btn">
+                                                        <!-- 	<button class="btn btn-change-fill">Save For Later</button> -->
+                                                    </div>
+                                                </div>
+                                                <!-- <div class="cartSection removeWrap">
+                                                    <button class="btn btn-change-fill Cusotmfilled "
+                                                        (click)="deleteItem(detail)">Remove </button>
+                                                </div> -->
+                                            </div>
+                                        </li>
 
 
-												<div class="prodTotal cartSection">
-													<!-- <p>$15.00</p> -->
-													<div class="sav-later-btn">
-													<!-- 	<button class="btn btn-change-fill">Save For Later</button> -->
-													</div>
-												</div>
-												<div class="cartSection removeWrap">
-													<button class="btn btn-change-fill" (click)="deleteItem(detail)">Remove	</button>
-												
-												</div>
-											</div>
-										</li>
-									
+                                        <!--<li class="items even">Item 2</li>-->
+
+                                    </ul>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="col-md-4" *ngIf="cartLen != 0">
+                            <!-- <div class="promoCode">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Enter Coupon Code"
+                                        aria-label="Username" aria-describedby="basic-addon1" [(ngModel)]="coupanCode">
+                                    <a class="btn-apply" (click)="applyCoupan()">Apply</a>
+                                </div>
+                            </div> -->
 
 
-										<!--<li class="items even">Item 2</li>-->
+                            <div class="subtotal mt-5">
+                                <ul>
+                                    <li class="totalRow"><span class="label">Subtotal</span><span
+                                            class="value">${{amtWithoutTax}}</span></li>
 
-									</ul>
-								</div>
+                                    <li class="totalRow" *ngIf="taxAndShipping"><span class="label">Shipping</span><span
+                                            class="value">${{chargeTax.shipping_charges}}</span></li>
+                                    <li class="totalRow" *ngIf="!taxAndShipping"><span
+                                            class="label">Shipping</span><span class="value">$0</span></li>
+                                    <li class="totalRow" *ngIf="taxAndShipping"><span class="label">Tax</span><span
+                                            class="value">${{tax}}</span></li>
+                                    <li class="totalRow" *ngIf="!taxAndShipping"><span class="label">Tax</span><span
+                                            class="value">$0</span></li>
+                                    <li class="totalRow final"><span class="label">Total</span><span
+                                            class="value">${{finalTotal}}</span></li>
+                                    <li class="totalRow"><a (click)="CheckOut()"
+                                            class="btn btn-change-fill">Checkout</a></li>
+                                    <!-- <li class="totalRow"><a routerLink="/checkout/{{total}}" class="btn btn-change-fill">Checkout</a></li> -->
+                                    <!-- <li class="totalRow"><a href="" class="btn-continue btn-change-fill">Checkout</a></li> -->
+                                </ul>
 
-							</div>
-							
-						</div>
-						<div class="col-md-4" *ngIf="cartLen != 0">
-							<div class="promoCode">
-								<div class="form-group">
-									<input type="text" class="form-control" placeholder="Enter Coupon Code" aria-label="Username" aria-describedby="basic-addon1" [(ngModel)]="coupanCode">
-									<a class="btn-apply" (click)="applyCoupan()">Apply</a></div>
-								</div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body save-for-later" style="border-top: 18px solid #eee;">
+                    <div class="main_prod_contnr mt-2">
+                        <h1>Your items</h1><br>
+                        <h2>Save For Later</h2>
+                        <hr class="m-0">
+                    	<div class="row">
+                    		<div class="col-sm-4"  >
+							<!-- <div class="col-sm-4" *ngFor="let product of prodData |  paginate:{ itemsPerPage: 5, currentPage: p, 
+								totalItems: count }" >-->
+                    			<div class="prod-cata" > 
+                    				<div class="ps-product">
+                    					<a href="">
+                                            <div class="product-image"  style="background-image: url();">
+
+                                            </div>
+                                        </a>
+										<a><div class="product-image" >
+											<img src="../../../assets/imgs/bnr1.jpg" alt="">
+										</div></a>
+                    					<div class="product-desc">
+                                            <span class="caption"><a >Navdeep</a></span>
+                    						<span class="new">New</span> 
+                    						<span  class="rating">
+                                                <i  class="fas fa-star"></i>
+                                                <i  class="fas fa-star"></i>
+                                                <i  class="fas fa-star"></i><i  class="fas fa-star"></i><i  class="fas fa-star grey"></i></span>
+											
+                    						<div class="price"> <strong>gh</strong> <span>£18.00</span></div>
+                    					</div>
+                    				
+                    				</div>
+                    			</div>
 								
+                    		</div>
+							
+                    	</div>		
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-								<div class="subtotal mt-5">
-									<ul>
-										<li class="totalRow"><span class="label">Subtotal</span><span class="value">${{amtWithoutTax}}</span></li>
-
-										<li class="totalRow" *ngIf="taxAndShipping"><span class="label">Shipping</span><span class="value" >${{chargeTax.shipping_charges}}</span></li>
-										<li class="totalRow" *ngIf="!taxAndShipping"><span class="label">Shipping</span><span class="value">$0</span></li>
-										<li class="totalRow" *ngIf="taxAndShipping"><span class="label" >Tax</span><span class="value">${{tax}}</span></li>
-										<li class="totalRow" *ngIf="!taxAndShipping"><span class="label" >Tax</span><span class="value">$0</span></li>
-										<li class="totalRow final"><span class="label">Total</span><span class="value">${{finalTotal}}</span></li>
-										<li class="totalRow"><a (click)="CheckOut()" class="btn btn-change-fill">Checkout</a></li>
-										<!-- <li class="totalRow"><a routerLink="/checkout/{{total}}" class="btn btn-change-fill">Checkout</a></li> -->
-										<!-- <li class="totalRow"><a href="" class="btn-continue btn-change-fill">Checkout</a></li> -->
-									</ul>
-
-									
-								</div>
-							</div></div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-		<app-footer></app-footer>
+<app-footer></app-footer>

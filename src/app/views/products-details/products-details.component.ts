@@ -295,7 +295,8 @@ export class ProductsDetailsComponent implements OnInit {
     // 	this.userId=""
     // }
     this.productId = value;
-    this.profId = this.detail.professional_id;
+    // this.profId = this.detail.professional_id;
+    console.log('this.detail: ', this.detail);
 
     if (!this.isLogin) {
       console.log("this is workingg");
@@ -341,7 +342,7 @@ export class ProductsDetailsComponent implements OnInit {
       this.obj1 = {
         user_id: this.userId._id,
         product_id: this.productId,
-        professional_id: this.profId._id,
+        // professional_id: this.profId._id,
         quantity: this.quantityIncrese,
         color_name: this.colorname,
         color_code: this.colorcodes,
@@ -369,7 +370,7 @@ export class ProductsDetailsComponent implements OnInit {
       this.obj1 = {
         user_id: this.userId,
         product_id: this.productId,
-        professional_id: this.profId._id,
+        // professional_id: this.profId._id,
         quantity: this.quantityIncrese,
         // color_name:this.colorname,
         // color_code:this.colorcodes,

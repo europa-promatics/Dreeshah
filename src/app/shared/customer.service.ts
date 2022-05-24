@@ -2285,6 +2285,20 @@ export class CustomerService {
 
       );
   }
+
+  userDetailsById(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/getUserDetailUsingId`;
+    console.log(API_URL)
+    return this.httpClient.post(API_URL, data, this.httpOptions)
+      //return this.httpClient.get(API_URL,this.httpOptions)
+      .pipe(
+        map(res => {
+          return res;
+        }),
+
+      );
+  }
+
   getMemberships(data): Observable<any> {
     let API_URL = `${this.apiUrl}/getMemberShipPlans`;
     console.log(API_URL)

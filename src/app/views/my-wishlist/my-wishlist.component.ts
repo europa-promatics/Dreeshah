@@ -376,7 +376,7 @@ export class MyWishlistComponent implements OnInit {
   }
 
   moveToGroup(event) {
-    console.log(event.target.id)  
+    console.log(event.target.id)
     if (this.moveItemsArray.length == 0) {
       console.log('in ifff')
       this.toastr.error('Please Select at least one item')
@@ -438,17 +438,19 @@ export class MyWishlistComponent implements OnInit {
           this.product_2 = data.details
         })
         $('#productModalBtn').click()
+        this.moveItemsArray = [];
       }
       else if (type == 'professional') {
-        this.CustomerService.getProductDetail({ product_id: this.moveItemsArray[0] }).subscribe(data => {
-          console.log('user detail--1-----', data.details)
-          this.user_1 = data.details
+        this.CustomerService.userDetailsById({ user_id: this.moveItemsArray[0] }).subscribe(data => {
+          console.log('user detail--1-----', data.data)
+          this.user_1 = data.data
         })
-        this.CustomerService.getProductDetail({ product_id: this.moveItemsArray[1] }).subscribe(data => {
-          console.log('user detail---2----', data.details)
-          this.user_2 = data.details
+        this.CustomerService.userDetailsById({ user_id: this.moveItemsArray[1] }).subscribe(data => {
+          console.log('user detail---2----', data.data)
+          this.user_2 = data.data
         })
         $('#professionalModalBtn').click()
+        this.moveItemsArray = [];
       }
       else if (type == 'service') {
         this.CustomerService.getProfessionalServicesDetails({ service_id: this.moveItemsArray[0] }).subscribe(data => {
@@ -460,6 +462,7 @@ export class MyWishlistComponent implements OnInit {
           this.service_2 = data.result
         })
         $('#serviceModalBtn').click()
+        this.moveItemsArray = [];
       }
     }
     else {
