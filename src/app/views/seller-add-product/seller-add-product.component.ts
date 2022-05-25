@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CustomerService } from '../../shared/customer.service';
-import { FormBuilder, FormGroup, Validators, FormControl, ValidationErrors } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl, ValidationErrors, FormArray } from '@angular/forms';
 import { AbstractControl, ValidatorFn } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ToastrService } from 'ngx-toastr'
@@ -87,7 +87,7 @@ export class SellerAddProductComponent implements OnInit {
   collection
   weightData
   weightUnit
-  size
+  // size
   color
   colorCode
   productColor
@@ -98,7 +98,7 @@ export class SellerAddProductComponent implements OnInit {
   colorArr = []
   sizeArr = []
   taxPrice: any;
-  ShippingOption:any
+  ShippingOption: any
   professionalShippingCharges: any;
   onSelect(event) {
     console.log(event);
@@ -187,7 +187,7 @@ export class SellerAddProductComponent implements OnInit {
     if (evt2.target.checked == true) {
       this.status2 = "yes";
     } else {
-      this.status2 = "no"
+      this.status2 = "no";
     }
     console.log(this.status2)
   }
@@ -266,13 +266,59 @@ export class SellerAddProductComponent implements OnInit {
       'vendor': [null, Validators.compose([Validators.required])],
       'collection': [null, Validators.compose([Validators.required])],
       'tags': [null, Validators.compose([Validators.required])],
-      "taxPrice":[null],
+      "taxPrice": [null],
       'ShippingOption': [null, Validators.compose([Validators.required])],
       'professionalShippingCharges': [null],
+      'variants': new FormGroup({
+        'colors': new FormArray([this.formBuilder.group({
+          'color_name': [null, []],
+          'color_image': [null, []]
+
+        })]),
+        'variant_size': new FormArray([])
+      })
     });
 
 
 
+  }
+  get colors() {
+    return ((this.productForm.controls['variants'] as FormGroup).controls['colors'] as FormArray)
+  }
+  get variant_size() {
+    return ((this.productForm.controls['variants'] as FormGroup).controls['variant_size'] as FormArray)
+  }
+  AddColor() {
+    this.colors.push(this.formBuilder.group({
+      'color_name': [null, []],
+      'color_image': [null, []]
+
+    }))
+  }
+
+  AddSize(value) {
+    console.log("size==>", value);
+
+    this.variant_size.push(new FormControl(value))
+  }
+  deleteColor(data, i) {
+    this.colors.removeAt(i)
+
+  }
+
+  UploadVarientImages(event, i) {
+    const file = event.target.files[0]
+
+    const formdata = new FormData()
+    formdata.append('image', file)
+    formdata.append('destination', 'AllImages')
+
+    this.CustomerService.uploadImage(formdata).subscribe((resp) => {
+      console.log('image upload ==>', environment.homeImg + resp.data);
+      this.colors.at(i).patchValue({ 'color_image': environment.homeImg + resp.data })
+      console.log(this.colors);
+
+    })
   }
 
   ngOnInit(): void {
@@ -328,12 +374,12 @@ export class SellerAddProductComponent implements OnInit {
     })
   }
 
-  changeShippingOption(e){
-if(e.target.value=='professional'){
-  this.productForm.controls['professionalShippingCharges'].setValidators(Validators.required)
-}else{
-  this.productForm.controls['professionalShippingCharges'].clearValidators()
-}
+  changeShippingOption(e) {
+    if (e.target.value == 'professional') {
+      this.productForm.controls['professionalShippingCharges'].setValidators(Validators.required)
+    } else {
+      this.productForm.controls['professionalShippingCharges'].clearValidators()
+    }
   }
 
 
@@ -375,36 +421,36 @@ if(e.target.value=='professional'){
   }
 
 
-  variantSubmit() {
-    this.productColor = this.color
-    this.productSize = this.size
-    this.productColorCode = this.colorCode
-    console.log("Color>>>>>", this.color)
-    console.log("Size>>>>>", this.size)
-    console.log("Color Code>>>>>", this.colorCode)
+  // variantSubmit() {
+  //   this.productColor = this.color
+  //   this.productSize = this.size
+  //   this.productColorCode = this.colorCode
+  //   console.log("Color>>>>>", this.color)
+  //   console.log("Size>>>>>", this.size)
+  //   console.log("Color Code>>>>>", this.colorCode)
 
-    this.colorObject = {
-      color_name: this.color,
-      color_code: this.colorCode,
-    }
-    this.colorArr.push(this.colorObject)
-    console.log("Color Object to be sent is>>>>>", this.colorObject)
+  //   this.colorObject = {
+  //     color_name: this.color,
+  //     color_code: this.colorCode,
+  //   }
+  //   this.colorArr.push(this.colorObject)
+  //   console.log("Color Object to be sent is>>>>>", this.colorObject)
 
-    this.sizeObject = {
-      size: this.size
-    }
-    console.log("Size Object to be sent is>>>>>", this.sizeObject)
+  //   this.sizeObject = {
+  //     size: this.size
+  //   }
+  //   console.log("Size Object to be sent is>>>>>", this.sizeObject)
 
-    this.sizeArr.push(this.sizeObject)
+  //   this.sizeArr.push(this.sizeObject)
 
-    this.toastr.success("Added Successfully")
+  //   this.toastr.success("Added Successfully")
 
-    this.color = ''
-    this.size = ''
-    this.colorCode = ''
+  //   this.color = ''
+  //   this.size = ''
+  //   this.colorCode = ''
 
-    $('#variantModal').modal('hide');
-  }
+  //   $('#variantModal').modal('hide');
+  // }
 
 
 
@@ -446,7 +492,9 @@ if(e.target.value=='professional'){
 
 
 
-  publish() {
+  publish(argument) {
+    console.log('form data=>',this.productForm);
+    
     console.log(this.files)
     /*  if(parseInt(this.profit)>parseInt(this.price)){  
          this.numbutton=true;
@@ -494,7 +542,7 @@ if(e.target.value=='professional'){
     this.product_details = {
       product_type: this.productType,
       vendor: this.vendor,
-      collection: this.collection,
+      // collection: this.collection,
     }
 
 
@@ -532,7 +580,7 @@ if(e.target.value=='professional'){
     formData.append('product_title', this.productForm.value.title);
     formData.append('category_id', this.productForm.value.category);
     formData.append('sub_category_id', this.productForm.value.sub_category);
-    formData.append('product_description', this.productForm.value.ckedit);
+    formData.append('product_description', JSON.stringify(this.productForm.value.ckedit));
     formData.append('weight_details', JSON.stringify(this.weightData));
     formData.append('pricing', JSON.stringify(this.pricing));
     formData.append('inventory', JSON.stringify(this.inventory1));
@@ -540,19 +588,21 @@ if(e.target.value=='professional'){
     formData.append('customs_information', JSON.stringify(this.customInfo));
     formData.append('shipping', this.status1);
     formData.append('variant', this.status2);
-    formData.append('available_color', JSON.stringify(this.colorObject));
-    formData.append('available_size', JSON.stringify(this.sizeObject));
+    // formData.append('available_color', JSON.stringify(this.colorObject));
+    // formData.append('available_size', JSON.stringify(this.sizeObject));
     formData.append('visible_to_professinal', this.status3);
     formData.append('visible_to_customer', this.status4);
     formData.append('charge_tax', this.status5);
     formData.append('quantity', JSON.stringify(this.itemQtyArr));
     formData.append('product_details', JSON.stringify(this.product_details));
     formData.append('tags', JSON.stringify(this.tags));
-    formData.append('Shipping_option', this.productForm.value.ShippingOption);
-    if(this.professionalShippingCharges){
-      formData.append('Professional_shipping_charges', this.productForm.value.professionalShippingCharges);
+    formData.append('shipping_option', this.productForm.value.ShippingOption);
+    formData.append('variants',JSON.stringify(this.productForm.controls['variants'].value))
+    formData.append('form_status',argument=='save'?'save':'publish')
+    if (this.professionalShippingCharges) {
+      formData.append('professional_shipping_charges', this.productForm.value.professionalShippingCharges);
     }
-    
+
     //formData.append('professional_id',this.professId._id)
     this.files.forEach(element => {
       formData.append('product_media', element);
@@ -567,6 +617,8 @@ if(e.target.value=='professional'){
       this.CustomerService.addProductService(formData).subscribe(res => {
         console.log(res)
         this.router.navigate(['/seller-product-list']);
+        
+        argument=="save" ?this.toastr.success("Product save sucessfully"):
         this.toastr.success("Product added sucessfully")
       })
     }

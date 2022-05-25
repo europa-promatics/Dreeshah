@@ -752,8 +752,8 @@ export class CustomerService {
 
   uploadImage(data): Observable<any> {
     let API_URL = `${this.apiUrl}/uploadImage`;
-    console.log("token", this.httpOptions)
-    console.log(API_URL)
+    // console.log("token", this.httpOptions)
+     console.log(data)
     return this.httpClient.post(API_URL, data)
       .pipe(
         map(res => {

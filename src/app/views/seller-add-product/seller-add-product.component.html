@@ -244,14 +244,14 @@
                                                 *ngIf="!productForm.controls['taxPrice'].valid  && ( productForm.controls['taxPrice'].touched || submit_button)">
                                                 Price is Required
                                             </p>
-                                            <p style="color: red;">Note: Value must be in percentage e.g  0-100</p>
+                                            <p style="color: red;">Note: Value must be in percentage e.g 0-100</p>
                                             <!-- <p style="color: red; margin-top: -1.25em;"
                                                     *ngIf="!numbutton">
                                                     Enter Number Only
                                                 </p>  -->
 
                                         </div>
-                                       
+
                                     </div>
                                 </div>
                             </div>
@@ -430,9 +430,10 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <mat-form-field>
-                                                <mat-label>Shipping  Options</mat-label>
+                                                <mat-label>Shipping Options</mat-label>
                                                 <mat-select [formControl]="productForm.controls['ShippingOption']"
-                                                    [(ngModel)]="ShippingOption" (chnage)="changeShippingOption($event)">
+                                                    [(ngModel)]="ShippingOption"
+                                                    (chnage)="changeShippingOption($event)">
                                                     <mat-option value="professional">Professional</mat-option>
                                                     <mat-option value="customer">Customer</mat-option>
                                                     <mat-option value="dreeshah_admin">Dreeshah admin</mat-option>
@@ -441,22 +442,22 @@
                                             <p style="color: red; "
                                                 *ngIf="!productForm.controls['ShippingOption'].valid  && ( productForm.controls['ShippingOption'].touched || submit_button)">
                                                 Select the Shipping Option</p>
-                                           
+
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group" *ngIf="ShippingOption=='professional'">
                                             <mat-form-field appearance="">
                                                 <mat-label>Shipping Charges</mat-label>
-                                                <input matInput placeholder="Professional Shipping Charges"
-                                                    required [formControl]="productForm.controls['professionalShippingCharges']"
+                                                <input matInput placeholder="Professional Shipping Charges" required
+                                                    [formControl]="productForm.controls['professionalShippingCharges']"
                                                     [(ngModel)]="professionalShippingCharges"
                                                     (keypress)="numberOnly($event)">
                                             </mat-form-field>
                                             <p style="color: red; "
                                                 *ngIf="!productForm.controls['professionalShippingCharges'].valid  && ( productForm.controls['professionalShippingCharges'].touched || submit_button)">
-                                                 Shipping Charges Required</p>
-                                           
+                                                Shipping Charges Required</p>
+
                                         </div>
                                     </div>
                                     <div class="form-group col-md-12 border-top mt-3">
@@ -539,118 +540,135 @@
                                                     id="t-and-c" (change)="onChange2($event)"> -->
                                         This product has multile options, like different sizes or colors
                                     </div>
-                                    <div class="main">
+                                    <div class="main" *ngIf="status2=='yes'" formGroupName="variants">
 
-                                 
-                                    <div class="row mb-2">
-                                        <div class="col-sm-1"></div>
-                                        <div class="col-sm-5">
-                                            <div class="d-flex">
-                                                <div class="txtt" style="width: 61px;">
-                                                    <p>* Color</p>
+                                        <ng-container formArrayName="colors"
+                                            *ngFor="let color of colors.controls ;let i=index">
+                                            <div class="row form-group" [formGroupName]="i">
+                                                <div class="col-sm-1"></div>
+                                                <div class="col-sm-5">
+                                                    <div class="d-flex">
+                                                        <div class="txtt" style="width: 61px;">
+                                                            <p>* Color</p>
+                                                        </div>
+                                                        <select name="" id="" class="form-control"
+                                                            formControlName="color_name">
+                                                            <option value="Black">Black</option>
+                                                            <option value="Red">Red</option>
+                                                            <option value="Purple">Purple</option>
+                                                            <option value="Yellow">Yellow</option>
+                                                            <option value="Navy">Navy</option>
+                                                            <option value="Orange">Orange</option>
+                                                        </select>
+                                                    </div>
                                                 </div>
-                                                <select name="" id="" class="form-control">
-                                                    <option value="">Black</option>
-                                                    <option value="">Red</option>
-                                                    <option value="">Purple</option>
-                                                    <option value="">Yellow</option>
-                                                    <option value="">Navy</option>
-                                                    <option value="">Orange</option>
-                                                </select>
+                                                <div class="col-sm-5 p-0">
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="imagess">
+                                                            <img [src]="color.controls['color_image']?.value ? color.controls['color_image']?.value:'../../../assets/imgs/1.png'" alt="">
+                                                        </div>
+                                                        <div class="Product-txttt ml-2">
+                                                            <p style="color: #1155a8; cursor: pointer;" class="SpText">Select Photo bank <i
+                                                                    style="color: #656464; font-size: 14px;"
+                                                                    class="fa fa-trash ml-2" aria-hidden="true"
+                                                                    (click)="deleteColor(color,i)"></i>
+                                                            </p>
+                                                            <input type="file" class="Spinput"  (change)="UploadVarientImages($event,i)">
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </ng-container>
+                                        <!-- <div class="row mb-2">
+                                            <div class="col-sm-1"></div>
+                                            <div class="col-sm-5">
+                                                <div class="d-flex">
+                                                    <div class="txtt" style="width: 61px;">
+                                                    </div>
+                                                    <select name="" id="" class="form-control">
+                                                        <option value="">Black</option>
+                                                        <option value="">Red</option>
+                                                        <option value="">Purple</option>
+                                                        <option value="">Yellow</option>
+                                                        <option value="">Navy</option>
+                                                        <option value="">Orange</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-5 p-0">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="imagess">
+                                                        <img src="../../../assets/imgs/1.png" alt="">
+                                                    </div>
+                                                    <div class="Product-txttt ml-2">
+                                                        <p style="color: #1155a8;">Select Photo bank <i
+                                                                style="color: #656464; font-size: 14px;"
+                                                                class="fa fa-trash ml-2" aria-hidden="true"></i></p>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> -->
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <button class="btn btn-custon" (click)="AddColor()"> + Add </button>
                                             </div>
                                         </div>
-                                        <div class="col-sm-5 p-0">
-                                            <div class="d-flex align-items-center">
-                                                <div class="imagess">
-                                                    <img src="../../../assets/imgs/1.png" alt="">
-                                                </div>
-                                                <div class="Product-txttt ml-2">
-                                                    <p style="color: #1155a8;">Select Photo bank <i style="color: #656464; font-size: 14px;" class="fa fa-trash ml-2" aria-hidden="true"></i></p>
+
+                                        <div class="row mt-5 mb-2">
+                                            <div class="col-sm-1"></div>
+                                            <div class="col-sm-5">
+                                                <div class="d-flex">
+                                                    <div class="txtt" style="width: 61px;">
+                                                        * Size
+                                                    </div>
+                                                    <input type="text" class="form-control" #size>
+
 
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="row mb-2">
-                                        <div class="col-sm-1"></div>
-                                        <div class="col-sm-5">
-                                            <div class="d-flex">
-                                                <div class="txtt" style="width: 61px;">
+                                            <div class="col-sm-5">
+                                                <div class="btns">
+                                                    <button class="btn btn-custona " (click)="AddSize(size.value)"> +
+                                                        Add </button>
                                                 </div>
-                                                <select name="" id="" class="form-control">
-                                                    <option value="">Black</option>
-                                                    <option value="">Red</option>
-                                                    <option value="">Purple</option>
-                                                    <option value="">Yellow</option>
-                                                    <option value="">Navy</option>
-                                                    <option value="">Orange</option>
-                                                </select>
                                             </div>
                                         </div>
-                                        <div class="col-sm-5 p-0">
-                                            <div class="d-flex align-items-center">
-                                                <div class="imagess">
-                                                    <img src="../../../assets/imgs/1.png" alt="">
+                                        <div class="row">
+                                            <div class="col-sm-2"></div>
+                                            <div class="col-sm-10 Custom-Color">
+                                                <div class="row" formArrayName="variant_size" >
+                                                   
+                                                    <div class="col-sm-2"  *ngFor="let size of variant_size.controls ;let i=index">
+                                                        <!-- <input type="checkbox" value="size.value">  -->
+                                                        <label for=""
+                                                            class="ml-1"> {{size.value}}
+                                                        </label>
+                                                    </div>
+                                                    <!-- <div class="col-sm-2">
+                                                        <input type="checkbox"> <label for="" class="ml-1"> XL</label>
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <input type="checkbox"> <label for="" class="ml-1"> XL</label>
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <input type="checkbox"> <label for="" class="ml-1"> XL</label>
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <input type="checkbox"> <label for="" class="ml-1"> XL</label>
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <input type="checkbox"> <label for="" class="ml-1"> XL</label>
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <input type="checkbox"> <label for="" class="ml-1"> XL</label>
+                                                    </div> -->
                                                 </div>
-                                                <div class="Product-txttt ml-2">
-                                                    <p style="color: #1155a8;">Select Photo bank <i style="color: #656464; font-size: 14px;" class="fa fa-trash ml-2" aria-hidden="true"></i></p>
 
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            <button class="btn btn-custon"> + Add </button>
-                                        </div>
-                                    </div>
-                                    <div class="row mt-5 mb-2">
-                                        <div class="col-sm-1"></div>
-                                        <div class="col-sm-5">
-                                            <div class="d-flex">
-                                                <div class="txtt" style="width: 61px;">
-                                                    * Size
-                                                </div>
-                                                <input type="text" class="form-control">
-                                                
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-5">
-                                            <div class="btns">
-                                                <button class="btn btn-custona "> + Add </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm-2"></div>
-                                        <div class="col-sm-10 Custom-Color">
-                                            <div class="row">
-                                                <div class="col-sm-2">
-                                                    <input type="checkbox"> <label for="" class="ml-1"> XL</label>
-                                                </div>
-                                                <div class="col-sm-2">
-                                                    <input type="checkbox"> <label for="" class="ml-1"> XL</label>
-                                                </div>
-                                                <div class="col-sm-2">
-                                                    <input type="checkbox"> <label for="" class="ml-1"> XL</label>
-                                                </div>
-                                                <div class="col-sm-2">
-                                                    <input type="checkbox"> <label for="" class="ml-1"> XL</label>
-                                                </div>
-                                                <div class="col-sm-2">
-                                                    <input type="checkbox"> <label for="" class="ml-1"> XL</label>
-                                                </div>
-                                                <div class="col-sm-2">
-                                                    <input type="checkbox"> <label for="" class="ml-1"> XL</label>
-                                                </div>
-                                                <div class="col-sm-2">
-                                                    <input type="checkbox"> <label for="" class="ml-1"> XL</label>
-                                                </div>
-                                            </div>
-                                            
-                                        </div>
-                                    </div>
-                                </div>
                                 </div>
                             </div>
                         </div>
@@ -873,7 +891,9 @@
                     <div class="col-md-8 seller-prod-submit mt-3" align="center">
                         <div class="upload-btn mt-2">
                             <button type="submit" class="btn btn-change-fill min-width-0"
-                                (click)="publish()">Publish</button>
+                                (click)="publish('save')">Save</button>
+                            <button type="submit" class="btn btn-change-fill min-width-0"
+                                (click)="publish('publish')">Publish</button>
                             <button class="btn btn-change-fill min-width-0" routerLink="/preview">Preview</button>
                             <!-- <button class="btn btn-change-fill min-width-0">Save</button> -->
                             <!-- <button class="btn btn-change-fill min-width-0">Cancel</button>
@@ -930,8 +950,8 @@
 </div>
 
 
-<div class="url-modal">
-    <!-- <div class="add-address-form"> -->
+<!-- <div class="url-modal">
+  
     <div class="modal fade url-modal-box" id="variantModal" tabindex="-1" role="dialog"
         aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -958,9 +978,9 @@
                             <mat-label>Add Color code</mat-label>
                             <input [(ngModel)]="colorCode" matInput placeholder="ColorCode">
                         </mat-form-field>
-                        <!-- <p style="color: red; margin-top: -1.25em;"
+                        <p style="color: red; margin-top: -1.25em;"
                         *ngIf="subvar">
-                        Add Valid Url</p> -->
+                        Add Valid Url</p>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -971,4 +991,4 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
