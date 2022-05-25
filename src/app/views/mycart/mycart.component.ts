@@ -17,6 +17,7 @@ export class MycartComponent implements OnInit {
   coupanProfId: any;
   previous_total: number;
   discount_value: any;
+  saveForLater: any;
 
   constructor(public CustomerService: CustomerService, public cartService:CartService,
     private route: ActivatedRoute,
@@ -165,7 +166,14 @@ export class MycartComponent implements OnInit {
       this.CustomerService.cartDetail().subscribe(res =>{
         
         console.log("Cart Details:",res)	
-        this.cartDetail	=res.data.ProffesionalObj
+        this.cartDetail = res.data.ProffesionalObj.filter(item=>{
+          return item.save_for_later == 'no'
+      })
+      this.saveForLater = res.data.ProffesionalObj.filter(item=>{
+          return item.save_for_later == 'yes'
+      })
+        console.log('this.cartDetail: ', this.cartDetail);
+        console.log('this.saveForLater: ', this.saveForLater);
       
         console.log("Items in the cart>>>>.",this.cartDetail)	
         this.chargeTax = res.charges
@@ -279,7 +287,28 @@ export class MycartComponent implements OnInit {
     }
   }
 
+  laterSave(value){
+    console.log('cartitemid----------',value)
+    var obj = {
+      cartitem_id:value,
+      save_for_later:'yes'
+    }
+    this.CustomerService.saveForLater(obj).subscribe(data=>{
+      console.log(data.data)
+    })
+    this.ngOnInit()
+  }
 
-
+  moveToCart(value){
+    console.log('cartitemid----------',value)
+    var obj = {
+      cartitem_id:value,
+      save_for_later:'no'
+    }
+    this.CustomerService.saveForLater(obj).subscribe(data=>{
+      console.log(data.data)
+    })
+    this.ngOnInit()
+  }
 
 }

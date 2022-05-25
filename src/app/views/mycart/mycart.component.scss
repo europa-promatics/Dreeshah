@@ -8,3 +8,38 @@ max-height: 168px;
     height: 6px;
     margin: 6px 16px;
 }
+.wrap{
+    margin-bottom: 0 !important;
+}
+.cart .items .cartSection p {
+	display: inline;
+	font-size: 0.85em;
+	color: #777777;
+	word-wrap: break-word;
+}
+.cart .items .cartSection {
+	display: table-cell;
+	vertical-align: middle;
+	border: 1px solid #ececec;
+	margin: 0;
+	padding: 10px 0;
+}
+.cart .items .infoWrap {
+	display: table;
+	width: 100%;
+	margin: 11px 0;
+	padding: 4px;
+}
+.main-product {
+    margin-top: 40px;
+    margin-bottom: 40px;
+	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.15), 0 2px 10px 0 rgba(0, 0, 0, 0.11);
+	background: #fff;
+	border-radius: 8px;
+}
+.main-image img{
+    border-top-left-radius:  8px;
+    border-top-right-radius: 8px;
+    width: 100%;
+    height: 330px;
+}

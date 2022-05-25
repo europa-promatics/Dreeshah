@@ -2641,4 +2641,11 @@ export class CustomerService {
     }))
   }
 
+  saveForLater(data):Observable<any>{
+    let API_URL = `${this.apiUrl}/saveForLaterCart`;
+    return this.httpClient.post(API_URL, data).pipe(map(res => {
+      return res
+    })) 
+  }
+
 }
