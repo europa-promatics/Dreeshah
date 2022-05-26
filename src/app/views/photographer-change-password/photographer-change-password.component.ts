@@ -54,6 +54,9 @@ export class PhotographerChangePasswordComponent implements OnInit {
   selectedCity
   myCityArr =[]
   businessMobileCode
+  logo_image: any;
+  logoImage: string | ArrayBuffer;
+  logo_img: string | ArrayBuffer;
   constructor(private _formBuilder: FormBuilder, private route: ActivatedRoute,
     private router: Router,
     
@@ -215,6 +218,9 @@ export class PhotographerChangePasswordComponent implements OnInit {
 
         if (data.data.profile_image) {
           this.user_image = data.data.profile_image
+        }
+        if (data.data.logo) {
+          this.logo_image = data.data.logo
         }
         console.log("khgiuhg", this.userDetails)
       }
@@ -452,10 +458,39 @@ export class PhotographerChangePasswordComponent implements OnInit {
     fr.readAsDataURL(file);
   }
 
+  onLogoChange(evt) {
+    let self = this
+    if (!evt.target) {
+      return;
+    }
+    if (!evt.target.files) {
+      return;
+    }
+    if (evt.target.files.length !== 1) {
+      return;
+    }
+    const file = evt.target.files[0];
+    if (file.type !== 'image/jpeg' && file.type !== 'image/png' && file.type !== 'image/jpg') {
+      // this.toastr.warning('Please upload image file')
+      return;
+    }
+    console.log(evt.target.files[0])
+    this.logo_image = evt.target.files[0];
+    // this.uploadProfile()
+    const fr = new FileReader();
+    fr.onloadend = (loadEvent) => {
+      this.logoImage = fr.result;
+      self.logo_img = this.logoImage;
+      // alert(self.logo_img)
+    };
+    fr.readAsDataURL(file);
+  }
+
   uploadProfile() {
     if(this.profile_image){
       var formdata: FormData = new FormData();
       formdata.append('profile_image', this.profile_image)
+      // formdata.append('logo', this.logo_image)
       formdata.append('id', this.userData._id)
   
       this.CustomerService.updateProfile(formdata).subscribe(data => {
@@ -463,6 +498,21 @@ export class PhotographerChangePasswordComponent implements OnInit {
         // this.user_image = data.profile_image
         // this.profile_img = ""
         this.CommonService.sendProfileImg(data.profile_image);
+        this.ngOnInit()
+      })
+    }
+    if(this.logo_image){
+      var formdata: FormData = new FormData();
+      // formdata.append('profile_image', this.profile_image)
+      formdata.append('logo', this.logo_image)
+      formdata.append('id', this.userData._id)
+  
+      this.CustomerService.editProfessionalProfile(formdata).subscribe(data => {
+        console.log('logo------',data);
+        // this.user_image = data.profile_image
+        // this.profile_img = ""
+        this.CommonService.sendProfileImg(data.logo);
+        this.toastr.success('Updated Successfully')
         this.ngOnInit()
       })
     }

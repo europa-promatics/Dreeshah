@@ -9,7 +9,7 @@
                         <div class="col-md-12">
                             <div class="seller-address-info branch-head">
                                 <div class="seller-address-heading">
-                                    <h2>Branch Detail</h2>
+                                    <h2>Business Detail</h2>
                                 </div>
                                 <!-- <div class="seller-brnch-btn">
                                     <a class="text-white" routerLink="/sellerEditBranch"><i class="fa fa-pencil mr-2"></i>Add Branch</a>
@@ -236,56 +236,6 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="col-md-4">
-                                <div class="profile-card-7 ">
-                                    <img *ngIf="!branch_profile"
-                                        src="https://cdn.pixabay.com/photo/2017/04/24/13/37/architecture-2256489_960_720.jpg"
-                                        class="img img-responsive">
-                                    <img *ngIf="branch_profile" src="{{profileUrl}}{{branch_profile}}"
-                                        class="img img-responsive">
-                                    <div class="profile-content">
-                                        <div class="icon-inside">
-                                            <i class="fa fa-pencil" data-toggle="modal" data-target="#exampleModal"
-                                                (click)="hello(3)" aria-hidden="true"></i>
-                                        </div>
-                                        <div class="profile-name">Service Details</div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="profile-overview">
-                                                    <p>List of Services </p>
-                                                    <h5 *ngFor="let service of servicesCat">{{service.name}}</h5>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="profile-overview">
-                                                    <p>List of Sub Services </p>
-                                                    <h5>{{servicesSubCat}}</h5>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="profile-overview">
-                                                    <p>Typical Service Cost Range</p>
-                                                    <h5>{{serCost}}</h5>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="profile-overview">
-                                                    <p>Service Country </p>
-                                                    <h5 *ngFor="let ser of newCountryArr">{{ser}}</h5>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="profile-overview">
-                                                    <p>Service City </p>
-                                                    <h5 *ngFor="let ser of serCityArr">{{ser}}</h5>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                             <div class="col-md-4" *ngIf="!(address_1=='') ">
                                 <div class="profile-card-7 ">
                                     <img *ngIf="!branch_profile"
@@ -302,7 +252,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="profile-overview">
-                                                    <p>Branch(studio) Name in English</p>
+                                                    <p>Business(studio) Name in English</p>
                                                     <h5>{{branchName}}</h5>
                                                 </div>
                                             </div>
@@ -364,7 +314,7 @@
 
                                             <div class="col-md-6">
                                                 <div class="profile-overview">
-                                                    <p>Branch Licence</p>
+                                                    <p>Business Licence</p>
                                                     <img class="licImg heightcss" src="{{imgUrl}}{{licImg}}" />
                                                 </div>
                                             </div>
@@ -373,6 +323,56 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-md-4">
+                                <div class="profile-card-7 ">
+                                    <img *ngIf="!branch_profile"
+                                        src="https://cdn.pixabay.com/photo/2017/04/24/13/37/architecture-2256489_960_720.jpg"
+                                        class="img img-responsive">
+                                    <img *ngIf="branch_profile" src="{{profileUrl}}{{branch_profile}}"
+                                        class="img img-responsive">
+                                    <div class="profile-content">
+                                        <div class="icon-inside">
+                                            <i class="fa fa-pencil" data-toggle="modal" data-target="#exampleModal"
+                                                (click)="hello(3)" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="profile-name">Service Details</div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="profile-overview">
+                                                    <p>List of Services </p>
+                                                    <h5 *ngFor="let service of servicesCat">{{service.name}}</h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="profile-overview">
+                                                    <p>List of Sub Services </p>
+                                                    <h5>{{servicesSubCat}}</h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="profile-overview">
+                                                    <p>Typical Service Cost Range</p>
+                                                    <h5>{{serCost}}</h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="profile-overview">
+                                                    <p>Service Country </p>
+                                                    <h5 *ngFor="let ser of newCountryArr">{{ser}}</h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="profile-overview">
+                                                    <p>Service City </p>
+                                                    <h5 *ngFor="let ser of serCityArr">{{ser}}</h5>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
 
                             <div class="col-md-12">
                                 <div class="seller-new-address-form">
@@ -400,16 +400,16 @@
                                                                 <input type="password" name="companyName" id="companyName" placeholder="Confirm Password" class="form-control">
                                                             </div> -->
                                                             <div class="form-group">
-                                                                <label for="companyName">Branch Name in Arabic*</label>
+                                                                <label for="companyName">Business Name in Arabic*</label>
                                                                 <input type="text" name="companyName" id="companyName"
                                                                     placeholder="Branch Name in Arabic"
                                                                     class="form-control">
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="companyName">A Brief About the
-                                                                    Branch*</label>
+                                                                    Business*</label>
                                                                 <textarea class="form-control" rows="3"
-                                                                    placeholder="A Brief About the Branch"
+                                                                    placeholder="A Brief About the Business"
                                                                     class="form-control"></textarea>
                                                             </div>
                                                             <div class="form-group">
@@ -433,13 +433,13 @@
                                                                     class="form-control">
                                                             </div>
                                                             <div class="form-group">
-                                                                <label for="companyName">Branch Name in English*</label>
+                                                                <label for="companyName">Business Name in English*</label>
                                                                 <input type="text" name="companyName" id="companyName"
-                                                                    placeholder="Branch Name in English"
+                                                                    placeholder="Business Name in English"
                                                                     class="form-control">
                                                             </div>
                                                             <div class="form-group">
-                                                                <label for="">Branch Type*</label>
+                                                                <label for="">Business Type*</label>
                                                                 <select name="signup" class="custom-select">
                                                                     <option selected>Choose</option>
                                                                     <option value="seller">Manufacturer</option>
@@ -452,7 +452,7 @@
                                                                 </select>
                                                             </div>
                                                             <div class="form-group">
-                                                                <label for="">Branch Category*</label>
+                                                                <label for="">Business Category*</label>
                                                                 <select name="signup" class="custom-select">
                                                                     <option selected>Choose</option>
                                                                     <option value="seller">Building Contractors</option>
@@ -576,9 +576,9 @@
                                                                     class="form-control">
                                                             </div>
                                                             <div class="form-group">
-                                                                <label for="companyName">Branch Email*</label>
+                                                                <label for="companyName">Business Email*</label>
                                                                 <input type="text" name="companyName" id="companyName"
-                                                                    placeholder="Branch Email" class="form-control">
+                                                                    placeholder="Business Email" class="form-control">
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="companyName">Mobile Number*</label>
@@ -601,9 +601,9 @@
                                                                     class="form-control">
                                                             </div>
                                                             <div class="form-group">
-                                                                <label for="companyName">Branch Website*</label>
+                                                                <label for="companyName">Business Website*</label>
                                                                 <input type="text" name="companyName" id="companyName"
-                                                                    placeholder="Branch Website" class="form-control">
+                                                                    placeholder="Business Website" class="form-control">
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="companyName">Business Mobile Number*</label>
@@ -625,14 +625,14 @@
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
-                                                                <label for="companyName">Branch Establishment
+                                                                <label for="companyName">Business Establishment
                                                                     Year*</label>
                                                                 <input type="number" name="companyName" id="companyName"
-                                                                    placeholder="Branch Establishment Year"
+                                                                    placeholder="Business Establishment Year"
                                                                     class="form-control">
                                                             </div>
                                                             <div class="form-group">
-                                                                <label for="companyName">Please Upload Your Branch
+                                                                <label for="companyName">Please Upload Your Business
                                                                     Licence*</label>
                                                                 <input type="file" name="companyName" id="companyName"
                                                                     placeholder="City and Coutry" class="form-control">
@@ -741,7 +741,7 @@
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-md-12">
-                                                            <h3 class="custom-heading"><span>Branch Details</span></h3>
+                                                            <h3 class="custom-heading"><span>Business Details</span></h3>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="branch-wrpr">
@@ -801,7 +801,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header edit-branch-header">
-                <h2 class="modal-title" id="exampleModalLabel">Edit Branch Details</h2>
+                <h2 class="modal-title" id="exampleModalLabel">Edit Business Details</h2>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -817,7 +817,7 @@
                                         <h3 class="custom-heading"><span>General
                                                 Details</span></h3>
                                     </div>
-                                    <label class="labeltext">Add Branch Image
+                                    <label class="labeltext">Add Business Image
                                     </label>
                                     <div class="profile-picture">
                                         <img *ngIf="!image && !branch_profile"
@@ -1241,16 +1241,16 @@
                                     </div>
                                     <div class="col-md-6">
                                         <mat-form-field appearance="">
-                                            <mat-label>Branch(studio) Name in English
+                                            <mat-label>Business(studio) Name in English
                                             </mat-label>
                                             <input matInput [(ngModel)]="branchName"
-                                                placeholder="Branch(studio) Name in English" required
+                                                placeholder="Business(studio) Name in English" required
                                                 formControlName="Branch_name">
                                         </mat-form-field>
                                         <div *ngIf="businessFormGroup.controls.Branch_name.invalid && (businessFormGroup.controls.Branch_name.dirty || businessFormGroup.controls.Branch_name.touched || next4)"
                                             class="">
                                             <mat-error *ngIf="businessFormGroup.controls.Branch_name.errors.required">
-                                                Please enter Branch(studio) Name in English
+                                                Please enter Business(studio) Name in English
                                             </mat-error>
                                         </div>
                                         <div class="col-md-6">
@@ -1283,7 +1283,7 @@
                                         </div>
 
                                         <mat-form-field appearance="">
-                                            <mat-label>Branch Establishment Year
+                                            <mat-label>Business Establishment Year
                                             </mat-label>
                                             <!-- <input matInput [(ngModel)]="establishment_year"
                                                 placeholder="Branch Establishment Year" required

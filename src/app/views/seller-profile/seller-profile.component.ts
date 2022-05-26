@@ -106,6 +106,14 @@ export class SellerProfileComponent implements OnInit {
   selectedCountry
   branch_lic_img
   locations: any;
+  profile_image: any;
+  mainImage: string | ArrayBuffer;
+  profile_img: string | ArrayBuffer;
+  logo_image: any;
+  logoImage: string | ArrayBuffer;
+  logo_img: string | ArrayBuffer;
+  user_image: any;
+  image_path: string;
 
   constructor(public CustomerService: CustomerService, public CommonService: CommonServiceService,
     private toastr: ToastrService,    
@@ -119,6 +127,7 @@ export class SellerProfileComponent implements OnInit {
     this.userData = localStorage['userData'] != null ? JSON.parse(localStorage['userData']) : null
     this.imgUrl=environment.professionalImg
     this.profileUrl=environment.profileUrl
+    this.image_path = environment.image_path + "userProfile/"
     this.getCountries();
     this.generateArrayOfYears()
     this.getCategoryList()
@@ -129,6 +138,12 @@ export class SellerProfileComponent implements OnInit {
     this.CustomerService.getUserDetails().subscribe(res =>{
       console.log("Response of the Prof Data>>>>",res)
       console.log("res----------------------",res.data)
+      if (res.data.profile_image) {
+        this.user_image = res.data.profile_image
+      }
+      if (res.data.logo) {
+        this.logo_image = res.data.logo
+      }
       this.yearValue=res.data.business_details.branch_year
     //  this.no_of_branches=res.data.no_of_branches
       console.log(res.data.no_of_branches,'');
@@ -617,63 +632,7 @@ export class SellerProfileComponent implements OnInit {
       
     // }
     console.log("this.this.profileImg",this.profileImg)
-    // this.submitted=true;
-    // if(this.sellerProfileForm.invalid){
-    //   return
     
-    // }
-    // var ser=	service_details: {
-		// 		services_products: this.sellerProfileForm.value.serviceProduct,
-		// 		service_country: this.sellerProfileForm.value.service_country,
-		// 		service_city: this.sellerProfileForm.value.service_city,
-		// 		service_cost: this.sellerProfileForm.value.service_cost
-    //   }
-    // var formData=new FormData();
-    // formData.append('user_type',"professional")
-    // formData.append('email',this.sellerProfileForm.value.email)
-    // formData.append('branch_name_en',this.sellerProfileForm.value.cNameEng)
-    // formData.append('branch_name_ar',this.sellerProfileForm.value.cNameArb)
-    // if(this.sellerProfileForm.value.cType !=undefined)
-    // {
-    //   formData.append('branch_type_id',this.sellerProfileForm.value.cType)
-    // }
-    // if(this.sellerProfileForm.value.cCategory !=undefined){
-    //   formData.append('branch_category_id',this.sellerProfileForm.value.cCategory)
-    // }
-    
-    // formData.append('branch_brief',this.sellerProfileForm.value.briefCompany)
-    // formData.append('certificate_awards',JSON.stringify(this.certificates_arr))
-    // formData.append('address_details',JSON.stringify([{
-    //   pincode: this.sellerProfileForm.value.pincode,
-    //   house_no: this.sellerProfileForm.value.addressOne,
-    //   area: this.sellerProfileForm.value.addressThree,
-    //   // landmark: this.sellerProfileForm.value.landmark,
-    //   state: this.sellerProfileForm.value.country,
-    //   city: this.sellerProfileForm.value.city,
-    // }]))
-    // formData.append('contact_details',JSON.stringify({
-    //   co_ordinator_eng: this.sellerProfileForm.value.coordinatorEng,
-    //   co_ordinator_arabic: this.sellerProfileForm.value.coordinatorArb,
-    //   branch_email: this.sellerProfileForm.value.companyEmail,
-    //   branch_website: this.sellerProfileForm.value.companyWebsite,
-    //   mobile_number: this.sellerProfileForm.value.mobile,
-    //   business_mobile_number: this.sellerProfileForm.value.businessMobile,
-    //   insta_acc: this.sellerProfileForm.value.insta,
-    //   youtube_channel: this.sellerProfileForm.value.youtube,
-    // }))
-    // formData.append('business_details',JSON.stringify({
-    //   branch_year: this.sellerProfileForm.value.estYear,
-    //   issued_in_countries: this.sellerProfileForm.value.issuedInCountry,
-    //   issued_in_cities: this.sellerProfileForm.value.issuedIncities,
-    //   branch_licence: this.sellerProfileForm.value.branch_licence,
-    //   licence_number: this.sellerProfileForm.value.licNum,
-    //   no_of_emp: this.sellerProfileForm.value.no_of_emp,
-
-    // }))
-    // formData.append('service_details',JSON.stringify(service_details))
-    // formData.append('profile_image',this.profileImg)
-    // formData.append('',)
-    // formData.append('',)
     console.log(this.sellerProfileForm.value.phone_number,'this.sellerProfileForm.value.phone_number,');
     
     this.obj = {
@@ -1002,6 +961,94 @@ export class SellerProfileComponent implements OnInit {
           }
     
         })
+      }
+
+      onProfileChange(evt) {
+        var self = this
+        if (!evt.target) {
+          return;
+        }
+        if (!evt.target.files) {
+          return;
+        }
+        if (evt.target.files.length !== 1) {
+          return;
+        }
+        const file = evt.target.files[0];
+        if (file.type !== 'image/jpeg' && file.type !== 'image/png' && file.type !== 'image/jpg') {
+          // this.toastr.warning('Please upload image file')
+          return;
+        }
+        console.log(evt.target.files[0])
+        this.profile_image = evt.target.files[0];
+        // this.uploadProfile()
+        const fr = new FileReader();
+        fr.onloadend = (loadEvent) => {
+          this.mainImage = fr.result;
+          self.profile_img = this.mainImage;
+          // alert(self.profile_img)
+        };
+        fr.readAsDataURL(file);
+      }
+    
+      onLogoChange(evt) {
+        let self = this
+        if (!evt.target) {
+          return;
+        }
+        if (!evt.target.files) {
+          return;
+        }
+        if (evt.target.files.length !== 1) {
+          return;
+        }
+        const file = evt.target.files[0];
+        if (file.type !== 'image/jpeg' && file.type !== 'image/png' && file.type !== 'image/jpg') {
+          // this.toastr.warning('Please upload image file')
+          return;
+        }
+        console.log(evt.target.files[0])
+        this.logo_image = evt.target.files[0];
+        // this.uploadProfile()
+        const fr = new FileReader();
+        fr.onloadend = (loadEvent) => {
+          this.logoImage = fr.result;
+          self.logo_img = this.logoImage;
+          // alert(self.logo_img)
+        };
+        fr.readAsDataURL(file);
+      }
+    
+      uploadProfile() {
+        if(this.profile_image){
+          var formdata: FormData = new FormData();
+          formdata.append('profile_image', this.profile_image)
+          // formdata.append('logo', this.logo_image)
+          formdata.append('id', this.userData._id)
+      
+          this.CustomerService.updateProfile(formdata).subscribe(data => {
+            console.log(data);
+            // this.user_image = data.profile_image
+            // this.profile_img = ""
+            this.CommonService.sendProfileImg(data.profile_image);
+            this.ngOnInit()
+          })
+        }
+        if(this.logo_image){
+          var formdata: FormData = new FormData();
+          // formdata.append('profile_image', this.profile_image)
+          formdata.append('logo', this.logo_image)
+          formdata.append('id', this.userData._id)
+      
+          this.CustomerService.editProfessionalProfile(formdata).subscribe(data => {
+            console.log('logo------',data);
+            // this.user_image = data.profile_image
+            // this.profile_img = ""
+            this.CommonService.sendProfileImg(data.logo);
+            this.toastr.success('Updated Successfully')
+            this.ngOnInit()
+          })
+        }
       }
   
 }

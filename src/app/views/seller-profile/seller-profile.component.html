@@ -60,33 +60,74 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <h3>Personal Information</h3>
-                                <div class="profile-picture">
+                                <div class="d-flex">
+                                    <div class="change-prof-image">
+                                        <div class="">
+                                            <div class="profile-picture--photographer Logo-Icon" align="center">
+                                                <img *ngIf="!user_image && !profile_img"
+                                                    src="assets/imgs/no-profile.webp" alt="image" class="img-fluid">
+                                                <img *ngIf="user_image && !profile_img"
+                                                    src="{{image_path}}{{user_image}}" alt="image" class="img-fluid">
+                                                <img *ngIf="profile_img" src="{{profile_img}}" alt="image"
+                                                    class="img-fluid">
+                                            </div>
+                                            <span class="photographer-new-design" style="  background: #0b4c89;
+                                            color: #fff;
+                                            padding: 7px 8px;
+                                            border-radius: 50%;
+                                            font-size: 19px;
+                                            position: absolute;
+                                            left: 80px;
+                                            top: 6%;">
+                                                <label class="m-0">
+                                                    <i class="fa fa-camera"></i> <input type="file" name="prof-image"
+                                                        style="display: none;" (change)="onProfileChange($event)">
+                                                </label>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="change-prof-image" style="margin-left: 50px;">
+                                        <div class="">
+                                            <div class="profile-picture--photographers Logo-Icon" align="center">
+                                                <img *ngIf="!logo_image && !logo_img" src="assets/imgs/no-profile.webp"
+                                                    alt="image" class="img-fluid">
+                                                <img *ngIf="logo_image && !logo_img" src="{{image_path}}{{logo_image}}"
+                                                    alt="image" class="img-fluid">
+                                                <img *ngIf="logo_img" src="{{logo_img}}" alt="image" class="img-fluid">
+                                            </div>
+                                            <span class="photographer-new-design" style="  background: #0b4c89;
+                                            color: #fff;
+                                            padding: 7px 8px;
+                                            border-radius: 50%;
+                                            font-size: 19px;
+                                            position: absolute;
+                                            left: 43%;
+                                            top: 6%;">
+                                                <label class="m-0">
+                                                    <i class="fa fa-camera"></i> <input type="file"
+                                                        style="display: none;" (change)="onLogoChange($event)">
+                                                </label>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="btn btn-change-fill mt-5" (click)="uploadProfile()">Update
+                                    Images</button>
+                                <!-- <div class="profile-picture">
                                     <img *ngIf="!image && !imgProfile"
                                         src="https://demo.wponlinesupport.com/themes/wp-iclean-responsive/wp-content/uploads/sites/8/2017/04/team-6.jpg"
                                         alt="image" class="img-fluid">
                                     <img *ngIf="image" src="{{profileUrl}}{{imgProfile}}" alt="image" class="img-fluid">
                                     <img *ngIf="!image && imgProfile" src="{{profileUrl}}{{imgProfile}}" alt="image"
                                         class="img-fluid">
-                                    <div class="change-prof-image">
-                                        <label>
-                                            <!-- <input type="file"
-                                                    style="display: none;"
-                                                    class="form-control custom-file-upload"
-                                                    (change)="profilePicChange($event)"> -->
-                                            <i class="fa fa-image"></i> Change Picture<input type="file"
-                                                style="display: none;" name="prof-image"
-                                                (change)="profilePicChange($event)" accept="image/jpeg,image/jpg,image/png,image/gif">
-                                            <!-- <button type="button" class="btn btn-change-fill mt-2"><i
-                                                    class="fa fa-image"></i> Change Picture<input type="file"
-                                                    style="display: none;" name="prof-image" (change)="profilePicChange($event)"></button> -->
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="form-group">
+                                   
+                                </div> -->
+                                <div class="form-group mt-3">
                                     <label for="companyName">First Name</label>
                                     <input type="text" formControlName="fName" [(ngModel)]="profileData.fName"
-                                        name="companyName" id="companyName" placeholder="First Name" class="form-control"
-                                        [ngClass]="{ 'is-invalid': submitted && f.fName.errors }">
+                                        name="companyName" id="companyName" placeholder="First Name"
+                                        class="form-control" [ngClass]="{ 'is-invalid': submitted && f.fName.errors }">
                                     <div *ngIf="submitted && f.fName.errors" class="invalid-feedback">
                                         <div *ngIf="f.fName.errors.required">First Name is required</div>
                                         <!-- <div *ngIf="f.fName.errors.email">Email must be a valid email address</div> -->
@@ -128,20 +169,20 @@
                                         [(ngModel)]="profileData.companyNameAr" id="companyName"
                                         placeholder="Company Name in Arabic" class="form-control"
                                         [ngClass]="{ 'is-invalid': submitted && f.cNameArb.errors }">
-                                        <div *ngIf="sellerProfileForm.controls.cNameArb.invalid && (sellerProfileForm.controls.cNameArb.dirty || sellerProfileForm.controls.cNameArb.touched )"
+                                    <div *ngIf="sellerProfileForm.controls.cNameArb.invalid && (sellerProfileForm.controls.cNameArb.dirty || sellerProfileForm.controls.cNameArb.touched )"
                                         class="">
-                                        <div
-                                            *ngIf="sellerProfileForm.controls.cNameArb.errors.required"  style="color: red;">
+                                        <div *ngIf="sellerProfileForm.controls.cNameArb.errors.required"
+                                            style="color: red;">
                                             Please Enter Company Name in
                                             Arabic
-                                </div>
+                                        </div>
 
-                                        <div
-                                            *ngIf="sellerProfileForm.controls.cNameArb?.errors?.pattern" style="color: red;">
+                                        <div *ngIf="sellerProfileForm.controls.cNameArb?.errors?.pattern"
+                                            style="color: red;">
                                             Please enter Arabic only
-                            </div>
+                                        </div>
                                     </div>
-                                
+
                                 </div>
                                 <div class="form-group">
                                     <label for="companyName">A Brief About the Company</label>
@@ -159,7 +200,8 @@
                                         <!--  -->
 
                                         <mat-select [(ngModel)]="branchType"
-                                            (selectionChange)="branchCatListing($event.value)" formControlName="branch_type"
+                                            (selectionChange)="branchCatListing($event.value)"
+                                            formControlName="branch_type"
                                             [ngClass]="{ 'is-invalid': submitted && f.cType.errors }">
 
                                             <mat-option *ngFor="let branch of branch_type" [value]="branch.id">
@@ -272,8 +314,8 @@
                                                     <i class="fas fa-upload"></i>
                                                     Upload
                                                     File
-                                                    <input type="file" accept=".png, .jpg, .jpeg" name="prof-image" style="display: none;"
-                                                        (change)="uploadCertificate($event, i)">
+                                                    <input type="file" accept=".png, .jpg, .jpeg" name="prof-image"
+                                                        style="display: none;" (change)="uploadCertificate($event, i)">
                                                 </span>
                                                 <span class="cert_name">{{ele.image}}</span>
                                             </label>
@@ -318,17 +360,16 @@
                                         <mat-label>Country</mat-label>
                                         <mat-select [(ngModel)]="selectedCountryProf"
                                             (selectionChange)="selectCountry($event)" name="country"
-                                            [formControl]="sellerProfileForm.controls['country']"
-                                            required>
+                                            [formControl]="sellerProfileForm.controls['country']" required>
                                             <mat-option disabled>Select Country</mat-option>
-                                            <mat-option *ngFor="let country of countries"
-                                                [value]="country.name">{{country.name}}</mat-option>
+                                            <mat-option *ngFor="let country of countries" [value]="country.name">
+                                                {{country.name}}</mat-option>
                                         </mat-select>
-                                 </mat-form-field>
-                                        <p style="color: red; margin-top: -1.25em;"
-                                            *ngIf="sellerProfileForm.controls['country'].errors?.required && ( sellerProfileForm.controls['country'].touched)">
-                                            Please Select Country 
-                                        </p>
+                                    </mat-form-field>
+                                    <p style="color: red; margin-top: -1.25em;"
+                                        *ngIf="sellerProfileForm.controls['country'].errors?.required && ( sellerProfileForm.controls['country'].touched)">
+                                        Please Select Country
+                                    </p>
 
 
                                 </div>
@@ -337,30 +378,26 @@
 
                                     <mat-form-field>
                                         <mat-label>State</mat-label>
-                                        <mat-select  [(ngModel)]="selectedStateProf" name="state"
-                                        
-                                            [formControl]="sellerProfileForm.controls['state']"
-                                            required>
+                                        <mat-select [(ngModel)]="selectedStateProf" name="state"
+                                            [formControl]="sellerProfileForm.controls['state']" required>
                                             <mat-option disabled>Select State</mat-option>
-                                            <mat-option *ngFor="let state of states"
-                                                [value]="state.name">{{state.name}}</mat-option>
+                                            <mat-option *ngFor="let state of states" [value]="state.name">{{state.name}}
+                                            </mat-option>
                                         </mat-select>
                                     </mat-form-field>
-                                            <p style="color: red; margin-top: -1.25em;"
-                                                *ngIf="sellerProfileForm.controls['state'].errors?.required && ( sellerProfileForm.controls['state'].touched)">
-                                                Please Select State
-                                            </p>
+                                    <p style="color: red; margin-top: -1.25em;"
+                                        *ngIf="sellerProfileForm.controls['state'].errors?.required && ( sellerProfileForm.controls['state'].touched)">
+                                        Please Select State
+                                    </p>
                                 </div>
                                 <div class="form-group">
                                     <mat-form-field appearance="">
                                         <mat-label>City</mat-label>
-                                        <input matInput placeholder="Chennai"
-                                            required formControlName="city">
+                                        <input matInput placeholder="Chennai" required formControlName="city">
                                     </mat-form-field>
                                     <div *ngIf="sellerProfileForm.controls.city.invalid && (sellerProfileForm.controls.city.dirty || sellerProfileForm.controls.city.touched)"
                                         class="">
-                                        <mat-error
-                                            *ngIf="sellerProfileForm.controls.city.errors.required">
+                                        <mat-error *ngIf="sellerProfileForm.controls.city.errors.required">
                                             Please enter city
                                         </mat-error>
                                     </div>
@@ -369,13 +406,11 @@
                                 <div class="form-group">
                                     <mat-form-field appearance="">
                                         <mat-label>Pincode</mat-label>
-                                        <input matInput placeholder="Chennai"
-                                            required formControlName="pincode">
+                                        <input matInput placeholder="Chennai" required formControlName="pincode">
                                     </mat-form-field>
                                     <div *ngIf="sellerProfileForm.controls.pincode.invalid && (sellerProfileForm.controls.pincode.dirty || sellerProfileForm.controls.pincode.touched)"
                                         class="">
-                                        <mat-error
-                                            *ngIf="sellerProfileForm.controls.pincode.errors.required">
+                                        <mat-error *ngIf="sellerProfileForm.controls.pincode.errors.required">
                                             Please enter PinCode
                                         </mat-error>
                                     </div>
@@ -394,27 +429,24 @@
                                 <div class="form-group">
                                     <mat-form-field appearance="">
                                         <mat-label> Mobile Number</mat-label>
-                                        <ngx-mat-intl-tel-input
-                                            [preferredCountries]="['us', 'gb']"
-                                            [enablePlaceholder]="true"
-                                            [enableSearch]="true"
-                                            name="phone"
+                                        <ngx-mat-intl-tel-input [preferredCountries]="['us', 'gb']"
+                                            [enablePlaceholder]="true" [enableSearch]="true" name="phone"
                                             (countryChanged)="businessMobileCod($event)"
-                                            [formControl]="sellerProfileForm.controls['phone_number']"
-                                            >
+                                            [formControl]="sellerProfileForm.controls['phone_number']">
                                         </ngx-mat-intl-tel-input>
                                         <!-- <input matInput
                                             placeholder="Business Mobile Number" required
                                             formControlName="mobile_number"> -->
                                     </mat-form-field>
                                     <div *ngIf="sellerProfileForm.controls.phone_number.invalid && (sellerProfileForm.controls.phone_number.dirty || sellerProfileForm.controls.phone_number.touched)"
-                                                                                    class="">
-                                                    <mat-error
-                                                        *ngIf="sellerProfileForm.controls.phone_number.errors.required">
-                                                     Please Enter Phone number
-                                                 </mat-error>                
-                                         <div>
-                                            <mat-error *ngIf="sellerProfileForm.controls['phone_number']?.errors?.validatePhoneNumber">Invalid Number</mat-error>
+                                        class="">
+                                        <mat-error *ngIf="sellerProfileForm.controls.phone_number.errors.required">
+                                            Please Enter Phone number
+                                        </mat-error>
+                                        <div>
+                                            <mat-error
+                                                *ngIf="sellerProfileForm.controls['phone_number']?.errors?.validatePhoneNumber">
+                                                Invalid Number</mat-error>
                                         </div>
                                     </div>
 
@@ -445,13 +477,11 @@
                                 <div class="form-group">
                                     <mat-form-field appearance="">
                                         <mat-label>Landmark</mat-label>
-                                        <input matInput placeholder="Chennai"
-                                            required formControlName="landmark">
+                                        <input matInput placeholder="Chennai" required formControlName="landmark">
                                     </mat-form-field>
                                     <div *ngIf="sellerProfileForm.controls.landmark.invalid && (sellerProfileForm.controls.landmark.dirty || sellerProfileForm.controls.landmark.touched)"
                                         class="">
-                                        <mat-error
-                                            *ngIf="sellerProfileForm.controls.landmark.errors.required">
+                                        <mat-error *ngIf="sellerProfileForm.controls.landmark.errors.required">
                                             Please enter Landmark
                                         </mat-error>
                                     </div>
@@ -460,47 +490,38 @@
                                 <div class="form-group">
                                     <mat-form-field appearance="">
                                         <mat-label>First Name</mat-label>
-                                        <input matInput
-                                            placeholder="First Name"
-                                            required formControlName="fName_Add">
+                                        <input matInput placeholder="First Name" required formControlName="fName_Add">
                                     </mat-form-field>
                                     <div *ngIf="sellerProfileForm.controls.fName_Add.invalid && (sellerProfileForm.controls.fName_Add.dirty || sellerProfileForm.controls.fName_Add.touched)"
                                         class="">
-                                        <mat-error
-                                            *ngIf="sellerProfileForm.controls.fName_Add.errors.required">
+                                        <mat-error *ngIf="sellerProfileForm.controls.fName_Add.errors.required">
                                             Please Enter First Name
                                         </mat-error>
                                     </div>
-                                 </div>
+                                </div>
 
-                                 <div class="form-group">
+                                <div class="form-group">
                                     <mat-form-field appearance="">
                                         <mat-label>Last Name</mat-label>
-                                        <input matInput
-                                            placeholder="Last Name"
-                                            required formControlName="lName_Add">
+                                        <input matInput placeholder="Last Name" required formControlName="lName_Add">
                                     </mat-form-field>
                                     <div *ngIf="sellerProfileForm.controls.lName_Add.invalid && (sellerProfileForm.controls.lName_Add.dirty || sellerProfileForm.controls.lName_Add.touched)"
                                         class="">
-                                        <mat-error
-                                            *ngIf="sellerProfileForm.controls.lName_Add.errors.required">
+                                        <mat-error *ngIf="sellerProfileForm.controls.lName_Add.errors.required">
                                             Please Enter First Name
                                         </mat-error>
                                     </div>
-                                 </div>
+                                </div>
 
                                 <div class="form-group">
 
                                     <mat-form-field appearance="">
                                         <mat-label>Address Line 1</mat-label>
-                                        <input matInput
-                                            placeholder="Address Line 1"
-                                            required formControlName="aLine1">
+                                        <input matInput placeholder="Address Line 1" required formControlName="aLine1">
                                     </mat-form-field>
                                     <div *ngIf="sellerProfileForm.controls.aLine1.invalid && (sellerProfileForm.controls.aLine1.dirty || sellerProfileForm.controls.aLine1.touched)"
                                         class="">
-                                        <mat-error
-                                            *ngIf="sellerProfileForm.controls.aLine1.errors.required">
+                                        <mat-error *ngIf="sellerProfileForm.controls.aLine1.errors.required">
                                             Please Enter Address
                                         </mat-error>
                                     </div>
@@ -511,14 +532,11 @@
 
                                     <mat-form-field appearance="">
                                         <mat-label>Address Line 2</mat-label>
-                                        <input matInput
-                                            placeholder="Address Line 2"
-                                            required formControlName="aLine2">
+                                        <input matInput placeholder="Address Line 2" required formControlName="aLine2">
                                     </mat-form-field>
                                     <div *ngIf="sellerProfileForm.controls.aLine2.invalid && (sellerProfileForm.controls.aLine2.dirty || sellerProfileForm.controls.aLine2.touched)"
                                         class="">
-                                        <mat-error
-                                            *ngIf="sellerProfileForm.controls.aLine2.errors.required">
+                                        <mat-error *ngIf="sellerProfileForm.controls.aLine2.errors.required">
                                             Please Enter Address
                                         </mat-error>
                                     </div>
@@ -535,7 +553,7 @@
                                         <div *ngIf="f.addressThree.errors.required">Area, Colony, Street, Sector</div>
                                     </div>
                                 </div> -->
-                               
+
                                 <!-- <div class="form-group">
                                     <label for="companyName">State</label>
                                     <input type="text" name="companyName" formControlName="country" [(ngModel)]="state"
@@ -568,53 +586,45 @@
                                     </div>
                                     <div *ngIf="submitted && f.coordinatorArb.errors.pattern" class="invalid-feedback">
                                         <div *ngIf="f.coordinatorArb.errors.pattern">Use only Arabic Words
-                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <mat-form-field appearance="">
                                         <mat-label>Business Mobile Number</mat-label>
-                                        <ngx-mat-intl-tel-input
-                                            [preferredCountries]="['us', 'gb']"
-                                            [enablePlaceholder]="true"
-                                            [enableSearch]="true"
-                                            name="phone"
+                                        <ngx-mat-intl-tel-input [preferredCountries]="['us', 'gb']"
+                                            [enablePlaceholder]="true" [enableSearch]="true" name="phone"
                                             (countryChanged)="businessMobileCod($event)"
-                                            [formControl]="sellerProfileForm.controls['mobile_number']"
-                                            >
+                                            [formControl]="sellerProfileForm.controls['mobile_number']">
                                         </ngx-mat-intl-tel-input>
                                         <!-- <input matInput
                                             placeholder="Business Mobile Number" required
                                             formControlName="mobile_number"> -->
                                     </mat-form-field>
                                     <div *ngIf="sellerProfileForm.controls.mobile_number.invalid && (sellerProfileForm.controls.mobile_number.dirty || sellerProfileForm.controls.mobile_number.touched)"
-                                                                                    class="">
-                                                    <mat-error
-                                                        *ngIf="sellerProfileForm.controls.mobile_number.errors.required">
-                                                     Please Enter Business Mobile number
-                                                 </mat-error>                
-                                         <div>
-                                            <mat-error *ngIf="sellerProfileForm.controls['mobile_number']?.errors?.validatePhoneNumber">Invalid Number</mat-error>
+                                        class="">
+                                        <mat-error *ngIf="sellerProfileForm.controls.mobile_number.errors.required">
+                                            Please Enter Business Mobile number
+                                        </mat-error>
+                                        <div>
+                                            <mat-error
+                                                *ngIf="sellerProfileForm.controls['mobile_number']?.errors?.validatePhoneNumber">
+                                                Invalid Number</mat-error>
                                         </div>
                                     </div>
 
                                 </div>
 
 
-                                <div class="form-group"> 
+                                <div class="form-group">
                                     <mat-form-field appearance="">
                                         <mat-label>Business Landline Number
                                         </mat-label>
-                                        <ngx-mat-intl-tel-input
-                                            [preferredCountries]="['us', 'gb']"
-                                            [enablePlaceholder]="true"
-                                            [enableSearch]="true"
-                                            name="branch_phone"
+                                        <ngx-mat-intl-tel-input [preferredCountries]="['us', 'gb']"
+                                            [enablePlaceholder]="true" [enableSearch]="true" name="branch_phone"
                                             [formControl]="sellerProfileForm.controls['business_mobile_number']"
-                                           
-                                            (countryChanged)="businessLandline($event)"
-                                            >
+                                            (countryChanged)="businessLandline($event)">
                                         </ngx-mat-intl-tel-input>
                                         <!-- <input matInput
                                             placeholder="Business Mobile Number"
@@ -627,9 +637,11 @@
                                             *ngIf="sellerProfileForm.controls.business_mobile_number.errors.required">
                                             Please Enter Business Landline number
                                         </mat-error>
-                                     
+
                                         <div>
-                                            <mat-error *ngIf="sellerProfileForm.controls['business_mobile_number']?.errors?.validatePhoneNumber">Invalid Number</mat-error>
+                                            <mat-error
+                                                *ngIf="sellerProfileForm.controls['business_mobile_number']?.errors?.validatePhoneNumber">
+                                                Invalid Number</mat-error>
                                         </div>
                                     </div>
 
@@ -701,17 +713,18 @@
                                     <mat-form-field appearance="">
                                         <mat-label>Branch Establishment Year
                                         </mat-label>
-                                       
-                                            <mat-select formControlName="branch_year" [(ngModel)]="year" (selectionChange)="getBranchYear($event)" required>
-                                                <mat-option>--</mat-option>
-                                                <mat-option *ngFor="let year of years" [value]="year">
-                                                  {{year}}
-                                                </mat-option>
-                                              </mat-select>
-                                        
+
+                                        <mat-select formControlName="branch_year" [(ngModel)]="year"
+                                            (selectionChange)="getBranchYear($event)" required>
+                                            <mat-option>--</mat-option>
+                                            <mat-option *ngFor="let year of years" [value]="year">
+                                                {{year}}
+                                            </mat-option>
+                                        </mat-select>
+
                                     </mat-form-field>
                                     <div *ngIf="sellerProfileForm.controls.branch_year.invalid && (sellerProfileForm.controls.branch_year.dirty || sellerProfileForm.controls.branch_year.touched)"
-                                    class="">
+                                        class="">
                                         <p style="color: red;"
                                             *ngIf="sellerProfileForm.controls.branch_year.errors.required">
                                             Please Select branch year
@@ -719,18 +732,16 @@
                                     </div>
 
 
-                                     <label for="no_of_branches">Add Branches</label>
-                                    <input  name="no_of_branches" 
-                                        id="no_of_branches" formControlName="no_of_branches"
-                                        placeholder="Number of branch" class="form-control"
-                                       >
-                                       <div *ngIf="sellerProfileForm.controls.no_of_branches.invalid && (sellerProfileForm.controls.no_of_branches.dirty || sellerProfileForm.controls.no_of_branches.touched)"
-                                       class="">
-                                           <p style="color: red;"
-                                               *ngIf="sellerProfileForm.controls.no_of_branches.errors.required">
-                                               Number of Branches is required
-                                           </p>
-                                       </div>
+                                    <label for="no_of_branches">Add Branches</label>
+                                    <input name="no_of_branches" id="no_of_branches" formControlName="no_of_branches"
+                                        placeholder="Number of branch" class="form-control">
+                                    <div *ngIf="sellerProfileForm.controls.no_of_branches.invalid && (sellerProfileForm.controls.no_of_branches.dirty || sellerProfileForm.controls.no_of_branches.touched)"
+                                        class="">
+                                        <p style="color: red;"
+                                            *ngIf="sellerProfileForm.controls.no_of_branches.errors.required">
+                                            Number of Branches is required
+                                        </p>
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="companyName">Licence Number</label>
@@ -784,16 +795,18 @@
                                             <span class="btn btn-change-fill"><i class="fas fa-upload mr-2"></i>
                                                 <input type="file" accept=".png, .jpg, .jpeg" style="display: none;"
                                                     class="form-control custom-file-upload"
-                                                    (change)="onFileChange($event)" accept="image/jpeg,image/jpg,image/png,image/gif">Upload Licence </span>
+                                                    (change)="onFileChange($event)"
+                                                    accept="image/jpeg,image/jpg,image/png,image/gif">Upload Licence
+                                            </span>
                                         </label>
                                     </div>
                                     <div *ngIf="sellerProfileForm.controls.branch_licence.invalid && (sellerProfileForm.controls.branch_licence.dirty || sellerProfileForm.controls.branch_licence.touched)"
-                                                                                        class="">
-                                            <p style="color: red;"
-                                                *ngIf="sellerProfileForm.controls.branch_licence.errors.required">
-                                                Please upload branch licence
-                                            </p>
-                                     </div>
+                                        class="">
+                                        <p style="color: red;"
+                                            *ngIf="sellerProfileForm.controls.branch_licence.errors.required">
+                                            Please upload branch licence
+                                        </p>
+                                    </div>
                                     <!-- <label for="companyName">Change Your Company Licence</label>
                                     <input type="file" accept=".png, .jpg, .jpeg" name="companyName" id="companyName"
                                         formControlName="companyLicence" placeholder="City and Coutry"
@@ -871,11 +884,11 @@
                                             {{service.name}}
                                         </ng-option>
                                     </ng-select> -->
-                                    <!-- <input type="text" name="companyName" id="companyName"
+                                <!-- <input type="text" name="companyName" id="companyName"
                                         formControlName="serviceProduct" placeholder="List the Services and Products"
                                         class="form-control"
                                         [ngClass]="{ 'is-invalid': submitted && f.serviceProduct.errors }"> -->
-                                    <!-- <div *ngIf="submitted && f.serviceProduct.errors" class="invalid-feedback">
+                                <!-- <div *ngIf="submitted && f.serviceProduct.errors" class="invalid-feedback">
                                         <div *ngIf="f.serviceProduct.errors.required"> List the Services and Products
                                             you Provide is required</div>
                                     </div> -->
@@ -884,46 +897,43 @@
                                 <div class="from-group">
 
                                     <ng-select [multiple]="true" formControlName="service_category"
-                                    (change)="getSubCat($event)" placeholder="Select Service Category">
-                                    <ng-option *ngFor="let category of categiryArr"
-                                    [value]="category._id">
-                                    {{category.name}}
-                                    </ng-option>
+                                        (change)="getSubCat($event)" placeholder="Select Service Category">
+                                        <ng-option *ngFor="let category of categiryArr" [value]="category._id">
+                                            {{category.name}}
+                                        </ng-option>
                                     </ng-select>
-                                <div *ngIf="sellerProfileForm.controls.service_category.invalid && (sellerProfileForm.controls.service_category.dirty || sellerProfileForm.controls.service_category.touched)"
-                                    class="">
-                                    <mat-error
-                                         *ngIf="sellerProfileForm.controls.service_category.errors.required">
-                                        Service Category is required
-                                    </mat-error>
-                                    <!-- <p style="color: red;"
+                                    <div *ngIf="sellerProfileForm.controls.service_category.invalid && (sellerProfileForm.controls.service_category.dirty || sellerProfileForm.controls.service_category.touched)"
+                                        class="">
+                                        <mat-error *ngIf="sellerProfileForm.controls.service_category.errors.required">
+                                            Service Category is required
+                                        </mat-error>
+                                        <!-- <p style="color: red;"
                                         *ngIf="serviceFormGroup.controls.service_category.errors.required">
                                         Service Category is required
                                     </p> -->
-                                </div>
+                                    </div>
 
                                 </div>
 
                                 <div class="from-group">
                                     <ng-select [multiple]="true" formControlName="service_sub_category"
-                                    placeholder="Select Service Sub Category" >
-                                   <ng-option *ngFor="let SubCat of subCatArr"
-                                   [value]="SubCat._id">
-                                   {{SubCat.name}}
-                                   </ng-option>
-                               </ng-select>
-                               
-                               <div *ngIf="sellerProfileForm.controls.service_sub_category.invalid && (sellerProfileForm.controls.service_sub_category.dirty || sellerProfileForm.controls.service_sub_category.touched)"
-                                   class="">
-                                   <mat-error
-                                       *ngIf="sellerProfileForm.controls.service_sub_category.errors.required">
-                                       Service Sub Category is required
-                                   </mat-error>
-                                   <!-- <p style="color: red;"
+                                        placeholder="Select Service Sub Category">
+                                        <ng-option *ngFor="let SubCat of subCatArr" [value]="SubCat._id">
+                                            {{SubCat.name}}
+                                        </ng-option>
+                                    </ng-select>
+
+                                    <div *ngIf="sellerProfileForm.controls.service_sub_category.invalid && (sellerProfileForm.controls.service_sub_category.dirty || sellerProfileForm.controls.service_sub_category.touched)"
+                                        class="">
+                                        <mat-error
+                                            *ngIf="sellerProfileForm.controls.service_sub_category.errors.required">
+                                            Service Sub Category is required
+                                        </mat-error>
+                                        <!-- <p style="color: red;"
                                        *ngIf="serviceFormGroup.controls.service_sub_category.errors.required">
                                        Service Sub Category is required
                                    </p> -->
-                               </div>
+                                    </div>
 
                                 </div>
 
@@ -964,8 +974,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>City from orders will be picked up</label>
-                                    <ng-select placeholder="City"
-                                        formControlName="LogCity">
+                                    <ng-select placeholder="City" formControlName="LogCity">
                                         <ng-option *ngFor="let loc of locations" [value]="loc._id">
                                             {{loc.city_name}}
                                         </ng-option>
@@ -1041,7 +1050,8 @@
                             </div>
                             <div class="col-md-12">
                                 <div class="seller-info-btn" align="center">
-                                    <button type="submit" class="btn btn-change-fill" (click)="validate()">Submit</button>
+                                    <button type="submit" class="btn btn-change-fill"
+                                        (click)="validate()">Submit</button>
                                     <!-- submit(); -->
                                 </div>
                             </div>
