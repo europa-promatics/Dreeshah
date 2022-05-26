@@ -26,9 +26,9 @@
                         </div>
                         <div class="col-md-8">
                             <div class="wrap cf">
-                                <div class="cart">
-                                    <ul class="cartWrap">
-                                        <li class="items odd">
+                                <div class="cart p-0">
+                                    <ul class="cartWrap p-0">
+                                        <li class="items odd p-0">
 
                                             <div *ngIf="cartDetail.length == 0">
                                                 <h2>Cart Is Empty</h2>
@@ -39,20 +39,35 @@
                                                     <!-- <img src="http://www.pngall.com/wp-content/uploads/5/Home-Interior-Design-Transparent.png" alt="" class="itemImg" /> -->
                                                     <img src="{{imgpath}}{{detail?.ProductDetails?.product_media[0]?.name}}"
                                                         alt="" class="itemImg cartItemImageSize" />
-                                                    <p class="itemNumber">{{detail.ProductDetails.product_unique_id}}
+                                                    <p class="itemNumber" style="font-size: 16px;">
+                                                        <!-- {{detail?.ProductDetails?.product_description}} -->
+                                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium officiis ipsum maiores.
                                                     </p>
+                                                    <br>
+                                                    <p>
+                                                        {{detail.ProductDetails.product_unique_id}}
+                                                    </p>
+                                                    <!-- <p> <input (keyup)="Updateitem(detail,$event)" type="text"
+                                                        class="qty" value={{detail.quantity}} /> x
+                                                    ${{detail.ProductDetails.pricing.price}}</p> -->
                                                     <!-- <h3>Item Name 1</h3> -->
                                                     <h3>{{detail.ProductDetails.product_title}}</h3>
                                                     <h4 class="item-price">${{detail.ProductDetails.pricing.price}}</h4>
-                                                    <p> <input (keyup)="Updateitem(detail,$event)" type="text"
-                                                            class="qty" value={{detail.quantity}} /> x
-                                                        ${{detail.ProductDetails.pricing.price}}</p>
+                                                    
                                                     <!-- (keydown)="Updateitem()" -->
-                                                    <p class="stockStatus"> In Stock</p>
-                                                    <div class="d-flex">
-                                                        <h2 (click)="deleteItem(detail)" style="font-size:12px; cursor:pointer; color: #ff8a8a;"> Delete </h2>
+                                                    <p class="stockStatus p-0" style="color: #007600; font-size: 0.7rem;"> In Stock</p>
+                                                    <div class="d-flex mt-3">
+                                                        <h2 style="font-size:12px; cursor:pointer; "> 
+                                                            <input (keyup)="Updateitem(detail,$event)" placeholder="qty" type="text"
+                                                            class="qty p-0" style="width: 3rem;box-shadow: 1px 2px 5px -3px rgba(0, 0, 0, 0.12);" value={{detail.quantity}} /> x
+                                                        ${{detail.ProductDetails.pricing.price}}</h2>
                                                         <div class="borderSP"></div>
-                                                        <h2 style="font-size:12px; cursor:pointer;">Save For Later</h2>
+                                                        <h2 (click)="deleteItem(detail)"
+                                                            style="font-size:12px; cursor:pointer; color: #ff8a8a;">
+                                                            Delete </h2>
+                                                        <div class="borderSP"></div>
+                                                        <h2 (click)="laterSave(detail?._id)"
+                                                            style="font-size:12px; cursor:pointer;">Save For Later</h2>
                                                     </div>
                                                 </div>
                                                 <div class="prodTotal cartSection">
@@ -87,7 +102,7 @@
                             </div> -->
 
 
-                            <div class="subtotal mt-5">
+                            <div class="subtotal mt-3" style="border: 1px solid #ececec; box-shadow: 1px 2px 5px -3px rgba(0, 0, 0, 0.12);">
                                 <ul>
                                     <li class="totalRow"><span class="label">Subtotal</span><span
                                             class="value">${{amtWithoutTax}}</span></li>
@@ -100,7 +115,7 @@
                                             class="value">${{tax}}</span></li>
                                     <li class="totalRow" *ngIf="!taxAndShipping"><span class="label">Tax</span><span
                                             class="value">$0</span></li>
-                                    <li class="totalRow final"><span class="label">Total</span><span
+                                    <li class="totalRow final"><span >Total</span><span
                                             class="value">${{finalTotal}}</span></li>
                                     <li class="totalRow"><a (click)="CheckOut()"
                                             class="btn btn-change-fill">Checkout</a></li>
@@ -118,37 +133,39 @@
                         <h1>Your items</h1><br>
                         <h2>Save For Later</h2>
                         <hr class="m-0">
-                    	<div class="row">
-                    		<div class="col-sm-4"  >
-							<!-- <div class="col-sm-4" *ngFor="let product of prodData |  paginate:{ itemsPerPage: 5, currentPage: p, 
-								totalItems: count }" >-->
-                    			<div class="prod-cata" > 
-                    				<div class="ps-product">
-                    					<a href="">
-                                            <div class="product-image"  style="background-image: url();">
+                        <div class="row">
+                            <div class="col-sm-4" *ngFor="let detail of saveForLater">
+                                <div class="main-product">
+                                    <div class="">
+                                        <div class="main-image">
+                                            <img src="{{imgpath}}{{detail?.ProductDetails?.product_media[0]?.name}}" alt="">
+                                        </div>
+                                        <div class="product-details p-4">
+                                            <span style="font-size: 16px; color: #0F1111;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil deleniti tempore sunt.</span>
+                                            <h3 class="text-uppercase font-weight-bold">{{detail.ProductDetails.product_title}}</h3>
+                                            <span>
+                                                <p class="stockStatus p-0" style="color: #007600; font-size: 0.7rem;"> In Stock</p>
+                                            </span>
+                                            <span>
+                                                <div class="" style="font-size:17px; font-weight: bolder;"> <strong style="
+                                                    color: #B73E15; margin-right: 3px;">$</strong> <span>{{detail.ProductDetails.pricing.price}}</span>
+                                                </div>
+                                            </span><br/>
+                                            <span>
+                                                <button (click)="moveToCart(detail?._id)" class="form-control text-center" >Move to Cart</button>
+                                            </span>
+                                            <span>
+                                                <h2 class="m-0" (click)="deleteItem(detail)"
+                                                            style="font-size:12px; cursor:pointer; color: #ff8a8a;">
+                                                            Delete </h2>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
 
-                                            </div>
-                                        </a>
-										<a><div class="product-image" >
-											<img src="../../../assets/imgs/bnr1.jpg" alt="">
-										</div></a>
-                    					<div class="product-desc">
-                                            <span class="caption"><a >Navdeep</a></span>
-                    						<span class="new">New</span> 
-                    						<span  class="rating">
-                                                <i  class="fas fa-star"></i>
-                                                <i  class="fas fa-star"></i>
-                                                <i  class="fas fa-star"></i><i  class="fas fa-star"></i><i  class="fas fa-star grey"></i></span>
-											
-                    						<div class="price"> <strong>gh</strong> <span>£18.00</span></div>
-                    					</div>
-                    				
-                    				</div>
-                    			</div>
-								
-                    		</div>
-							
-                    	</div>		
+                        </div>
                     </div>
                 </div>
             </div>

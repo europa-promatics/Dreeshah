@@ -747,201 +747,233 @@
                 <!-- professional details list -->
                 <div class="row">
 					<div class="col-sm-6 Spborder">
-						<h3>Product Details</h3><br>
+						<h3>Professional Details</h3><br>
 						<div class="row">
 							<div class="col-sm-6">
-								<p>Product Name:</p>
+								<p>First Name:</p>
 							</div>
 							<div class="col-sm-6">
-								<p>{{product_1?.product_title}}</p>
+								<p>{{user_1?.first_name}}</p>
+							</div>
+						</div>
+                        <div class="row">
+							<div class="col-sm-6">
+								<p>Last Name:</p>
+							</div>
+							<div class="col-sm-6">
+								<p>{{user_1?.last_name}}</p>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-sm-6">
-								<p>Category:</p>
+								<p>Email:</p>
 							</div>
 							<div class="col-sm-6">
-								<p>{{product_1?.category_id?.name}}</p>
+								<p>{{user_1?.email}}</p>
+							</div>
+						</div>
+                        <div class="row">
+							<div class="col-sm-6">
+								<p>Phone:</p>
+							</div>
+							<div class="col-sm-6">
+								<p>{{user_1?.phone_number}}</p>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-sm-6">
-								<p>Sub-Category:</p>
+								<p>Branch Name EN:</p>
 							</div>
 							<div class="col-sm-6">
-								<p>{{product_1?.sub_category_id?.name}}</p>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-sm-6">
-								<p>Product Unique Id:</p>
-							</div>
-							<div class="col-sm-6">
-								<p>{{product_1?.product_unique_id}}</p>
+								<p>{{user_1?.branch_name_en}}</p>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-sm-6">
-								<p>Product Type:</p>
+								<p>Branch Name AR:</p>
 							</div>
 							<div class="col-sm-6">
-								<p>{{product_1?.product_details?.product_type?.product_type}}</p>
+								<p>{{user_1?.branch_name_ar}}</p>
+							</div>
+						</div>
+                        <div class="row">
+							<div class="col-sm-6">
+								<p>Branch Category:</p>
+							</div>
+							<div class="col-sm-6">
+								<p>{{user_1?.branch_category_id?.name}}</p>
+							</div>
+						</div>
+                        <div class="row">
+							<div class="col-sm-6">
+								<p>Branch Brief:</p>
+							</div>
+							<div class="col-sm-6">
+								<p>{{user_1?.branch_brief}}</p>
+							</div>
+						</div>
+                        <div class="row">
+							<div class="col-sm-6">
+								<p>Branch Email:</p>
+							</div>
+							<div class="col-sm-6">
+								<p>{{user_1?.contact_details?.branch_email}}</p>
+							</div>
+						</div>
+                        <div class="row">
+							<div class="col-sm-6">
+								<p>Branch Website:</p>
+							</div>
+							<div class="col-sm-6">
+								<p>{{user_1?.contact_details?.branch_website}}</p>
+							</div>
+						</div>
+                        <div class="row">
+							<div class="col-sm-6">
+								<p>Branch Category:</p>
+							</div>
+							<div class="col-sm-6">
+								<p>{{user_1?.branch_category_id?.name}}</p>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-sm-6">
-								<p>Weight:</p>
+								<p>Country:</p>
 							</div>
 							<div class="col-sm-6">
-								<p>{{product_1?.weight_details?.weight}}</p>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-sm-6">
-								<p>Available Colors:</p>
-							</div>
-							<div class="col-sm-6">
-								<p><span *ngFor="let color of product_1?.available_color">{{color?.color_name}}</span></p>
+								<p>{{user_1?.country}}</p>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-sm-6">
-								<p>Description:</p>
+								<p>State:</p>
 							</div>
 							<div class="col-sm-6">
-								<p>{{product_1?.product_description}}</p>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-sm-6">
-								<p>Available Size:</p>
-							</div>
-							<div class="col-sm-6">
-								<p><span *ngFor="let size of product_1?.available_size">{{size?.size}}</span></p>
+								<p>{{user_1?.state}}</p>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-sm-6">
-								<p>Quantity:</p>
+								<p>City:</p>
 							</div>
 							<div class="col-sm-6">
-								<p><span *ngFor="let quantity of product_1?.quantity">{{quantity?.branch_quantity}}</span></p>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-sm-6">
-								<p>Rating:</p>
-							</div>
-							<div class="col-sm-6">
-								<p>{{product_1?.total_rating}}</p>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-sm-6">
-								<p>Vendor Name:</p>
-							</div>
-							<div class="col-sm-6">
-								<p>{{product_1?.vendor?.vendor_name}}</p>
+								<p>{{user_1?.city}}</p>
 							</div>
 						</div>
 					</div>
-                        <!-- product details List  -->
+                        <!-- Professional details List  -->
 					<div class="col-sm-6 SpPadding">
-						<h3>Product Details</h3><br>
+						<h3>Professional Details</h3><br>
                         <div class="row">
 							<div class="col-sm-6">
-								<p>Product Name:</p>
+								<p>First Name:</p>
 							</div>
 							<div class="col-sm-6">
-								<p>{{product_2?.product_title}}</p>
+								<p>{{user_2?.first_name}}</p>
+							</div>
+						</div>
+                        <div class="row">
+							<div class="col-sm-6">
+								<p>Last Name:</p>
+							</div>
+							<div class="col-sm-6">
+								<p>{{user_2?.last_name}}</p>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-sm-6">
-								<p>Category:</p>
+								<p>Email:</p>
 							</div>
 							<div class="col-sm-6">
-								<p>{{product_2?.category_id?.name}}</p>
+								<p>{{user_2?.email}}</p>
+							</div>
+						</div>
+                        <div class="row">
+							<div class="col-sm-6">
+								<p>Phone:</p>
+							</div>
+							<div class="col-sm-6">
+								<p>{{user_2?.phone_number}}</p>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-sm-6">
-								<p>Sub-Category:</p>
+								<p>Branch Name EN:</p>
 							</div>
 							<div class="col-sm-6">
-								<p>{{product_2?.sub_category_id?.name}}</p>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-sm-6">
-								<p>Product Unique Id:</p>
-							</div>
-							<div class="col-sm-6">
-								<p>{{product_2?.product_unique_id}}</p>
+								<p>{{user_2?.branch_name_en}}</p>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-sm-6">
-								<p>Product Type:</p>
+								<p>Branch Name AR:</p>
 							</div>
 							<div class="col-sm-6">
-								<p>{{product_2?.product_details?.product_type?.product_type}}</p>
+								<p>{{user_2?.branch_name_ar}}</p>
+							</div>
+						</div>
+                        <div class="row">
+							<div class="col-sm-6">
+								<p>Branch Category:</p>
+							</div>
+							<div class="col-sm-6">
+								<p>{{user_2?.branch_category_id?.name}}</p>
+							</div>
+						</div>
+                        <div class="row">
+							<div class="col-sm-6">
+								<p>Branch Brief:</p>
+							</div>
+							<div class="col-sm-6">
+								<p>{{user_2?.branch_brief}}</p>
+							</div>
+						</div>
+                        <div class="row">
+							<div class="col-sm-6">
+								<p>Branch Email:</p>
+							</div>
+							<div class="col-sm-6">
+								<p>{{user_2?.contact_details?.branch_email}}</p>
+							</div>
+						</div>
+                        <div class="row">
+							<div class="col-sm-6">
+								<p>Branch Website:</p>
+							</div>
+							<div class="col-sm-6">
+								<p>{{user_2?.contact_details?.branch_website}}</p>
+							</div>
+						</div>
+                        <div class="row">
+							<div class="col-sm-6">
+								<p>Branch Category:</p>
+							</div>
+							<div class="col-sm-6">
+								<p>{{user_2?.branch_category_id?.name}}</p>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-sm-6">
-								<p>Weight:</p>
+								<p>Country:</p>
 							</div>
 							<div class="col-sm-6">
-								<p>{{product_2?.weight_details?.weight}}</p>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-sm-6">
-								<p>Available Colors:</p>
-							</div>
-							<div class="col-sm-6">
-								<p><span *ngFor="let color of product_2?.available_color">{{color?.color_name}}</span></p>
+								<p>{{user_2?.country}}</p>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-sm-6">
-								<p>Description:</p>
+								<p>State:</p>
 							</div>
 							<div class="col-sm-6">
-								<p>{{product_2?.product_description}}</p>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-sm-6">
-								<p>Available Size:</p>
-							</div>
-							<div class="col-sm-6">
-								<p><span *ngFor="let size of product_2?.available_size">{{size?.size}}</span></p>
+								<p>{{user_2?.state}}</p>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-sm-6">
-								<p>Quantity:</p>
+								<p>City:</p>
 							</div>
 							<div class="col-sm-6">
-								<p><span *ngFor="let quantity of product_2?.quantity">{{quantity?.branch_quantity}}</span></p>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-sm-6">
-								<p>Rating:</p>
-							</div>
-							<div class="col-sm-6">
-								<p>{{product_2?.total_rating}}</p>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-sm-6">
-								<p>Vendor Name:</p>
-							</div>
-							<div class="col-sm-6">
-								<p>{{product_2?.vendor?.vendor_name}}</p>
+								<p>{{user_2?.city}}</p>
 							</div>
 						</div>
 					</div>
