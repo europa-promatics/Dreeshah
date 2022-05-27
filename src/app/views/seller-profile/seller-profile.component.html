@@ -112,8 +112,11 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="text-danger mt-4">Note: Max file size is 2mb only, Please upload jpg/png
+                                    file only</div>
                                 <button class="btn btn-change-fill mt-5" (click)="uploadProfile()">Update
                                     Images</button>
+
                                 <!-- <div class="profile-picture">
                                     <img *ngIf="!image && !imgProfile"
                                         src="https://demo.wponlinesupport.com/themes/wp-iclean-responsive/wp-content/uploads/sites/8/2017/04/team-6.jpg"
@@ -346,6 +349,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <span class="text-danger">Note: Max file size is 2mb, Please upload jpg/png/pdf only</span>
                                     <!-- <input type="text" name="companyName" formControlName="Certifications"
                                         id="companyName" placeholder="Certifications & Awards" class="form-control"
                                         [ngClass]="{ 'is-invalid': submitted && f.Certifications.errors }">
@@ -711,7 +715,7 @@
                                 <div class="form-group">
 
                                     <mat-form-field appearance="">
-                                        <mat-label>Branch Establishment Year
+                                        <mat-label>Business Establishment Year
                                         </mat-label>
 
                                         <mat-select formControlName="branch_year" [(ngModel)]="year"
@@ -727,19 +731,19 @@
                                         class="">
                                         <p style="color: red;"
                                             *ngIf="sellerProfileForm.controls.branch_year.errors.required">
-                                            Please Select branch year
+                                            Please Select Business year
                                         </p>
                                     </div>
 
 
-                                    <label for="no_of_branches">Add Branches</label>
+                                    <label for="no_of_branches">Add Business</label>
                                     <input name="no_of_branches" id="no_of_branches" formControlName="no_of_branches"
-                                        placeholder="Number of branch" class="form-control">
+                                        placeholder="Number of Business" class="form-control">
                                     <div *ngIf="sellerProfileForm.controls.no_of_branches.invalid && (sellerProfileForm.controls.no_of_branches.dirty || sellerProfileForm.controls.no_of_branches.touched)"
                                         class="">
                                         <p style="color: red;"
                                             *ngIf="sellerProfileForm.controls.no_of_branches.errors.required">
-                                            Number of Branches is required
+                                            Number of Business is required
                                         </p>
                                     </div>
                                 </div>
@@ -786,7 +790,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="custom-label">Please
-                                        Upload Your Branch Licence*</label>
+                                        Upload Your Business Licence*</label>
                                     <div class="col-md-12">
                                         <img *ngIf="temp" [src]="licence_img" height="50" class="lic-img-thumb">
                                         <img *ngIf="!temp" src="{{imgUrl}}{{branchLicImage}}" height="50"
@@ -804,7 +808,7 @@
                                         class="">
                                         <p style="color: red;"
                                             *ngIf="sellerProfileForm.controls.branch_licence.errors.required">
-                                            Please upload branch licence
+                                            Please upload Business licence
                                         </p>
                                     </div>
                                     <!-- <label for="companyName">Change Your Company Licence</label>
@@ -816,6 +820,9 @@
                                         <div *ngIf="f.companyLicence.errors.required"> Company Licence is required</div>
                                     </div> -->
                                 </div>
+                                <span class="text-danger">Note: Max file size is 2 mb, Please upload jpg/png/pdf only</span>
+                                <br>
+                                <span class="text-danger">Dimensions:500 x 500</span>
                                 <div class="form-group">
                                     <label>No of Employees</label><br />
                                     <mat-radio-group aria-labelledby="example-radio-group-label"
@@ -827,7 +834,7 @@
                                             1 to 10
 
                                         </mat-radio-button>
-                                        <!--  -->
+
                                         <mat-radio-button class="example-radio-button1 radio-list" value="Up to 50"
                                             checked="profileData.employees == 'Up to 50' ? true : false"> Up to 50
                                         </mat-radio-button>
@@ -841,15 +848,6 @@
                                             checked="profileData.employees == 'More than 100'"> More than 100
                                         </mat-radio-button>
                                     </mat-radio-group>
-
-
-
-
-                                    <!-- <label class="radio-inline">1 to 10
-                                    <input *ngIf="profileData.employees == 'Up to 10'" type="radio" checked="" [(ngModel)]="profileData.employees" [ngModelOptions]="{standalone: true}"    name="is_company">
-                                    
-                                    <span class="checkround"></span>
-                                    </label> -->
                                 </div>
                                 <!-- checked="checked" -->
                                 <!-- <div class="form-group">

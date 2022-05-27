@@ -402,7 +402,7 @@
                                                             <div class="form-group">
                                                                 <label for="companyName">Business Name in Arabic*</label>
                                                                 <input type="text" name="companyName" id="companyName"
-                                                                    placeholder="Branch Name in Arabic"
+                                                                    placeholder="Business Name in Arabic"
                                                                     class="form-control">
                                                             </div>
                                                             <div class="form-group">
@@ -763,9 +763,9 @@
                                                                         for="inlineRadio2">No</label>
                                                                 </div>
                                                                 <div class="form-group  mt-1" id="field_input">
-                                                                    <label for="companyName">No. of Branches</label>
+                                                                    <label for="companyName">No. of Business</label>
                                                                     <input type="text" name="companyName"
-                                                                        id="companyName" placeholder="No. of Branches"
+                                                                        id="companyName" placeholder="No. of Business"
                                                                         class="form-control">
                                                                 </div>
                                                             </div>
@@ -1312,7 +1312,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label class="custom-label">Please
-                                                Upload Your Branch Licence*</label>
+                                                Upload Your Business Licence*</label>
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <img *ngIf="temp" [src]="licence_img" height="50"
@@ -1332,11 +1332,13 @@
                                                 class="">
                                                 <p style="color: red;"
                                                     *ngIf="businessFormGroup.controls.branch_licence.errors.required">
-                                                    Please upload branch licence
+                                                    Please upload Business licence
                                                 </p>
                                             </div>
                                         </div>
-
+                                        <span class="text-danger">Note: Max file size is 2mb, Please upload jpg/png/pdf only</span>
+                                        <br>
+                                        <span class="text-danger">Dimensions: 500 x 500</span>
 
                                     </div>
                                     <div class="col-md-6">

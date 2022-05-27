@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { CommonServiceService } from 'src/app/shared/common-service.service';
 import { CustomerService } from 'src/app/shared/customer.service';
 
@@ -14,9 +15,11 @@ export class SellerProfileViewComponent implements OnInit {
   profile_image
   image_path
   user_image
+  logo_image: any;
   constructor(
     public CustomerService: CustomerService,
-    public CommonService: CommonServiceService
+    public CommonService: CommonServiceService,
+    private toastr:ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -35,6 +38,9 @@ export class SellerProfileViewComponent implements OnInit {
         this.userDetails = data.data
         if (data.data.profile_image) {
           this.user_image = data.data.profile_image
+        }
+        if (data.data.logo) {
+          this.logo_image = data.data.logo
         }
         console.log("khgiuhg", this.userDetails)
       }
@@ -81,6 +87,18 @@ export class SellerProfileViewComponent implements OnInit {
 
       this.CommonService.sendProfileImg(data.profile_image);
       this.ngOnInit()
+    })
+  }
+  
+  toggleLogo(event){
+    console.log('------event------',event.checked)
+    var obj = {
+      user_id:this.userData._id,
+      show_logo_image:event.checked
+    }
+    this.CustomerService.activeInactiveProfileImageAndLogo(obj).subscribe(data=>{
+      console.log(data)
+      this.toastr.success('Status Changed Successfully')
     })
   }
 

@@ -2648,4 +2648,11 @@ export class CustomerService {
     })) 
   }
 
+  activeInactiveProfileImageAndLogo(data):Observable<any>{
+    let API_URL = `${this.apiUrl}/activeInactiveProfileImageAndLogo`;
+    return this.httpClient.patch(API_URL, data).pipe(map(res => {
+      return res
+    }))
+  }
+
 }

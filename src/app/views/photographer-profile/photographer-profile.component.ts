@@ -110,4 +110,16 @@ export class PhotographerProfileComponent implements OnInit {
     })
   }
 
+  toggleLogo(event){
+    console.log('------event------',event.target.checked)
+    var obj = {
+      user_id:this.userData._id,
+      show_logo_image:event.target.checked
+    }
+    this.CustomerService.activeInactiveProfileImageAndLogo(obj).subscribe(data=>{
+      console.log(data)
+      this.toastr.success('Status Changed Successfully')
+    })
+  }
+
 }
