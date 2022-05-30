@@ -349,7 +349,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <span class="text-danger">Note: Max file size is 2mb, Please upload jpg/png/pdf only</span>
+                                    <span class="text-danger">Note: Max file size is 2mb, Please upload jpg/png/pdf
+                                        only</span>
                                     <!-- <input type="text" name="companyName" formControlName="Certifications"
                                         id="companyName" placeholder="Certifications & Awards" class="form-control"
                                         [ngClass]="{ 'is-invalid': submitted && f.Certifications.errors }">
@@ -757,37 +758,28 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <ng-select [multiple]="true" formControlName="issuedInCountry"
-                                        (change)="getCities($event)" placeholder="Select Issued in Country">
-                                        <ng-option *ngFor="let country of countries" [value]="country.isoCode">
-                                            {{country.name}}
-                                        </ng-option>
-                                    </ng-select>
+                                            <div formArrayName="country_and_city">
+                                                <div *ngFor="let country of countryAndCity.controls;let i=index" [formGroupName]="i">
+                                            <ng-select formControlName="issued_in_countries"
+                                                (change)="getCities($event,i+1)" placeholder="Select Issued in Country">
+                                                <ng-option *ngFor="let country1 of countries"
+                                                    [value]="country1.isoCode">
+                                                    {{country1.name}}
+                                                </ng-option>
+                                            </ng-select>
 
-                                    <ng-select [multiple]="true" formControlName="issuedIncities"
-                                        placeholder="Select Issued in Cities">
-                                        <ng-option *ngFor="let city of cities" [value]="city.name">
-                                            {{city.name}}
-                                        </ng-option>
-                                    </ng-select>
-                                    <!-- <div *ngIf="sellerProfileForm.controls.issuedInCountry.invalid && (sellerProfileForm.controls.issuedInCountry.dirty || sellerProfileForm.controls.issuedInCountry.touched || next4)"
-                                        class="">
-                                        <mat-error
-                                            *ngIf="sellerProfileForm.controls.issued_in_countries.errors.required">
-                                            Please select issued countries
-                                        </mat-error>
-                                    </div> -->
-
-
-
-                                    <!-- <label for="companyName">Issued in (Mention the city & Country)</label>
-                                    <input type="text" name="companyName" id="companyName" formControlName="issuedIn"
-                                        placeholder="City and Coutry" class="form-control"
-                                        [ngClass]="{ 'is-invalid': submitted && f.issuedIn.errors }">
-                                    <div *ngIf="submitted && f.issuedIn.errors" class="invalid-feedback">
-                                        <div *ngIf="f.issuedIn.errors.required"> Company Licence is required</div>
-                                    </div> -->
-                                </div>
+                                            <ng-select formControlName="issued_in_cities"
+                                                placeholder="Select Issued in Cities">
+                                                <ng-option *ngFor="let city of customCities[i]?.cities"
+                                                    [value]="city.name">
+                                                    {{city.name}}
+                                                </ng-option>
+                                            </ng-select>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    <button type="button" class="btn btn-sm btn-change-fill" (click)="addNewField()">Add
+                                        More</button>
                                 <div class="form-group">
                                     <label class="custom-label">Please
                                         Upload Your Business Licence*</label>
@@ -820,7 +812,8 @@
                                         <div *ngIf="f.companyLicence.errors.required"> Company Licence is required</div>
                                     </div> -->
                                 </div>
-                                <span class="text-danger">Note: Max file size is 2 mb, Please upload jpg/png/pdf only</span>
+                                <span class="text-danger">Note: Max file size is 2 mb, Please upload jpg/png/pdf
+                                    only</span>
                                 <br>
                                 <span class="text-danger">Dimensions:500 x 500</span>
                                 <div class="form-group">

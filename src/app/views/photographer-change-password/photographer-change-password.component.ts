@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray, Validators, FormControl } from '@angular/forms';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { CustomerService } from '../../shared/customer.service'
@@ -52,25 +52,26 @@ export class PhotographerChangePasswordComponent implements OnInit {
   states
   mobile_number
   selectedCity
-  myCityArr =[]
+  myCityArr = []
   businessMobileCode
   logo_image: any;
   logoImage: string | ArrayBuffer;
   logo_img: string | ArrayBuffer;
+  customCities: any[] = []
   constructor(private _formBuilder: FormBuilder, private route: ActivatedRoute,
     private router: Router,
-    
+
     private location: Location,
     public CustomerService: CustomerService,
     private toastr: ToastrService,
-    public CommonService: CommonServiceService) {	 }
+    public CommonService: CommonServiceService) { }
 
 
 
-  
-  
-  
-    
+
+
+
+
   ngOnInit(): void {
     this.getCountries()
     const Webreg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
@@ -109,8 +110,8 @@ export class PhotographerChangePasswordComponent implements OnInit {
         Validators.pattern(Webreg)
       ]),
       mobile_number: new FormControl('', [
-				Validators.required, 
-			]),
+        Validators.required,
+      ]),
       business_mobile_number: new FormControl('', [
         Validators.required, Validators.minLength(8), Validators.maxLength(16), Validators.pattern('^[0-9]*')
       ]),
@@ -144,12 +145,14 @@ export class PhotographerChangePasswordComponent implements OnInit {
       about_company: new FormControl('', [
         Validators.required,
       ]),
-      issued_in_countries: new FormControl('', [
-        Validators.required,
-      ]),
-      issued_in_cities: new FormControl('', [
-        Validators.required,
-      ]),
+      // issued_in_countries: new FormControl('', [
+      //   Validators.required,
+      // ]),
+      // issued_in_cities: new FormControl('', [
+      //   Validators.required,
+      // ]),
+      country_and_city: this._formBuilder.array([]),
+      // issued_in_cities:this._formBuilder.array([]),
       licence_number: new FormControl('', [
         Validators.required,
       ]),
@@ -176,15 +179,29 @@ export class PhotographerChangePasswordComponent implements OnInit {
     this.serviceList()
   }
 
+  get countryAndCity(): FormArray {
+    return this.photoGeneralFormGroup.get('country_and_city') as FormArray
+  }
+
+  addNewField() {
+    console.log(this.photoGeneralFormGroup)
+    if (this.countryAndCity.valid) {
+      this.countryAndCity.push(this._formBuilder.group({
+        issued_in_countries: ['', [Validators.required]],
+        issued_in_cities: ['', [Validators.required]]
+      }))
+    }
+  }
+
   getProfile() {
     var obj = {
       id: this.userData._id
     }
     this.CustomerService.getUserDetails().subscribe(data => {
-  
+
       if (data.code == 200) {
         this.userDetails = data.data
-        console.log('retshrtghtrhgtrehg',this.userDetails);
+        console.log('retshrtghtrhgtrehg', this.userDetails);
         this.photographerDetailGroup.controls['first_name'].setValue(data.data.first_name);
         this.photographerDetailGroup.controls['last_name'].setValue(data.data.last_name);
 
@@ -205,11 +222,28 @@ export class PhotographerChangePasswordComponent implements OnInit {
           this.photoGeneralFormGroup.controls['city'].setValue(data.data.business_details.city);
           this.photoGeneralFormGroup.controls['establishment_year'].setValue(data.data.business_details.establishment_year);
           this.photoGeneralFormGroup.controls['about_company'].setValue(data.data.business_details.about_company);
-          this.photoGeneralFormGroup.controls['issued_in_countries'].setValue(data.data.business_details.issued_in_countries);
-          this.photoGeneralFormGroup.controls['issued_in_cities'].setValue(data.data.business_details.issued_in_cities);
+          // this.photoGeneralFormGroup.controls['issued_in_countries'].setValue(data.data.business_details.issued_in_countries);
+          // this.photoGeneralFormGroup.controls['issued_in_cities'].setValue(data.data.business_details.issued_in_cities);
           this.photoGeneralFormGroup.controls['licence_number'].setValue(data.data.business_details.licence_number);
           this.photoGeneralFormGroup.controls['licence_img'].setValue(data.data.business_details.licence_img);
         }
+        if (data.data.business_details.issued_in_countries.length > 0) {
+          for (let i = 0; i < data.data.business_details.issued_in_countries.length; i++) {
+            const country = data.data.business_details.issued_in_countries[i];
+            const city = data.data.business_details.issued_in_cities[i];
+            console.log('country---------: ', country, city);
+            this.countryAndCity.push(this._formBuilder.group({
+              issued_in_countries: [country, [Validators.required]],
+              issued_in_cities: [city, [Validators.required]]
+            }))
+          }
+        } else {
+          this.countryAndCity.push(this._formBuilder.group({
+            issued_in_countries: ['', [Validators.required]],
+            issued_in_cities: ['', [Validators.required]]
+          }))
+        }
+
 
         this.photoServiceFormGroup.controls['services_products'].setValue(data.data.service_categories.name);
         this.photoServiceFormGroup.controls['service_country'].setValue(data.data.service_details.service_country);
@@ -261,7 +295,7 @@ export class PhotographerChangePasswordComponent implements OnInit {
     })
   }
 
-  getCities(event) {
+  getCities(event, index?: number) {
     console.log("====event", event)
     var arr = []
     if (Array.isArray(event)) {
@@ -273,11 +307,26 @@ export class PhotographerChangePasswordComponent implements OnInit {
     var obj = {
       country_code: arr
     }
-    console.log("===obj", obj)
+    // console.log("===obj", obj)
     this.CustomerService.getAllCities(obj).subscribe(data => {
-      console.log("city data is ====", data)
+      // console.log("city data is ====", data)
       if (data.code == '200' || data.code == 200) {
         this.cities = data.data
+        console.log('index: ', index);
+        if (index) {
+          let i = this.customCities.findIndex((item: any) => { return item.id == index })
+          console.log('i: ', i);
+          if (i != -1) {
+            console.log('in if: ', i);
+            this.customCities[i].cities = this.cities
+          } else {
+            this.customCities.push({
+              id: index,
+              cities: this.cities
+            })
+          }
+          console.log('this.customCities: ', this.customCities);
+        }
       }
     }, err => {
       console.log(err.status)
@@ -289,6 +338,14 @@ export class PhotographerChangePasswordComponent implements OnInit {
       }
 
     })
+  }
+
+  getCustomTity(index: number) {
+    let cities = this.customCities.find((item: any) => {
+      return item.id == index
+    })?.cities
+    console.log('cities: ', cities);
+    return cities
   }
 
 
@@ -348,11 +405,11 @@ export class PhotographerChangePasswordComponent implements OnInit {
     fr.readAsDataURL(file);
   }
 
-  PhotographerSignup() {
+  async PhotographerSignup() {
     console.log("==sumbit", this.photoGeneralFormGroup.value)
     this.photo_submit = true
     var obj = {
-      user_id:this.userData._id,
+      user_id: this.userData._id,
       first_name: this.photographerDetailGroup.value.first_name,
       last_name: this.photographerDetailGroup.value.last_name,
       user_type: "photographer",
@@ -378,8 +435,12 @@ export class PhotographerChangePasswordComponent implements OnInit {
         city: this.photoGeneralFormGroup.value.city,
         establishment_year: this.photoGeneralFormGroup.value.establishment_year,
         about_company: this.photoGeneralFormGroup.value.about_company,
-        issued_in_countries: this.photoGeneralFormGroup.value.issued_in_countries,
-        issued_in_cities: this.photoGeneralFormGroup.value.issued_in_cities,
+        issued_in_countries: await this.photoGeneralFormGroup.value.country_and_city.map((item: any) => {
+          return item.issued_in_countries
+        }),
+        issued_in_cities: await this.photoGeneralFormGroup.value.country_and_city.map((item: any) => {
+          return item.issued_in_cities
+        }),
         licence_number: this.photoGeneralFormGroup.value.licence_number,
         licence_img: this.photoGeneralFormGroup.value.licence_img,
       },
@@ -393,24 +454,24 @@ export class PhotographerChangePasswordComponent implements OnInit {
     }
     console.log("final data===", obj);
     if (this.photoServiceFormGroup.valid) {
-       this.CustomerService.updatePhotographerProfile(obj).subscribe(data => {
-         console.log(data)
-        
-         this.toastr.success("Profile updated sucessfully");
-       	this.router.navigate(['/photographerProfile'])
-       }, err => {
-         console.log(err)
+      this.CustomerService.updatePhotographerProfile(obj).subscribe(data => {
+        console.log(data)
+
+        this.toastr.success("Profile updated sucessfully");
+        this.router.navigate(['/photographerProfile'])
+      }, err => {
+        console.log(err)
         if (err.msg = "EMAIL_ALREADY_EXISTS") {
-           this.toastr.error("Email address already registered");
+          this.toastr.error("Email address already registered");
 
         } else {
-           console.log(err)
-  
+          console.log(err)
+
           this.CustomerService.commonError(err)
         }
         this.toastr.error('Some error occured, please try again!!', 'Error')
 
-       })
+      })
     }
   }
 
@@ -487,12 +548,12 @@ export class PhotographerChangePasswordComponent implements OnInit {
   }
 
   uploadProfile() {
-    if(this.profile_image){
+    if (this.profile_image) {
       var formdata: FormData = new FormData();
       formdata.append('profile_image', this.profile_image)
       // formdata.append('logo', this.logo_image)
       formdata.append('id', this.userData._id)
-  
+
       this.CustomerService.updateProfile(formdata).subscribe(data => {
         console.log(data);
         // this.user_image = data.profile_image
@@ -501,14 +562,14 @@ export class PhotographerChangePasswordComponent implements OnInit {
         this.ngOnInit()
       })
     }
-    if(this.logo_image){
+    if (this.logo_image) {
       var formdata: FormData = new FormData();
       // formdata.append('profile_image', this.profile_image)
       formdata.append('logo', this.logo_image)
       formdata.append('id', this.userData._id)
-  
+
       this.CustomerService.editProfessionalProfile(formdata).subscribe(data => {
-        console.log('logo------',data);
+        console.log('logo------', data);
         // this.user_image = data.profile_image
         // this.profile_img = ""
         this.CommonService.sendProfileImg(data.logo);
@@ -517,128 +578,127 @@ export class PhotographerChangePasswordComponent implements OnInit {
       })
     }
   }
- 
+
   selectCountry(evt) {
-		console.log("CODEEEEEE>>>>>",evt)
-		var obj = {
-			countryCode: evt.value.isoCode
-		}
-
-
-		this.CustomerService.getStates(obj).subscribe(data => {
-			console.log("main data is ====", data)
-			if (data.code == '200' || data.code == 200) {
-				this.states = data.data
-			}
-		}, err => {
-			console.log(err.status)
-			if (err.status >= 404) {
-				console.log('Some error occured')
-			} else {
-				this.toastr.error('Some error occured, please try again!!', 'Error')
-				console.log('Internet Connection Error')
-			}
-
-		})
-
-		var obj1={
-			countryCode: evt.value.isoCode
-		}
-		this.CustomerService.getAllCities(obj1).subscribe(data => {
-			console.log("city data is ====", data)
-			if (data.code == '200' || data.code == 200) {
-				this.cities = data.data
-			}
-		}, err => {
-			console.log(err.status)
-			if (err.status >= 404) {
-				console.log('Some error occured')
-			} else {
-				this.toastr.error('Some error occured, please try again!!', 'Error')
-				console.log('Internet Connection Error')
-			}
-
-		})
-	}
-
-	getCitiesState(event) {
-		this.myCityArr =[]
-		console.log("====event GET Cities State", event.value,)
-		console.log("====event GET Cities State", event.value.isoCode)
-		var arr = []
-		if (Array.isArray(event)) {
-			arr = event
-      console.log(event,'citydata rashika');
-			this.photoGeneralFormGroup.controls['country'].setValue(event)
-		} else {
-			arr.push(event)
-		}
-		var obj = {
-			country_code: event.value.countryCode
-		}
-		console.log("===obj", obj)
-		this.CustomerService.getAllCities(obj).subscribe(data => {
-	
-      
-			data.data.forEach(e => {
-				let v= e.name
-				if(event.value.isoCode == e.stateCode)
-				{
-					var c = {
-						cName : e.name,
-
-					}
-					this.myCityArr.push(c)
-					console.log("City |Array is>>>>",this.myCityArr)
-				}
-			})
-			if (data.code == '200' || data.code == 200) {
-				this.stateCities = data.data
-				console.log("city data is ****************** ====", this.stateCities)
-				
-			}
-		}, err => {
-			console.log(err.status)
-			if (err.status >= 404) {
-				console.log('Some error occured')
-			} else {
-				this.toastr.error('Some error occured, please try again!!', 'Error')
-				console.log('Internet Connection Error')
-			}
-
-		})
-	}
-  countryCode(evt){
-		console.log("Country Code is >>>>",evt)
-		this.countryDial='+'+ evt.dialCode
-		console.log("Country Code is >>>>",this.countryDial)
-	  }
-
-	  countryCodeAddress(evt2){
-		console.log("Country Code is >>>>",evt2)
-		this.countryDialAddress='+'+ evt2.dialCode
-		console.log("countryDialAddress Code is >>>>",this.countryDialAddress)
-	  }
-    getStates() {
-      this.CustomerService.getCountries().subscribe(data => {
-        console.log("main data is ====", data)
-        if (data.code == '200' || data.code == 200) {
-          this.countries = data.data
-        }
-      }, err => {
-        console.log(err.status)
-        if (err.status >= 404) {
-          console.log('Some error occured')
-        } else {
-          this.toastr.error('Some error occured, please try again!!', 'Error')
-          console.log('Internet Connection Error')
-        }
-  
-      })
+    console.log("CODEEEEEE>>>>>", evt)
+    var obj = {
+      countryCode: evt.value.isoCode
     }
-    businessMobile(evt3){
-      console.log("Country Code is >>>>",evt3)
-      this.businessMobileCode='+'+ evt3.dialCode
-      console.log("business mobile Code is >>>>",this.businessMobileCode)
+
+
+    this.CustomerService.getStates(obj).subscribe(data => {
+      console.log("main data is ====", data)
+      if (data.code == '200' || data.code == 200) {
+        this.states = data.data
       }
+    }, err => {
+      console.log(err.status)
+      if (err.status >= 404) {
+        console.log('Some error occured')
+      } else {
+        this.toastr.error('Some error occured, please try again!!', 'Error')
+        console.log('Internet Connection Error')
+      }
+
+    })
+
+    var obj1 = {
+      countryCode: evt.value.isoCode
+    }
+    this.CustomerService.getAllCities(obj1).subscribe(data => {
+      console.log("city data is ====", data)
+      if (data.code == '200' || data.code == 200) {
+        this.cities = data.data
+      }
+    }, err => {
+      console.log(err.status)
+      if (err.status >= 404) {
+        console.log('Some error occured')
+      } else {
+        this.toastr.error('Some error occured, please try again!!', 'Error')
+        console.log('Internet Connection Error')
+      }
+
+    })
+  }
+
+  getCitiesState(event) {
+    this.myCityArr = []
+    console.log("====event GET Cities State", event.value,)
+    console.log("====event GET Cities State", event.value.isoCode)
+    var arr = []
+    if (Array.isArray(event)) {
+      arr = event
+      console.log(event, 'citydata rashika');
+      this.photoGeneralFormGroup.controls['country'].setValue(event)
+    } else {
+      arr.push(event)
+    }
+    var obj = {
+      country_code: event.value.countryCode
+    }
+    console.log("===obj", obj)
+    this.CustomerService.getAllCities(obj).subscribe(data => {
+
+
+      data.data.forEach(e => {
+        let v = e.name
+        if (event.value.isoCode == e.stateCode) {
+          var c = {
+            cName: e.name,
+
+          }
+          this.myCityArr.push(c)
+          console.log("City |Array is>>>>", this.myCityArr)
+        }
+      })
+      if (data.code == '200' || data.code == 200) {
+        this.stateCities = data.data
+        console.log("city data is ****************** ====", this.stateCities)
+
+      }
+    }, err => {
+      console.log(err.status)
+      if (err.status >= 404) {
+        console.log('Some error occured')
+      } else {
+        this.toastr.error('Some error occured, please try again!!', 'Error')
+        console.log('Internet Connection Error')
+      }
+
+    })
+  }
+  countryCode(evt) {
+    console.log("Country Code is >>>>", evt)
+    this.countryDial = '+' + evt.dialCode
+    console.log("Country Code is >>>>", this.countryDial)
+  }
+
+  countryCodeAddress(evt2) {
+    console.log("Country Code is >>>>", evt2)
+    this.countryDialAddress = '+' + evt2.dialCode
+    console.log("countryDialAddress Code is >>>>", this.countryDialAddress)
+  }
+  getStates() {
+    this.CustomerService.getCountries().subscribe(data => {
+      console.log("main data is ====", data)
+      if (data.code == '200' || data.code == 200) {
+        this.countries = data.data
+      }
+    }, err => {
+      console.log(err.status)
+      if (err.status >= 404) {
+        console.log('Some error occured')
+      } else {
+        this.toastr.error('Some error occured, please try again!!', 'Error')
+        console.log('Internet Connection Error')
+      }
+
+    })
+  }
+  businessMobile(evt3) {
+    console.log("Country Code is >>>>", evt3)
+    this.businessMobileCode = '+' + evt3.dialCode
+    console.log("business mobile Code is >>>>", this.businessMobileCode)
+  }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { FormControl, FormGroup, Validators,FormArray, FormBuilder } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { CustomerService } from '../../shared/customer.service';
 import { environment } from '../../../environments/environment.prod';
@@ -114,7 +114,7 @@ export class SellerProfileComponent implements OnInit {
   logo_img: string | ArrayBuffer;
   user_image: any;
   image_path: string;
-
+  customCities: any[] = []
   constructor(public CustomerService: CustomerService, public CommonService: CommonServiceService,
     private toastr: ToastrService,
     private fb: FormBuilder,
@@ -235,8 +235,24 @@ export class SellerProfileComponent implements OnInit {
       console.log('iiiiiiiiiiiiiiiiii', this.imgUrl + this.branchLicImage)
 
       //this.sellerProfileForm.controls['licNum'].setValue(res.data.business_details.licence_number)
-      this.sellerProfileForm.controls['issuedInCountry'].setValue(res.data.business_details.issued_in_countries)
-      this.sellerProfileForm.controls['issuedIncities'].setValue(res.data.business_details.issued_in_cities)
+      // this.sellerProfileForm.controls['issuedInCountry'].setValue(res.data.business_details.issued_in_countries)
+      // this.sellerProfileForm.controls['issuedIncities'].setValue(res.data.business_details.issued_in_cities)
+      if (res.data.business_details.issued_in_countries.length > 0) {
+        for (let i = 0; i < res.data.business_details.issued_in_countries.length; i++) {
+          const country = res.data.business_details.issued_in_countries[i];
+          const city = res.data.business_details.issued_in_cities[i];
+          console.log('country---------: ', country, city);
+          this.countryAndCity.push(this.fb.group({
+            issued_in_countries: [country, [Validators.required]],
+            issued_in_cities: [city, [Validators.required]]
+          }))
+        }
+      } else {
+        this.countryAndCity.push(this.fb.group({
+          issued_in_countries: ['', [Validators.required]],
+          issued_in_cities: ['', [Validators.required]]
+        }))
+      }
       this.sellerProfileForm.controls['service_country'].setValue(res.data.service_details.service_country)
       this.sellerProfileForm.controls['service_city'].setValue(res.data.service_details.service_city)
 
@@ -359,7 +375,7 @@ export class SellerProfileComponent implements OnInit {
       // cityRange: new FormControl('',[Validators.required]),
       //serviceProduct: new FormControl('',[Validators.required]),
       //companyLicence: new FormControl('',[Validators.required]),
-      issuedInCountry: new FormControl('', [Validators.required]),
+      // issuedInCountry: new FormControl('', [Validators.required]),
       licNum: new FormControl('', [Validators.required]),
       //estYear: new FormControl('',[Validators.required]),
       youtube: new FormControl('', [Validators.required]),
@@ -382,7 +398,7 @@ export class SellerProfileComponent implements OnInit {
       service_cost: new FormControl('', [Validators.required]),
       pincode: new FormControl('', [Validators.required]),
       landmark: new FormControl('', [Validators.required]),
-      issuedIncities: new FormControl('', [Validators.required]),
+      // issuedIncities: new FormControl('', [Validators.required]),
       service_country: new FormControl('', [Validators.required]),
       service_city: new FormControl('', [Validators.required]),
       phone_number: new FormControl('', [Validators.required]),
@@ -397,6 +413,20 @@ export class SellerProfileComponent implements OnInit {
     })
   }
   get f() { return this.sellerProfileForm.controls }
+
+  get countryAndCity(): FormArray {
+    return this.sellerProfileForm.get('country_and_city') as FormArray
+  }
+
+  addNewField() {
+    console.log(this.sellerProfileForm)
+    if (this.countryAndCity.valid) {
+      this.countryAndCity.push(this.fb.group({
+        issued_in_countries: ['', [Validators.required]],
+        issued_in_cities: ['', [Validators.required]]
+      }))
+    }
+  }
 
   // getCountries() {
   // 	this.CustomerService.getCountries().subscribe(data => {
@@ -491,23 +521,37 @@ export class SellerProfileComponent implements OnInit {
   }
 
 
-  getCities(event) {
+  getCities(event, index?:number) {
     console.log("==== event to chekc isssued in countriessssssssssssssssssssssss", event)
     var arr = []
-    if (Array.isArray(event)) {
-      arr = event
-      this.sellerProfileForm.controls['issuedInCountry'].setValue(event)
-    } else {
-      arr.push(event)
-    }
+    // if (Array.isArray(event)) {
+    //   arr = event
+    //   this.sellerProfileForm.controls['issuedInCountry'].setValue(event)
+    // } else {
+    //   arr.push(event)
+    // }
     var obj = {
-      country_code: arr
+      country_code: event // arr
     }
     console.log("===obj", obj)
     this.CustomerService.getAllCities(obj).subscribe(data => {
       console.log("city data is ====", data)
       if (data.code == '200' || data.code == 200) {
         this.cities = data.data
+        if (index) {
+          let i = this.customCities.findIndex((item: any) => { return item.id == index })
+          console.log('i: ', i);
+          if (i != -1) {
+            console.log('in if: ', i);
+            this.customCities[i].cities = this.cities
+          } else {
+            this.customCities.push({
+              id: index,
+              cities: this.cities
+            })
+          }
+          console.log('this.customCities: ', this.customCities);
+        }
       }
     }, err => {
       console.log(err.status)
@@ -520,6 +564,15 @@ export class SellerProfileComponent implements OnInit {
 
     })
   }
+
+  getCustomTity(index: number) {
+    let cities = this.customCities.find((item: any) => {
+      return item.id == index
+    })?.cities
+    console.log('cities: ', cities);
+    return cities
+  }
+  
   serviceList() {
     this.CustomerService.serviceList().subscribe(data => {
       console.log("data is ====", data)
@@ -623,7 +676,7 @@ export class SellerProfileComponent implements OnInit {
   }
 
 
-  submit() {
+  async submit() {
     // var service_details={
 
     // 		services_products: this.sellerProfileForm.value.serviceProduct,
@@ -685,8 +738,12 @@ export class SellerProfileComponent implements OnInit {
       business_details: {
         branch_year: this.branchYear,
 
-        issued_in_countries: this.sellerProfileForm.value.issuedInCountry,
-        issued_in_cities: this.sellerProfileForm.value.issuedIncities,
+        issued_in_countries: await this.sellerProfileForm.value.country_and_city.map((item: any) => {
+          return item.issued_in_countries
+        }),
+        issued_in_cities: await this.sellerProfileForm.value.country_and_city.map((item: any) => {
+          return item.issued_in_cities
+        }),
         ...(this.sellerProfileForm.value.branch_licence && { branch_licence: this.sellerProfileForm.value.branch_licence }),
 
         branch_licence: this.branch_lic_img,
