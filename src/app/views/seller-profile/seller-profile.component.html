@@ -758,28 +758,42 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                            <div formArrayName="country_and_city">
-                                                <div *ngFor="let country of countryAndCity.controls;let i=index" [formGroupName]="i">
-                                            <ng-select formControlName="issued_in_countries"
-                                                (change)="getCities($event,i+1)" placeholder="Select Issued in Country">
-                                                <ng-option *ngFor="let country1 of countries"
-                                                    [value]="country1.isoCode">
-                                                    {{country1.name}}
-                                                </ng-option>
-                                            </ng-select>
-
-                                            <ng-select formControlName="issued_in_cities"
-                                                placeholder="Select Issued in Cities">
-                                                <ng-option *ngFor="let city of customCities[i]?.cities"
-                                                    [value]="city.name">
-                                                    {{city.name}}
-                                                </ng-option>
-                                            </ng-select>
+                                    <div class="col-sm-12">
+                                        <div formArrayName="country_and_city">
+                                            <div  *ngFor="let country of countryAndCity.controls;let i=index" [formGroupName]="i">
+                                                <div class="row">
+                                                    <div class="col-sm-5">
+                                                        <ng-select  formControlName="issued_in_countries"
+                                                        (change)="getCities($event,i+1)" placeholder="Select Issued in Country">
+                                                        <ng-option *ngFor="let country1 of countries"
+                                                            [value]="country1.isoCode">
+                                                            {{country1.name}}
+                                                        </ng-option>
+                                                    </ng-select>
+                                                    </div>
+                                                    <div class="col-sm-5">
+                                                        <ng-select  formControlName="issued_in_cities"
+                                                        placeholder="Select Issued in Cities">
+                                                        <ng-option *ngFor="let city of customCities[i]?.cities"
+                                                            [value]="city.name">
+                                                            {{city.name}}
+                                                        </ng-option>
+                                                    </ng-select>
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <!-- <button type="button" class="btn btn-round-blue "> <i _ngcontent-vde-c314="" class="fa fa-minus"></i> </button> -->
+                                                    </div>
+                                                </div>
+                                               
+                                                
                                             </div>
-                                        </div>
-                                        </div>
-                                    <button type="button" class="btn btn-sm btn-change-fill" (click)="addNewField()">Add
-                                        More</button>
+                                            <div class="div-pos">
+                                                <button type="button" class="btn btn-pos btn-round-blue" (click)="addNewField()">  <i _ngcontent-vde-c314="" class="fa fa-plus"></i>                                                 </button>
+                                            </div>
+                                               
+                                            </div>
+                                    </div>
+                                </div>
                                 <div class="form-group">
                                     <label class="custom-label">Please
                                         Upload Your Business Licence*</label>

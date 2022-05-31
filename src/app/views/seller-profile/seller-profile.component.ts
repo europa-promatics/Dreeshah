@@ -403,6 +403,7 @@ export class SellerProfileComponent implements OnInit {
       service_city: new FormControl('', [Validators.required]),
       phone_number: new FormControl('', [Validators.required]),
       LogCity: new FormControl('', [Validators.required]),
+      country_and_city: this.fb.array([]),
       branch_licence: new FormControl('', [
         Validators.required,
       ]),
