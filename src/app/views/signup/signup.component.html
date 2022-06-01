@@ -1572,8 +1572,8 @@
                                                         </div>
                                                         <div class="col-sm-2">
 
-                                                        <!-- <button type="button" class="btn btn-round-blue  margn-top">
-                                                            <i _ngcontent-vde-c314="" class="fa fa-minus"></i></button> -->
+                                                        <button type="button" (click)="removeField(i)" *ngIf="businessFormGroup?.value?.country_and_city?.length>1" class="btn btn-round-blue  margn-top">
+                                                            <i _ngcontent-vde-c314="" class="fa fa-minus"></i></button>
             
             
                                                         
@@ -2750,8 +2750,8 @@
                                       </ng-select>
                                     </div>
                                     <div class="col-sm-2">
-                                        <!-- <button type="button" class="btn btn-round-blue  margn-top">
-                                            <i _ngcontent-vde-c314="" class="fa fa-minus"></i></button> -->
+                                        <button type="button" (click)="photoRemoveField(i)" *ngIf="photoGeneralFormGroup?.value?.photo_country_and_city?.length>1" class="btn btn-round-blue  margn-top">
+                                            <i _ngcontent-vde-c314="" class="fa fa-minus"></i></button>
 
                                        
                                     </div>

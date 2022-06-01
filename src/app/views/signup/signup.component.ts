@@ -179,11 +179,7 @@ export class SignupComponent implements OnInit {
       branch_year: new FormControl('', [
         Validators.required,
       ]),
-      country_and_city: this._formBuilder.array([{
-        issued_in_countries: ['', [Validators.required]],
-        issued_in_cities: ['', [Validators.required]]
-      }
-      ]),
+      country_and_city: this._formBuilder.array([]),
       // issued_in_countries: new FormControl("", [
       // 	Validators.required,
       // ]),
@@ -518,10 +514,7 @@ export class SignupComponent implements OnInit {
       about_company: new FormControl('', [
         Validators.required,
       ]),
-      photo_country_and_city:this._formBuilder.array([{
-        issued_in_countries:['',Validators.required],
-        issued_in_cities:['',Validators.required],
-      }]),
+      photo_country_and_city: this._formBuilder.array([]),
       // issued_in_countries: new FormControl('', [
       //   Validators.required,
       // ]),
@@ -558,13 +551,19 @@ export class SignupComponent implements OnInit {
 
 
     this.generateArrayOfYears()
+    if (this.countryAndCity.length < 1) {
+      this.addNewField()
+    }
+    if (this.photoCountryAndCity.length < 1) {
+      this.photoAddNewField()
+    }
   }
 
   get countryAndCity(): FormArray {
     return this.businessFormGroup.get('country_and_city') as FormArray
   }
 
-  get photoCountryAndCity():FormArray{
+  get photoCountryAndCity(): FormArray {
     return this.photoGeneralFormGroup.get('photo_country_and_city') as FormArray
   }
 
@@ -578,6 +577,18 @@ export class SignupComponent implements OnInit {
     }
   }
 
+  removeField(index?: number) {
+    this.countryAndCity.removeAt(index)
+    let customCityIndex = this.customCities.findIndex(item => item.id == index + 1)
+    this.customCities.splice(customCityIndex, 1)
+    for (let i = 0; i < this.customCities.length; i++) {
+      if (this.customCities[i].id > index + 1) {
+        this.customCities[i].id -= 1
+      }
+    }
+    // this.ngOnInit();
+  }
+
   photoAddNewField() {
     console.log(this.photoGeneralFormGroup)
     if (this.photoCountryAndCity.valid) {
@@ -586,6 +597,18 @@ export class SignupComponent implements OnInit {
         issued_in_cities: ['', [Validators.required]]
       }))
     }
+  }
+
+  photoRemoveField(index?: number) {
+    this.photoCountryAndCity.removeAt(index)
+    let customCityIndex = this.customCities.findIndex(item => item.id == index + 1)
+    this.customCities.splice(customCityIndex, 1)
+    for (let i = 0; i < this.customCities.length; i++) {
+      if (this.customCities[i].id > index + 1) {
+        this.customCities[i].id -= 1
+      }
+    }
+    // this.ngOnInit();
   }
 
   generateArrayOfYears() {
@@ -1154,7 +1177,7 @@ export class SignupComponent implements OnInit {
 
   }
 
-  branchFormSubmit() {
+  async branchFormSubmit() {
     this.next6 = true
     console.log("First Name>>>>>", this.firstFormGroup.value.first_name)
     console.log("Last Name>>>>>", this.firstFormGroup.value.last_name)
@@ -1212,8 +1235,14 @@ export class SignupComponent implements OnInit {
       },
       business_details: {
         branch_year: this.branchYear,
-        issued_in_countries: this.businessFormGroup.value.issued_in_countries,
-        issued_in_cities: this.businessFormGroup.value.issued_in_cities,
+        issued_in_countries: await this.businessFormGroup.value.country_and_city.map((item: any) => {
+          return item.issued_in_countries
+        }),
+        issued_in_cities: await this.businessFormGroup.value.country_and_city.map((item: any) => {
+          return item.issued_in_cities
+        }),
+        // issued_in_countries: this.businessFormGroup.value.issued_in_countries,
+        // issued_in_cities: this.businessFormGroup.value.issued_in_cities,
         branch_licence: this.businessFormGroup.value.branch_licence,
         licence_number: this.businessFormGroup.value.licence_number,
         no_of_emp: this.businessFormGroup.value.no_of_emp,
@@ -1281,7 +1310,7 @@ export class SignupComponent implements OnInit {
 
   }
 
-  PhotographerSignup() {
+  async PhotographerSignup() {
     console.log("==sumbit", this.photoGeneralFormGroup.value)
     this.photo_submit = true
     var obj = {
@@ -1310,8 +1339,14 @@ export class SignupComponent implements OnInit {
         city: this.photoGeneralFormGroup.value.city,
         establishment_year: this.photoGeneralFormGroup.value.establishment_year,
         about_company: this.photoGeneralFormGroup.value.about_company,
-        issued_in_countries: this.photoGeneralFormGroup.value.issued_in_countries,
-        issued_in_cities: this.photoGeneralFormGroup.value.issued_in_cities,
+        issued_in_countries: await this.photoGeneralFormGroup.value.country_and_city.map((item: any) => {
+          return item.issued_in_countries
+        }),
+        issued_in_cities: await this.photoGeneralFormGroup.value.country_and_city.map((item: any) => {
+          return item.issued_in_cities
+        }),
+        // issued_in_countries: this.photoGeneralFormGroup.value.issued_in_countries,
+        // issued_in_cities: this.photoGeneralFormGroup.value.issued_in_cities,
         licence_number: this.photoGeneralFormGroup.value.licence_number,
         licence_img: this.photoGeneralFormGroup.value.licence_img,
       },

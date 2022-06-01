@@ -246,6 +246,7 @@ export class SellerProfileComponent implements OnInit {
             issued_in_countries: [country, [Validators.required]],
             issued_in_cities: [city, [Validators.required]]
           }))
+          this.getCities(country, i+1)
         }
       } else {
         this.countryAndCity.push(this.fb.group({
@@ -572,6 +573,19 @@ export class SellerProfileComponent implements OnInit {
     })?.cities
     console.log('cities: ', cities);
     return cities
+  }
+
+  removeCountryTity(index: number) {
+    this.countryAndCity.removeAt(index)
+    console.log('this.customCities: ', this.customCities);
+    let customCityIndex = this.customCities.findIndex(item => item.id == index + 1)
+    this.customCities.splice(customCityIndex, 1)
+    for (let i = 0; i < this.customCities.length; i++) {
+      if (this.customCities[i].id > index + 1) {
+        this.customCities[i].id -= 1
+      }
+    }
+    console.log('this.customCities: after change ', this.customCities);
   }
   
   serviceList() {
