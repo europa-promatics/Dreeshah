@@ -372,7 +372,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
 
                             <div class="col-md-12">
                                 <div class="seller-new-address-form">
@@ -400,7 +400,8 @@
                                                                 <input type="password" name="companyName" id="companyName" placeholder="Confirm Password" class="form-control">
                                                             </div> -->
                                                             <div class="form-group">
-                                                                <label for="companyName">Business Name in Arabic*</label>
+                                                                <label for="companyName">Business Name in
+                                                                    Arabic*</label>
                                                                 <input type="text" name="companyName" id="companyName"
                                                                     placeholder="Business Name in Arabic"
                                                                     class="form-control">
@@ -433,7 +434,8 @@
                                                                     class="form-control">
                                                             </div>
                                                             <div class="form-group">
-                                                                <label for="companyName">Business Name in English*</label>
+                                                                <label for="companyName">Business Name in
+                                                                    English*</label>
                                                                 <input type="text" name="companyName" id="companyName"
                                                                     placeholder="Business Name in English"
                                                                     class="form-control">
@@ -741,7 +743,8 @@
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-md-12">
-                                                            <h3 class="custom-heading"><span>Business Details</span></h3>
+                                                            <h3 class="custom-heading"><span>Business Details</span>
+                                                            </h3>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="branch-wrpr">
@@ -1288,12 +1291,13 @@
                                             <!-- <input matInput [(ngModel)]="establishment_year"
                                                 placeholder="Branch Establishment Year" required
                                                 formControlName="branch_year"> -->
-                                                <mat-select [(ngModel)]="establishment_year" formControlName="branch_year" (selectionChange)="getBranchYear($event)" required>
-                                                    <mat-option>--</mat-option>
-                                                    <mat-option *ngFor="let year of years" [value]="year">
-                                                      {{year}}
-                                                    </mat-option>
-                                                  </mat-select>
+                                            <mat-select [(ngModel)]="establishment_year" formControlName="branch_year"
+                                                (selectionChange)="getBranchYear($event)" required>
+                                                <mat-option>--</mat-option>
+                                                <mat-option *ngFor="let year of years" [value]="year">
+                                                    {{year}}
+                                                </mat-option>
+                                            </mat-select>
                                         </mat-form-field>
                                         <div *ngIf="businessFormGroup.controls.branch_year.invalid && (businessFormGroup.controls.branch_year.dirty || businessFormGroup.controls.branch_year.touched || next4)"
                                             class="">
@@ -1336,39 +1340,58 @@
                                                 </p>
                                             </div>
                                         </div>
-                                        <span class="text-danger">Note: Max file size is 2mb, Please upload jpg/png/pdf only</span>
+                                        <span class="text-danger">Note: Max file size is 2mb, Please upload jpg/png/pdf
+                                            only</span>
                                         <br>
                                         <span class="text-danger">Dimensions: 500 x 500</span>
 
                                     </div>
                                     <div class="col-md-6">
-
-                                        <ng-select [multiple]="true" formControlName="issued_in_countries"
-                                            [(ngModel)]="issuedCountry" (change)="getCities($event)"
-                                            placeholder="Select Issued in Country">
-                                            <ng-option *ngFor="let country of countries" [value]="country.isoCode">
-                                                {{country.name}}</ng-option>
-                                        </ng-select>
-                                        <div *ngIf="businessFormGroup.controls.issued_in_countries.invalid && (businessFormGroup.controls.issued_in_countries.dirty || businessFormGroup.controls.issued_in_countries.touched || next4)"
-                                            class="">
-                                            <mat-error
-                                                *ngIf="businessFormGroup.controls.issued_in_countries.errors.required">
-                                                Please select issued countries
-                                            </mat-error>
+                                        <div formArrayName="country_and_city">
+                                            <div *ngFor="let country of countryAndCity.controls;let i=index"
+                                                [formGroupName]="i">
+                                                <div class="row">
+                                                    <div class="col-sm-10">
+                                                        <ng-select formControlName="issued_in_countries"
+                                                             (change)="getCities($event,i+1)"
+                                                            placeholder="Select Issued in Country">
+                                                            <ng-option *ngFor="let country1 of countries"
+                                                                [value]="country1.isoCode">
+                                                                {{country1.name}}</ng-option>
+                                                        </ng-select>
+                                                    </div>
+                                                    <!-- <div *ngIf="businessFormGroup.controls.issued_in_countries.invalid && (businessFormGroup.controls.issued_in_countries.dirty || businessFormGroup.controls.issued_in_countries.touched || next4)"
+                                                        class="">
+                                                        <mat-error
+                                                            *ngIf="businessFormGroup.controls.issued_in_countries.errors.required">
+                                                            Please select issued countries
+                                                        </mat-error>
+                                                    </div> -->
+                                                    <div class="col-sm-10">
+                                                        <ng-select formControlName="issued_in_cities"
+                                                            
+                                                            placeholder="Select Issued in Cities">
+                                                            <ng-option *ngFor="let city of customCities[i]?.cities" [value]="city.name">
+                                                                {{city.name}}</ng-option>
+                                                        </ng-select>
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <button type="button" class="btn btn-round-blue" (click)="removeCountryTity(i)"> <i _ngcontent-vde-c314="" class="fa fa-minus"></i> </button>
+                                                    </div>
+                                                    <!-- <div *ngIf="businessFormGroup.controls.issued_in_cities.invalid && (businessFormGroup.controls.issued_in_cities.dirty || businessFormGroup.controls.issued_in_cities.touched || next4)"
+                                                        class="">
+                                                        <mat-error
+                                                            *ngIf="businessFormGroup.controls.issued_in_cities.errors.required">
+                                                            Please select issued cities
+                                                        </mat-error>
+                                                    </div> -->
+                                                </div>
+                                            </div>
+                                            <div class="div-pos">
+                                                <button type="button" class="btn btn-round-blue btn-pos" (click)="addNewField()"> <i _ngcontent-vde-c314="" class="fa fa-plus"></i> </button>
+                                            </div>
                                         </div>
-                                        <ng-select [multiple]="true" formControlName="issued_in_cities"
-                                            [(ngModel)]="issuedCity" placeholder="Select Issued in Cities">
-                                            <ng-option *ngFor="let city of cities" [value]="city.name">
-                                                {{city.name}}</ng-option>
-                                        </ng-select>
-                                        <div *ngIf="businessFormGroup.controls.issued_in_cities.invalid && (businessFormGroup.controls.issued_in_cities.dirty || businessFormGroup.controls.issued_in_cities.touched || next4)"
-                                            class="">
-                                            <mat-error
-                                                *ngIf="businessFormGroup.controls.issued_in_cities.errors.required">
-                                                Please select issued cities
-                                            </mat-error>
-                                        </div>
-                                        <div class="mt-2">
+                                        <div class="mt-5">
                                             <mat-form-field appearance="">
                                                 <mat-label>License Number
                                                 </mat-label>
@@ -1422,8 +1445,8 @@
                                         <label class="issued-in">Please List the
                                             Services and
                                             Products you Provide</label>
-                                        <ng-select  placeholder="Select Services"
-                                            formControlName="services_products" [(ngModel)]="servicesSubCat" (change)="showData()">
+                                        <ng-select placeholder="Select Services" formControlName="services_products"
+                                            [(ngModel)]="servicesSubCat" (change)="showData()">
                                             <ng-option *ngFor="let service of service_list" [value]="service._id">
                                                 {{service.name}}</ng-option>
                                         </ng-select>
@@ -1552,7 +1575,8 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-change-fill" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-change-fill" [disabled]="contactFormGroup.invalid" (click)="UpdateBranch()" data-dismiss="modal">Save
+                <button type="button" class="btn btn-change-fill" [disabled]="contactFormGroup.invalid"
+                    (click)="UpdateBranch()" data-dismiss="modal">Save
                     changes</button>
             </div>
         </div>
