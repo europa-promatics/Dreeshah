@@ -120,7 +120,10 @@ export class MyCatalogueComponent implements OnInit {
   } */
   onSelect(event) {
     console.log(event);
-
+    if(this.files.length>9){
+      this.toastr.error('Maximum 10 files are allowed only');
+      return
+    }
     //this.files.push(event.addedFiles[0]);
     this.files.push(...event.addedFiles);
     console.log("added files consoles======", event.addedFiles[0]);
@@ -130,6 +133,7 @@ export class MyCatalogueComponent implements OnInit {
       this.isTouch = true;
     }
     // this.isTouch = true;
+   
     this.media = this.files;
     console.log(this.files);
   }

@@ -148,6 +148,48 @@
                           *ngIf="ImageForm.controls['SubSubCategory'].errors?.required && ( ImageForm.controls['SubSubCategory'].touched || submit_button)">
                           Sub-Sub-Category is Required
                       </p>
+                      <mat-form-field appearance="fill">
+                          <mat-label>Style</mat-label>
+                          <mat-select>
+                              <mat-option>Asian</mat-option>
+                              <mat-option>Asian</mat-option>
+                              <mat-option>Asian</mat-option>
+                              <mat-option>Asian</mat-option>
+                          </mat-select>
+                      </mat-form-field>
+                      <mat-form-field appearance="fill">
+                          <mat-label>Add Photographer</mat-label>
+                          <mat-select>
+                              <mat-option>Some</mat-option>
+                              <mat-option>Some</mat-option>
+                              <mat-option>Some</mat-option>
+                          </mat-select>
+                      </mat-form-field>
+                      <mat-form-field appearance="fill">
+                          <mat-label>Add Project</mat-label>
+                          <mat-select>
+                              <mat-option>Some</mat-option>
+                              <mat-option>Some</mat-option>
+                              <mat-option>Some Text</mat-option>
+                          </mat-select>
+                      </mat-form-field>
+                      <textarea name="" placeholder="Desription" class="form-control" id="" cols="12" rows="5">
+
+                      </textarea>
+                      <div class="main-Content-Watermark mt-3">
+                          <div class="d-flex">
+                            <div class="Watermark-text ">
+                                <p>Add Watermark Logo</p>
+                            </div>
+                            <div class="watermark-toggle">
+                                <label class="switch">
+                                    <input type="checkbox" checked>
+                                    <span class="slider round"></span>
+                                  </label>
+                            </div>
+                          </div>
+
+                      </div>
                             <input type="hidden" name="_token" value="">
                             <div class="drp-zone">
                                 <label>Add Photos/Videos</label>
@@ -162,10 +204,12 @@
                                 </ngx-dropzone>
                                 
                             </div>
-                          
+                            <span class="text-danger">Note: Maximum upload files limit is 10 only.</span><br>
+                            <span class="text-danger">Maximum file size is 25mb only.</span><br>
+                            <span class="text-danger">Quality must be good of every file.</span>
                             <p style="color: red;" *ngIf="files.length ==0 && (isTouch )">  Please upload image/video</p>
                        
-                         
+                            
                             <div class="mdl-frm-btn mt-3" align="center" >
                                 <button class="btn btn-change-fill" (click)="submitImages()" >Submit</button>
                             </div>
