@@ -6,6 +6,7 @@ import { ToastrService } from "ngx-toastr";
 import { CustomerService } from "src/app/shared/customer.service";
 import { environment } from "src/environments/environment";
 import Swal from "sweetalert2";
+import { ThisMonthPage } from "twilio/lib/rest/api/v2010/account/usage/record/thisMonth";
 interface quotesstatus {
   value: string;
   viewValue: string;
@@ -17,10 +18,10 @@ interface quotesstatus {
 })
 export class MyCatalogueComponent implements OnInit {
   statusquotes: quotesstatus[] = [
-   
-    {value: 'interior', viewValue: 'Interior'},
-    {value: 'exterior', viewValue: 'Exterior'},
-   
+
+    { value: 'interior', viewValue: 'Interior' },
+    { value: 'exterior', viewValue: 'Exterior' },
+
   ];
 
   subsubcategory
@@ -29,7 +30,7 @@ export class MyCatalogueComponent implements OnInit {
   id;
   data;
   media: File[] = [];
-  subcategory=[];
+  subcategory = [];
   detail;
   imgpath = environment.homeImg;
   obj1;
@@ -63,7 +64,7 @@ export class MyCatalogueComponent implements OnInit {
     public formBuilder: FormBuilder,
     private router: Router,
     private toastr: ToastrService
-  ) {}
+  ) { }
 
   createForm() {
     this.ImageForm = this.formBuilder.group({
@@ -74,7 +75,7 @@ export class MyCatalogueComponent implements OnInit {
     });
   }
 
- 
+
 
   selectImg(event, value) {
     console.log("Event is>>>", event);
@@ -93,7 +94,7 @@ export class MyCatalogueComponent implements OnInit {
     this.CustomerService.getUserCatalogueList().subscribe((res) => {
       //console.log("Album List:",res)
       this.data = res.data;
-      this.length= this.data.length
+      this.length = this.data.length
       console.log("catalaogues List::", this.data);
     });
   }
@@ -120,7 +121,7 @@ export class MyCatalogueComponent implements OnInit {
   } */
   onSelect(event) {
     console.log(event);
-    if(this.files.length>9){
+    if (this.files.length > 9) {
       this.toastr.error('Maximum 10 files are allowed only');
       return
     }
@@ -133,7 +134,7 @@ export class MyCatalogueComponent implements OnInit {
       this.isTouch = true;
     }
     // this.isTouch = true;
-   
+
     this.media = this.files;
     console.log(this.files);
   }
@@ -181,59 +182,59 @@ export class MyCatalogueComponent implements OnInit {
       cancelButtonText: "No, keep it",
     }).then((result) => {
       if (result.value) {
-      
-            this.obj1 = {
-              catalogue_id: val,
-             
-            };
-            this.CustomerService.deleteCatalogue(this.obj1).subscribe((data) => {
-              console.log(data);
-              console.log("length inside function>>>", this.albumLength);
-             
-                this.ngOnInit();
-              
 
-              this.toastr.success("Catalogue deleted sucessfully")
-            });
-          
-        
+        this.obj1 = {
+          catalogue_id: val,
+
+        };
+        this.CustomerService.deleteCatalogue(this.obj1).subscribe((data) => {
+          console.log(data);
+          console.log("length inside function>>>", this.albumLength);
+
+          this.ngOnInit();
+
+
+          this.toastr.success("Catalogue deleted sucessfully")
+        });
+
+
       } else if (result.dismiss === Swal.DismissReason.cancel) {
         Swal.fire("Cancelled", "Your Image is safe :)", "error");
       }
     });
   }
-//add catalogue in catalogue list
+  //add catalogue in catalogue list
   submitImages() {
     this.submit_button = true;
     let userData = JSON.parse(localStorage['userData']);
     if (!this.ImageForm.valid && this.files.length == 0) {
       this.toastr.error("Please select image/videos");
-      this.modalClose=false;
+      this.modalClose = false;
       return;
     } else {
       document.getElementById("modelClose").click();
 
       var formData = new FormData();
-      formData.append("catagory",this.ImageForm.controls['Category'].value);
-      formData.append("sub-category" , this.ImageForm.controls['SubCategory'].value);
-      formData.append("sub-sub-category" , this.ImageForm.controls['SubSubCategory'].value);
-      formData.append("type",userData.user_type);
-      this.files.map(val=>{
+      formData.append("catagory", this.ImageForm.controls['Category'].value);
+      formData.append("sub-category", this.ImageForm.controls['SubCategory'].value);
+      formData.append("sub-sub-category", this.ImageForm.controls['SubSubCategory'].value);
+      formData.append("type", userData.user_type);
+      this.files.map(val => {
         formData.append("album_images", val);
       })
-      
+
 
       this.CustomerService.addUserCatalogue(formData).subscribe((res) => {
 
         this.toastr.success("Catalogue added sucessfully");
         this.ImageForm.reset();
-        this.files=[]
+        this.files = []
         this.ngOnInit();
       });
     }
   }
 
-  getSubCategory(value) {    
+  getSubCategory(value) {
     let obj = {
       type: value,
       limit: 10,
@@ -241,11 +242,11 @@ export class MyCatalogueComponent implements OnInit {
     };
     this.CustomerService.getCatalogueSubCategories(obj).subscribe((res) => {
       this.subcategory = res.records;
-      console.log(this.subcategory,'category');
+      console.log(this.subcategory, 'category');
     });
   }
-  getSubSubCategory(value){
-       let obj = {
+  getSubSubCategory(value) {
+    let obj = {
       type: this.ImageForm.controls['Category'].value,
       limit: 10,
       offset: 0,
@@ -253,11 +254,15 @@ export class MyCatalogueComponent implements OnInit {
     };
     this.CustomerService.getCatalogueSubSubCategoriesAll(obj).subscribe((res) => {
       this.subsubcategory = res.records;
-      console.log(this.subsubcategory,'category');
+      console.log(this.subsubcategory, 'category');
     });
   }
-  
-  isImage(name){
+
+  // getStyles(){
+  //   this.CustomerService.
+  // }
+
+  isImage(name) {
     return name.match(/.(jpg|jpeg|png|gif)$/i);
   }
 }

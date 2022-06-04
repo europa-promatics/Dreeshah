@@ -11,94 +11,106 @@
                             <div class="col-md-12 mt-5 mb-5" align="center">
                                 <h1 class="text-center">My Catalogues</h1>
                             </div>
-                        
-                         <div class="col-md-6">
-                          <div class="my-album-options float-right">
-                          
-                            <!-- <button  aria-label="Example icon-button with a menu" id="btnSave" class="btn btn-change-fill">
+
+                            <div class="col-md-6">
+                                <div class="my-album-options float-right">
+
+                                    <!-- <button  aria-label="Example icon-button with a menu" id="btnSave" class="btn btn-change-fill">
                                 <i class="fa fa-plus mr-2"></i>
                                 Add New Album
                             </button>  -->
-                           
-                    </div>
-                </div>
-            </div>
-            <div class="album-listing-wrapper">
-                <div class="imageGrid">
-                    <div class="">
-                        <div class="row topmargin">
-                            <div class="col-md-12">
-                                <div class="catalogue-wrapper-col mt-3 mb-5">
-                                    <div class="simple-effet-image clearfix prdtDtlDiv">
-                                        <div class="addMre mb-3 text-right mr-4">
-                                            <a data-toggle="modal" data-target="#exampleModal1" >
-                                            <mat-icon >add_circle</mat-icon></a>
-                                        </div>
-                                        <div class="album-listing-wrapper">
-                                            <div class="imageGrid">
-                                                <div class="row">
-                                                    <div class="col-md-12 mt-5 mb-5" align="center" *ngIf="length ==0">
-                                                        <h1 class="text-center">No Catalogues Added Yet</h1>
-                                                    </div>
-                                                    
-                                                 <div class="col-sm-3" *ngFor="let datas of data">
-                                                    <div class=""   >
-                                                        <div class="tile" style="width: 100%;"  routerLink="/add-catalogue/{{datas?._id}}" >
-                                                            
-                                                            <a *ngIf="isImage(datas?.album[0]?.image)" ><img src="{{imgpath}}{{datas?.album[0]?.image}}" class="img-fluid" alt="image"> </a>
-                                                            <video *ngIf="!isImage(datas?.album[0]?.image)" width="320" height="240" controls>
-                                                                <source src="{{imgpath}}{{datas?.album[0]?.image}}" >
-                                                              Your browser does not support the video.
-                                                              </video>
-                                                              <a *ngIf="!(datas?.album[0]?.image)"  >
-                                                                <img  src="../../../assets/imgs/noImage.jpg" class="img-fluid" alt="image"> 
-                                                            </a>
-                                                           
-                                                        </div>
-                                                        <i class="fa fa-trash leticon"  (click)="delete(datas?._id)" aria-hidden="true"></i>
-                                                    </div>
-                                                </div>
-                                             
-                                            </div>
-                                            
-                                        </div>
-                                        <div>
-                                      
-                                        </div>
-                                    </div> 
-                                    
-                                       
+
+                                </div>
                             </div>
                         </div>
-                         
-            </div>
-            </div>
-            </div>
-                
-            </div>
-            <div>
-                <!-- <mat-paginator [length]="length" [pageSize]="10" [pageSizeOptions]="getPageSizeOptions()"
+                        <div class="album-listing-wrapper">
+                            <div class="imageGrid">
+                                <div class="">
+                                    <div class="row topmargin">
+                                        <div class="col-md-12">
+                                            <div class="catalogue-wrapper-col mt-3 mb-5">
+                                                <div class="simple-effet-image clearfix prdtDtlDiv">
+                                                    <div class="addMre mb-3 text-right mr-4">
+                                                        <a data-toggle="modal" data-target="#exampleModal1">
+                                                            <mat-icon>add_circle</mat-icon>
+                                                        </a>
+                                                    </div>
+                                                    <div class="album-listing-wrapper">
+                                                        <div class="imageGrid">
+                                                            <div class="row">
+                                                                <div class="col-md-12 mt-5 mb-5" align="center"
+                                                                    *ngIf="length ==0">
+                                                                    <h1 class="text-center">No Catalogues Added Yet</h1>
+                                                                </div>
+
+                                                                <div class="col-sm-3" *ngFor="let datas of data">
+                                                                    <div class="">
+                                                                        <div class="tile" style="width: 100%;"
+                                                                            routerLink="/add-catalogue/{{datas?._id}}">
+
+                                                                            <a *ngIf="isImage(datas?.album[0]?.image)"><img
+                                                                                    src="{{imgpath}}{{datas?.album[0]?.image}}"
+                                                                                    class="img-fluid" alt="image"> </a>
+                                                                            <video
+                                                                                *ngIf="!isImage(datas?.album[0]?.image)"
+                                                                                width="320" height="240" controls>
+                                                                                <source
+                                                                                    src="{{imgpath}}{{datas?.album[0]?.image}}">
+                                                                                Your browser does not support the video.
+                                                                            </video>
+                                                                            <a *ngIf="!(datas?.album[0]?.image)">
+                                                                                <img src="../../../assets/imgs/noImage.jpg"
+                                                                                    class="img-fluid" alt="image">
+                                                                            </a>
+
+                                                                        </div>
+                                                                        <i class="fa fa-trash leticon"
+                                                                            (click)="delete(datas?._id)"
+                                                                            aria-hidden="true"></i>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+
+                                                        </div>
+                                                        <div>
+
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div>
+                                <!-- <mat-paginator [length]="length" [pageSize]="10" [pageSizeOptions]="getPageSizeOptions()"
                 (page)="paginationOptionChange($event)">
                 <mat-paginator [length]="length" [pageSize]="10" 
                 (page)="paginationOptionChange($event)">
             </mat-paginator> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div> 
+        </div>
     </div>
-    </div>
 </div>
-</div>
-</div>
-</div>
-<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <!-- <div id="StudentModal">     -->
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                   <div class="">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="">
                     <h2 class="modal-form-title">Add New Photos/Videos</h2>
                 </div>
-                <button type="button"id="modelClose" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" id="modelClose" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -108,112 +120,118 @@
                         <form role="form" [formGroup]="ImageForm" method="POST" action="">
                             <mat-form-field appearance="fill">
                                 <mat-label>Category</mat-label>
-                                <mat-select [formControl]="ImageForm.controls['Category']" (valueChange)="getSubCategory($event)">
-                                  <mat-option *ngFor="let quotesstatus of statusquotes" [value]="quotesstatus.value"   >
-                                    {{quotesstatus.viewValue}}
-                                  </mat-option>
-                                
+                                <mat-select [formControl]="ImageForm.controls['Category']"
+                                    (valueChange)="getSubCategory($event)">
+                                    <mat-option *ngFor="let quotesstatus of statusquotes" [value]="quotesstatus.value">
+                                        {{quotesstatus.viewValue}}
+                                    </mat-option>
+
                                 </mat-select>
-                          
-                          </mat-form-field>
-                          <p style="color: red; margin-top: -1.25em;"
-                          *ngIf="ImageForm.controls['Category'].errors?.required && ( ImageForm.controls['Category'].touched || submit_button)">
-                          Category is Required
-                      </p>
-                          <mat-form-field appearance="fill"  >
+
+                            </mat-form-field>
+                            <p style="color: red; margin-top: -1.25em;"
+                                *ngIf="ImageForm.controls['Category'].errors?.required && ( ImageForm.controls['Category'].touched || submit_button)">
+                                Category is Required
+                            </p>
+                            <mat-form-field appearance="fill">
                                 <mat-label>Sub Category</mat-label>
-                                <mat-select [formControl]="ImageForm.controls['SubCategory']" (valueChange)="getSubSubCategory($event)" name="SubCategory" >
-                                <ng-container *ngIf="subcategory.length" >
-                                  <mat-option *ngFor="let category of subcategory" [value]="category._id"  >
-                                    {{category.name}}
-                                  </mat-option>
-                                </ng-container>
+                                <mat-select [formControl]="ImageForm.controls['SubCategory']"
+                                    (valueChange)="getSubSubCategory($event)" name="SubCategory">
+                                    <ng-container *ngIf="subcategory.length">
+                                        <mat-option *ngFor="let category of subcategory" [value]="category._id">
+                                            {{category.name}}
+                                        </mat-option>
+                                    </ng-container>
                                 </mat-select>
-                           
-                          </mat-form-field>
-                          <p style="color: red; margin-top: -1.25em;"
-                          *ngIf="ImageForm.controls['SubCategory'].errors?.required && ( ImageForm.controls['SubCategory'].touched || submit_button)">
-                          Sub-Category is Required
-                      </p>
-                          <mat-form-field appearance="fill">
+
+                            </mat-form-field>
+                            <p style="color: red; margin-top: -1.25em;"
+                                *ngIf="ImageForm.controls['SubCategory'].errors?.required && ( ImageForm.controls['SubCategory'].touched || submit_button)">
+                                Sub-Category is Required
+                            </p>
+                            <mat-form-field appearance="fill">
                                 <mat-label>Sub Sub Category</mat-label>
-                                <mat-select [formControl]="ImageForm.controls['SubSubCategory']" name="SubSubCategory" >
-                                    <mat-option *ngFor="let category of subsubcategory" [value]="category._id"  >
+                                <mat-select (change)="getStyles($event)" [formControl]="ImageForm.controls['SubSubCategory']" name="SubSubCategory">
+                                    <mat-option *ngFor="let category of subsubcategory" [value]="category._id">
                                         {{category.name}}
-                                      </mat-option>
+                                    </mat-option>
                                 </mat-select>
-                              
-                          </mat-form-field>
-                          <p style="color: red; margin-top: -1.25em;"
-                          *ngIf="ImageForm.controls['SubSubCategory'].errors?.required && ( ImageForm.controls['SubSubCategory'].touched || submit_button)">
-                          Sub-Sub-Category is Required
-                      </p>
-                      <mat-form-field appearance="fill">
-                          <mat-label>Style</mat-label>
-                          <mat-select>
-                              <mat-option>Asian</mat-option>
-                              <mat-option>Asian</mat-option>
-                              <mat-option>Asian</mat-option>
-                              <mat-option>Asian</mat-option>
-                          </mat-select>
-                      </mat-form-field>
-                      <mat-form-field appearance="fill">
-                          <mat-label>Add Photographer</mat-label>
-                          <mat-select>
-                              <mat-option>Some</mat-option>
-                              <mat-option>Some</mat-option>
-                              <mat-option>Some</mat-option>
-                          </mat-select>
-                      </mat-form-field>
-                      <mat-form-field appearance="fill">
-                          <mat-label>Add Project</mat-label>
-                          <mat-select>
-                              <mat-option>Some</mat-option>
-                              <mat-option>Some</mat-option>
-                              <mat-option>Some Text</mat-option>
-                          </mat-select>
-                      </mat-form-field>
-                      <textarea name="" placeholder="Desription" class="form-control" id="" cols="12" rows="5">
+
+                            </mat-form-field>
+                            <p style="color: red; margin-top: -1.25em;"
+                                *ngIf="ImageForm.controls['SubSubCategory'].errors?.required && ( ImageForm.controls['SubSubCategory'].touched || submit_button)">
+                                Sub-Sub-Category is Required
+                            </p>
+                            <mat-form-field appearance="fill">
+                                <mat-label>Style</mat-label>
+                                <mat-select>
+                                    <mat-option>Asian</mat-option>
+                                    <mat-option>Asian</mat-option>
+                                    <mat-option>Asian</mat-option>
+                                    <mat-option>Asian</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <mat-form-field appearance="fill">
+                                <mat-label>Add Photographer</mat-label>
+                                <mat-select>
+                                    <mat-option>Some</mat-option>
+                                    <mat-option>Some</mat-option>
+                                    <mat-option>Some</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <mat-form-field appearance="fill">
+                                <mat-label>Add Project</mat-label>
+                                <mat-select>
+                                    <mat-option>Some</mat-option>
+                                    <mat-option>Some</mat-option>
+                                    <mat-option>Some Text</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <textarea name="" placeholder="Desription" class="form-control" id="" cols="12" rows="5">
 
                       </textarea>
-                      <div class="main-Content-Watermark mt-3">
-                          <div class="d-flex">
-                            <div class="Watermark-text ">
-                                <p>Add Watermark Logo</p>
-                            </div>
-                            <div class="watermark-toggle">
-                                <label class="switch">
-                                    <input type="checkbox" checked>
-                                    <span class="slider round"></span>
-                                  </label>
-                            </div>
-                          </div>
+                            <div class="main-Content-Watermark mt-3">
+                                <div class="d-flex">
+                                    <div class="Watermark-text ">
+                                        <p>Add Watermark Logo</p>
+                                    </div>
+                                    <div class="watermark-toggle">
+                                        <label class="switch">
+                                            <input type="checkbox" checked>
+                                            <span class="slider round"></span>
+                                        </label>
+                                    </div>
+                                </div>
 
-                      </div>
+                            </div>
                             <input type="hidden" name="_token" value="">
                             <div class="drp-zone">
                                 <label>Add Photos/Videos</label>
-                                <ngx-dropzone (change)="onSelect($event)" name="media" accept="image/png, image/gif, image/jpeg ,video/mp4"
-                                [formControl]="ImageForm.controls['media']" >
+                                <ngx-dropzone (change)="onSelect($event)" name="media"
+                                    accept="image/png, image/gif, image/jpeg ,video/mp4"
+                                    [formControl]="ImageForm.controls['media']">
                                     <ngx-dropzone-label required>
-                                        <mat-icon matSuffix>folder</mat-icon>Add Images/videos</ngx-dropzone-label>
-                               
-                                    <ngx-dropzone-preview name="mediaPreview" *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)"  >
-                                        <ngx-dropzone-label style="width: 100%;" >{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                                        <mat-icon matSuffix>folder</mat-icon>Add Images/videos
+                                    </ngx-dropzone-label>
+
+                                    <ngx-dropzone-preview name="mediaPreview" *ngFor="let f of files" [removable]="true"
+                                        (removed)="onRemove(f)">
+                                        <ngx-dropzone-label style="width: 100%;">{{ f.name }} ({{ f.type }})
+                                        </ngx-dropzone-label>
                                     </ngx-dropzone-preview>
                                 </ngx-dropzone>
-                                
+
                             </div>
                             <span class="text-danger">Note: Maximum upload files limit is 10 only.</span><br>
                             <span class="text-danger">Maximum file size is 25mb only.</span><br>
                             <span class="text-danger">Quality must be good of every file.</span>
-                            <p style="color: red;" *ngIf="files.length ==0 && (isTouch )">  Please upload image/video</p>
-                       
-                            
-                            <div class="mdl-frm-btn mt-3" align="center" >
-                                <button class="btn btn-change-fill" (click)="submitImages()" >Submit</button>
+                            <p style="color: red;" *ngIf="files.length ==0 && (isTouch )"> Please upload image/video</p>
+
+
+                            <div class="mdl-frm-btn mt-3" align="center">
+                                <button class="btn btn-change-fill" (click)="submitImages()">Submit</button>
                             </div>
-                            
+
                         </form>
                     </div>
                 </div>
