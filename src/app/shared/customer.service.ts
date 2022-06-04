@@ -2655,4 +2655,11 @@ export class CustomerService {
     }))
   }
 
+  getStyles():Observable<any>{
+    let API_URL = `${this.apiUrl}/getStyles`;
+    return this.httpClient.get(API_URL).pipe(map(res => {
+      return res
+    })) 
+  }
+
 }
