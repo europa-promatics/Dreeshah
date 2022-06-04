@@ -151,7 +151,7 @@
                             </p>
                             <mat-form-field appearance="fill">
                                 <mat-label>Sub Sub Category</mat-label>
-                                <mat-select (change)="getStyles($event)" [formControl]="ImageForm.controls['SubSubCategory']" name="SubSubCategory">
+                                <mat-select [formControl]="ImageForm.controls['SubSubCategory']" name="SubSubCategory">
                                     <mat-option *ngFor="let category of subsubcategory" [value]="category._id">
                                         {{category.name}}
                                     </mat-option>
