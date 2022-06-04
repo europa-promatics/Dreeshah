@@ -120,7 +120,7 @@
                         <form role="form" [formGroup]="ImageForm" method="POST" action="">
                             <mat-form-field appearance="fill">
                                 <mat-label>Category</mat-label>
-                                <mat-select [formControl]="ImageForm.controls['Category']"
+                                <mat-select formControlName="Category"
                                     (valueChange)="getSubCategory($event)">
                                     <mat-option *ngFor="let quotesstatus of statusquotes" [value]="quotesstatus.value">
                                         {{quotesstatus.viewValue}}
@@ -135,8 +135,8 @@
                             </p>
                             <mat-form-field appearance="fill">
                                 <mat-label>Sub Category</mat-label>
-                                <mat-select [formControl]="ImageForm.controls['SubCategory']"
-                                    (valueChange)="getSubSubCategory($event)" name="SubCategory">
+                                <mat-select formControlName="SubCategory"
+                                    (valueChange)="getSubSubCategory($event)">
                                     <ng-container *ngIf="subcategory.length">
                                         <mat-option *ngFor="let category of subcategory" [value]="category._id">
                                             {{category.name}}
@@ -151,7 +151,7 @@
                             </p>
                             <mat-form-field appearance="fill">
                                 <mat-label>Sub Sub Category</mat-label>
-                                <mat-select [formControl]="ImageForm.controls['SubSubCategory']" name="SubSubCategory">
+                                <mat-select formControlName="SubSubCategory">
                                     <mat-option *ngFor="let category of subsubcategory" [value]="category._id">
                                         {{category.name}}
                                     </mat-option>
@@ -164,30 +164,25 @@
                             </p>
                             <mat-form-field appearance="fill">
                                 <mat-label>Style</mat-label>
-                                <mat-select>
-                                    <mat-option>Asian</mat-option>
-                                    <mat-option>Asian</mat-option>
-                                    <mat-option>Asian</mat-option>
-                                    <mat-option>Asian</mat-option>
+                                <mat-select formControlName="styles">
+                                    <mat-option *ngFor="let style of styles" [value]="style._id">{{style?.name}}</mat-option>
                                 </mat-select>
                             </mat-form-field>
-                            <mat-form-field appearance="fill">
+                            <!-- <mat-form-field appearance="fill">
                                 <mat-label>Add Photographer</mat-label>
                                 <mat-select>
-                                    <mat-option>Some</mat-option>
-                                    <mat-option>Some</mat-option>
-                                    <mat-option>Some</mat-option>
+                                    <mat-option *ngFor="let photographer of photographers">{{photographer?.first_name}} {{photographer?.last_name}}</mat-option>
                                 </mat-select>
-                            </mat-form-field>
-                            <mat-form-field appearance="fill">
+                            </mat-form-field> -->
+                            <!-- <mat-form-field appearance="fill">
                                 <mat-label>Add Project</mat-label>
                                 <mat-select>
                                     <mat-option>Some</mat-option>
                                     <mat-option>Some</mat-option>
                                     <mat-option>Some Text</mat-option>
                                 </mat-select>
-                            </mat-form-field>
-                            <textarea name="" placeholder="Desription" class="form-control" id="" cols="12" rows="5">
+                            </mat-form-field> -->
+                            <textarea formControlName="description" placeholder="Desription" class="form-control" id="" cols="12" rows="5">
 
                       </textarea>
                             <div class="main-Content-Watermark mt-3">

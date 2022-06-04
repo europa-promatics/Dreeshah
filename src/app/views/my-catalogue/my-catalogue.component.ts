@@ -59,6 +59,9 @@ export class MyCatalogueComponent implements OnInit {
   reqData;
   searchValue;
   styles: any;
+  photographers: any;
+  projects: any;
+  user_id: any;
 
   constructor(
     public CustomerService: CustomerService,
@@ -72,6 +75,8 @@ export class MyCatalogueComponent implements OnInit {
       'Category': [null, Validators.compose([Validators.required])],
       'SubCategory': [null, Validators.compose([Validators.required])],
       'SubSubCategory': [null, Validators.compose([Validators.required])],
+      'styles':[null,Validators.compose([Validators.required])],
+      'description':[null,Validators.compose([Validators.required])],
       'media': [null, Validators.compose([Validators.required])],
     });
   }
@@ -208,6 +213,7 @@ export class MyCatalogueComponent implements OnInit {
   submitImages() {
     this.submit_button = true;
     let userData = JSON.parse(localStorage['userData']);
+    this.user_id = userData._id;
     if (!this.ImageForm.valid && this.files.length == 0) {
       this.toastr.error("Please select image/videos");
       this.modalClose = false;
@@ -216,13 +222,21 @@ export class MyCatalogueComponent implements OnInit {
       document.getElementById("modelClose").click();
 
       var formData = new FormData();
-      formData.append("catagory", this.ImageForm.controls['Category'].value);
-      formData.append("sub-category", this.ImageForm.controls['SubCategory'].value);
-      formData.append("sub-sub-category", this.ImageForm.controls['SubSubCategory'].value);
+      // formData.append("catagory", this.ImageForm.controls['Category'].value);
+      // formData.append("sub-category", this.ImageForm.controls['SubCategory'].value);
+      // formData.append("sub-sub-category", this.ImageForm.controls['SubSubCategory'].value);
+      // formData.append("style", this.ImageForm.controls['styles'].value);
+      // formData.append("type", userData.user_type);
+      formData.append("catalogue_catagory", this.ImageForm.controls['Category'].value);
+      formData.append("catalogue_sub_category_id", this.ImageForm.controls['SubCategory'].value);
+      formData.append("catalogue_sub_sub_category_id", this.ImageForm.controls['SubSubCategory'].value);
+      formData.append("style_id", this.ImageForm.controls['styles'].value);
+      formData.append("description", this.ImageForm.controls['description'].value);
       formData.append("type", userData.user_type);
       this.files.map(val => {
         formData.append("album_images", val);
       })
+      console.log('formdata------------',formData)
 
 
       this.CustomerService.addUserCatalogue(formData).subscribe((res) => {
@@ -260,12 +274,30 @@ export class MyCatalogueComponent implements OnInit {
     this.getStyles()
   }
 
-  getStyles(){
-    this.CustomerService.getStyles().subscribe((res)=>{
+  getStyles() {
+    this.CustomerService.getStyles().subscribe((res) => {
       this.styles = res.data;
       console.log('this.styles: ', this.styles);
     })
   }
+
+  // getAllPhotographer() {
+  //   this.CustomerService.getAllPhotographers({ type: 'photographer' }).subscribe((res) => {
+  //     this.photographers = res.data;
+  //     console.log('this.photographers: ', this.photographers);
+  //   })
+  //   this.getProfessionalProjects()
+  // }
+
+  // getProfessionalProjects() {
+  //   let obj = {
+  //     user_id: this.user_id
+  //   }
+  //   this.CustomerService.getProfessionalProject(obj).subscribe((res) => {
+  //     this.projects = res;
+  //     console.log('this.projects: ', this.projects);
+  //   })
+  // }
 
   isImage(name) {
     return name.match(/.(jpg|jpeg|png|gif)$/i);

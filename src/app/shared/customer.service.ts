@@ -2662,4 +2662,19 @@ export class CustomerService {
     })) 
   }
 
+  // getAllPhotographers(data):Observable<any>{
+  //   let API_URL = `${this.apiUrl}/getAllPhotographers`;
+  //   return this.httpClient.post(API_URL,data).pipe(map(res => {
+  //     return res
+  //   }))
+  // }
+
+  // getProfessionalProject(data):Observable<any>{
+  //   let API_URL = `${this.apiUrl}/getProfessionalProjectsWithoutPagination`;
+  //   return this.httpClient.post(API_URL,data,this.httpOptions).pipe(map(res => {
+  //     return res
+  //   }))
+  // }
+
+
 }
