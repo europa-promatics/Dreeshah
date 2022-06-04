@@ -58,7 +58,6 @@ export class MyCatalogueComponent implements OnInit {
   catdata;
   reqData;
   searchValue;
-  styles: any;
 
   constructor(
     public CustomerService: CustomerService,
@@ -257,15 +256,11 @@ export class MyCatalogueComponent implements OnInit {
       this.subsubcategory = res.records;
       console.log(this.subsubcategory, 'category');
     });
-    this.getStyles();
   }
 
-  getStyles(){
-    this.CustomerService.getStyles().subscribe((res)=>{
-      this.styles = res.data;
-      console.log('this.styles: ', this.styles);
-    })
-  }
+  // getStyles(){
+  //   this.CustomerService.
+  // }
 
   isImage(name) {
     return name.match(/.(jpg|jpeg|png|gif)$/i);
