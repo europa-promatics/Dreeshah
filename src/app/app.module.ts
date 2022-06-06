@@ -203,6 +203,7 @@ import { AddAddressComponent } from './views/add-address/add-address.component';
 import { ResetPasswordComponent } from './views/reset-password/reset-password.component';
 import { SellerProfileViewComponent } from './views/seller-profile-view/seller-profile-view.component';
 import { AddNewComponent } from './views/add-new/add-new.component';
+import { SellerCatalogueComponent } from './views/seller-catalogue/seller-catalogue.component';
 // import { SellerBranchViewComponent } from './views/seller-branch-view/seller-branch-view.component';
 
 firebase.initializeApp(environment.firebaseConfig);
@@ -341,6 +342,7 @@ firebase.initializeApp(environment.firebaseConfig);
     ResetPasswordComponent,
     SellerProfileViewComponent,
     AddNewComponent,
+    SellerCatalogueComponent,
     // SellerBranchViewComponent
   ],
   imports: [
