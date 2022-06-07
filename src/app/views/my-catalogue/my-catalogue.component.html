@@ -62,13 +62,14 @@
                                                                                 <img src="../../../assets/imgs/noImage.jpg"
                                                                                     class="img-fluid" alt="image">
                                                                             </a>
-
                                                                         </div>
+                                                                        <button type="button" routerLink="/add-catalogue/{{datas?._id}}" class="btn btn-sm btn-warning">View Details</button>
                                                                         <i class="fa fa-trash leticon"
                                                                             (click)="delete(datas?._id)"
                                                                             aria-hidden="true"></i>
                                                                     </div>
                                                                 </div>
+
 
                                                             </div>
 
@@ -120,8 +121,7 @@
                         <form role="form" [formGroup]="ImageForm" method="POST" action="">
                             <mat-form-field appearance="fill">
                                 <mat-label>Category</mat-label>
-                                <mat-select formControlName="Category"
-                                    (valueChange)="getSubCategory($event)">
+                                <mat-select formControlName="Category" (valueChange)="getSubCategory($event)">
                                     <mat-option *ngFor="let quotesstatus of statusquotes" [value]="quotesstatus.value">
                                         {{quotesstatus.viewValue}}
                                     </mat-option>
@@ -135,8 +135,7 @@
                             </p>
                             <mat-form-field appearance="fill">
                                 <mat-label>Sub Category</mat-label>
-                                <mat-select formControlName="SubCategory"
-                                    (valueChange)="getSubSubCategory($event)">
+                                <mat-select formControlName="SubCategory" (valueChange)="getSubSubCategory($event)">
                                     <ng-container *ngIf="subcategory.length">
                                         <mat-option *ngFor="let category of subcategory" [value]="category._id">
                                             {{category.name}}
@@ -165,7 +164,8 @@
                             <mat-form-field appearance="fill">
                                 <mat-label>Style</mat-label>
                                 <mat-select formControlName="styles">
-                                    <mat-option *ngFor="let style of styles" [value]="style._id">{{style?.name}}</mat-option>
+                                    <mat-option *ngFor="let style of styles" [value]="style._id">{{style?.name}}
+                                    </mat-option>
                                 </mat-select>
                             </mat-form-field>
                             <!-- <mat-form-field appearance="fill">
@@ -182,7 +182,8 @@
                                     <mat-option>Some Text</mat-option>
                                 </mat-select>
                             </mat-form-field> -->
-                            <textarea formControlName="description" placeholder="Desription" class="form-control" id="" cols="12" rows="5">
+                            <textarea formControlName="description" placeholder="Desription" class="form-control" id=""
+                                cols="12" rows="5">
 
                       </textarea>
                             <div class="main-Content-Watermark mt-3">

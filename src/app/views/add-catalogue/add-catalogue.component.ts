@@ -49,6 +49,12 @@ export class AddCatalogueComponent implements OnInit {
   profileimage;
 fnam
 lnam
+  catalogueDetails: any;
+  categoryName: any;
+  subCategoryName: any;
+  subSubCategoryName: any;
+  styleName: any;
+  catalogueDescription: any;
   constructor(
     public CustomerService: CustomerService,
     private route: ActivatedRoute,
@@ -77,7 +83,12 @@ lnam
       this.detail = res.data.album;
       this.profileimage = res.data.user_id.profile_image;
       this.fnam=res.data.user_id.first_name;
-      this.lnam=res.data.user_id.last_name
+      this.lnam=res.data.user_id.last_name;
+      this.categoryName = res.data.catalogue_sub_category_id.category_type;
+      this.subCategoryName = res.data.catalogue_sub_category_id.name;
+      this.subSubCategoryName = res.data.catalogue_sub_sub_category_id.name;
+      this.styleName = res.data.style_id.name;
+      this.catalogueDescription = res.data.description;
     });
 
     // Gallery image hover

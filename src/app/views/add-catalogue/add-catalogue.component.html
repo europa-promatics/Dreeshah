@@ -50,22 +50,25 @@
 													<div>
 														<div class="image-upload">
 
-															<label for="file-input">
-																<!-- <img src="https://goo.gl/pB9rpQ"/> -->
+															<!-- <label for="file-input">
 																<i class="fa fa-edit mr-3"
 																	(click)="getMediaid(img?._id)"
 																	aria-hidden="true"></i>
-															</label>
+															</label> -->
 															<input id="file-input" type="file"
 																(change)="selectImg($event.target.files[0],img?._id)" />
 
 															<i class="fa fa-trash" (click)="delete(img?._id)"
 																aria-hidden="true"></i>
-															<button type="button" class="btn btn-primary"
+															<!-- <button type="button" class="btn btn-primary"
 																data-toggle="modal" data-target="#ask-qstn">
 																More Details
-															</button>
-
+															</button> -->
+                                                            <p>Category: {{categoryName | titlecase}}</p>
+                                                            <p>Sub-Category: {{subCategoryName | titlecase}}</p>
+                                                            <p>Sub-Sub-Category: {{subSubCategoryName | titlecase}}</p>
+                                                            <p>Style: {{styleName | titlecase}}</p>
+                                                            <p>Description: {{catalogueDescription | titlecase}}</p>
 
 														</div>
 
