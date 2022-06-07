@@ -1,0 +1,150 @@
+<!-- <app-db-header></app-db-header> -->
+<app-seller-header></app-seller-header>
+
+<div class="my-albums-de-wraper">
+	<div class="custom-container d-flex">
+		<app-seller-sidebar></app-seller-sidebar>
+
+		<div class="main-wrap">
+			<div class="my-albums">
+				<div class="view-details-header">
+					<!--	<div class="view-details-order-link">
+						<p><a routerLink="/my-albums"><i class="fa fa-angle-left mr-2"></i></a></p>
+					</div>-->
+					<div class="view-details-product-name" style="text-align: center;">
+						<h1 class="">Catalogue Detail <span class="badge badge-info ml-3"></span></h1>
+					</div>
+				</div>
+				<div class="card">
+					<div class="card-body">
+						<div class="row">
+
+
+
+							<div class="col-md-12">
+								<div id="gallery">
+									<div class="container">
+										<div id="image-gallery">
+											<div class="row">
+												<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 image"
+													*ngIf="detail?.length==0">
+													<div class="img-wrapper">
+														<p style="text-align: center;margin-top: 40%;">
+														</p>
+													</div>
+												</div>
+
+												<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 image"
+													*ngFor="let img of detail">
+													<div class="img-wrapper">
+														<!-- <a href="https://cdn.pixabay.com/photo/2017/07/30/23/59/garlic-2556022_960_720.jpg"></a> -->
+														<img *ngIf="isImage(img?.image)" src="{{imgpath}}{{img?.image}}"
+															class="img-responsive">
+														<video *ngIf="!isImage(img?.image)" width="320" height="240"
+															controls>
+															<source src="{{imgpath}}{{img?.image}}">
+															Your browser does not support the video.
+														</video>
+
+													</div>
+													<div>
+														<div class="image-upload">
+
+															<!-- <label for="file-input">
+																<i class="fa fa-edit mr-3"
+																	(click)="getMediaid(img?._id)"
+																	aria-hidden="true"></i>
+															</label> -->
+															<input id="file-input" type="file"
+																(change)="selectImg($event.target.files[0],img?._id)" />
+
+															<i class="fa fa-trash" (click)="delete(img?._id)"
+																aria-hidden="true"></i>
+															<!-- <button type="button" class="btn btn-primary"
+																data-toggle="modal" data-target="#ask-qstn">
+																More Details
+															</button> -->
+                                                            <p>Category: {{categoryName | titlecase}}</p>
+                                                            <p>Sub-Category: {{subCategoryName | titlecase}}</p>
+                                                            <p>Sub-Sub-Category: {{subSubCategoryName | titlecase}}</p>
+                                                            <p>Style: {{styleName | titlecase}}</p>
+                                                            <p>Description: {{catalogueDescription | titlecase}}</p>
+
+														</div>
+
+													</div>
+												</div>
+
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<app-footer></app-footer>
+
+
+
+<div class="modal fade" id="ask-qstn" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+	aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h3 class="modal-title" id="exampleModalLabel">Questions Asked</h3><br>
+
+				<button type="button" class="close" id="closeModal" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button><br>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-md-12">
+						<img *ngIf="profileimage" src="https://developers.promaticstechnologies.com/dreeshah_apis/public/userProfile/{{profileimage}}" alt="" class="avatar">
+						<img *ngIf="!profileimage"  src="assets/imgs/no-profile.webp" alt="" class="avatar">
+						<span class="pl-2" style="text-transform: capitalize;">{{fnam}} {{lnam}}</span><hr>
+						<div class="cr-ordr-frm">
+							<form [formGroup]="QuestionAnsForm">
+
+
+								<!-- <div class="form-group">
+                                    <textarea class="form-control" rows="5" placeholder="Add a Reply."
+                                        formControlName="reply"></textarea>
+                                </div> -->
+								<div class="askqstn_txt">
+									<!-- <span>Pros on Houzz are encouraged but not obligated to answer questions.</span>
+                                    <p>Polite questions are more likely to receive responses.
+
+
+                                    </p> -->
+									<span *ngFor="let a of questionList">
+										<img *ngIf="a?.user_id?.profile_image" src="https://developers.promaticstechnologies.com/dreeshah_apis/public/userProfile/{{a?.user_id?.profile_image}}"
+											alt="" class="avatar">
+											<img *ngIf="!a?.user_id?.profile_image"  src="assets/imgs/no-profile.webp" alt="" class="avatar">
+										Questions-{{a.question}}<br>
+
+										   <img *ngIf="profileimage"
+											src="https://developers.promaticstechnologies.com/dreeshah_apis/public/userProfile/{{profileimage}}"
+											alt="" class="avatar">
+											<img *ngIf="!profileimage"  src="assets/imgs/no-profile.webp" alt="" class="avatar">
+										Earlier Replies-{{a.answer}}
+
+										<div class="form-group"><textarea class="form-control" rows="5"
+												placeholder="Add a Reply." formControlName="reply"></textarea><button
+												class="btn btn-primary" [disabled]="QuestionAnsForm.invalid"
+												(click)="replyfunc(a._id)">Submit</button></div>
+
+									</span>
+								</div>
+								<!-- <div class="frm-sbmt-btn" align="center">
+									
+								</div> -->
+							</form>
+						</div>
+					</div>
