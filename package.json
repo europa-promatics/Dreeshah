@@ -45,6 +45,7 @@
     "google-libphonenumber": "^3.2.19",
     "intl-tel-input": "^17.0.3",
     "iso-3166-country-codes-angular": "^1.2.1",
+    "jimp": "^0.16.1",
     "jquery": "^3.5.1",
     "libphonenumber-js": "^1.9.16",
     "mat-timepicker": "^5.1.0",
