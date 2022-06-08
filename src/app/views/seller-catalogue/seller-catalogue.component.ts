@@ -142,7 +142,8 @@ export class SellerCatalogueComponent implements OnInit {
     // this.isTouch = true;
 
     this.media = this.files;
-    console.log(this.files);
+    console.log('filesArray----',this.files);
+
   }
 
   onRemove(event) {

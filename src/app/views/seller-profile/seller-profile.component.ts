@@ -115,6 +115,10 @@ export class SellerProfileComponent implements OnInit {
   user_image: any;
   image_path: string;
   customCities: any[] = []
+  watermark_image: any;
+  watermarkImage: string | ArrayBuffer;
+  wayermark_img: string | ArrayBuffer;
+  watermark_img: string | ArrayBuffer;
   constructor(public CustomerService: CustomerService, public CommonService: CommonServiceService,
     private toastr: ToastrService,
     private fb: FormBuilder,
@@ -1092,6 +1096,34 @@ export class SellerProfileComponent implements OnInit {
     fr.readAsDataURL(file);
   }
 
+  onWatermarkChange(evt) {
+    let self = this
+    if (!evt.target) {
+      return;
+    }
+    if (!evt.target.files) {
+      return;
+    }
+    if (evt.target.files.length !== 1) {
+      return;
+    }
+    const file = evt.target.files[0];
+    if (file.type !== 'image/jpeg' && file.type !== 'image/png' && file.type !== 'image/jpg') {
+      // this.toastr.warning('Please upload image file')
+      return;
+    }
+    console.log(evt.target.files[0])
+    this.watermark_image = evt.target.files[0];
+    // this.uploadProfile()
+    const fr = new FileReader();
+    fr.onloadend = (loadEvent) => {
+      this.watermarkImage = fr.result;
+      self.watermark_img = this.watermarkImage;
+      // alert(self.logo_img)
+    };
+    fr.readAsDataURL(file);
+  }
+
   uploadProfile() {
     if (this.profile_image) {
       var formdata: FormData = new FormData();
@@ -1118,6 +1150,21 @@ export class SellerProfileComponent implements OnInit {
         // this.user_image = data.profile_image
         // this.profile_img = ""
         this.CommonService.sendProfileImg(data.logo);
+        this.toastr.success('Updated Successfully')
+        this.ngOnInit()
+      })
+    }
+    if (this.watermark_image) {
+      var formdata: FormData = new FormData();
+      // formdata.append('profile_image', this.profile_image)
+      formdata.append('watermark', this.watermark_image)
+      formdata.append('id', this.userData._id)
+
+      this.CustomerService.editProfessionalProfile(formdata).subscribe(data => {
+        console.log('watermark------', data);
+        // this.user_image = data.profile_image
+        // this.profile_img = ""
+        this.CommonService.sendProfileImg(data.watermark);
         this.toastr.success('Updated Successfully')
         this.ngOnInit()
       })
