@@ -116,18 +116,18 @@ rfd
                                     </p>
                                 </div>
                                 <div class="row">
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-12">
                                         <div class="form-group">
                                             <label for="">Town/City</label>
                                             <input type="text" formControlName="city" class="form-control">
                                         </div>
                                     </div>
                                     <div *ngIf="!addressForm.controls.city.valid && addressForm.controls.city.touched">
-                                        <p style="color: red" *ngIf="addressForm.controls.city.hasError('required')">
+                                        <p style="color: red" *ngIf="addressForm.controls.city.hasError('required')" class="ml-3">
                                             Please enter city
                                         </p>
                                     </div>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-12">
                                         <div class="form-group">
                                             <label for="">State</label><br>
                                             <select name="" id="" class="form-control" (change)="selectState($event)"
@@ -140,8 +140,8 @@ rfd
                                     </div>
                                     <div
                                         *ngIf="!addressForm.controls.state.valid && addressForm.controls.state.touched">
-                                        <p style="color: red" *ngIf="addressForm.controls.state.hasError('required')">
-                                            Please enter state
+                                        <p style="color: red" *ngIf="addressForm.controls.state.hasError('required')" class="ml-3">
+                                            Please select state
                                         </p>
                                     </div>
                                     <div class="col-sm-12">
@@ -162,12 +162,12 @@ rfd
                                             *ngIf="!addressForm.controls.address_type.valid && addressForm.controls.address_type.touched">
                                             <p style="color: red"
                                                 *ngIf="addressForm.controls.address_type.hasError('required')">
-                                                Please enter address type
+                                                Please select address type
                                             </p>
                                         </div>
                                     </div>
                                     <div class="col-sm-12">
-                                        <button type="submit" class="btn btn-primary">Add Address</button>
+                                        <button type="submit" class="CustBtn">Add Address</button>
                                     </div>
                                 </div>
                             </div>

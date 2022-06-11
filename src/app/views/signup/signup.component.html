@@ -18,21 +18,49 @@
       <div class="card mt-5 mb-5">
         <div class="card-body signup-card">
           <div class="row">
-            <div class="col-md-4 signup-column pr-0">
-              <div class="signup-bg">
-                <img src="assets/imgs/sign-up.png" alt="image" class="img-fluid ml-2 m-auto" />
-                <div class="signup-content">
-                  <p>Manage all your social account, work efficiently</p>
+
+            <ng-container *ngIf="customerImg=='Customer' || isShow">
+              <div class="col-md-4 signup-column pr-0">
+                <div class="signup-bg">
+                  <img [src]="customerImage ? customerImage :'assets/imgs/sign-up.png'" alt="image" class="img-fluid ml-2 m-auto" />
+                  <div class="signup-content">
+                    <p>Manage all your social account, work efficiently</p>
+                  </div>
                 </div>
               </div>
-            </div>
+            </ng-container>
+            
+            <ng-container *ngIf="professionalImg == 'Professionals'">
+              <div class="col-md-4 signup-column pr-0">
+                <div class="signup-bg">
+                  <img [src]="professionalImage ? professionalImage:'assets/imgs/8307.jpg'" alt="image" class="img-fluid ml-2 m-auto" />
+                  <div class="signup-content">
+                    <p>Manage all your social account, work efficiently</p>
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+         
+            <ng-container *ngIf="photographerImg == 'Photographer'">
+              <div class="col-md-4 signup-column pr-0">
+                <div class="signup-bg">
+                  <img [src]="photographerImage ? photographerImage:'assets/imgs/add.png'" alt="image" class="img-fluid ml-2 m-auto" />
+                  <div class="signup-content">
+                    <p>Manage all your social account, work efficiently</p>
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+           
             <div class="col-md-8 p-0">
               <div class="mat-tabs cust_tab">
                 <mat-tab-group class="demo-tab-group mat-elevation-z4" mat-stretch-tabs>
                   <mat-tab>
                     <ng-template mat-tab-label>
-                      <mat-icon class="material-icons-outlined">groups</mat-icon>
-                      Customer
+                      <mat-icon class="material-icons-outlined" >groups</mat-icon>
+                      <div (click)="customer($event)" >
+                        <option [value]="customer">Customer</option>
+                      </div>
                     </ng-template>
                     <div class="signup-col mt-5">
                       <div class="signup-heading">
@@ -328,7 +356,9 @@
                   <mat-tab>
                     <ng-template mat-tab-label>
                       <mat-icon class="material-icons-outlined">people</mat-icon>
-                      Professionals
+                      <div (click)="professional($event)" >
+                        <option [value]="professionals">Professionals</option>
+                      </div>
                     </ng-template>
                     <div class="signup-col mt-5">
                       <div class="signup-heading">
@@ -1980,7 +2010,9 @@
                   <mat-tab>
                     <ng-template mat-tab-label>
                       <mat-icon class="material-icons-outlined">party_mode</mat-icon>
-                      Photographer
+                      <div (click)="photographer($event)" >
+                        <option [value]="photographer">Photographer</option>
+                      </div>
                     </ng-template>
                     <div class="signup-col mt-5">
                       <div class="signup-heading">

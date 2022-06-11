@@ -189,9 +189,7 @@ export class SellerBranchComponent implements OnInit {
 			phone_number: new FormControl('', [
 				Validators.required,
 			]),
-			landmark: new FormControl('', [
-				Validators.required,
-			]),
+			landmark: new FormControl(),
 			state: new FormControl('', [
 				Validators.required,
 			]),

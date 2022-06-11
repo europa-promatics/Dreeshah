@@ -141,6 +141,14 @@ export class SignupComponent implements OnInit {
   OTP: number;
   locations = [];
   customCities: any[] = []
+  customerImg: any;
+  professionalImg: any;
+  photographerImg: any;
+  flagCustomer: boolean=false;
+  isShow= true;
+  customerImage: any;
+  professionalImage: any;
+  photographerImage: any;
 
 
 
@@ -250,6 +258,9 @@ export class SignupComponent implements OnInit {
     return this.customerForm.controls;
   }
   ngOnInit(): void {
+    this.customerBackgroundImg()
+    this.professionalBackgroundImg()
+    this.photographerBackgroundImg()
     console.log("jkashjkashdkaskldjklas", this.subCatArr);
 
     this.getCountries();
@@ -1624,6 +1635,96 @@ export class SignupComponent implements OnInit {
       console.log("Logistics Location Data is================>", data);
       this.locations = data.locations
     })
+  }
+
+
+
+
+
+  // 11-june-2022---------------------------------------------------------------------------------------
+
+  customer(event){
+    console.log("customer ki event h re baba>>>>>>.",event.target.label);
+    this.customerImg=event.target.label
+    console.log("this.customerImg>>>>>",this.customerImg)
+    this.isShow = !this.isShow;
+    if(event.target.label=='Customer'){
+      this.customerImg=event.target.label
+      this.professionalImg=''
+      this.photographerImg=''
+    }
+  }
+
+  professional(event){
+    console.log("professional ki event h re baba>>>>>>.",event.target.label);
+    this.professionalImg=event.target.label
+    console.log("this.professionalImg>>>>>",this.professionalImg)
+    this.isShow = !this.isShow;
+    if(event.target.label=='Professionals'){
+      this.customerImg=''
+      this.professionalImg=event.target.label
+      this.photographerImg=''
+    }
+
+  }
+
+
+  photographer(event){
+    console.log("photographer ki event h re baba>>>>>>.",event.target.label);
+    this.photographerImg=event.target.label
+    console.log("this.photographerImg>>>>>",this.photographerImg)
+    this.isShow = !this.isShow;
+    if(event.target.label=='Photographer'){
+      this.customerImg=''
+      this.professionalImg=''
+      this.photographerImg=event.target.label
+    }
+
+  }
+
+
+
+  customerBackgroundImg(){
+    var obj={
+      user_type: 'customer'
+    }
+
+    this.CustomerService.signupBackgroungImage(obj).subscribe(res => {
+      console.log("response of customer Image>>> ",res);
+      this.customerImage=res.data[0].background_image
+      console.log("this.customerImage",this.customerImage);
+      
+    })
+
+  }
+
+  professionalBackgroundImg(){
+    var obj={
+      user_type: 'professional'
+    }
+
+    this.CustomerService.signupBackgroungImage(obj).subscribe(res => {
+      console.log("response of professional Image >>>>.",res);
+      this.professionalImage=res.data[0].background_image
+      console.log("this.professionalImage",this.professionalImage);
+      
+    })
+
+  }
+
+  photographerBackgroundImg(){
+    var obj={
+      user_type: 'photographer'
+    }
+
+    this.CustomerService.signupBackgroungImage(obj).subscribe(res => {
+      console.log("response of photographer Image>>>> ",res);
+      this.photographerImage=res.data[0].background_image
+      console.log("this.photographerImage",this.photographerImage);
+      
+      
+    })
+
   }
 
 }

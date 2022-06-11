@@ -48,6 +48,7 @@ year
 keywords=[]
 projectName
 location
+  data: any;
   constructor(public CustomerService: CustomerService,
     private toastr: ToastrService,
     private route:ActivatedRoute) { }
@@ -63,6 +64,8 @@ location
     }
     this.CustomerService.getProjectById(b).subscribe(res =>{
       console.log('ressssss',res)
+      this.data = res.result
+      console.log('this.data: ', this.data);
       this.imgArr=res.result.project_images
       this.category=res.result.project_category
       this.subCategory=res.result.project_sub_category

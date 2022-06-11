@@ -42,7 +42,9 @@
                                                 <h3 class="txt-theme">
                                                     {{description}}
                                                 </h3>
-                                                <h3><i class="fa fa-map-marker"></i> {{location}}</h3>
+                                                <h3><i class="fa fa-map-marker"></i> <span class="font-weight-bold ml-1">Countries: </span><span *ngFor="let country of data?.project_country">{{country}},</span><br>
+                                                   <span class="font-weight-bold ml-3">Cities: </span> <span *ngFor="let city of data?.project_city">{{city}},</span>
+                                                </h3>
                                                <div class="row">
                                                     <div class="col-sm-6">
                                                         <div class="form-group">
@@ -83,7 +85,7 @@
                                                     <div class="col-sm-6">
                                                         <div class="form-group">
                                                             <label class="txt-theme">Keywords</label>
-                                                            <h4 *ngFor="let f of keywords">{{f.name}}</h4>
+                                                            <h4><span *ngFor="let f of keywords">{{f.name}},</span></h4>
                                                         </div>
                                                     </div>
                                                </div>

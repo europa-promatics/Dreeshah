@@ -221,9 +221,7 @@ export class SellerEditBranchComponent implements OnInit {
 			// area: new FormControl('', [
 			// 	Validators.required,
 			// ]),
-			landmark: new FormControl('', [
-				Validators.required,
-			]),
+			landmark: new FormControl(),
 			country: new FormControl('', [
 				Validators.required,
 			]),

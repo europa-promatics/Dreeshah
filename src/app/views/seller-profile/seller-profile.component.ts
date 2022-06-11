@@ -402,7 +402,7 @@ export class SellerProfileComponent implements OnInit {
       no_of_emp: new FormControl('', [Validators.required]),
       service_cost: new FormControl('', [Validators.required]),
       pincode: new FormControl('', [Validators.required]),
-      landmark: new FormControl('', [Validators.required]),
+      landmark: new FormControl(),
       // issuedIncities: new FormControl('', [Validators.required]),
       service_country: new FormControl('', [Validators.required]),
       service_city: new FormControl('', [Validators.required]),

@@ -75,7 +75,15 @@ export class SellerProjectsComponent implements OnInit {
   }
   onSelect(event) {
     console.log(event);
-    this.files.push(...event.addedFiles);
+    for (let i = 0; i < event.addedFiles.length; i++) {
+      const element = event.addedFiles[i];
+      if(element.size>2000000){
+        this.toastr.error('File size must be less than 2 MB')
+        continue
+      }else{
+        this.files.push(element);
+      }
+    }
 
     console.log('this.files image array', this.files)
   }
@@ -92,7 +100,7 @@ export class SellerProjectsComponent implements OnInit {
 
       newProjName: new FormControl('', [Validators.required]),
       CatName:new FormControl('', [Validators.required]),
-      projectAddress: new FormControl('', [Validators.required]),
+      projectAddress: new FormControl(),
       description: new FormControl('', [Validators.required]),
       category: new FormControl('',[Validators.required]),
       styles: new FormControl(''),
@@ -101,7 +109,7 @@ export class SellerProjectsComponent implements OnInit {
       // dropzone: new FormControl('', [Validators.required]),
       website: new FormControl('', [Validators.required,Validators.pattern(reg)]),
 
-      keyWords: new FormControl('',),
+      keyWords: new FormControl('',Validators.required),
       getNoticed: new FormControl(''),
       country: new FormControl('', [Validators.required]),
       city: new FormControl('', [Validators.required]),
