@@ -15,7 +15,11 @@ export class LoginComponent implements OnInit {
   password: any
   user_type: any
   loginImage: any;
+  auth2: any;
 
+  
+
+  @ViewChild('loginRef', {static: true }) loginElement: ElementRef;
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -34,31 +38,89 @@ export class LoginComponent implements OnInit {
     // this.googleAuthSDK();
     // this.user_type = 'customer'
     this.loginBackgroundImg()
+    this.googleAuthSDK();
   }
-  //GOOGLE LOGIN 
-  async signInWithGoogle() {
-    const googleUser: any = await this.CustomerService.signInWithGoogle()
-    let user = {
-      name: googleUser.displayName,
-      email: googleUser.email,
-      phone_no: googleUser.phoneNumber,
-      profile_image: googleUser.photoURL,
-      social_id: googleUser.uid,
-      // device_id: this.uniqueDeviceId,
-      // device_name: navigator.appCodeName,
-      // latitude: this.latitude,
-      // longitude: this.longitude
+  callLoginButton() {
+
+   
+
+    this.auth2.attachClickHandler(this.loginElement.nativeElement, {},
+
+      (googleAuthUser) => {
+
+   
+
+        let profile = googleAuthUser.getBasicProfile();
+        console.log('profile: ', profile);
+
+        console.log('Token || ' + googleAuthUser.getAuthResponse().id_token);
+
+        console.log('ID: ' + profile.getId());
+
+        console.log('Name: ' + profile.getName());
+
+        console.log('Image URL: ' + profile.getImageUrl());
+
+        console.log('Email: ' + profile.getEmail());
+
+          
+        
+       /* Write Your Code Here */
+
+   
+
+      }, (error) => {
+
+        alert(JSON.stringify(error, undefined, 2));
+
+      });
+
+ 
+
+  }
+
+  googleAuthSDK() {
+
+   
+
+    window['googleSDKLoaded'] = () => {
+
+      window['gapi'].load('auth2', () => {
+
+        this.auth2 = window['gapi'].auth2.init({
+
+          client_id: '865315456867-qj21ifohf6p5tpnns7hltjungo1qjun0.apps.googleusercontent.com',
+
+          cookiepolicy: 'single_host_origin',
+
+          scope: 'profile email'
+
+        });
+
+        this.callLoginButton();
+
+      });
+
     }
-    console.log('user: ', user);
-    // this.CustomerService.loginThroughGoogle(user).subscribe(res => {
-    //   localStorage['token'] = res.token
-    //   localStorage['userData'] = JSON.stringify(res.data)
-    //   localStorage['remember_me'] = "yes"
-    //   // this.toastr({
-    //   //   message: "Sing In Successfully"
-    //   // })
-    //   this.router.navigate([`/`]);
-    // })
+
+   
+
+    (function(d, s, id){
+
+      var js, fjs = d.getElementsByTagName(s)[0];
+
+      if (d.getElementById(id)) {return;}
+
+      js = d.createElement(s); js.id = id;
+
+      js.src = "https://apis.google.com/js/platform.js?onload=googleSDKLoaded";
+
+      fjs.parentNode.insertBefore(js, fjs);
+
+    }(document, 'script', 'google-jssdk'));
+
+ 
+
   }
 
   login() {
