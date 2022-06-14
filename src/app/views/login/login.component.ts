@@ -1,10 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef} from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 declare var $;
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { CustomerService } from '../../shared/customer.service';
-import { ToastrService } from 'ngx-toastr'
-
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -15,6 +14,7 @@ export class LoginComponent implements OnInit {
   email: any
   password: any
   user_type: any
+  loginImage: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -31,7 +31,34 @@ export class LoginComponent implements OnInit {
   }
   hide = true;
   ngOnInit(): void {
+    // this.googleAuthSDK();
     // this.user_type = 'customer'
+    this.loginBackgroundImg()
+  }
+  //GOOGLE LOGIN 
+  async signInWithGoogle() {
+    const googleUser: any = await this.CustomerService.signInWithGoogle()
+    let user = {
+      name: googleUser.displayName,
+      email: googleUser.email,
+      phone_no: googleUser.phoneNumber,
+      profile_image: googleUser.photoURL,
+      social_id: googleUser.uid,
+      // device_id: this.uniqueDeviceId,
+      // device_name: navigator.appCodeName,
+      // latitude: this.latitude,
+      // longitude: this.longitude
+    }
+    console.log('user: ', user);
+    // this.CustomerService.loginThroughGoogle(user).subscribe(res => {
+    //   localStorage['token'] = res.token
+    //   localStorage['userData'] = JSON.stringify(res.data)
+    //   localStorage['remember_me'] = "yes"
+    //   // this.toastr({
+    //   //   message: "Sing In Successfully"
+    //   // })
+    //   this.router.navigate([`/`]);
+    // })
   }
 
   login() {
@@ -122,5 +149,24 @@ export class LoginComponent implements OnInit {
 
     })
   }
+
+
+
+    // 13-June-2022 login backgroundimage-----------------------------------------------------------
+
+    loginBackgroundImg(){
+      var obj={
+        user_type: 'login_page'
+      }
+  
+      this.CustomerService.signupBackgroungImage(obj).subscribe(res => {
+        console.log("response of loginnnnn Image>>>> ",res);
+        this.loginImage=res.data[0].background_image
+        console.log("this.loginImage",this.loginImage);
+        
+        
+      })
+  
+    }
 
 }

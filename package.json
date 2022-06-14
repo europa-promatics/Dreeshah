@@ -28,6 +28,8 @@
     "@angular/platform-browser": "~9.0.1",
     "@angular/platform-browser-dynamic": "~9.0.1",
     "@angular/router": "~9.0.1",
+    "@firebase/app-compat": "^0.1.27",
+    "@firebase/auth": "^0.20.3",
     "@fullcalendar/angular": "^5.5.0",
     "@fullcalendar/core": "^5.5.1",
     "@fullcalendar/daygrid": "^5.5.0",

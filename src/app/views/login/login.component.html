@@ -11,10 +11,16 @@
 </section> -->
 <section class="Custom-login">
     <div class="main-div mt-5 mb-5">
-        <div class="col-sm-6 login-Custcontent">
+        <!-- <div class="col-sm-6 login-Custcontent">
             <p>Manage all your account activity, work efficiently</p>
             <div class="image-cust">
                 <img src="assets/imgs/LoginImg.png" style="margin-top: 6rem;" alt="image" class="img-fluid d-block ml-auto mr-auto  mb-3">
+            </div>
+        </div> -->
+        <div class="col-sm-6 login-Custcontent"  [ngStyle]="{'background-image':'url('+ loginImage +')','backgroundPosition':'center','backgroundSize':'cover','backgroundRepeat':'no-repeat'}">
+            <p>Manage all your account activity, work efficiently</p>
+            <div class="image-cust">
+                <!-- <img [src]="" [ngStyle]="{'background-image': 'url(' + loginImage + ')'}" style="margin-top: 6rem;" alt="image" class="img-fluid d-block ml-auto mr-auto  mb-3"> -->
             </div>
         </div>
         <div class="col-sm-6 CustPad">
@@ -54,7 +60,7 @@
                         <div class="social-btns" align="center">
                             <h3 class="text-gray">Or login With</h3>
                         <button type="submit" class="btn btn-fb mr-3 "><img src="assets/imgs/fbicon.svg"></button>
-                    <button type="submit" class="btn btn-google "><img src="assets/imgs/googleicon.svg"></button>
+                    <button type="submit" class="btn btn-google " (click)="signInWithGoogle()"><img src="assets/imgs/googleicon.svg"></button>
                     </div>
                     </div>
                 </form>

@@ -9,7 +9,10 @@ import { ToastrService } from 'ngx-toastr';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
+// import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
+// const provider = new GoogleAuthProvider();
+// const auth = getAuth();
 @Injectable({
   providedIn: 'root'
 })
@@ -753,7 +756,7 @@ export class CustomerService {
   uploadImage(data): Observable<any> {
     let API_URL = `${this.apiUrl}/uploadImage`;
     // console.log("token", this.httpOptions)
-     console.log(data)
+    console.log(data)
     return this.httpClient.post(API_URL, data)
       .pipe(
         map(res => {
@@ -2641,40 +2644,70 @@ export class CustomerService {
     }))
   }
 
-  saveForLater(data):Observable<any>{
+  saveForLater(data): Observable<any> {
     let API_URL = `${this.apiUrl}/saveForLaterCart`;
     return this.httpClient.post(API_URL, data).pipe(map(res => {
       return res
-    })) 
+    }))
   }
 
-  activeInactiveProfileImageAndLogo(data):Observable<any>{
+  activeInactiveProfileImageAndLogo(data): Observable<any> {
     let API_URL = `${this.apiUrl}/activeInactiveProfileImageAndLogo`;
     return this.httpClient.patch(API_URL, data).pipe(map(res => {
       return res
     }))
   }
 
-  getStyles():Observable<any>{
+  getStyles(): Observable<any> {
     let API_URL = `${this.apiUrl}/getStyles`;
     return this.httpClient.get(API_URL).pipe(map(res => {
       return res
-    })) 
+    }))
   }
 
-  getAllPhotographers(data):Observable<any>{
+  getAllPhotographers(data): Observable<any> {
     let API_URL = `${this.apiUrl}/getAllPhotographers`;
-    return this.httpClient.post(API_URL,data).pipe(map(res => {
+    return this.httpClient.post(API_URL, data).pipe(map(res => {
       return res
     }))
   }
 
-  getProfessionalProject(data):Observable<any>{
+  getProfessionalProject(data): Observable<any> {
     let API_URL = `${this.apiUrl}/getProfessionalProjectsWithoutPagination`;
-    return this.httpClient.post(API_URL,data,this.httpOptions).pipe(map(res => {
+    return this.httpClient.post(API_URL, data, this.httpOptions).pipe(map(res => {
       return res
     }))
   }
 
+  signupBackgroungImage(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/getbackgroundImageSignup`;
+    console.log(API_URL)
+    return this.httpClient.post(API_URL, data)
+      .pipe(
+        map(res => {
+          return res;
+        }),
+      );
+  }
+
+  async signInWithGoogle() {
+    return new Promise((resolve, reject) => {
+      // signInWithPopup(auth, provider).then(async (result) => {
+      //   const credential = GoogleAuthProvider.credentialFromResult(result); // * This gives you a Google Access Token. You can use it to access the Google API. 
+      //   resolve(result.user); // * resolve the signed-in user info
+      // }).catch((error) => {
+
+      // });
+    })
+  }
+
+  loginThroughGoogle(data: any): Observable<any> {
+    let API_URL = `${this.httpClient}/loginThroughGoogle`;
+    return this.httpClient.post(API_URL, data).pipe(
+      map(res => {
+        return res
+      }),
+    )
+  }
 
 }
