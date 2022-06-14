@@ -2677,27 +2677,4 @@ export class CustomerService {
   }
 
 
-
-
-
-
-
-
-// 11-june-2022--------------------------------------------------------
-  signupBackgroungImage(data): Observable<any> {
-    let API_URL = `${this.apiUrl}/getbackgroundImageSignup`;
-    console.log(API_URL)
-    return this.httpClient.post(API_URL, data, this.httpOptions)
-      .pipe(
-        map(res => {
-          return res;
-        }),
-      );
-  }
-
-
-
-  
-
-
 }

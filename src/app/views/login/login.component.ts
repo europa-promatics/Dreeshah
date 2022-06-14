@@ -15,7 +15,6 @@ export class LoginComponent implements OnInit {
   email: any
   password: any
   user_type: any
-  loginImage: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -33,7 +32,6 @@ export class LoginComponent implements OnInit {
   hide = true;
   ngOnInit(): void {
     // this.user_type = 'customer'
-    this.loginBackgroundImg()
   }
 
   login() {
@@ -123,24 +121,6 @@ export class LoginComponent implements OnInit {
       // this.toastr.error('Invalid Credentials, please try again', 'Error')
 
     })
-  }
-
-
-  // 13-June-2022 login backgroundimage-----------------------------------------------------------
-
-  loginBackgroundImg(){
-    var obj={
-      user_type: 'login_page'
-    }
-
-    this.CustomerService.signupBackgroungImage(obj).subscribe(res => {
-      console.log("response of loginnnnn Image>>>> ",res);
-      this.loginImage=res.data[0].background_image
-      console.log("this.loginImage",this.loginImage);
-      
-      
-    })
-
   }
 
 }
