@@ -19,10 +19,21 @@
         <div class="card-body signup-card">
           <div class="row">
 
-            <ng-container *ngIf="customerImg=='Customer' || isShow">
-              <div class="col-md-4 signup-column pr-0">
+            <ng-container *ngIf="this.flag==false">
+              <div class="col-md-4 signup-column pr-0" [ngStyle]="{'background-image':'url('+ customerImage +')','backgroundPosition':'center','backgroundSize':'cover','backgroundRepeat':'no-repeat'}">
                 <div class="signup-bg">
-                  <img [src]="customerImage ? customerImage :'assets/imgs/sign-up.png'" alt="image" class="img-fluid ml-2 m-auto" />
+                  <!-- <img [src]="customerImage ? customerImage :'assets/imgs/sign-up.png'" alt="image" class="img-fluid ml-2 m-auto" /> -->
+                  <div class="signup-content">
+                    <p>Manage all your social account, work efficiently</p>
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+
+            <ng-container *ngIf="customerImg=='Customer' ">
+              <div class="col-md-4 signup-column pr-0" [ngStyle]="{'background-image':'url('+ customerImage +')','backgroundPosition':'center','backgroundSize':'cover','backgroundRepeat':'no-repeat'}">
+                <div class="signup-bg">
+                  <!-- <img [src]="customerImage ? customerImage :'assets/imgs/sign-up.png'" alt="image" class="img-fluid ml-2 m-auto" /> -->
                   <div class="signup-content">
                     <p>Manage all your social account, work efficiently</p>
                   </div>
@@ -31,9 +42,9 @@
             </ng-container>
             
             <ng-container *ngIf="professionalImg == 'Professionals'">
-              <div class="col-md-4 signup-column pr-0">
+              <div class="col-md-4 signup-column pr-0" [ngStyle]="{'background-image':'url('+ professionalImage +')','backgroundPosition':'center','backgroundSize':'cover','backgroundRepeat':'no-repeat'}">
                 <div class="signup-bg">
-                  <img [src]="professionalImage ? professionalImage:'assets/imgs/8307.jpg'" alt="image" class="img-fluid ml-2 m-auto" />
+                  <!-- <img [src]="professionalImage ? professionalImage:'assets/imgs/8307.jpg'" alt="image" class="img-fluid ml-2 m-auto" /> -->
                   <div class="signup-content">
                     <p>Manage all your social account, work efficiently</p>
                   </div>
@@ -42,9 +53,9 @@
             </ng-container>
          
             <ng-container *ngIf="photographerImg == 'Photographer'">
-              <div class="col-md-4 signup-column pr-0">
+              <div class="col-md-4 signup-column pr-0" [ngStyle]="{'background-image':'url('+ photographerImage +')','backgroundPosition':'center','backgroundSize':'cover','backgroundRepeat':'no-repeat'}">
                 <div class="signup-bg">
-                  <img [src]="photographerImage ? photographerImage:'assets/imgs/add.png'" alt="image" class="img-fluid ml-2 m-auto" />
+                  <!-- <img [src]="photographerImage ? photographerImage:'assets/imgs/add.png'" alt="image" class="img-fluid ml-2 m-auto" /> -->
                   <div class="signup-content">
                     <p>Manage all your social account, work efficiently</p>
                   </div>
@@ -59,7 +70,7 @@
                     <ng-template mat-tab-label>
                       <mat-icon class="material-icons-outlined" >groups</mat-icon>
                       <div (click)="customer($event)" >
-                        <option [value]="customer">Customer</option>
+                        <option >Customer</option>
                       </div>
                     </ng-template>
                     <div class="signup-col mt-5">
@@ -357,7 +368,7 @@
                     <ng-template mat-tab-label>
                       <mat-icon class="material-icons-outlined">people</mat-icon>
                       <div (click)="professional($event)" >
-                        <option [value]="professionals">Professionals</option>
+                        <option >Professionals</option>
                       </div>
                     </ng-template>
                     <div class="signup-col mt-5">
@@ -2011,7 +2022,7 @@
                     <ng-template mat-tab-label>
                       <mat-icon class="material-icons-outlined">party_mode</mat-icon>
                       <div (click)="photographer($event)" >
-                        <option [value]="photographer">Photographer</option>
+                        <option >Photographer</option>
                       </div>
                     </ng-template>
                     <div class="signup-col mt-5">

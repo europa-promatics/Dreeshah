@@ -145,10 +145,14 @@ export class SignupComponent implements OnInit {
   professionalImg: any;
   photographerImg: any;
   flagCustomer: boolean=false;
-  isShow= true;
   customerImage: any;
   professionalImage: any;
   photographerImage: any;
+  customerFlag=true;
+  professionalFlag= true;
+  photographerFlag=true;
+  trustedEvent: any;
+  flag: boolean=false;
 
 
 
@@ -1644,10 +1648,12 @@ export class SignupComponent implements OnInit {
   // 11-june-2022---------------------------------------------------------------------------------------
 
   customer(event){
+    console.log("eventntntntntntntnt",event.isTrusted);
+    this.trustedEvent=event.isTrusted
+    this.flag=true
     console.log("customer ki event h re baba>>>>>>.",event.target.label);
     this.customerImg=event.target.label
     console.log("this.customerImg>>>>>",this.customerImg)
-    this.isShow = !this.isShow;
     if(event.target.label=='Customer'){
       this.customerImg=event.target.label
       this.professionalImg=''
@@ -1656,10 +1662,12 @@ export class SignupComponent implements OnInit {
   }
 
   professional(event){
+    console.log("eventntntntntntntnt",event.isTrusted);
+    this.trustedEvent=event.isTrusted
+    this.flag=true
     console.log("professional ki event h re baba>>>>>>.",event.target.label);
     this.professionalImg=event.target.label
     console.log("this.professionalImg>>>>>",this.professionalImg)
-    this.isShow = !this.isShow;
     if(event.target.label=='Professionals'){
       this.customerImg=''
       this.professionalImg=event.target.label
@@ -1670,10 +1678,12 @@ export class SignupComponent implements OnInit {
 
 
   photographer(event){
+    console.log("eventntntntntntntnt",event.isTrusted);
+    this.trustedEvent=event.isTrusted
+    this.flag=true
     console.log("photographer ki event h re baba>>>>>>.",event.target.label);
     this.photographerImg=event.target.label
     console.log("this.photographerImg>>>>>",this.photographerImg)
-    this.isShow = !this.isShow;
     if(event.target.label=='Photographer'){
       this.customerImg=''
       this.professionalImg=''
