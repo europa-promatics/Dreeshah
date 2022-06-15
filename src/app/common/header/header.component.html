@@ -97,12 +97,12 @@
                             <a class="btn btn_green" data-toggle="modal" data-target="#exampleModalCenter">Browse by map</a>
                         </li>
                         <!-- <li class="list-inline-item" *ngIf="!isLogin"> -->
-                        <li class="list-inline-item" >
+                        <li class="list-inline-item" *ngIf="!isLogin">
                             <!-- <a class="btn btn_green" routerLink="/login">Sign In</a> -->
                             <a class="btn btn_green" (click)="signIn()">Sign In</a>
                         </li>
                         <!-- <li class="list-inline-item" *ngIf="!isLogin"> -->
-                        <li class="list-inline-item">
+                        <li class="list-inline-item" *ngIf="!isLogin">
                             <a class="btn btn_green" routerLink="/signup">Sign Up</a>
                         </li>
                         <li class="nav-item drop-itemm" *ngIf="isLogin && userData.user_type == 'customer'">
@@ -111,7 +111,7 @@
                                     <img src="https://demo.wponlinesupport.com/themes/wp-iclean-responsive/wp-content/uploads/sites/8/2017/04/team-6.jpg"/> 
                                 </button>
                                 <mat-menu #menu="matMenu" xPosition="before">
-                                    <ul class="comnon_drop">
+                                    <ul class="comnon_drop">0
                                         <li><a (click)="myProfile()"><i class="fa fa-user mr-3"></i>My Profile</a></li>
                                         <li><a  (click)="dashboard()"><i class="fa fa-chart-line mr-3"></i>Dashboard</a></li>
                                         <li><a routerLink="/my-albums"><i class="fa fa-images mr-3"></i>My Albums</a></li>

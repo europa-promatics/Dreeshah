@@ -62,8 +62,29 @@ export class LoginComponent implements OnInit {
         console.log('Image URL: ' + profile.getImageUrl());
 
         console.log('Email: ' + profile.getEmail());
+        var obj = {
+          social_id:profile.getId(),
+          social_type:'google',
+          profile_image:profile.getImageUrl(),
+          first_name:profile.getName().split(' ')[0],
+          last_name:profile.getName().substr(profile.getName().indexOf(" ") + 1),
+          email:profile.getEmail()
+        }
+        console.log('obj: ', obj);
 
-          
+        this.CustomerService.socialLogin(obj).subscribe(res=>{
+          console.log(res.user)
+          if(res.user.social_id){
+            localStorage["social_login"]=true
+          }
+          localStorage['userData'] = JSON.stringify(res.user);
+        localStorage.setItem("remember_me", "yes"),
+          localStorage.setItem("token", res.token),
+          console.log("login_res", res)
+        localStorage["isLoggedIn"] = true,
+          this.toastr.success('Login successful', 'Success')
+          this.router.navigate(['/myprofile']);
+        })
         
        /* Write Your Code Here */
 

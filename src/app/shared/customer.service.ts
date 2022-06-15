@@ -2701,8 +2701,8 @@ export class CustomerService {
     })
   }
 
-  loginThroughGoogle(data: any): Observable<any> {
-    let API_URL = `${this.httpClient}/loginThroughGoogle`;
+  socialLogin(data: any): Observable<any> {
+    let API_URL = `${this.apiUrl}/socialLogin`;
     return this.httpClient.post(API_URL, data).pipe(
       map(res => {
         return res
