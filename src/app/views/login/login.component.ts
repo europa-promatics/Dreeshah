@@ -74,9 +74,9 @@ export class LoginComponent implements OnInit {
 
         this.CustomerService.socialLogin(obj).subscribe(res=>{
           console.log(res.user)
-          if(res.user.social_id){
-            localStorage["social_login"]=true
-          }
+          // if(res.user.social_id){
+          //   localStorage["social_login"]=true
+          // }
           localStorage['userData'] = JSON.stringify(res.user);
         localStorage.setItem("remember_me", "yes"),
           localStorage.setItem("token", res.token),
