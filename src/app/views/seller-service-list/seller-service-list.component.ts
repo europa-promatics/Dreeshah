@@ -81,6 +81,7 @@ export class SellerServiceListComponent implements OnInit {
 			console.log('service list data new',data);
 			// if (data.code == 200) {
 				this.services_list = data.records
+				console.log("service list --====--=-==-=-",this.services_list)
 				this.responseData = data.data
 				this.dataSource = new MatTableDataSource(data.records);
 				this.length=data.main_count

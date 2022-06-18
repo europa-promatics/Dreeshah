@@ -20,6 +20,21 @@ export class CustomerAppointmentsComponent implements OnInit {
   approvedLen = 0
   pendingLen = 0
   rejectedLen = 0
+  offset_val: any = 0 ;
+  limit_val: any = 10;
+  length: any;
+  limit_pen: any = 10 ;
+  offset_pen: any = 0;
+  offset_appr: number = 0;
+  limit_appr: any = 10;
+  offset_comp: number = 0;
+  limit_comp: any = 10;
+  offset_rej: number = 0;
+  limit_rej: any = 10;
+  length2: any;
+  length3: any;
+  length4: any;
+  length5: any;
   constructor(
     public CustomerService: CustomerService,
   ) { }
@@ -45,28 +60,45 @@ export class CustomerAppointmentsComponent implements OnInit {
     this.rejected()
   }
 
+  paginationOptionChange(evt) {
+    console.log("evthrm",evt)
+    this.offset_val = (evt.pageIndex * evt.pageSize)
+    this.limit_val = evt.pageSize
+    console.log("Offset Value>>>",this.offset_val)
+    console.log("Limit Value>>>>",this.limit_val)
+    this.allAppointment();
+}
 
   allAppointment() {
     var obj = {
-      limit: 10,
-      offset: 0,
+      limit:this.limit_val,
+      offset:this.offset_val,
       status: "all",
       search: "",
       filter: ""
     }
     this.CustomerService.getBookingList(obj).subscribe(res => {
-      console.log("Booking List Response=========", res)
+      console.log("Booking List Response========= aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", res)
       this.details = res.result
       this.detailsLen = this.details.length
       console.log("Booking List Response======>>>>", this.details)
-
+      this.length= res.total_bookings
     })
   }
 
+  paginationOptionChange2(evt) {
+    console.log("evthrm",evt)
+    this.offset_pen = (evt.pageIndex * evt.pageSize)
+    this.limit_pen = evt.pageSize
+    console.log("Offset Value>>>",this.offset_val)
+    console.log("Limit Value>>>>",this.limit_val)
+    this.pending()
+}
+
   pending() {
     var obj = {
-      limit: 10,
-      offset: 0,
+      limit: this.limit_pen,
+      offset: this.offset_pen,
       status: "pending",
       search: "",
       filter: ""
@@ -76,14 +108,24 @@ export class CustomerAppointmentsComponent implements OnInit {
       this.pendingDetails = res.result
       this.pendingLen = this.pendingDetails.length
       console.log("pending List Response======>>>>", this.pendingDetails)
-
+      this.length2= res.total_bookings
     })
   }
 
+  paginationOptionChange3(evt) {
+    console.log("evthrm",evt)
+    this.offset_appr = (evt.pageIndex * evt.pageSize)
+    this.limit_appr = evt.pageSize
+    console.log("Offset Value>>>",this.offset_val)
+    console.log("Limit Value>>>>",this.limit_val)
+    this.approved()
+}
+
+
   approved() {
     var obj = {
-      limit: 10,
-      offset: 0,
+      limit: this.limit_appr,
+      offset: this.offset_appr,
       status: "approved",
       search: "",
       filter: ""
@@ -93,14 +135,23 @@ export class CustomerAppointmentsComponent implements OnInit {
       this.approvedDetails = res.result
       this.approvedLen = this.approvedDetails.length
       console.log("approved List Response======>>>>", this.approvedDetails)
-
+      this.length3= res.total_bookings
     })
   }
+ 
+  paginationOptionChange4(evt) {
+    console.log("evthrm",evt)
+    this.offset_comp = (evt.pageIndex * evt.pageSize)
+    this.limit_comp = evt.pageSize
+    console.log("Offset Value>>>",this.offset_val)
+    console.log("Limit Value>>>>",this.limit_val)
+    this.completed()
+}
 
   completed() {
     var obj = {
-      limit: 10,
-      offset: 0,
+      limit:  this.limit_comp,
+      offset: this.offset_comp,
       status: "completed",
       search: "",
       filter: ""
@@ -110,14 +161,24 @@ export class CustomerAppointmentsComponent implements OnInit {
       this.completedDetails = res.result
       this.completedLen = this.completedDetails.length
       console.log("Completed List Response======>>>>", this.completedDetails)
-
+      this.length4= res.total_bookings
     })
   }
 
+  paginationOptionChange5(evt) {
+    console.log("evthrm",evt)
+    this.offset_rej = (evt.pageIndex * evt.pageSize)
+    this.limit_rej = evt.pageSize
+    console.log("Offset Value>>>",this.offset_val)
+    console.log("Limit Value>>>>",this.limit_val)
+    this.pending()
+}
+
+
   rejected() {
     var obj = {
-      limit: 10,
-      offset: 0,
+      limit: this.limit_rej,
+      offset: this.offset_rej ,
       status: "rejected",
       search: "",
       filter: ""
@@ -127,7 +188,7 @@ export class CustomerAppointmentsComponent implements OnInit {
       this.rejectedDetails = res.result
       this.rejectedLen = this.rejectedDetails.length
       console.log("Rejected List Response======>>>>", this.rejectedDetails)
-
+      this.length5= res.total_bookings
     })
   }
 

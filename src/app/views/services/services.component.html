@@ -1445,7 +1445,7 @@
                                     <mat-form-field appearance="">
                                         <mat-label>Choose Time</mat-label>
                                         <input matTimepicker placeholder="" (timeInput)="second($event.value)"
-                                            formControlName="appTime">
+                                            formControlName="dateBook">
                                         <mat-icon matSuffix>access_time</mat-icon>
                                     </mat-form-field>
                                     <div *ngIf="bookForm.controls.appTime.invalid && (bookForm.controls.appTime.dirty || bookForm.controls.appTime.touched || submit_book)"

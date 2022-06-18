@@ -72,6 +72,7 @@ export class SellerAddServicesComponent implements OnInit {
   @ViewChild('fruitInput') fruitInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
   @ViewChildren('checkBox') checkBox: QueryList<any>;
+  catname: any = [];
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -148,6 +149,10 @@ export class SellerAddServicesComponent implements OnInit {
     console.log(event);
     this.files.splice(this.files.indexOf(event), 1);
   }
+  onRemove2(event) {
+    console.log(event);
+    this.files2.splice(this.files.indexOf(event), 1);
+  }
   files1: File[] = [];
   onSelect1(event) {
     if(event) {
@@ -167,6 +172,26 @@ export class SellerAddServicesComponent implements OnInit {
       }
     }
     
+  }
+  files2: File[] = []
+  onSelectVideo(event){
+    console.log("video event data trigger ", event)
+    if(event) {
+      for(var i = 0; i < event.addedFiles.length; i++){
+        var size= event.addedFiles[i].size;
+        console.log('sss', size)
+        if(size>100000000) {
+          this.toastr.error('Please  upload less than 100Mb,')
+        }
+        else {
+          console.log(event);
+          console.log(event);
+           this.files2=event.addedFiles;
+           console.log("Video file ",this.files2);
+           
+        }
+      }
+    }
   }
 
   onRemove1(event) {
@@ -240,6 +265,7 @@ export class SellerAddServicesComponent implements OnInit {
     this.CustomerService.proffSelectedCatAndSubcat().subscribe(res => {
       console.log('Response of the Category and Subcategory Lists<<<<>>>>>', res)
       this.catArr=res.data.service_categories
+      console.log("cat listttttttttttttttt", this.catArr)
       this.subCateArr= res.data.service_subcategories
       //this.categiryArr = res.data
 
@@ -576,9 +602,16 @@ newArr = []
     }
     if (this.files1.length > 0) {
       this.files1.forEach(element => {
+        formdata.append('service_video ', element)
+      });
+    }
+    
+    if (this.files2.length > 0) {
+      this.files2.forEach(element => {
         formdata.append('other_images', element)
       });
     }
+
     console.log("Service Countries<<<<//////>>>>>>>",this.formGroup.value.issuedInCountry)
     // formdata.append('professional_id', this.userDetails.data._id)
     formdata.append('service_name', this.formGroup.value.service_name)

@@ -177,28 +177,38 @@
                                             </div> -->
 
                                             <div class="form-group">
-                                                <ng-select [multiple]="true" formControlName="service_category"
+                                                <!-- <ng-select [multiple]="true" formControlName="service_category"
                                                     (change)="getSubCat($event)" placeholder="Select Service Category">
                                                     <ng-option *ngFor="let category of catArr"
                                                     [value]="category._id">
                                                     {{category.name}}
                                                     </ng-option>
-                                                </ng-select>
-                                                <div *ngIf="formGroup.controls.service_category.invalid && (formGroup.controls.service_category.dirty || formGroup.controls.service_category.touched || submit_button)"
+                                                </ng-select> -->
+                                                <!-- <div *ngIf="formGroup.controls.service_category.invalid && (formGroup.controls.service_category.dirty || formGroup.controls.service_category.touched || submit_button)"
                                                     class="">
                                                     <p style="color: red;"
                                                         *ngIf="formGroup.controls.service_category.errors.required">
                                                         Service Category is required
                                                     </p>
+                                                </div> -->
+                                                <p><strong>Category</strong></p>
+                                                <div *ngFor="let category of catArr">
+                                                {{category.name}},
                                                 </div>
 
-                                                <ng-select [multiple]="true" formControlName="service_sub_category"
+
+                                                <!-- <ng-select [multiple]="true" formControlName="service_sub_category"
                                                     (change)="getProject($event)" placeholder="Select Service Sub Category">
-                                                    <ng-option *ngFor="let SubCat of subCateArr"
+                                                    <ng-option *ngFor=""
                                                     [value]="SubCat._id">
                                                     {{SubCat.name}}
                                                     </ng-option>
-                                            </ng-select>
+                                            </ng-select> -->
+                                            <br>
+                                            <p><strong>Subcategory</strong></p>
+                                            <div *ngFor="let SubCat of subCateArr">
+                                                {{SubCat.name}},
+                                                </div>
                                                 <!-- <mat-form-field>
                                                     <mat-label>Select Service Category</mat-label>
                                                     <mat-select (selectionChange)="getSubCat($event.value)"
@@ -210,13 +220,13 @@
                                                         </mat-option>
                                                     </mat-select>
                                                 </mat-form-field> -->
-                                                <div *ngIf="formGroup.controls.service_sub_category.invalid && (formGroup.controls.service_sub_category.dirty || formGroup.controls.service_sub_category.touched || submit_button)"
+                                                <!-- <div *ngIf="formGroup.controls.service_sub_category.invalid && (formGroup.controls.service_sub_category.dirty || formGroup.controls.service_sub_category.touched || submit_button)"
                                                     class="">
                                                     <p style="color: red;"
                                                         *ngIf="formGroup.controls.service_sub_category.errors.required">
                                                         Service Category is required
                                                     </p>
-                                                </div>
+                                                </div> -->
                                             </div>
                                            
                                             <!-- <div class="form-group">
@@ -276,6 +286,7 @@
                                         		</ngx-dropzone-preview> -->
                                                 </ngx-dropzone>
                                             </div>
+                                          
                                             <div class="form-group">
                                                 <mat-label>Add Other Photos</mat-label>
                                                 <ngx-dropzone [accept]="'image/*'" (change)="onSelect1($event)"
@@ -294,6 +305,28 @@
                                                         <!-- <ngx-dropzone-label><span class="drop-img-lbl">{{ f.name }} ({{ f.type }})</span></ngx-dropzone-label> -->
                                                     </ngx-dropzone-image-preview> 
 
+                                                </ngx-dropzone>
+                                            </div>
+                                              <div class="form-group">
+                                                <mat-label>Video</mat-label>
+                                                <ngx-dropzone [accept]="'video/*'"  (change)="onSelectVideo($event)"
+                                                    class="margn-top">
+                                                    <ngx-dropzone-label>                                                      
+                                                        <div class="drp-upld-icn">
+                                                            <i class="fa fa-upload" aria-hidden="true"></i>                                           
+                                                        </div>
+                                                        <p class="drp-img-lbl">Add Files</p>                                               
+                                                        <span style="position: absolute; right: 30px; font-size: 13px; margin-top: 19px;">Max file size: 100MB</span>
+                                                        <span style="position: absolute; left: 30px; font-size: 13px;margin-top: 19px;">Resolution:854x480p</span>                                                                                                                                                                                                                           
+                                                    </ngx-dropzone-label>
+                                                    <ngx-dropzone-video-preview ngProjectAs="ngx-dropzone-preview"
+                                                        *ngFor="let f of files2" [file]="f" [removable]="true"
+                                                        (removed)="onRemove2(f)">
+                                                        <!-- <ngx-dropzone-label><span class="drop-img-lbl">{{ f.name }} ({{ f.type }})</span></ngx-dropzone-label> -->
+                                                    </ngx-dropzone-video-preview>
+                                                    <!-- <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+                                        			<ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                                        		</ngx-dropzone-preview> -->
                                                 </ngx-dropzone>
                                             </div>
                                             <div class="form-group">

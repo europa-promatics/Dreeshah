@@ -33,31 +33,33 @@
 														<th scope="col">Date & Time</th>
 														<!-- <th scope="col">Professional</th> -->
 														<th scope="col">Location</th>
-														<th scope="col">Service Detail</th>
+														<th scope="col">Request Detail</th>
 														<th scope="col">Subject</th>
-														<th scope="col">Purpose</th>
+														<!-- <th scope="col">Purpose</th> -->
 														<th scope="col">Status</th>
 														<!-- <th scope="col">Action</th> -->
 													</tr>
 												</thead>
 												<tbody>
 													<tr *ngFor="let detail of details; let i = index">
-														<th scope="row">{{i+1}}</th>
+														<th scope="row">{{i+1+offset_val}}</th>
 														<td class="prof-img--avatar">
-															<img src="{{profile_image_path}}{{detail?.service_id?.professional_id?.profile_image}}">
+															<img src="{{profile_image_path}}{{detail?.user_id?.professional_id?.profile_image}}">
+															<img src="{{profile_image_path}}{{detail?.service_id?.professional_id?.logo}}">
 															<!-- <img src="http://medic-app-react.next-item.com//content/user-40-1.jpg"> -->
 														</td>
+
 														<td class="date-time-appointment"><p>{{detail?.service_id?.professional_id?.first_name}}</p>
 															<p>{{detail?.service_id?.professional_id?.last_name}}</p>
 														</td>
-														<td class="date-time-appointment"><p>{{detail?.date}}</p>
-															<p>{{detail?.time}}</p>
+														<td class="date-time-appointment"><p>{{detail?.date | date }}</p>
+															<p>{{detail?.time?.start_time}}</p>
 														</td>
 														<td>{{detail?.location}}</td>
 														<td><span class="purpose">{{detail?.service_id?.service_description}}</span></td>
 														
 														<td>{{detail.subject}}</td>
-														<td><span class="purpose">{{detail?.request_details}}</span></td>
+														<!-- <td><span class="purpose">{{detail?.request_details}}</span></td> -->
 														
 														<td>
 															<span class="badge badge-success status-badge">{{detail?.status}}</span>
@@ -404,6 +406,9 @@
 													</tr> -->
 												</tbody>
 											</table>
+											<mat-paginator [length]="length" [pageSize]="10" [pageSizeOptions]="[5,10,20]"
+              									  (page)="paginationOptionChange($event)">
+										</mat-paginator>
 											<div *ngIf="detailsLen == 0">
 												<h2>No Record</h2>
 											</div>
@@ -434,14 +439,14 @@
 														<th scope="col">Location</th>
 														<th scope="col">Service Detail</th>
 														<th scope="col">Subject</th>
-														<th scope="col">Purpose</th>
+														<!-- <th scope="col">Purpose</th> -->
 														<th scope="col">Status</th>
 														<!-- <th scope="col">Action</th> -->
 													</tr>
 												</thead>
 												<tbody>
 													<tr *ngFor="let detail of pendingDetails; let i = index">
-														<th scope="row">{{i+1}}</th>
+														<th scope="row">{{i+1+this.offset_pen}}</th>
 														<td class="prof-img--avatar">
 															<img src="{{profile_image_path}}{{detail?.service_id?.professional_id?.profile_image}}">
 															<!-- <img src="http://medic-app-react.next-item.com//content/user-40-1.jpg"> -->
@@ -449,14 +454,14 @@
 														<td class="date-time-appointment"><p>{{detail?.service_id?.professional_id?.first_name}}</p>
 															<p>{{detail?.service_id?.professional_id?.last_name}}</p>
 														</td>
-														<td class="date-time-appointment"><p>{{detail?.date}}</p>
-															<p>{{detail?.time}}</p>
+														<td class="date-time-appointment"><p>{{detail?.date | date}}</p>
+															<p>{{detail?.time?.start_time}}</p>
 														</td>
 														<td>{{detail?.location}}</td>
 														<td><span class="purpose">{{detail?.service_id?.service_description}}</span></td>
 														
 														<td>{{detail.subject}}</td>
-														<td><span class="purpose">{{detail?.request_details}}</span></td>
+														<!-- <td><span class="purpose">{{detail?.request_details}}</span></td> -->
 														
 														<td>
 															<span class="badge badge-success status-badge">{{detail?.status}}</span>
@@ -470,17 +475,20 @@
 													
 												</tbody>
 											</table>
+											<mat-paginator [length]="length2" [pageSize]="10" [pageSizeOptions]="[5,10,20]"
+											(page)="paginationOptionChange2($event)">
+								</mat-paginator>
 											<div *ngIf="pendingLen == 0">
 													<h2>No Record</h2>
 											</div>
 										</div>
 									</div>
 								</mat-tab>
-								<mat-tab label="Approved">
+								<mat-tab label="In Progress">
 									<div class="col-md-12 mt-3">
 										<div class="db-header--wraap">
 											<div class="dashboard-table-heading">
-												<h1>Approved Appointments</h1>
+												<h1>In progress Appointments</h1>
 											</div>
 											<div class="user-search-input">
 												<div class="form-group mb-0">
@@ -500,14 +508,14 @@
 														<th scope="col">Location</th>
 														<th scope="col">Service Detail</th>
 														<th scope="col">Subject</th>
-														<th scope="col">Purpose</th>
+														<!-- <th scope="col">Purpose</th> -->
 														<th scope="col">Status</th>
 														<th scope="col">Action</th>
 													</tr>
 												</thead>
 												<tbody>
 													<tr *ngFor="let detail of approvedDetails; let i = index">
-														<th scope="row">{{i+1}}</th>
+														<th scope="row">{{i+1+offset_appr}}</th>
 														<td class="prof-img--avatar">
 															<img src="{{profile_image_path}}{{detail?.service_id?.professional_id?.profile_image}}">
 															<!-- <img src="http://medic-app-react.next-item.com//content/user-40-1.jpg"> -->
@@ -515,14 +523,14 @@
 														<td class="date-time-appointment"><p>{{detail?.service_id?.professional_id?.first_name}}</p>
 															<p>{{detail?.service_id?.professional_id?.last_name}}</p>
 														</td>
-														<td class="date-time-appointment"><p>{{detail?.date}}</p>
-															<p>{{detail?.time}}</p>
+														<td class="date-time-appointment"><p>{{detail?.date | date}}</p>
+															<p>{{detail?.time?.start_time}}</p>
 														</td>
 														<td>{{detail?.location}}</td>
 														<td><span class="purpose">{{detail?.service_id?.service_description}}</span></td>
 														
 														<td>{{detail.subject}}</td>
-														<td><span class="purpose">{{detail?.request_details}}</span></td>
+														<!-- <td><span class="purpose">{{detail?.request_details}}</span></td> -->
 														
 														<td>
 															<span class="badge badge-success status-badge">{{detail?.status}}</span>
@@ -537,6 +545,9 @@
 													
 												</tbody>
 											</table>
+											<mat-paginator [length]="length3" [pageSize]="10" [pageSizeOptions]="[5,10,20]"
+											(page)="paginationOptionChange3($event)">
+								</mat-paginator>
 											<div *ngIf="approvedLen == 0">
 												<h2>No Record</h2>
 											</div>
@@ -567,14 +578,14 @@
 														<th scope="col">Location</th>
 														<th scope="col">Service Detail</th>
 														<th scope="col">Subject</th>
-														<th scope="col">Purpose</th>
+														<!-- <th scope="col">Purpose</th> -->
 														<th scope="col">Status</th>
 														<!-- <th scope="col">Action</th> -->
 													</tr>
 												</thead>
 												<tbody>
 													<tr *ngFor="let detail of completedDetails; let i = index">
-														<th scope="row">{{i+1}}</th>
+														<th scope="row">{{i+1+offset_comp}}</th>
 														<td class="prof-img--avatar">
 															<img src="{{profile_image_path}}{{detail?.service_id?.professional_id?.profile_image}}">
 															<!-- <img src="http://medic-app-react.next-item.com//content/user-40-1.jpg"> -->
@@ -582,14 +593,14 @@
 														<td class="date-time-appointment"><p>{{detail?.service_id?.professional_id?.first_name}}</p>
 															<p>{{detail?.service_id?.professional_id?.last_name}}</p>
 														</td>
-														<td class="date-time-appointment"><p>{{detail?.date}}</p>
-															<p>{{detail?.time}}</p>
+														<td class="date-time-appointment"><p>{{detail?.date | date}}</p>
+															<p>{{detail?.time?.start_time}}</p>
 														</td>
 														<td>{{detail?.location}}</td>
 														<td><span class="purpose">{{detail?.service_id?.service_description}}</span></td>
 														
 														<td>{{detail.subject}}</td>
-														<td><span class="purpose">{{detail?.request_details}}</span></td>
+														<!-- <td><span class="purpose">{{detail?.request_details}}</span></td> -->
 														
 														<td>
 															<span class="badge badge-success status-badge">{{detail?.status}}</span>
@@ -630,6 +641,9 @@
 													
 												</tbody>
 											</table>
+											<mat-paginator [length]="length4" [pageSize]="10" [pageSizeOptions]="[5,10,20]"
+											(page)="paginationOptionChange4($event)">
+								</mat-paginator>
 											<div *ngIf="completedLen == 0">
 												<h2>No Record</h2>
 											</div>
@@ -637,11 +651,11 @@
 									</div>
 								</mat-tab>
 
-								<mat-tab label="Rejected">
+								<mat-tab label="Cancelled">
 									<div class="col-md-12 mt-3">
 										<div class="db-header--wraap">
 											<div class="dashboard-table-heading">
-												<h1>Rejected Appointments</h1>
+												<h1>Cancelled Appointments</h1>
 											</div>
 											<div class="user-search-input">
 												<div class="form-group mb-0">
@@ -661,14 +675,14 @@
 														<th scope="col">Location</th>
 														<th scope="col">Service Detail</th>
 														<th scope="col">Subject</th>
-														<th scope="col">Purpose</th>
+														<!-- <th scope="col">Purpose</th> -->
 														<th scope="col">Status</th>
 														<!-- <th scope="col">Action</th> -->
 													</tr>
 												</thead>
 												<tbody>
 													<tr *ngFor="let detail of rejectedDetails; let i = index">
-														<th scope="row">{{i+1}}</th>
+														<th scope="row">{{i+1+offset_rej}}</th>
 														<td class="prof-img--avatar">
 															<img src="{{profile_image_path}}{{detail?.service_id?.professional_id?.profile_image}}">
 															<!-- <img src="http://medic-app-react.next-item.com//content/user-40-1.jpg"> -->
@@ -676,14 +690,14 @@
 														<td class="date-time-appointment"><p>{{detail?.service_id?.professional_id?.first_name}}</p>
 															<p>{{detail?.service_id?.professional_id?.last_name}}</p>
 														</td>
-														<td class="date-time-appointment"><p>{{detail?.date}}</p>
+														<td class="date-time-appointment"><p>{{detail?.date | date}}</p>
 															<p>{{detail?.time}}</p>
 														</td>
 														<td>{{detail?.location}}</td>
 														<td><span class="purpose">{{detail?.service_id?.service_description}}</span></td>
 														
 														<td>{{detail.subject}}</td>
-														<td><span class="purpose">{{detail?.request_details}}</span></td>
+														<!-- <td><span class="purpose">{{detail?.request_details}}</span></td> -->
 														
 														<td>
 															<span class="badge badge-success status-badge">{{detail?.status}}</span>
@@ -699,6 +713,9 @@
 													
 												</tbody>
 											</table>
+											<mat-paginator [length]="length5" [pageSize]="10" [pageSizeOptions]="[5,10,20]"
+											(page)="paginationOptionChange5($event)">
+								</mat-paginator>
 											<div *ngIf="rejectedLen == 0">
 												<h2>No Record</h2>
 											</div>

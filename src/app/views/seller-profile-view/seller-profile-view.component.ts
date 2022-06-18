@@ -36,6 +36,7 @@ export class SellerProfileViewComponent implements OnInit {
       console.log(data);
       if (data.code == 200) {
         this.userDetails = data.data
+        console.log("hasjkhdjka\dkjashdkajshdkj", this.userDetails)
         if (data.data.profile_image) {
           this.user_image = data.data.profile_image
         }
