@@ -17,7 +17,7 @@
 }
 .bnt-cst{
     right: 0;
-    padding: 8px 15px;
+    padding: 9px 15px;
     border: none;
     border-radius: 50px;
     border-top-left-radius: 0px;
@@ -33,4 +33,28 @@
 	margin: 0 0;
 	padding: 0;
 	margin: auto;
+}
+.cl_ic{
+    float: right;
+    // display: none;
+    border: 0px;
+    background: none;
+    opacity: 0;
+    
+}
+::ng-deep mat-option:hover .cl_ic_2{
+color: #000 !important;
+opacity: 1;
+}
+
+.clr_div{
+    width: 100%;
+    text-align: right;
+}
+.clr_al {
+    border: none;
+    background: transparent;
+    font-size: 15px;
+    margin: 7px;
+    color: #a8a8a8;
 }

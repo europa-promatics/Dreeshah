@@ -463,13 +463,7 @@ export class ServicesComponent implements OnInit {
   paginationOptionChange(evt) {
     console.log("evthrm", evt)
     this.topPage = evt.pageIndex
-    //  this.offset = (evt.pageIndex * evt.pageSize)
-    //  this.limit = evt.pageSize
-    // console.log("Offset Value>>>", this.offset_val)
-    // console.log("Limit Value>>>>", this.limit_val)
    var obj = {
-
-      //  limit: this.searchFilters.limit,
       limit: evt.pageSize,
        offset:  (evt.pageIndex * evt.pageSize)
 

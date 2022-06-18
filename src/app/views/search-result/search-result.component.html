@@ -1,0 +1,1094 @@
+<app-header></app-header>
+
+
+<div class="search-wrap">
+  <div class="custom_container">
+    <div class="row">
+      <div class="col-md-12">
+
+
+<!------------------- catalogue starts here------------------- -->
+
+        <div class="catalogue-wrapper">
+          <div class="all_catalogs">
+            <div class="row justify-content-center">
+              <ng-container *ngIf="catalogueSearchData1">
+                <div class="col-md-12 mt-5 img_borde" style="text-align: center;">
+                  <h1 class="text-center">Our Catalogue</h1>
+                </div>
+              </ng-container>
+              
+              <!-- <div class="col-md-12">
+                <div class="catalogue-wrapper-col mt-3 mb-5">
+                  <div class="simple-effet-image clearfix">
+                    <div class="row">
+                      <div class="col-md-4">
+                        <div class="effect-image-1">
+                          <img
+                            src="https://i2.wp.com/homedecordesigns.com/wp-content/uploads/2014/10/IndianHome8.jpg?fit=900%2C624"
+                            alt="image-1"
+                            class="bfr-effct-img"
+                          />
+                          <div class="overlay-text-effect-3">
+                            <h1>
+                              <a routerLink="/catalogue-detail">Interior</a>
+                            </h1>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="effect-image-1">
+                          <img
+                            src="https://i.pinimg.com/originals/40/2b/2e/402b2e96062030ae500ab501a8572012.png"
+                            alt="image-1"
+                            class="bfr-effct-img"
+                          />
+                          <div class="overlay-text-effect-3 overlay-text-1">
+                            <h1>
+                              <a routerLink="/catalogue-detail">Exterior</a>
+                            </h1>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="effect-image-1">
+                          <img
+                            src="https://i2.wp.com/homedecordesigns.com/wp-content/uploads/2014/10/IndianHome8.jpg?fit=900%2C624"
+                            alt="image-1"
+                            class="bfr-effct-img"
+                          />
+                          <div class="overlay-text-effect-3">
+                            <h1>
+                              <a routerLink="/catalogue-detail">Interior</a>
+                            </h1>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+            
+                        
+              <ng-container *ngIf="catalogueInterior=='interior'">
+                <div class="col-md-12 mt-3 mb-3 intr_imgs" style="text-align: center;">
+                  <h1 class="text-center mt-3 mb-3">Interior Catalogue</h1>
+                </div>
+                <ng-container *ngFor="let catalogue of catalogueSearchData">
+                  <div class="col-md-3">
+                      <div class="img_wrapwr position-relative mb-5" routerLink="/catalogue-interior" style="cursor: pointer;">
+                          <img src="https://developers.promaticstechnologies.com/dreeshah_apis/public/AllImages/{{catalogue?.album[0].image}}" class="img-fluid img_rspns">
+                          <div class="main-text text_wdes">
+                              <h2 class="text-center"><a routerLink="/catalogue-interior"> {{catalogue?.catalogue_category}}</a></h2>
+                          </div>
+                      </div>
+                      <div class="img_wrapwr position-relative mb-5" routerLink="" style="cursor: pointer;">
+                        <img *ngIf="!catalogue?.catalogue_subcategory.image" src="https://developers.promaticstechnologies.com/dreeshah_apis/public/AllImages/{{catalogue?.catalogue_subcategory.image}}" class="img-fluid">
+                        <img src="assets/imgs/11.png" class="img-fluid" *ngIf="catalogue?.catalogue_subcategory.image">
+
+                        <div class="main-text text_wdes">
+                            <h2 class="text-center"><a routerLink=""> {{catalogue?.catalogue_subcategory.name}}</a></h2>
+                        </div>
+                    </div>
+                    <div class="img_wrapwr position-relative mb-5" routerLink="" style="cursor: pointer;">
+                     
+                      <!-- <img *ngIf="!catalogue?.catalogue_subsubcategory.image" src="https://developers.promaticstechnologies.com/dreeshah_apis/public/AllImages/{{catalogue?.catalogue_subsubcategory.image}}" class="img-fluid"> -->
+                      <img src="assets/imgs/ssc.png" class="img-fluid" >
+                      <div class="main-text text_wdes">
+                          <h2 class="text-center"><a routerLink=""> {{catalogue?.catalogue_subsubcategory.name}}</a></h2>
+                      </div>
+                    </div>
+                </div>
+                </ng-container>
+              </ng-container>
+
+              <ng-container *ngIf="catalogueExterior=='exterior'">
+                <div class="col-md-12 mt-5" align="center">
+                  <h1 class="text-center mt-3 mb-3">Exterior Catalogue</h1>
+                </div>
+                <ng-container *ngFor="let catalogue of catalogueSearchData">
+                  <div class="col-md-7">
+                    <div class="img_wrapwr position-relative mb-5" routerLink="/catalogue-exterior" style="cursor: pointer;">
+                        <img src="https://developers.promaticstechnologies.com/dreeshah_apis/public/AllImages/{{catalogue?.album[0].image}}" class="img-fluid">
+                        <div class="main-text ">
+                            <h2 class="text-center"><a routerLink="/catalogue-interior"> {{catalogue?.catalogue_category}}</a></h2>
+                        </div>
+                    </div>
+                </div>
+                </ng-container>
+              </ng-container>
+
+          
+
+                        <!-- <ng-container *ngIf="catalogueExterior=='exterior'">
+                          <div class="col-md-12 mt-5" align="center">
+                            <h1 class="text-center mt-3 mb-3">Exterior Catalogue</h1>
+                          </div>
+                        </ng-container>
+
+                        <ng-container *ngFor="let exteriorCatalogue of catalogueSearchData">
+                          <div class="col-md-5">
+                              <div class="img_wrapwr position-relative" routerLink="/catalogue-exterior" style="cursor: pointer;">
+                                  <img src="https://developers.promaticstechnologies.com/dreeshah_apis/public/AllImages/{{exteriorCatalogue?.album[0].image}}" class="img-fluid">
+                                  <div class="main-text">
+                                      <h2 class="text-center"><a routerLink="/catalogue-exterior">{{exteriorCatalogue?.catalogue_category}}</a></h2>
+                                  </div>
+                              </div>
+                          </div>
+                          </ng-container> -->
+                  
+      
+         
+ 
+             
+              <!-- <div class="col-md-12">
+                <div class="catalogue-wrapper-col mt-3 mb-5">
+                    <div class="simple-effet-image clearfix prdtDtlDiv">
+                        <div class="row">
+                            <div class="col-md-3" style="    margin-top: 1%;"
+                                *ngFor="let interior of interiorCatalogue">
+                                <div class="card" routerLink="/catalogue-interior-detail/{{interior.id}}">
+                                    <div class="prdcutImg">
+                                        <a>
+                                            <img *ngIf="interior?.image?.length" src="{{imgpath1}}{{interior?.image}}"
+                                                alt="image-1" class="bfr-effct-img heightIMg">
+                                            <img *ngIf="!interior?.image?.length" src="../../../assets/imgs/noImage.jpg"
+                                                alt="image-1" class="bfr-effct-img heightIMg">
+                                        </a>
+                                    </div>
+                                    <div class="prdctDtl">
+                                        <div _ngcontent-pvf-c289="" class="custm_address text-left ">
+                                            <address _ngcontent-pvf-c289="">{{interior?.name}} </address>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+              <div class="catalogue-wrapper-col mt-3 mb-5">
+                  <div class="simple-effet-image clearfix prdtDtlDiv">
+                      <div class="row">
+                          <div class="col-md-3" style="    margin-top: 1%;"
+                              *ngFor="let exterior of exteriorCatalogue">
+                              <div class="card" routerLink="/catalogue-exterior-detail/{{exterior.id}}">
+                                  <div class="prdcutImg">
+                                      <a>  <img *ngIf="exterior?.image?.length" src="{{imgpath1}}{{exterior?.image}}"
+                                              alt="image-1" class="bfr-effct-img heightIMg">
+                                          <img *ngIf="!exterior?.image?.length" src="../../../assets/imgs/noImage.jpg"
+                                              alt="image-1" class="bfr-effct-img heightIMg">
+                                      </a>
+                                  </div>
+                                  <div class="prdctDtl">
+                                      <div _ngcontent-pvf-c289="" class="custm_address text-left ">
+                                          <address _ngcontent-pvf-c289="">{{exterior?.name}} </address>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div> -->
+
+      </div>
+    </div>
+  </div>
+
+
+<!------------------- catalogue ends here------------------------------------------ -->
+
+
+
+
+
+
+<!-- -------------------------products starts here----------------------------------- -->
+        <!-- <div class="products_wrapper">
+          <div class="main_prod_contnr mt-2">
+            <div class="row">
+              <div class="col-md-12 mt-5" align="center">
+                <h1 class="text-center mt-3 mb-3">Products</h1>
+              </div>
+              <div class="col-sm-3">
+                <div class="prod-cata">
+                  <div class="ps-product">
+                    <div
+                      class="product-image"
+                      style="
+                        background-image: url(https://rukminim1.flixcart.com/image/612/612/k0bbb0w0/towel-rod/e/6/b/4201146503912-prime-stainless-steel-304-grade-impulse-original-imafkfq6qxsxh9qx.jpeg?q=70);
+                      "
+                    ></div>
+                    <div class="product-desc">
+                      <span class="title">Product<strong>Name</strong></span>
+                      <span class="new">New</span>
+                      <span class="caption">Stainless Steel pipes</span>
+                      <span class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star grey"></i>
+                      </span>
+                      <div class="price">
+                        <strong>£9.00</strong> <span>£18.00</span>
+                      </div>
+                    </div>
+                    <div class="product-info">
+                      <div class="header showDetailsBtn">Details</div>
+                      <div class="info showDetailsContent">
+                        <div class="size">
+                          <span>Size</span>
+                          <ul>
+                            <li class=""><a href="#">S</a></li>
+                            <li class=""><a href="#">L</a></li>
+                            <li class=""><a href="#">M</a></li>
+                            <li class=""><a href="#">XL</a></li>
+                            <li class="active"><a href="#">3X</a></li>
+                          </ul>
+                        </div>
+                        <div class="color">
+                          <span>Color</span>
+                          <ul>
+                            <li class="yellow active"><a href="#"></a></li>
+                            <li class="green"><a href="#"></a></li>
+                            <li class="red"><a href="#"></a></li>
+                          </ul>
+                        </div>
+                        <p>
+                          Lorem ipsum dolor sit amet, consectetur adipisicing
+                          elit. Eius doloremque dolorum dolore omnis, similique
+                          vel nulla molestiae quae accusantium, incidunt.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="prod-cata">
+                  <div class="ps-product">
+                    <div
+                      class="product-image"
+                      style="
+                        background-image: url(https://rooftraders.co.uk/pub/media/catalog/product/cache/2474b722d7d164e42ff8f09b603d4ab8/m/o/molan-sunwood-ridge-white.jpg);
+                      "
+                    ></div>
+                    <div class="product-desc">
+                      <span class="title">Product<strong>Name</strong></span>
+                      <span class="new">New</span>
+                      <span class="caption">Stainless Steel pipes</span>
+                      <span class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star grey"></i>
+                      </span>
+                      <div class="price">
+                        <strong>£9.00</strong> <span>£18.00</span>
+                      </div>
+                    </div>
+                    <div class="product-info">
+                      <div class="header showDetailsBtn">Details</div>
+                      <div class="info showDetailsContent">
+                        <div class="size">
+                          <span>Size</span>
+                          <ul>
+                            <li class=""><a href="#">S</a></li>
+                            <li class=""><a href="#">L</a></li>
+                            <li class=""><a href="#">M</a></li>
+                            <li class=""><a href="#">XL</a></li>
+                            <li class="active"><a href="#">3X</a></li>
+                          </ul>
+                        </div>
+                        <div class="color">
+                          <span>Color</span>
+                          <ul>
+                            <li class="yellow active"><a href="#"></a></li>
+                            <li class="green"><a href="#"></a></li>
+                            <li class="red"><a href="#"></a></li>
+                          </ul>
+                        </div>
+                        <p>
+                          Lorem ipsum dolor sit amet, consectetur adipisicing
+                          elit. Eius doloremque dolorum dolore omnis, similique
+                          vel nulla molestiae quae accusantium, incidunt.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="prod-cata">
+                  <div class="ps-product">
+                    <div
+                      class="product-image"
+                      style="
+                        background-image: url(https://imgus-vip.tongtool.com/s/qoqsztvtosqrznquosvvqxxwwrsquzusyuypJPGN.jpg);
+                      "
+                    ></div>
+                    <div class="product-desc">
+                      <span class="title">Product<strong>Name</strong></span>
+                      <span class="new">New</span>
+                      <span class="caption">Stainless Steel pipes</span>
+                      <span class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star grey"></i>
+                      </span>
+                      <div class="price">
+                        <strong>£9.00</strong> <span>£18.00</span>
+                      </div>
+                    </div>
+                    <div class="product-info">
+                      <div class="header showDetailsBtn">Details</div>
+                      <div class="info showDetailsContent">
+                        <div class="size">
+                          <span>Size</span>
+                          <ul>
+                            <li class=""><a href="#">S</a></li>
+                            <li class=""><a href="#">L</a></li>
+                            <li class=""><a href="#">M</a></li>
+                            <li class=""><a href="#">XL</a></li>
+                            <li class="active"><a href="#">3X</a></li>
+                          </ul>
+                        </div>
+                        <div class="color">
+                          <span>Color</span>
+                          <ul>
+                            <li class="yellow active"><a href="#"></a></li>
+                            <li class="green"><a href="#"></a></li>
+                            <li class="red"><a href="#"></a></li>
+                          </ul>
+                        </div>
+                        <p>
+                          Lorem ipsum dolor sit amet, consectetur adipisicing
+                          elit. Eius doloremque dolorum dolore omnis, similique
+                          vel nulla molestiae quae accusantium, incidunt.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="prod-cata">
+                  <div class="ps-product">
+                    <div
+                      class="product-image"
+                      style="
+                        background-image: url(https://imgus-vip.tongtool.com/s/qoqsztvtosqrznquosvvqxxwwrsquzusyuypJPGN.jpg);
+                      "
+                    ></div>
+                    <div class="product-desc">
+                      <span class="title">Product<strong>Name</strong></span>
+                      <span class="new">New</span>
+                      <span class="caption">Stainless Steel pipes</span>
+                      <span class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star grey"></i>
+                      </span>
+                      <div class="price">
+                        <strong>£9.00</strong> <span>£18.00</span>
+                      </div>
+                    </div>
+                    <div class="product-info">
+                      <div class="header showDetailsBtn">Details</div>
+                      <div class="info showDetailsContent">
+                        <div class="size">
+                          <span>Size</span>
+                          <ul>
+                            <li class=""><a href="#">S</a></li>
+                            <li class=""><a href="#">L</a></li>
+                            <li class=""><a href="#">M</a></li>
+                            <li class=""><a href="#">XL</a></li>
+                            <li class="active"><a href="#">3X</a></li>
+                          </ul>
+                        </div>
+                        <div class="color">
+                          <span>Color</span>
+                          <ul>
+                            <li class="yellow active"><a href="#"></a></li>
+                            <li class="green"><a href="#"></a></li>
+                            <li class="red"><a href="#"></a></li>
+                          </ul>
+                        </div>
+                        <p>
+                          Lorem ipsum dolor sit amet, consectetur adipisicing
+                          elit. Eius doloremque dolorum dolore omnis, similique
+                          vel nulla molestiae quae accusantium, incidunt.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> -->
+        
+
+        <div class="main_prod_contnr mt-2">
+          <div class="row">
+            <ng-container *ngIf="productSearchData1">
+            <div class="col-md-12 mt-5 produts_imgs"> 
+              <h1 class="text-center mt-3 mb-3">Products</h1>
+            </div>
+            </ng-container>
+
+            <div class="col-sm-4" *ngFor="let product of productSearchData" >
+              <div class="prod-cata" > 
+                <div class="ps-product">
+                  
+             <a routerLink="/products-details/{{product?._id}}">
+              <div class="product-image" style="background-image: url({{imgpath}}{{product?.product_media[0]?.name}})" >
+              </div>
+             </a>
+             <div class="product-desc">
+              <span class="new">
+                New
+              </span>
+              <span class="caption " >
+                <a routerLink="/products-details/{{product?._id}}">
+                  {{product?.product_title}}
+                </a>
+              </span>
+                    <span class="rating"> 
+                      <i class="fas fa-star"></i> 
+                      <i class="fas fa-star"></i> 
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i> 
+                      <i class="fas fa-star grey"></i> 
+                    </span>
+                    <div class="price"> <strong>£{{product?.pricing?.price}}</strong> <span>£18.00</span></div>
+                  </div>
+                  <div class="product-info">
+                    <div class="header showDetailsBtn"> Details</div>
+                    <div class="info showDetailsContent">
+                      <div class="size">
+                        <span>Size</span>
+                        <ul>
+                          <li class=""><a href="#">S</a></li>
+                          <li class=""><a href="#">L</a></li>
+                          <li class=""><a href="#">M</a></li>
+                          <li class=""><a href="#">XL</a></li>
+                          <li class="active"><a href="#">3X</a></li>
+                        </ul>
+                      </div>
+                      <div class="color">
+                        <span>Color</span>
+                        <ul>
+                          <li class="yellow active"><a href="#"></a></li>
+                          <li class="green "><a href="#"></a></li>
+                          <li class="red"><a href="#"></a></li>
+                        </ul>
+                      </div>
+                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius doloremque dolorum dolore omnis, similique vel nulla molestiae quae accusantium, incidunt.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        
+<!--------------------------- product ends here---------------- -->
+
+
+
+
+<!------------------------- --------services starts here--------------- -->
+
+
+
+        <div class="services-wraper">
+          <ng-container *ngIf="serviceSearchData1">
+            <div class="mt-5 produts_imgs">
+              <h1 class="text-center mt-3 mb-3">Services</h1>
+            </div>
+          </ng-container>
+          
+          <!-- <div class="services--wrpp border-bottom mt-5">
+            <div class="row servive_row">
+              <div class="col-md-4">
+                <div class="catalogue-new-img-thumb-service">
+                  <div class="wcontainer">
+                    <p>
+                      <strong>AED500</strong>
+                    </p>
+                    <img
+                      src="https://developers.promaticstechnologies.com/dreeshah_apis/public/ProfessionalServices/1627905971341images__1_.jpeg"
+                      alt="service"
+                      class="thimg"
+                    />
+                    <div class="thumb-overlay"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-5 mt-3">
+                <div class="web-serv-name">
+                  <h1>
+                    <a routerLink="/ServicesDetails/">IT Services</a>
+                  </h1>
+                </div>
+                <div class="web-serv-name">
+                  <h4>Category</h4>
+                </div>
+                <h4>Sub Category</h4>
+                <div class="professionals-details-wrapper">
+                  <div>
+                    <img
+                      src="https://developers.promaticstechnologies.com/dreeshah_apis/public/userProfile"
+                    />
+                  </div>
+                  <div class="custm_address text-left mt-3">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <address>Address uhug</address>
+                  </div>
+                </div>
+                <div class="custom-comment">
+                  <p class="mt-3">
+                    <i class="fa fa-quote-left"></i>
+                    Making software
+                  </p>
+                  <div class="read-more">
+                    <a routerLink="/ServicesDetails/" class="read-more-link"
+                      >Read More <i class="fa fa-angle-right"></i
+                    ></a>
+                  </div>
+                  <div class="send-req-btn mt-2">
+                    <button class="btn btn-change-fill">
+                      Get Instant Quotation
+                    </button>
+                    <a
+                      data-target="#bookAptmnt"
+                      data-toggle="modal"
+                      class="btn btn btn-change-fill ml-2"
+                    >
+                      Book Appointment
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3 mt-3">
+                <div class="professsional-contact-details text-right">
+                  <a class="btn btn-change-fill min-width-0"
+                    ><i class="fas fa-comments"></i></a
+                  ><br />
+                  <p class="mt-3">
+                    <i class="fa fa-mobile-alt mr-2" aria-hidden="true"></i>
+                    6786786
+                  </p>
+                  <div class="custm_address text-right mt-3">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <address>View on Map</address>
+                  </div>
+                  <div class="ratings-review-wrapper mrgn-top-2">
+                    <h3 class="ml-2">df sdf dfx ds</h3>
+                    <p>sdfsdf sdefsf</p>
+                    <div class="strs">
+                      <span>4.3</span>
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                    </div>
+                    <p>36 reviews</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row servive_row">
+                <div class="col-md-4">
+                  <div class="catalogue-new-img-thumb-service">
+                    <div class="wcontainer">
+                      <p>
+                        <strong>AED500</strong>
+                      </p>
+                      <img
+                        src="https://developers.promaticstechnologies.com/dreeshah_apis/public/ProfessionalServices/1627905971341images__1_.jpeg"
+                        alt="service"
+                        class="thimg"
+                      />
+                      <div class="thumb-overlay"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-5 mt-3">
+                  <div class="web-serv-name">
+                    <h1>
+                      <a routerLink="/ServicesDetails/">IT Services</a>
+                    </h1>
+                  </div>
+                  <div class="web-serv-name">
+                    <h4>Category</h4>
+                  </div>
+                  <h4>Sub Category</h4>
+                  <div class="professionals-details-wrapper">
+                    <div>
+                      <img
+                        src="https://developers.promaticstechnologies.com/dreeshah_apis/public/userProfile"
+                      />
+                    </div>
+                    <div class="custm_address text-left mt-3">
+                      <i class="fas fa-map-marker-alt"></i>
+                      <address>Address uhug</address>
+                    </div>
+                  </div>
+                  <div class="custom-comment">
+                    <p class="mt-3">
+                      <i class="fa fa-quote-left"></i>
+                      Making software
+                    </p>
+                    <div class="read-more">
+                      <a routerLink="/ServicesDetails/" class="read-more-link"
+                        >Read More <i class="fa fa-angle-right"></i
+                      ></a>
+                    </div>
+                    <div class="send-req-btn mt-2">
+                      <button class="btn btn-change-fill">
+                        Get Instant Quotation
+                      </button>
+                      <a
+                        data-target="#bookAptmnt"
+                        data-toggle="modal"
+                        class="btn btn btn-change-fill ml-2"
+                      >
+                        Book Appointment
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3 mt-3">
+                  <div class="professsional-contact-details text-right">
+                    <a class="btn btn-change-fill min-width-0"
+                      ><i class="fas fa-comments"></i></a
+                    ><br />
+                    <p class="mt-3">
+                      <i class="fa fa-mobile-alt mr-2" aria-hidden="true"></i>
+                      6786786
+                    </p>
+                    <div class="custm_address text-right mt-3">
+                      <i class="fas fa-map-marker-alt"></i>
+                      <address>View on Map</address>
+                    </div>
+                    <div class="ratings-review-wrapper mrgn-top-2">
+                      <h3 class="ml-2">df sdf dfx ds</h3>
+                      <p>sdfsdf sdefsf</p>
+                      <div class="strs">
+                        <span>4.3</span>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                      </div>
+                      <p>36 reviews</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div> -->
+        <div class="row justify-content-center">
+            <div class="col-sm-11">
+              <div class="custom_tabs">
+
+                  <div class="tab-content">
+                      <div class="tab-pane active" id="design">
+                          <div class="tab_container">
+                              <div *ngIf="services_list > 0">
+                                  <div class="services--wrpp border-bottom"
+                                      *ngFor="let service of serviceSearchData ">
+                                      <div class="row">
+                                          <div class="col-md-4">
+                                              <div class="catalogue-new-img-thumb-service">
+                                                  <div class="wcontainer">
+                                                      <p><strong>AED{{service?.price}}</strong></p>
+                                                      <img src="{{image_path}}{{service.service_image}}"
+                                                          alt="service" class="thimg" />
+                                                      <div class="thumb-overlay"></div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                          <div class="col-md-5 mt-3">
+                                              <div class="web-serv-name">
+                                                  <h1><a
+                                                          routerLink="/ServicesDetails/{{service._id}}">{{service.service_name}}</a>
+                                                  </h1>
+                                              </div>
+                                              <div class="web-serv-name">
+                                                  <h4>{{service?.service_category[0].name}}</h4>
+                                              </div>
+
+                                              <h4>{{service?.service_sub_category[0].name}}</h4>
+
+                                              <div class="professionals-details-wrapper">
+                                                  <div>
+                                                    <img src="https://developers.promaticstechnologies.com/dreeshah_apis/public/ProfessionalServices{{service.professional_id?.profile_image}}" *ngIf="service.professional_id[0]?.profile_image">
+                                                  </div>
+                                                      <span></span>
+                                                  <div class="custm_address text-left mt-3">
+                                                      <i class="fas fa-map-marker-alt"></i>
+                                                      <address>
+                                                          {{service.country[0]}}
+                                                      </address>
+                                                  </div>
+                                              </div>
+                                              <div class="custom-comment">
+                                                  <p class="mt-3"><i class="fa fa-quote-left"></i>
+                                                      {{(service.service_description?.length > 70) ? (service.service_description | slice:0:70)
+                                                      +
+                                                      '...' : service.service_description}}
+                                                  </p>
+                                                  <div class="read-more"
+                                                      *ngIf="service.service_description.service_count > 70">
+
+                                                      <a routerLink="/ServicesDetails/{{service._id}}"
+                                                          class="read-more-link">Read More <i
+                                                              class="fa fa-angle-right"></i></a>
+                                                  </div>
+                                                  <div class="send-req-btn mt-2">
+                                                      <button (click)="quotation(service)"
+                                                          class="btn btn-change-fill">Get
+                                                          Instant Quotation
+                                                      </button>
+                                                      <a data-target="#bookAptmnt" (click)="idOfService(service)"
+                                                          data-toggle="modal"
+                                                          class="btn btn btn-change-fill ml-2">
+                                                          Book Appointment
+                                                      </a>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                          <div class="col-md-3 mt-3">
+                                              <div class="professsional-contact-details text-right">
+                                                  <a  class="btn btn-change-fill min-width-0" (click)="CalledChatRoom(service)"
+                                                      ><i
+                                                          class="fas fa-comments" ></i></a><br />
+                                                  <p class="mt-3"><i class="fa fa-mobile-alt mr-2"
+                                                          aria-hidden="true"></i>{{service.professional_id[0]?.contact_details.mobile_number}}
+                                                  </p>
+                                                  <div class="custm_address text-right mt-3">
+                                                      <i class="fas fa-map-marker-alt"></i>
+                                                      <address>
+                                                          View on Map
+                                                      </address>
+                                                  </div>
+                                                  <div class="ratings-review-wrapper mrgn-top-2">
+                                                      <h3 class="ml-2">
+                                                          {{service.professional_id.first_name | titlecase}}
+                                                          {{service.professional_id.last_name | titlecase}}</h3>
+                                                      <p>{{service.service_category.name}}</p>
+                                                      <!-- <div class="ratings-review"> -->
+                                                      <div class="strs">
+                                                          <span>4.3</span>
+                                                          <i class="fa fa-star"></i>
+                                                          <i class="fa fa-star"></i>
+                                                          <i class="fa fa-star"></i>
+                                                          <i class="fa fa-star"></i>
+                                                      </div>
+                                                      <p>36 reviews</p>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div *ngIf="services_list?.length == 0">
+                                  <h1>No Data Found</h1>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+            </div>
+        </div>    
+        
+        </div>
+   
+
+ <!---------------------------- Service ends here------------------------- -->
+
+
+
+<!-- --------------- professionals starts here-------------------------- -->
+
+       
+        <div class="professionals-wraper">
+          <ng-container *ngIf="professionalSearchData1">
+            <div class="mt-5 produts_imgs">
+              <h1 class="text-center mt-3 mb-3">Professionals</h1>
+            </div>
+          </ng-container>
+          <div class="row justify-content-center">
+            <div class="col-md-11">
+              <!-- <div class="professionals-detail-card-wrapper"> -->
+                <div class="row" *ngFor="let profData of professionalSearchData">
+                  <div class="col-md-4">
+                    <div class="professionals_ideas_wrap">
+                      <owl-carousel-o [options]="style_slider">
+                        <ng-template carouselSlide>
+                          <figure class="wrap_idea_singl">
+                            <img
+                              src="https://i2.wp.com/homedecordesigns.com/wp-content/uploads/2014/10/IndianHome8.jpg?fit=900%2C624"
+                              class="img-fluid"
+                              alt="room1"
+                            />
+                          </figure>
+                        </ng-template>
+                        <ng-template carouselSlide>
+                          <figure class="wrap_idea_singl">
+                            <img
+                              src="https://cdn.boydforcongress.com/wp-content/uploads/modern-luxury-homes-las-vegas-henderson-escala_403170-840x450.jpg"
+                              class="img-fluid"
+                              alt="room1"
+                            />
+                          </figure>
+                        </ng-template>
+                        <ng-template carouselSlide>
+                          <figure class="wrap_idea_singl">
+                            <img
+                              src="https://i2.wp.com/homedecordesigns.com/wp-content/uploads/2014/10/IndianHome8.jpg?fit=900%2C624"
+                              class="img-fluid"
+                              alt="room1"
+                            />
+                          </figure>
+                        </ng-template>
+                        <ng-template carouselSlide>
+                          <figure class="wrap_idea_singl">
+                            <img
+                              src="https://cdn.boydforcongress.com/wp-content/uploads/modern-luxury-homes-las-vegas-henderson-escala_403170-840x450.jpg"
+                              class="img-fluid"
+                              alt="room1"
+                            />
+                          </figure>
+                        </ng-template>
+                      </owl-carousel-o>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="professionals-details-wrapper">
+                      <a routerLink="/professioanl-detail/{{profData._id}}"
+                          >
+                      <img
+                        src="https://developers.promaticstechnologies.com/dreeshah_apis/public/userProfile/{{profData.profile_image}}"
+                        class="img-fluid"
+                      />
+                      </a>
+
+                      <div class="ratings-review-wrapper">
+                        <a routerLink="/professioanl-detail/{{profData._id}}"
+                          ><h3 class="ml-2">
+                        {{profData.first_name}}{{profData.last_name}}
+                            <!-- Sam Architects &amp; Builders -->
+                          </h3></a
+                        >
+                        <div class="ratings-review">
+                          <span>4.3</span>
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i>
+                          <p>36 reviews</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="custom-comment">
+                      <a routerLink="/professioanl-detail/{{profData._id}}"
+                          >
+                      <p class="mt-3">
+                        <i class="fa fa-quote-left"></i> {{profData.branch_brief}}
+                      </p>
+                      </a>
+                      <div class="read-more">
+                        <span>{{profData.phone_number}}</span>
+                        <a
+                          routerLink="/professionals-details"
+                          class="read-more-link"
+                          >Read More <i class="fa fa-angle-right"></i
+                        ></a>
+                      </div>
+                      <div
+                        class="professionals-btn-box d-flex justify-content-between"
+                      >
+                        <div class="send-req-btn">
+                          <button class="btn btn-outline-btn">
+                            <i class="fa fa-user-plus mr-2"></i> Send Request
+                          </button>
+                        </div>
+                        <div class="favorite--btn">
+                          <button class="btn btn-favorite">
+                            <i class="fa fa-heart"></i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="professsional-contact-details">
+                      <a class="btn btn-outline-btn"
+                        ><i class="fa fa-envelope"></i> Send Message</a
+                      ><br />
+                      <p class="mt-3">
+                        <i class="fa fa-mobile mr-2" aria-hidden="true"></i
+                        >
+                        {{profData.contact_details?.mobile_number}}
+                      </p>
+                      <a routerLink="/professioanl-detail/{{profData._id}}"
+                          >
+                      <p class="mt-3">
+                        <i class="fa fa-map-marker-alt mr-2" aria-hidden="true"></i
+                        >{{profData.professional_address?.pincode}},{{profData.professional_address?.address_line_1}},{{profData.professional_address?.address_line_2}}{{profData.professional_address?.landmark}},{{profData.professional_address?.country}}
+                        {{profData.professional_address?.city}}
+                        <!-- 120, Downtown, james complex,Los Angeles,5498986 -->
+                      </p>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+
+                <!-- <div class="row mt-4">
+                    <div class="col-md-4">
+                      <div class="professionals_ideas_wrap">
+                        <owl-carousel-o [options]="style_slider">
+                          <ng-template carouselSlide>
+                            <figure class="wrap_idea_singl">
+                              <img
+                                src="https://i2.wp.com/homedecordesigns.com/wp-content/uploads/2014/10/IndianHome8.jpg?fit=900%2C624"
+                                class="img-fluid"
+                                alt="room1"
+                              />
+                            </figure>
+                          </ng-template>
+                          <ng-template carouselSlide>
+                            <figure class="wrap_idea_singl">
+                              <img
+                                src="https://cdn.boydforcongress.com/wp-content/uploads/modern-luxury-homes-las-vegas-henderson-escala_403170-840x450.jpg"
+                                class="img-fluid"
+                                alt="room1"
+                              />
+                            </figure>
+                          </ng-template>
+                          <ng-template carouselSlide>
+                            <figure class="wrap_idea_singl">
+                              <img
+                                src="https://i2.wp.com/homedecordesigns.com/wp-content/uploads/2014/10/IndianHome8.jpg?fit=900%2C624"
+                                class="img-fluid"
+                                alt="room1"
+                              />
+                            </figure>
+                          </ng-template>
+                          <ng-template carouselSlide>
+                            <figure class="wrap_idea_singl">
+                              <img
+                                src="https://cdn.boydforcongress.com/wp-content/uploads/modern-luxury-homes-las-vegas-henderson-escala_403170-840x450.jpg"
+                                class="img-fluid"
+                                alt="room1"
+                              />
+                            </figure>
+                          </ng-template>
+                        </owl-carousel-o>
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <div class="professionals-details-wrapper">
+                        <img
+                          src="https://www.efilecabinet.com/wp-content/uploads/2019/05/g2-testimonial-male.jpg"
+                          class="img-fluid"
+                        />
+      
+                        <div class="ratings-review-wrapper">
+                          <a routerLink="/professionals-details"
+                            ><h3 class="ml-2">Sam Architects &amp; Builders</h3></a
+                          >
+                          <div class="ratings-review">
+                            <span>4.3</span>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <p>36 reviews</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="custom-comment">
+                        <p class="mt-3">
+                          <i class="fa fa-quote-left"></i> Mind-blowing extraordinary
+                          extravagant.The ambiance what is created is classic...
+                        </p>
+                        <div class="read-more">
+                          <span>-HU-7364766866</span>
+                          <a
+                            routerLink="/professionals-details"
+                            class="read-more-link"
+                            >Read More <i class="fa fa-angle-right"></i
+                          ></a>
+                        </div>
+                        <div
+                          class="professionals-btn-box d-flex justify-content-between"
+                        >
+                          <div class="send-req-btn">
+                            <button class="btn btn-outline-btn">
+                              <i class="fa fa-user-plus mr-2"></i> Send Request
+                            </button>
+                          </div>
+                          <div class="favorite--btn">
+                            <button class="btn btn-favorite">
+                              <i class="fa fa-heart"></i>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="professsional-contact-details">
+                        <a class="btn btn-outline-btn"
+                          ><i class="fa fa-envelope"></i> Send Message</a
+                        ><br />
+                        <p class="mt-3">
+                          <i class="fa fa-mobile mr-2" aria-hidden="true"></i
+                          >1234567890
+                        </p>
+                        <p class="mt-3">
+                          <i class="fa fa-map-marker-alt mr-2" aria-hidden="true"></i
+                          >120, Downtown, james complex,Los Angeles,5498986
+                        </p>
+                      </div>
+                    </div>
+                  </div> -->
+            
+            
+              <!-- </div> -->
+            </div>
+          </div>    
+        </div>
+
+
+<!-- ------------------professionals ends here------------- -->
+          <ng-container *ngIf="!professionalSearchData1 && !serviceSearchData1 && !professionalSearchData1 && !catalogueSearchData1">
+            <div class="row justify-content-center">
+              <div class="col-md-11 img_colr mb-3">
+                <div class="text_modify text-center">
+                  <h1> NOT FOUND....</h1>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+
+
+
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

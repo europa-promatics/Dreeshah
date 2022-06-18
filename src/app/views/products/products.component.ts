@@ -48,10 +48,10 @@ export class ProductsComponent implements OnInit {
     this.reqData.limit = 10
 	  this.length
 	//this.dataSource = new MatTableDataSource(this.responseData);
-	var list={
-		limit:this.reqData.limit,
-		offset:this.reqData.offset
-	}
+      var list={
+        limit:this.reqData.limit,
+        offset:this.reqData.offset
+      }
 
     this.CustomerService.productList(list).subscribe(res =>{
       console.log(res)

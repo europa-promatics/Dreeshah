@@ -14083,3 +14083,9 @@ span.cntr_nmbr {
         border-radius: 50%;
         font-size: 18px;
 }
+.mat-form-field-appearance-legacy .mat-form-field-underline {
+    height:0px!important;
+}
+.mat-form-field-ripple{
+    display:none!important;
+}

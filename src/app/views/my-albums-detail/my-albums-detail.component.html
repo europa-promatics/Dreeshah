@@ -44,6 +44,7 @@
 												</div>
 
 												<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 image" *ngFor="let img of detail?.album_images">
+													<input  type="checkbox" id="{{img?._id}}" (change)="checkBoxClick($event)"  >
 													<div class="img-wrapper">
 														<div *ngIf="(img.image)"  >
 															<img *ngIf="isImage(img.image)" (click)="openImage(img.image)" src="{{imgpath}}{{img.image}}" class="img-responsive" alt="image"> 
@@ -56,9 +57,7 @@
 													</div>
 													<div>
 														<div class="image-upload">
-															<!--<p >{{img?.description}}</p>-->
 															<label for="file-input">
-																<!-- <img src="https://goo.gl/pB9rpQ"/> -->
 																<i class="fa fa-edit mr-3" (click) ="getMediaid(img._id)" aria-hidden="true"></i>
 															</label>
 															
@@ -67,82 +66,15 @@
 
 															
 														</div>
-														<!-- <i class="fa fa-edit mr-3" aria-hidden="true"></i> -->
-														<!-- <i class="fa fa-trash"  (click)="delete(img._id)" aria-hidden="true"></i> -->
 													</div>
 												</div>
-												<!-- <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 image">
-													<div class="img-wrapper">
-														<a href="https://cdn.pixabay.com/photo/2017/07/30/23/59/garlic-2556022_960_720.jpg"><img src="https://cdn.pixabay.com/photo/2017/07/30/23/59/garlic-2556022_960_720.jpg" class="img-responsive"></a>
-														<div class="img-overlay">
-															<i class="fa fa-edit" aria-hidden="true"></i>
-															<i class="fas fa-expand"></i>
-															<i class="fa fa-trash" aria-hidden="true"></i>
-														</div>
-													</div>
-												</div>
-												<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 image">
-													<div class="img-wrapper">
-														<a href="https://cdn.pixabay.com/photo/2017/07/30/23/59/garlic-2556022_960_720.jpg"><img src="https://cdn.pixabay.com/photo/2017/07/30/23/59/garlic-2556022_960_720.jpg" class="img-responsive"></a>
-														<div class="img-overlay">
-															<i class="fa fa-edit" aria-hidden="true"></i>
-															<i class="fas fa-expand"></i>
-															<i class="fa fa-trash" aria-hidden="true"></i>
-														</div>
-													</div>
-												</div>
-												<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 image">
-													<div class="img-wrapper">
-														<a href="https://cdn.pixabay.com/photo/2017/07/30/23/59/garlic-2556022_960_720.jpg"><img src="https://cdn.pixabay.com/photo/2017/07/30/23/59/garlic-2556022_960_720.jpg" class="img-responsive"></a>
-														<div class="img-overlay">
-															<i class="fa fa-edit" aria-hidden="true"></i>
-															<i class="fas fa-expand"></i>
-															<i class="fa fa-trash" aria-hidden="true"></i>
-														</div>
-													</div>
-												</div>
-												<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 image">
-													<div class="img-wrapper">
-														<a href="https://cdn.pixabay.com/photo/2017/07/30/23/59/garlic-2556022_960_720.jpg"><img src="https://cdn.pixabay.com/photo/2017/07/30/23/59/garlic-2556022_960_720.jpg" class="img-responsive"></a>
-														<div class="img-overlay">
-															<i class="fa fa-edit" aria-hidden="true"></i>
-															<i class="fas fa-expand"></i>
-															<i class="fa fa-trash" aria-hidden="true"></i>
-														</div>
-													</div>
-												</div>
-												<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 image">
-													<div class="img-wrapper">
-														<a href="https://cdn.pixabay.com/photo/2017/07/30/23/59/garlic-2556022_960_720.jpg"><img src="https://cdn.pixabay.com/photo/2017/07/30/23/59/garlic-2556022_960_720.jpg" class="img-responsive"></a>
-														<div class="img-overlay">
-															<i class="fa fa-edit" aria-hidden="true"></i>
-															<i class="fas fa-expand"></i>
-															<i class="fa fa-trash" aria-hidden="true"></i>
-														</div>
-													</div>
-												</div>
-												<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 image">
-													<div class="img-wrapper">
-														<a href="https://cdn.pixabay.com/photo/2017/07/30/23/59/garlic-2556022_960_720.jpg"><img src="https://cdn.pixabay.com/photo/2017/07/30/23/59/garlic-2556022_960_720.jpg" class="img-responsive"></a>
-														<div class="img-overlay">
-															<i class="fa fa-edit" aria-hidden="true"></i>
-															<i class="fas fa-expand" ></i>
-															<i class="fa fa-trash" aria-hidden="true"></i>
-														</div>
-													</div>
-												</div>
-												<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 image">
-													<div class="img-wrapper">
-														<a href="https://cdn.pixabay.com/photo/2017/07/30/23/59/garlic-2556022_960_720.jpg"><img src="https://cdn.pixabay.com/photo/2017/07/30/23/59/garlic-2556022_960_720.jpg" class="img-responsive"></a>
-														<div class="img-overlay">
-															<i class="fa fa-edit" aria-hidden="true"></i>
-															<i class="fas fa-expand"></i>
-															<i class="fa fa-trash" aria-hidden="true"></i>
-														</div>
-													</div>
-												</div> -->
 											</div>
 										</div>
+
+										<div class="mdl-frm-btn mt-3" align="center" >
+											<button class="btn btn-change-fill btns_imgs" style="float: right;" (click)="multipleDelete()" >All Delete</button>
+										</div>
+
 									</div>
 								</div>
 							</div>

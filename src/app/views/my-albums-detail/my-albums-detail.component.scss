@@ -1,3 +1,15 @@
 .addwidth{
     margin-left: 69%;
 }
+// .btns_imgs {
+//     background-color: red;
+// }
+.btns_imgs:hover {
+    color: red;
+}
+.btns_imgs::after{
+    background-color: red !important;
+}
+.btns_imgs::before{
+    border: 1px solid #ff0000;
+}

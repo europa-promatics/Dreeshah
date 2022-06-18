@@ -80,10 +80,13 @@
                         </div>
                         
                      <div class="col-sm-3" *ngFor="let datas of data">
+                      
                         <div class="" >
+                            <input  type="checkbox"  >
                             <div class="tile" style="width: 100%;" routerLink="/album-detail/{{datas._id}}" >
-                                
+                             
                                 <a *ngIf="(datas?.album_images[0]?.image)"  >
+                                   
                                     <img *ngIf="isImage(datas?.album_images[0]?.image)" src="{{imgpath}}{{datas?.album_images[0]?.image}}" class="img-fluid" alt="image"> 
                                     <video *ngIf="!isImage(datas?.album_images[0]?.image)" width="320" height="240" controls>
                                         <source src="{{imgpath}}{{datas?.album_images[0]?.image}}" >
@@ -96,9 +99,11 @@
                                 
                             </div>
                            
-                            <div class="text-box">
+                            <div class="text-box mb-3" >
                               
                                 <p><a >{{datas.album_name}}</a></p>
+                                <i class="fa fa-edit mr-3" data-toggle="modal" data-target="#editModal"  >edit</i>
+                                <i class="fa fa-trash" (click)="delete(datas._id)">delete</i>
                             </div>
                         </div>
                     </div>
@@ -121,4 +126,61 @@
 </div>
 </div>
 
+
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- <div id="StudentModal">     -->
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                   <div class="">
+                    <h2 class="modal-form-title"></h2>
+                </div>
+                <button type="button" id="modelClose" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="add-album-form">
+                    <div class="modal-body">
+                        <form role="form" [formGroup]="albumForm" method="POST" action="">
+                            <input type="hidden" name="_token" value="">
+                            <div class="form-group">
+                                <label class="control-label">Edit Album Name</label>
+                                <div>
+                                    <input type="text" class="form-control input-lg" name="email"  [formControl]="albumForm.controls['name']" [(ngModel)]="name" value="" placeholder="Enter Album Name">
+                                </div>
+                               
+                            </div>
+                            <p style="color: red; margin-top: -1.25em;"
+                                *ngIf="albumForm.controls['name'].errors?.required && ( albumForm.controls['name'].touched || submit_button)">
+                               Album Name is Required
+                            </p>
+
+                         
+                            <div class="mdl-frm-btn mt-3" align="center" >
+                                <button class="btn btn-change-fill" (click)="edited(datas._id)">Create</button>
+                            </div>
+                            
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <app-footer></app-footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

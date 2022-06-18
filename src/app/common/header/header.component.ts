@@ -5,8 +5,10 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { CustomerService } from '../../shared/customer.service';
 import { CommonServiceService } from '../../shared/common-service.service';
 import { ToastrService } from 'ngx-toastr'
-import { Subscription } from 'rxjs';
+// import { Observable, Subscription } from 'rxjs';
 import { CartService } from '../../shared/cart.service';
+import {Observable} from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
 
 declare var $;
 
@@ -34,6 +36,33 @@ export class HeaderComponent implements OnInit {
   markers
   cityname=''
   city
+  searchData: any;
+  search:boolean | any=''
+  event: any;
+  filterValue: string;
+  
+  myControl = new FormControl('');
+  options: string[] = ['One', 'Two', 'Three'];
+  filteredOptions: Observable<string[]>;
+  productSearchData: any;
+  serviceSearchData: any;
+  professionalSearchData: any;
+  productSearchData1: any;
+  indexx: any;
+  index: any;
+  stringText: any;
+  productIndex: any;
+  serviceIndex: any;
+  device_id
+  addDeviceId: any;
+  textt: any;
+  searchHistory: any;
+  search_history_id: any;
+  allClearSearchData: any[];
+  allSearchDataID: any=[];
+  catalogueSearchData: any;
+  catalogueSearchData1: any;
+
   
   constructor(
     private route: ActivatedRoute,public cartService:CartService,
@@ -42,13 +71,31 @@ export class HeaderComponent implements OnInit {
     public CustomerService: CustomerService,
     private toastr: ToastrService,
     public CommonService: CommonServiceService
-  ) { }
+  ) { 
+
+    if(localStorage.getItem("_session")){
+      this.device_id = localStorage.getItem("_session")
+    }else{
+
+      const id = Date.now()
+
+      localStorage.setItem("_session",id.toString())
+    }
+
+  }
 
   ngOnInit(): void {
+    this.search=''
+    this.getHistoryData()
+
+    this.filteredOptions = this.myControl.valueChanges.pipe(
+      startWith(''),
+      map(value => this._filter(value || '')),
+    );
+
+
      this.zoom=7;
     
-      
-     
     this.isLogin=localStorage.getItem("isLoggedIn")
     this.cartCounting =localStorage.getItem("cartCount")
     if(this.cartCounting == null){
@@ -112,6 +159,14 @@ export class HeaderComponent implements OnInit {
       
       this.getLocation()
   }
+
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.options.filter(option => option.toLowerCase().includes(filterValue));
+  }
+
+
 
   getLocation() {
     if (navigator.geolocation) {
@@ -322,4 +377,164 @@ markerClicked(id)
   this.router.navigateByUrl('/professioanl-detail/'+id)
 }
 
+
+
+
+// 14-June-2022-----------------------------------------------------------------------------------
+
+selectSerachValue(event){
+  console.log("ssssssss eventtttt>>>>>>",event);
+  
+  console.log("selectSerachValue>>>>>>>>>>>>",event.target.textContent);
+  this.stringText=event.target.textContent
+  this.search=this.stringText.trim()
+
+  console.log("trim kiya hua string ki value>>>>>>>>",this.search);
+  
+
+
+  this.productIndex = this.productSearchData.findIndex(x => x.product_title === this.search);
+  console.log('product device id index>>>>>>>>>>>>>>>>',this.productIndex);
+  // localStorage.setItem("product device_id",this.productSearchData[this.productIndex]?._id)
+
+  this.serviceIndex = this.serviceSearchData.findIndex(x => x.service_name === this.search);
+  console.log('Service device id index>>>>>>>>>>>>>>>>',this.serviceIndex);
+  // localStorage.setItem("service device_id",this.serviceSearchData[this.serviceIndex]?._id)
+  
 }
+
+
+applyFilter(filterValue) {
+  console.log("type in search input field>>>>>>>", this.search);
+  console.log("searching filterValue>>>>>>>>>>>>",filterValue);
+  console.log("searching filter value fulllll>>>>>>>>>>>>",filterValue.target.value);
+
+  this.search=filterValue.target.value
+  console.log("search time value fatch>>>>>>",this.search);
+  
+  var obj={
+    search:this.search
+  }
+  this.CustomerService.searchInHomeScreenn(obj).subscribe(res => {
+    console.log("response of home search>>>>>>>>>>>>>>",res);
+
+    this.catalogueSearchData=res.SearchUserCatalogue
+    console.log("this.catalogueSearchData>>>>>",this.catalogueSearchData)
+    
+    this.productSearchData=res.SearchInProfessionalProduct
+    console.log(" this.productSearchData>>>>>>", this.productSearchData);
+
+    this.serviceSearchData=res.SearchInProfessionalService
+    console.log("this.serviceSearchData>>>>>>>>>",this.serviceSearchData);
+    
+    this.professionalSearchData=res.professionalSearch
+    console.log("this.professionalSearchData>>>>>>>>>>>",this.professionalSearchData);
+
+
+
+    this.productIndex = this.productSearchData.findIndex(x => x.product_title === this.search);
+    console.log('product device id index>>>>>>>>>>>>>>>>',this.productIndex);
+    // localStorage.setItem("productdevice_id",this.productSearchData[this.productIndex]?._id)
+
+    this.serviceIndex = this.serviceSearchData.findIndex(x => x.service_name === this.search);
+    console.log('Service device id index>>>>>>>>>>>>>>>>',this.serviceIndex);
+    // localStorage.setItem("servicedevice_id",this.serviceSearchData[this.serviceIndex]?._id)
+    
+    if(this.productSearchData[this.productIndex]?._id){
+      this.device_id = this.productSearchData[this.productIndex]?._id
+    }else if(this.serviceSearchData[this.serviceIndex]?._id){
+      this.device_id = this.serviceSearchData[this.serviceIndex]?._id
+    }
+    
+    
+  })
+
+}
+
+
+  homeSearch() {
+      var obj={
+        text:this.search,
+        device_id:this.device_id
+      }
+      this.CustomerService.addUserSearchdata(obj).subscribe(res => {
+        console.log("response of user add data  search>>>>>>>>>>>>>>",res);
+        this.addDeviceId= res.data.data.device_id
+        console.log("this.addDeviceId>>>>>>",this.addDeviceId);
+        this.router.navigate([`/search-results/${obj.text}`])
+        this.ngOnInit()
+      })
+
+   
+
+  }
+
+
+  // get history search data---------------------------------------------
+  getHistoryData(){
+    var obj={
+      device_id:this.device_id
+    }
+    this.CustomerService.getHomeSeacrhData(obj).subscribe(res => {
+      console.log("getttttttttttttttttttt data  search>>>>>>>>>>>>>>",res);
+      this.searchHistory=res.data
+      console.log(" this.searchHistory>>>>",this.searchHistory);
+
+      
+    })
+  }
+
+
+  // History search data Delete---------------------------------------
+
+  searchHistoryDelete(_id){
+    console.log("searchHistoryDelete id >>>>>>",_id);
+    this.search_history_id=_id
+    
+    var obj={
+      user_search_id:this.search_history_id
+    }
+    this.CustomerService.deleteHistoryDataOfSearch(obj).subscribe((res:any) => {
+      console.log("response of search history data>>>>>>>>>>",res)
+      this.ngOnInit()
+
+    })
+    
+  }
+
+
+
+// clear all history data -------------------------
+  clearAllData(event){
+    console.log("clear data event>>>",event);
+    
+    var obj={
+      device_id:this.device_id,
+      user_search_id:this.searchHistory
+    }
+    this.CustomerService.getHomeSeacrhData(obj).subscribe(res => {
+      console.log("getttttttttttttttttttt data  search>>>>>>>>>>>>>>",res);
+      this.searchHistory=res.data
+      console.log(" this.searchHistory>>>>",this.searchHistory);
+    })
+
+    this.CustomerService.deleteHistoryDataOfSearch(obj).subscribe((res:any) => {
+      console.log("response of clear all search  history data>>>>>>>>>>",res)
+      this.ngOnInit()
+
+    })
+
+  }
+
+
+
+
+
+
+
+}
+
+
+
+
+

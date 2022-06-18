@@ -2710,4 +2710,89 @@ export class CustomerService {
     )
   }
 
+
+
+  // 14-june-2022---------------------------------------------------------------
+
+  searchInHomeScreenn(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/searchInHomeScreen`;
+    console.log(API_URL)
+    return this.httpClient.post(API_URL, data)
+      .pipe(
+        map(res => {
+          return res;
+        }),
+      );
+  }
+
+
+  // 15-june-2022--------------------------------------------------------------------------------
+  addUserSearchdata(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/addUserSeacrhData`;
+    console.log(API_URL)
+    return this.httpClient.post(API_URL, data)
+      .pipe(
+        map(res => {
+          return res;
+        }),
+      );
+      
+  }
+
+  getHomeSeacrhData(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/getUserSeacrhData?device_id=${data.device_id}`;
+    console.log(API_URL)
+    return this.httpClient.get(API_URL, data)
+      .pipe(
+        map(res => {
+          return res;
+        }),
+      );
+  }
+
+
+  // 16-june-2022---------------------------------------------------------------------------------
+
+  deleteHistoryDataOfSearch(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/deleteUserSearchData`;
+    console.log(API_URL)
+    return this.httpClient.post(API_URL, data)
+      .pipe(
+        map(res => {
+          return res;
+        }),
+      );
+  }
+
+
+
+  // 17-june-2022----------------------------------------------------------------------------------
+
+  deleteAlbumData(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/deleteAllAlbum`;
+    return this.httpClient.post(API_URL, data, this.httpOptions)
+      .pipe(
+        map(res => {
+          return res
+        }),
+
+      )
+  }
+
+
+  // 18-june-2022--------------------------------------
+  editUserAlbum(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/EditUserAlbum`;
+    return this.httpClient.post(API_URL, data, this.httpOptions)
+      .pipe(
+        map(res => {
+          return res
+        })
+      )
+  }
+
+
+
+
+
 }

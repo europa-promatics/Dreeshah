@@ -135,7 +135,7 @@ import { AddNewComponent } from './views/add-new/add-new.component';
 import { SellerCatalogueComponent } from './views/seller-catalogue/seller-catalogue.component';
 import { SellerCatalogueViewComponent } from './views/seller-catalogue-view/seller-catalogue-view.component';
 // import { SellerBranchViewComponent } from './views/seller-branch-view/seller-branch-view.component';
-
+import { SearchResultComponent } from './views/search-result/search-result.component';
 
 
 const routes: Routes = [
@@ -668,6 +668,10 @@ const routes: Routes = [
 	{
 		path: 'customer-privacy-policy',
 		component: CustomerPrivacyPolicyComponent
+	},
+	{
+		path:'search-results/:searchText',
+		component: SearchResultComponent
 	},
 	// {
 	// 	path: '',

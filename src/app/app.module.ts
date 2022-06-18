@@ -205,7 +205,7 @@ import { SellerProfileViewComponent } from './views/seller-profile-view/seller-p
 import { AddNewComponent } from './views/add-new/add-new.component';
 import { SellerCatalogueComponent } from './views/seller-catalogue/seller-catalogue.component';
 import { SellerCatalogueViewComponent } from './views/seller-catalogue-view/seller-catalogue-view.component';
-// import { SellerBranchViewComponent } from './views/seller-branch-view/seller-branch-view.component';
+import { SearchResultComponent } from './views/search-result/search-result.component';
 
 firebase.initializeApp(environment.firebaseConfig);
 
@@ -345,6 +345,7 @@ firebase.initializeApp(environment.firebaseConfig);
     AddNewComponent,
     SellerCatalogueComponent,
     SellerCatalogueViewComponent,
+    SearchResultComponent,
     // SellerBranchViewComponent
   ],
   imports: [

@@ -41,6 +41,8 @@ export class MyAlbumsDetailComponent implements OnInit {
   modalClose = false;
   name;
   imageFull
+  selectedUser: any;
+  moveItemsArray: any[];
 
   constructor(
     public CustomerService: CustomerService,
@@ -48,10 +50,8 @@ export class MyAlbumsDetailComponent implements OnInit {
     public formBuilder: FormBuilder,
     private router: Router,
     private toastr: ToastrService
-  ) {}
-  createForm() {
+  ) {
     this.ImageForm = this.formBuilder.group({
-      //description: [null, Validators.compose([Validators.required])],
       media: [null, Validators.compose([Validators.required])],
     });
   }
@@ -68,7 +68,9 @@ export class MyAlbumsDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.createForm();
+    this.moveItemsArray = []
+    console.log("formmmmmmm showwww>>>>>",this.ImageForm);
+    
     $(document).ready(function () {
       $("#add-address-btn").click(function () {
         $(".add-address-form").toggle();
@@ -87,8 +89,10 @@ export class MyAlbumsDetailComponent implements OnInit {
     };
 
     this.CustomerService.getAlbumDetail(obj).subscribe((res) => {
-      //console.log("Album Detail Response======:",res)
+      console.log("Album Detail Response======:",res)
       this.detail = res.result;
+      console.log("this.details>>>>>>>>>>",this.detail);
+      
       this.albumLength = this.detail.album_images.length;
       console.log("Album Detail::", this.detail);
       console.log("Length of the images", this.albumLength);
@@ -321,4 +325,44 @@ export class MyAlbumsDetailComponent implements OnInit {
     this.imageFull = environment.albumImg + image;
     document.getElementById('openModalButton').click();
   }
+
+
+  // multiple delete-------------------------------------------------------
+  checkBoxClick(event) {
+    console.log("check boc event>>>",event);
+    
+    const checked = event.target.checked
+
+    console.log('--------------', event.target.checked)
+    if (checked == true) {
+      this.moveItemsArray?.push(event.target.id) 
+    } else {
+      const index = this.moveItemsArray?.indexOf(event.target.id)
+      this.moveItemsArray?.splice(index, 1)
+    }
+    console.log('--------ARRAY------', this.moveItemsArray)
+  }
+  
+
+  multipleDelete() {
+    console.log('in functyion');
+    if (this.moveItemsArray.length == 0) {
+      this.toastr.error('Please Select at least one item')
+      return
+    } else {
+      for (let i = 0; i < this.moveItemsArray.length; i++) {
+        let element = this.moveItemsArray[i];
+        var obj = {
+          album_id: element
+        }
+        this.CustomerService.deleteAlbumData(obj).subscribe(res => {
+          if (res.code == 200 || res.code == '200') {
+            this.toastr.success('Item Removed From Album')
+            this.ngOnInit();
+          }
+        })
+      }
+    }
+  }
+  
 }
