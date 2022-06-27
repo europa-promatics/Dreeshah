@@ -1,150 +1,184 @@
 <app-seller-header></app-seller-header>
-<div class="seller-quotation-mgmt-wrapper">
+<div class="seller-cr-ordr-mgmt-wrpr">
     <div class="custom-container d-flex">
         <app-seller-sidebar></app-seller-sidebar>
-        <div class="main-wrap-2">
+        <div class="main-wrap">
             <div class="card">
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <section class="p-0">
-                                <div class="service-details-n-wrp">
-                                    <div class="container-fluid pl-0">
-                                        <div class="row">
-                                            <div class="col-md-9">
-                                                <section class="her_sldr_don">
-                                                    <div class="hero_carosel">
-                                                        <owl-carousel-o [options]="heroOpt" *ngIf="service_data">
-                                                            <ng-template carouselSlide>
-                                                                <div class="hero-img">
-                                                                    <img src="{{image_path}}{{service_data.service_image}}"
-                                                                        alt="">
-                                                                </div>
-                                                            </ng-template>
-                                                            <!-- <ng-template carouselSlide *ngFor="let img of service_data.related_images">
-									<div class="hero-img">
-										<img src="{{image_path}}{{img.name}}" alt="">  
-									</div>
-								</ng-template> -->
-                                                            <!-- <ng-template carouselSlide>
-									<div class="hero-img">
-										<img src="assets/imgs/bnr2.jpg" alt="">  
-									</div>
-								</ng-template>
-								<ng-template carouselSlide>
-									<div class="hero-img">
-										<img src="assets/imgs/bnr1.jpg" alt="">  
-									</div>
-								</ng-template> -->
-                                                        </owl-carousel-o>
-                                                    </div>
-                                                </section>
+                            <h1>Seller Service Details</h1>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="cr-ordr-frm">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <form [formGroup]="formGroup">
+                                            <div class="col-sm-12">
+                                                <div class="form-group">
+                                                    <label for="">Service Name</label>
+                                                    <input disabled  type="text" class="form-control" formControlName="service_name">
+                                                </div>
                                             </div>
-                                            <div class="col-md-3">
-                                                <div class="lightbox-prof-info service-meta-data">
-                                                    <div class="card border-none">
-                                                        <div class="card-header">
-                                                            <!-- <div class="lightbox-prof-infor-flex">
-                                                                <div class="lightbox-avatar-img">
-                                                                    <img *ngIf="!service_data.professional_id.profile_image"
-                                                                        src="assets/imgs/no-profile.webp"
-                                                                        class="img-fluid">
-                                                                    <img *ngIf="service_data.professional_id.profile_image"
-                                                                        src="{{profile_image_path}}{{service_data.professional_id.profile_image}}"
-                                                                        class="img-fluid">
-                                                
-                                                                </div>
-                                                                <div class="lightbox-prof-info-content">
-                                                                    <p>{{service_data?.professional_id.first_name |
-                                                                        titlecase}}
-                                                                        {{service_data?.professional_id.first_name |
-                                                                        titlecase}}</p>
-                                                                    <p>{{service_data?.city}}, {{country_name ?
-                                                                        country_name : ''}}</p>
-                                                                </div>
-                                                            </div> -->
-                                                        </div>
-                                                        <div class="card-body p-0 services-details-card">
-                                                            <div class="services--info">
-                                                                <!-- 	<p>Asian Kitchen</p> -->
-                                                                <div class="web-serv-d-name">
-                                                                    <h1>{{service_data?.service_name | titlecase}}</h1>
-                                                                </div>
-                                                                <p>{{service_data?.service_sub_category.name}}</p>
-                                                            </div>
-                                                            <div class="article">
-                                                                <p>{{service_data?.service_description}} </p>
+                                           
+                                            <div class="col-sm-12">
+                                                <div class="form-group">
+                                                    <label for="">Service Country</label>
+                                                    <select disabled type="text" class="form-control"  formControlName="country" >
+                                                    <option *ngFor="let country of countries"
+                                                    [value]="country.isoCode">
+                                                    {{country?.name}}
+                                                </option>
+                                                </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <div class="form-group">
+                                                    <label for="">Area Covered City</label>
+                                                    <select disabled type="text" class="form-control"
+                                                    formControlName="city">
+                                                    <option *ngFor="let city of cities"
+                                                    [value]="city.name">
+                                                    {{city.name}}
+                                                </option>
+                                                </select>
+                                                </div>
+                                            </div>
+                                            <!-- <div class="col-sm-12">
+                                                <div class="form-group">
+                                                    <label for="">Project Cost In AED</label>
+                                                    <input disabled type="text" class="form-control" >
+                                                </div>
+                                            </div> -->
+                                            <div class="col-sm-12">
+                                                <div class="form-group">
+                                                    <label for="">Service Category</label>
+                                                    <select disabled type="text" class="form-control"   formControlName="service_category">
+                                                    <option *ngFor="let category of categiryArr"
+                                                    [value]="category._id">
+                                                    {{category.name}}
+                                                </option>
+                                                </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <div class="form-group">
+                                                    <label for="">Service Sub Category</label>
+                                                    <select disabled type="text" class="form-control" formControlName="service_sub_category">
 
-                                                            </div>
-                                                            <div class="services--other-info">
-                                                                <div>
-                                                                    <h3>Areas Covered</h3>
-                                                                    <p>
-                                                                        <span class="city-pill"><i
-                                                                                class="fa fa-map-marker-alt mr-1"></i>
-                                                                                {{service_data?.area_covered[0].city}},{{country_name ? country_name : ''}}</span>
-                                                                        
-                                                                    </p>
-                                                                </div>
-                                                                <div
-                                                                    class="d-flex justify-content-between align-items-center width-50">
-                                                                    <div class="lightbox-prof-info-content">
-                                                                        <h3>Price</h3>
-                                                                        <p><span>SAR {{service_data?.price}}</span>
-                                                                        </p>
-                                                                    </div>
-                                                                    <div class="lightbox-prof-info-content">
-                                                                        <h3>Duration</h3>
-                                                                        <p>{{service_data.duration}} Days</p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="lightbox-prof-info">
-                                                                <div class="other-photos-wrapper">
-                                                                    <div class="services--other-info">
-                                                                        <h3>Related Photos</h3>
-                                                                    </div>
-                                                                    <div class="lightbox-other-photos d-flex">
-                                                                        <!-- {{items1 | json}} -->
-                                                                        <div *ngFor="let item of items1; index as i">
-                                                                            <div class="servc_dtl img-wrapper">
-                                                                                <img [lightbox]="i"
-                                                                                    [src]="item.data.thumb"
-                                                                                    class="img-fluid"
-                                                                                    [gallery]="'anotherLightbox'">
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="other-photos-wrapper"
-                                                                    *ngIf="service_data?.other_images.length > 0">
-                                                                    <div class="services--other-info">
-                                                                        <h3>Other Photos</h3>
-                                                                    </div>
-                                                                    <div class="lightbox-other-photos d-flex">
-                                                                        <div *ngFor="let item of items2; index as i">
-                                                                            <div class="servc_dtl img-wrapper">
-                                                                                <img [lightbox]="i"
-                                                                                    [src]="item.data.thumb"
-                                                                                    class="img-fluid"
-                                                                                    [gallery]="'anotherLightbox1'">
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="other-photoss-wrapper">
-                                                        
-                                                                    
-                                                                </div>
-                                                            </div>
+                                                        <option *ngFor="let SubCat of subCatArr"
+                                                        [value]="SubCat._id">
+                                                        {{SubCat.name}}
+                                                    </option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <div class="form-group">
+                                                    <label for="">Description</label>
+                                                    <textarea disabled type="text" value="" rows="4" class="form-control"
+                                                    [innerHTML]="getInnerHTML(desc)"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <label for="">Service Image</label>
+                                                <div class="form-group text-center myborder">
+                                                    <!-- <p><img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg" alt=""></p> -->
+                                                    <p> <img src="{{image_path}}{{serviceImage}}"
+                                                        class="img-fluid drp-thumb"></p>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12 ">
+                                                <label for="" class="mt-3">Service Related Image</label>
+                                                <div class="col-sm-12 myDashedBorder">
+                                                    <div class="col-sm-3">
+                                                        <div class="form-group text-center ">
+                                                            <!-- <p><img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg" alt=""></p> -->
+                                                           <p> <img src="{{image_path}}{{relatedImage}}"
+                                                            class="img-fluid drp-thumb"></p>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                            <div class="col-sm-12 ">
+                                                <label class="mt-3" for="">Service Other Image</label>
+                                                <div class="col-sm-12 myDashedBorder">
+                                                    <div class="col-sm-3">
+                                                        <div class="form-group text-center ">
+                                                            <p><img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg" alt=""></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12 ">
+                                                <label class="mt-3" for="">Service Video</label>
+                                                <div class="col-sm-12 myDashedBorder">
+                                                    <div class="col-sm-3">
+                                                        <div class="form-group text-center ">
+                                                            <p>
+                                                                <!-- <video src="" controls width="200" height="200">
+                                                                   
+                                                                </video> -->
+                                                                <video width="260" height="160" controls>
+                                                                    <source src="{{image_path}}{{otherImage}}" type="video/mp4">
+                                                                  
+                                                                  </video>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <label for="" class="mt-3">Service Price</label>
+                                                <div class="form-group text-center ">
+                                                    <input disabled type="text" class="form-control"  formControlName="service_price" >
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <label for="">Service Duration</label>
+                                                <div class="form-group text-center ">
+                                                    <input disabled type="text" class="form-control"  formControlName="service_duration" >
+                                                </div>
+                                            </div>
+                                            <!-- <div class="col-sm-12">
+                                                <label for="">Option</label>
+                                                <div class="form-group text-center ">
+                                                    <input disabled type="text" class="form-control" >
+                                                </div>
+                                            </div> -->
+                                            <!-- <div class="col-sm-12">
+                                                <label for="">Service Tags</label>
+                                                <div class="form-group text-center ">
+                                                    <input disabled type="text" class="form-control" >
+                                                </div>
+                                            </div> -->
+
+                                            
+
+                                            <!-- <div class="form-group">
+                                                <div class="seller-prod-list-heading signup-form">
+                                                    <label>This Service Will be Visible to</label><br />
+                                                    <mat-checkbox class="example-margin"
+                                                        formControlName="service_visible_professional">
+                                                        Professional
+                                                    </mat-checkbox>
+                                                    <br />
+                                                    <mat-checkbox class="example-margin"
+                                                        formControlName="service_visible_customer">
+                                                        Customer
+                                                    </mat-checkbox>
+                                                    <br />
+                                                </div>
+                                            </div> -->
+
+                                            <div class="service--submt-btn" align="center">
+                                                <button class="btn btn-change-fill mr-2" routerLink="/seller-service-list" >Back</button>
+          
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
-                            </section>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -49,7 +49,7 @@ import { PhotographerProfileComponent } from './views/photographer-profile/photo
 import { PhotographerChangePasswordComponent } from './views/photographer-change-password/photographer-change-password.component';
 import { SellerServiceListComponent } from "./views/seller-service-list/seller-service-list.component";
 import { SellerAddServicesComponent } from "./views/seller-add-services/seller-add-services.component";
-import { AddProjectComponent } from './views/add-project/add-project.component';
+import { addproject } from './views/seller-add-services/addproject';
 import { TagInputModule } from 'ngx-chips';
 import { SellerProfileComponent } from './views/seller-profile/seller-profile.component';
 import { SellerEditProfileComponent } from './views/seller-edit-profile/seller-edit-profile.component';
@@ -135,7 +135,7 @@ import { MyCatalogueComponent } from './views/my-catalogue/my-catalogue.componen
 import { AddCatalogueComponent } from './views/add-catalogue/add-catalogue.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { MatFormFieldModule, MatFormFieldControl } from '@angular/material/form-field'
+import { MatFormFieldModule } from '@angular/material/form-field'
 //import 'hammerjs'
 import firebase from "firebase/app";
 import { environment } from 'src/environments/environment';
@@ -207,11 +207,18 @@ import { SellerCatalogueComponent } from './views/seller-catalogue/seller-catalo
 import { SellerCatalogueViewComponent } from './views/seller-catalogue-view/seller-catalogue-view.component';
 import { SearchResultComponent } from './views/search-result/search-result.component';
 
+
+
+import { MatCheckboxModule } from '@angular/material/checkbox'
+
+import { MatRadioModule } from '@angular/material/radio';
+import { AddProjectComponent } from './views/add-project/add-project.component';
 firebase.initializeApp(environment.firebaseConfig);
 
 
 @NgModule({
   declarations: [
+    AddProjectComponent,
     AppComponent,
     CustomerIssueQuotationComponent,
     DashboardComponent,
@@ -248,7 +255,7 @@ firebase.initializeApp(environment.firebaseConfig);
     SellerServiceListComponent,
     ExteriorComponent,
     SellerAddServicesComponent,
-    AddProjectComponent,
+    addproject,
     SellerProfileComponent,
     SellerEditProfileComponent,
     SellerEditServicesComponent,
@@ -353,7 +360,7 @@ firebase.initializeApp(environment.firebaseConfig);
     NgxDaterangepickerMd.forRoot(),
     MatSelectModule,
     // NgxStripeModule,
-
+    
     CommonModule,
     GooglePlaceModule,
     AppRoutingModule,

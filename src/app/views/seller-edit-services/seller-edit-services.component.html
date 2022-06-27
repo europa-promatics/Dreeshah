@@ -33,7 +33,7 @@
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <img *ngIf="!service_img"
-                                                            src="{{image_path}}{{Service_data.service_image}}"
+                                                            src="{{image_path}}{{Service_data?.service_image}}"
                                                             alt="service image" class="serv-img-thumb">
                                                         <label>
                                                             <span class="btn btn-round-blue custm--edit">
@@ -127,12 +127,22 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <ng-select [multiple]="true" formControlName="city" [(ngModel)]="ccc"
+                                                <mat-form-field>
+                                                    <mat-label>Area Covered City</mat-label>
+                                                    <mat-select formControlName="city" name="service_city"
+                                                        (selectionChange)="areaCovered($event)">
+                                                        <mat-option *ngFor="let city of cities"
+                                                            [value]="city.name">
+                                                            {{city.name}}
+                                                        </mat-option>
+                                                    </mat-select>
+                                                </mat-form-field>
+                                                <!-- <ng-select [multiple]="true" formControlName="city" 
                                                 (change)="areaCovered($event)"  placeholder="Area Covered">
                                                     <ng-option *ngFor="let city of cities"
                                                         [value]="city.name">
                                                         {{city.name}}</ng-option>
-                                                </ng-select>
+                                                </ng-select> -->
                                                 <!-- <mat-form-field>
                                                     <mat-label>Area Covered</mat-label>
                                                     <mat-select (selectionChange)="areaCovered($event.value)" formControlName="city" placeholder="City"
@@ -217,7 +227,7 @@
                                                 <div class="img-uploader-wrp">
                                                     <div class="img-prnt">
                                                         <ngx-dropzone-preview
-                                                            *ngFor="let img of Service_data.related_images; let i = index;"
+                                                            *ngFor="let img of Service_data?.related_images; let i = index;"
                                                             [removable]="false" class="drpzne-related">
                                                             <ngx-dropzone-label>
                                                                 <div class="drp-prnt">
@@ -267,12 +277,16 @@
                                                 <div class="img-uploader-wrp">
                                                     <div class="img-prnt">
                                                         <ngx-dropzone-preview
-                                                            *ngFor="let img of Service_data.other_images; let i = index;"
+                                                            *ngFor="let img of Service_data?.other_images; let i = index;"
                                                             [removable]="false" class="drpzne-related">
                                                             <ngx-dropzone-label>
                                                                 <div class="drp-prnt">
-                                                                    <img src="{{image_path}}{{img.name}}"
-                                                                        class="img-fluid drp-thumb">
+                                                                    <video width="220" height="140" controls>
+                                                                        <source src="{{image_path}}{{img.name}}" type="video/mp4">
+                                                                      
+                                                                      </video>
+                                                                    <!-- <img src="{{image_path}}{{img.name}}"
+                                                                        class="img-fluid drp-thumb"> -->
                                                                     <div class="btn btn-round-close"
                                                                         (click)="removeOtherImage(i)">
                                                                         <div class="remove-badge-box">

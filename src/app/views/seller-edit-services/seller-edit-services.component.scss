@@ -1,0 +1,73 @@
+.plus-icon{
+    font-size: 94px;
+    text-align: center;
+    display: block;
+    font-size: 106px;
+    font-weight: 100 !important;
+    color: #ababab;
+}
+.add-new-project{
+    padding: 15px;
+    border: 2px dotted #ababab;
+}
+.view-project{
+    border: 2px solid #c1c1c1;
+    height: auto;
+    padding: 10px;
+    position: relative;
+}
+
+.view-project-table td{
+width:300px;
+text-align: left;
+padding: 10px;
+
+}
+.view-project-table th{
+    text-align: center;
+}
+.view-icon{
+    font-size: 40px;
+    font-weight: 200!important;
+    margin-top: 11px;
+}
+
+.cross-btn{
+    position: absolute;
+    top: 57px;
+    right: -10px;
+
+}
+.cross-btn i{
+    width: 25px;
+    height: 25px;
+    background-color: #ababab;
+    color: #000;
+    border-radius: 50%;
+    line-height: 25px;
+    padding: 1px 5px 8px 7px;
+    
+}
+.mat-form-field{
+    /* display: inline-block; */
+    display: block!important;
+    position: relative;
+    text-align: left;
+}
+.div-pos{
+    position: relative;
+}
+.content-sec{
+    border: 2px dotted #c1c1c1;
+    padding: 20px;
+}
+.content-img img{
+    width: 690px;
+    height: 250px;
+    object-fit: contain;
+}
+::ng-deep .mat-standard-chip .mat-chip-remove, .mat-standard-chip .mat-chip-trailing-icon {
+    margin-left: 8px;
+    margin-right: 0;
+    border: none !important;
+}

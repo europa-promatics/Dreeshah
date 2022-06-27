@@ -21,7 +21,6 @@ export class SellerServiceListComponent implements OnInit {
 	services_list
 	selectedServices
 	selection
-	selectedUsers = []
 	dataSource
 	responseData = []
 	filter_by
@@ -34,6 +33,9 @@ export class SellerServiceListComponent implements OnInit {
 	sort_by_duration
 	reqData
 	length
+	selectedUser=[];
+
+
 	constructor(
 		private route: ActivatedRoute,
 		private router: Router,
@@ -41,7 +43,7 @@ export class SellerServiceListComponent implements OnInit {
 		public CustomerService: CustomerService,
 		private toastr: ToastrService,
 	) {
-		this.userData = JSON.parse(localStorage['userData']);
+		// this.userData = JSON.parse(localStorage['userData']);
 		this.getProfessionalServices()
 		this.selection = new SelectionModel(true, []);
 		this.dataSource = new MatTableDataSource(this.responseData);
@@ -83,7 +85,8 @@ export class SellerServiceListComponent implements OnInit {
 				this.services_list = data.records
 				console.log("service list --====--=-==-=-",this.services_list)
 				this.responseData = data.data
-				this.dataSource = new MatTableDataSource(data.records);
+				// this.dataSource = new MatTableDataSource(data.records);
+				this.userData=this.services_list
 				this.length=data.main_count
 				// this.dataSource.sort = this.sort;
 			// 	// this.dataSource.paginator = this.paginator;
@@ -93,13 +96,13 @@ export class SellerServiceListComponent implements OnInit {
 	}
 
 	isAllSelected() {
-		const numSelected = this.selection.selected.length;
-		const numRows = this.dataSource.data.length;
+		const numSelected = this.selection.selected?.length;
+		const numRows = this.dataSource.data?.length;
 		// console.log(this.selection)
 		return numSelected === numRows;
 	}
 	masterToggle() {
-		console.log(this.selection)
+		console.log("this.selection>>>>>",this.selection)
 		this.isAllSelected() ? this.selection.clear() : this.dataSource.data.forEach(row => this.selection.select(row));
 	}
 	checkboxLabel(row): string {
@@ -181,7 +184,7 @@ export class SellerServiceListComponent implements OnInit {
 				await data.user_services.forEach(async (element, ind) => {
 					this.ServiceSubCat.push(element.service_id)
 					arr.push(element.service_id.service_category_id)
-					if (data.user_services.length - 1 == ind) {
+					if (data.user_services?.length - 1 == ind) {
 						await this.getServiceCat(arr)
 					}
 				});
@@ -283,4 +286,52 @@ export class SellerServiceListComponent implements OnInit {
 		  }
 		})
 	  }
+
+
+
+	//   checkbox -------------------------------------
+
+	selectAll(e) {
+		const checked = e?.checked;
+		if (checked) {
+		  this.userData.forEach((item) => {
+			item.checked = true;
+			if (this.selectedUser?.indexOf(item._id) == -1) {
+			  this.selectedUser?.push(item._id);
+			}
+		  });
+		} else {
+		  this.userData.forEach((item) => {
+			item.checked = false;
+			this.selectedUser = [];
+		  });
+		}
+	
+		console.log("select ke dauraan userData>>>",this.userData);
+		console.log("SelectAll ka this.selectedUser>>>>>", this.selectedUser);
+	  }
+
+	  findChecked() {
+		if (this.selectedUser?.length == this.userData?.length) {
+		  return true;
+		}
+	
+		return false;
+	  }
+	
+	  selectUser(event, id): void {
+		console.log("event>>>>>>>>",event);
+		console.log("selectuser ki id>>>>>>>>>>",id);
+		if (event?.checked) {
+		  this.selectedUser?.push(id);
+		  console.log("one seletc chekcbox>>>>>",this.selectedUser);
+		} else {
+		  var index = this.selectedUser?.indexOf(id);
+		  console.log("index>>>",index);
+		  this.selectedUser?.splice(index, 1);
+		  console.log("selectuser ka  selectedUser>>>>>>>",this.selectedUser);
+		}
+	  }
+
+
 }

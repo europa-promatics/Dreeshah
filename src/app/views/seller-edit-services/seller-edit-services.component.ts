@@ -209,7 +209,7 @@ export class SellerEditServicesComponent implements OnInit {
     }
     console.log("onnnn", obj)
     this.CustomerService.getSellerServiceDetails(obj).subscribe(data => {
-      console.log("main data is ====", data)
+      console.log("main data is ====>>>>>>>>>>>>>>>>>>>", data)
       this.Service_data = data.data
       console.log('this.Service_data',this.Service_data);
       
@@ -228,14 +228,14 @@ export class SellerEditServicesComponent implements OnInit {
       console.log('areaaaa covered arrrrrrrrrr',this.ccc)
       this.formGroup.controls['service_name'].setValue(data.data.service_name);
       this.formGroup.controls['service_description'].setValue(data.data.service_description);
-      this.formGroup.controls['country'].setValue(data.data.country);
-      this.formGroup.controls['city'].setValue(this.areaCoveredArr);
-      this.formGroup.controls['service_category'].setValue(data.data.service_category);
+      this.formGroup.controls['country'].setValue(data.data.country[0]);
+      this.formGroup.controls['city'].setValue(this.areaCoveredArrr[0]);
+      this.formGroup.controls['service_category'].setValue(data.data.service_category[0]);
       this.CustomerService.getSubCat(data.data.service_category).subscribe(res => {
         console.log('reveeeee sub category ', res)
         this.subCatArr=res.sub_categories
 })
-      this.formGroup.controls['service_sub_category'].setValue(data.data.service_sub_category);
+      this.formGroup.controls['service_sub_category'].setValue(data.data.service_sub_category[0]);
      
         var obj = {
           sub_category_id: data.data.service_sub_category
@@ -247,7 +247,7 @@ export class SellerEditServicesComponent implements OnInit {
         }
       })
     
-      this.formGroup.controls['service_img'].setValue(data.data.service_image);
+      this.formGroup.controls['service_img'].setValue(data.data?.service_image);
       this.formGroup.controls['service_price'].setValue(data.data.price);
       this.formGroup.controls['service_duration'].setValue(data.data.duration);
       this.formGroup.controls['service_visible_customer'].setValue(data.data.service_visible_customer);
@@ -266,12 +266,12 @@ export class SellerEditServicesComponent implements OnInit {
 
   removeRelatedImage(i) {
     // alert("ppppp")
-    this.Service_data.related_images.splice(i, 1)
+    this.Service_data?.related_images.splice(i, 1)
   }
 
   removeOtherImage(i) {
     // alert("ppppp")
-    this.Service_data.other_images.splice(i, 1)
+    this.Service_data?.other_images.splice(i, 1)
   }
 
   getCountries() {
@@ -523,16 +523,16 @@ export class SellerEditServicesComponent implements OnInit {
     formdata.append('duration', this.formGroup.value.service_duration)
     formdata.append('service_visible_customer', this.visible_customer)
     formdata.append('service_visible_professional', this.visible_pro)
-    formdata.append('related_images', JSON.stringify(this.Service_data.related_images))
-    formdata.append('other_images', JSON.stringify(this.Service_data.other_images))
+    formdata.append('related_images', JSON.stringify(this.Service_data?.related_images))
+    formdata.append('other_images', JSON.stringify(this.Service_data?.other_images))
     formdata.append('service_project', JSON.stringify(this.newChecked))
     // if (this.newChecked.length > 0) {
     //   this.newChecked.forEach(element => {
     //     formdata.append('service_project', JSON.stringify(this.newChecked))
     //   });
     // }
-    console.log(this.Service_data.related_images)
-    console.log(this.Service_data.other_images)
+    console.log(this.Service_data?.related_images)
+    console.log(this.Service_data?.other_images)
     // return
 
     if (!this.formGroup.valid) {
@@ -541,7 +541,7 @@ export class SellerEditServicesComponent implements OnInit {
     } else if (!this.formGroup.value.service_visible_customer && !this.formGroup.value.service_visible_professional) {
       this.toastr.error("Please select visiblity of service")
       return
-    } else if (this.files.length == 0 && this.Service_data.related_images.length == 0) {
+    } else if (this.files.length == 0 && this.Service_data?.related_images.length == 0) {
       this.toastr.error("Please add related images")
 
     } else if (this.formGroup.valid) {

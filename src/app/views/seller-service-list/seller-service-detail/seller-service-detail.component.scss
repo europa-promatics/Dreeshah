@@ -1,0 +1,28 @@
+textarea{
+    resize: none;
+}
+.myDashedBorder{
+    border: 2px dashed #ced4da !important;
+    padding: 10px;
+    
+}
+.myDashedBorder p{
+    margin: 0;
+}
+.myDashedBorder img{
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+}
+.myborder{
+    border: 1px solid #ced4da !important;
+    padding: 10px;
+}
+.myborder p{
+    margin: 0;
+}
+.myborder img{
+    width: 200px;
+    height: 200px;
+    object-fit: cover   ;
+}

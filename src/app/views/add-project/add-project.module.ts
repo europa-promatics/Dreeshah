@@ -5,12 +5,18 @@ import { AddProjectRoutingModule } from './add-project-routing.module';
 import { TagInputModule } from 'ngx-chips';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // this is needed!
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { AddProjectComponent } from './add-project.component';
+import { MatCheckboxModule } from '@angular/material/checkbox'
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatRadioModule } from '@angular/material/radio';
 @NgModule({
-  declarations: [],
+  declarations: [AddProjectComponent],
   imports: [
+    TagInputModule,
     CommonModule,
-    AddProjectRoutingModule
+    MatCheckboxModule,
+    MatFormFieldModule,
+    AddProjectRoutingModule,FormsModule, ReactiveFormsModule,MatRadioModule
   ]
 })
 export class AddProjectModule { }

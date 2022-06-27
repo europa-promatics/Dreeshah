@@ -610,6 +610,8 @@
                     </div>
                 </div>
                 <div class="col-sm-9">
+
+                 
                     <div class="custom_tabs">
                         <!-- <ul class="nav nav-pills tabs_links">
                             <li class="nav-item">
@@ -629,6 +631,8 @@
                                     <div *ngIf="services_list.length > 0">
                                         <div class="services--wrpp border-bottom"
                                             *ngFor="let service of services_list_all | filter:searchText">
+                                            <div class="card"> 
+                                                <div class="card-body">
                                             <div class="row">
                                                 <div class="col-md-4">
                                                     <div class="catalogue-new-img-thumb-service">
@@ -642,12 +646,12 @@
                                                 </div>
                                                 <div class="col-md-5 mt-3">
                                                     <div class="web-serv-name">
-                                                        <h1><a
+                                                        <h3 ><a
                                                                 routerLink="/ServicesDetails/{{service._id}}">{{service.service_name}}</a>
-                                                        </h1>
+                                                        </h3>
                                                     </div>
                                                     <div class="web-serv-name">
-                                                        <h4>{{service.service_categoy_data[0].name}}</h4>
+                                                        <h5>{{service.service_categoy_data[0].name}}</h5>
                                                     </div>
 
                                                     <h4>{{service.service_sub_category_data[0].name}}</h4>
@@ -750,6 +754,8 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                        </div>
+                                    </div> 
                                         </div>
                                     </div>
                                     <div *ngIf="services_list.length == 0">
@@ -959,6 +965,7 @@
                             </div> -->
                         </div>
                     </div>
+                    
                 </div>
             </div>
         </div>

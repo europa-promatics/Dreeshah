@@ -43,6 +43,8 @@ export class MyAlbumsDetailComponent implements OnInit {
   imageFull
   selectedUser: any;
   moveItemsArray: any[];
+  _id: any;
+  checked: any;
 
   constructor(
     public CustomerService: CustomerService,
@@ -197,20 +199,6 @@ export class MyAlbumsDetailComponent implements OnInit {
     });
   }
 
-  /* delete(val){
-    console.log("In the delete function")
-     this.obj1={
-      album_id : this.detail._id ,
-      album_media_id : val ,
-    }
-    this.CustomerService.deleteAlbum(this.obj1).subscribe(res =>{		
-      console.log("Deleted Item Response:",res)
-      this.ngOnInit()
-     // this.data=res.result
-      //console.log("Album List::",this.data)
-                  
-      })
-  } */
   onSelect(event) {
     console.log(event);
 
@@ -284,8 +272,6 @@ export class MyAlbumsDetailComponent implements OnInit {
               } else {
                 this.ngOnInit();
               }
-
-              //this.toastr.success("Service deleted sucessfully")
             });
           }
         );
@@ -334,6 +320,9 @@ export class MyAlbumsDetailComponent implements OnInit {
     const checked = event.target.checked
 
     console.log('--------------', event.target.checked)
+    this.checked=event.target.checked
+
+    
     if (checked == true) {
       this.moveItemsArray?.push(event.target.id) 
     } else {
@@ -345,15 +334,14 @@ export class MyAlbumsDetailComponent implements OnInit {
   
 
   multipleDelete() {
-    console.log('in functyion');
     if (this.moveItemsArray.length == 0) {
       this.toastr.error('Please Select at least one item')
       return
     } else {
-      for (let i = 0; i < this.moveItemsArray.length; i++) {
-        let element = this.moveItemsArray[i];
+     
         var obj = {
-          album_id: element
+          album_media_ids:this.moveItemsArray,
+          album_id:this.detail._id
         }
         this.CustomerService.deleteAlbumData(obj).subscribe(res => {
           if (res.code == 200 || res.code == '200') {
@@ -361,8 +349,9 @@ export class MyAlbumsDetailComponent implements OnInit {
             this.ngOnInit();
           }
         })
-      }
     }
   }
+
+
   
 }

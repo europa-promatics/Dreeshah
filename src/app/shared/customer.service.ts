@@ -152,7 +152,7 @@ export class CustomerService {
       // client-side error and server side
       if (Array.isArray(error.error.errors.msg)) { // validation error message
 
-        if (error.error.errors.msg.length) {
+        if (error.error.errors.msg?.length) {
           const ob = error.error.errors.msg[0]
           if (ob.msg == "IS_EMPTY") {
             errorMessage = `${ob.param} missing`
@@ -2789,6 +2789,19 @@ export class CustomerService {
           return res
         })
       )
+  }
+
+
+
+  // 27-june-2022--------------------------------------------------------
+
+  deleteMyAlbumData(data): Observable<any>{
+    let API_URL=`${this.apiUrl}/albumDelete`;
+    return this.httpClient.post(API_URL,data,this.httpOptions)
+    .pipe(map(res =>{
+      return res
+    })
+    )
   }
 
 

@@ -15,6 +15,8 @@ import { ToastrService } from 'ngx-toastr'
 import { Location } from '@angular/common'
 import { MatStepper } from '@angular/material/stepper';
 import { environment } from 'src/environments/environment';
+import { addproject } from './addproject';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 @Component({
   selector: 'app-seller-add-services',
   templateUrl: './seller-add-services.component.html',
@@ -73,13 +75,17 @@ export class SellerAddServicesComponent implements OnInit {
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
   @ViewChildren('checkBox') checkBox: QueryList<any>;
   catname: any = [];
+  reqData
+  listArr: any;
+  selectedfile1: any;
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     public _formBuilder: FormBuilder,
     public CustomerService: CustomerService,
     private toastr: ToastrService,
-    private location: Location
+    private location: Location,
+    private dialog: MatDialog
   ) {
     this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
       startWith(null),
@@ -111,6 +117,13 @@ export class SellerAddServicesComponent implements OnInit {
     }
   }
 
+  openDialog() {
+    const dialogRef = this.dialog?.open(addproject);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
   selected(event: MatAutocompleteSelectedEvent): void  {
     this.fruits.push(event.option.viewValue);
     this.fruitInput.nativeElement.value = '';
@@ -124,6 +137,7 @@ export class SellerAddServicesComponent implements OnInit {
   }
 
   files: File[] = [];
+
   onSelect(event) {
     if(event) {
       for(var i = 0; i < event.addedFiles.length; i++){
@@ -200,6 +214,10 @@ export class SellerAddServicesComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.reqData = {}
+    this.reqData.offset = 0
+    this.reqData.limit = 10
+    this.getProjList()
     this.maxSize = 2;
     this.image_path = environment.image_path + "ProfessionalProject/"
     this.getCountries()
@@ -228,7 +246,10 @@ export class SellerAddServicesComponent implements OnInit {
       service_sub_category: new FormControl('', [
         Validators.required,
       ]),
-      service_img: new FormControl('', [
+      service_image: new FormControl('', [
+        Validators.required,
+      ]),
+      projectCost: new FormControl('', [
         Validators.required,
       ]),
       // service_related_photos: new FormControl('', [
@@ -453,60 +474,89 @@ newArr = []
   })
 
   }
-  onFileChange(evt) {
-    var _URL = window.URL || window.webkitURL;
-    var self = this
-    var img
-    if (!evt.target) {
-      return;
-    }
-    if (!evt.target.files) {
-      return;
-    }
-    if (evt.target.files.length !== 1) {
-      return;
-    }
-    const file = evt.target.files[0];
-    console.log("hbcvhsvdcsjvcs",file.width +" and " +file.height);
-  //   img = new Image();
-  //   var objectUrl = _URL.createObjectURL(file);
-  //   img.onload = function () {
-  //     alert(this.width + " " + this.height);
-  //     _URL.revokeObjectURL(objectUrl);
-  // };
-  // file.height
-    if (file.type !== 'image/jpeg' && file.type !== 'image/png' && file.type !== 'image/jpg') {
-      // this.toastr.warning('Please upload image file')
-      return;
-    }
-    console.log(evt.target.files[0])
-    this.service_image = evt.target.files[0];
-    console.log("this.service_image>>>>>>>>>>",this.service_image)
-    var obj={
-      file:{
-        service_image: this.service_image
-      }
-    }
-    var formdata2 = new FormData()
-    formdata2.append('service_image', JSON.stringify(obj))
-    this.CustomerService.uploadImageService(formdata2).subscribe(data => {
-			console.log("Response of the image upload",data)
-			this.service_image = data.files.service_image;
-		}, err => {
-			console.log(err)
-			this.toastr.error('Some error occured, please try again!!', 'Error')
+  // onFileChange(evt) {
+  //   var _URL = window.URL || window.webkitURL;
+  //   var self = this
+  //   var img
+  //   if (!evt.target) {
+  //     return;
+  //   }
+  //   if (!evt.target.files) {
+  //     return;
+  //   }
+  //   if (evt.target.files.length !== 1) {
+  //     return;
+  //   }
+  //   const file = evt.target.files[0];
+  //   console.log("hbcvhsvdcsjvcs",file.width +" and " +file.height);
+  //   if (file.type !== 'image/jpeg' && file.type !== 'image/png' && file.type !== 'image/jpg') {
+  //     // this.toastr.warning('Please upload image file')
+  //     return;
+  //   }
+  //   console.log(evt.target.files[0])
+  //   this.service_image = evt.target.files[0];
+  //   console.log("this.service_image>>>>>>>>>>",this.service_image)
+  //   var obj={
+  //     file:{
+  //       service_image: this.service_image
+  //     }
+  //   }
+  //   var formdata2 = new FormData()
+  //   formdata2.append('service_image', JSON.stringify(obj))
+  //   this.CustomerService.uploadImageService(formdata2).subscribe(data => {
+	// 		console.log("Response of the image upload",data)
+	// 		this.service_image = data.files?.service_image;
+	// 	}, err => {
+	// 		console.log(err)
+	// 		this.toastr.error('Some error occured, please try again!!', 'Error')
 
-		})
-    const fr = new FileReader();
-    fr.onloadend = (loadEvent) => {
-      let mainImage = fr.result;
-      console.log(fr);
+	// 	})
+  //   const fr = new FileReader();
+  //   fr.onloadend = (loadEvent) => {
+  //     let mainImage = fr.result;
+  //     console.log(fr);
       
-      // self.profile_img = mainImage;
-      // alert(self.profile_img)
-    };
-    fr.readAsDataURL(file);
+  //     // self.profile_img = mainImage;
+  //     // alert(self.profile_img)
+  //   };
+  //   fr.readAsDataURL(file);
+  // }
+
+  onFileChange(e) {
+    console.log("event-----------------------", e);
+
+    const file = e.target.files[0]?.name;
+    console.log("image file=========",file);
+
+    const file1 = e.target.files[0];
+    console.log("image file=========",file1);
+    
+    const fileType = file1?.type?.split("/")[0];
+    console.log("image file type=======",fileType);
+    
+
+    if (fileType == "image") {
+      this.selectedfile1 = e.target.files[0];
+      
+
+      const formdata = new FormData();
+      formdata.append('service_image', this.selectedfile1);
+
+      this.CustomerService.uploadImageService(formdata).subscribe((res: any) => {
+        console.log("image response ==>", res);
+        this.service_image=res.data.service_image
+        // this.formGroup.patchValue({
+        //   image:this.service_image
+        // })
+        console.log("this.service_image uploaddddddddd========================",this.service_image);
+        
+      })
+
+    } 
+    console.log("image form===============",this.formGroup);
   }
+
+
   areaCoveredArr=[]
   areaCoveredFormArr=[]
   areaCovered(evt){
@@ -577,7 +627,7 @@ newArr = []
     console.log('duration',this.formGroup.value.service_duration);
     console.log('service_visible_customer', this.visible_customer);
     console.log('service_visible_professional', this.visible_pro);
-    console.log('service_image',this.service_image);
+    // console.log('service_image',this.service_image);
     console.log('related_images', this.files);
     console.log('other_images',this.files1);
     
@@ -591,9 +641,9 @@ newArr = []
     var formdata: FormData = new FormData();
     // formdata.append('id', this.userData._id)
     console.log("===imag", this.service_image)
-    if (this.service_image) {
-      formdata.append('service_image', this.service_image)
-    }
+    // if (this.service_image) {
+    //   formdata?.append('service_image', this.service_image)
+    // }
     if (this.files.length > 0) {
       // formdata.append('related_images', this.files)
       this.files.forEach(element => {
@@ -602,34 +652,35 @@ newArr = []
     }
     if (this.files1.length > 0) {
       this.files1.forEach(element => {
-        formdata.append('service_video ', element)
+        formdata?.append('service_video ', element)
       });
     }
     
     if (this.files2.length > 0) {
       this.files2.forEach(element => {
-        formdata.append('other_images', element)
-      });
+        formdata?.append('other_images', element)
+      }); 
     }
 
     console.log("Service Countries<<<<//////>>>>>>>",this.formGroup.value.issuedInCountry)
     // formdata.append('professional_id', this.userDetails.data._id)
-    formdata.append('service_name', this.formGroup.value.service_name)
-    formdata.append('service_description', this.formGroup.value.service_description)
-    formdata.append('country', JSON.stringify(this.formGroup.value.issuedInCountry))
-    formdata.append('area_covered',JSON.stringify(this.formGroup.value.issuedIncities))
-    // formdata.append('city', this.formGroup.value.city)
-    formdata.append('service_category', JSON.stringify(this.formGroup.value.service_category))
-    formdata.append('service_sub_category', JSON.stringify(this.formGroup.value.service_sub_category))
-    formdata.append('price', this.formGroup.value.service_price)
-    formdata.append('duration', this.formGroup.value.service_duration)
-    formdata.append('service_visible_customer', this.formGroup.value.service_visible_customer)
-    formdata.append('service_visible_professional', this.formGroup.value.service_visible_professional)
-    formdata.append('service_project',JSON.stringify(this.newChecked))
+    formdata?.append('service_name', this.formGroup.value.service_name)
+    formdata?.append('service_description', this.formGroup.value.service_description)
+    formdata?.append('country', JSON.stringify(this.formGroup.value.issuedInCountry))
+    formdata?.append('area_covered',JSON.stringify(this.formGroup.value.issuedIncities))
+    // formdata?.append('city', this.formGroup.value.city)
+    formdata?.append('service_category', JSON.stringify(this.formGroup.value.service_category))
+    formdata?.append('service_sub_category', JSON.stringify(this.formGroup.value.service_sub_category))
+    formdata?.append('price', this.formGroup.value.service_price)
+    formdata?.append('duration', this.formGroup.value.service_duration)
+    formdata?.append('service_visible_customer', this.formGroup.value.service_visible_customer)
+    formdata?.append('service_visible_professional', this.formGroup.value.service_visible_professional)
+    formdata?.append('service_project',JSON.stringify(this.newChecked))
+    formdata?.append('service_image', this.service_image)
     // if(this.newChecked.length > 0){
     //   this.newChecked.forEach(element => {
     //     console.log('new checked  element',element)
-    //     formdata.append('service_project', element)
+    //     formdata?.append('service_project', element)
     //   });
     // }
     if (!this.formGroup.valid) {
@@ -678,7 +729,7 @@ newArr = []
 
   }
 
- 
+
   getCities(event) {
     this.cities=[]
 		console.log("==== event to chekc isssued in countriessssssssssssssssssssssss", event)
@@ -712,4 +763,29 @@ newArr = []
 
 		})
   }
+
+
+
+
+  // get  listing project data-----------------------------------
+
+  getProjList() {
+    var d = {
+      limit: this.reqData.limit,
+      offset:this.reqData.offset
+    }
+
+    this.CustomerService.getProfessionalProjects(d).subscribe(res => {
+      console.log('res of proj listing', res)
+      this.listArr = res.data
+    })
+  }
+
+
+
+
+
+
+
 }
+

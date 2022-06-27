@@ -15,14 +15,7 @@ const Webreg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
 export class AddProjectComponent implements OnInit {
 
   formGroup: FormGroup
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    public _formBuilder: FormBuilder,
-    public CustomerService: CustomerService,
-    private toastr: ToastrService,
-    private location: Location
-  ) { }
+
   projects = []
   items = ['item1'];
   files: File[] = [];
@@ -36,6 +29,16 @@ export class AddProjectComponent implements OnInit {
   project_id = ""
   image_path
   project_details
+
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    public _formBuilder: FormBuilder,
+    public CustomerService: CustomerService,
+    private toastr: ToastrService,
+    private location: Location
+  ) { }
+
   onSelect(event) {
     console.log(event);
     this.files.push(...event.addedFiles);

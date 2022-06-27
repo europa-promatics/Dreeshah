@@ -11,3 +11,30 @@
 //         height: 100px;
 //     }
 // }
+.btns_imgs:hover {
+    color: red;
+}
+.btns_imgs::after{
+    background-color: red !important;
+}
+.btns_imgs::before{
+    border: 1px solid #ff0000;
+}
+.add-img img{
+    width: 150px;
+    height: 150px;
+}
+.img-upload-btn{
+    position: relative;
+    // display: inline-block;
+}
+.img-upload-btn input{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 150px;
+    height: 100%;
+    opacity: 0;
+    z-index: 4;
+
+}

@@ -28,10 +28,87 @@
                                                     </p>
                                                 </div>
                                             </div>
+
+                                            <div class="form-group">
+                                                <!-- <ng-select [multiple]="true" formControlName="service_category"
+                                                    (change)="getSubCat($event)" placeholder="Select Service Category">
+                                                    <ng-option *ngFor="let category of catArr"
+                                                    [value]="category._id">
+                                                    {{category.name}}
+                                                    </ng-option>
+                                                </ng-select> -->
+                                                <!-- <div *ngIf="formGroup.controls.service_category.invalid && (formGroup.controls.service_category.dirty || formGroup.controls.service_category.touched || submit_button)"
+                                                    class="">
+                                                    <p style="color: red;"
+                                                        *ngIf="formGroup.controls.service_category.errors.required">
+                                                        Service Category is required
+                                                    </p>
+                                                </div> -->
+                                                <!-- <p><strong>Category</strong></p>
+                                                <div *ngFor="let category of catArr">
+                                                {{category.name}},
+                                                </div> -->
+
+
+                                                <!-- <ng-select [multiple]="true" formControlName="service_sub_category"
+                                                    (change)="getProject($event)" placeholder="Select Service Sub Category">
+                                                    <ng-option *ngFor=""
+                                                    [value]="SubCat._id">
+                                                    {{SubCat.name}}
+                                                    </ng-option>
+                                            </ng-select> -->
+                                            <br>
+                                            <!-- <p><strong>Subcategory</strong></p>
+                                            <div *ngFor="let SubCat of subCateArr">
+                                                {{SubCat.name}},
+                                                </div> -->
+                                                <mat-form-field>
+                                                    <mat-label>Select Service Category</mat-label>
+                                                    <mat-select (selectionChange)="getSubCat($event.value)"
+                                                        formControlName="service_category"
+                                                        placeholder="Select Service Category" name="service_category">
+                                                        <mat-option *ngFor="let category of categiryArr"
+                                                            [value]="category._id">
+                                                            {{category.name}}
+                                                        </mat-option>
+                                                    </mat-select>
+                                                </mat-form-field>
+                                                <div *ngIf="formGroup.controls.service_sub_category.invalid && (formGroup.controls.service_sub_category.dirty || formGroup.controls.service_sub_category.touched || submit_button)"
+                                                    class="">
+                                                    <p style="color: red;"
+                                                        *ngIf="formGroup.controls.service_sub_category.errors.required">
+                                                        Service Category is required
+                                                    </p>
+                                                </div>
+                                            </div>
+                                           
+                                            <div class="form-group">
+                                                
+                                                <mat-form-field>
+                                                    <mat-label>Select Service Sub Category</mat-label>
+                                                    <mat-select (selectionChange)="getProject($event)"
+                                                        placeholder="Select Service Sub-category"
+                                                        formControlName="service_sub_category" name="service_category">
+                                                        <mat-option *ngFor="let SubCat of subCatArr"
+                                                            [value]="SubCat._id">
+                                                            {{SubCat.name}}
+                                                        </mat-option>
+                                                    </mat-select>
+                                                </mat-form-field>
+                                                <div *ngIf="formGroup.controls.service_sub_category.invalid && (formGroup.controls.service_sub_category.dirty || formGroup.controls.service_sub_category.touched || submit_button)"
+                                                    class="">
+                                                    <p style="color: red;"
+                                                        *ngIf="formGroup.controls.service_sub_category.errors.required">
+                                                        Service sub category is required
+                                                    </p>
+                                                </div>
+                                            </div>
+
+
                                             <div class="form-group">
                                             <div class="ck-editor">
                                                 <label>Description</label>
-                                                <ckeditor [(ngModel)]="service_description" [formControl]="formGroup.controls['service_description']" data="<p>Hello, world!</p>"></ckeditor>
+                                                <ckeditor formControlName="service_description" data="<p>Hello, world!</p>"></ckeditor>
                                                 <p style="color: red;"
                                                     *ngIf="formGroup.controls['service_description'].errors?.required && ( formGroup.controls['service_description'].touched || submit_button)">
                                                     Description is Required</p>
@@ -176,91 +253,19 @@
                                                 </tag-input>
                                             </div> -->
 
-                                            <div class="form-group">
-                                                <!-- <ng-select [multiple]="true" formControlName="service_category"
-                                                    (change)="getSubCat($event)" placeholder="Select Service Category">
-                                                    <ng-option *ngFor="let category of catArr"
-                                                    [value]="category._id">
-                                                    {{category.name}}
-                                                    </ng-option>
-                                                </ng-select> -->
-                                                <!-- <div *ngIf="formGroup.controls.service_category.invalid && (formGroup.controls.service_category.dirty || formGroup.controls.service_category.touched || submit_button)"
-                                                    class="">
-                                                    <p style="color: red;"
-                                                        *ngIf="formGroup.controls.service_category.errors.required">
-                                                        Service Category is required
-                                                    </p>
-                                                </div> -->
-                                                <p><strong>Category</strong></p>
-                                                <div *ngFor="let category of catArr">
-                                                {{category.name}},
-                                                </div>
-
-
-                                                <!-- <ng-select [multiple]="true" formControlName="service_sub_category"
-                                                    (change)="getProject($event)" placeholder="Select Service Sub Category">
-                                                    <ng-option *ngFor=""
-                                                    [value]="SubCat._id">
-                                                    {{SubCat.name}}
-                                                    </ng-option>
-                                            </ng-select> -->
-                                            <br>
-                                            <p><strong>Subcategory</strong></p>
-                                            <div *ngFor="let SubCat of subCateArr">
-                                                {{SubCat.name}},
-                                                </div>
-                                                <!-- <mat-form-field>
-                                                    <mat-label>Select Service Category</mat-label>
-                                                    <mat-select (selectionChange)="getSubCat($event.value)"
-                                                        formControlName="service_category"
-                                                        placeholder="Select Service Category" name="service_category">
-                                                        <mat-option *ngFor="let category of categiryArr"
-                                                            [value]="category._id">
-                                                            {{category.name}}
-                                                        </mat-option>
-                                                    </mat-select>
-                                                </mat-form-field> -->
-                                                <!-- <div *ngIf="formGroup.controls.service_sub_category.invalid && (formGroup.controls.service_sub_category.dirty || formGroup.controls.service_sub_category.touched || submit_button)"
-                                                    class="">
-                                                    <p style="color: red;"
-                                                        *ngIf="formGroup.controls.service_sub_category.errors.required">
-                                                        Service Category is required
-                                                    </p>
-                                                </div> -->
-                                            </div>
-                                           
-                                            <!-- <div class="form-group">
-                                                
-                                                <mat-form-field>
-                                                    <mat-label>Select Service Sub Category</mat-label>
-                                                    <mat-select (selectionChange)="getProject($event)"
-                                                        placeholder="Select Service Sub-category"
-                                                        formControlName="service_sub_category" name="service_category">
-                                                        <mat-option *ngFor="let SubCat of subCatArr"
-                                                            [value]="SubCat._id">
-                                                            {{SubCat.name}}
-                                                        </mat-option>
-                                                    </mat-select>
-                                                </mat-form-field>
-                                                <div *ngIf="formGroup.controls.service_sub_category.invalid && (formGroup.controls.service_sub_category.dirty || formGroup.controls.service_sub_category.touched || submit_button)"
-                                                    class="">
-                                                    <p style="color: red;"
-                                                        *ngIf="formGroup.controls.service_sub_category.errors.required">
-                                                        Service sub category is required
-                                                    </p>
-                                                </div>
-                                            </div> -->
+                                      
 
                                             <div class="form-group signup-form">
                                                 <label for="exampleFormControlFile1">Add Service Image</label>
-                                                <input type="file" class="form-control-file" accept=".png, .jpg, .jpeg"
-                                                    formControlName="service_img" id="exampleFormControlFile1"
-                                                    (change)="onFileChange($event)">
+                                                <input type="file" class="form-control-file"
+                                                accept=".png, .jpg, .jpeg" id="exampleFormControlFile1"
+                                                (change)="onFileChange($event)"
+                                                formControlName="service_image">
                                             </div>
-                                            <div *ngIf="formGroup.controls.service_img.invalid && (formGroup.controls.service_img.dirty || formGroup.controls.service_img.touched || submit_button)"
+                                            <div *ngIf="formGroup.controls.service_image.invalid && (formGroup.controls.service_image.dirty || formGroup.controls.service_image.touched || submit_button)"
                                                 class="">
                                                 <p style="color: red;"
-                                                    *ngIf="formGroup.controls.service_img.errors.required">
+                                                    *ngIf="formGroup.controls.service_image.errors.required">
                                                     Please upload Service image
                                                 </p>
                                             </div>
@@ -387,11 +392,11 @@
                                                 <div class="row">
                                                     <div id="page-content-wrapper">
                                                         <div class="row">
-                                                            <div class="col-md-4">
+                                                            <div class="col-md-6">
                                                                 <div class="added-proje-wrp mb-3">
                                                                     <div class="added-proj-img text-center">
-                                                                        <a [routerLink]="['/sellerProjects']" >
-                                                                            <div class="sign_txt_wrp">
+                                                                        <a >
+                                                                            <div class="sign_txt_wrp" (click)="openDialog()">
                                                                                 <i class="fa fa-plus"></i>
                                                                                 <h3 class="text-center">New Project</h3>
                                                                             </div>
@@ -399,6 +404,63 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                            <ng-container  *ngFor="let r of listArr">
+                                                            <div class="col-md-6" >
+
+                                                               
+                                                                    <div class="div-pos">
+                                                                        <a  data-toggle="modal" data-target="#view-project">
+                                                                            <div class="form-group">
+                                                                                <div class="media-link d-flex justify-content-between">
+                                                                                    <div>
+                                                                                        <label for="exampleFormControlFile1" class="mr-4 mt-4">
+                                                                                            View Project
+                                                                                        </label>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                
+                                                                            <div class="view-project">
+                                                                                <table class="view-project-table" > 
+                                                                                    <tr>
+                                                                                        <td><strong>Project Name : </strong></td>
+                                                                                        <td>{{r.project_name}}</td>
+                
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td><strong>Project Address :</strong></td>
+                                                                                        <td>{{r.project_address}}</td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td><strong>Website :</strong></td>
+                                                                                        <td>{{r.project_website}}</td>
+                                                                                    </tr>
+                                                                                    <tr>
+                
+                                                                                        <td><strong>Category : </strong> </td>
+                                                                                        <td>{{r.project_category[0].name}}</td>
+                
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td><strong>Country : </strong></td>
+                                                                                        <td>{{r.project_country[0]}}</td>
+                                                                                    </tr>
+                
+                                                                                </table>
+                                                                            </div>
+                                                                        </a>
+                                                                        <span class="cross-btn" >
+                                                                            <i class="fa fa-times" aria-hidden="true">
+                
+                                                                            </i>
+                                                                        </span>
+                
+                                                                    </div>
+                                                                </div>
+                                                                </ng-container>
+
+                                                                
+                                                          
                                                              <div class="col-md-4" *ngFor="let project of projects;">
                                                                 <div class="added-proj-wrp">
                                                                     <div class="added-proj-img">
@@ -428,7 +490,7 @@
                                                 <mat-form-field appearence="">
                                                 <mat-label>Add Tags (Separated by comma. Eg-Demo1,Demo2)</mat-label>
                                                 <input matInput placeholder="Separated by comma. Eg-Demo1,Demo2" 
-                                                [(ngModel)]="items">
+                                            >
                                                 <!-- <tag-input formControlName="keyWords" [(ngModel)]='items'
                                                     maxItems="10" class="keywords--chips form-control height-unset"
                                                     [placeholder]="">
@@ -569,3 +631,178 @@
     </div>
 </div>
 <app-footer></app-footer>
+
+<div class="modal fade" id="view-project" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">View Service Project</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="proj-form-head">
+                            <h6>Upload Content to a Project</h6>
+                            <p><small>A Project is a collection of photos and videos of your own work or products.
+                                    Projects
+                                    are usually best organized by client, job site, or product line. Or upload photos to
+                                    an ideabook</small></p>
+                        </div>
+                        <div class="add-proj-form com-md-12">
+                            <form>
+                                <!-- <div class="form-group">
+                                    <mat-form-field>
+                                        <mat-label>Select Project</mat-label>
+                                        <input readonly matInput placeholder="">
+                                    </mat-form-field>
+
+
+                                </div> -->
+
+                                <div class="form-group">
+                                    <mat-form-field appearance="">
+                                        <mat-label>New Project Name</mat-label>
+                                        <input readonly matInput placeholder="" required>
+                                    </mat-form-field>
+
+                                </div>
+
+                                <mat-form-field appearance="">
+                                    <mat-label>Project Address</mat-label>
+                                    <input readonly matInput placeholder="">
+                                </mat-form-field>
+
+
+                                <mat-form-field appearance="">
+                                    <mat-label>Project Description</mat-label>
+                                    <input readonly matInput placeholder="zdfSf" value="kdsjkjfhjdshg">
+                                </mat-form-field>
+
+
+                                <div class="form-group">
+                                    <mat-form-field>
+                                        <mat-label>Country</mat-label>
+                                        <input readonly matInput placeholder="" >
+                                    </mat-form-field>
+
+
+                                </div>
+
+                                <div class="form-group">
+                                    <mat-form-field>
+                                        <mat-label>Cities</mat-label>
+                                        <input readonly matInput placeholder="" >
+                                    </mat-form-field>
+
+
+                                </div>
+                                <div class="form-group">
+                                    <mat-form-field>
+                                        <mat-label>Category</mat-label>
+                                        <input readonly matInput placeholder="">
+                                    </mat-form-field>
+
+
+                                </div>
+                                <div class="form-group">
+                                    <mat-form-field>
+                                        <mat-label>Sub Category</mat-label>
+                                        <input readonly matInput placeholder="" >
+                                    </mat-form-field>
+
+
+                                </div>
+                                <div class="form-group">
+                                    <mat-form-field>
+                                        <mat-label>Styles</mat-label>
+                                        <input readonly matInput placeholder="" >
+                                    </mat-form-field>
+
+
+                                </div>
+                                <div class="form-group">
+                                    <mat-form-field>
+                                        <mat-label>Project Year*</mat-label>
+                                        <input readonly matInput placeholder="" >
+                                    </mat-form-field>
+
+
+                                </div>
+                                <div class="form-group">
+                                    <mat-form-field>
+                                        <mat-label>Project Cost in AED</mat-label>
+                                        <input readonly matInput placeholder="" >
+                                    </mat-form-field>
+
+
+                                </div>
+
+                                <mat-form-field appearance="">
+                                    <mat-label>Link to website</mat-label>
+                                    <input readonly matInput placeholder="">
+                                </mat-form-field>
+
+                                <mat-form-field appearance="">
+                                    <input readonly matInput placeholder="Key-Words" >
+                                </mat-form-field>
+
+                                <div class="form-group">
+                                    <mat-form-field>
+                                        <mat-label>Get Noticed on other Profiles by crediting other pros on this project
+                                        </mat-label>
+                                        <input readonly matInput placeholder="Branch Name" >
+                                    </mat-form-field>
+                                    
+
+
+                                </div>
+                                <!-- <div class="form-group signup-form">
+                                    <label>Content <span class="mandatory-star">*</span></label>
+                                    <div class="content-sec">
+                                        <div class="content-img text-center">
+                                            <img src="https://developers.promaticstechnologies.com/dreeshah_apis/public/ProfessionalProject/{{image}}" alt="">
+                                        </div>
+                                       
+                                    </div>
+                                   
+                                </div> -->
+
+                                
+
+                                <small>By uploading photos, you are approving their display by Houzz,
+                                    saying that you either own the rights to the image or that you have
+                                    permission or a license to do so from the copyright holder, and
+                                    agreeing to abide by Dreeshah's <span class="theme-link"><a routerLink="/terms-condition">terms of use.</a></span>
+                                </small>
+
+
+                                <!-- <div class="check--wrp mt-2">
+                                    <div class="form-group mb-0 signup-form">
+                                        <label>Where Do You want to Publish?<span
+                                                class="mandatory-star">*</span></label>
+                                    </div>
+                                    <div class="example-section">
+                                        <mat-checkbox class="example-margin mr-3" value="{{publishProfessional}}" >Professional
+                                        </mat-checkbox>
+                                        <mat-checkbox class="example-margin mr-3" value="{{publishservice}}" >Services
+                                        </mat-checkbox>
+                                        <mat-checkbox class="example-margin mr-3" value="{{publishProduct}}" >Products
+                                        </mat-checkbox>
+                                    </div>
+
+                                </div> -->
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn_theme mr-3" data-dismiss="modal">Back</button>
+            </div>
+        </div>
+    </div>
+</div>

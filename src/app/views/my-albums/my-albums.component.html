@@ -34,7 +34,7 @@
                                     <div class="modal-content">
                                         <div class="modal-header">
                                            <div class="">
-                                            <h2 class="modal-form-title"></h2>
+                                            <h2 class="modal-form-title">Add Album</h2>
                                         </div>
                                         <button type="button" id="modelClose" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
@@ -43,17 +43,35 @@
                                     <div class="modal-body">
                                         <div class="add-album-form">
                                             <div class="modal-body">
+                                               
                                                 <form role="form" [formGroup]="albumForm" method="POST" action="">
                                                     <input type="hidden" name="_token" value="">
                                                     <div class="form-group">
+                                                        <label class="control-label">Album Image</label>
+                                                        <!-- <div class="add-img">
+                                                            <img src="https://www.bastiaanmulder.nl/wp-content/uploads/2013/11/dummy-image-square.jpg">
+                                                        </div> -->
+                                                        <!-- <div class="img-upload-btn">
+                                                            <button class="btn btn-change-fill mt-3">
+                                                                
+                                                                Upload Album Image
+                                                            </button>  -->
+                                                            <input type="file" class="form-control input-lg" name="image"  value="" placeholder="Enter Album Name"
+                                                            (change)="uploadAddImage($event)"  [formControl]="albumForm.controls['album_cover_image']">
+                                                        <!-- </div> -->
+                                                          
+                                                        
+                                                       
+                                                    </div>
+                                                    <div class="form-group">
                                                         <label class="control-label">Album Name</label>
                                                         <div>
-                                                            <input type="text" class="form-control input-lg" name="email"  [formControl]="albumForm.controls['name']" [(ngModel)]="name" value="" placeholder="Enter Album Name">
+                                                            <input type="text" class="form-control input-lg" name="email"  [formControl]="albumForm.controls['album_name']" [(ngModel)]="name" value="" placeholder="Enter Album Name">
                                                         </div>
                                                        
                                                     </div>
                                                     <p style="color: red; margin-top: -1.25em;"
-                                                        *ngIf="albumForm.controls['name'].errors?.required && ( albumForm.controls['name'].touched || submit_button)">
+                                                        *ngIf="albumForm.controls['album_name'].errors?.required && ( albumForm.controls['album_name'].touched || submit_button)">
                                                        Album Name is Required
                                                     </p>
 
@@ -82,18 +100,18 @@
                      <div class="col-sm-3" *ngFor="let datas of data">
                       
                         <div class="" >
-                            <input  type="checkbox"  >
+                            <input  type="checkbox" id="{{datas?._id}}"  (change)="checkBoxClick($event)" >
                             <div class="tile" style="width: 100%;" routerLink="/album-detail/{{datas._id}}" >
                              
-                                <a *ngIf="(datas?.album_images[0]?.image)"  >
+                                <a *ngIf="(datas?.album_cover_image)"  >
                                    
-                                    <img *ngIf="isImage(datas?.album_images[0]?.image)" src="{{imgpath}}{{datas?.album_images[0]?.image}}" class="img-fluid" alt="image"> 
-                                    <video *ngIf="!isImage(datas?.album_images[0]?.image)" width="320" height="240" controls>
-                                        <source src="{{imgpath}}{{datas?.album_images[0]?.image}}" >
+                                    <img *ngIf="isImage(datas?.album_cover_image)" src="{{imgpath}}{{datas?.album_cover_image}}" class="img-fluid" alt="image"> 
+                                    <video *ngIf="!isImage(datas?.album_cover_image)" width="320" height="240" controls>
+                                        <source src="{{imgpath}}{{datas?.album_cover_image}}" >
                                       Your browser does not support the video.
                                       </video>
                                 </a>
-                                <a *ngIf="!(datas?.album_images[0]?.image)"  >
+                                <a *ngIf="!(datas?.album_cover_image)"  >
                                     <img  src="../../../assets/imgs/noImage.jpg" class="img-fluid" alt="image"> 
                                 </a>
                                 
@@ -101,9 +119,9 @@
                            
                             <div class="text-box mb-3" >
                               
-                                <p><a >{{datas.album_name}}</a></p>
-                                <i class="fa fa-edit mr-3" data-toggle="modal" data-target="#editModal"  >edit</i>
-                                <i class="fa fa-trash" (click)="delete(datas._id)">delete</i>
+                                <p><a >{{datas.album_name | titlecase}}</a></p>
+                                <i class="fa fa-edit mr-3" data-toggle="modal" data-target="#editModal" (click)="editAlbum(datas._id)" ></i>
+                                <i class="fa fa-trash" (click)="delete(datas._id)"></i>
                             </div>
                         </div>
                     </div>
@@ -111,15 +129,27 @@
                 </div>
                 
             </div>
-            <div>
+            <ng-container *ngIf="this.checked == true">
+                <div class="mdl-frm-btn mt-3" align="center" >
+                    <button class="btn btn-change-fill btns_imgs" style="float: right;" (click)="multipleDelete()">Selected Delete</button>
+                </div>
+            </ng-container>
+           
+            <!-- <div> -->
+
                 <!-- <mat-paginator [length]="length" [pageSize]="10" [pageSizeOptions]="getPageSizeOptions()"
                 (page)="paginationOptionChange($event)"> -->
-                <mat-paginator [length]="length" [pageSize]="10" 
+
+                <!-- <mat-paginator [length]="length" [pageSize]="10" 
                 (page)="paginationOptionChange($event)">
             </mat-paginator>
-            </div>
+            </div> -->
+
         </div> 
+
+       
     </div>
+
     </div>
 </div>
 </div>
@@ -133,32 +163,53 @@
             <div class="modal-content">
                 <div class="modal-header">
                    <div class="">
-                    <h2 class="modal-form-title"></h2>
+                    <h2 class="modal-form-title">Edit Album</h2>
                 </div>
-                <button type="button" id="modelClose" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" id="modelClose1" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
+
             </div>
             <div class="modal-body">
                 <div class="add-album-form">
                     <div class="modal-body">
-                        <form role="form" [formGroup]="albumForm" method="POST" action="">
-                            <input type="hidden" name="_token" value="">
+                      
+                        <form role="form" [formGroup]="albumForm"  >
+                          
+
+                            <div class="form-group">
+                                <label class="control-label">Album Image</label>
+                                <!-- <div class="add-img">
+                                    <img src="https://www.bastiaanmulder.nl/wp-content/uploads/2013/11/dummy-image-square.jpg">
+                                </div>
+                                <div class="img-upload-btn">
+                                    <button class="btn btn-change-fill mt-3">
+                                        
+                                        Uploadm Album Image
+                                    </button>  -->
+                                    <input type="file" class="form-control input-lg" name="image" placeholder="Enter Album Name"
+                                    (change)="uploadEditImage($event)"  [formControl]="albumForm.controls['album_cover_image']">
+                                <!-- </div> -->
+                                  
+                                
+                               
+                            </div>
+
                             <div class="form-group">
                                 <label class="control-label">Edit Album Name</label>
                                 <div>
-                                    <input type="text" class="form-control input-lg" name="email"  [formControl]="albumForm.controls['name']" [(ngModel)]="name" value="" placeholder="Enter Album Name">
+                                    <input type="text" class="form-control input-lg" [formControl]="albumForm.controls['album_name']"  placeholder="Enter Album Name">
                                 </div>
                                
                             </div>
                             <p style="color: red; margin-top: -1.25em;"
-                                *ngIf="albumForm.controls['name'].errors?.required && ( albumForm.controls['name'].touched || submit_button)">
+                                *ngIf="albumForm.controls['album_name'].errors?.required && ( albumForm.controls['album_name'].touched || submit_button)">
                                Album Name is Required
                             </p>
 
                          
                             <div class="mdl-frm-btn mt-3" align="center" >
-                                <button class="btn btn-change-fill" (click)="edited(datas._id)">Create</button>
+                                <button class="btn btn-change-fill" (click)="edited()" >Create</button>
                             </div>
                             
                         </form>

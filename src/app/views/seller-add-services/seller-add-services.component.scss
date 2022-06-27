@@ -6,3 +6,44 @@
          margin-top: 19px;
     }
 }
+.view-project{
+    border: 2px solid #c1c1c1;
+    height: auto;
+    padding: 10px;
+    position: relative;
+}
+
+.view-project-table td{
+width:300px;
+text-align: left;
+padding: 10px;
+
+}
+.view-project-table th{
+    text-align: center;
+}
+.view-icon{
+    font-size: 40px;
+    font-weight: 200!important;
+    margin-top: 11px;
+}
+
+.cross-btn{
+    position: absolute;
+    top: 57px;
+    right: -10px;
+
+}
+.cross-btn i{
+    width: 25px;
+    height: 25px;
+    background-color: #ababab;
+    color: #000;
+    border-radius: 50%;
+    line-height: 25px;
+    padding: 1px 5px 8px 7px;
+    
+}
+.div-pos{
+    position: relative;
+}
