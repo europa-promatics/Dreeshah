@@ -455,7 +455,8 @@ header.header_home {
     }
     .hero-img {
         position: relative;
-        height: 80vh;
+        // height: 80vh;
+        height: 450px;
     }
     .hero-img img {
         display: block;
@@ -546,7 +547,7 @@ header.header_home {
 .wrap_idea_singl {
     position: relative;
     /*border-radius: 6px;*/
-    overflow: hidden;
+    // overflow: hidden;
     /*box-shadow: 0 0px 40px -26px #000;*/
     margin-bottom: 20px;
     img {
@@ -562,10 +563,11 @@ header.header_home {
         background: #ffffff;
         h3 {
             margin: 0;
-            padding: 6px 0;
-            color: #000;
+            padding: 10px 0px;
+            color: #fff;
             font-size: 18px;
             font-family: bigillabold;
+            background-color:#6A9792;
         }
     }
 }
@@ -1072,18 +1074,20 @@ p.quote_dean {
     font-family: bigillabold;
 }
 .hiw-icon {
-    background-color: #b73e15;
+    // background-color: #b73e15;
     width: 80px;
     border-radius: 100%;
     height: 80px;
     margin: 0 auto 25px;
 }
 .hiw-icon img {
-    height: 35px;
-    line-height: 35px;
-    width: 35px;
+    height: 70px;
+    line-height: 70px;
+    width:70px;
     text-align: center;
     margin: 23px 23px;
+    border-radius:50%;
+    object-fit:cover;
 }
 .hiw-description p {
     font-size: 12px;
@@ -11425,9 +11429,9 @@ span.btn.btn-round-blue.custm--edit {
     background-color: #DCD2D0;
     padding: 30px 30px;
     text-align: center;
-    min-height: 260px;
+    min-height: 300px;
     max-height: 260px;
-    // overflow: hidden;
+    overflow: hidden;
 }
 
 
@@ -11552,6 +11556,8 @@ span.btn.btn-round-blue.custm--edit {
     background-color: #fff;
     padding: 40px 30px;
     margin-top: 20px;
+    min-height: 300px;
+    height: 300px;
 }
 .testimonial_elemnt p {
     // padding: 20px 0;
@@ -14083,9 +14089,22 @@ span.cntr_nmbr {
         border-radius: 50%;
         font-size: 18px;
 }
-.mat-form-field-appearance-legacy .mat-form-field-underline {
-    height:0px!important;
-}
+
 .mat-form-field-ripple{
     display:none!important;
 }
+
+
+// ::ng-deep.mat-input-element {
+//     font: inherit;
+//     background: #fff !important; 
+//     color: currentColor;
+//     border: none;
+//     outline: none;
+//     padding: 0 7px;
+//     margin: 0;
+//     width: 100%;
+//     max-width: 100%;
+//     vertical-align: bottom;
+//     text-align: inherit;
+// }

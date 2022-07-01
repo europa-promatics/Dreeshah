@@ -67,15 +67,16 @@
 }*/
 .main-text h2{
   position: absolute;
-  color: #000;
-  top: 10px;
-  left: 0px;
-  background: rgba(255,255,255,0.7);
-  padding: 7px 10px;
-  width: 200px;
-  border-radius: 0 5px 5px 0px;
-  font-family: bigillabold;
+    color: #fff;
+    top: 10px;
+    left: 0px;
+    background: #6A9792;
+    padding: 7px 10px;
+    width: 260px;
+    border-radius: 0 5px 5px 0px;
+    font-family: bigillabold;
 }
+
 .main-wrapper{
   display: -webkit-box;
     display: -webkit-flex;
@@ -293,3 +294,4 @@
 .frm_ad .sec_heading h3{
   margin-left: 16px;
 }
+.cstm-mg{margin-top: 20px;}

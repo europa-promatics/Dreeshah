@@ -44,19 +44,30 @@
 													<tr *ngFor="let detail of details; let i = index">
 														<th scope="row">{{i+1+offset_val}}</th>
 														<td class="prof-img--avatar">
-															<img src="{{profile_image_path}}{{detail?.user_id?.professional_id?.profile_image}}">
-															<img src="{{profile_image_path}}{{detail?.service_id?.professional_id?.logo}}">
-															<!-- <img src="http://medic-app-react.next-item.com//content/user-40-1.jpg"> -->
+
+																<div class="profile-cover-pic" >
+
+																	<div class="cover-img">
+																		<img src="{{profile_image_path}}{{detail?.professional_id?.logo}}" >
+																		
+																	</div>
+																	<div class="profile-img">
+																		
+																		<img src="{{profile_image_path}}{{detail?.professional_id?.profile_image}}" >
+																	</div>
+																	
+																	<!-- <img src="http://medic-app-react.next-item.com//content/user-40-1.jpg"> -->
+																</div>
 														</td>
 
-														<td class="date-time-appointment"><p>{{detail?.service_id?.professional_id?.first_name}}</p>
+														<td class="date-time-appointment" style="width: 200px;"><p>{{detail?.service_id?.professional_id?.first_name}}</p>
 															<p>{{detail?.service_id?.professional_id?.last_name}}</p>
 														</td>
 														<td class="date-time-appointment"><p>{{detail?.date | date }}</p>
 															<p>{{detail?.time?.start_time}}</p>
 														</td>
 														<td>{{detail?.location}}</td>
-														<td><span class="purpose">{{detail?.service_id?.service_description}}</span></td>
+														<td class="text-center"><span class="purpose text-center">{{detail?.service_id?.service_description}}</span></td>
 														
 														<td>{{detail.subject}}</td>
 														<!-- <td><span class="purpose">{{detail?.request_details}}</span></td> -->

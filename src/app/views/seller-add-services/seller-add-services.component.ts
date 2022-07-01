@@ -78,6 +78,17 @@ export class SellerAddServicesComponent implements OnInit {
   reqData
   listArr: any;
   selectedfile1: any;
+  fixed: any;
+  upto: any;
+  range: any;
+  keyupValue: any;
+  clickStart: any;
+  endkeyUp: any;
+  price: any;
+  clickEnd: any;
+  projectValue: any;
+  FixedValue: any;
+  keyupFixedd: any;
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -86,12 +97,12 @@ export class SellerAddServicesComponent implements OnInit {
     private toastr: ToastrService,
     private location: Location,
     private dialog: MatDialog
-  ) {
-    this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
-      startWith(null),
-      map((fruit: string | null) => fruit ? this._filter(fruit) : this.allFruits.slice()));
+  ) {    
+
 
   }
+
+
   add(event: MatChipInputEvent): void {
     const input = event.input;
     const value = event.value;
@@ -214,6 +225,46 @@ export class SellerAddServicesComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.formGroup = new FormGroup({
+      service_name: new FormControl('', [Validators.required,]),
+
+      service_description: new FormControl('', [Validators.required,]),
+
+      service_category: new FormControl('', [Validators.required,]),
+
+      service_sub_category: new FormControl('', [Validators.required,]),
+
+      service_image: new FormControl('', [Validators.required,]),
+
+      // service_price: new FormControl('', [Validators.required,Validators.pattern(/^\d*\.?\d*$/)]),
+
+      service_duration: new FormControl('', [Validators.required, Validators.pattern("^[0-9]*")]),
+
+      service_visible_customer: new FormControl('', []),
+
+      service_visible_professional: new FormControl('', []),
+
+      keyWords:  new FormControl('', [ ]), 
+
+      issuedInCountry: new FormControl('',[Validators.required]),
+
+      issuedIncities: new FormControl('',[Validators.required]),
+
+      service_checkbox: new FormControl('',[Validators.required]),
+
+      projectCost: new FormControl('',[Validators.required]),
+
+      fix_price: new FormControl('', [Validators.required, Validators.pattern("^[0-9]*")]),
+
+      start_range_price: new FormControl('', [Validators.required, Validators.pattern("^[0-9]*")]),
+
+      end_range_price: new FormControl('', [Validators.required, Validators.pattern("^[0-9]*")]),
+
+      price_type: new FormControl('',[Validators.required]),
+      
+    })
+
     this.reqData = {}
     this.reqData.offset = 0
     this.reqData.limit = 10
@@ -225,62 +276,6 @@ export class SellerAddServicesComponent implements OnInit {
     this.getProfile()
     // this.getProject()
     this.getCategoryList()
-    this.formGroup = new FormGroup({
-      service_name: new FormControl('', [
-        Validators.required,
-      ]),
-      service_description: new FormControl('', [
-        Validators.required,
-      ]),
-      // country: new FormControl('', [
-      //   Validators.required,
-        
-      // ]),
-      // city: new FormControl('', [
-      //   Validators.required,
-        
-      // ]),
-      service_category: new FormControl('', [
-        Validators.required,
-      ]),
-      service_sub_category: new FormControl('', [
-        Validators.required,
-      ]),
-      service_image: new FormControl('', [
-        Validators.required,
-      ]),
-      projectCost: new FormControl('', [
-        Validators.required,
-      ]),
-      // service_related_photos: new FormControl('', [
-      //   // Validators.required,
-      // ]),
-      // service_other_photos: new FormControl('', [
-      //   // Validators.required,
-      // ]),
-      service_price: new FormControl('', [
-        Validators.required,
-        Validators.pattern(/^\d*\.?\d*$/)
-      ]),
-      service_duration: new FormControl('', [
-        Validators.required, Validators.pattern("^[0-9]*")
-        // Validators.pattern('^[0-9]*')
-      ]),
-      service_visible_customer: new FormControl('', [
-        // Validators.required,
-      ]),
-      service_visible_professional: new FormControl('', [
-        // Validators.required,
-      ]),
-      keyWords:  new FormControl('', [
-        
-      ]), 
-      issuedInCountry: new FormControl('',[Validators.required]),
-      issuedIncities: new FormControl('',[Validators.required]),
-      service_checkbox: new FormControl('',[Validators.required]),
-    
-      //ckedit: new FormControl('',[Validators.required]),
-    })
 
 
     this.CustomerService.proffSelectedCatAndSubcat().subscribe(res => {
@@ -573,9 +568,11 @@ newArr = []
   visible_customer
   visible_pro
   visibleErr=false
+
+
+
   submit() {
     
-    console.log('this.formGroup.value.service_visible_customer',this.formGroup.value.service_visible_customer)
     if(this.formGroup.value.service_visible_customer){
       this.visible_customer=true
       console.log('this.visible_customer',this.visible_customer);
@@ -592,13 +589,6 @@ newArr = []
       this.visible_pro=false
       console.log('this.visible_pro',this.visible_pro);
     }
-    // if(!this.formGroup.value.service_visible_professional && !this.formGroup.value.service_visible_customer ){
-    //   this.visibleErr=true
-    //   console.log('this.visibleErr',this.visibleErr)
-    //   return
-    // }else{
-    //   this.visibleErr=false
-    // }
     console.log('this.formGroup.value.service_visible_professional',this.formGroup.value.service_visible_professional)
     this.areaCoveredArr.forEach(el=>{
       let b={
@@ -615,41 +605,17 @@ newArr = []
     this.newChecked.forEach(el=>{
       console.log('newChecked',el)
     })
-    console.log('newChecked',this.newChecked)
-    console.log('this.formGroup.value.service_name',this.formGroup.value.service_name);
-    console.log('this.formGroup.value.service_description',this.formGroup.value.service_description);
-    console.log('Area Covered',this.areaCoveredFormArr);
-    console.log('this.formGroup.value.country',this.formGroup.value.country);
-    console.log('this.formGroup.value.service_category',this.formGroup.value.service_category);
-    console.log('service_sub_category',this.formGroup.value.service_sub_category);
-    console.log('service_project',this.checked);
-    console.log('price',this.formGroup.value.service_price);
-    console.log('duration',this.formGroup.value.service_duration);
-    console.log('service_visible_customer', this.visible_customer);
-    console.log('service_visible_professional', this.visible_pro);
-    // console.log('service_image',this.service_image);
-    console.log('related_images', this.files);
-    console.log('other_images',this.files1);
-    
-    
 
-
-    console.log(this.files)
-    console.log("ugtgh data", this.formGroup.value)
     this.submit_button = true
     var formdata = new FormData()
     var formdata: FormData = new FormData();
-    // formdata.append('id', this.userData._id)
-    console.log("===imag", this.service_image)
-    // if (this.service_image) {
-    //   formdata?.append('service_image', this.service_image)
-    // }
+
     if (this.files.length > 0) {
-      // formdata.append('related_images', this.files)
       this.files.forEach(element => {
         formdata.append('related_images', element)
       });
     }
+
     if (this.files1.length > 0) {
       this.files1.forEach(element => {
         formdata?.append('service_video ', element)
@@ -662,21 +628,38 @@ newArr = []
       }); 
     }
 
-    console.log("Service Countries<<<<//////>>>>>>>",this.formGroup.value.issuedInCountry)
-    // formdata.append('professional_id', this.userDetails.data._id)
     formdata?.append('service_name', this.formGroup.value.service_name)
     formdata?.append('service_description', this.formGroup.value.service_description)
     formdata?.append('country', JSON.stringify(this.formGroup.value.issuedInCountry))
     formdata?.append('area_covered',JSON.stringify(this.formGroup.value.issuedIncities))
-    // formdata?.append('city', this.formGroup.value.city)
     formdata?.append('service_category', JSON.stringify(this.formGroup.value.service_category))
     formdata?.append('service_sub_category', JSON.stringify(this.formGroup.value.service_sub_category))
-    formdata?.append('price', this.formGroup.value.service_price)
     formdata?.append('duration', this.formGroup.value.service_duration)
     formdata?.append('service_visible_customer', this.formGroup.value.service_visible_customer)
     formdata?.append('service_visible_professional', this.formGroup.value.service_visible_professional)
     formdata?.append('service_project',JSON.stringify(this.newChecked))
     formdata?.append('service_image', this.service_image)
+
+    if (this.upto == 'upto') {
+      formdata?.append('price', this.formGroup.value.projectCost)
+      formdata?.append('price_type', this.upto)
+    }
+    else if (this.fixed == 'fixed') {
+      formdata?.append('price', this.formGroup.value.fix_price)
+      formdata?.append('price_type', this.fixed)
+    }
+    else if (this.range == 'range') {
+      formdata?.append('price', this.formGroup.value.start_range_price)
+      formdata?.append('end_price', this.formGroup.value.end_range_price)
+      formdata?.append('price_type', this.range)
+    }
+
+   
+
+
+
+
+
     // if(this.newChecked.length > 0){
     //   this.newChecked.forEach(element => {
     //     console.log('new checked  element',element)
@@ -780,6 +763,86 @@ newArr = []
       this.listArr = res.data
     })
   }
+
+
+  // price select----------------------------
+  priceSelect(event){
+    console.log("price select event >>>>>>>>>>>>.",event.value);
+    if(event.value=='upto'){
+      console.log("if",event.value)
+      this.formGroup.controls.fix_price.patchValue('')
+      this.formGroup.controls.start_range_price.patchValue('')
+      this.formGroup.controls.end_range_price.patchValue('')
+      this.price=''
+
+      this.formGroup.controls["projectCost"].setValidators([Validators.required, Validators.pattern("^[0-9]*")]);
+      this.formGroup.controls["projectCost"].updateValueAndValidity();
+
+      this.formGroup.controls["start_range_price"].setValidators([]);
+      this.formGroup.controls["start_range_price"].updateValueAndValidity();
+      this.formGroup.controls["start_range_price"].markAsUntouched()
+
+      this.formGroup.controls["end_range_price"].setValidators([]);
+      this.formGroup.controls["end_range_price"].updateValueAndValidity();
+      this.formGroup.controls["end_range_price"].markAsUntouched()
+
+
+      this.formGroup.controls["fix_price"].setValidators([]);
+      this.formGroup.controls["fix_price"].updateValueAndValidity();
+      this.formGroup.controls["fix_price"].markAsUntouched()
+    }
+   else if(event.value=='fixed'){
+    console.log("1if",event.value)
+      this.formGroup.controls.projectCost.patchValue('')
+      this.formGroup.controls.start_range_price.patchValue('')
+      this.formGroup.controls.end_range_price.patchValue('') 
+      this.price=''
+
+      this.formGroup.controls["fix_price"].setValidators([Validators.required, Validators.pattern("^[0-9]*")]);
+      this.formGroup.controls["fix_price"].updateValueAndValidity();
+
+      this.formGroup.controls["start_range_price"].setValidators([]);
+      this.formGroup.controls["start_range_price"].updateValueAndValidity();
+      this.formGroup.controls["start_range_price"].markAsUntouched()
+
+      this.formGroup.controls["end_range_price"].setValidators([]);
+      this.formGroup.controls["end_range_price"].updateValueAndValidity();
+      this.formGroup.controls["end_range_price"].markAsUntouched()
+
+      this.formGroup.controls["projectCost"].setValidators([]);
+      this.formGroup.controls["projectCost"].updateValueAndValidity();
+      this.formGroup.controls["projectCost"].markAsUntouched()
+
+    }
+   else if(event.value =='range'){
+     console.log("2if",event.value)
+      this.formGroup.controls.projectCost.patchValue('')
+      this.formGroup.controls.fix_price.patchValue('')
+
+      this.formGroup.controls["start_range_price"].setValidators([Validators.required, Validators.pattern("^[0-9]*")]);
+      this.formGroup.controls["start_range_price"].updateValueAndValidity();
+
+
+
+      this.formGroup.controls["end_range_price"].setValidators([Validators.required, Validators.pattern("^[0-9]*")]);
+      this.formGroup.controls["end_range_price"].updateValueAndValidity();
+
+      this.formGroup.controls["fix_price"].setValidators([]);
+      this.formGroup.controls["fix_price"].updateValueAndValidity();
+      this.formGroup.controls["fix_price"].markAsUntouched()
+
+      this.formGroup.controls["projectCost"].setValidators([]);
+      this.formGroup.controls["projectCost"].updateValueAndValidity();
+      this.formGroup.controls["projectCost"].markAsUntouched()
+    }
+    this.fixed=event.value
+    this.upto=event.value
+    this.range=event.value
+  }
+
+
+
+
 
 
 

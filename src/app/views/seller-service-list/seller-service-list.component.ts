@@ -34,6 +34,8 @@ export class SellerServiceListComponent implements OnInit {
 	reqData
 	length
 	selectedUser=[];
+	checked: any;
+	selectAllChecked: any;
 
 
 	constructor(
@@ -92,7 +94,15 @@ export class SellerServiceListComponent implements OnInit {
 			// 	// this.dataSource.paginator = this.paginator;
 			// 	// this.datamodel = {}
 			// }
-		})
+		}, err => {
+			console.log(err)
+			if (err.status >= 400) {
+			  this.toastr.error('Internal Error', 'Error')
+			} else {
+			  this.toastr.error('Internet Connection Error', 'Error')
+			  console.log('Internet Connection Error')
+			}
+		  })
 	}
 
 	isAllSelected() {
@@ -144,7 +154,7 @@ export class SellerServiceListComponent implements OnInit {
 					this.CustomerService.deleteSellerService(obj).subscribe(data => {
 						console.log(data);
 						this.getProfessionalServices()
-						this.toastr.success("Service deleted sucessfully")
+						this.toastr.success("Service Deleted Sucessfully")
 					})
 				})
 			} else if (result.dismiss === Swal.DismissReason.cancel) {
@@ -292,6 +302,11 @@ export class SellerServiceListComponent implements OnInit {
 	//   checkbox -------------------------------------
 
 	selectAll(e) {
+		console.log("selecAll event>>>>>>>>>.",e);
+		this.selectAllChecked=e.checked
+		console.log("this.selectAllChecked>>>>",this.selectAllChecked);
+		
+		
 		const checked = e?.checked;
 		if (checked) {
 		  this.userData.forEach((item) => {
@@ -321,6 +336,11 @@ export class SellerServiceListComponent implements OnInit {
 	
 	  selectUser(event, id): void {
 		console.log("event>>>>>>>>",event);
+
+		this.checked=event.checked
+		console.log("this.checked>>>>>",this.checked);
+		
+
 		console.log("selectuser ki id>>>>>>>>>>",id);
 		if (event?.checked) {
 		  this.selectedUser?.push(id);
@@ -332,6 +352,30 @@ export class SellerServiceListComponent implements OnInit {
 		  console.log("selectuser ka  selectedUser>>>>>>>",this.selectedUser);
 		}
 	  }
+
+
+	//   multiple delete data ------------------------------------------
+
+	selectedAllDelete(){
+		var obj={
+			service_ids:this.selectedUser
+		}
+		this.CustomerService.selectedAllDelete(obj).subscribe((res:any)=>{
+			console.log("selected delete response data>>>>",res);
+			this.toastr.success("Selected Data Deleted  Sucessfully")
+			this.ngOnInit()
+			
+		}, err => {
+			console.log(err)
+			if (err.status >= 400) {
+			  this.toastr.error('Internal Error', 'Error')
+			} else {
+			  this.toastr.error('Internet Connection Error', 'Error')
+			  console.log('Internet Connection Error')
+			}
+		  })
+		
+	}
 
 
 }

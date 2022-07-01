@@ -2,7 +2,7 @@
 <!-- <app-db-header></app-db-header> -->
 <div class="wrapper_shala outer_most_main">
     <section class="her_sldr_don">
-        <div class="hero_carosel">
+        <div class="hero_carosel"  style="min-height: 450px;height:450px;padding:0px;margin:0px">
             <owl-carousel-o [options]="heroOpt">
                 <ng-template carouselSlide *ngFor="let data of sliderData">
                     <div class="hero-img">
@@ -104,7 +104,7 @@
             <div class="row">
                 <div class="col-md-7">
                     <div class="img_wrapwr position-relative mb-5" routerLink="/catalogue-interior" style="cursor: pointer;">
-                        <img src="{{imgpath}}{{catalogueData?.image1}}" class="img-fluid">
+                        <img src="{{imgpath}}{{catalogueData?.image1}}" class="img-fluid mt-5">
                         <!-- <img src="assets/imgs/interior.jpeg" class="img-fluid"> -->
                         <div class="main-text">
                             <h2 class="text-center"><a routerLink="/catalogue-interior"> {{catalogueData?.title1}}</a></h2>
@@ -115,7 +115,7 @@
                 </div>
                 <div class="col-md-5">
                     <div class="img_wrapwr position-relative" routerLink="/catalogue-exterior" style="cursor: pointer;">
-                        <img src="{{imgpath}}{{catalogueData?.image2}}" class="img-fluid">
+                        <img src="{{imgpath}}{{catalogueData?.image2}}" class="img-fluid mt-5">
                         <!-- <img src="assets/imgs/exterior.jpeg" class="img-fluid"> -->
                         <div class="main-text">
                             <h2 class="text-center"><a routerLink="/catalogue-exterior">{{catalogueData?.title2}}</a></h2>
@@ -211,9 +211,9 @@
                 <div class="row">
                     <div class="col-sm-3">
                         <div class="wrap_idea_singl">
-                            <img src="https://www.goodhomesmagazine.com/images/2020/04/GoodHome_Artemisia_Matt_Graphite_Shaker_BQ_From_1298_For_8_Unit_Kitchen.jpg" class="img-fluid" alt="room1" />
+                            <img src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/kitchen-decor-ideas-1580491833.jpg" class="img-fluid" alt="room1" />
                             <div class="fig_div_abs text-center">
-                                <h3 class="room_name">Kitchen</h3>
+                                <h3 class="room_name cstm-mg">Kitchen</h3>
                             </div>
                         </div>
                     </div>
@@ -243,9 +243,9 @@
                     </div>
                     <div class="col-sm-3">
                         <div class="wrap_idea_singl">
-                            <img src="https://madebymood.com/wp-content/uploads/2015/08/Gorgeous-round-foyer-table-in-Hall-Victorian-with-Long-Hallway-next-to-Small-Foyer-alongside-Hall-Table-andFoyer-Table-.jpg" class="img-fluid" alt="room1" />
+                            <img src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/kitchen-decor-ideas-1580491833.jpg" class="img-fluid" alt="room1" />
                             <div class="fig_div_abs text-center">
-                                <h3 class="room_name">Corridor</h3>
+                                <h3 class="room_name cstm-mg">Corridor</h3>
                             </div>
                         </div>
                     </div>
@@ -343,7 +343,7 @@
                 <div class="section_title">
                     <h2>Top Rated Professionals</h2>
                 </div>
-                <div class="testmonal_inner top_photo">
+                <div class="testmonal_inner top_photo" style="min-height: 200px;height:260px">
                     <owl-carousel-o [options]="testimonial">
                         <ng-template carouselSlide  >
                             <div class="trp_image">
@@ -482,7 +482,7 @@
                  <div class="section_title">
                     <h2>Recently joined Professionals</h2>
                  </div>
-                 <div class="testmonal_inner top_photo">
+                 <div class="testmonal_inner top_photo" style="min-height: 200px;height:260px">
                     <owl-carousel-o [options]="testimonial">
                         <ng-template carouselSlide>
                             <div class="trp_image">

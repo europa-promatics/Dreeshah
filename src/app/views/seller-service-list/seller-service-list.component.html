@@ -154,7 +154,7 @@
                                                                         <th mat-header-cell *matHeaderCellDef> Service
                                                                             Name </th>
                                                                         <td  class="font-size" mat-cell *matCellDef="let element">
-                                                                            {{element.service_name}} </td>
+                                                                            {{element.service_name | titlecase}} </td>
                                                                     </ng-container>
 
                                                                     <!-- Symbol Column -->
@@ -265,7 +265,14 @@
                                                                         (click)="selection.toggle(row)">
                                                                     </tr>
                                                                 </table>
-                                                                <div class="col-md-12 text-right mt-3 mb-3"><button  class="btn btns_imgs btn-change-fill">Bulk</button></div>
+                                                                <ng-container *ngIf="this.checked == true || this.selectAllChecked == true ">
+                                                                    <div class="col-md-12 text-right mt-3 mb-3">
+                                                                        <button  class="btn btns_imgs btn-change-fill" (click)="selectedAllDelete()">
+                                                                            All Delete
+                                                                        </button>
+                                                                    </div>
+                                                                </ng-container>
+                                                                
                                                                 <div>
                                                                     <mat-paginator [length]="length" [pageSize]="10"
                                                                         [pageSizeOptions]="getPageSizeOptions()"

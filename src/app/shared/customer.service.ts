@@ -2804,6 +2804,16 @@ export class CustomerService {
     )
   }
 
+  // 28-june-2022 ---------------------------------------------------------
+  selectedAllDelete(data):Observable<any>{
+    let API_URL=`${this.apiUrl}/deleteSelectedSellerService`;
+    return this.httpClient.post(API_URL,data,this.httpOptions).pipe(
+      map(res =>{
+        return res
+      })
+    )
+  }
+
 
 
 

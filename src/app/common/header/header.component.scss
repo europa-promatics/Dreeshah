@@ -58,3 +58,6 @@ opacity: 1;
     margin: 7px;
     color: #a8a8a8;
 }
+.header_srch ::ng-deep.mat-form-field-underline {
+    height:0px!important;
+}

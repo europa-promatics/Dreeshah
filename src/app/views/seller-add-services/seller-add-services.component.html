@@ -17,7 +17,7 @@
                                             <div class="form-group">
                                                 <mat-form-field appearance="">
                                                     <mat-label>Service Name</mat-label>
-                                                    <input matInput placeholder="Service Name" 
+                                                    <input matInput placeholder="Service Name"
                                                         formControlName="service_name">
                                                 </mat-form-field>
                                                 <div *ngIf="formGroup.controls.service_name.invalid && (formGroup.controls.service_name.dirty || formGroup.controls.service_name.touched || submit_button)"
@@ -57,8 +57,8 @@
                                                     {{SubCat.name}}
                                                     </ng-option>
                                             </ng-select> -->
-                                            <br>
-                                            <!-- <p><strong>Subcategory</strong></p>
+                                                <br>
+                                                <!-- <p><strong>Subcategory</strong></p>
                                             <div *ngFor="let SubCat of subCateArr">
                                                 {{SubCat.name}},
                                                 </div> -->
@@ -69,7 +69,7 @@
                                                         placeholder="Select Service Category" name="service_category">
                                                         <mat-option *ngFor="let category of categiryArr"
                                                             [value]="category._id">
-                                                            {{category.name}}
+                                                            {{category?.name}}
                                                         </mat-option>
                                                     </mat-select>
                                                 </mat-form-field>
@@ -81,9 +81,9 @@
                                                     </p>
                                                 </div>
                                             </div>
-                                           
+
                                             <div class="form-group">
-                                                
+
                                                 <mat-form-field>
                                                     <mat-label>Select Service Sub Category</mat-label>
                                                     <mat-select (selectionChange)="getProject($event)"
@@ -91,7 +91,7 @@
                                                         formControlName="service_sub_category" name="service_category">
                                                         <mat-option *ngFor="let SubCat of subCatArr"
                                                             [value]="SubCat._id">
-                                                            {{SubCat.name}}
+                                                            {{SubCat?.name}}
                                                         </mat-option>
                                                     </mat-select>
                                                 </mat-form-field>
@@ -106,15 +106,16 @@
 
 
                                             <div class="form-group">
-                                            <div class="ck-editor">
-                                                <label>Description</label>
-                                                <ckeditor formControlName="service_description" data="<p>Hello, world!</p>"></ckeditor>
-                                                <p style="color: red;"
-                                                    *ngIf="formGroup.controls['service_description'].errors?.required && ( formGroup.controls['service_description'].touched || submit_button)">
-                                                    Description is Required</p>
+                                                <div class="ck-editor">
+                                                    <label>Description</label>
+                                                    <ckeditor formControlName="service_description"
+                                                        data="<p>Hello, world!</p>"></ckeditor>
+                                                    <p style="color: red;"
+                                                        *ngIf="formGroup.controls['service_description'].errors?.required && ( formGroup.controls['service_description'].touched || submit_button)">
+                                                        Description is Required</p>
+                                                </div>
                                             </div>
-                                            </div>
-            
+
                                             <!-- <div class="form-group">
                                                 <mat-form-field appearance="">
                                                     <mat-label>Description</mat-label>
@@ -192,8 +193,9 @@
 
                                             <div class="form-group">
                                                 <ng-select [multiple]="true" formControlName="issuedInCountry"
-                                                    (change)="getCities($event)" placeholder="Select Country" >
-                                                    <ng-option *ngFor="let country of countries" [value]="country.isoCode">
+                                                    (change)="getCities($event)" placeholder="Select Country">
+                                                    <ng-option *ngFor="let country of countries"
+                                                        [value]="country.isoCode">
                                                         {{country.name}}
                                                     </ng-option>
                                                 </ng-select>
@@ -204,9 +206,8 @@
                                                         Country is required
                                                     </p>
                                                 </div>
-            
-                                                <ng-select [multiple]="true" formControlName="issuedIncities" 
-                                                    
+
+                                                <ng-select [multiple]="true" formControlName="issuedIncities"
                                                     placeholder="Area Covered">
                                                     <ng-option *ngFor="let city of cities" [value]="city.name">
                                                         {{city.name}}
@@ -220,11 +221,11 @@
                                                     </p>
                                                 </div>
 
-                                               
-                                               
+
+
                                             </div>
 
-                                            <mat-form-field appearance="">
+                                            <!-- <mat-form-field appearance="">
                                                 <mat-label>Project Cost in AED</mat-label>
                                                 <mat-select formControlName="projectCost" >
                                                     <mat-option value="Up to 10,000 AED">Up to 10,000 AED</mat-option>
@@ -234,10 +235,8 @@
                                                     <mat-option value="Above 500,000 AED">Above 500,000 AED</mat-option>
                                                     
                                                   </mat-select>
-                                                <!-- <input (keypress)="numberOnly($event)" maxlength="7"
-                                                    formControlName="projectCost" matInput placeholder=""
-                                                    value="1000"> -->
-                                            </mat-form-field>
+                                            </mat-form-field> -->
+
                                             <!-- <div *ngIf="formGroup.controls.projectCost.invalid && (formGroup.controls.projectCost.dirty || formGroup.controls.projectCost.touched || submit)"
                                                 class="">
                                                 <mat-error
@@ -253,14 +252,13 @@
                                                 </tag-input>
                                             </div> -->
 
-                                      
+
 
                                             <div class="form-group signup-form">
                                                 <label for="exampleFormControlFile1">Add Service Image</label>
-                                                <input type="file" class="form-control-file"
-                                                accept=".png, .jpg, .jpeg" id="exampleFormControlFile1"
-                                                (change)="onFileChange($event)"
-                                                formControlName="service_image">
+                                                <input type="file" class="form-control-file" accept=".png, .jpg, .jpeg"
+                                                    id="exampleFormControlFile1" (change)="onFileChange($event)"
+                                                    formControlName="service_image">
                                             </div>
                                             <div *ngIf="formGroup.controls.service_image.invalid && (formGroup.controls.service_image.dirty || formGroup.controls.service_image.touched || submit_button)"
                                                 class="">
@@ -271,15 +269,18 @@
                                             </div>
                                             <div class="form-group">
                                                 <mat-label>Add Related Photos</mat-label>
-                                                <ngx-dropzone [accept]="'image/*'"  (change)="onSelect($event)"
+                                                <ngx-dropzone [accept]="'image/*'" (change)="onSelect($event)"
                                                     class="margn-top">
-                                                    <ngx-dropzone-label>                                                      
+                                                    <ngx-dropzone-label>
                                                         <div class="drp-upld-icn">
-                                                            <i class="fa fa-upload" aria-hidden="true"></i>                                           
+                                                            <i class="fa fa-upload" aria-hidden="true"></i>
                                                         </div>
-                                                        <p class="drp-img-lbl">Add Files</p>                                               
-                                                        <span style="position: absolute; right: 30px; font-size: 13px; margin-top: 19px;">Max file size: 2MB</span>
-                                                        <span style="position: absolute; left: 30px; font-size: 13px;margin-top: 19px;">Resolution:800*600</span>                                                                                                                                                                                                                           
+                                                        <p class="drp-img-lbl">Add Files</p>
+                                                        <span
+                                                            style="position: absolute; right: 30px; font-size: 13px; margin-top: 19px;">Max
+                                                            file size: 2MB</span>
+                                                        <span
+                                                            style="position: absolute; left: 30px; font-size: 13px;margin-top: 19px;">Resolution:800*600</span>
                                                     </ngx-dropzone-label>
                                                     <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview"
                                                         *ngFor="let f of files" [file]="f" [removable]="true"
@@ -291,7 +292,7 @@
                                         		</ngx-dropzone-preview> -->
                                                 </ngx-dropzone>
                                             </div>
-                                          
+
                                             <div class="form-group">
                                                 <mat-label>Add Other Photos</mat-label>
                                                 <ngx-dropzone [accept]="'image/*'" (change)="onSelect1($event)"
@@ -301,28 +302,34 @@
                                                             <i class="fa fa-upload" aria-hidden="true"></i>
                                                         </div>
                                                         <p class="drp-img-lbl">Add Files</p>
-                                                        <span style="position: absolute; right: 30px; font-size: 13px;margin-top: 19px;">Max file size: 2MB</span>
-                                                        <span style="position: absolute; left: 30px; font-size: 13px;margin-top: 19px;">Resolution:800*600</span>
+                                                        <span
+                                                            style="position: absolute; right: 30px; font-size: 13px;margin-top: 19px;">Max
+                                                            file size: 2MB</span>
+                                                        <span
+                                                            style="position: absolute; left: 30px; font-size: 13px;margin-top: 19px;">Resolution:800*600</span>
                                                     </ngx-dropzone-label>
                                                     <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview"
                                                         *ngFor="let f of files1" [file]="f" [removable]="true"
                                                         (removed)="onRemove1(f)">
                                                         <!-- <ngx-dropzone-label><span class="drop-img-lbl">{{ f.name }} ({{ f.type }})</span></ngx-dropzone-label> -->
-                                                    </ngx-dropzone-image-preview> 
+                                                    </ngx-dropzone-image-preview>
 
                                                 </ngx-dropzone>
                                             </div>
-                                              <div class="form-group">
+                                            <div class="form-group">
                                                 <mat-label>Video</mat-label>
-                                                <ngx-dropzone [accept]="'video/*'"  (change)="onSelectVideo($event)"
+                                                <ngx-dropzone [accept]="'video/*'" (change)="onSelectVideo($event)"
                                                     class="margn-top">
-                                                    <ngx-dropzone-label>                                                      
+                                                    <ngx-dropzone-label>
                                                         <div class="drp-upld-icn">
-                                                            <i class="fa fa-upload" aria-hidden="true"></i>                                           
+                                                            <i class="fa fa-upload" aria-hidden="true"></i>
                                                         </div>
-                                                        <p class="drp-img-lbl">Add Files</p>                                               
-                                                        <span style="position: absolute; right: 30px; font-size: 13px; margin-top: 19px;">Max file size: 100MB</span>
-                                                        <span style="position: absolute; left: 30px; font-size: 13px;margin-top: 19px;">Resolution:854x480p</span>                                                                                                                                                                                                                           
+                                                        <p class="drp-img-lbl">Add Files</p>
+                                                        <span
+                                                            style="position: absolute; right: 30px; font-size: 13px; margin-top: 19px;">Max
+                                                            file size: 100MB</span>
+                                                        <span
+                                                            style="position: absolute; left: 30px; font-size: 13px;margin-top: 19px;">Resolution:854x480p</span>
                                                     </ngx-dropzone-label>
                                                     <ngx-dropzone-video-preview ngProjectAs="ngx-dropzone-preview"
                                                         *ngFor="let f of files2" [file]="f" [removable]="true"
@@ -334,28 +341,124 @@
                                         		</ngx-dropzone-preview> -->
                                                 </ngx-dropzone>
                                             </div>
-                                            <div class="form-group">
-                                                <mat-form-field appearance="">
-                                                    <mat-label>Price </mat-label>
-                                                    <input matInput placeholder="Price in AED" formControlName="service_price" (keypress)="numberOnly($event)">
+                                            <div class="form-group col-md-6">
+                                                <mat-form-field>
+                                                    <mat-label>Price</mat-label>
+                                                    <mat-select (selectionChange)="priceSelect($event)"
+                                                        formControlName="price_type">
+                                                        <mat-option value="upto">Upto </mat-option>
+                                                        <mat-option value="fixed">Fixed</mat-option>
+                                                        <mat-option value="range">Range</mat-option>
+                                                    </mat-select>
                                                 </mat-form-field>
-                                                <div *ngIf="formGroup.controls.service_price.invalid && (formGroup.controls.service_price.dirty || formGroup.controls.service_price.touched || submit_button)"
+                                            </div>
+
+                                            <div class="form-group col-md-12" *ngIf="this.fixed == 'fixed'">
+                                                <mat-form-field>
+                                                    <mat-label>Fixed Price </mat-label>
+                                                    <input matInput placeholder="Fixed Price" 
+                                                        formControlName="fix_price">
+
+                                                </mat-form-field>
+                                                <div *ngIf="formGroup.controls.fix_price.invalid && (formGroup.controls.fix_price.dirty || formGroup.controls.fix_price.touched || submit_button)"
+                                                class="">
+                                                <p style="color: red;"
+                                                    *ngIf="formGroup.controls.fix_price.errors.required">
+                                                    Please Enter Fixed Price
+                                                </p>
+                                                <p style="color: red;"
+                                                    *ngIf="formGroup.controls.fix_price.errors.pattern">
+                                                    Please Add Digit Only
+                                                </p>
+                                            </div>
+                                            </div>
+
+
+                                            <div class="form-group col-md-12" *ngIf="this.upto == 'upto'">
+                                                <mat-form-field appearance="">
+                                                    <mat-label>Project Cost in AED</mat-label>
+                                                    <mat-select formControlName="projectCost">
+                                                        <mat-option value="Up to 10,000 AED">Up to 10,000 AED
+                                                        </mat-option>
+                                                        <mat-option value="Up to 50,000 AED">Up to 50,000 AED
+                                                        </mat-option>
+                                                        <mat-option value="Up to 100,000 AED">Up to 100,000 AED
+                                                        </mat-option>
+                                                        <mat-option value="Up to 500,000 AED">Up to 500,000 AED
+                                                        </mat-option>
+                                                        <mat-option value="Above 500,000 AED">Above 500,000 AED
+                                                        </mat-option>
+
+                                                    </mat-select>
+                                                </mat-form-field>
+                                                <div *ngIf="formGroup.controls.projectCost.invalid && (formGroup.controls.projectCost.dirty || formGroup.controls.projectCost.touched || submit_button)"
                                                     class="">
                                                     <p style="color: red;"
-                                                        *ngIf="formGroup.controls.service_price.errors.required">
-                                                        Please add service price
+                                                        *ngIf="formGroup.controls.projectCost.errors.required">
+                                                        **Please Select Upto Price
                                                     </p>
-                                                    <!-- <p style="color: red;"
-                                                        *ngIf="formGroup.controls.service_price.errors.pattern">
-                                                        Please add digit only
-                                                    </p> -->
                                                 </div>
                                             </div>
+
+
+
+                                            <div class="row" *ngIf="this.range == 'range'">
+                                                <div class="form-group col-md-6">
+                                                    <mat-form-field>
+                                                        <mat-label> Start Range Price</mat-label>
+                                                        <input matInput placeholder="Start" 
+                                                            formControlName="start_range_price">
+
+                                                    </mat-form-field>
+                                                    <!-- <div *ngIf="formGroup.controls.price.invalid && (formGroup.controls.price.dirty || formGroup.controls.price.touched || submit_button)"
+                                                        class="">
+                                                        <p style="color: red;"
+                                                            *ngIf="formGroup.controls.price.errors.required">
+                                                            **Please Enter Start Price
+                                                        </p>
+                                                    </div> -->
+                                                    <div *ngIf="formGroup.controls.start_range_price.invalid && (formGroup.controls.start_range_price.dirty || formGroup.controls.start_range_price.touched || submit_button)"
+                                                    class="">
+                                                    <p style="color: red;"
+                                                        *ngIf="formGroup.controls.start_range_price.errors.required">
+                                                        Please Enter First Range  Price
+                                                    </p>
+                                                    <p style="color: red;"
+                                                        *ngIf="formGroup.controls.start_range_price.errors.pattern">
+                                                        Please add digit only
+                                                    </p>
+                                                </div>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <mat-form-field>
+                                                        <mat-label> Last Range Price</mat-label>
+                                                        <input matInput placeholder="Last" 
+                                                            formControlName="end_range_price">
+
+                                                    </mat-form-field>
+                                                    <div *ngIf="formGroup.controls.end_range_price.invalid && (formGroup.controls.end_range_price.dirty || formGroup.controls.end_range_price.touched || submit_button)"
+                                                        class="">
+                                                        <p style="color: red;"
+                                                            *ngIf="formGroup.controls.end_range_price.errors.required">
+                                                            Please Enter Last Range Price
+                                                        </p>
+                                                        <p style="color: red;"
+                                                            *ngIf="formGroup.controls.end_range_price.errors.pattern">
+                                                            Please Add Digit Only
+                                                        </p>
+                                                    </div>
+                                                    <!-- <div style="color: red;" *ngIf="this.price > this.endkeyUp || this.price > this.clickEnd">
+                                               **Please  Enter End Price Should be Above From Start Price 
+                                            </div> -->
+                                                </div>
+                                            </div>
+
+
                                             <div class="form-group col-md-6">
                                                 <mat-form-field appearance="">
                                                     <mat-label>Duration </mat-label>
                                                     <input matInput placeholder="Duration"
-                                                        formControlName="service_duration" >
+                                                        formControlName="service_duration">
                                                 </mat-form-field>
                                                 <div *ngIf="formGroup.controls.service_duration.invalid && (formGroup.controls.service_duration.dirty || formGroup.controls.service_duration.touched || submit_button)"
                                                     class="">
@@ -373,12 +476,12 @@
                                                 <mat-form-field>
                                                     <mat-label>Choose an option</mat-label>
                                                     <mat-select>
-                                                      <mat-option value="option1">Days</mat-option>
-                                                      <mat-option value="option2">Weeks</mat-option>
-                                                      <mat-option value="option3">Months</mat-option>
-                                                      <mat-option value="option3">Years</mat-option>
+                                                        <mat-option value="option1">Days</mat-option>
+                                                        <mat-option value="option2">Weeks</mat-option>
+                                                        <mat-option value="option3">Months</mat-option>
+                                                        <mat-option value="option3">Years</mat-option>
                                                     </mat-select>
-                                                  </mat-form-field>
+                                                </mat-form-field>
                                             </div>
                                             <!-- <div class="form-group signup-form">
                                                 <label>Add Tags (Separated by comma. Eg-Demo1,Demo2)</label>
@@ -395,8 +498,9 @@
                                                             <div class="col-md-6">
                                                                 <div class="added-proje-wrp mb-3">
                                                                     <div class="added-proj-img text-center">
-                                                                        <a >
-                                                                            <div class="sign_txt_wrp" (click)="openDialog()">
+                                                                        <a>
+                                                                            <div class="sign_txt_wrp"
+                                                                                (click)="openDialog()">
                                                                                 <i class="fa fa-plus"></i>
                                                                                 <h3 class="text-center">New Project</h3>
                                                                             </div>
@@ -404,67 +508,78 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <ng-container  *ngFor="let r of listArr">
-                                                            <div class="col-md-6" >
+                                                            <ng-container *ngFor="let r of listArr">
+                                                                <div class="col-md-6">
 
-                                                               
+
                                                                     <div class="div-pos">
-                                                                        <a  data-toggle="modal" data-target="#view-project">
+                                                                        <a data-toggle="modal"
+                                                                            data-target="#view-project">
                                                                             <div class="form-group">
-                                                                                <div class="media-link d-flex justify-content-between">
+                                                                                <div
+                                                                                    class="media-link d-flex justify-content-between">
                                                                                     <div>
-                                                                                        <label for="exampleFormControlFile1" class="mr-4 mt-4">
+                                                                                        <label
+                                                                                            for="exampleFormControlFile1"
+                                                                                            class="mr-4 mt-4">
                                                                                             View Project
                                                                                         </label>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
-                
+
                                                                             <div class="view-project">
-                                                                                <table class="view-project-table" > 
+                                                                                <table class="view-project-table">
                                                                                     <tr>
-                                                                                        <td><strong>Project Name : </strong></td>
+                                                                                        <td><strong>Project Name :
+                                                                                            </strong></td>
                                                                                         <td>{{r.project_name}}</td>
-                
+
                                                                                     </tr>
                                                                                     <tr>
-                                                                                        <td><strong>Project Address :</strong></td>
+                                                                                        <td><strong>Project Address
+                                                                                                :</strong></td>
                                                                                         <td>{{r.project_address}}</td>
                                                                                     </tr>
                                                                                     <tr>
-                                                                                        <td><strong>Website :</strong></td>
+                                                                                        <td><strong>Website :</strong>
+                                                                                        </td>
                                                                                         <td>{{r.project_website}}</td>
                                                                                     </tr>
                                                                                     <tr>
-                
-                                                                                        <td><strong>Category : </strong> </td>
-                                                                                        <td>{{r.project_category[0].name}}</td>
-                
+
+                                                                                        <td><strong>Category : </strong>
+                                                                                        </td>
+                                                                                        <td>{{r.project_category[0]?.name}}
+                                                                                        </td>
+
                                                                                     </tr>
                                                                                     <tr>
-                                                                                        <td><strong>Country : </strong></td>
-                                                                                        <td>{{r.project_country[0]}}</td>
+                                                                                        <td><strong>Country : </strong>
+                                                                                        </td>
+                                                                                        <td>{{r.project_country[0]}}
+                                                                                        </td>
                                                                                     </tr>
-                
+
                                                                                 </table>
                                                                             </div>
                                                                         </a>
-                                                                        <span class="cross-btn" >
+                                                                        <span class="cross-btn">
                                                                             <i class="fa fa-times" aria-hidden="true">
-                
+
                                                                             </i>
                                                                         </span>
-                
+
                                                                     </div>
                                                                 </div>
-                                                                </ng-container>
+                                                            </ng-container>
 
-                                                                
-                                                          
-                                                             <div class="col-md-4" *ngFor="let project of projects;">
+
+
+                                                            <div class="col-md-4" *ngFor="let project of projects;">
                                                                 <div class="added-proj-wrp">
                                                                     <div class="added-proj-img">
-                                                                        <img src="{{image_path}}{{project.project_images[0].name}}"
+                                                                        <img src="{{image_path}}{{project.project_images[0]?.name}}"
                                                                             alt="img" class="img-fluid">
                                                                         <div class="select-proj">
                                                                             <mat-checkbox #checkBox [value]="project"
@@ -488,14 +603,13 @@
                                             </div>
                                             <div class="form-group signup-form">
                                                 <mat-form-field appearence="">
-                                                <mat-label>Add Tags (Separated by comma. Eg-Demo1,Demo2)</mat-label>
-                                                <input matInput placeholder="Separated by comma. Eg-Demo1,Demo2" 
-                                            >
-                                                <!-- <tag-input formControlName="keyWords" [(ngModel)]='items'
+                                                    <mat-label>Add Tags (Separated by comma. Eg-Demo1,Demo2)</mat-label>
+                                                    <input matInput placeholder="Separated by comma. Eg-Demo1,Demo2">
+                                                    <!-- <tag-input formControlName="keyWords" [(ngModel)]='items'
                                                     maxItems="10" class="keywords--chips form-control height-unset"
                                                     [placeholder]="">
                                                 </tag-input> -->
-                                            </mat-form-field>
+                                                </mat-form-field>
                                             </div>
                                             <div class="form-group">
                                                 <div class="seller-prod-list-heading signup-form">
@@ -523,16 +637,16 @@
                                                     Accept Terms And Conditions
                                                 </mat-checkbox>
                                                 <div *ngIf="formGroup.controls.service_checkbox.invalid && (formGroup.controls.service_checkbox.dirty || formGroup.controls.service_checkbox.touched || submit_button)"
-                                                class="">
-                                                <p style="color: red;"
-                                                    *ngIf="formGroup.controls.service_checkbox.errors.required">
-                                                    Please Accept Terms and Condition
-                                                </p>
-                                                <!-- <p style="color: red;"
+                                                    class="">
+                                                    <p style="color: red;"
+                                                        *ngIf="formGroup.controls.service_checkbox.errors.required">
+                                                        Please Accept Terms and Condition
+                                                    </p>
+                                                    <!-- <p style="color: red;"
                                                     *ngIf="formGroup.controls.service_price.errors.pattern">
                                                     Please add digit only
                                                 </p> -->
-                                            </div>
+                                                </div>
                                                 <!-- <div *ngIf="visible_pro">
                                                     <p style="color:red ">
                                                         Please Accept Terms and Condition
@@ -541,7 +655,8 @@
 
                                             </div>
                                             <div class="service--submt-btn" align="center">
-                                                <button class="btn btn-change-fill mr-2" data-toggle="modal" (click)="fun()" data-target="#exampleModalCenter">Preview</button>
+                                                <button class="btn btn-change-fill mr-2" data-toggle="modal"
+                                                    (click)="fun()" data-target="#exampleModalCenter">Preview</button>
                                                 <button class="btn btn-change-fill" (click)="submit()">Submit</button>
                                             </div>
                                         </form>
@@ -551,79 +666,82 @@
                         </div>
                     </div>
                 </div>
-                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h3 class="modal-title text-center" id="exampleModalLongTitle">Service Preview</h3>
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-md-8 offset-md-2">
-                                    <div class="clearfix">
-                                        <h3 class="float-left"> Service Name</h3>
-                                        <span class="float-right">{{formGroup.value.service_name}}</span>
-                                    </div>
-                                    <div class="clearfix">
-                                        <h3 class="float-left"> Service Description</h3>
-                                        <span class="float-right" [innerHtml]='service_description'></span>
-                                    </div>
-                                    <div class="clearfix">
-                                        <h3 class="float-left">Country</h3>
-                                        <span class="float-right">{{formGroup.value.issuedInCountry}}</span>
-                                    </div>
-                                    <div class="clearfix">
-                                        <h3 class="float-left">Area Covered</h3>
-                                        <span class="float-right">{{formGroup.value.issuedIncities}}</span>
-                                    </div>
-                                    <div class="clearfix">
-                                        <h3 class="float-left">price </h3>
-                                        <span class="float-right">{{formGroup.value.service_price}}</span>
-                                    </div>
-                                
-                                    <div class="clearfix">
-                                        <h3 class="float-left"> Tags</h3>
-                                        <span class="float-right">{{items}}</span>
-                                    </div>
-                                    <div class="clearfix">
-                                        <h3 class="float-left">Service Category</h3>
-                                        <span class="float-right">{{formGroup.value.service_category}}</span>
-                                    </div>
-                                    <div class="clearfix">
-                                        <h3 class="float-left">Service Sub Category</h3>
-                                        <span class="float-right">{{formGroup.value.service_sub_category}}</span>
-                                    </div>
-                                   
-                                    <div class="clearfix">
-                                        <h3 class="float-left">Duration</h3>
-                                        <span class="float-right">{{formGroup.value.service_duration}}</span>
-                                    </div>
-                                    <div class="clearfix">
-                                        <h3 class="float-left">Project Cost</h3>
-                                        <span class="float-right">{{formGroup.value.projectCost}}</span>
-                                    </div>                          
-                                    <div class="clearfix">
-                                        <h3 class="float-left">This Service Will be Visible to</h3>
-                                        <span class="float-right" *ngIf="this.formGroup.value.service_visible_professional === true">{{'Professional'}}</span>
-                                        <span class="float-right" *ngIf="this.formGroup.value.service_visible_customer === true">{{'Customer'}}</span>
-                                    </div>
-                                    <!-- <div class="clearfix">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3 class="modal-title text-center" id="exampleModalLongTitle">Service Preview</h3>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-md-8 offset-md-2">
+                                        <div class="clearfix">
+                                            <h3 class="float-left"> Service Name</h3>
+                                            <span class="float-right">{{formGroup.value.service_name}}</span>
+                                        </div>
+                                        <div class="clearfix">
+                                            <h3 class="float-left"> Service Description</h3>
+                                            <span class="float-right" [innerHtml]='service_description'></span>
+                                        </div>
+                                        <div class="clearfix">
+                                            <h3 class="float-left">Country</h3>
+                                            <span class="float-right">{{formGroup.value.issuedInCountry}}</span>
+                                        </div>
+                                        <div class="clearfix">
+                                            <h3 class="float-left">Area Covered</h3>
+                                            <span class="float-right">{{formGroup.value.issuedIncities}}</span>
+                                        </div>
+                                        <div class="clearfix">
+                                            <h3 class="float-left">price </h3>
+                                            <span class="float-right">{{formGroup.value.service_price}}</span>
+                                        </div>
+
+                                        <div class="clearfix">
+                                            <h3 class="float-left"> Tags</h3>
+                                            <span class="float-right">{{items}}</span>
+                                        </div>
+                                        <div class="clearfix">
+                                            <h3 class="float-left">Service Category</h3>
+                                            <span class="float-right">{{formGroup.value.service_category}}</span>
+                                        </div>
+                                        <div class="clearfix">
+                                            <h3 class="float-left">Service Sub Category</h3>
+                                            <span class="float-right">{{formGroup.value.service_sub_category}}</span>
+                                        </div>
+
+                                        <div class="clearfix">
+                                            <h3 class="float-left">Duration</h3>
+                                            <span class="float-right">{{formGroup.value.service_duration}}</span>
+                                        </div>
+                                        <div class="clearfix">
+                                            <h3 class="float-left">Project Cost</h3>
+                                            <span class="float-right">{{formGroup.value.projectCost}}</span>
+                                        </div>
+                                        <div class="clearfix">
+                                            <h3 class="float-left">This Service Will be Visible to</h3>
+                                            <span class="float-right"
+                                                *ngIf="this.formGroup.value.service_visible_professional === true">{{'Professional'}}</span>
+                                            <span class="float-right"
+                                                *ngIf="this.formGroup.value.service_visible_customer === true">{{'Customer'}}</span>
+                                        </div>
+                                        <!-- <div class="clearfix">
                                         <h3 class="float-left">Service Image</h3>
                                         <img src=" alt="img" class="img-fluid">
                                     </div> -->
+                                    </div>
                                 </div>
+
+
                             </div>
-                            
-                          
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                            </div>
                         </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                          <button type="button" class="btn btn-primary">Save changes</button>
-                        </div>
-                      </div>
                     </div>
                 </div>
             </div>
@@ -685,7 +803,7 @@
                                 <div class="form-group">
                                     <mat-form-field>
                                         <mat-label>Country</mat-label>
-                                        <input readonly matInput placeholder="" >
+                                        <input readonly matInput placeholder="">
                                     </mat-form-field>
 
 
@@ -694,7 +812,7 @@
                                 <div class="form-group">
                                     <mat-form-field>
                                         <mat-label>Cities</mat-label>
-                                        <input readonly matInput placeholder="" >
+                                        <input readonly matInput placeholder="">
                                     </mat-form-field>
 
 
@@ -710,7 +828,7 @@
                                 <div class="form-group">
                                     <mat-form-field>
                                         <mat-label>Sub Category</mat-label>
-                                        <input readonly matInput placeholder="" >
+                                        <input readonly matInput placeholder="">
                                     </mat-form-field>
 
 
@@ -718,7 +836,7 @@
                                 <div class="form-group">
                                     <mat-form-field>
                                         <mat-label>Styles</mat-label>
-                                        <input readonly matInput placeholder="" >
+                                        <input readonly matInput placeholder="">
                                     </mat-form-field>
 
 
@@ -726,7 +844,7 @@
                                 <div class="form-group">
                                     <mat-form-field>
                                         <mat-label>Project Year*</mat-label>
-                                        <input readonly matInput placeholder="" >
+                                        <input readonly matInput placeholder="">
                                     </mat-form-field>
 
 
@@ -734,7 +852,7 @@
                                 <div class="form-group">
                                     <mat-form-field>
                                         <mat-label>Project Cost in AED</mat-label>
-                                        <input readonly matInput placeholder="" >
+                                        <input readonly matInput placeholder="">
                                     </mat-form-field>
 
 
@@ -746,16 +864,16 @@
                                 </mat-form-field>
 
                                 <mat-form-field appearance="">
-                                    <input readonly matInput placeholder="Key-Words" >
+                                    <input readonly matInput placeholder="Key-Words">
                                 </mat-form-field>
 
                                 <div class="form-group">
                                     <mat-form-field>
                                         <mat-label>Get Noticed on other Profiles by crediting other pros on this project
                                         </mat-label>
-                                        <input readonly matInput placeholder="Branch Name" >
+                                        <input readonly matInput placeholder="Branch Name">
                                     </mat-form-field>
-                                    
+
 
 
                                 </div>
@@ -770,12 +888,13 @@
                                    
                                 </div> -->
 
-                                
+
 
                                 <small>By uploading photos, you are approving their display by Houzz,
                                     saying that you either own the rights to the image or that you have
                                     permission or a license to do so from the copyright holder, and
-                                    agreeing to abide by Dreeshah's <span class="theme-link"><a routerLink="/terms-condition">terms of use.</a></span>
+                                    agreeing to abide by Dreeshah's <span class="theme-link"><a
+                                            routerLink="/terms-condition">terms of use.</a></span>
                                 </small>
 
 
