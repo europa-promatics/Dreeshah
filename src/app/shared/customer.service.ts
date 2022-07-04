@@ -2816,6 +2816,19 @@ export class CustomerService {
 
 
 
+  //   04-july-2022-----------------------------------------------------------
+  detailsByCategoryOfProfessional(data:any):Observable<any>{
+    let API_URL=`${this.apiUrl}/getUserDetails`;
+    return this.httpClient.post(API_URL,data,this.httpOptions).pipe(
+      map(res =>{
+        return res
+      })
+    )
+    
+  }
+
+
+
 
 
 }
