@@ -186,6 +186,12 @@ export class MycartComponent implements OnInit {
     
   }
 
+  detailaa(_id:any){
+    console.log("done",_id)
+    this.router.navigate(['products-details',_id])
+  }
+
+
   deleteItem(valu){
     // alert("working")
     console.log("for deleting item:",valu)

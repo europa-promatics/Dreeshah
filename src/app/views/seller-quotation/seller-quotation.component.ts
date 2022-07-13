@@ -40,6 +40,12 @@ export class SellerQuotationComponent implements OnInit {
 
   offset = 0
   limit = 10
+  show: boolean=true;
+  obj: { quote_id: any; modified: any; };
+  obj2: {
+    // offset_val: this.offset,
+    quotation_id: any; status: string;
+  };
   constructor(public gallery: Gallery,
     private route: ActivatedRoute,
     private router: Router,
@@ -61,6 +67,8 @@ export class SellerQuotationComponent implements OnInit {
     this.image_path = environment.image_path + "ProfessionalServices/"
 
   }
+
+ 
 
   sellerQuotations() {
     var obj = {
@@ -333,6 +341,52 @@ export class SellerQuotationComponent implements OnInit {
       console.log(data);
       this.toastr.success("Quotation request rejected sucessfully")
     })
+  }
+
+
+  submitQutation(id,permission){
+    console.log(permission)
+    if(permission=='accepted'){
+       this.obj = {
+        quote_id:id,
+        modified:permission
+      }
+      this.CustomerService.updateQuotation(this.obj).subscribe((res)=>{
+        console.log(res)
+      this.show=false
+        // this.toastr.success('Quotation Form submitted successfully', 'success')
+        
+    })
+     this.obj2 = {
+   
+      quotation_id: id,
+      status: 'modified',
+    }
+    console.log("obj===",    this.obj2)
+    this.CustomerService.professionalQuotationAction(   this.obj2).subscribe(data => {
+      console.log("rejected",data);
+      this.ngOnInit()
+      console.log(data);
+      this.toastr.success("Quotation request rejected sucessfully")
+    })
+   
+    }else if(permission=='rejected'){
+      let obj = {
+        quote_id:id,
+        modified:permission
+      }
+      this.CustomerService.updateQuotation(obj).subscribe((res)=>{
+        console.log(res)
+        this.ngOnInit()
+      this.show=false
+        this.toastr.success('Quotation Form submitted successfully', 'success')
+        
+    })
+   
+    }
+   
+
+   
   }
 
   paginationOptionChange(evt) {

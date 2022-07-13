@@ -28,7 +28,7 @@ export class SellerHeaderComponent implements OnInit {
 
 ngOnInit(): void {
   this.userData = localStorage['userData'] != null ? JSON.parse(localStorage['userData']) : null
-  this.imgUrl=environment.professionalImg
+  this.imgUrl=environment.profileUrl
   this.profileUrl=environment.profileUrl
   console.log('----->>>>>>>>>>>>>---------',this.userData);
   this.isLogin=localStorage.getItem("isLoggedIn")

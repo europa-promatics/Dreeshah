@@ -9,6 +9,7 @@ import { ToastrService } from 'ngx-toastr'
 import { CartService } from '../../shared/cart.service';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 declare var $;
 
@@ -62,7 +63,7 @@ export class HeaderComponent implements OnInit {
   allSearchDataID: any=[];
   catalogueSearchData: any;
   catalogueSearchData1: any;
-
+  profileUrl: any = environment.profileUrl
   
   constructor(
     private route: ActivatedRoute,public cartService:CartService,
@@ -219,8 +220,9 @@ export class HeaderComponent implements OnInit {
     this.CustomerService.getCatAndSubCat().subscribe(data => {
       //console.log(data);
       if (data.code == 200) {
+
         this.categories = data.data
-        
+        console.log( this.categories)
       }
     })
   }

@@ -37,7 +37,7 @@
                                             <div class="infoWrap" *ngFor="let detail of cartDetail">
                                                 <div class="cartSection">
                                                     <!-- <img src="http://www.pngall.com/wp-content/uploads/5/Home-Interior-Design-Transparent.png" alt="" class="itemImg" /> -->
-                                                    <img src="{{imgpath}}{{detail?.ProductDetails?.product_media[0]?.name}}"
+                                                    <img src="{{imgpath}}{{detail?.ProductDetails?.product_media[0]?.name}}" (click)="detailaa(detail?.ProductDetails?._id)"
                                                         alt="" class="itemImg cartItemImageSize" />
                                                     <p class="itemNumber" style="font-size: 16px;">
                                                         <!-- {{detail?.ProductDetails?.product_description}} -->

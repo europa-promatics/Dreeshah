@@ -45,6 +45,7 @@ export class addproject {
     reqd_cities=[];
     reqdCategories=[];
     subCats=[];
+    newdata: any;
   
   
     constructor(
@@ -72,7 +73,7 @@ export class addproject {
       this.getCategoryList()
       this.style()
       this.getAllBranch()
-      this.getProfessionalProjects()
+      // this.getProfessionalProjects()
       this.generateArrayOfYears()
     }
     onSelect(event) {
@@ -148,13 +149,13 @@ export class addproject {
   
       })
     }
-    getProfessionalProjects() {
-      this.CustomerService.getProfessionalProjectsWithoutPagination().subscribe(res => {
+    // getProfessionalProjects() {
+    //   this.CustomerService.getProfessionalProjectsWithoutPagination().subscribe(res => {
   
-        this.getProjectArr = res.data
-        console.log('getProfessionalProjectsWithoutPagination', this.getProjectArr)
-      })
-    }
+    //     this.getProjectArr = res.data
+    //     console.log('getProfessionalProjectsWithoutPagination', this.getProjectArr)
+    //   })
+    // }
     getAllBranch() {
       this.CustomerService.getAllprofessionals().subscribe(res => {
         console.log('branch list response', res)
@@ -425,7 +426,7 @@ export class addproject {
         return  data.name? data.name: data
       })))
   
-      formData.append('project_description', this.addProjectForm.value.description)
+      // formData.append('project_description', this.addProjectForm.value.description)
       if(this.reqdSubCat){
         formData.append('project_sub_category',JSON.stringify(this.reqdSubCat))
       }else{
@@ -443,7 +444,7 @@ export class addproject {
       } else {
         formData.append('project_style', this.styleDropId)
       }
-      formData.append('project_sub_category',  this.addProjectForm.value.CatName)
+      // formData.append('project_sub_category',  this.addProjectForm.value.CatName)
       formData.append('project_description',  this.addProjectForm.value.description)
       formData.append('project_year', this.addProjectForm.value.projectYear)
       formData.append('project_cost', this.addProjectForm.value.projectCost)
@@ -461,10 +462,18 @@ export class addproject {
       formData.append('notify_professional_ids', JSON.stringify(this.branchIdArr))
       this.CustomerService.addSellerProject(formData).subscribe(res => {
         console.log('res of add branch', res)
+        // this.newdata=res['data']
+        this.emitEvent(res)
         this.toastr.success('Project created Successfully')
         this.router.navigate(['/addService'])
         this.ngOnInit()
       })
+    }
+
+    emitEvent(res) {
+      this.CustomerService.updateProjectsViaFilter((
+        JSON.stringify(res)
+      ))
     }
   
   

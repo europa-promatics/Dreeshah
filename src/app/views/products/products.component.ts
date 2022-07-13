@@ -4,6 +4,9 @@ import { CustomerService } from '../../shared/customer.service';
 import { Options } from 'ng5-slider';
 import { environment } from 'src/environments/environment.prod';
 import { LowerCasePipe } from '@angular/common';
+import { ToastrService } from 'ngx-toastr';
+import { CartService } from 'src/app/shared/cart.service';
+import { Router } from '@angular/router';
 //import { privateDecrypt } from 'crypto';
 declare var $
 @Component({
@@ -16,13 +19,26 @@ export class ProductsComponent implements OnInit {
   p: number = 1;
  	value: number = 50;
    reqData;
+   sizeu = ''
+
 	currentPage=10;
 	currentIndex=0;
 	prodData = [] ;
 	length;
+  colorname = '';
+  colorcodes = '';
+  isLogin;
+  detail;
+  productId;
+  quantityIncrese = 0;
   data;
   evt;
+  user_id;
+  userId;
   val;
+  obj;
+  s = ''
+  obj1;
 	filterValue;
 	getData;
 	offset=0;
@@ -31,12 +47,18 @@ export class ProductsComponent implements OnInit {
   imgpath=environment.prodImg;
    options: Options = {
     floor: 0,
-    ceil: 100
+    ceil: 1000
   };
+  userData: any;
 
-  constructor(public CustomerService: CustomerService) { }
+  constructor(public CustomerService: CustomerService ,    private toastr: ToastrService
+   , public cartService: CartService,private router:Router) { }
 
   ngOnInit(): void {
+    localStorage.removeItem('wishCount');
+    localStorage.removeItem('cartCount');
+    console.log("In the product detail componennt>>>>>");
+    this.isLogin = localStorage.getItem("isLoggedIn");
 
     $(document).on('click','.showDetailsBtn', function(){
       $(this).closest('.product-info').toggleClass("show");
@@ -47,7 +69,7 @@ export class ProductsComponent implements OnInit {
 	  this.reqData.offset = 0
     this.reqData.limit = 10
 	  this.length
-	//this.dataSource = new MatTableDataSource(this.responseData);
+	 //this.dataSource = new MatTableDataSource(this.responseData);
       var list={
         limit:this.reqData.limit,
         offset:this.reqData.offset
@@ -91,7 +113,22 @@ export class ProductsComponent implements OnInit {
     
 
   }
-  
+  changeprice(e:any){
+    console.log(e)
+    this.value=e
+    var obj = {
+      range:this.value ,
+      //limit:this.reqData.limit,
+      //offset:(this.config.currentPage-1)*10
+      limit:this.reqData.limit,
+      offset:0
+      }
+      this.CustomerService.productList(obj).subscribe(res => {
+        console.log('filterResponse',res)
+         this.prodData=res.products;  
+        })
+
+  }
 
   search(filterValue: string) {
     // this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -154,6 +191,138 @@ export class ProductsComponent implements OnInit {
           console.log(this.prodData)
         })
     }
+
+
+
+
+
+    //addd to cart
+
+
+    addToCart(value) {
+      this.quantityIncrese = 1;
+      let cartcount = localStorage.getItem("cartCount");
+      localStorage.setItem("productid",value);
+      console.log("Product ID : ", value,);
+    
+      this.isLogin = localStorage.getItem("isLoggedIn");
+      console.log("ISLOGIN value is>>>>>", this.isLogin);
+      this.userId=localStorage.getItem("session_data")
+      if((localStorage.getItem("session_data"))&& !this.isLogin ){
+      	var session_data = JSON.parse(localStorage.getItem("session_data"))
+      	// this.userId=localStorage.getItem("session_data")
+      	this.userId=session_data.session_id
+      }else{
+      	this.userId=""
+      }
+      this.productId =  this.prodData.filter((res)=>{
+        return res._id==value
+      });
+        this.detail=this.productId[0] 
+      
+      
+      // this.profId = this.detail.professional_id;
+      console.log('this.detail: ', this.detail);
   
+      if (!this.isLogin) {
+        console.log("this is workingg");
+        if (localStorage.getItem("session_data")) {
+          this.userId = localStorage.getItem("session_data");
+          console.log("this is workingg", this.user_id);
+        } else {
+          this.userId = "";
+        }
+  
+        var session_data = JSON.parse(localStorage.getItem("session_data"))
+        this.userId=localStorage.getItem("session_data")
+        this.userId=session_data?.session_id
+      } else {
+        const user = localStorage.getItem("userData")
+          ? JSON.parse(localStorage.getItem("userData"))
+          : {};
+        console.log("user dsata is here =========", user);
+        if (user) {
+          this.userId = user;
+        }
+      }
+  
+  
+      if (!(this.isLogin)) {
+        this.router.navigate(['login'])
+        this.toastr.error("Please Login First");
+        return false;
+      }
+      if (!(this.userId['user_type'] == "customer")) {
+        this.toastr.warning("Please Login as a customer");
+        return false;
+      }
+      // if (!(this.quantityIncrese > 0)) {
+      //   this.toastr.error("Please add minimum 1 product quantity");
+      //   return false;
+      // }
+      // if (cartcount) {
+      //   this.toastr.warning("Product already added in cart");
+      //   return false;
+      // }
+  
+      if (this.s && this.colorname) {
+        this.obj1 = {
+          user_id: this.userId._id,
+          product_id: this.productId,
+
+          quantity: this.quantityIncrese,
+          color_name: this.colorname,
+          color_code: this.colorcodes,
+          size: this.s,
+          size_unit: this.sizeu
+        };
+        console.log("this.obj1 is===========>", this.obj1);
+  
+        this.CustomerService.addToCart(this.obj1).subscribe((res) => {
+          this.toastr.success("Product Added to the cart Successfully");
+          this.cartService.cartDataBehSub.next("true");
+          localStorage.setItem("cartCount", "true");
+  
+  
+          if (res.session_id && !this.isLogin) {
+            localStorage.setItem("session_data", res.session_id);
+            localStorage.setItem("cart_id", res.data.cart_id);
+          }
+  
+          console.log(res);
+          //this.ngOnInit()
+        });
+      }
+      else {
+        this.obj1 = {
+          user_id: this.userId,
+          product_id: value,
+          // professional_id: this.profId._id,
+          quantity: this.quantityIncrese,
+          // color_name:this.colorname,
+          // color_code:this.colorcodes,
+          // size:this.s,
+          // size_unit:this.sizeu
+        };
+        console.log("this.obj1 is===========>", this.obj1);
+  
+        this.CustomerService.addToCart(this.obj1).subscribe((res) => {
+          this.toastr.success("Product Added to the cart Successfully");
+          this.cartService.cartDataBehSub.next("true");
+          localStorage.setItem("cartCount", "true");
+  
+  
+          if (res.session_id && !this.isLogin) {
+            localStorage.setItem("session_data", res.session_id);
+            localStorage.setItem("cart_id", res.data.cart_id);
+          }
+  
+          console.log(res);
+          //this.ngOnInit()
+        });
+      }
+  
+  
+    }
 
 }

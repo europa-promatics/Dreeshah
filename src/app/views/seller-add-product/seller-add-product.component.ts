@@ -16,20 +16,18 @@ declare var $: any;
 export class SellerAddProductComponent implements OnInit {
   productForm: FormGroup;
 
-  size:number
-
   checked;
   submit_button = false;
   isTouch = false;
   title: any;
-  category: any; 
+  category: any;
   sub_category: any;
   categoryData: [];
   userData;
   pricing = {
     'price': null,
-    'comprice': null,    
-    'costPerItem': null, 
+    'comprice': null,
+    'costPerItem': null,
     'margin': null,
     'profit': null,
     'tax': null
@@ -102,120 +100,10 @@ export class SellerAddProductComponent implements OnInit {
   taxPrice: any;
   ShippingOption: any
   professionalShippingCharges: any;
-  lengthImage;
+  lengthImage: any;
+  size: number=0;
+  filesize: number;
 
-
-
-  /* Remove() {
-    console.log(this.url);
-    this.files2.splice(this.files2.indexOf(this.url), 1);
-  } */
-  constructor(
-    public formBuilder: FormBuilder,
-    public CustomerService: CustomerService,
-    private toastr: ToastrService,
-    private router: Router,
-  ) {
-
-    const reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
-    this.productForm = this.formBuilder.group({
-      'title': [null, Validators.compose([Validators.required])],
-      'category': [null, Validators.compose([Validators.required])],
-      'sub_category': [null, Validators.compose([Validators.required])],
-      'price': [null, Validators.compose([Validators.required])],
-      'comprice': [null, Validators.compose([Validators.required])],
-      'costitem': [null, Validators.compose([Validators.required])],
-      'margin': [null, Validators.compose([Validators.required])],
-      'profit': [null, Validators.compose([Validators.required])],
-      'inventory': [null, Validators.compose([Validators.required])],
-      'sku': [null, Validators.compose([Validators.required])],
-      'barcode': [null, Validators.compose([Validators.required])],
-      //'field1': [null, Validators.compose([Validators.required])],
-      //'field2': [null, Validators.compose([Validators.required])],
-      //'field3': [null, Validators.compose([Validators.required])],
-      'region': [null, Validators.compose([Validators.required])],
-      //'weight': [null, Validators.compose([Validators.required])],
-      'weight': [null],
-      'weightUnit': [null],
-      // 'code': [null, Validators.compose([Validators.required])],
-      //'checked': [false, Validators.compose([Validators.requiredTrue])],
-      //'checked': [false],
-      'ckedit': [null, Validators.compose([Validators.required])],
-      'media': [null, Validators.compose([Validators.required])],
-
-      //'url': [null, Validators.compose([Validators.pattern(reg)])],
-      'productType': [null, Validators.compose([Validators.required])],
-      'vendor': [null, Validators.compose([Validators.required])],
-      'collection': [null, Validators.compose([Validators.required])],
-      'tags': [null, Validators.compose([Validators.required])],
-      "taxPrice": [null],
-      'ShippingOption': [null, Validators.compose([Validators.required])],
-      'professionalShippingCharges': [null],
-      'variants': new FormGroup({
-        'colors': new FormArray([this.formBuilder.group({
-          'color_name': [null, []],
-          'color_image': [null, []]
-
-        })]),
-        'variant_size': new FormArray([])
-      })
-    });
-
-
-
-  }
-
-  ngOnInit(): void {
-    this.getCategory();
-    this.professId = localStorage['userData'] != null ? JSON.parse(localStorage['userData']) : null;
-    console.log(this.professId)
-
-    this.CustomerService.getInventory().subscribe(data => {
-      //console.log("Response of the inventory is=====",data);
-      this.inventoryData = data.result
-      console.log("Response of the inventory is=====", this.inventoryData);
-    })
-
-    this.CustomerService.getProductType().subscribe(res => {
-      //console.log("Response of the product type is=====",res);
-      this.productTypeData = res.product_types
-      console.log("Response of the product type is=====", this.productTypeData);
-    })
-
-    this.CustomerService.getBranchList().subscribe(res => {
-      //console.log("Response of the Branch List is=====",res);
-      this.branchListData = res.result
-      console.log("Response of the Branch List is=====", this.branchListData);
-    })
-
-    $(document).ready(function () {
-      $("#add-address-btn").click(function () {
-        $(".add-address-form").toggle();
-      });
-    });
-
-  }
-
-
-  
-  get colors() {
-    return ((this.productForm.controls['variants'] as FormGroup).controls['colors'] as FormArray)
-  }
-  get variant_size() {
-    return ((this.productForm.controls['variants'] as FormGroup).controls['variant_size'] as FormArray)
-  }
-  AddColor() {
-    this.colors.push(this.formBuilder.group({
-      'color_name': [null, []],
-      'color_image': [null, []]
-
-    }))
-  }
-
-
-
-
-  
   // onSelect(event) {
   //   console.log(event);
 
@@ -228,40 +116,44 @@ export class SellerAddProductComponent implements OnInit {
   //   // this.isTouch = true;
   //   this.media = this.files;
   //   console.log(this.files)
-  // } 
-
+  // }
+  
   onSelect(event) {
     this.lengthImage=event.addedFiles.length
     console.log("this.length of image>>>>>>",this.lengthImage);
     console.log("event of image size>>>>>>",event.addedFiles)
     
     if(event) {
-      for(var i = 0; i < event.addedFiles.length; i++){
-         this.size= event.addedFiles[i].size;
-        console.log('sss', this.size)
-        if(this.size>5000000) {
-          this.toastr.error('Please  upload less than 5 MB,')
-          this.isTouch = false
-        }
-        else {
-          this.isTouch = true
-          console.log(event);
-          this.files=event.addedFiles;
-          this.media = this.files;
-          console.log('fff',this.files)
-        }
-      }
-    }
-   
+    for(let i = 0; i < event.addedFiles.length; i++){
     
-   
-   
-  }
+    this.size += event.addedFiles[i].size;
+    this.filesize = Math.round((this.size / 1024));
+    console.log('sss', this.size)
+    
+    if(this.size>=5000000) {
+    this.toastr.error('Please upload less than 5 MB,')
+    this.isTouch = false
+    }
+    else {
+    this.isTouch = true
+    console.log(event);
+    this.files=event.addedFiles;
+    this.media = this.files;
+    console.log('fff',this.files)
+    }
+  
+    }
+    }  
+    
+    
+    
+    }
 
   onRemove(event) {
     console.log(event);
     this.files.splice(this.files.indexOf(event), 1);
   }
+
   Submit() {
     console.log(this.url)
     this.validURL(this.url)
@@ -367,6 +259,79 @@ export class SellerAddProductComponent implements OnInit {
     console.log(this.status5)
   }
 
+
+  /* Remove() {
+    console.log(this.url);
+    this.files2.splice(this.files2.indexOf(this.url), 1);
+  } */
+  constructor(
+    public formBuilder: FormBuilder,
+    public CustomerService: CustomerService,
+    private toastr: ToastrService,
+    private router: Router,
+  ) {
+
+    const reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
+    this.productForm = this.formBuilder.group({
+      'title': [null, Validators.compose([Validators.required])],
+      'category': [null, Validators.compose([Validators.required])],
+      'sub_category': [null, Validators.compose([Validators.required])],
+      'price': [null, Validators.compose([Validators.required])],
+      'comprice': [null, Validators.compose([Validators.required])],
+      'costitem': [null, Validators.compose([Validators.required])],
+      'margin': [null, Validators.compose([Validators.required])],
+      'profit': [null, Validators.compose([Validators.required])],
+      'inventory': [null, Validators.compose([Validators.required])],
+      'sku': [null, Validators.compose([Validators.required])],
+      'barcode': [null, Validators.compose([Validators.required])],
+      //'field1': [null, Validators.compose([Validators.required])],
+      //'field2': [null, Validators.compose([Validators.required])],
+      //'field3': [null, Validators.compose([Validators.required])],
+      'region': [null, Validators.compose([Validators.required])],
+      //'weight': [null, Validators.compose([Validators.required])],
+      'weight': [null],
+      'weightUnit': [null],
+      // 'code': [null, Validators.compose([Validators.required])],
+      //'checked': [false, Validators.compose([Validators.requiredTrue])],
+      //'checked': [false],
+      'ckedit': [null, Validators.compose([Validators.required])],
+      'media': [null, Validators.compose([Validators.required])],
+
+      //'url': [null, Validators.compose([Validators.pattern(reg)])],
+      'productType': [null, Validators.compose([Validators.required])],
+      'vendor': [null, Validators.compose([Validators.required])],
+      'collection': [null, Validators.compose([Validators.required])],
+      'tags': [null, Validators.compose([Validators.required])],
+      "taxPrice": [null],
+      'ShippingOption': [null, Validators.compose([Validators.required])],
+      'professionalShippingCharges': [null],
+      'variants': new FormGroup({
+        'colors': new FormArray([this.formBuilder.group({
+          'color_name': [null, []],
+          'color_image': [null, []]
+
+        })]),
+        'variant_size': new FormArray([])
+      })
+    });
+
+
+
+  }
+  get colors() {
+    return ((this.productForm.controls['variants'] as FormGroup).controls['colors'] as FormArray)
+  }
+  get variant_size() {
+    return ((this.productForm.controls['variants'] as FormGroup).controls['variant_size'] as FormArray)
+  }
+  AddColor() {
+    this.colors.push(this.formBuilder.group({
+      'color_name': [null, []],
+      'color_image': [null, []]
+
+    }))
+  }
+
   AddSize(value) {
     console.log("size==>", value);
 
@@ -392,7 +357,36 @@ export class SellerAddProductComponent implements OnInit {
     })
   }
 
+  ngOnInit(): void {
+    this.getCategory();
+    this.professId = localStorage['userData'] != null ? JSON.parse(localStorage['userData']) : null;
+    console.log(this.professId)
 
+    this.CustomerService.getInventory().subscribe(data => {
+      //console.log("Response of the inventory is=====",data);
+      this.inventoryData = data.result
+      console.log("Response of the inventory is=====", this.inventoryData);
+    })
+
+    this.CustomerService.getProductType().subscribe(res => {
+      //console.log("Response of the product type is=====",res);
+      this.productTypeData = res.product_types
+      console.log("Response of the product type is=====", this.productTypeData);
+    })
+
+    this.CustomerService.getBranchList().subscribe(res => {
+      //console.log("Response of the Branch List is=====",res);
+      this.branchListData = res.result
+      console.log("Response of the Branch List is=====", this.branchListData);
+    })
+
+    $(document).ready(function () {
+      $("#add-address-btn").click(function () {
+        $(".add-address-form").toggle();
+      });
+    });
+
+  }
 
 
   validateIfChecked(): ValidatorFn {
@@ -619,6 +613,7 @@ export class SellerAddProductComponent implements OnInit {
 
     console.log(this.productForm.value);
     var formData = new FormData();
+    // formData.append('professional_id',);
     formData.append('product_title', this.productForm.value.title);
     formData.append('category_id', this.productForm.value.category);
     formData.append('sub_category_id', this.productForm.value.sub_category);
@@ -641,11 +636,13 @@ export class SellerAddProductComponent implements OnInit {
     formData.append('shipping_option', this.productForm.value.ShippingOption);
     formData.append('variants',JSON.stringify(this.productForm.controls['variants'].value))
     formData.append('form_status',argument=='save'?'save':'publish')
+    console.log(JSON.stringify (localStorage.getItem('userData')))
+      formData.append('professional_id',this.professId._id)
     if (this.professionalShippingCharges) {
       formData.append('professional_shipping_charges', this.productForm.value.professionalShippingCharges);
     }
 
-    //formData.append('professional_id',this.professId._id)
+  
     this.files.forEach(element => {
       formData.append('product_media', element);
     });

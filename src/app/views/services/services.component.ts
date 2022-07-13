@@ -181,6 +181,8 @@ export class ServicesComponent implements OnInit {
     //this.sub_category_id = this.route.snapshot.paramMap.get('sub_category_id') ? this.route.snapshot.paramMap.get('sub_category_id') : "602b5c8a6e1b446663d2b6f2"
     this.category_id = this.route.snapshot.paramMap.get('category_id')
     this.sub_category_id = this.route.snapshot.paramMap.get('sub_category_id')
+
+
     this.image_path = environment.image_path + "ProfessionalServices/"
     this.profile_image_path = environment.image_path + "userProfile/"
     // this.getServiceListing()
@@ -370,6 +372,7 @@ export class ServicesComponent implements OnInit {
       if (data.code == 200) {
         this.services_list = data.result
         this.services_list_all = data.result
+        console.log("sss",this.services_list_all)
         this.service_count = data.result.length
         this.length = data.main_count
       }
@@ -488,13 +491,16 @@ export class ServicesComponent implements OnInit {
     }
     console.log("obj===", obj)
     this.CustomerService.getServiceListing(obj).subscribe(async data => {
-      console.log(data);
+      console.log("***",data);
+      this.services_list_all=data['data']
+     console.log( this.services_list_all,"@@")
       if (data.code == 200) {
         this.services_list = data.data
         this.service_count = data.count
       }
     })
   }
+
   sliderEvent() {
     var price_together = this.sliderValue.toString().split(',')
     this.services_list_all = this.data
@@ -632,6 +638,7 @@ export class ServicesComponent implements OnInit {
 
   quotation(service) {
     this.quoRef = moment().unix()
+    console.log(service)
     console.log("Quotation Reference>>>>>", this.quoRef)
     console.log("ID of the professional to be sent ==>>>>>", service)
     this.profIdQuo = service.professional_id
@@ -643,7 +650,7 @@ export class ServicesComponent implements OnInit {
     this.serviceIdQuo = service._id
     console.log( this.serviceIdQuo,' this.serviceIdQuo');
     
-    this.salesRepres = service.professional_id.first_name + ' ' + service.professional_id.last_name
+    this.salesRepres = service?.professional_id?.first_name + ' ' + service.professional_id?.last_name
     console.log("ID OF the SERVICE>>>>>>", this.serviceIdQuo)
     console.log("name===", this.serviceNameQuo)
     console.log('this.salesRepres+++++++++++++',this.salesRepres); 
@@ -716,7 +723,7 @@ export class ServicesComponent implements OnInit {
           name: this.quotationForm.value.name,
           email: this.quotationForm.value.email,
           phone_number: this.splitNum,
-        
+          
           quotation_ref: this.quoRef.toString(),
           date: this.dateQuo,
           time: this.timeQuo,
@@ -731,7 +738,7 @@ export class ServicesComponent implements OnInit {
           country_code: this.countryDial,
           quotation_no: this.quotationNum.toString(),
           subject: this.serviceNameQuo,
-        
+          modified:'added'
 
         }
         console.log("object of Instant Quotation ===>", obj)
@@ -793,6 +800,18 @@ export class ServicesComponent implements OnInit {
     this.requestID = moment().unix()
     this.appName = this.customerName.first_name + ' ' + this.customerName.last_name
   }
+  formattedaddress=" ";
+  opt={
+    componentRestrictions:{
+      country:["AU"]
+    }
+  }
+  AddressChange(address: any) {
+    console.log(address)
+     this.formattedaddress=address.formatted_address
+
+
+}
 
 
   bookAppointment() {

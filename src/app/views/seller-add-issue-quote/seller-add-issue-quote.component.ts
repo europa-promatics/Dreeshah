@@ -299,7 +299,7 @@ export class SellerAddIssueQuoteComponent implements OnInit {
         this.CustomerService.AddQuotation(uploadData).subscribe(data => {
           console.log("Quotation Submit Response ====>>>>>>", data)
        
-         
+          this.router.navigate(['sellerQuotation'])
           this.toastr.success('Quotation Form submitted successfully', 'success')
         }, err => {
           console.log(err.status)

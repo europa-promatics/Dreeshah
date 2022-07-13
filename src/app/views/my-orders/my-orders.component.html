@@ -169,14 +169,14 @@
 															<div class="cartSection">
 																
 																	<img src="{{imgpath}}{{detail?.professionalData[0]?.orderItemsData[0]?.productDetails[0]?.product_media[0].name}}" alt="" class="itemImg cartItemImageSize" />
-																<p class="itemNumber">OrderID: {{detail?.orderData[0].order_no}}</p>
-																<h3>{{detail?.professionalData[0].orderItemsData[0]?.productDetails[0]?.product_title}}</h3>
-																<h4 class="item-price">${{detail?.orderData[0].amount}}</h4>
+																<p class="itemNumber">OrderID: {{detail?.orderData[0]?.order_no}}</p>
+																<h3>{{detail?.professionalData[0]?.orderItemsData[0]?.productDetails[0]?.product_title}}</h3>
+																<h4 class="item-price">${{detail?.orderData[0]?.amount}}</h4>
 															</div> 
 															<div class="date-time">
 																<!-- <p> Date &amp; Time: 10/4/2020 10:23</p> -->
-																<p> Date &amp; Time: {{ detail?.orderData[0].order_date | date :'medium'}}</p>
-																<p class="badge badge-secondary status-badge">{{detail?.orderData[0].order_status}}</p>
+																<p> Date &amp; Time: {{ detail?.orderData[0]?.order_date | date :'medium'}}</p>
+																<p class="badge badge-secondary status-badge">{{detail?.orderData[0]?.order_status}}</p>
 															
 															</div>
 															<div class="prodTotal cartSection">
@@ -185,7 +185,7 @@
 																	<button class="btn btn-change-fill"  (click)="getId(detail?.order_id)" data-toggle="modal" data-target="#exampleModal">Cancel Order</button>
 																</div>
 																<div class="sav-later-btn mt-3">
-																	<a routerLink="/view-order-details/{{ detail?.professionalData[0].orderItemsData[0]._id}}" class="btn btn-change-fill">View Details</a>
+																	<a routerLink="/view-order-details/{{ detail?.professionalData[0]?.orderItemsData[0]?._id}}" class="btn btn-change-fill">View Details</a>
 																</div>
 															</div>
 														
@@ -347,7 +347,7 @@
 																	<button class="btn btn-change-fill" (click)="addToCart(details)">Order Again</button>
 																</div>
 																<div class="sav-later-btn mt-3">
-																	<a routerLink="/view-order-details/{{ details?.professionalData[0].orderItemsData[0]._id}}" class="btn btn-change-fill">View Details</a>
+																	<a routerLink="/view-order-details/{{ details?.professionalData[0]?.orderItemsData[0]?._id}}" class="btn btn-change-fill">View Details</a>
 																</div>
 															</div>
 														

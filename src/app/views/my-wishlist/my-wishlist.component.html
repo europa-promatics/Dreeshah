@@ -77,11 +77,11 @@
 											<input type="checkbox" id="{{product?.product_id?._id}}" (change)="checkBoxClick($event)" style="position: absolute;
                                             top: 4px;">
 											<div class="images  ml-4 mt-0 mr-3"> <img style="width: 140px;
-                                                height: 140px;" src="{{productImagePath}}{{product?.product_id?.product_media[0].name}}" alt="website template image"> </div>
+                                                height: 140px;" src="{{productImagePath}}{{product?.product_id?.product_media[0].name}}" alt="website template image" (click)="detail(product?.product_id?._id)"> </div>
 											<div class="txtt" style="margin-top: -6px;">
 												<h3 class="m-0">Product Name: {{product?.product_id?.product_title}}
                                                 </h3>
-												<h3 class="m-0">Detail: {{product?.product_id?.product_description}}
+												<h3 class="m-0">Detail: {{product?.product_id?.product_description | slice:3:-5}}
                                                 </h3> </div>
 											<div class="bt ml-auto">
 												<button type="button" (click)="removeFromWishlist(product?._id)" class="CustBtn">Delete</button>

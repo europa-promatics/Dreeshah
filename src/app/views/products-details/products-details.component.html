@@ -71,15 +71,10 @@
                         <div class="photographer-info mt-3">
                             <h3 class="text-bold">PhotoGrapher Information</h3>
                             <div class="phtgrphr-name">
-                                <p class="mt-3">Grace Lawerence</p>
+                                <p class="mt-3">{{detail?.professional_id?.first_name}}</p>
                             </div>
                             <div class="phtgrpher-desc">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                <p>{{detail?.product_description | slice:3:-5}}
                                 </p>
                             </div>
                         </div>
@@ -199,9 +194,9 @@
                                         </table>
                                     </span>
                                     <p style="color:#74918d;">Colors Available:</p>
-                                    <span *ngFor="let c of detail.available_color">
-                                        <span *ngIf="c.color_code">
-                                            <div *ngIf="!iconbig != c._id">
+                                    <span *ngFor="let c of detail?.available_color">
+                                        <span *ngIf="c?.color_code">
+                                            <div *ngIf="!iconbig != c?._id">
 
 
                                                 <!-- <input type="radio"> -->
@@ -221,7 +216,7 @@
                                         </span>
                                     </span>
                                     
-                                    <span *ngFor="let c of detail.available_color">
+                                    <span *ngFor="let c of detail?.available_color">
                                         <span *ngIf="c.color_code">
                                             <!-- <div>
 
@@ -339,14 +334,12 @@
                 <div class="card mt-5">
                     <div class="card-body">
                         <div class="professional-image">
-                            <img src="https://sandbox.efilecabinet.com/wp-content/uploads/2019/05/g2-testimonial-male.jpg"
+                            <img src="{{imgpath2}}{{detail?.professional_id?.profile_image}}"
                                 class="img-fluid">
                         </div>
                         <div class="professional-address mt-3">
-                            <p>4045, School House Lane
-                                Opposite Well Society
-                                Ludhiana, Punjab, India
-                                878525
+                            <p>{{detail?.professional_id?.professional_address?.area}} {{detail?.professional_id?.professional_address?.city}} {{detail?.professional_id?.professional_address?.state}},{{detail?.professional_id?.professional_address.country}} ,{{detail?.professional_id?.professional_address.pincode}}
+                            
                             </p>
                         </div>
                     </div>
@@ -373,7 +366,7 @@
                                                 <tbody>
                                                     <tr>
                                                         <th>Product ID</th>
-                                                        <td>7858558</td>
+                                                        <td>{{detail?.product_unique_id}}</td>
                                                     </tr>
                                                     <tr>
                                                         <th>Manufactured By</th>
@@ -381,7 +374,7 @@
                                                     </tr>
                                                     <tr>
                                                         <th>Sold By</th>
-                                                        <td>Grace Lawerence</td>
+                                                        <td>{{detail?.professional_id?.first_name}} </td>
                                                     </tr>
                                                     <tr>
                                                         <th>Color</th>
@@ -393,7 +386,7 @@
                                                     </tr>
                                                     <tr>
                                                         <th>Category</th>
-                                                        <td>Stainless Steel pipes</td>
+                                                        <td>{{detail?.category_id?.name}}</td>
                                                     </tr>
                                                 </tbody>
                                             </table>

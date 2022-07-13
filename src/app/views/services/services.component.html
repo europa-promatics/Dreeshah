@@ -638,7 +638,9 @@
                                                     <div class="catalogue-new-img-thumb-service">
                                                         <div class="wcontainer">
                                                             <p><strong>AED{{service.price}}</strong></p>
-                                                            <img src="{{image_path}}{{service.service_image}}"
+                                                            <img *ngIf="!(service.service_image).includes('http')" src="{{image_path}}{{service.service_image}}"
+                                                                alt="service" class="thimg" />
+                                                            <img  *ngIf="(service.service_image).includes('http')"src="{{service.service_image}}"
                                                                 alt="service" class="thimg" />
                                                             <div class="thumb-overlay"></div>
                                                         </div>
@@ -647,14 +649,14 @@
                                                 <div class="col-md-5 mt-3">
                                                     <div class="web-serv-name">
                                                         <h3 ><a
-                                                                routerLink="/ServicesDetails/{{service._id}}">{{service.service_name}}</a>
+                                                                routerLink="/ServicesDetails/{{service._id}}">{{service?.service_name}}</a>
                                                         </h3>
                                                     </div>
                                                     <div class="web-serv-name">
-                                                        <h5>{{service.service_categoy_data[0].name}}</h5>
+                                                        <h5>{{service?.service_categoy_data ?   service?.service_categoy_data[0]?.name :  service?.service_category[0]?.name}}</h5>
                                                     </div>
 
-                                                    <h4>{{service.service_sub_category_data[0].name}}</h4>
+                                                    <h4>{{service?.service_sub_category_data ? service?.service_sub_category_data[0]?.name :  service?.service_sub_category[0]?.name}}</h4>
 
                                                     <div class="professionals-details-wrapper">
                                                         <div>
@@ -662,14 +664,14 @@
                                                                 src="assets/imgs/no-profile.webp" class="img-fluid">
                                                             <img *ngIf="service.professional_id.profile_image"
                                                                 src="{{profile_image_path}}{{service.professional_id.profile_image}}"
-                                                                class="img-fluid"> --><img
-                                                                src="https://developers.promaticstechnologies.com/dreeshah_apis/public/userProfile/{{service.professionalData[0]?.profile_image}}" *ngIf="service.professionalData[0]?.profile_image">
+                                                                class="img-fluid"> --><img *ngIf="service?.professionalData"
+                                                                src="https://developers.promaticstechnologies.com/dreeshah_apis/public/userProfile/{{service?.professionalData[0]?.profile_image}}" >
                                                         </div>
                                                             <span></span>
                                                         <div class="custm_address text-left mt-3">
                                                             <i class="fas fa-map-marker-alt"></i>
                                                             <address>
-                                                                {{service.country[0]}}
+                                                                {{service?.country[0]}}
                                                             </address>
                                                         </div>
                                                         <!-- <div class="ratings-review-wrapper mrgn-top-2">
@@ -690,9 +692,9 @@
                                                     </div>
                                                     <div class="custom-comment">
                                                         <p class="mt-3"><i class="fa fa-quote-left"></i>
-                                                            {{(service.service_description.length > 70) ? (service.service_description | slice:0:70)
+                                                            {{(service?.service_description?.length > 70) ? (service?.service_description | slice:0:70)
                                                             +
-                                                            '...' : service.service_description}}
+                                                            '...' : service.service_description | slice:3:-7}}
                                                         </p>
                                                         <div class="read-more"
                                                             *ngIf="service.service_description.service_count > 70">
@@ -719,9 +721,9 @@
                                                         <a  class="btn btn-change-fill min-width-0" (click)="CalledChatRoom(service)"
                                                             ><i
                                                                 class="fas fa-comments" ></i></a><br />
-                                                        <p class="mt-3"><i class="fa fa-mobile-alt mr-2"
-                                                                aria-hidden="true"></i>{{service.professionalData[0]?.contact_details.mobile_number}}
-                                                        </p>
+                                                        <!-- <p class="mt-3"><i class="fa fa-mobile-alt mr-2"
+                                                                aria-hidden="true"></i>{{service?.professionalData[0]?.contact_details.mobile_number}}
+                                                        </p> -->
                                                         <div class="custm_address text-right mt-3">
                                                             <i class="fas fa-map-marker-alt"></i>
                                                             <address>
@@ -730,9 +732,9 @@
                                                         </div>
                                                         <div class="ratings-review-wrapper mrgn-top-2">
                                                             <h3 class="ml-2">
-                                                                {{service.professional_id.first_name | titlecase}}
-                                                                {{service.professional_id.last_name | titlecase}}</h3>
-                                                            <p>{{service.service_category.name}}</p>
+                                                                {{service?.professional_id?.first_name | titlecase}}
+                                                                {{service?.professional_id?.last_name | titlecase}}</h3>
+                                                            <p>{{service?.service_category?.name}}</p>
                                                             <!-- <div class="ratings-review"> -->
                                                             <div class="strs">
                                                                 <span>4.3</span>
@@ -1096,7 +1098,7 @@
                     </div>
                     <form [formGroup]="quotationForm">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="form-group">
                                     <mat-form-field appearance="">
                                         <mat-label>Name</mat-label>
@@ -1110,7 +1112,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="form-group">
                                     <mat-form-field appearance="">
                                         <mat-label>Email</mat-label>
@@ -1190,7 +1192,7 @@
                                     <mat-form-field>
                                         <mat-label>Choose Start Date</mat-label>
                                         <input matInput [matDatepicker]="picker" placeholder="" [min]="minDate"
-                                            formControlName="date">
+                                            formControlName="date" readonly="true">
                                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                         <mat-datepicker #picker></mat-datepicker>
                                     </mat-form-field>
@@ -1244,7 +1246,7 @@
                                 <div class="form-group">
                                     <mat-form-field appearance="">
                                         <mat-label>Branch for Service</mat-label>
-                                        <input matInput placeholder="Sales Representative" required
+                                        <input matInput placeholder="Sales Representative" required readonly="true"
                                             formControlName="sales_representative">
                                     </mat-form-field>
                                     <div *ngIf="quotationForm.controls.sales_representative.invalid && (quotationForm.controls.sales_representative.dirty || quotationForm.controls.sales_representative.touched || submit_quotation)"
@@ -1276,7 +1278,9 @@
                                 <div class="form-group">
                                     <mat-form-field appearance="">
                                         <mat-label>Location</mat-label>
-                                        <input matInput placeholder="Location" formControlName="location" required>
+                                        <input matInput ngx-google-places-autocomplete [options]=
+                                        'opt'  (onAddressChange)="AddressChange($event)"formControlName=location />
+                                        {{ formattedaddress }}
                                     </mat-form-field>
                                     <div *ngIf="quotationForm.controls.location.invalid && (quotationForm.controls.location.dirty || quotationForm.controls.location.touched || submit_quotation)"
                                         class="">
@@ -1318,7 +1322,7 @@
                                 <div class="form-group">
                                     <mat-form-field appearance="">
                                         <mat-label>Estimated Budget</mat-label>
-                                        <input matInput placeholder="SAR500" required
+                                        <input matInput placeholder="AED" required
                                             formControlName="estimated_budget">
                                     </mat-form-field>
                                     <div *ngIf="quotationForm.controls.estimated_budget.invalid && (quotationForm.controls.estimated_budget.dirty || quotationForm.controls.estimated_budget.touched || submit_quotation)"
@@ -1347,6 +1351,33 @@
                                             *ngIf="quotationForm.controls.description.errors.required">
                                             Please enter description
                                         </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <div class="uploader-wrapper fdsf">
+                                        <ngx-dropzone style="height: 150px;" class="ngxdhdjshdhjsag"
+                                            ngProjectAs="ngx-dropzone-preview"
+                                            accept="image/jpeg,image/gif,image/png,application/pdf,image/x-eps"
+                                        
+                                             multiple>
+                                            <ngx-dropzone-label>
+                                                Drop here
+                                                Documents!
+                                            </ngx-dropzone-label>
+                                            <!-- <ngx-dropzone-preview *ngFor="let f of files,let i =index" [removable]="true"
+                                                (removed)="onRemove(f,i)">
+                                                <ngx-dropzone-label>{{ f.name }} ({{ f.type }})
+                                                </ngx-dropzone-label>
+                                            </ngx-dropzone-preview> -->
+                                        </ngx-dropzone>
+
+                                                                <!-- <p class="req_labl text-danger"
+                                                    *ngIf="files.length==0">
+                                                    Please choose
+                                                    Documents
+                                                </p> -->
                                     </div>
                                 </div>
                             </div>

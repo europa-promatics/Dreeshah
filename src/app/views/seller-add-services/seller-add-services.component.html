@@ -353,28 +353,28 @@
                                                 </mat-form-field>
                                             </div>
 
-                                            <div class="form-group col-md-12" *ngIf="this.fixed == 'fixed'">
+                                            <div class="form-group col-md-12" *ngIf="fixedsdsds == 'fixed'">
                                                 <mat-form-field>
                                                     <mat-label>Fixed Price </mat-label>
-                                                    <input matInput placeholder="Fixed Price" 
+                                                    <input matInput placeholder="Fixed Price"
                                                         formControlName="fix_price">
 
                                                 </mat-form-field>
-                                                <div *ngIf="formGroup.controls.fix_price.invalid && (formGroup.controls.fix_price.dirty || formGroup.controls.fix_price.touched || submit_button)"
-                                                class="">
-                                                <p style="color: red;"
-                                                    *ngIf="formGroup.controls.fix_price.errors.required">
-                                                    Please Enter Fixed Price
-                                                </p>
-                                                <p style="color: red;"
-                                                    *ngIf="formGroup.controls.fix_price.errors.pattern">
-                                                    Please Add Digit Only
-                                                </p>
-                                            </div>
+                                                <div *ngIf="formGroup.controls.fix_price.invalid && (formGroup.controls.fix_price.dirty || formGroup.controls.fix_price.touched)"
+                                                    class="">
+                                                    <p style="color: red;"
+                                                        *ngIf="formGroup.controls.fix_price.errors.required">
+                                                        Please Enter Fixed Price
+                                                    </p>
+                                                    <p style="color: red;"
+                                                        *ngIf="formGroup.controls.fix_price.errors.pattern">
+                                                        Please Add Digit Only
+                                                    </p>
+                                                </div>
                                             </div>
 
 
-                                            <div class="form-group col-md-12" *ngIf="this.upto == 'upto'">
+                                            <div class="form-group col-md-12" *ngIf="fixedsdsds== 'upto'">
                                                 <mat-form-field appearance="">
                                                     <mat-label>Project Cost in AED</mat-label>
                                                     <mat-select formControlName="projectCost">
@@ -391,7 +391,7 @@
 
                                                     </mat-select>
                                                 </mat-form-field>
-                                                <div *ngIf="formGroup.controls.projectCost.invalid && (formGroup.controls.projectCost.dirty || formGroup.controls.projectCost.touched || submit_button)"
+                                                <div *ngIf="formGroup.controls.projectCost.invalid && (formGroup.controls.projectCost.dirty || formGroup.controls.projectCost.touched )"
                                                     class="">
                                                     <p style="color: red;"
                                                         *ngIf="formGroup.controls.projectCost.errors.required">
@@ -402,11 +402,11 @@
 
 
 
-                                            <div class="row" *ngIf="this.range == 'range'">
+                                            <div class="row" *ngIf="fixedsdsds == 'range'">
                                                 <div class="form-group col-md-6">
                                                     <mat-form-field>
                                                         <mat-label> Start Range Price</mat-label>
-                                                        <input matInput placeholder="Start" 
+                                                        <input matInput placeholder="Start"
                                                             formControlName="start_range_price">
 
                                                     </mat-form-field>
@@ -417,26 +417,26 @@
                                                             **Please Enter Start Price
                                                         </p>
                                                     </div> -->
-                                                    <div *ngIf="formGroup.controls.start_range_price.invalid && (formGroup.controls.start_range_price.dirty || formGroup.controls.start_range_price.touched || submit_button)"
-                                                    class="">
-                                                    <p style="color: red;"
-                                                        *ngIf="formGroup.controls.start_range_price.errors.required">
-                                                        Please Enter First Range  Price
-                                                    </p>
-                                                    <p style="color: red;"
-                                                        *ngIf="formGroup.controls.start_range_price.errors.pattern">
-                                                        Please add digit only
-                                                    </p>
-                                                </div>
+                                                    <div *ngIf="formGroup.controls.start_range_price.invalid && (formGroup.controls.start_range_price.dirty || formGroup.controls.start_range_price.touched)"
+                                                        class="">
+                                                        <p style="color: red;"
+                                                            *ngIf="formGroup.controls.start_range_price.errors.required">
+                                                            Please Enter First Range Price
+                                                        </p>
+                                                        <p style="color: red;"
+                                                            *ngIf="formGroup.controls.start_range_price.errors.pattern">
+                                                            Please add digit only
+                                                        </p>
+                                                    </div>
                                                 </div>
                                                 <div class="form-group col-md-6">
                                                     <mat-form-field>
                                                         <mat-label> Last Range Price</mat-label>
-                                                        <input matInput placeholder="Last" 
+                                                        <input matInput placeholder="Last"
                                                             formControlName="end_range_price">
 
                                                     </mat-form-field>
-                                                    <div *ngIf="formGroup.controls.end_range_price.invalid && (formGroup.controls.end_range_price.dirty || formGroup.controls.end_range_price.touched || submit_button)"
+                                                    <div *ngIf="formGroup.controls.end_range_price.invalid && (formGroup.controls.end_range_price.dirty || formGroup.controls.end_range_price.touched)"
                                                         class="">
                                                         <p style="color: red;"
                                                             *ngIf="formGroup.controls.end_range_price.errors.required">
@@ -460,7 +460,7 @@
                                                     <input matInput placeholder="Duration"
                                                         formControlName="service_duration">
                                                 </mat-form-field>
-                                                <div *ngIf="formGroup.controls.service_duration.invalid && (formGroup.controls.service_duration.dirty || formGroup.controls.service_duration.touched || submit_button)"
+                                                <div *ngIf="formGroup.controls.service_duration.invalid && (formGroup.controls.service_duration.dirty || formGroup.controls.service_duration.touched )"
                                                     class="">
                                                     <p style="color: red;"
                                                         *ngIf="formGroup.controls.service_duration.errors.required">
@@ -483,6 +483,34 @@
                                                     </mat-select>
                                                 </mat-form-field>
                                             </div>
+                                            <div class="form-group col-md-6">
+                                                <mat-form-field>
+                                                    <mat-label>select project type</mat-label>
+                                                    <mat-select>
+                                                        <mat-option value="option1" (click)="val('new')">new +
+                                                        </mat-option>
+                                                        <mat-option value="option2" (click)="val('existing')">existing
+                                                        </mat-option>
+
+                                                    </mat-select>
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group" *ngIf="this.addnewexistingproject">
+
+                                                    <mat-form-field>
+                                                        <mat-label>Select Existing Project</mat-label>
+                                                        <mat-select 
+                                                            (selectionChange)="SelectProject($event)" formControlName="serviceproject">
+                                                            <mat-option *ngFor="let ar of getProjectArr"
+                                                                [value]="ar._id">{{ar.project_name}}
+                                                            </mat-option>
+                                                            <!-- <mat-option value="2">Which Project was it Part of?</mat-option>
+                                                            <mat-option value="3">Your Existing Project</mat-option> -->
+                                                        </mat-select>
+                                                    </mat-form-field>
+                                                </div>
+                                            </div>
                                             <!-- <div class="form-group signup-form">
                                                 <label>Add Tags (Separated by comma. Eg-Demo1,Demo2)</label>
                                                 <tag-input formControlName="keyWords" [(ngModel)]='items'
@@ -490,7 +518,7 @@
                                                     [placeholder]="">
                                                 </tag-input>
                                             </div> -->
-                                            <div class="form-group">
+                                            <div class="form-group" *ngIf="addnewproject">
                                                 <label>Add Projects</label>
                                                 <div class="row">
                                                     <div id="page-content-wrapper">
@@ -508,100 +536,156 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <ng-container *ngFor="let r of listArr">
-                                                                <div class="col-md-6">
-
-
-                                                                    <div class="div-pos">
-                                                                        <a data-toggle="modal"
-                                                                            data-target="#view-project">
-                                                                            <div class="form-group">
-                                                                                <div
-                                                                                    class="media-link d-flex justify-content-between">
-                                                                                    <div>
-                                                                                        <label
-                                                                                            for="exampleFormControlFile1"
-                                                                                            class="mr-4 mt-4">
-                                                                                            View Project
-                                                                                        </label>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-
-                                                                            <div class="view-project">
-                                                                                <table class="view-project-table">
-                                                                                    <tr>
-                                                                                        <td><strong>Project Name :
-                                                                                            </strong></td>
-                                                                                        <td>{{r.project_name}}</td>
-
-                                                                                    </tr>
-                                                                                    <tr>
-                                                                                        <td><strong>Project Address
-                                                                                                :</strong></td>
-                                                                                        <td>{{r.project_address}}</td>
-                                                                                    </tr>
-                                                                                    <tr>
-                                                                                        <td><strong>Website :</strong>
-                                                                                        </td>
-                                                                                        <td>{{r.project_website}}</td>
-                                                                                    </tr>
-                                                                                    <tr>
-
-                                                                                        <td><strong>Category : </strong>
-                                                                                        </td>
-                                                                                        <td>{{r.project_category[0]?.name}}
-                                                                                        </td>
-
-                                                                                    </tr>
-                                                                                    <tr>
-                                                                                        <td><strong>Country : </strong>
-                                                                                        </td>
-                                                                                        <td>{{r.project_country[0]}}
-                                                                                        </td>
-                                                                                    </tr>
-
-                                                                                </table>
-                                                                            </div>
-                                                                        </a>
-                                                                        <span class="cross-btn">
-                                                                            <i class="fa fa-times" aria-hidden="true">
-
-                                                                            </i>
-                                                                        </span>
-
-                                                                    </div>
-                                                                </div>
-                                                            </ng-container>
-
-
-
-                                                            <div class="col-md-4" *ngFor="let project of projects;">
-                                                                <div class="added-proj-wrp">
-                                                                    <div class="added-proj-img">
-                                                                        <img src="{{image_path}}{{project.project_images[0]?.name}}"
-                                                                            alt="img" class="img-fluid">
-                                                                        <div class="select-proj">
-                                                                            <mat-checkbox #checkBox [value]="project"
-                                                                                (change)="getCheckbox(checkBox)">
-                                                                            </mat-checkbox>
-                                                                        </div>
-
-                                                                        <div class="edit-picture">
-                                                                            <i class="fa fa-pencil"></i>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="project-caption">
-                                                                        <p>{{project.project_name}}</p>
-                                                                        <p>{{project.project_images.length}} photos</p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="form-group signup-form">
+                                            <ng-container *ngIf="detailbox2">
+                                                <div class="col-md-6">
+
+
+                                                    <div class="div-pos">
+                                                        <a data-toggle="modal" data-target="#view-project">
+                                                            <div class="form-group">
+                                                                <div class="media-link d-flex justify-content-between">
+                                                                    <div>
+                                                                        <label for="exampleFormControlFile1"
+                                                                            class="mr-4 mt-4">
+                                                                            View Project
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="view-project">
+                                                                <table class="view-project-table"  (click)="detailofproject(newadddata?._id)">
+                                                                    <tr>
+                                                                        <td><strong>Project Name :
+                                                                            </strong></td>
+                                                                        <td>{{ newadddata?.project_name}}</td>
+
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td><strong>Project Address
+                                                                                :</strong></td>
+                                                                        <td></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td><strong>Website :</strong>
+                                                                        </td>
+                                                                        <td>{{newadddata?.project_website}}</td>
+                                                                    </tr>
+                                                                    <tr>
+
+                                                                        <td><strong>asdad</strong>
+                                                                        </td>
+                                                                        <td>{{newadddata?.project_address}}
+                                                                        </td>
+
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td><strong>Country : </strong>
+                                                                        </td>
+                                                                        <td>{{newadddata?.project_country}}
+                                                                        </td>
+                                                                    </tr>
+
+                                                                </table>
+                                                            </div>
+                                                        </a>
+                                                        <span class="cross-btn">
+                                                            <i class="fa fa-times" aria-hidden="true">
+
+                                                            </i>
+                                                        </span>
+
+                                                    </div>
+                                                </div>
+                                            </ng-container>
+                                            <ng-container *ngIf="detailbox">
+                                                <div class="col-md-6">
+
+
+                                                    <div class="div-pos">
+                                                        <a data-toggle="modal" data-target="#view-project">
+                                                            <div class="form-group">
+                                                                <div class="media-link d-flex justify-content-between" >
+                                                                    <div>
+                                                                        <label for="exampleFormControlFile1"
+                                                                            class="mr-4 mt-4">
+                                                                            View Project
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="view-project">
+                                                                <table class="view-project-table" (click)="detailofproject(newdata?._id)">
+                                                                    <tr>
+                                                                        <td><strong>Project Name :
+                                                                            </strong></td>
+                                                                        <td>{{newdata?.project_name}}</td>
+
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td><strong>Project Address
+                                                                                :</strong></td>
+                                                                        <td></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td><strong>Website :</strong>
+                                                                        </td>
+                                                                        <td>{{newdata?.project_website}}</td>
+                                                                    </tr>
+                                                                    <tr>
+
+                                                                        <td><strong>asdad</strong>
+                                                                        </td>
+                                                                        <td>{{newdata?.project_address}}
+                                                                        </td>
+
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td><strong>Country : </strong>
+                                                                        </td>
+                                                                        <td>{{newdata?.project_country}}
+                                                                        </td>
+                                                                    </tr>
+
+                                                                </table>
+                                                            </div>
+                                                        </a>
+                                                        <span class="cross-btn">
+                                                            <i class="fa fa-times" aria-hidden="true">
+
+                                                            </i>
+                                                        </span>
+
+                                                    </div>
+                                                </div>
+                                            </ng-container>
+                                            <div class="col-md-4" *ngFor="let project of projects;">
+                                                <div class="added-proj-wrp">
+                                                    <div class="added-proj-img">
+                                                        <img src="{{image_path}}{{project.project_images[0]?.name}}"
+                                                            alt="img" class="img-fluid">
+                                                        <div class="select-proj">
+                                                            <mat-checkbox #checkBox [value]="project"
+                                                                (change)="getCheckbox(checkBox)">
+                                                            </mat-checkbox>
+                                                        </div>
+
+                                                        <div class="edit-picture">
+                                                            <i class="fa fa-pencil"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="project-caption">
+                                                        <p>{{project.project_name}}</p>
+                                                        <p>{{project.project_images.length}} photos</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group signup-form mt-3" >
                                                 <mat-form-field appearence="">
                                                     <mat-label>Add Tags (Separated by comma. Eg-Demo1,Demo2)</mat-label>
                                                     <input matInput placeholder="Separated by comma. Eg-Demo1,Demo2">
@@ -783,27 +867,27 @@
                                 <div class="form-group">
                                     <mat-form-field appearance="">
                                         <mat-label>New Project Name</mat-label>
-                                        <input readonly matInput placeholder="" required>
+                                        <input readonly matInput placeholder="" value="{{getprojectdata?.project_name}}">
                                     </mat-form-field>
 
                                 </div>
 
                                 <mat-form-field appearance="">
                                     <mat-label>Project Address</mat-label>
-                                    <input readonly matInput placeholder="">
+                                    <input readonly matInput placeholder="" value="{{getprojectdata?.project_address}}">
                                 </mat-form-field>
 
 
                                 <mat-form-field appearance="">
                                     <mat-label>Project Description</mat-label>
-                                    <input readonly matInput placeholder="zdfSf" value="kdsjkjfhjdshg">
+                                    <input readonly matInput placeholder="zdfSf"value="{{getprojectdata?.project_description}}">
                                 </mat-form-field>
 
 
                                 <div class="form-group">
                                     <mat-form-field>
                                         <mat-label>Country</mat-label>
-                                        <input readonly matInput placeholder="">
+                                        <input  readonly matInput placeholder="" value="{{getprojectdata?.project_country[0]}}">
                                     </mat-form-field>
 
 
@@ -812,7 +896,7 @@
                                 <div class="form-group">
                                     <mat-form-field>
                                         <mat-label>Cities</mat-label>
-                                        <input readonly matInput placeholder="">
+                                        <input readonly matInput placeholder=""  value="{{getprojectdata?.project_city[0]}}">
                                     </mat-form-field>
 
 
@@ -820,7 +904,7 @@
                                 <div class="form-group">
                                     <mat-form-field>
                                         <mat-label>Category</mat-label>
-                                        <input readonly matInput placeholder="">
+                                        <input readonly matInput placeholder="" value="{{getprojectdata?.project_category}}">
                                     </mat-form-field>
 
 
@@ -828,7 +912,7 @@
                                 <div class="form-group">
                                     <mat-form-field>
                                         <mat-label>Sub Category</mat-label>
-                                        <input readonly matInput placeholder="">
+                                        <input readonly matInput placeholder="" value="{{getprojectdata?.project_sub_category}}">
                                     </mat-form-field>
 
 
@@ -836,7 +920,7 @@
                                 <div class="form-group">
                                     <mat-form-field>
                                         <mat-label>Styles</mat-label>
-                                        <input readonly matInput placeholder="">
+                                        <input readonly matInput placeholder="" value="{{getprojectdata?.project_style}}">
                                     </mat-form-field>
 
 
@@ -844,7 +928,7 @@
                                 <div class="form-group">
                                     <mat-form-field>
                                         <mat-label>Project Year*</mat-label>
-                                        <input readonly matInput placeholder="">
+                                        <input readonly matInput placeholder="" value="{{getprojectdata?.project_year}}">
                                     </mat-form-field>
 
 
@@ -852,7 +936,7 @@
                                 <div class="form-group">
                                     <mat-form-field>
                                         <mat-label>Project Cost in AED</mat-label>
-                                        <input readonly matInput placeholder="">
+                                        <input readonly matInput placeholder="" value="{{getprojectdata?.project_cost}}">
                                     </mat-form-field>
 
 
@@ -860,11 +944,11 @@
 
                                 <mat-form-field appearance="">
                                     <mat-label>Link to website</mat-label>
-                                    <input readonly matInput placeholder="">
+                                    <input readonly matInput placeholder="" value="{{getprojectdata?.project_website[0]}}">
                                 </mat-form-field>
 
                                 <mat-form-field appearance="">
-                                    <input readonly matInput placeholder="Key-Words">
+                                    <input readonly matInput placeholder="Key-Words" >
                                 </mat-form-field>
 
                                 <div class="form-group">

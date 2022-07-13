@@ -110,7 +110,13 @@
 																<button class="btn btn-change-fill btn-sm min-width-40" (click)="rejectQuote(list)"><i class="fa fa-times"></i></button>
 															</div> -->
 														</td>
-														<td><a routerLink="/customer-quotation-detail/{{list._id}}" class="btn btn-round-blue"><i class="fa fa-eye"></i></a></td>
+														<td><a routerLink="/customer-quotation-detail/{{list._id}}" class="btn btn-round-blue"><i class="fa fa-eye"></i></a>
+															<li  class="btn btn-round-blue" data-toggle="modal"  (click)="edit(list._id)" data-target="#QuoteForm"><i class="fa fa-edit" ></i></li>
+															<li  class="btn btn-round-blue"><i class="fa fa-trash" (click)="deleteQuotations(list._id)"></i></li>
+
+														</td>
+
+
 													</tr>
 												</tbody>
 											</table>
@@ -144,11 +150,13 @@
 														<th scope="col">Service Submission Date</th>
 														<th scope="col">Quotation Status</th>
 														<th scope="col">Action</th>
+														<th scope="col">send request for modification</th>
+														
 													</tr>
 												</thead>
                                                
 												<tbody >
-													<tr *ngFor = "let list of progressList let i = index" >
+													<tr *ngFor = "let list of progressList; let i = index" >
 														<th scope="row">{{ i + 1 }}</th>
 														<td>{{ list.quotation_ref ? list.quotation_ref: 'N/A' }}</td>
 														<td>{{ list.date | date:'dd-MMM-yyyy'}}</td>
@@ -165,6 +173,11 @@
 															
 														</td>
 														<td><a routerLink="/customer-quotation-detail/{{list._id}}" class="btn btn-round-blue"><i class="fa fa-eye"></i></a></td>
+														<td >
+															<button *ngIf="list?.modified=='added'|| list?.modified==null || list?.modified=='pending' " class="btn btn-success a" id="{{list._id}}" [disabled]="list?.modified=='pending'" (click)="modifyrequest(list._id)" >{{list?.modified=='pending'? 'sent' : 'modified request'}}</button>
+															<span *ngIf="list?.modified=='rejected'">request rejected</span>
+						
+														</td>
 													</tr>
 												</tbody>
                                                
@@ -213,7 +226,11 @@
 														<td>{{ list.expected_date | date:'dd-MMM-yyyy'}}</td>
 														<!-- <td><a routerLink="/seller-create-order" class="btn btn-change-fill btn-sm">Create Order <i class="fa fa-plus ml-2"></i></a></td> -->
 														<td *ngIf="list.status == 'modified'"><span class="badge badge-danger status-badge">modified</span></td>
-														<td><a routerLink="/customer-quotation-detail/{{list._id}}" class="btn btn-round-blue"><i class="fa fa-eye"></i></a></td>
+														<td><a routerLink="/customer-quotation-detail/{{list._id}}" class="btn btn-round-blue"><i class="fa fa-eye"></i></a>
+															<li *ngIf="list?.modified=='accepted'  " class="btn btn-round-blue" data-toggle="modal"  (click)="edit(list._id)" data-target="#QuoteForm"><i class="fa fa-edit" ></i></li>
+															<li  *ngIf="list?.modified=='accepted'  " class="btn btn-round-blue"><i class="fa fa-trash" (click)="deleteQuotations(list._id)"></i></li>
+
+														</td>
 													</tr> 
 												</tbody>
 											</table>
@@ -440,4 +457,318 @@
 		<!-- </div> -->
 		
 	</section>
+	<div class="quotation-form-modal">
+		<div class="modal" id="QuoteForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+			aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h2 class="modal-title" id="exampleModalLabel">Get Quotation</h2>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div class="request_summary">
+							<h3>Request Summary</h3>
+							<p>Quotation Ref:{{detail?.quotation_ref}}</p>
+							<p>Date: {{detail?.date}}</p>
+							<h4>Subject: {{detail?.subject}}</h4>
+						</div>
+						<form [formGroup]="quotationForm">
+							<div class="row">
+								<div class="col-md-12">
+									<div class="form-group">
+										<mat-form-field appearance="">
+											<mat-label>Name</mat-label>
+											<input matInput placeholder="John doe" required formControlName="name">
+										</mat-form-field>
+										<div *ngIf="quotationForm.controls.name.invalid && (quotationForm.controls.name.dirty || quotationForm.controls.name.touched )"
+											class="">
+											<p style="color: red;" *ngIf="quotationForm.controls.name.errors.required">
+												Please enter name
+											</p>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="form-group">
+										<mat-form-field appearance="">
+											<mat-label>Email</mat-label>
+											<input matInput placeholder="Johndoe@gmail.com" formControlName="email"
+												required>
+										</mat-form-field>
+										<div *ngIf="quotationForm.controls.email.invalid && (quotationForm.controls.email.dirty || quotationForm.controls.email.touched )"
+											class="">
+											<p style="color: red;" *ngIf="quotationForm.controls.email.errors.required">
+												Please enter email address
+											</p>
+											<p style="color: red;" *ngIf="quotationForm.controls.email.errors.pattern">
+												Please enter valid email address
+											</p>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<mat-form-field appearance="">
+											<mat-label>Phone Number</mat-label>
+											<form #f="ngForm" [formGroup]="phoneForm">
+												<ngx-mat-intl-tel-input [preferredCountries]="['us', 'gb']"
+													[enablePlaceholder]="true" [enableSearch]="false" name="phone"
+													(countryChanged)="countryCode($event)" formControlName="phone"
+													[(ngModel)]="phone">
+												</ngx-mat-intl-tel-input>
+	
+											</form>
+											<!-- <input matInput placeholder="9876520510" formControlName="phone_number"
+												[formControl]="quotationForm.controls['phone_number']"
+												required> -->
+										</mat-form-field>
+										<div>
+											<mat-error *ngIf="f.form.controls['phone']?.errors?.validatePhoneNumber">Invalid 
+												Number</mat-error>
+										</div>
+										<div *ngIf="phoneForm.controls.phone.invalid && (phoneForm.controls.phone.dirty || phoneForm.controls.phone.touched)"
+											class="">
+											<p style="color: red;" *ngIf="phoneForm.controls.phone.errors.required">
+												Please enter phone number
+											</p>
+											<!-- <p style="color: red;"
+												*ngIf="quotationForm.controls.phone_number?.errors?.pattern">
+												Please enter valid phone number
+											</p> -->
+											<!-- <p style="color: red;"
+												*ngIf="quotationForm.controls.phone_number?.errors?.minlength">
+												Phone number should be greater than 8 digits
+											</p> -->
+											<!-- <p style="color: red;"
+												*ngIf="quotationForm.controls.phone_number?.errors?.maxlength">
+												Phone number should be maximum 16 digits
+											</p> -->
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<mat-form-field appearance="">
+											<mat-label>Quotation Ref</mat-label>
+											<input matInput placeholder="Quotation Ref" formControlName="quotation_ref"
+												required readonly="true">
+										</mat-form-field>
+										<div *ngIf="quotationForm.controls.quotation_ref.invalid && (quotationForm.controls.quotation_ref.dirty || quotationForm.controls.quotation_ref.touched )"
+											class="">
+											<p style="color: red;"
+												*ngIf="quotationForm.controls.quotation_ref.errors.required">
+												Please enter quotation ref
+											</p>
+										</div>
+	
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<mat-form-field>
+											<mat-label>Choose Start Date</mat-label>
+											<input matInput [matDatepicker]="picker" placeholder="" 
+												formControlName="date" readonly="true">
+											<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+											<mat-datepicker #picker></mat-datepicker>
+										</mat-form-field>
+										<div *ngIf="quotationForm.controls.date.invalid && (quotationForm.controls.date.dirty || quotationForm.controls.date.touched )"
+											class="">
+											<p style="color: red;" *ngIf="quotationForm.controls.date.errors.required">
+												Please select date
+											</p>
+										</div>
+									</div>
+								</div>
+	
+								<div class="col-md-6">
+									<div class="form-group">
+										<!-- <mat-form-field appearance="">
+											<mat-label>Expected Date of Service</mat-label>
+											<input matInput [matDatepicker]="picker" formControlName="expected_date">
+											<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+											<mat-datepicker #picker></mat-datepicker>
+										</mat-form-field> -->
+										<mat-form-field>
+											<mat-label>Choose End Date</mat-label>
+											<input matInput [matDatepicker]="picker1" placeholder="" 
+												formControlName="expected_date">
+											<mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+											<mat-datepicker #picker1></mat-datepicker>
+										</mat-form-field>
+										<div *ngIf="quotationForm.controls.expected_date.invalid && (quotationForm.controls.expected_date.dirty || quotationForm.controls.expected_date.touched )"
+											class="">
+											<p style="color: red;"
+												*ngIf="quotationForm.controls.expected_date.errors.required">
+												Please enter expected end date
+											</p>
+										</div>
+									</div>
+								</div>
+								<!-- <div class="col-md-6">
+									<mat-form-field appearance="">
+										<mat-label>Start Time(+04)</mat-label>
+										<input matTimepicker placeholder=""  formControlName="time">
+										<mat-icon matSuffix>access_time</mat-icon>
+									</mat-form-field>
+									<div *ngIf="quotationForm.controls.time.invalid && (quotationForm.controls.time.dirty || quotationForm.controls.time.touched || submit_quotation)"
+										class="">
+										<p style="color: red;" *ngIf="quotationForm.controls.time.errors.required">
+											Please select time
+										</p>
+									</div>
+								</div> -->
+								<div class="col-md-6">
+									<div class="form-group">
+										<mat-form-field appearance="">
+											<mat-label>Branch for Service</mat-label>
+											<input matInput placeholder="Sales Representative" required
+												formControlName="sales_representative"  readonly="true">
+										</mat-form-field>
+										<div *ngIf="quotationForm.controls.sales_representative.invalid && (quotationForm.controls.sales_representative.dirty || quotationForm.controls.sales_representative.touched )"
+											class="">
+											<p style="color: red;"
+												*ngIf="quotationForm.controls.sales_representative.errors.required">
+												Please enter sales representative
+											</p>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<mat-form-field appearance="">
+											<mat-label>Service Name</mat-label>
+											<input matInput placeholder="Service Name" readonly="true"
+												formControlName="service_name" required>
+										</mat-form-field>
+										<div *ngIf="quotationForm.controls.service_name.invalid && (quotationForm.controls.service_name.dirty || quotationForm.controls.service_name.touched )"
+											class="">
+											<p style="color: red;"
+												*ngIf="quotationForm.controls.service_name.errors.required">
+												Please enter service name
+											</p>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+	 
+											<mat-label>Location</mat-label>
+											<input ngx-google-places-autocomplete
+											 formControlName=location />
+											<!-- {{ formattedaddress }}
+							   -->
+										<div *ngIf="quotationForm.controls.location.invalid && (quotationForm.controls.location.dirty || quotationForm.controls.location.touched )"
+											class="">
+											<p style="color: red;" *ngIf="quotationForm.controls.location.errors.required">
+												Please enter location
+											</p>
+										</div>
+									</div>
+								</div>
+								<!-- <div class="col-md-6">
+									<div class="form-group">
+										<mat-form-field appearance="">
+											<mat-label>Service Number</mat-label>
+											<input matInput placeholder="Service Number" formControlName="service_name"
+												required>
+										</mat-form-field>
+										
+									</div>
+								</div> -->
+								<!-- <div class="col-md-6">
+									<div class="form-group">
+										<mat-form-field appearance="">
+											<mat-label>Quantity</mat-label>
+											<input matInput placeholder="Quantity" required formControlName="quantity">
+										</mat-form-field>
+										<div *ngIf="quotationForm.controls.quantity.invalid && (quotationForm.controls.quantity.dirty || quotationForm.controls.quantity.touched || submit_quotation)"
+											class="">
+											<p style="color: red;" *ngIf="quotationForm.controls.quantity.errors.required">
+												Please enter quantity
+											</p>
+	
+											<p style="color: red;"*ngIf="quotationForm.controls.quantity?.errors?.pattern">
+											 Enter numbers only</p>
+										</div>
+									</div>
+								</div> -->
+	
+								<div class="col-md-6">
+									<div class="form-group">
+										<mat-form-field appearance="">
+											<mat-label>Estimated Budget</mat-label>
+											<input matInput placeholder="AED" required
+												formControlName="estimated_budget">
+										</mat-form-field>
+										<div *ngIf="quotationForm.controls.estimated_budget.invalid && (quotationForm.controls.estimated_budget.dirty || quotationForm.controls.estimated_budget.touched )"
+											class="">
+											<p style="color: red;"
+												*ngIf="quotationForm.controls.estimated_budget.errors.required">
+												Please enter estimated budget
+											</p>
+	
+											<p style="color: red;"
+												*ngIf="quotationForm.controls.estimated_budget?.errors?.pattern">
+												enter numbers only</p>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="form-group">
+										<mat-form-field appearance="">
+											<mat-label>Description</mat-label>
+											<textarea matInput placeholder="Description"
+												formControlName="description"></textarea>
+										</mat-form-field>
+										<div *ngIf="quotationForm.controls.description.invalid && (quotationForm.controls.description.dirty || quotationForm.controls.description.touched )"
+											class="">
+											<p style="color: red;"
+												*ngIf="quotationForm.controls.description.errors.required">
+												Please enter description
+											</p>
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-12">
+									<div class="form-group">
+										<div class="uploader-wrapper fdsf">
+											<ngx-dropzone style="height: 150px;" class="ngxdhdjshdhjsag"
+												ngProjectAs="ngx-dropzone-preview"
+												accept="image/jpeg,image/gif,image/png,application/pdf,image/x-eps"
+											
+												 multiple>
+												<ngx-dropzone-label>
+													Drop here
+													Documents!
+												</ngx-dropzone-label>
+												<!-- <ngx-dropzone-preview *ngFor="let f of files,let i =index" [removable]="true"
+													(removed)="onRemove(f,i)">
+													<ngx-dropzone-label>{{ f.name }} ({{ f.type }})
+													</ngx-dropzone-label>
+												</ngx-dropzone-preview> -->
+											</ngx-dropzone>
+	
+																	<!-- <p class="req_labl text-danger"
+														*ngIf="files.length==0">
+														Please choose
+														Documents
+													</p> -->
+										</div>
+									</div>
+								</div>
+								<div class="col-md-12 mt-3" align="center">
+									<button type="submit" class="btn btn-change-fill" (click)="submitQutation()"
+										[disabled]="!quotationForm.valid || !phoneForm.valid" data-dismiss="modal">Submit</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 <app-footer></app-footer>

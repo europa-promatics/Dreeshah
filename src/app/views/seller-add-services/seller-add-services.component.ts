@@ -16,7 +16,8 @@ import { Location } from '@angular/common'
 import { MatStepper } from '@angular/material/stepper';
 import { environment } from 'src/environments/environment';
 import { addproject } from './addproject';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { AnyPtrRecord, AnySrvRecord } from 'dns';
 @Component({
   selector: 'app-seller-add-services',
   templateUrl: './seller-add-services.component.html',
@@ -24,8 +25,8 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog
 })
 export class SellerAddServicesComponent implements OnInit {
 
- 
-  subCatArr=[]
+
+  subCatArr = []
   visible = true;
   selectable = true;
   removable = true;
@@ -35,12 +36,12 @@ export class SellerAddServicesComponent implements OnInit {
   fruits: string[] = ['Delhi'];
   allFruits: string[] = ['Delhi', 'Mumbai', 'Chennai', 'Kolkata', 'Nagpur'];
   countries = []
-  ProjectCost:any[] = [
+  ProjectCost: any[] = [
     {
       name: '1000-20000'
     },
     {
-      name:'20000-300000'
+      name: '20000-300000'
     },
     {
       name: '40000-500000'
@@ -59,17 +60,17 @@ export class SellerAddServicesComponent implements OnInit {
   image_path
   selected_projects = []
   checked = [];
-  lenArrCity:number
-  lenArrCategory:number
+  lenArrCity: number
+  lenArrCategory: number
   service_description
-  categiryArr=[]
-  catArr=[]
-  subCateArr=[]
-  serviceDuration:any = null;
-  serviceName:any = null;
-  maxSize:any=null;
-  countryName:any = null;
-  areaCovr:any = null;
+  categiryArr = []
+  catArr = []
+  subCateArr = []
+  serviceDuration: any = null;
+  serviceName: any = null;
+  maxSize: any = null;
+  countryName: any = null;
+  areaCovr: any = null;
   ckedit
   @ViewChild('fruitInput') fruitInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
@@ -89,6 +90,17 @@ export class SellerAddServicesComponent implements OnInit {
   projectValue: any;
   FixedValue: any;
   keyupFixedd: any;
+  getProjectArr: any;
+  addnewproject: boolean=false;
+  addnewexistingproject: boolean=false;
+  getnewProjectArr: any;
+  newdata: any;
+  detailbox: boolean=false;
+  newcreateproject: any;
+  newadddata: any;
+  detailbox2: boolean=false;
+  getprojectdata: any;
+  fixedsdsds: any;
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -97,7 +109,7 @@ export class SellerAddServicesComponent implements OnInit {
     private toastr: ToastrService,
     private location: Location,
     private dialog: MatDialog
-  ) {    
+  ) {
 
 
   }
@@ -132,10 +144,11 @@ export class SellerAddServicesComponent implements OnInit {
     const dialogRef = this.dialog?.open(addproject);
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      console.log(`Dialog result:`,result);
     });
   }
-  selected(event: MatAutocompleteSelectedEvent): void  {
+
+  selected(event: MatAutocompleteSelectedEvent): void {
     this.fruits.push(event.option.viewValue);
     this.fruitInput.nativeElement.value = '';
     this.fruitCtrl.setValue(null);
@@ -150,24 +163,24 @@ export class SellerAddServicesComponent implements OnInit {
   files: File[] = [];
 
   onSelect(event) {
-    if(event) {
-      for(var i = 0; i < event.addedFiles.length; i++){
-        var size= event.addedFiles[i].size;
+    if (event) {
+      for (var i = 0; i < event.addedFiles.length; i++) {
+        var size = event.addedFiles[i].size;
         console.log('sss', size)
-        if(size>2000000) {
+        if (size > 2000000) {
           this.toastr.error('Please  upload less than 2MB,')
         }
         else {
           console.log(event);
-          this.files=event.addedFiles;
-          console.log('fff',this.files)
+          this.files = event.addedFiles;
+          console.log('fff', this.files)
         }
       }
     }
-   
-    
-   
-   
+
+
+
+
   }
 
   onRemove(event) {
@@ -180,40 +193,41 @@ export class SellerAddServicesComponent implements OnInit {
   }
   files1: File[] = [];
   onSelect1(event) {
-    if(event) {
-      for(var i = 0; i < event.addedFiles.length; i++){
-        var size= event.addedFiles[i].size;
+    console.log(event)
+    if (event) {
+      for (var i = 0; i < event.addedFiles.length; i++) {
+        var size = event.addedFiles[i].size;
         console.log('sss', size)
-        if(size>2000000) {
+        if (size > 2000000) {
           this.toastr.error('Please  upload less than 2MB,')
         }
         else {
           console.log(event);
           console.log(event);
-           this.files1=event.addedFiles;
-           console.log("all pics are===>",this.files1);
-           
+          this.files1 = event.addedFiles;
+          console.log("all pics are===>", this.files1);
+
         }
       }
     }
-    
+
   }
   files2: File[] = []
-  onSelectVideo(event){
+  onSelectVideo(event) {
     console.log("video event data trigger ", event)
-    if(event) {
-      for(var i = 0; i < event.addedFiles.length; i++){
-        var size= event.addedFiles[i].size;
+    if (event) {
+      for (var i = 0; i < event.addedFiles.length; i++) {
+        var size = event.addedFiles[i].size;
         console.log('sss', size)
-        if(size>100000000) {
+        if (size > 100000000) {
           this.toastr.error('Please  upload less than 100Mb,')
         }
         else {
           console.log(event);
           console.log(event);
-           this.files2=event.addedFiles;
-           console.log("Video file ",this.files2);
-           
+          this.files2 = event.addedFiles;
+          console.log("Video file ", this.files2);
+
         }
       }
     }
@@ -244,27 +258,27 @@ export class SellerAddServicesComponent implements OnInit {
       service_visible_customer: new FormControl('', []),
 
       service_visible_professional: new FormControl('', []),
+      serviceproject:new FormControl('', []),
+      keyWords: new FormControl('', []),
 
-      keyWords:  new FormControl('', [ ]), 
+      issuedInCountry: new FormControl('', [Validators.required]),
 
-      issuedInCountry: new FormControl('',[Validators.required]),
+      issuedIncities: new FormControl('', [Validators.required]),
 
-      issuedIncities: new FormControl('',[Validators.required]),
+      service_checkbox: new FormControl(''),
 
-      service_checkbox: new FormControl('',[Validators.required]),
+      projectCost: new FormControl('', [Validators.required]),
 
-      projectCost: new FormControl('',[Validators.required]),
+      fix_price: new FormControl(''),
 
-      fix_price: new FormControl('', [Validators.required, Validators.pattern("^[0-9]*")]),
+      start_range_price: new FormControl(''),
 
-      start_range_price: new FormControl('', [Validators.required, Validators.pattern("^[0-9]*")]),
+      end_range_price: new FormControl(''),
 
-      end_range_price: new FormControl('', [Validators.required, Validators.pattern("^[0-9]*")]),
+      price_type: new FormControl('', [Validators.required]),
 
-      price_type: new FormControl('',[Validators.required]),
-      
     })
-
+   this.getProfessionalProjects()
     this.reqData = {}
     this.reqData.offset = 0
     this.reqData.limit = 10
@@ -276,19 +290,37 @@ export class SellerAddServicesComponent implements OnInit {
     this.getProfile()
     // this.getProject()
     this.getCategoryList()
-
+    
 
     this.CustomerService.proffSelectedCatAndSubcat().subscribe(res => {
       console.log('Response of the Category and Subcategory Lists<<<<>>>>>', res)
-      this.catArr=res.data.service_categories
+      this.catArr = res.data.service_categories
       console.log("cat listttttttttttttttt", this.catArr)
-      this.subCateArr= res.data.service_subcategories
+      this.subCateArr = res.data.service_subcategories
       //this.categiryArr = res.data
 
     })
+
+    this.CustomerService.updateFilterData.subscribe((data: any) => {
+      console.log('emitted',JSON.parse(data))
+      this.newcreateproject=JSON.parse(data)
+      console.log(  this.newcreateproject['data'])
+      this.newadddata= this.newcreateproject['data']
+     
+      if(this.newadddata!={ }){
+        this.detailbox2=true
+        this.newdata={}
+        this.detailbox=false
+      }else{
+        this.detailbox2=false
+      }
+     
+    })
   }
+
+  
   fun(): void {
-    console.log('gg',this.formGroup)
+    console.log('gg', this.formGroup)
     console.log(this.formGroup.value.service_name)
   }
 
@@ -326,7 +358,7 @@ export class SellerAddServicesComponent implements OnInit {
       id: this.userData._id
     }
     this.CustomerService.getUserDetails().subscribe(async data => {
-      console.log('getProfileData-------->',data);
+      console.log('getProfileData-------->', data);
       if (data.code == 200) {
         this.userDetails = await data
         await data.user_services.forEach(async (element, ind) => {
@@ -337,6 +369,13 @@ export class SellerAddServicesComponent implements OnInit {
           }
         });
       }
+    })
+  }
+  getProfessionalProjects() {
+    this.CustomerService.getProfessionalProjectsWithoutPagination().subscribe(res => {
+
+      this.getProjectArr = res.data
+      console.log('getProfessionalProjectsWithoutPagination', this.getProjectArr)
     })
   }
   // getProject() {
@@ -350,16 +389,54 @@ export class SellerAddServicesComponent implements OnInit {
   //     }
   //   })
   // }
-  getProject(event){
-      var obj = {
-        sub_category_id: event.value
+  getProject(event) {
+    var obj = {
+      sub_category_id: event.value
     }
     this.CustomerService.getProjectsAccordingToSubCat(obj).subscribe(async data => {
-      console.log('getProjects new----------------',data);
+      console.log('getProjects new----------------', data);
       if (data.code == 200) {
         this.projects = data.result
       }
     })
+  }
+  detailofproject(data:any){
+    let b={
+      project_id:data
+    }
+    this.CustomerService.getProjectById(b).subscribe(res =>{
+      console.log('ressssss',res)
+      this.getprojectdata = res['result']
+    })
+  }
+
+  val(data){
+    if (data=='new'){
+      this.addnewproject=true
+      this.detailbox=false
+      this.addnewexistingproject=false
+      this.newdata={}
+      this.formGroup.controls.service_checkbox.setValidators([Validators.required])
+      this.formGroup.controls.service_checkbox.updateValueAndValidity()
+    }else if(data=='existing'){
+      this.addnewexistingproject=true
+      this.addnewproject=false
+      this.formGroup.controls.service_checkbox.setValidators([])
+      this.formGroup.controls.service_checkbox.updateValueAndValidity()
+    }
+  }
+  SelectProject(event){
+    console.log(event,'ss')
+     this.detailbox=true
+
+      this.getnewProjectArr = this.getProjectArr.filter((res)=>{
+         return res._id == event.value
+      })
+
+      this.newdata=this.getnewProjectArr[0]
+      console.log(this.getnewProjectArr[0])
+    
+    
   }
   // getServiceCat(ids) {
   //   var obj = {
@@ -375,26 +452,26 @@ export class SellerAddServicesComponent implements OnInit {
   //   })
   // }
 
-// New Work ha
+  // New Work ha
 
-newArr = []
+  newArr = []
   getCategoryList() {
     this.CustomerService.getCatAndSubCat().subscribe(res => {
       console.log('res of category List', res)
       this.categiryArr = res.data
       // this.categiryArr.forEach((el, ind) => {
 
-        // this.CustomerService.getSubCat(el.id).subscribe(res => {
-        //   console.log('reeees', res)
-        //   res.sub_categories.forEach(element => {
-        //     let v = {
-        //       name: element.name,
-        //       id: element._id
-        //     }
-        //     this.newArr.push(v)
-        //   });
-        //   console.log('newarrcategory', this.newArr)
-        // })
+      // this.CustomerService.getSubCat(el.id).subscribe(res => {
+      //   console.log('reeees', res)
+      //   res.sub_categories.forEach(element => {
+      //     let v = {
+      //       name: element.name,
+      //       id: element._id
+      //     }
+      //     this.newArr.push(v)
+      //   });
+      //   console.log('newarrcategory', this.newArr)
+      // })
 
       // })
 
@@ -434,24 +511,24 @@ newArr = []
   //   })
   // }
 
-  
+
 
   getSubCat(event) {
-    console.log("Event for the sub category>>>",event)
+    console.log("Event for the sub category>>>", event)
     var arr = []
-		if (Array.isArray(event)) {
-			arr = event
-      this.lenArrCategory =arr.length
-		//	this.formGroup.controls['issuedInCountry'].setValue(event)
-		} else {
-			arr.push(event)
-      this.lenArrCategory =arr.length
-		}
-    event= arr[this.lenArrCategory-1]
-    console.log("EVENT>>>>>",event)
-		// var obj = {
-		// 	category: arr[this.lenArrCity-1]
-		// }
+    if (Array.isArray(event)) {
+      arr = event
+      this.lenArrCategory = arr.length
+      //	this.formGroup.controls['issuedInCountry'].setValue(event)
+    } else {
+      arr.push(event)
+      this.lenArrCategory = arr.length
+    }
+    event = arr[this.lenArrCategory - 1]
+    console.log("EVENT>>>>>", event)
+    // var obj = {
+    // 	category: arr[this.lenArrCity-1]
+    // }
     // Old Start
     // console.log("getting event", event, "arrr ===>", this.userDetails.user_services)
     // var sub_cat = this.userDetails.user_services.filter(element => element.service_id.service_category_id == event);
@@ -464,9 +541,9 @@ newArr = []
 
     // New Work below
     this.CustomerService.getSubCat(event).subscribe(res => {
-          console.log('reveeeee sub category ', res)
-          this.subCatArr=res.sub_categories
-  })
+      console.log('reveeeee sub category ', res)
+      this.subCatArr = res.sub_categories
+    })
 
   }
   // onFileChange(evt) {
@@ -499,18 +576,18 @@ newArr = []
   //   var formdata2 = new FormData()
   //   formdata2.append('service_image', JSON.stringify(obj))
   //   this.CustomerService.uploadImageService(formdata2).subscribe(data => {
-	// 		console.log("Response of the image upload",data)
-	// 		this.service_image = data.files?.service_image;
-	// 	}, err => {
-	// 		console.log(err)
-	// 		this.toastr.error('Some error occured, please try again!!', 'Error')
+  // 		console.log("Response of the image upload",data)
+  // 		this.service_image = data.files?.service_image;
+  // 	}, err => {
+  // 		console.log(err)
+  // 		this.toastr.error('Some error occured, please try again!!', 'Error')
 
-	// 	})
+  // 	})
   //   const fr = new FileReader();
   //   fr.onloadend = (loadEvent) => {
   //     let mainImage = fr.result;
   //     console.log(fr);
-      
+
   //     // self.profile_img = mainImage;
   //     // alert(self.profile_img)
   //   };
@@ -521,89 +598,89 @@ newArr = []
     console.log("event-----------------------", e);
 
     const file = e.target.files[0]?.name;
-    console.log("image file=========",file);
+    console.log("image file=========", file);
 
     const file1 = e.target.files[0];
-    console.log("image file=========",file1);
-    
+    console.log("image file=========", file1);
+
     const fileType = file1?.type?.split("/")[0];
-    console.log("image file type=======",fileType);
-    
+    console.log("image file type=======", fileType);
+
 
     if (fileType == "image") {
       this.selectedfile1 = e.target.files[0];
-      
+
 
       const formdata = new FormData();
       formdata.append('service_image', this.selectedfile1);
 
       this.CustomerService.uploadImageService(formdata).subscribe((res: any) => {
         console.log("image response ==>", res);
-        this.service_image=res.data.service_image
+        this.service_image = res.data.service_image
         // this.formGroup.patchValue({
         //   image:this.service_image
         // })
-        console.log("this.service_image uploaddddddddd========================",this.service_image);
-        
+        console.log("this.service_image uploaddddddddd========================", this.service_image);
+
       })
 
-    } 
-    console.log("image form===============",this.formGroup);
+    }
+    console.log("image form===============", this.formGroup);
   }
 
 
-  areaCoveredArr=[]
-  areaCoveredFormArr=[]
-  areaCovered(evt){
-    
+  areaCoveredArr = []
+  areaCoveredFormArr = []
+  areaCovered(evt) {
+
 
     // var a={
     //   city:evt
     // }
-    this.areaCoveredArr=evt
-    console.log('this.areaCoveredArr',this.areaCoveredArr);
-    
+    this.areaCoveredArr = evt
+    console.log('this.areaCoveredArr', this.areaCoveredArr);
+
   }
-  newChecked=[]
+  newChecked = []
   visible_customer
   visible_pro
-  visibleErr=false
+  visibleErr = false
 
 
 
   submit() {
-    
-    if(this.formGroup.value.service_visible_customer){
-      this.visible_customer=true
-      console.log('this.visible_customer',this.visible_customer);
-      
-    }else if(!this.formGroup.value.service_visible_customer){
-      this.visible_customer=false
-       console.log('this.visible_customer',this.visible_customer);
+
+    if (this.formGroup.value.service_visible_customer) {
+      this.visible_customer = true
+      console.log('this.visible_customer', this.visible_customer);
+
+    } else if (!this.formGroup.value.service_visible_customer) {
+      this.visible_customer = false
+      console.log('this.visible_customer', this.visible_customer);
     }
 
-    if(this.formGroup.value.service_visible_professional){
-      this.visible_pro=true
-      console.log('this.visible_pro',this.visible_pro);
-    }else if(!this.formGroup.value.service_visible_professional){
-      this.visible_pro=false
-      console.log('this.visible_pro',this.visible_pro);
+    if (this.formGroup.value.service_visible_professional) {
+      this.visible_pro = true
+      console.log('this.visible_pro', this.visible_pro);
+    } else if (!this.formGroup.value.service_visible_professional) {
+      this.visible_pro = false
+      console.log('this.visible_pro', this.visible_pro);
     }
-    console.log('this.formGroup.value.service_visible_professional',this.formGroup.value.service_visible_professional)
-    this.areaCoveredArr.forEach(el=>{
-      let b={
-        city:el
+    console.log('this.formGroup.value.service_visible_professional', this.formGroup.value.service_visible_professional)
+    this.areaCoveredArr.forEach(el => {
+      let b = {
+        city: el
       }
       this.areaCoveredFormArr.push(b)
     })
-    this.checked.forEach(el =>{
-      let r={
-        project_id:el.value
+    this.checked.forEach(el => {
+      let r = {
+        project_id: el.value
       }
       this.newChecked.push(r)
     })
-    this.newChecked.forEach(el=>{
-      console.log('newChecked',el)
+    this.newChecked.forEach(el => {
+      console.log('newChecked', el)
     })
 
     this.submit_button = true
@@ -621,40 +698,41 @@ newArr = []
         formdata?.append('service_video ', element)
       });
     }
-    
+
     if (this.files2.length > 0) {
       this.files2.forEach(element => {
         formdata?.append('other_images', element)
-      }); 
+      });
     }
-
+    // JSON.stringify(this.newChecked))
     formdata?.append('service_name', this.formGroup.value.service_name)
     formdata?.append('service_description', this.formGroup.value.service_description)
     formdata?.append('country', JSON.stringify(this.formGroup.value.issuedInCountry))
-    formdata?.append('area_covered',JSON.stringify(this.formGroup.value.issuedIncities))
+    formdata?.append('area_covered', JSON.stringify(this.formGroup.value.issuedIncities))
     formdata?.append('service_category', JSON.stringify(this.formGroup.value.service_category))
     formdata?.append('service_sub_category', JSON.stringify(this.formGroup.value.service_sub_category))
     formdata?.append('duration', this.formGroup.value.service_duration)
     formdata?.append('service_visible_customer', this.formGroup.value.service_visible_customer)
     formdata?.append('service_visible_professional', this.formGroup.value.service_visible_professional)
-    formdata?.append('service_project',JSON.stringify(this.newChecked))
+
+    formdata?.append('service_project',this.addnewexistingproject ? this.formGroup.value.serviceproject : this.newadddata._id)
     formdata?.append('service_image', this.service_image)
 
     if (this.upto == 'upto') {
       formdata?.append('price', this.formGroup.value.projectCost)
-      formdata?.append('price_type', this.upto)
+      formdata?.append('price_type', this.formGroup.value.price_type)
     }
     else if (this.fixed == 'fixed') {
       formdata?.append('price', this.formGroup.value.fix_price)
-      formdata?.append('price_type', this.fixed)
+      formdata?.append('price_type', this.formGroup.value.price_type)
     }
     else if (this.range == 'range') {
       formdata?.append('price', this.formGroup.value.start_range_price)
       formdata?.append('end_price', this.formGroup.value.end_range_price)
-      formdata?.append('price_type', this.range)
+      formdata?.append('price_type', this.formGroup.value.price_type)
     }
 
-   
+
 
 
 
@@ -671,7 +749,7 @@ newArr = []
       return
     } else if (!this.formGroup.value.service_visible_customer && !this.formGroup.value.service_visible_professional) {
       this.toastr.error("Please select visiblity of service")
-      this.visibleErr=true
+      this.visibleErr = true
       return
     } else if (this.files.length == 0) {
       this.toastr.error("Please add related images")
@@ -687,21 +765,21 @@ newArr = []
   }
 
   getCountries() {
-		this.CustomerService.getCountries().subscribe(data => {
-			console.log("main data is ====", data)
-			if (data.code == '200' || data.code == 200) {
+    this.CustomerService.getCountries().subscribe(data => {
+      console.log("main data is ====", data)
+      if (data.code == '200' || data.code == 200) {
         this.countries = data.data
         // console.log('countries issued in',this.countries)
-			}
-		}, err => {
-			console.log(err.status)
-			if (err.status >= 404) {
-				console.log('Some error occured')
-			} else {
-				this.toastr.error('Some error occured, please try again!!', 'Error')
-				console.log('Internet Connection Error')
-			}
-		})
+      }
+    }, err => {
+      console.log(err.status)
+      if (err.status >= 404) {
+        console.log('Some error occured')
+      } else {
+        this.toastr.error('Some error occured, please try again!!', 'Error')
+        console.log('Internet Connection Error')
+      }
+    })
   }
   numberOnly(event): boolean {
     const charCode = (event.which) ? event.which : event.keyCode;
@@ -714,37 +792,37 @@ newArr = []
 
 
   getCities(event) {
-    this.cities=[]
-		console.log("==== event to chekc isssued in countriessssssssssssssssssssssss", event)
-		var arr = []
-		if (Array.isArray(event)) {
-			arr = event
-      this.lenArrCity =arr.length
-			this.formGroup.controls['issuedInCountry'].setValue(event)
-		} else {
-			arr.push(event)
-      this.lenArrCity =arr.length
-		}
-		var obj = {
-			country_code: arr[this.lenArrCity-1]
-		}
-		console.log("===obj", obj)
-		this.CustomerService.getAllCities(obj).subscribe(data => {
-      this.cities=[]
+    this.cities = []
+    console.log("==== event to chekc isssued in countriessssssssssssssssssssssss", event)
+    var arr = []
+    if (Array.isArray(event)) {
+      arr = event
+      this.lenArrCity = arr.length
+      this.formGroup.controls['issuedInCountry'].setValue(event)
+    } else {
+      arr.push(event)
+      this.lenArrCity = arr.length
+    }
+    var obj = {
+      country_code: arr[this.lenArrCity - 1]
+    }
+    console.log("===obj", obj)
+    this.CustomerService.getAllCities(obj).subscribe(data => {
+      this.cities = []
       console.log("city data is ====", data)
-			if (data.code == '200' || data.code == 200) {
-				this.cities = data.data
-			}
-		}, err => {
-			console.log(err.status)
-			if (err.status >= 404) {
-				console.log('Some error occured')
-			} else {
-				this.toastr.error('Some error occured, please try again!!', 'Error')
-				console.log('Internet Connection Error')
-			}
+      if (data.code == '200' || data.code == 200) {
+        this.cities = data.data
+      }
+    }, err => {
+      console.log(err.status)
+      if (err.status >= 404) {
+        console.log('Some error occured')
+      } else {
+        this.toastr.error('Some error occured, please try again!!', 'Error')
+        console.log('Internet Connection Error')
+      }
 
-		})
+    })
   }
 
 
@@ -755,7 +833,7 @@ newArr = []
   getProjList() {
     var d = {
       limit: this.reqData.limit,
-      offset:this.reqData.offset
+      offset: this.reqData.offset
     }
 
     this.CustomerService.getProfessionalProjects(d).subscribe(res => {
@@ -766,79 +844,82 @@ newArr = []
 
 
   // price select----------------------------
-  priceSelect(event){
-    console.log("price select event >>>>>>>>>>>>.",event.value);
-    if(event.value=='upto'){
-      console.log("if",event.value)
+  priceSelect(event) {
+    console.log("price select event >>>>>>>>>>>>.", event.value);
+    this.fixedsdsds = event.value
+    if (this.fixedsdsds == 'upto') {
+      console.log("if", event.value)
       this.formGroup.controls.fix_price.patchValue('')
       this.formGroup.controls.start_range_price.patchValue('')
       this.formGroup.controls.end_range_price.patchValue('')
-      this.price=''
+      this.price = ''
 
-      this.formGroup.controls["projectCost"].setValidators([Validators.required, Validators.pattern("^[0-9]*")]);
-      this.formGroup.controls["projectCost"].updateValueAndValidity();
+      this.formGroup.controls['projectCost'].setValidators([Validators.required, Validators.pattern("^[0-9]*")]);
+      this.formGroup.controls['projectCost'].updateValueAndValidity();
 
-      this.formGroup.controls["start_range_price"].setValidators([]);
-      this.formGroup.controls["start_range_price"].updateValueAndValidity();
-      this.formGroup.controls["start_range_price"].markAsUntouched()
+      this.formGroup.controls['start_range_price'].clearValidators();
+      this.formGroup.controls['start_range_price'].updateValueAndValidity();
+      this.formGroup.controls['start_range_price'].markAsUntouched()
 
-      this.formGroup.controls["end_range_price"].setValidators([]);
-      this.formGroup.controls["end_range_price"].updateValueAndValidity();
-      this.formGroup.controls["end_range_price"].markAsUntouched()
+      this.formGroup.controls['end_range_price'].clearValidators();
+      this.formGroup.controls['end_range_price'].updateValueAndValidity();
+      this.formGroup.controls['end_range_price'].markAsUntouched()
 
 
-      this.formGroup.controls["fix_price"].setValidators([]);
-      this.formGroup.controls["fix_price"].updateValueAndValidity();
-      this.formGroup.controls["fix_price"].markAsUntouched()
+      this.formGroup.controls['fix_price'].clearValidators();
+      this.formGroup.controls['fix_price'].updateValueAndValidity();
+      this.formGroup.controls['fix_price'].markAsUntouched()
     }
-   else if(event.value=='fixed'){
-    console.log("1if",event.value)
+    else if (this.fixedsdsds == 'fixed') {
+      console.log("1if", event.value)
       this.formGroup.controls.projectCost.patchValue('')
       this.formGroup.controls.start_range_price.patchValue('')
-      this.formGroup.controls.end_range_price.patchValue('') 
-      this.price=''
+      this.formGroup.controls.end_range_price.patchValue('')
+      this.price = ''
 
-      this.formGroup.controls["fix_price"].setValidators([Validators.required, Validators.pattern("^[0-9]*")]);
-      this.formGroup.controls["fix_price"].updateValueAndValidity();
+      this.formGroup.controls['fix_price'].setValidators([Validators.required, Validators.pattern("^[0-9]*")]);
+      this.formGroup.controls['fix_price'].updateValueAndValidity();
 
-      this.formGroup.controls["start_range_price"].setValidators([]);
-      this.formGroup.controls["start_range_price"].updateValueAndValidity();
-      this.formGroup.controls["start_range_price"].markAsUntouched()
+      this.formGroup.controls['start_range_price'].setValidators(null);
+      this.formGroup.controls['start_range_price'].updateValueAndValidity();
+      this.formGroup.controls['start_range_price'].markAsUntouched()
 
-      this.formGroup.controls["end_range_price"].setValidators([]);
-      this.formGroup.controls["end_range_price"].updateValueAndValidity();
-      this.formGroup.controls["end_range_price"].markAsUntouched()
+      this.formGroup.controls['end_range_price'].clearValidators();
+      this.formGroup.controls['end_range_price'].updateValueAndValidity();
+      this.formGroup.controls['end_range_price'].markAsUntouched()
 
-      this.formGroup.controls["projectCost"].setValidators([]);
-      this.formGroup.controls["projectCost"].updateValueAndValidity();
-      this.formGroup.controls["projectCost"].markAsUntouched()
+      this.formGroup.controls['projectCost'].clearValidators();
+      this.formGroup.controls['projectCost'].updateValueAndValidity();
+      this.formGroup.controls['projectCost'].markAsUntouched()
 
     }
-   else if(event.value =='range'){
-     console.log("2if",event.value)
+    else if (this.fixedsdsds == 'range') {
+      console.log("2if", event.value)
       this.formGroup.controls.projectCost.patchValue('')
       this.formGroup.controls.fix_price.patchValue('')
 
-      this.formGroup.controls["start_range_price"].setValidators([Validators.required, Validators.pattern("^[0-9]*")]);
-      this.formGroup.controls["start_range_price"].updateValueAndValidity();
+      this.formGroup.controls['start_range_price'].setValidators([Validators.required, Validators.pattern("^[0-9]*")]);
+      this.formGroup.controls['start_range_price'].updateValueAndValidity();
 
 
 
-      this.formGroup.controls["end_range_price"].setValidators([Validators.required, Validators.pattern("^[0-9]*")]);
-      this.formGroup.controls["end_range_price"].updateValueAndValidity();
+      this.formGroup.controls['end_range_price'].setValidators([Validators.required, Validators.pattern("^[0-9]*")]);
+      this.formGroup.controls['end_range_price'].updateValueAndValidity();
 
-      this.formGroup.controls["fix_price"].setValidators([]);
-      this.formGroup.controls["fix_price"].updateValueAndValidity();
-      this.formGroup.controls["fix_price"].markAsUntouched()
+      this.formGroup.controls['fix_price'].clearValidators();
+      this.formGroup.controls['fix_price'].updateValueAndValidity();
+      this.formGroup.controls['fix_price'].markAsUntouched()
 
-      this.formGroup.controls["projectCost"].setValidators([]);
-      this.formGroup.controls["projectCost"].updateValueAndValidity();
-      this.formGroup.controls["projectCost"].markAsUntouched()
+      this.formGroup.controls['projectCost'].clearValidators();
+      this.formGroup.controls['projectCost'].updateValueAndValidity();
+      this.formGroup.controls['projectCost'].markAsUntouched()
     }
-    this.fixed=event.value
-    this.upto=event.value
-    this.range=event.value
+  
+
   }
+
+
+
 
 
 

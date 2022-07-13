@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 // import { HttpClient } from '@angular/common/http';
 // import * as Rx from "rxjs/Rx";
 import { Observable, throwError } from 'rxjs';
@@ -49,7 +49,7 @@ export class CustomerService {
   //     return v.toString(16);
   //   });
   // }
-
+  public updateFilterData: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(private loader: NgxUiLoaderService, private route: ActivatedRoute, private router: Router, private httpClient: HttpClient, private toastr: ToastrService) {
     //   this.userData = localStorage['userData'] != null ? JSON.parse(localStorage['userData']) : null
@@ -74,6 +74,13 @@ export class CustomerService {
     // else{
     //   localStorage.setItem("session_data",this.uuidv4())
     // }
+  }
+
+    // * EMITTERS * //
+
+  public updateProjectsViaFilter(json: string): void {
+    // * Emit an event containing the player's command so we have a log of it in the UI
+    this.updateFilterData.emit(json);
   }
 
   getToken() {
@@ -1296,7 +1303,7 @@ export class CustomerService {
 
   wishlistDetail(): Observable<any> {
     let API_URL = `${this.apiUrl}/myWishlist`;
-    return this.httpClient.post(API_URL, this.httpOptions)
+    return this.httpClient.post(API_URL,this.httpOptions)
       .pipe(
         map(res => {
           return res
@@ -1885,6 +1892,31 @@ export class CustomerService {
 
       )
   }
+  customerQuotationdeletebyid(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/quotationRequestDeleteById`;
+    // console.log("token", this.httpOptions)
+    console.log(API_URL)
+    return this.httpClient.post(API_URL, data, this.httpOptions)
+      .pipe(
+        map(res => {
+          return res
+        }),
+
+      )
+  }
+  updateQuotation(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/updateQuoteStatus`;
+    // console.log("token", this.httpOptions)
+    console.log(API_URL)
+    return this.httpClient.post(API_URL, data, this.httpOptions)
+      .pipe(
+        map(res => {
+          return res
+        }),
+
+      )
+  }
+
   customerProgressQuotation(data): Observable<any> {
     let API_URL = `${this.apiUrl}/quotationRequestList`;
     // console.log("token", this.httpOptions)
@@ -2812,19 +2844,6 @@ export class CustomerService {
         return res
       })
     )
-  }
-
-
-
-  //   04-july-2022-----------------------------------------------------------
-  detailsByCategoryOfProfessional(data:any):Observable<any>{
-    let API_URL=`${this.apiUrl}/getUserDetails`;
-    return this.httpClient.post(API_URL,data,this.httpOptions).pipe(
-      map(res =>{
-        return res
-      })
-    )
-    
   }
 
 

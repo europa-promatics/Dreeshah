@@ -279,6 +279,7 @@ export class SellerEditServicesComponent implements OnInit {
       console.log("main data is ====", data)
       if (data.code == '200' || data.code == 200) {
         this.countries = data.data
+        console.log(this.countries)
       }
     }, err => {
       console.log(err.status)

@@ -22,27 +22,12 @@ height: 470px !important;">
                                 <div class="add-proj-form">
                                     <form [formGroup]="addProjectForm">
                                         <div class="row">
-                                            <div class="col-sm-6">
-                                                <div class="form-group" *ngIf="getProjectArr.length >0">
-                                                    
-                                                    <mat-form-field>
-                                                        <mat-label>Select Existing Project</mat-label>
-                                                        <mat-select formControlName="sellerProject"
-                                                            (selectionChange)="SelectProject($event)">
-                                                            <mat-option *ngFor="let ar of getProjectArr"
-                                                                [value]="ar.project_name">{{ar.project_name}}
-                                                            </mat-option>
-                                                            <!-- <mat-option value="2">Which Project was it Part of?</mat-option>
-                                                            <mat-option value="3">Your Existing Project</mat-option> -->
-                                                        </mat-select>
-                                                    </mat-form-field>
-                                                </div>
-                                            </div>
+                                          
                                             <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <mat-form-field appearance="">
                                                         <mat-label>New Project Name</mat-label>
-                                                        <input formControlName="newProjName" matInput placeholder="">
+                                                        <input formControlName="newProjName" matInput placeholder="" value="ar.project_name">
                                                     </mat-form-field>
                                                     <div *ngIf="addProjectForm.controls.newProjName.invalid && (addProjectForm.controls.newProjName.dirty || addProjectForm.controls.newProjName.touched || submit)"
                                                         class="">
@@ -365,7 +350,7 @@ height: 470px !important;">
                                                 <div class="upload-btn mt-2">
                                                     <button class="btn btn-change-fill min-width-0"
                                                         style="margin-left:  40% ;"
-                                                        (click)="addProject()">Publish</button>
+                                                        (click)="addProject()" [disabled]="!addProjectForm.valid" data-dismiss="modal">Publish</button>
                                                     <!-- <button class="btn btn-change-fill min-width-0">Delete</button> -->
 
                                                     <!-- <button class="btn btn-change-fill min-width-0">Cancel</button> -->

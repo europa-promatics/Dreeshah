@@ -117,9 +117,9 @@
                                             </ngx-dropzone-preview>
 
                                         </div>
-                                    </div> 
+                                    </div>
                                     <ngx-dropzone (change)="onSelect($event)"
-                                        accept="image/jpeg,image/jpg,image/png,image/gif/,video/mp4">
+                                        accept="image/jpeg,image/jpg,image/png,image/gif">
                                         <ngx-dropzone-label [(ngModel)]="media" required
                                             [formControl]="productForm.controls['media']">Add Files
                                         </ngx-dropzone-label>
@@ -130,13 +130,17 @@
                                         </ngx-dropzone-preview>
 
                                     </ngx-dropzone>
-                                    <p style="color: red;" *ngIf="!this.lengthImage">Note:Media size should be less then 5 mb</p>
+                                    <p style="color: red;">Note:Image size should be less then 5 mb</p>
                                     <div>
                                         <p style="color: red; "
                                             *ngIf="productForm.controls['media'].errors?.required && ( productForm.controls['media'].touched || submit_button)">
                                             Select the file</p>
                                         <p style="color: red;" *ngIf="files.length ==0 && (isTouch )">Select the File
                                         </p>
+                                        <div>
+                                         
+                                            <p style="color: red;" *ngIf="this.size>5000000">Note:Media size should be less then 5 mb</p>
+                                            </div>
                                     </div>
 
                                 </div>

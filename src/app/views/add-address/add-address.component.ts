@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CustomerService } from 'src/app/shared/customer.service';
 
@@ -18,7 +19,7 @@ export class AddAddressComponent implements OnInit {
   constructor(
     private CustomerService: CustomerService,
     private toastr: ToastrService,
-    private fb: FormBuilder
+    private fb: FormBuilder,private router:Router
   ) {
     this.addressForm = this.fb.group({
       country: ['', [Validators.required]],
@@ -112,6 +113,8 @@ export class AddAddressComponent implements OnInit {
     }
     this.CustomerService.addNewAddres(this.addressForm.value).subscribe(data => {
       console.log('service data---------------', data)
+      this.toastr.success("Address Successfully Added...")
+      this.router.navigate(["/address"])
     })
   }
 

@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr'
 import { any } from '@amcharts/amcharts4/.internal/core/utils/Array';
 import { valueToRelative } from '@amcharts/amcharts4/.internal/core/utils/Utils';
 import { FormBuilder, FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 declare var $;
 @Component({
@@ -66,7 +67,7 @@ export class MyWishlistComponent implements OnInit {
   constructor(
     public CustomerService: CustomerService,
     private toastr: ToastrService,
-    private fb: FormBuilder
+    private fb: FormBuilder,private router:Router
   ) {
     this.groupForm = this.fb.group({
       group_name: ['', Validators.required]
@@ -159,6 +160,7 @@ export class MyWishlistComponent implements OnInit {
       })
     } else {
       console.log("In elss")
+      // let user_id=this.isLogin._id
       this.CustomerService.wishlistDetail().subscribe(res => {
 
         // console.log("Wishlist Details:", res)
@@ -186,6 +188,10 @@ export class MyWishlistComponent implements OnInit {
       // this.ngOnInit();
       this.AllWishListDetail()
     })
+  }
+  detail(_id:any){
+    console.log("done",_id)
+    this.router.navigate(['products-details',_id])
   }
 
 

@@ -246,6 +246,7 @@ firebase.initializeApp(environment.firebaseConfig);
     ForgotPasswordComponent,
     MyprofileComponent,
     EditMyProfileComponent,
+  
     ChangePasswordComponent,
     SellerDashboardComponent,
     InteriorComponent,

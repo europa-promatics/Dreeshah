@@ -22,7 +22,8 @@ export class CustomerIssueQuotationComponent implements OnInit {
     this.createForm() 
     this.quote_id = this.route.snapshot.paramMap.get('id')
     this.user_type =JSON.parse(localStorage.getItem('userData'))
-    console.log(this.quote_id.paramKey,'hello');
+    console.log(this.user_type,'hello');
+    console.log(this.quote_id,'hello');
     this.Issuequotation();
 
     this.route.queryParams

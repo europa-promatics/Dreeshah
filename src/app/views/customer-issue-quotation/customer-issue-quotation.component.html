@@ -134,7 +134,7 @@
 								<div class="structure-process-head">
 									<h2>Payment Terms</h2>
 								</div>
-								<div class="process-list"  *ngFor="let item of detail.payment_terms;let i=index">
+								<div class="process-list"  *ngFor="let item of detail?.payment_terms;let i=index">
 									<table class="table table-bordered">
 										<tbody  >
 											<tr>
@@ -162,7 +162,7 @@
 								<div class="structure-process-head">
 									<h2>Work Schedule</h2>
 								</div>
-								<div class="process-list" *ngFor="let item of detail.work_schedule;let i=index" >
+								<div class="process-list" *ngFor="let item of detail?.work_schedule;let i=index" >
 									<table class="table table-bordered">
 										<tbody  >
 											<tr>
@@ -191,7 +191,7 @@
 								<div class="structure-process-head">
 									<h2>No. of Section</h2>
 								</div>
-								<div class="process-list"  *ngFor="let item of detail.workflow;let i=index">
+								<div class="process-list"  *ngFor="let item of detail?.workflow;let i=index">
 									<table class="table table-bordered">
 										<tbody>
 											<tr>

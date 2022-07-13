@@ -108,6 +108,8 @@ export class ProductsDetailsComponent implements OnInit {
   profId;
   quanty = 1;
   imgpath = environment.prodImg;
+  imgpath2 = environment.profileUrl;
+
   InitialImg;
   cartArray = [];
   user_id;
@@ -115,7 +117,7 @@ export class ProductsDetailsComponent implements OnInit {
   professional_id;
   isLogin;
   quantity;
-  quantityIncrese = 0;
+  quantityIncrese = 1;
   total;
   quantityyy = []
   priceItem;
@@ -397,40 +399,81 @@ export class ProductsDetailsComponent implements OnInit {
 
 
   }
-
   addToWishlist(value) {
-    this.productId = value,
-      this.wishlistType = 'product'
-    var obj = {
-      product_id: this.productId,
-      wishlist_type: this.wishlistType
-    }
-    this.isLogin = localStorage.getItem("isLoggedIn");
-    let wishcount = localStorage.getItem("wishCount");
-    this.profId = this.detail.professional_id;
-    const user = localStorage.getItem("userData")
+    const user = localStorage.getItem("userData")? JSON.parse(localStorage.getItem("userData"))
+    : {}
     this.userId = user;
-    if (wishcount) {
-      this.toastr.warning("Product already added in wishlist");
-      return false;
-    }
-    else {
-      this.CustomerService.addToWishList(obj).subscribe(data => {
-        localStorage.setItem("wishCount", "true");
-        if (data.session_id && !this.isLogin) {
-          localStorage.setItem("session_data", data.session_id);
-          localStorage.setItem("wishlist_id", data.data.wishlist_id);
+      this.productId = value,
+        this.wishlistType = 'product'
+      var obj = {
+        product_id: this.productId,
+        wishlist_type: this.wishlistType,
+        user_id:this.userId['_id']
+      }
+      this.isLogin = localStorage.getItem("isLoggedIn");
+      let wishcount = localStorage.getItem("wishCount");
+      this.profId = this.detail.professional_id;
+      console.log(this.userId )
+     
+      if (wishcount) {
+        this.toastr.warning("Product already added in wishlist");
+        return false;
+      }
+      else if (!this.isLogin) {
+        this.toastr.error("Please Login first");
+
+      }
+      else if( (this.userId['user_type'] !="customer") ){
+        this.toastr.warning("Please Login as a customer");
+      }
+      else {
+        this.CustomerService.addToWishList(obj).subscribe(data => {
+          localStorage.setItem("wishCount", "true");
           this.toastr.success("Product Added to the Wishlist");
-        }
-        else if (this.isLogin) {
-          this.toastr.warning("Please Login as a customer");
-        }
-         else {
-          this.toastr.error("Please Login first");
-        }
-      })
-    } 
-  }
+          if (data.session_id && !this.isLogin) {
+            localStorage.setItem("session_data", data.session_id);
+            localStorage.setItem("wishlist_id", data.data.wishlist_id);
+           
+          }
+          
+          
+        })
+      } 
+    }
+
+  // addToWishlist(value) {
+  //   this.productId = value,
+  //     this.wishlistType = 'product'
+  //   var obj = {
+  //     product_id: this.productId,
+  //     wishlist_type: this.wishlistType
+  //   }
+  //   this.isLogin = localStorage.getItem("isLoggedIn");
+  //   let wishcount = localStorage.getItem("wishCount");
+  //   this.profId = this.detail.professional_id;
+  //   const user = localStorage.getItem("userData")
+  //   this.userId = user;
+  //   if (wishcount) {
+  //     this.toastr.warning("Product already added in wishlist");
+  //     return false;
+  //   }
+  //   else {
+  //     this.CustomerService.addToWishList(obj).subscribe(data => {
+  //       localStorage.setItem("wishCount", "true");
+  //       if (data.session_id && !this.isLogin) {
+  //         localStorage.setItem("session_data", data.session_id);
+  //         localStorage.setItem("wishlist_id", data.data.wishlist_id);
+  //         this.toastr.success("Product Added to the Wishlist");
+  //       }
+  //       else if (this.isLogin) {
+  //         this.toastr.warning("Please Login as a customer");
+  //       }
+  //        else {
+  //         this.toastr.error("Please Login first");
+  //       }
+  //     })
+  //   } 
+  // }
 
   // addToWishlist(value) {
   //   let wishcount=localStorage.getItem("wishCount");

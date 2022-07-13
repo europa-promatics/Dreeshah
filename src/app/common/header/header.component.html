@@ -175,20 +175,25 @@
                         <!-- <li class="list-inline-item" *ngIf="!isLogin"> -->
                         <li class="list-inline-item">
                             <!-- <a class="btn btn_green" routerLink="/login">Sign In</a> -->
-                            <a class="btn btn_green" (click)="signIn()">Sign In</a>
+                            <a class="btn btn_green" (click)="signIn()" *ngIf="!isLogin">Sign In</a>
                         </li>
                         <!-- <li class="list-inline-item" *ngIf="!isLogin"> -->
                         <li class="list-inline-item" *ngIf="!isLogin">
                             <a class="btn btn_green" routerLink="/signup">Sign Up</a>
                         </li>
+                        <a (click)="cartfunc()" style="position: relative;" *ngIf="isLogin && userData.user_type == 'customer' ">
+                            <i class="fa fa-shopping-cart mr-2" ></i>
+                            <span class="cntr_nmbr2"
+                                *ngIf="cartItemCount!=0">{{cartItemCount}}</span>
+                        </a>
                         <li class="nav-item drop-itemm" *ngIf="isLogin && userData.user_type == 'customer'">
                             <div class="user_drop">
                                 <button mat-button [matMenuTriggerFor]="menu">
                                     <img
-                                        src="https://demo.wponlinesupport.com/themes/wp-iclean-responsive/wp-content/uploads/sites/8/2017/04/team-6.jpg" />
+                                        src="{{profileUrl}}{{this.userData?.profile_image}}" />
                                 </button>
                                 <mat-menu #menu="matMenu" xPosition="before">
-                                    <ul class="comnon_drop">0
+                                    <ul class="comnon_drop">
                                         <li><a (click)="myProfile()"><i class="fa fa-user mr-3"></i>My Profile</a></li>
                                         <li><a (click)="dashboard()"><i class="fa fa-chart-line mr-3"></i>Dashboard</a>
                                         </li>
@@ -477,7 +482,7 @@
                                         <div class="col-sm-6" *ngFor="let cat of categories">
                                             <div class="sub_menu mb-4" *ngIf="cat.sub_categories.length > 0">
                                                 <h4 class="mb-2">{{cat.name}}</h4>
-                                                <ul class="insd_menu_lst" *ngIf="cat.sub_categories.length > 0">
+                                                <ul class="insd_menu_lst">
                                                     <li
                                                         *ngFor="let subCat of cat.sub_categories | slice:0:(cat.slice_list ? cat.slice_list : 5); let i = index">
                                                         <a (click)="navigate(cat._id,subCat._id)">
@@ -712,11 +717,7 @@
                             </li>
                             <!-- <i class="fa fa-search mr-2"></i> -->
                             <!-- <a routerLink="/mycart"  class="position--relative"> -->
-                            <a (click)="cartfunc()" class="position--relative">
-                                <i class="fa fa-shopping-cart mr-2"></i>
-                                <span class="cntr_nmbr"
-                                    *ngIf="isLogin && userData.user_type == 'customer' ">{{cartItemCount}}</span>
-                            </a>
+                           
                             <!-- <a routerLink="/mywishlist">  <i class="fa fa-heart"></i></a>   -->
                         </div>
                     </div>

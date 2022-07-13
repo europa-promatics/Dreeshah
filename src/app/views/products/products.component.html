@@ -160,7 +160,7 @@
 									<div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
 										<div class="panel-body">
 											<div class="custom-slider">
-												<ng5-slider [(value)]="value" [options]="options"></ng5-slider>
+												<ng5-slider [(value)]="value" [options]="options" (valueChange)="changeprice($event)"></ng5-slider>
 											</div>
 										</div>
 									</div>
@@ -371,19 +371,24 @@
                     							<i class="fas fa-star"></i> 
                     							<i class="fas fa-star grey"></i> 
                     						</span>
-                    						<div class="price"> <strong>£{{product.pricing.price}}</strong> <span>£18.00</span></div>
+                    						<div class="price"> <strong>£{{product?.pricing?.price}}</strong> <span>£18.00</span></div>
+											<div class="d-flex">
+												<button class="btn btn-outline-blue mt-2 btn-buy" ><i class=""></i> Buy
+													Now</button>
+
+													<button class="btn btn-outline-blue mt-2 ml-2 btn-buy" (click)="addToCart(product?._id)"><i
+														class="fa fa-shopping-cart mr-2 "></i><a>Add to Cart</a></button>
+											</div>
                     					</div>
                     					<div class="product-info">
                     						<div class="header showDetailsBtn"> Details</div>
                     						<div class="info showDetailsContent">
-                    							<div class="size">
+                    							<div class="size"  *ngIf="product?.variants?.variant_size">
                     								<span>Size</span>
                     								<ul>
-                    									<li class=""><a href="#">S</a></li>
-                    									<li class=""><a href="#">L</a></li>
-                    									<li class=""><a href="#">M</a></li>
-                    									<li class=""><a href="#">XL</a></li>
-                    									<li class="active"><a href="#">3X</a></li>
+                    									<li class="" *ngFor="let size of product?.variants?.variant_size"><a href="#">{{size}}</a></li>
+                    									
+                    									
                     								</ul>
                     							</div>
                     							<div class="color">
@@ -394,7 +399,7 @@
                     									<li class="red"><a href="#"></a></li>
                     								</ul>
                     							</div>
-                    							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius doloremque dolorum dolore omnis, similique vel nulla molestiae quae accusantium, incidunt.</p>
+                    							<p>{{product?.product_description | slice:3:-5}}</p>
                     						</div>
                     					</div>
                     				</div>

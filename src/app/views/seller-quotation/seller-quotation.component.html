@@ -162,6 +162,7 @@
 														<th scope="col">Service image</th>
 														<th scope="col">Service Submission Date</th>
 														<th scope="col">Quotation Status</th>
+														<th scope="col">modified permission</th>
 														<th scope="col">View</th>
 													</tr>
 												</thead>
@@ -182,6 +183,18 @@
 
 																="badge badge-dark status-badge">In Progress</span>
 															
+														</td>
+														<td>
+															<div class="btn-group mt-1 mb-1" role="group" *ngIf="list.modified=='pending'">
+																<button class="btn btn-change-fill btn-sm min-width-40" (click)="submitQutation(list._id,'accepted')"><i class="fa fa-check"></i></button>
+																<button class="btn btn-change-fill btn-sm min-width-40" (click)="submitQutation(list._id,'rejected')"><i class="fa fa-times"></i></button>
+															</div>
+															<div *ngIf="list.modified=='accepted'" class="mt-1 mb-1">
+																<span>accepted</span>
+															</div>
+															<div *ngIf="list.modified=='rejected'" class="mt-1 mb-1">
+																<span>rejected</span>
+															</div>
 														</td>
 														<td><a routerLink="/sellerQuotationDetails/{{list._id}}" class="btn btn-round-blue"><i class="fa fa-eye"></i></a></td>
 													</tr>
@@ -234,7 +247,7 @@
 														<td>
 															 <span class
 
-																="badge badge-dark status-badge">In Progress</span>
+																="badge badge-dark status-badge">Modify</span>
 															
 														</td>
 														<td><a routerLink="/sellerQuotationDetails/{{list._id}}" class="btn btn-round-blue"><i class="fa fa-eye"></i></a></td>
