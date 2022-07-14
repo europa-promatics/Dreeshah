@@ -345,6 +345,16 @@ export class CustomerService {
 
       )
   }
+  // professionalList(data): Observable<any> {
+  //   let API_URL = `${this.apiUrl}/addUserCatalogue`;
+  //   return this.httpClient.post(API_URL, data, this.httpOptions)
+  //     .pipe(
+  //       map(res => {
+  //         return res
+  //       }),
+
+  //     )
+  // }
 
   deleteCatalogue(data): Observable<any> {
     let API_URL = `${this.apiUrl}/deleteCatalogue`;
@@ -2047,11 +2057,11 @@ export class CustomerService {
       )
   }
 
-  professionalList(data): Observable<any> {
-    let API_URL = `${this.apiUrl}/nonlogged/professionals`;
+  professionalList(): Observable<any> {
+    let API_URL = `${this.apiUrl}/getProfessional/list`;
     // console.log("token", this.httpOptions)
     console.log(API_URL)
-    return this.httpClient.post(API_URL, data)
+    return this.httpClient.get(API_URL)
       .pipe(
         map(res => {
           return res

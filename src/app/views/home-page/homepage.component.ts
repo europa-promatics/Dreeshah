@@ -282,7 +282,7 @@ export class HomepageComponent implements OnInit {
 	}
 
 
-	this.CustomerService.professionalList(obj).subscribe(res =>{
+	this.CustomerService.professionalList().subscribe(res =>{
 		console.log("Reponse of the Professional list>>>>>>",res)
 		//this.length=res.total_counts
 	})

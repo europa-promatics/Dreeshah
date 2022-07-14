@@ -231,8 +231,10 @@
 										<div class="d-flex ml-3 mt-3" *ngFor="let pro of wishlistDetailPro" style="position: relative;">
 											<input type="checkbox" id="{{pro?.professional_id?._id}}" (change)="checkBoxClick($event)" style="position: absolute;
                                             top: 4px;">
-											<div class="images  ml-4 mt-0 mr-3"> <img style="width: 140px;
+											<div class="images  ml-4 mt-0 mr-3" *ngIf="pro?.professional_id?.profile_image != null"> <img style="width: 140px;
                                                 height: 140px;" src="{{image_base_url}}{{pro?.professional_id?.profile_image}}" alt="website template image"> </div>
+												<div class="images  ml-4 mt-0 mr-3" *ngIf="pro?.professional_id?.profile_image == null"> <img style="width: 140px;
+													height: 140px;" src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png" alt="website template image"> </div>
 											<div class="txtt" style="margin-top: -6px;">
 												<h3 class="m-0">Professional Name: {{pro?.professional_id?.first_name}}
                                                 </h3>

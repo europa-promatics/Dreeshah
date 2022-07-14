@@ -111,6 +111,8 @@ export class HeaderComponent implements OnInit {
 
     this.userData = localStorage['userData'] != null ? JSON.parse(localStorage['userData']) : null
 
+    console.log(this.userData );
+    
     if(!this.isLogin && localStorage.getItem("session_data")){
       this.userId=localStorage.getItem("session_data")
     }else{

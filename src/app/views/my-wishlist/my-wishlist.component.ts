@@ -203,10 +203,10 @@ export class MyWishlistComponent implements OnInit {
     if (this.isLogin == "false") {
       this.CustomerService.wishlistDetailGuest().subscribe(res => {
 
-        // console.log("Wishlist Details:", res)
+        console.log("Wishlist Details:######################", res)
         this.wishlistDetailPro = res.data
 
-        // console.log(this.wishlistDetail)
+        console.log("pro##############################",this.wishlistDetail)
 
       })
     } else {
