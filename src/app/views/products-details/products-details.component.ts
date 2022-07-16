@@ -85,6 +85,12 @@ export class ProductsDetailsComponent implements OnInit {
   costperpriceItem: any;
   branch_quantity = [];
   totalprice = [];
+  related: any;
+  reqData: {};
+  length: any;
+  prodData: any;
+  count: any;
+  config: { itemsPerPage: number; currentPage: number; totalItems: any; };
 
   showZoomImg(value) {
     this.ImgSrc = value;
@@ -178,6 +184,7 @@ export class ProductsDetailsComponent implements OnInit {
 
         console.log(this.InitialImg);
         console.log(this.detail);
+
       });
     } else {
       this.obj = {
@@ -200,6 +207,24 @@ export class ProductsDetailsComponent implements OnInit {
       });
 
     }
+
+	 //this.dataSource = new MatTableDataSource(this.responseData);
+      var list={
+        limit:10000,
+        offset:0
+      }
+
+    this.CustomerService.productList(list).subscribe(res =>{
+      console.log(res)
+      this.prodData=res.products;
+      this.count=res.total_counts;
+      console.log(this.prodData)
+      console.log(this.count)
+   
+    })
+
+  //  this.related=this.prodData
+  //  console.log("ppppp=>",this.related)
 
     // this.myThumbnail=this.imgpath+this.InitialImg;
     // console.log(this.myThumbnail)
@@ -631,12 +656,12 @@ export class ProductsDetailsComponent implements OnInit {
         });
       }
     }
-    else if (!this.iconbig) {
-      this.toastr.error("Please Select product color");
-    }
-    else if (!this.sizeselected) {
-      this.toastr.error("Please Select product size");
-    }
+    // else if (!this.iconbig) {
+    //   this.toastr.error("Please Select product color");
+    // }
+    // else if (!this.sizeselected) {
+    //   this.toastr.error("Please Select product size");
+    // }
     else if (this.quantityIncrese == 0) {
       this.toastr.error("Please add minimum 1 product quantity");
     }

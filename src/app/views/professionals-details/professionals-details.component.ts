@@ -1,6 +1,9 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Gallery, GalleryItem, ImageItem, ThumbnailsPosition, ImageSize } from '@ngx-gallery/core';
 import { map } from 'rxjs/operators';
+import { CustomerService } from 'src/app/shared/customer.service';
+import { environment } from 'src/environments/environment';
 
 declare var $;
 @Component({
@@ -10,11 +13,19 @@ declare var $;
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProfessionalsDetailsComponent implements OnInit {
-
+  profileUrl=environment.profileUrl
   items: GalleryItem[];
-  constructor(public gallery: Gallery) { }
+  professionalId: any;
+  professional: {};
+  length: any;
+  constructor(public gallery: Gallery,private route:ActivatedRoute,private customerService: CustomerService) { }
 
   ngOnInit() {
+
+    this.professionalId=this.route.snapshot.paramMap.get('_id')
+    console.log( this.professionalId)
+
+    this.getprofessional( this.professionalId)
      // 1. Create gallery items
     this.items = data.map(item =>
       new ImageItem({ src: item.srcUrl, 
@@ -56,6 +67,20 @@ export class ProfessionalsDetailsComponent implements OnInit {
        }
      });
   }
+
+  getprofessional(a){
+    const obj= {
+      id:a
+    }
+    this.customerService.getprofessional(obj).subscribe(res =>{
+      console.log("Reponse of the Professional >>>>>>",res)
+      this.professional=res['data'][0]
+      console.log("mmmmmmmmmmm", this.professional)
+      this.length=res.total_counts
+    })
+  }
+
+
  basicLightboxExample() {
     this.gallery.ref().load(this.items);
   }
@@ -197,6 +222,8 @@ const data = [
     ProfName:"Grace Lawerence",
     profRate:"$45",
   },
+
+
 
 
 ];

@@ -1230,6 +1230,16 @@ export class CustomerService {
         })
       )
   }
+  
+  productList2(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/productsWithoutToken`;
+    return this.httpClient.post(API_URL, data)
+      .pipe(
+        map(res => {
+          return res
+        })
+      )
+  }
 
   addProductService(data): Observable<any> {
     let API_URL = `${this.apiUrl}/add_product`;
@@ -2059,6 +2069,18 @@ export class CustomerService {
 
   professionalList(): Observable<any> {
     let API_URL = `${this.apiUrl}/getProfessional/list`;
+    // console.log("token", this.httpOptions)
+    console.log(API_URL)
+    return this.httpClient.get(API_URL)
+      .pipe(
+        map(res => {
+          return res
+        }),
+
+      )
+  }
+  getprofessional(obj): Observable<any> {
+    let API_URL = `${this.apiUrl}/getProfessional/list?id=${obj.id}`;
     // console.log("token", this.httpOptions)
     console.log(API_URL)
     return this.httpClient.get(API_URL)

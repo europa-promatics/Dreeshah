@@ -15,8 +15,11 @@
                         <div class="professionals-details-bg">
                             <div class="row">
                                 <div class="col-md-2">
-                                    <div class="professionals-profile-img">
-                                        <img src="https://www.efilecabinet.com/wp-content/uploads/2019/05/g2-testimonial-male.jpg" class="img-fluid">
+                                    <div class="professionals-profile-img" *ngIf="professional?.profile_image != null">
+                                        <img src="{{profileUrl}}{{professional?.profile_image}}" class="img-fluid">
+                                    </div>
+                                    <div class="professionals-profile-img" *ngIf="professional?.profile_image == null">
+                                        <img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png" class="img-fluid">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
@@ -24,9 +27,10 @@
                                         <!-- <img src="https://www.efilecabinet.com/wp-content/uploads/2019/05/g2-testimonial-male.jpg" class="img-fluid" > -->     
                                         <div class="ratings-review-wrapper-name">
                                             <a href="#">
-                                                <h3 class="ml-2">Sam Architects &amp; Builders</h3>
+                                                <!-- &amp; Builders -->
+                                                <h3 class="ml-2">{{professional?.first_name}} </h3>
                                             </a>
-                                            <p>Joined on 08-03-2005</p>
+                                            <p>Joined on {{professional?.createdAt | date}}</p>
                                             <div class="aligned">
                                                 <span class="owner-name">
                                                     4.3
@@ -45,7 +49,7 @@
                                                     </button>
                                                 </p>
                                                 <span>
-                                                    <i class="fa fa-map-marker-alt mr-1"></i>Ludhiana, Punjab
+                                                    <i class="fa fa-map-marker-alt mr-1"></i>{{professional?.professional_address?.state ? professional?.professional_address?.state:''}} {{professional?.professional_address?.country ? professional?.professional_address?.country:'N/A'}}
                                                 </span>
                                             </div>
                                         </div>
@@ -82,15 +86,14 @@
                                         </div>
                                         <div class="prof-category-box">
                                             <p>
-                                                <span class="h6 text-bold services-heading">Category </span><br/> Interior Designers & Interior Decorators 
+                                                <span class="h6 text-bold services-heading">Category </span>
+                                                 <span *ngFor="let x of professional?.serviceCategoryDetails"><br/>{{x.name}}</span>
                                             </p>
                                             <h3 class="text-bold services-heading">Services Provided</h3>
                                             <ul class="prof-services-list">
-                                                <li>3D Rendering</li>
-                                                <li>Architectural Design</li>
-                                                <li>Bathroom Design</li>
-                                                <li>Building Design</li>
-                                                <li>Custom Home</li>
+                                                <li *ngFor="let x of professional?.serviceSubCategoryDetails">{{x.name}}</li>
+                                                <!-- <li> </li> -->
+<!--                                                 
                                                 <span class="moretext">
                                                     <li>Deck Design</li>
                                                     <li>Drafting</li>
@@ -100,20 +103,20 @@
                                                     <li>Living Room Design</li>
                                                     <li>Space Planning</li>
                                                     <li>Custom Homes</li>
-                                                </span>
-                                                <a class="moreless-button mr-3" routerLink="/professionals-details">Read more</a>
+                                                </span> -->
+                                                <!-- <a class="moreless-button mr-3" routerLink="/professionals-details">Read more</a> -->
                                             </ul>
                                         </div>
                                         <div class="prof-form-information">
                                             <h3>Personal Information</h3>
-                                            <p><span>Email:</span> info@gmail.com</p>
-                                            <p><span>Company Name:</span> Modern Interiors</p>
-                                            <p><span>Company Information: </span> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                            <p><span>Email:</span> {{professional.email}}</p>
+                                            <p><span>Company Name:</span>{{professional?.business_details?.company_name_eng ? professional?.business_details?.company_name_eng:"N/A"}} </p>
+                                            <p><span>Company Information: </span> {{professional?.business_details?.about_company ? professional?.business_details?.about_company : "N/A"}}
+
                                             </p>
-                                            <p><span>Company Type:</span> Manufacturer</p>
-                                            <p><span>Company Category:</span> Interior Designers</p>
-                                            <p><span>Mobile Number: </span> 7972658654</p>
+                                            <p><span *ngIf="!professional?.business_details?.company_type">Company Type:</span> N/A</p>
+                                            <p><span >Company Category:</span> Interior Designers</p>
+                                            <p><span>Mobile Number: </span> {{professional?.professional_address?.phone_number ? professional?.professional_address?.phone_number:'N/A'}}</p>
                                             <p><span>Company Email:</span> info@gmail.com</p>
                                             <div class="prof-social-icons">
                                                 <ul class="social-icons">
@@ -142,7 +145,7 @@
                                         <label for="tab3">Ratings &amp; Reviews</label>
                                         <div class="tab-panels">
                                             <section id="about-us" class="tab-panel">
-                                                <p class="text-left ml-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                                <!-- <p class="text-left ml-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                                                     tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
                                                     quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
                                                     consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
@@ -153,18 +156,17 @@
                                                     consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
                                                     cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
                                                     proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                                                </p>
+                                                </p> -->
                                                 <h3 class="text-bold ml-2">Areas Served</h3>
-                                                <p class="ml-2">Mumbai, Bengaluru, Maharashtra, Gujarat, Pune
+                                                <p class="ml-2">{{professional?.service_details?.service_city[0]}}
                                                 </p>
                                                 <h3 class="text-bold ml-2">Awards</h3>
                                                 <p class="ml-2">http://www.samarchitech.com/awards.htm</p>
                                                 <h3 class="text-bold ml-2">Contact Info:</h3>
-                                                <p class="ml-2">Milind Pai
-                                                    120, Kuber, New Link Road,<br/> Opp. Laxmi Industrial<br/> Estate, Andheri-West<br/>
-                                                    Mumbai<br/>
-                                                    Maharashtra<br/>
-                                                    400 053<br/>
+                                                <p class="ml-2"><br/>{{professional?.area}}<br/> {{professional?.city}}<br/>
+                                                    {{professional?.state}}<br/>
+                                                    {{professional?.country}}<br/>
+                                                    <br/>
                                                 </p>
                                                 <div class="col-md-2">
                                                 <!-- <div class="dreeshah-badges">
@@ -181,38 +183,38 @@
                                             </div>
                                             <div class="col-md-12">
                                                 <div class="catalogue-figure d-flex">
-                                                    <div *ngFor="let item of items; index as i">
+                                                    <div *ngFor="let item of professional?.professionalProjects; index as i">
                                                         <div class="img-wrapper">
                                                             <img 
                                                             [lightbox]="i"
-                                                            [src]="item.data.thumb" 
+                                                            src="{{item?.project_images[0]?.name}}" 
                                                             class="img-fluid lightbox-img" 
                                                             >
                                                             <div class="catalogue-img-caption album-item-info mr-3 ml-3">
                                                                 <div class="photographer-info-wrapper">
-                                                                    <p class="">{{item.data.photographerName}}</p>
-                                                                    <p>{{item.data.photographerRate}}</p>
+                                                                    <p class="">{{professional.first_name}}</p>
+                                                                    <!-- <p>{{item.data.photographerRate}}</p> -->
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="catalogue-img-caption album-item-info mr-3 ml-3">
-                                                            <p class="album-item-title">{{item.data.title}}</p>
-                                                            <p>{{item.data.rate}}</p>
+                                                            <p class="album-item-title"></p>
+                                                            <p></p>
                                                         </div>
                                                         <div class="catalogue-img-caption album-item-info mr-3 ml-3">
-                                                            <p class="album-item-title">{{item.data.ProfName}}</p>
-                                                            <p>{{item.data.profRate}}</p>
+                                                            <p class="album-item-title"></p>
+                                                            <p></p>
                                                         </div>
                                                         <div class="catalogue-img-caption album-item-info mr-3 ml-3">
-                                                            <p>Saves: {{item.data.saves}}</p>
-                                                            <p>Share: {{item.data.shares}}</p>
+                                                            <p></p>
+                                                            <p></p>
                                                         </div>
                                                         <div class="catalogue-img-caption album-item-info mr-3 ml-3">
-                                                            <p><i class={{item.data.text}}></i></p>
-                                                            <p class="down-share">
+                                                            <!-- <p><i class={{item.data.text}}></i></p> -->
+                                                            <!-- <p class="down-share">
                                                                 <i class={{item.data.download}}></i>
                                                                 <i class={{item.data.share}}></i>
-                                                            </p>
+                                                            </p> -->
                                                         </div>
                                                     </div>
                                                 </div>

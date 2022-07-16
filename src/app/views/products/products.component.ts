@@ -7,6 +7,7 @@ import { LowerCasePipe } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
 import { CartService } from 'src/app/shared/cart.service';
 import { Router } from '@angular/router';
+// import * as console from 'console';
 //import { privateDecrypt } from 'crypto';
 declare var $
 @Component({
@@ -31,7 +32,7 @@ export class ProductsComponent implements OnInit {
   detail;
   productId;
   quantityIncrese = 0;
-  data;
+  data:any[]=[];
   evt;
   user_id;
   userId;
@@ -43,6 +44,7 @@ export class ProductsComponent implements OnInit {
 	getData;
 	offset=0;
 	limit=10;
+  data1= []
   count
   imgpath=environment.prodImg;
    options: Options = {
@@ -50,16 +52,20 @@ export class ProductsComponent implements OnInit {
     ceil: 1000
   };
   userData: any;
+  prodData2: any;
+  newwarey: any[]=[];
+  newset: any[];
 
   constructor(public CustomerService: CustomerService ,    private toastr: ToastrService
    , public cartService: CartService,private router:Router) { }
 
   ngOnInit(): void {
+
     localStorage.removeItem('wishCount');
     localStorage.removeItem('cartCount');
     console.log("In the product detail componennt>>>>>");
     this.isLogin = localStorage.getItem("isLoggedIn");
-
+    this.productList2()
     $(document).on('click','.showDetailsBtn', function(){
       $(this).closest('.product-info').toggleClass("show");
       console.log("class added");
@@ -78,6 +84,7 @@ export class ProductsComponent implements OnInit {
     this.CustomerService.productList(list).subscribe(res =>{
       console.log(res)
       this.prodData=res.products;
+      this.prodData2=res.products
       this.count=res.total_counts;
       console.log(this.prodData)
       console.log(this.count)
@@ -112,6 +119,32 @@ export class ProductsComponent implements OnInit {
    
     
 
+  }
+
+  productList2(){
+    var list={
+      limit:this.reqData?.limit,
+      offset:this.reqData?.offset
+    }
+
+  this.CustomerService.productList(list).subscribe(res =>{
+    console.log(res)
+    this.prodData2=res.products
+    // this.newwarey=res.products.map((res)=>{
+    //   return res.serviceCategoryDetails.name
+    // })
+    // this.newset=[...new Set( this.newwarey)]
+    // console.log( this.newwarey)
+
+    this.count=res.total_counts;
+    console.log(this.prodData)
+    console.log(this.count)
+    this.config = {
+      itemsPerPage: 10,
+      currentPage: 1,
+      totalItems: this.count
+    };
+  })
   }
   changeprice(e:any){
     console.log(e)
@@ -153,6 +186,46 @@ export class ProductsComponent implements OnInit {
     
     }
 
+
+    selectedServiceSubCategory(e: any, _id: string) {
+      console.log(e)
+      if (e.target.checked) {
+        this.data.push(_id);
+        console.log("a",e)
+      }
+   
+      
+      else {
+        var ind = this.data.indexOf(_id);
+        if ( ind > -1) {
+          this.data1 = this.data.splice(ind, 1)
+         
+        
+        }
+        
+      }
+  
+   
+      console.log('Data is ===>', this.data);
+      if(this.data != [] && this.data.length > 0 ){
+     
+ 
+      var obj = {
+
+        category_id: this.data,
+        limit:20,
+        offset:0
+        
+        }
+      this.CustomerService.productList(obj).subscribe((res) =>{
+        console.log(res)
+        this.prodData=res.products})
+      }else {
+        this.ngOnInit()
+
+      }
+
+    }
 
     sortprice(value) {
       //return this.prodData;

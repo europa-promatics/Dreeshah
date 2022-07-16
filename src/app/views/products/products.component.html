@@ -1,6 +1,6 @@
 <app-header></app-header>
 <div class="products-wrapper">
-	<section class="common_image_section page_headrer_wrkshop">
+	<!-- <section class="common_image_section page_headrer_wrkshop">
         <div class="container">
             <div class="page_head_wrap">
                 <h2 class="aboutus_head">Our Products</h2>
@@ -9,7 +9,7 @@
                 </p>
             </div>
         </div>
-    </section>
+    </section> -->
 	<nav aria-label="breadcrumb mb-0 mt-5">
 		<ol class="breadcrumb mb-0">
 			<li class="breadcrumb-item"><a routerLink="/">Home</a></li>
@@ -43,36 +43,38 @@
 									</div>
 									<div id="collapseOne" class="panel-collapse show collapse in" role="tabpanel" aria-labelledby="headingOne">
 										<div class="panel-body">
-											<div class="form-group col-sm">
-												<label class="checkbox-inline">Architectural Design
-													<input type="checkbox" checked="checked">
+											<div class="form-group col-sm" *ngFor="let x of this.prodData2">
+												<label class="checkbox-inline">{{x?.serviceCategoryDetails?.name}}
+													<input type="checkbox"   
+													
+													(change)="selectedServiceSubCategory($event,x?.category_id)">
 													<span class="checkmark"></span>
 												</label>
 											</div>
-											<div class="form-group col-sm">
+											<!-- <div class="form-group col-sm">
 												<label class="checkbox-inline">Structural Design
 													<input type="checkbox">
 													<span class="checkmark"></span>
 												</label>
-											</div>
-											<div class="form-group col-sm">
+											</div> -->
+											<!-- <div class="form-group col-sm">
 												<label class="checkbox-inline">Electrical Design
 													<input type="checkbox">
 													<span class="checkmark"></span>
 												</label>
-											</div>
-											<div class="form-group col-sm">
+											</div> -->
+											<!-- <div class="form-group col-sm">
 												<label class="checkbox-inline">Mechanical Design
 													<input type="checkbox">
 													<span class="checkmark"></span>
 												</label>
-											</div>
-											<div class="form-group col-sm">
+											</div> -->
+											<!-- <div class="form-group col-sm">
 												<label class="checkbox-inline">Interior Design
 													<input type="checkbox">
 													<span class="checkmark"></span>
 												</label>
-											</div>
+											</div> -->
 											<h3 class="text-left ml-3">Customer rating</h3>
 											<div class="custom-slider">
 												<ng5-slider [(value)]="value" [options]="options"></ng5-slider>
@@ -361,7 +363,7 @@
 											
 										</div></a>
                     					<div class="product-desc">
-                    						<span class="new">New</span> 
+                    						<span class="new" *ngIf="(product?.createdAt | dateAgo).includes('minutes') || (product?.createdAt | dateAgo).includes('minute') ||  (product?.createdAt | dateAgo).includes('hour') || (product?.createdAt | dateAgo).includes('Just') ||  (product?.createdAt | dateAgo).includes('hours')">New</span> 
                     						
 											<span class="caption " ><a routerLink="/products-details/{{product?._id}}">{{product?.product_title}}</a></span>
                     						<span class="rating"> 
@@ -371,7 +373,7 @@
                     							<i class="fas fa-star"></i> 
                     							<i class="fas fa-star grey"></i> 
                     						</span>
-                    						<div class="price"> <strong>£{{product?.pricing?.price}}</strong> <span>£18.00</span></div>
+                    						<div class="price"> <strong>£{{product?.pricing?.price}}</strong> <span>£{{product?.pricing?.comprice}}</span></div>
 											<div class="d-flex">
 												<button class="btn btn-outline-blue mt-2 btn-buy" ><i class=""></i> Buy
 													Now</button>

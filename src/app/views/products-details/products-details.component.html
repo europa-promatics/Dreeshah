@@ -81,7 +81,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-8">
                 <div class="product-details-info">
                     <div class="card product-card mt-5">
                         <div class="card-body">
@@ -103,7 +103,7 @@
                                     </div>
                                     <div class="prod-price">
                                         <!-- <h4>$123</h4> -->
-                                        <h4 class="mb-2" style="color:#6a9792;">${{detail?.pricing?.price}}</h4>
+                                        <h4 class="mb-2" style="color:#6a9792;">£{{detail?.pricing?.price}}</h4>
                                     </div>
                                     <div class="model-des">
                                         <!-- <h2>Model:120GR <span class="product-availability"> -->
@@ -330,7 +330,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-2">
+            <!-- <div class="col-md-2">
                 <div class="card mt-5">
                     <div class="card-body">
                         <div class="professional-image">
@@ -344,7 +344,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div class="col-md-12 mt-5">
                 <div class="info-tabs db-tabs">
                     <div class="tabset">
@@ -817,16 +817,17 @@
                     </div>
                     <div class="main_ideas_wrap">
                         <owl-carousel-o [options]="related_products_slider">
-                            <ng-template carouselSlide>
+                            <ng-template carouselSlide *ngFor="let x of   prodData">
                                 <figure class="wrap_idea_singl">
-                                    <img src="https://www.goodhomesmagazine.com/images/2020/04/GoodHome_Artemisia_Matt_Graphite_Shaker_BQ_From_1298_For_8_Unit_Kitchen.jpg"
-                                        class="img-fluid" alt="room1" />
+                                    <a routerLink="/products-details/{{x?._id}}">
+                                    <img src="{{imgpath}}{{x?.product_media[0]?.name}}"
+                                        class="img-fluid" alt="room1" /></a>
                                     <div class="fig_div_abs text-center">
-                                        <h3 class="room_name">Kitchen</h3>
+                                        <h3 class="room_name">{{x?.product_title}}</h3>
                                     </div>
                                 </figure>
                             </ng-template>
-                            <ng-template carouselSlide>
+                            <!-- <ng-template carouselSlide>
                                 <figure class="wrap_idea_singl">
                                     <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80"
                                         class="img-fluid" alt="room1" />
@@ -834,8 +835,8 @@
                                         <h3 class="room_name">Bath</h3>
                                     </div>
                                 </figure>
-                            </ng-template>
-                            <ng-template carouselSlide>
+                            </ng-template> -->
+                            <!-- <ng-template carouselSlide>
                                 <figure class="wrap_idea_singl">
                                     <img src="https://www.bocadolobo.com/en/inspiration-and-ideas/wp-content/uploads/2018/03/Discover-the-Ultimate-Master-Bedroom-Styles-and-Inspirations-6_1.jpg"
                                         class="img-fluid" alt="room1" />
@@ -843,8 +844,8 @@
                                         <h3 class="room_name">Bedroom</h3>
                                     </div>
                                 </figure>
-                            </ng-template>
-                            <ng-template carouselSlide>
+                            </ng-template> -->
+                            <!-- <ng-template carouselSlide>
                                 <figure class="wrap_idea_singl">
                                     <img src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/living-room-ideas-rds-work-queens-road-01-1594232912.jpg"
                                         class="img-fluid" alt="room1" />
@@ -852,8 +853,8 @@
                                         <h3 class="room_name">Living</h3>
                                     </div>
                                 </figure>
-                            </ng-template>
-                            <ng-template carouselSlide>
+                            </ng-template> -->
+                            <!-- <ng-template carouselSlide>
                                 <figure class="wrap_idea_singl">
                                     <img src="https://madebymood.com/wp-content/uploads/2015/08/Gorgeous-round-foyer-table-in-Hall-Victorian-with-Long-Hallway-next-to-Small-Foyer-alongside-Hall-Table-andFoyer-Table-.jpg"
                                         class="img-fluid" alt="room1" />
@@ -861,8 +862,8 @@
                                         <h3 class="room_name">Corridor</h3>
                                     </div>
                                 </figure>
-                            </ng-template>
-                            <ng-template carouselSlide>
+                            </ng-template> -->
+                            <!-- <ng-template carouselSlide>
                                 <figure class="wrap_idea_singl">
                                     <img src="https://www.thespruce.com/thmb/7bBW240OhURF49D4icYYIGYVZZ8=/1080x741/filters:fill(auto,1)/nikolestarrinteriors_105948601_3998934700148972_1660806659944552221_n-f0cc18d7bc49444a8afb7ccb962079c0.jpg"
                                         class="img-fluid" alt="room1" />
@@ -870,8 +871,8 @@
                                         <h3 class="room_name">Dinning</h3>
                                     </div>
                                 </figure>
-                            </ng-template>
-                            <ng-template carouselSlide>
+                            </ng-template> -->
+                            <!-- <ng-template carouselSlide>
                                 <figure class="wrap_idea_singl">
                                     <img src="https://media.architecturaldigest.com/photos/56b524de4ac3d842677b9ac0/master/w_2323,h_1548,c_limit/home-office-01.jpg"
                                         class="img-fluid" alt="room1" />
@@ -879,8 +880,8 @@
                                         <h3 class="room_name">Home & Office</h3>
                                     </div>
                                 </figure>
-                            </ng-template>
-                            <ng-template carouselSlide>
+                            </ng-template> -->
+                            <!-- <ng-template carouselSlide>
                                 <figure class="wrap_idea_singl">
                                     <img src="https://www.homestratosphere.com/wp-content/uploads/2019/11/1.cool-home-bar-rustic-industrial-style-nov4.jpg"
                                         class="img-fluid" alt="room1" />
@@ -888,7 +889,7 @@
                                         <h3 class="room_name">Home Bar</h3>
                                     </div>
                                 </figure>
-                            </ng-template>
+                            </ng-template> -->
                         </owl-carousel-o>
                     </div>
                 </div>

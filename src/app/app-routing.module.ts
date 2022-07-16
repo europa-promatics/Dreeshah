@@ -616,7 +616,7 @@ const routes: Routes = [
 		canActivate: [UserGuard],
 	},
 	{
-		path: 'professioanl-detail/:id',
+		path: 'professionals-details/:_id',
 		component: ProfessionalsDetailsComponent
 	},
 	{

@@ -70,7 +70,7 @@ import { ServicesDetailsNewComponent } from './views/services-details-new/servic
 import { MatNativeDateModule } from '@angular/material/core';
 import { NgxMatDatetimePickerModule, NgxMatTimepickerModule, NgxMatNativeDateModule } from '@angular-material-components/datetime-picker';
 import { NgxMatMomentModule } from '@angular-material-components/moment-adapter';
-
+import { DateAgoPipeModule } from 'src/pipes/date-ago.pipe.module'
 import { MatTimepickerModule } from 'mat-timepicker';
 
 import { NgxPaginationModule } from 'ngx-pagination';
@@ -233,6 +233,7 @@ firebase.initializeApp(environment.firebaseConfig);
     SellerModifyRequestsComponent,
     SidebarComponent,
     PhSidebarComponent,
+
     DbHeaderComponent,
     SellerHeaderComponent,
     SellerSidebarComponent,
@@ -393,6 +394,7 @@ firebase.initializeApp(environment.firebaseConfig);
     Ng2SearchPipeModule,
     NgxDropzoneModule,
     TagInputModule,
+    DateAgoPipeModule,
     NgxSliderModule,
     FullCalendarModule,
     MatDatepickerModule,
