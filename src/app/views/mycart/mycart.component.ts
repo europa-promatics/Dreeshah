@@ -281,9 +281,9 @@ export class MycartComponent implements OnInit {
 		}
 	}
 
-  CheckOut(){
+  CheckOut(a:any){
     if(this.isLogin && !(this.cartDetail.length == 0)){
-      this.router.navigate([`/checkout/${this.finalTotal}`])
+      this.router.navigate([`/checkout/${a}`])
     }
     else if(this.cartDetail.length == 0){
       this.toastr.warning("Cart Is Empty")

@@ -64,6 +64,9 @@ export class HeaderComponent implements OnInit {
   catalogueSearchData: any;
   catalogueSearchData1: any;
   profileUrl: any = environment.profileUrl
+  searchdata: any;
+  show: any=false;
+  limitsearchdata: any;
   
   constructor(
     private route: ActivatedRoute,public cartService:CartService,
@@ -412,12 +415,12 @@ applyFilter(filterValue) {
   console.log("type in search input field>>>>>>>", this.search);
   console.log("searching filterValue>>>>>>>>>>>>",filterValue);
   console.log("searching filter value fulllll>>>>>>>>>>>>",filterValue.target.value);
-
+  this.show=true
   this.search=filterValue.target.value
   console.log("search time value fatch>>>>>>",this.search);
   
   var obj={
-    search:this.search
+    suggestions:this.search
   }
   this.CustomerService.searchInHomeScreenn(obj).subscribe(res => {
     console.log("response of home search>>>>>>>>>>>>>>",res);
@@ -434,7 +437,9 @@ applyFilter(filterValue) {
     this.professionalSearchData=res.professionalSearch
     console.log("this.professionalSearchData>>>>>>>>>>>",this.professionalSearchData);
 
-
+    this.searchdata= this.productSearchData.map((res)=> {return res?.product_title})
+    console.log( "<====>",this.searchdata)
+    this.limitsearchdata=this.searchdata.slice(0,3)
 
     this.productIndex = this.productSearchData.findIndex(x => x.product_title === this.search);
     console.log('product device id index>>>>>>>>>>>>>>>>',this.productIndex);
@@ -455,8 +460,12 @@ applyFilter(filterValue) {
 
 }
 
-
+select(a:any){
+  this.search=a
+  this.homeSearch()
+}
   homeSearch() {
+    this.show=false
       var obj={
         text:this.search,
         device_id:this.device_id
@@ -466,7 +475,8 @@ applyFilter(filterValue) {
         this.addDeviceId= res.data.data.device_id
         console.log("this.addDeviceId>>>>>>",this.addDeviceId);
         this.router.navigate([`/search-results/${obj.text}`])
-        this.ngOnInit()
+        this.router.routeReuseStrategy.shouldReuseRoute = function () {
+          return false;}
       })
 
    

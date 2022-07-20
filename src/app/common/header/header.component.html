@@ -20,8 +20,8 @@
                                            [formControl]="myControl"
                                            [matAutocomplete]="auto"> -->
                                     <input type="text" class="inp-cst" (keyup)="applyFilter($event)"
-                                        [(ngModel)]="search" matInput 
-                                        [matAutocomplete]="auto">
+                                        [(ngModel)]="search"  matInput 
+                                        [matAutocomplete]="auto" >
 
                                         <ng-container  *ngIf="this.search">
                                             <button class="position-absolute  bnt-cst" (click)="homeSearch()" ><i
@@ -39,8 +39,14 @@
 
                                     <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
                                           
-                                        <ng-container *ngIf="this.search==''">
-                                            <div class="clr_div"><button class="clr_al" (click)="clearAllData($event)">clear all</button></div>
+                                        <ng-container *ngIf="this.show==true && this.search!='' && this.searchdata.length > 1">
+                                            <mat-option *ngFor="let data of limitsearchdata" (click)="select(data)">
+                                                {{data}}
+
+                                            </mat-option>
+                                            <mat-option *ngIf=" this.searchdata == [] &&  this.searchdata.length !=1" class=" clr_al"> no result</mat-option>
+                                            <span class="ml-2 mt-3 clr_al">Recent search</span>
+                                            <div class="clr_div" *ngIf="searchHistory!=[] && searchHistory.length > 1"><button class="clr_al" (click)="clearAllData($event)">clear all</button></div>
                                             <mat-option *ngFor="let history of searchHistory"  [value]="history?.text" >
                                                 {{history?.text}}
                                                 <button class="cl_ic cl_ic_2" (click)="searchHistoryDelete(history._id)">

@@ -39,6 +39,7 @@ export class LoginComponent implements OnInit {
     // this.user_type = 'customer'
     this.loginBackgroundImg()
     this.googleAuthSDK();
+    this.login()
   }
   callLoginButton() {
 
@@ -193,7 +194,8 @@ export class LoginComponent implements OnInit {
     this.CustomerService.login(obj).subscribe(data => {
       console.log(data)
       if (data.status == '200' || data.code == 200) {
-        localStorage['userData'] = JSON.stringify(data.user);
+        // localStorage['userData'] = JSON.stringify(data.user);
+        localStorage.setItem('userData',JSON.stringify(data.user));
         localStorage.setItem("remember_me", "yes"),
           localStorage.setItem("token", data.token),
           console.log("login_res", data)
@@ -208,8 +210,13 @@ export class LoginComponent implements OnInit {
           // }
 
           this.router.navigate(['/myprofile']);
+         
+         
         } else if (data.user.user_type == 'professional') {
           this.router.navigate(['/seller-profile-view']);
+          this.router.routeReuseStrategy.shouldReuseRoute = function () {
+            return false;
+          };
         } else {
           this.router.navigate(['/photographerProfile']);
         }

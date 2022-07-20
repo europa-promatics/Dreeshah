@@ -247,7 +247,7 @@
                             						</select>
                             					</div>
                             				</div>
-                            				<div class="col-md-3">
+                            				<!-- <div class="col-md-3">
 											<div class="form-group col-xs">
 												<select name="login" class="custom-select">
 													<option selected>Product Category</option>
@@ -255,11 +255,11 @@
 													<option value="Professionals">Interior Designers & Decorators</option>
 												</select>
 											</div>
-											</div>
+											</div> -->
 											  <div class="col-md-4">
                                 <div class="form-group">
                                     <!-- <label for="exampleFormControlSelect1"> Select Sub Category</label> -->
-                                    <select class="custom-select" id="exampleFormControlSelect1">
+                                    <!-- <select class="custom-select" id="exampleFormControlSelect1">
                                         <option>Select Sub Category</option>
                                         <option>Building Contractors</option>
                                         <option>Building Consultants</option>
@@ -274,7 +274,7 @@
                                         <option>Wallpapers Designers & Suppliers</option>
                                         <option>Gypsum Designers & Suppliers</option>
                                         <option>Floor Tiles Designers & Suppliers</option>
-                                    </select>
+                                    </select> -->
                                 </div>
                             </div>
                             			<!-- 	<div class="col-md-3">
@@ -363,7 +363,7 @@
 											
 										</div></a>
                     					<div class="product-desc">
-                    						<span class="new" *ngIf="(product?.createdAt | dateAgo).includes('minutes') || (product?.createdAt | dateAgo).includes('minute') ||  (product?.createdAt | dateAgo).includes('hour') || (product?.createdAt | dateAgo).includes('Just') ||  (product?.createdAt | dateAgo).includes('hours')">New</span> 
+                    						<span class="new" *ngIf="(product?.createdAt | dateAgo).includes('minutes') || (product?.createdAt | dateAgo).includes('minute') ||  (product?.createdAt | dateAgo).includes('hour') || (product?.createdAt | dateAgo).includes('Just') ||  (product?.createdAt | dateAgo).includes('hours') || (product?.createdAt | dateAgo).includes('days') || (product?.createdAt | dateAgo).includes('day')">New</span> 
                     						
 											<span class="caption " ><a routerLink="/products-details/{{product?._id}}">{{product?.product_title}}</a></span>
                     						<span class="rating"> 
@@ -375,8 +375,8 @@
                     						</span>
                     						<div class="price"> <strong>£{{product?.pricing?.price}}</strong> <span>£{{product?.pricing?.comprice}}</span></div>
 											<div class="d-flex">
-												<button class="btn btn-outline-blue mt-2 btn-buy" ><i class=""></i> Buy
-													Now</button>
+												<button class="btn btn-outline-blue mt-2 btn-buy" (click)= "buynow(product?._id)"><i class=""></i> Buy
+													Now </button>
 
 													<button class="btn btn-outline-blue mt-2 ml-2 btn-buy" (click)="addToCart(product?._id)"><i
 														class="fa fa-shopping-cart mr-2 "></i><a>Add to Cart</a></button>
@@ -388,19 +388,28 @@
                     							<div class="size"  *ngIf="product?.variants?.variant_size">
                     								<span>Size</span>
                     								<ul>
-                    									<li class="" *ngFor="let size of product?.variants?.variant_size"><a href="#">{{size}}</a></li>
+                    									<li class="" *ngFor="let size of product?.variants?.variant_size"><a href="#">{{size }}</a></li>
                     									
                     									
+                    								</ul>
+                    							</div>
+												<div class="size">
+                    								<span>Size</span>
+                    								<ul>
+                    									<li class="" ><a href="#"></a></li>
+                    								
                     								</ul>
                     							</div>
                     							<div class="color">
                     								<span>Color</span>
-                    								<ul>
-                    									<li class="yellow active"><a href="#"></a></li>
-                    									<li class="green "><a href="#"></a></li>
-                    									<li class="red"><a href="#"></a></li>
+                    								<ul *ngFor="let size of product?.variants?.color">
+                    									<li class="yellow "><a href="#"></a>{{size.color_name}}</li>
+                    									<!-- <li class="green "><a href="#"></a></li>
+                    									<li class="red"><a href="#"></a></li> -->
                     								</ul>
+													
                     							</div>
+												<h3>Descriptions</h3>
                     							<p>{{product?.product_description | slice:3:-5}}</p>
                     						</div>
                     					</div>

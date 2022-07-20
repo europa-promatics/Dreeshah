@@ -15,6 +15,7 @@
     border-radius: 50px;
     border: 2px solid #6A9792;
 }
+
 .bnt-cst{
     right: 0;
     padding: 9px 15px;
@@ -61,6 +62,13 @@ opacity: 1;
 .header_srch ::ng-deep.mat-form-field-underline {
     height:0px!important;
 }
+.header_srch input::placeholder{
+    padding-bottom: 10px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
 .cntr_nmbr2{
     position: absolute;
     

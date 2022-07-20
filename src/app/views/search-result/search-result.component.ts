@@ -9,6 +9,8 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 declare var $;
 
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { ToastrService } from 'ngx-toastr';
+import { CartService } from 'src/app/shared/cart.service';
 
 @Component({
   selector: 'app-search-result',
@@ -20,12 +22,15 @@ export class SearchResultComponent implements OnInit {
   limit_val = 10
   offset_val = 0
   length
+  quantityIncrese = 0
+  itemcollect: number=0
   style_slider: OwlOptions = {
     loop: true,
     mouseDrag: false,
     touchDrag: false,
     pullDrag: false,
     dots: false,
+    
     navSpeed: 700,
     margin: 10,
     nav: true,
@@ -48,11 +53,14 @@ export class SearchResultComponent implements OnInit {
    floor: 0,
    ceil: 100
  };
+ colorname = ''
+ s = ''
   service_count: any;
   services_list: any;
   services_list_all: any;
   searchFilters: any;
   image_path: string;
+  colorcodes = ''
   interiorCatalogue: any;
 
   imgpath1=environment.homeImg;
@@ -89,11 +97,20 @@ export class SearchResultComponent implements OnInit {
   catalogueInterior: any;
   catalogueExterior: any;
   addDeviceId: any;
+  isLogin: any;
+   sizeu = ''
+  userId: any;
+  productId: any;
+  detail: any;
+  user_id: any;
+  obj1;
 
   constructor(
     public CustomerService: CustomerService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private toastr: ToastrService,
+    public cartService: CartService,
   ) { }
 
   ngOnInit(): void {
@@ -377,7 +394,133 @@ homeSearch() {
 
 
 }
+///////////////////////////////////////////
+addToCart(value) {
+  this.itemcollect=this.itemcollect+1
+ this.quantityIncrese = this.quantityIncrese+1;
+ let cartcount = localStorage.getItem("cartCount");
+ localStorage.setItem("productid",value);
+ console.log("Product ID : ", value,);
 
+ this.isLogin = localStorage.getItem("isLoggedIn");
+ console.log("ISLOGIN value is>>>>>", this.isLogin);
+ this.userId=localStorage.getItem("session_data")
+ if((localStorage.getItem("session_data"))&& !this.isLogin ){
+   var session_data = JSON.parse(localStorage.getItem("session_data"))
+   // this.userId=localStorage.getItem("session_data")
+   this.userId=session_data.session_id
+ }else{
+   this.userId=""
+ }
+ this.productId =  this.prodData.filter((res)=>{
+   return res._id==value
+ });
+   this.detail=this.productId[0] 
+ 
+ 
+ // this.profId = this.detail.professional_id;
+ console.log('this.detail: ', this.detail);
+
+ if (!this.isLogin) {
+   console.log("this is workingg");
+   if (localStorage.getItem("session_data")) {
+     this.userId = localStorage.getItem("session_data");
+     console.log("this is workingg", this.user_id);
+   } else {
+     this.userId = "";
+   }
+
+   var session_data = JSON.parse(localStorage.getItem("session_data"))
+   this.userId=localStorage.getItem("session_data")
+   this.userId=session_data?.session_id
+ } else {
+   const user = localStorage.getItem("userData")
+     ? JSON.parse(localStorage.getItem("userData"))
+     : {};
+   console.log("user dsata is here =========", user);
+   if (user) {
+     this.userId = user;
+   }
+ }
+
+
+ if (!(this.isLogin)) {
+   this.router.navigate(['login'])
+   this.toastr.error("Please Login First");
+   return false;
+ }
+ if (!(this.userId['user_type'] == "customer")) {
+   this.toastr.warning("Please Login as a customer");
+   return false;
+ }
+ // if (!(this.quantityIncrese > 0)) {
+ //   this.toastr.error("Please add minimum 1 product quantity");
+ //   return false;
+ // }
+ // if (cartcount) {
+ //   this.toastr.warning("Product already added in cart");
+ //   return false;
+ // }
+
+ if (this.s && this.colorname) {
+   this.obj1 = {
+     user_id: this.userId._id,
+     product_id: this.productId,
+
+     quantity: this.quantityIncrese,
+     color_name: this.colorname,
+     color_code: this.colorcodes,
+     size: this.s,
+     size_unit: this.sizeu
+   };
+   console.log("this.obj1 is===========>", this.obj1);
+
+   this.CustomerService.addToCart(this.obj1).subscribe((res) => {
+     this.toastr.success("Product Added to the cart Successfully");
+     this.cartService.cartDataBehSub.next("true");
+     localStorage.setItem("cartCount", "true");
+
+
+     if (res.session_id && !this.isLogin) {
+       localStorage.setItem("session_data", res.session_id);
+       localStorage.setItem("cart_id", res.data.cart_id);
+     }
+
+     console.log(res);
+     //this.ngOnInit()
+   });
+ }
+ else {
+   this.obj1 = {
+     user_id: this.userId,
+     product_id: value,
+     // professional_id: this.profId._id,
+     quantity: this.quantityIncrese,
+     // color_name:this.colorname,
+     // color_code:this.colorcodes,
+     // size:this.s,
+     // size_unit:this.sizeu
+   };
+   console.log("this.obj1 is===========>", this.obj1);
+
+   this.CustomerService.addToCart(this.obj1).subscribe((res) => {
+     this.toastr.success(`${this.itemcollect} Product Added to the cart Successfully`);
+     this.cartService.cartDataBehSub.next("true");
+     localStorage.setItem("cartCount", "true");
+
+
+     if (res.session_id && !this.isLogin) {
+       localStorage.setItem("session_data", res.session_id);
+       localStorage.setItem("cart_id", res.data.cart_id);
+     }
+
+     console.log(res);
+     //this.ngOnInit()
+   });
+ }
+
+
+}
 
 
 

@@ -536,7 +536,7 @@
                         <div class="card mt-3">
                             <div class="card-body">
                                 <div class="seller-prod-list-heading">
-                                    <h2>Variant</h2>
+                                    <h2>Varient</h2>
                                     <div class="form-group form-check">
                                         <input type="checkbox" class="form-check-input check-input" id="t-and-c"
                                             (change)="onChange2($event)">
@@ -815,7 +815,11 @@
                                                             Online Store <i class="fa fa-store float-right"></i>
                                                         </a>
                                                     </h4>
-                                                </div>
+                                          <div class="row">
+                                    <div class="col-sm-12">
+                                        <button class="btn btn-custon" (click)="AddColor()"> + Add </button>
+                                    </div>
+                                </div>              </div>
                                                 <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel"
                                                     aria-labelledby="headingOne">
                                                     <div class="panel-body">
@@ -892,7 +896,71 @@
                                 </div> -->
 
                     </div>
-                    <div class="col-md-8 seller-prod-submit mt-3" align="center">
+
+                    <div class="col-sm-8">
+                        <div class="card mt-3">
+                            <div class="card-body">
+                                <div class="seller-prod-list-heading">
+                                    <h2>Questions</h2>
+                                        <div class="form-group form-check">
+                                            <input type="checkbox" class="form-check-input check-input" id="t-and-c"
+                                                (change)="onChange6($event)">
+                                        
+                                            write questions about product
+                                        </div>
+    
+    
+                                        <div class="main" *ngIf="status6=='yes'" >
+    
+                                            <ng-container formArrayName="question_and_answers"
+                                                *ngFor="let color of question_and_answers.controls ;let i=index">
+                                                <div class="row form-group" [formGroupName]="i">
+                                                   
+                                                    <div class="col-sm-10">
+                                                        <div class="">
+                                                            <div class="txtt" style="width: 61px;">
+                                                              
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>question</label>
+                                                                <input formControlName="question" type="text" class="form-control">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>answer</label>
+                                                            <input formControlName="answer" type="text" class="form-control">
+                                                            <i
+                                                                    style="color: #656464; font-size: 14px;"
+                                                                    class="fa fa-trash ml-2" aria-hidden="true"
+                                                                    (click)="deletequestion(color,i)"></i>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                
+                                                </div>
+                                            </ng-container>
+                                
+                                                <div class="row">
+                                                    <div class="col-sm-8 text-center">
+                                                        <button class="btn btn-custon" (click)="Addquestions()"> + Add </button>
+                                                    </div>
+                                                </div>
+                
+                                        </div>
+    
+                                </div>
+                            </div>
+                                       
+                           
+                            
+                           
+                        </div>
+
+                    </div>
+                    
+
+                
+                    <div class="col-md-12 seller-prod-submit mt-3" align="center">
                         <div class="upload-btn mt-2">
                             <button type="submit" class="btn btn-change-fill min-width-0"
                                 (click)="publish('save')">Save</button>

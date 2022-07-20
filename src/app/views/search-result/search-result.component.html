@@ -470,6 +470,13 @@
                       <i class="fas fa-star grey"></i> 
                     </span>
                     <div class="price"> <strong>£{{product?.pricing?.price}}</strong> <span>£18.00</span></div>
+                    <div class="d-flex">
+                      <button class="btn btn-outline-blue mt-2 btn-buy" (click)= "buynow(product?._id)"><i class=""></i> Buy
+                        Now </button>
+
+                        <button class="btn btn-outline-blue mt-2 ml-2 btn-buy" (click)="addToCart(product?._id)"><i
+                          class="fa fa-shopping-cart mr-2 "></i><a>Add to Cart</a></button>
+                    </div>
                   </div>
                   <div class="product-info">
                     <div class="header showDetailsBtn"> Details</div>

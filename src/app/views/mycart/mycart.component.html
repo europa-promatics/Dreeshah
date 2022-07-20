@@ -24,7 +24,7 @@
                         <div class="col-md-12 ">
                             <h1>My Cart</h1>
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-md-12">
                             <div class="wrap cf">
                                 <div class="cart p-0">
                                     <ul class="cartWrap p-0">
@@ -68,8 +68,16 @@
                                                         <div class="borderSP"></div>
                                                         <h2 (click)="laterSave(detail?._id)"
                                                             style="font-size:12px; cursor:pointer;">Save For Later</h2>
+                                                        <div class="borderSP"></div>
+                                                        <h2 
+                                                            style="font-size:12px; cursor:pointer;">Product price   ${{detail.ProductDetails.pricing.price * detail.quantity}} </h2>
+                                                            <div class="borderSP"></div>
+                                                            <li class="totalRow ml-auto" ><a (click)="CheckOut(detail.ProductDetails.pricing.price * detail.quantity)"
+                                                                class="btn btn-change-fill ">Checkout</a></li>
+
                                                     </div>
-                                                </div>
+                                                   
+                                                </div> 
                                                 <div class="prodTotal cartSection">
                                                     <!-- <p>$15.00</p> -->
                                                     <div class="sav-later-btn">
@@ -103,7 +111,7 @@
 
 
                             <div class="subtotal mt-3" style="border: 1px solid #ececec; box-shadow: 1px 2px 5px -3px rgba(0, 0, 0, 0.12);">
-                                <ul>
+                                <!-- <ul>
                                     <li class="totalRow"><span class="label">Subtotal</span><span
                                             class="value">${{amtWithoutTax}}</span></li>
 
@@ -119,9 +127,9 @@
                                             class="value">${{finalTotal}}</span></li>
                                     <li class="totalRow"><a (click)="CheckOut()"
                                             class="btn btn-change-fill">Checkout</a></li>
-                                    <!-- <li class="totalRow"><a routerLink="/checkout/{{total}}" class="btn btn-change-fill">Checkout</a></li> -->
-                                    <!-- <li class="totalRow"><a href="" class="btn-continue btn-change-fill">Checkout</a></li> -->
-                                </ul>
+                                     <li class="totalRow"><a routerLink="/checkout/{{total}}" class="btn btn-change-fill">Checkout</a></li> 
+                                     <li class="totalRow"><a href="" class="btn-continue btn-change-fill">Checkout</a></li> 
+                                </ul> -->
 
 
                             </div>

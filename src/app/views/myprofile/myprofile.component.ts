@@ -32,6 +32,7 @@ export class MyprofileComponent implements OnInit {
   ngOnInit(): void {
     this.image_path = "https://developers.promaticstechnologies.com/dreeshah_apis/public/userProfile/"
     this.userData = JSON.parse(localStorage['userData']);
+    console.log(this.userData,"s")
     this.getProfile()
   }
 
@@ -48,6 +49,7 @@ export class MyprofileComponent implements OnInit {
         }
         console.log("khgiuhg", this.userDetails)
       }
+      
     })
   }
 
@@ -91,7 +93,7 @@ export class MyprofileComponent implements OnInit {
       this.user_image = data.profile_image
 
       this.CommonService.sendProfileImg(data.profile_image);
-      this.ngOnInit()
+  
     })
   }
 }

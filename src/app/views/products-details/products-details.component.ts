@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { CustomerService } from "../../shared/customer.service";
 import { environment } from "src/environments/environment.prod";
 import { Router, ActivatedRoute, Params } from "@angular/router";
@@ -8,6 +8,7 @@ declare var $;
 import { OwlOptions } from "ngx-owl-carousel-o";
 import { THIS_EXPR } from "@angular/compiler/src/output/output_ast";
 import { CartService } from "../../shared/cart.service";
+import { MatAccordion } from "@angular/material/expansion";
 
 
 
@@ -91,6 +92,8 @@ export class ProductsDetailsComponent implements OnInit {
   prodData: any;
   count: any;
   config: { itemsPerPage: number; currentPage: number; totalItems: any; };
+  delever: any;
+  deleverd: boolean=false;
 
   showZoomImg(value) {
     this.ImgSrc = value;
@@ -138,8 +141,10 @@ export class ProductsDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private toastr: ToastrService
-  ) { }
+  ) { 
 
+  }
+  @ViewChild(MatAccordion) accordion: MatAccordion;
   ngOnInit(): void {
     localStorage.removeItem('wishCount');
     localStorage.removeItem('cartCount');
@@ -167,14 +172,14 @@ export class ProductsDetailsComponent implements OnInit {
         this.availablesize = res.details.available_size;
         this.costperpriceItem = this.detail.pricing.costPerItem;
         this.quantityyy = res.details.quantity
-        for (var i = 0; i < this.quantityyy.length; i++) {
+        // for (var i = 0; i < this.quantityyy.length; i++) {
 
-          if (this.quantityyy[i].branch_quantity) {
-            this.branch_quantity[i] = this.quantityyy[i].branch_quantity;
-            console.log("true ----------", this.branch_quantity[i]);
-          }
-          this.totalprice[i] = this.branch_quantity[i] * this.costperpriceItem
-        }
+        //   if (this.quantityyy[i].branch_quantity) {
+        //     this.branch_quantity[i] = this.quantityyy[i].branch_quantity;
+        //     console.log("true ----------", this.branch_quantity[i]);
+        //   }
+        //   this.totalprice[i] = this.quantityIncrese * this.costperpriceItem
+        // }
         console.log("Price of the item is:", this.total);
         console.log("Price of the item is:", this.total);
         if (this.detail.product_media.length) {
@@ -306,6 +311,11 @@ export class ProductsDetailsComponent implements OnInit {
     this.sizeu = size_unit
     this.sizeselected = null
   }
+  choose(event){
+      console.log(event,"===>")
+      this.delever=event.target.value
+      this.deleverd=true
+  }
 
   addToCart(value) {
     let cartcount = localStorage.getItem("cartCount");
@@ -352,7 +362,7 @@ export class ProductsDetailsComponent implements OnInit {
       this.toastr.error("Please Login First");
       return false;
     }
-    if (!(this.userData.user_type == "customer")) {
+    if (this.userData.user_type != "customer") {
       this.toastr.warning("Please Login as a customer");
       return false;
     }
@@ -539,7 +549,7 @@ export class ProductsDetailsComponent implements OnInit {
   // }
 
   buyNow(val) {
-    if (this.isLogin && this.userData.user_type == "customer" && this.quantityIncrese != 0 && this.iconbig && this.sizeselected) {
+    if (this.isLogin && this.userData.user_type == "customer" && this.deleverd==true && this.quantityIncrese != 0 || this.iconbig || this.sizeselected ) {
       let cartcount = localStorage.getItem("cartCount");
       console.log("Product ID : ", val);
 
@@ -583,8 +593,8 @@ export class ProductsDetailsComponent implements OnInit {
         this.toastr.error("Please Login First");
         return false;
       }
-      if (!(this.userData.user_type == "customer")) {
-        this.toastr.warning("Please Login as a customer");
+      if (this.userData.user_type != "customer") {
+        this.toastr.warning("Please Login as a customerssssssssss");
         return false;
       }
       if (!(this.quantityIncrese > 0)) {
@@ -598,6 +608,7 @@ export class ProductsDetailsComponent implements OnInit {
 
       if (this.s && this.colorname) {
         this.obj1 = {
+          deliverd_by:this.delever,
           user_id: this.userId._id,
           product_id: this.productId,
           professional_id: this.profId._id,
@@ -628,10 +639,11 @@ export class ProductsDetailsComponent implements OnInit {
       }
       else {
         this.obj1 = {
-          user_id: this.userId,
+          user_id:this.userId['_id'],
           product_id: this.productId,
-          professional_id: this.profId._id,
+          // professional_id: this.profId._id,
           quantity: this.quantityIncrese,
+          deliverd_by:this.delever,
           // color_name:this.colorname,
           // color_code:this.colorcodes,
           // size:this.s,
@@ -662,15 +674,30 @@ export class ProductsDetailsComponent implements OnInit {
     // else if (!this.sizeselected) {
     //   this.toastr.error("Please Select product size");
     // }
-    else if (this.quantityIncrese == 0) {
-      this.toastr.error("Please add minimum 1 product quantity");
-    }
+  //   else if (this.quantityIncrese == 0) {
+  //     this.toastr.error("Please add minimum 1 product quantity");
+  //   }
 
-    else if (this.isLogin) {
-      this.toastr.warning("Please Login as a customer");
+    else if (!(this.userId?.user_type != "customer")) {
+      this.toastr.warning("Please Login as a customersss");
+    }else if(!this.deleverd ){
+      this.toastr.error("Please select delever type");
     }
     else {
       this.toastr.error("Please Login First");
     }
+
+   }
+  //  details(x:any){
+  //   this.router.navigate([`/products-details/${x}`])
+  //  }
+   details(sub_id) {
+    this.router.navigate(['/products-details/',sub_id]);
+    this.router.routeReuseStrategy.shouldReuseRoute = function () {
+      return false;
+    };
+  }
+  datatarget(i){
+    console.log(i,"===>")
   }
 }

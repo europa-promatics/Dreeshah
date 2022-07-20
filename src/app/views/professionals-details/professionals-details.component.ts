@@ -16,7 +16,7 @@ export class ProfessionalsDetailsComponent implements OnInit {
   profileUrl=environment.profileUrl
   items: GalleryItem[];
   professionalId: any;
-  professional: {};
+  professional:any;
   length: any;
   constructor(public gallery: Gallery,private route:ActivatedRoute,private customerService: CustomerService) { }
 

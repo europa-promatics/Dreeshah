@@ -61,6 +61,7 @@ export class SellerAddProductComponent implements OnInit {
   status3 = "false";
   status4 = "false";
   status5 = "false";
+  status6 = "false";
   collec: any;
   code: any;
   cbox1: any;
@@ -259,6 +260,17 @@ export class SellerAddProductComponent implements OnInit {
     console.log(this.status5)
   }
 
+  onChange6(evt2) {
+    //console.log("evt",evt2)
+    if (evt2.target.checked == true) {
+      this.status6 = "yes";
+    } else {
+      this.status6 = "no";
+    }
+    console.log(this.status6)
+  }
+
+
 
   /* Remove() {
     console.log(this.url);
@@ -312,7 +324,14 @@ export class SellerAddProductComponent implements OnInit {
 
         })]),
         'variant_size': new FormArray([])
-      })
+      }),
+     
+        'question_and_answers': new FormArray([this.formBuilder.group({
+          'question': [null, []],
+          'answer': [null, []]
+
+        })])
+   
     });
 
 
@@ -324,10 +343,20 @@ export class SellerAddProductComponent implements OnInit {
   get variant_size() {
     return ((this.productForm.controls['variants'] as FormGroup).controls['variant_size'] as FormArray)
   }
+  get question_and_answers() {
+    return (this.productForm.controls['question_and_answers'] as FormArray)
+  }
   AddColor() {
     this.colors.push(this.formBuilder.group({
       'color_name': [null, []],
       'color_image': [null, []]
+
+    }))
+  }
+  Addquestions(){
+    this.question_and_answers.push(this.formBuilder.group({
+      'question': [null, []],
+      'answer': [null, []]
 
     }))
   }
@@ -337,9 +366,14 @@ export class SellerAddProductComponent implements OnInit {
 
     this.variant_size.push(new FormControl(value))
   }
+
   deleteColor(data, i) {
     this.colors.removeAt(i)
 
+  }
+
+  deletequestion(i){
+    this.question_and_answers.removeAt(i)
   }
 
   UploadVarientImages(event, i) {
@@ -578,7 +612,7 @@ export class SellerAddProductComponent implements OnInit {
     this.product_details = {
       product_type: this.productType,
       vendor: this.vendor,
-      // collection: this.collection,
+      collection: this.collection,
     }
 
 
@@ -609,7 +643,8 @@ export class SellerAddProductComponent implements OnInit {
     console.log("Available color data is>>>>>", this.colorObject)
     console.log("Available Size data is>>>>>", this.sizeObject)
     console.log("Product Details data is>>>>>", this.product_details)
-    console.log("TAGS>>>>>>>>", this.tags)
+    console.log("TAGS>>>>>>>>",this.productForm.value.questions )
+
 
     console.log(this.productForm.value);
     var formData = new FormData();
@@ -625,16 +660,20 @@ export class SellerAddProductComponent implements OnInit {
     formData.append('customs_information', JSON.stringify(this.customInfo));
     formData.append('shipping', this.status1);
     formData.append('variant', this.status2);
+     formData.append('question_exists', this.status2);
+    
     // formData.append('available_color', JSON.stringify(this.colorObject));
     // formData.append('available_size', JSON.stringify(this.sizeObject));
     formData.append('visible_to_professinal', this.status3);
     formData.append('visible_to_customer', this.status4);
     formData.append('charge_tax', this.status5);
+    formData.append('product_question', this.status6);
     formData.append('quantity', JSON.stringify(this.itemQtyArr));
     formData.append('product_details', JSON.stringify(this.product_details));
     formData.append('tags', JSON.stringify(this.tags));
     formData.append('shipping_option', this.productForm.value.ShippingOption);
     formData.append('variants',JSON.stringify(this.productForm.controls['variants'].value))
+    formData.append('question_and_answers',JSON.stringify(this.productForm.controls['question_and_answers'].value))
     formData.append('form_status',argument=='save'?'save':'publish')
     console.log(JSON.stringify (localStorage.getItem('userData')))
       formData.append('professional_id',this.professId._id)

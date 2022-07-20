@@ -15,10 +15,10 @@
                         <div class="professionals-details-bg">
                             <div class="row">
                                 <div class="col-md-2">
-                                    <div class="professionals-profile-img" *ngIf="professional?.profile_image != null">
+                                    <div class="professionals-profile-img" *ngIf="professional?.profile_image.length > 0">
                                         <img src="{{profileUrl}}{{professional?.profile_image}}" class="img-fluid">
                                     </div>
-                                    <div class="professionals-profile-img" *ngIf="professional?.profile_image == null">
+                                    <div class="professionals-profile-img" *ngIf="professional?.profile_image.length == 0">
                                         <img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png" class="img-fluid">
                                     </div>
                                 </div>
