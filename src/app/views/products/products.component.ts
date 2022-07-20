@@ -58,7 +58,10 @@ export class ProductsComponent implements OnInit {
   newwarey: any[]=[];
   newset: any[];
   newsset: Set<any>;
+<<<<<<< Updated upstream
   itemcollect: number=0;
+=======
+>>>>>>> Stashed changes
 
   constructor(public CustomerService: CustomerService ,    private toastr: ToastrService
    , public cartService: CartService,private router:Router) { 
@@ -76,7 +79,10 @@ export class ProductsComponent implements OnInit {
     localStorage.removeItem('cartCount');
     console.log("In the product detail componennt>>>>>");
     this.isLogin = localStorage.getItem("isLoggedIn");
+<<<<<<< Updated upstream
    /////////////////////////////////////////////////////////
+=======
+>>>>>>> Stashed changes
    
     $(document).on('click','.showDetailsBtn', function(){
       $(this).closest('.product-info').toggleClass("show");
@@ -135,6 +141,7 @@ export class ProductsComponent implements OnInit {
     this.CustomerService.productList(list2).subscribe(res => {
       console.log(res)
       this.prodData2 = res.products;
+<<<<<<< Updated upstream
       const data = this.prodData2.filter((val)=>val.serviceCategoryDetails)
       console.log("data",data);
       
@@ -142,6 +149,12 @@ export class ProductsComponent implements OnInit {
       console.log(this.prodData2, "ss=========================================================>")
       // console.log("ss=========================================================>")
       // this.newwarey = this.prodData2.((res: any) => {
+=======
+      console.log(this.prodData2['serviceCategoryDetails']['name'])
+      console.log(this.prodData2, "ss=========================================================>")
+      // console.log("ss=========================================================>")
+      // this.newwarey = this.prodData2.map((res: any) => {
+>>>>>>> Stashed changes
       //   return { name: res.serviceCategoryDetails.name }
       // })
       console.log(this.newwarey, "ss=========================================================>")

@@ -213,6 +213,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox'
 
 import { MatRadioModule } from '@angular/material/radio';
 import { AddProjectComponent } from './views/add-project/add-project.component';
+import { SellerEditProductComponent } from './views/seller-edit-product/seller-edit-product.component';
+import { SellerViewProductComponent } from './views/seller-view-product/seller-view-product.component';
 firebase.initializeApp(environment.firebaseConfig);
 
 
@@ -355,6 +357,8 @@ firebase.initializeApp(environment.firebaseConfig);
     SellerCatalogueComponent,
     SellerCatalogueViewComponent,
     SearchResultComponent,
+    SellerEditProductComponent,
+    SellerViewProductComponent,
     // SellerBranchViewComponent
   ],
   imports: [

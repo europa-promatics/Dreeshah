@@ -136,6 +136,8 @@ import { SellerCatalogueComponent } from './views/seller-catalogue/seller-catalo
 import { SellerCatalogueViewComponent } from './views/seller-catalogue-view/seller-catalogue-view.component';
 // import { SellerBranchViewComponent } from './views/seller-branch-view/seller-branch-view.component';
 import { SearchResultComponent } from './views/search-result/search-result.component';
+import { SellerEditProductComponent } from './views/seller-edit-product/seller-edit-product.component';
+import { SellerViewProductComponent } from './views/seller-view-product/seller-view-product.component';
 
 
 const routes: Routes = [
@@ -340,6 +342,15 @@ const routes: Routes = [
 		path: 'seller-add-product',
 		component: SellerAddProductComponent
 	},
+	{
+		path: 'seller-edit-product/:id',
+		component: SellerEditProductComponent
+	},
+	{
+		path: 'seller-view-product/:id',
+		component: SellerViewProductComponent
+	},
+	
 	{
 		path: 'products',
 		component: ProductsComponent

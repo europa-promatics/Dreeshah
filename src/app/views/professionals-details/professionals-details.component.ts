@@ -16,7 +16,11 @@ export class ProfessionalsDetailsComponent implements OnInit {
   profileUrl=environment.profileUrl
   items: GalleryItem[];
   professionalId: any;
+<<<<<<< Updated upstream
   professional:any;
+=======
+  professional: any;
+>>>>>>> Stashed changes
   length: any;
   constructor(public gallery: Gallery,private route:ActivatedRoute,private customerService: CustomerService) { }
 

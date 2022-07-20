@@ -1,0 +1,6 @@
+.not-allow{
+    cursor: not-allowed!important;
+}
+.not-allow .readonly-block{
+    pointer-events: none;
+}

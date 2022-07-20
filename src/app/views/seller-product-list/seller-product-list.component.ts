@@ -46,6 +46,7 @@ export class SellerProductListComponent implements OnInit {
 	selection = new SelectionModel<table>(true, []);
 	//dataSource: MatTableDataSource<table>;
 	dataSource=[];
+	id: any;
   constructor(private httpClient: HttpClient,
 	public CustomerService: CustomerService) { 
 	
@@ -97,38 +98,41 @@ export class SellerProductListComponent implements OnInit {
 		  });
 	  }
   }
-  deleteService() {
+  deleteService(_id) {
+	console.log("delete di iddd>>>>",_id);
+	
+	this.id=_id
 	Swal.fire({
 		title: 'Are you sure?',
-		text: 'You will not be able to recover this service!',
+		text: 'You will not be able to recover this Product!',
 		icon: 'warning',
 		showCancelButton: true,
 		confirmButtonText: 'Yes, delete it!',
 		cancelButtonText: 'No, keep it'
-	})/* .then((result) => {
+	}) .then((result) => {
 		if (result.value) {
 			Swal.fire(
 				'Deleted!',
-				'Your Service has been deleted.',
+				'Your Product has been deleted.',
 				'success'
 			).then(delete_service => {
 				var obj = {
-					service_id: id
+					product_id: this.id
 				}
-				 this.CustomerService.deleteSellerService(obj).subscribe(data => {
+				 this.CustomerService.deleteProductService(obj).subscribe(data => {
 					console.log(data);
-					this.getProfessionalServices()
-					this.toastr.success("Service deleted sucessfully")
+					this.ngOnInit()
 				}) 
+			
 			})
 		}  else if (result.dismiss === Swal.DismissReason.cancel) {
 			Swal.fire(
 				'Cancelled',
-				'Your Service is safe :)',
+				'Your Product is safe :)',
 				'error'
 			)
 		} 
-	}) */
+	}) 
 }
 
   getPageSizeOptions() {

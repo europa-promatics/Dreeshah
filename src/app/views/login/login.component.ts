@@ -85,6 +85,7 @@ export class LoginComponent implements OnInit {
         localStorage["isLoggedIn"] = true,
           this.toastr.success('Login successful', 'Success')
           this.router.navigate(['/myprofile']);
+          this.ngOnInit()
         })
         
        /* Write Your Code Here */

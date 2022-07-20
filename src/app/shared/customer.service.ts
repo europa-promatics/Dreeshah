@@ -17,6 +17,9 @@ import { ActivatedRoute, Router } from '@angular/router';
   providedIn: 'root'
 })
 export class CustomerService {
+  // getSubCat(obj: { id: any; }) {
+  //   throw new Error('Method not implemented.');
+  // }
   userData
   apiUrl: any = environment.endPoint
   apiUrlAdmin: any = environment.endPointAdmin
@@ -886,6 +889,7 @@ export class CustomerService {
 
       );
   }
+  
 
   getSellerServiceDetails(data): Observable<any> {
     let API_URL = `${this.apiUrl}/getSellerServiceDetails`;
@@ -1199,9 +1203,19 @@ export class CustomerService {
   }
 
 
+  // getProductVendorType(data): Observable<any> {
+  //   let API_URL = `${this.apiUrl}/getProductTypeVendor/${data.id}`;
+  //   return this.httpClient.post(API_URL, data, this.httpOptions)
+  //     .pipe(
+  //       map(res => {
+  //         return res
+  //       })
+  //     )
+  // }
 
-  getSubCat(id): Observable<any> {
-    let API_URL = `${this.apiUrl}/product/subcategories/${id}`;
+
+  getSubCat(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/product/subcategories/${data.id}`;
     return this.httpClient.get(API_URL)
       .pipe(
         map(res => {
@@ -1248,6 +1262,37 @@ export class CustomerService {
         map(res => {
           return res
         })
+      )
+  }
+
+  editProductService(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/editProfessionalProduct`;
+    return this.httpClient.patch(API_URL, data, this.httpOptions)
+      .pipe(
+        map(res => {
+          return res
+        })
+      )
+  }
+
+  getProductService(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/getProductById/${data.product_id}`;
+    return this.httpClient.get(API_URL, data)
+      .pipe(
+        map(res => {
+          return res
+        })
+      )
+  }
+
+  deleteProductService(data): Observable<any> {
+    let API_URL = `${this.apiUrl}/deleteProfessionalProduct`;
+    return this.httpClient.post(API_URL, data, this.httpOptions)
+      .pipe(
+        map(res => {
+          return res
+        }),
+
       )
   }
 

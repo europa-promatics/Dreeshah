@@ -172,9 +172,13 @@
                                                                             <mat-icon>settings</mat-icon>
                                                                         </button>
                                                                         <mat-menu #menu="matMenu">
-                                                                            <button mat-menu-item>
+                                                                            <button mat-menu-item routerLink="/seller-edit-product/{{element?._id}}">
                                                                                 <mat-icon>create</mat-icon>
                                                                                 <a>Edit</a>
+                                                                            </button>
+                                                                            <button mat-menu-item routerLink="/seller-view-product/{{element?._id}}">
+                                                                                <mat-icon>visibility</mat-icon>
+                                                                                <a>View</a>
                                                                             </button>
                                                                             <button mat-menu-item >                                                                                                                                                            
                                                                                 <mat-icon>check_circle
@@ -187,7 +191,7 @@
                                                                                 <span>Make Inactive</span>
                                                                             </button>
                                                                             <button mat-menu-item
-                                                                            (click)="deleteService()" >
+                                                                            (click)="deleteService(element?._id)" >
                                                                                 <mat-icon>delete</mat-icon>
                                                                                 <span>Delete</span>
                                                                             </button>

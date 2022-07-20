@@ -384,15 +384,19 @@
                                                     </tr>
                                                     <tr>
                                                         <th>Sold By</th>
-                                                        <td>{{detail?.professional_id?.first_name}} </td>
+                                                        <td>{{detail?.product_details.vendor.vendor_name}} </td>
                                                     </tr>
                                                     <tr>
                                                         <th>Color</th>
-                                                        <td>White</td>
+                                                        <td>{{detail.variants.colors[0].color_name}}</td>
                                                     </tr>
                                                     <tr>
                                                         <th>Material</th>
+<<<<<<< Updated upstream
                                                         <td>{{detail?.product_details?.product_type?.product_type  ? detail?.product_details?.product_type?.product_type : 'N/A'}}</td>
+=======
+                                                        <td>{{detail?.product_details.product_type.product_type}}</td>
+>>>>>>> Stashed changes
                                                     </tr>
                                                     <tr>
                                                         <th>Category</th>

@@ -41,6 +41,7 @@ export class SellerAddProductComponent implements OnInit {
   costitem: any;
   margin: any;
   profit: any;
+  manufacture: any;
   tags: any;
   inventory: any;
   sku: any;
@@ -290,6 +291,8 @@ export class SellerAddProductComponent implements OnInit {
       'sub_category': [null, Validators.compose([Validators.required])],
       'price': [null, Validators.compose([Validators.required])],
       'comprice': [null, Validators.compose([Validators.required])],
+      'manufacture': [null, Validators.compose([Validators.required])],
+
       'costitem': [null, Validators.compose([Validators.required])],
       'margin': [null, Validators.compose([Validators.required])],
       'profit': [null, Validators.compose([Validators.required])],
@@ -525,10 +528,25 @@ export class SellerAddProductComponent implements OnInit {
 
 
 
+  // getSubCat(event) {
+
+  //   console.log(event)
+  //   this.CustomerService.getSubCat(event).subscribe(data => {
+  //     console.log(data);
+  //     this.ServiceSubCat = data.sub_categories
+  //     console.log(this.ServiceSubCat);
+  //   })
+
+
+
+  // }
   getSubCat(event) {
 
-    console.log(event)
-    this.CustomerService.getSubCat(event).subscribe(data => {
+    console.log('--||||||-',event)
+    let obj={
+      id:event
+    }
+    this.CustomerService.getSubCat(obj).subscribe(data => {
       console.log(data);
       this.ServiceSubCat = data.sub_categories
       console.log(this.ServiceSubCat);
@@ -632,6 +650,7 @@ export class SellerAddProductComponent implements OnInit {
     console.log("Product Description is>>>>>", this.productForm.value.ckedit)
     console.log("Pricing is>>>>>", this.pricing)
     console.log("Inventory is>>>>>", this.inventory1)
+    console.log("Product manufacture is>>>>>", this.productForm.value.manufacture)
     console.log("Reponse of the quantity from branch in FORM=====", this.itemQtyArr)
     console.log("Shipping Status Data is>>>>>", this.status1)
     console.log("Weight Data is>>>>>", this.weightData)
@@ -656,6 +675,8 @@ export class SellerAddProductComponent implements OnInit {
     formData.append('weight_details', JSON.stringify(this.weightData));
     formData.append('pricing', JSON.stringify(this.pricing));
     formData.append('inventory', JSON.stringify(this.inventory1));
+    formData.append('product_manufacturer_name', this.productForm.value.manufacture);
+
     //formData.append('quantity', JSON.stringify(this.quantity));
     formData.append('customs_information', JSON.stringify(this.customInfo));
     formData.append('shipping', this.status1);
