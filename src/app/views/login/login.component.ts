@@ -214,9 +214,7 @@ export class LoginComponent implements OnInit {
          
         } else if (data.user.user_type == 'professional') {
           this.router.navigate(['/seller-profile-view']);
-          this.router.routeReuseStrategy.shouldReuseRoute = function () {
-            return false;
-          };
+        
         } else {
           this.router.navigate(['/photographerProfile']);
         }
